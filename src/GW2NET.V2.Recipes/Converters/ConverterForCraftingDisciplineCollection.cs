@@ -8,9 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Recipes
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Recipes;
@@ -29,16 +28,25 @@ namespace GW2NET.V2.Recipes
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForCraftingDisciplineCollection"/> class.</summary>
         /// <param name="converterForCraftingDiscipline">The converter for <see cref="CraftingDisciplines"/></param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForCraftingDiscipline"/> is a null reference.</exception>
         internal ConverterForCraftingDisciplineCollection(IConverter<string, CraftingDisciplines> converterForCraftingDiscipline)
         {
-            Contract.Requires(converterForCraftingDiscipline != null);
+            if (converterForCraftingDiscipline == null)
+            {
+                throw new ArgumentNullException("converterForCraftingDiscipline", "Precondition: converterForCraftingDiscipline != null");
+            }
+
             this.converterForCraftingDiscipline = converterForCraftingDiscipline;
         }
 
         /// <inheritdoc />
         public CraftingDisciplines Convert(ICollection<string> value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             CraftingDisciplines result = default(CraftingDisciplines);
             foreach (var s in value)
             {
@@ -46,13 +54,6 @@ namespace GW2NET.V2.Recipes
             }
 
             return result;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForCraftingDiscipline != null);
         }
     }
 }

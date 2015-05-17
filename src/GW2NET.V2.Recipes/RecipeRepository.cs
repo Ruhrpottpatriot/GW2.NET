@@ -8,9 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Recipes
 {
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -55,21 +56,34 @@ namespace GW2NET.V2.Recipes
 
         /// <summary>Initializes a new instance of the <see cref="RecipeRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public RecipeRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterAdapter<ICollection<int>>(), new ConverterForRecipe())
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="RecipeRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="converterForRecipeCollection">The converter for <see cref="T:ICollection{int}"/>.</param>
         /// <param name="converterForRecipe">The converter for <see cref="Item"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForRecipeCollection"/> or <paramref name="converterForRecipe"/> is a null reference.</exception>
         internal RecipeRepository(IServiceClient serviceClient, IConverter<ICollection<int>, ICollection<int>> converterForRecipeCollection, IConverter<RecipeDataContract, Recipe> converterForRecipe)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(converterForRecipeCollection != null);
-            Contract.Requires(converterForRecipe != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForRecipeCollection == null)
+            {
+                throw new ArgumentNullException("converterForRecipeCollection", "Precondition: converterForRecipeCollection != null");
+            }
+
+            if (converterForRecipe == null)
+            {
+                throw new ArgumentNullException("converterForRecipe", "Precondition: converterForRecipe != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForIdentifiersResponse = new ConverterForResponse<ICollection<int>, ICollection<int>>(converterForRecipeCollection);
             this.converterForResponse = new ConverterForResponse<RecipeDataContract, Recipe>(converterForRecipe);
@@ -333,8 +347,7 @@ namespace GW2NET.V2.Recipes
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private IDictionaryRange<int, Recipe> ConvertAsyncResponse(Task<IResponse<ICollection<RecipeDataContract>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<IDictionaryRange<int, Recipe>>() != null);
+            Debug.Assert(task != null, "task != null");
             var values = this.converterForBulkResponse.Convert(task.Result);
             if (values == null)
             {
@@ -347,8 +360,7 @@ namespace GW2NET.V2.Recipes
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollectionPage<Recipe> ConvertAsyncResponse(Task<IResponse<ICollection<RecipeDataContract>>> task, int pageIndex)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollectionPage<Recipe>>() != null);
+            Debug.Assert(task != null, "task != null");
             var values = this.converterForPageResponse.Convert(task.Result);
             if (values == null)
             {
@@ -363,8 +375,7 @@ namespace GW2NET.V2.Recipes
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollection<int>>() != null);
+            Debug.Assert(task != null, "task != null");
             var ids = this.converterForIdentifiersResponse.Convert(task.Result);
             if (ids == null)
             {
@@ -377,19 +388,9 @@ namespace GW2NET.V2.Recipes
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private Recipe ConvertAsyncResponse(Task<IResponse<RecipeDataContract>> task)
         {
-            Contract.Requires(task != null);
+            Debug.Assert(task != null, "task != null");
             return this.converterForResponse.Convert(task.Result);
         }
 
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForResponse != null);
-            Contract.Invariant(this.converterForIdentifiersResponse != null);
-            Contract.Invariant(this.converterForBulkResponse != null);
-            Contract.Invariant(this.converterForPageResponse != null);
-        }
     }
 }

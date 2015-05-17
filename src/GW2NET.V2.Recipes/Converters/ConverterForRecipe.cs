@@ -10,8 +10,6 @@ namespace GW2NET.V2.Recipes
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
@@ -44,11 +42,29 @@ namespace GW2NET.V2.Recipes
         /// <param name="converterForCraftingDisciplineCollection">The converter for <see cref="CraftingDisciplines"/>.</param>
         /// <param name="converterForRecipeFlagCollection">The converter for <see cref="RecipeFlags"/>.</param>
         /// <param name="converterForItemStackCollection">The converter for <see cref="T:ICollection{ItemStack}"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="typeConverters"/> or <paramref name="converterForCraftingDisciplineCollection"/> or <paramref name="converterForRecipeFlagCollection"/> or <paramref name="converterForItemStackCollection"/> is a null reference.</exception>
         public ConverterForRecipe(IDictionary<string, IConverter<RecipeDataContract, Recipe>> typeConverters, IConverter<ICollection<string>, CraftingDisciplines> converterForCraftingDisciplineCollection, IConverter<ICollection<string>, RecipeFlags> converterForRecipeFlagCollection, IConverter<ICollection<IngredientDataContract>, ICollection<ItemStack>> converterForItemStackCollection)
         {
-            Contract.Requires(converterForCraftingDisciplineCollection != null);
-            Contract.Requires(converterForRecipeFlagCollection != null);
-            Contract.Requires(converterForItemStackCollection != null);
+            if (typeConverters == null)
+            {
+                throw new ArgumentNullException("typeConverters", "Precondition: typeConverters != null");
+            }
+
+            if (converterForCraftingDisciplineCollection == null)
+            {
+                throw new ArgumentNullException("converterForCraftingDisciplineCollection", "Precondition: converterForCraftingDisciplineCollection != null");
+            }
+
+            if (converterForRecipeFlagCollection == null)
+            {
+                throw new ArgumentNullException("converterForRecipeFlagCollection", "Precondition: converterForRecipeFlagCollection != null");
+            }
+
+            if (converterForItemStackCollection == null)
+            {
+                throw new ArgumentNullException("converterForItemStackCollection", "Precondition: converterForItemStackCollection != null");
+            }
+
             this.converterForCraftingDisciplineCollection = converterForCraftingDisciplineCollection;
             this.converterForRecipeFlagCollection = converterForRecipeFlagCollection;
             this.converterForItemStackCollection = converterForItemStackCollection;
@@ -58,7 +74,11 @@ namespace GW2NET.V2.Recipes
         /// <inheritdoc />
         public Recipe Convert(RecipeDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             Recipe recipe;
             IConverter<RecipeDataContract, Recipe> converter;
             if (this.typeConverters.TryGetValue(value.Type, out converter))
@@ -152,16 +172,6 @@ namespace GW2NET.V2.Recipes
                 { "UpgradeComponent", new ConverterForObject<UpgradeComponentRecipe>() }, 
                 { "Warhorn", new ConverterForObject<WarHornRecipe>() }, 
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.typeConverters != null);
-            Contract.Invariant(this.converterForCraftingDisciplineCollection != null);
-            Contract.Invariant(this.converterForRecipeFlagCollection != null);
-            Contract.Invariant(this.converterForItemStackCollection != null);
         }
     }
 }

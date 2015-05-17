@@ -9,7 +9,6 @@
 namespace GW2NET.V2.Recipes
 {
     using System;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Recipes;
@@ -20,7 +19,11 @@ namespace GW2NET.V2.Recipes
         /// <inheritdoc />
         public RecipeFlags Convert(string value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             RecipeFlags result;
             if (Enum.TryParse(value, true, out result))
             {

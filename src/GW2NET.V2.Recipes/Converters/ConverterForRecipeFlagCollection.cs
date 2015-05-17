@@ -8,9 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Recipes
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Recipes;
@@ -29,15 +28,25 @@ namespace GW2NET.V2.Recipes
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForRecipeFlagCollection"/> class.</summary>
         /// <param name="converterForRecipeFlag">The converter for <see cref="RecipeFlags"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForRecipeFlag"/> is a null reference.</exception>
         internal ConverterForRecipeFlagCollection(IConverter<string, RecipeFlags> converterForRecipeFlag)
         {
+            if (converterForRecipeFlag == null)
+            {
+                throw new ArgumentNullException("converterForRecipeFlag", "Precondition: converterForRecipeFlag != null");
+            }
+
             this.converterForRecipeFlag = converterForRecipeFlag;
         }
 
         /// <inheritdoc />
         public RecipeFlags Convert(ICollection<string> value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             RecipeFlags result = default(RecipeFlags);
             foreach (var s in value)
             {
@@ -45,13 +54,6 @@ namespace GW2NET.V2.Recipes
             }
 
             return result;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForRecipeFlag != null);
         }
     }
 }

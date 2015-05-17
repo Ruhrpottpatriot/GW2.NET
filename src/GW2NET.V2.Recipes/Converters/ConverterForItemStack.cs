@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Recipes
 {
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Common;
     using GW2NET.Items;
@@ -19,7 +19,11 @@ namespace GW2NET.V2.Recipes
         /// <inheritdoc />
         public ItemStack Convert(IngredientDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new ItemStack
             {
                 ItemId = value.ItemId, 
