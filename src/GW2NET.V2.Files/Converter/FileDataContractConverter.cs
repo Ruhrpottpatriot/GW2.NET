@@ -9,18 +9,21 @@
 
 namespace GW2NET.V2.Files
 {
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Common;
     using GW2NET.Files;
 
-    /// <summary>Converts a <see cref="FileDataContract"/> into an <see cref="AssetV2">V2 asser</see>.</summary>
+    /// <summary>Converts a <see cref="FileDataContract"/> to an <see cref="AssetV2"/>.</summary>
     internal sealed class FileDataContractConverter : IConverter<FileDataContract, AssetV2>
     {
         /// <inheritdoc />
         public AssetV2 Convert(FileDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
 
             return new AssetV2 { FileId = value.Id, IconUrl = value.Icon };
         }

@@ -9,9 +9,10 @@
 
 namespace GW2NET.V2.Files
 {
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -39,19 +40,27 @@ namespace GW2NET.V2.Files
 
         /// <summary>Initializes a new instance of the <see cref="FileRepositoryV2"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public FileRepositoryV2(IServiceClient serviceClient)
             : this(serviceClient, new FileDataContractConverter())
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="FileRepositoryV2"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="contractToAssetConverter">The contract to asset converter.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="contractToAssetConverter"/> is a null reference.</exception>
         internal FileRepositoryV2(IServiceClient serviceClient, IConverter<FileDataContract, AssetV2> contractToAssetConverter)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(contractToAssetConverter != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (contractToAssetConverter == null)
+            {
+                throw new ArgumentNullException("contractToAssetConverter", "Precondition: contractToAssetConverter != null");
+            }
 
             this.serviceClient = serviceClient;
 
@@ -218,23 +227,21 @@ namespace GW2NET.V2.Files
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not part of the public API.")]
         private AssetV2 ConvertAsyncResponse(Task<IResponse<FileDataContract>> task)
         {
-            Contract.Requires(task != null);
+            Debug.Assert(task != null, "task != null");
             return this.responseConverter.Convert(task.Result);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not part of the public API.")]
         private IDictionaryRange<string, AssetV2> ConvertAsyncResponse(Task<IResponse<ICollection<FileDataContract>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<IDictionaryRange<int, AssetV2>>() != null);
+            Debug.Assert(task != null, "task != null");
             return this.bulkResponseConverter.Convert(task.Result) ?? new DictionaryRange<string, AssetV2>(0);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not part of the public API.")]
         private ICollectionPage<AssetV2> ConvertAsyncResponse(Task<IResponse<ICollection<FileDataContract>>> task, int pageIndex)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollectionPage<AssetV2>>() != null);
+            Debug.Assert(task != null, "task != null");
             var values = this.pageResponseConverter.Convert(task.Result);
             if (values == null)
             {
@@ -249,21 +256,8 @@ namespace GW2NET.V2.Files
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not part of the public API.")]
         private ICollection<string> ConvertAsyncResponse(Task<IResponse<ICollection<string>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollection<int>>() != null);
+            Debug.Assert(task != null, "task != null");
             return this.identifiersConverter.Convert(task.Result) ?? new List<string>(0);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        // ReSharper disable once UnusedMember.Local
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.bulkResponseConverter != null);
-            Contract.Invariant(this.identifiersConverter != null);
-            Contract.Invariant(this.pageResponseConverter != null);
-            Contract.Invariant(this.responseConverter != null);
-            Contract.Invariant(this.serviceClient != null);
         }
     }
 }
