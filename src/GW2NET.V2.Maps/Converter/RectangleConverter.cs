@@ -9,8 +9,7 @@
 
 namespace GW2NET.V2.Maps
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
@@ -29,18 +28,29 @@ namespace GW2NET.V2.Maps
 
         /// <summary>Initializes a new instance of the <see cref="RectangleConverter"/> class.</summary>
         /// <param name="vectorConverter">The vector converter.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="vectorConverter"/> is a null reference.</exception>
         public RectangleConverter(IConverter<double[], Vector2D> vectorConverter)
         {
-            Contract.Requires(vectorConverter != null);
+            if (vectorConverter == null)
+            {
+                throw new ArgumentNullException("vectorConverter", "Precondition: vectorConverter != null");
+            }
+
             this.vectorConverter = vectorConverter;
         }
 
         /// <inheritdoc />
         public Rectangle Convert(double[][] value)
         {
-            Contract.Assume(value != null);
-            // ReSharper disable once PossibleNullReferenceException
-            Contract.Assume(value.Length == 2);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
+            if (value.Length != 2)
+            {
+                throw new ArgumentException("Precondition: value.Length == 2", "value");
+            }
 
             var vectorNorthWest = default(Vector2D);
             var coordiantes = value[0];
@@ -57,14 +67,6 @@ namespace GW2NET.V2.Maps
             }
 
             return new Rectangle(vectorNorthWest, vectorSouthEast);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when CodeContracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.vectorConverter != null);
         }
     }
 }

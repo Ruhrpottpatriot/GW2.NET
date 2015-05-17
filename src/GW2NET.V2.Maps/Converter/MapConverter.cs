@@ -9,8 +9,7 @@
 
 namespace GW2NET.V2.Maps
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
@@ -30,16 +29,24 @@ namespace GW2NET.V2.Maps
 
         /// <summary>Initializes a new instance of the <see cref="MapConverter"/> class.</summary>
         /// <param name="converterForRectangle">The converter for <see cref="Rectangle"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForRectangle"/> is a null reference.</exception>
         public MapConverter(IConverter<double[][], Rectangle> converterForRectangle)
         {
-            Contract.Requires(converterForRectangle != null);
+            if (converterForRectangle == null)
+            {
+                throw new ArgumentNullException("converterForRectangle", "Precondition: converterForRectangle != null");
+            }
+
             this.rectangleConverter = converterForRectangle;
         }
 
         /// <inheritdoc />
         public Map Convert(MapDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
 
             var map = new Map
             {
@@ -88,14 +95,6 @@ namespace GW2NET.V2.Maps
 
             // Return the map object
             return map;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when CodeContracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.rectangleConverter != null);
         }
     }
 }

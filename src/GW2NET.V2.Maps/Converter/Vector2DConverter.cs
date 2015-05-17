@@ -9,7 +9,7 @@
 
 namespace GW2NET.V2.Maps
 {
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
@@ -20,9 +20,16 @@ namespace GW2NET.V2.Maps
         /// <inheritdoc />
         public Vector2D Convert(double[] value)
         {
-            Contract.Assume(value != null);
-            // ReSharper disable once PossibleNullReferenceException
-            Contract.Assume(value.Length == 2);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
+            if (value.Length != 2)
+            {
+                throw new ArgumentException("Precondition: value.Length == 2", "value");
+            }
+            
             return new Vector2D(value[0], value[1]);
         }
     }

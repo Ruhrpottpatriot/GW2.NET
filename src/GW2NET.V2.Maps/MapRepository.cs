@@ -9,9 +9,10 @@
 
 namespace GW2NET.V2.Maps
 {
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -44,21 +45,36 @@ namespace GW2NET.V2.Maps
 
         /// <summary>Initializes a new instance of the <see cref="MapRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public MapRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterAdapter<ICollection<int>>(), new MapConverter())
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="MapRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="collectionConverter">The converter for <see cref="T:ICollection{int}"/>.</param>
         /// <param name="mapConverter">The converter for <see cref="Map"/>.</param>
-        internal MapRepository(IServiceClient serviceClient, IConverter<ICollection<int>, ICollection<int>> collectionConverter, IConverter<MapDataContract, Map> mapConverter)
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="collectionConverter"/> or <paramref name="mapConverter"/> is a null reference.</exception>
+        internal MapRepository(IServiceClient serviceClient, IConverter<ICollection<int>
+            , ICollection<int>> collectionConverter
+            , IConverter<MapDataContract, Map> mapConverter)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(collectionConverter != null);
-            Contract.Requires(mapConverter != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (collectionConverter == null)
+            {
+                throw new ArgumentNullException("collectionConverter", "Precondition: collectionConverter != null");
+            }
+
+            if (mapConverter == null)
+            {
+                throw new ArgumentNullException("mapConverter", "Precondition: mapConverter != null");
+            }
+
             this.serviceClient = serviceClient;
             this.identifiersResponseConverter = new ConverterForResponse<ICollection<int>, ICollection<int>>(collectionConverter);
             this.responseConverter = new ConverterForResponse<MapDataContract, Map>(mapConverter);
@@ -248,8 +264,7 @@ namespace GW2NET.V2.Maps
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private IDictionaryRange<int, Map> ConvertAsyncResponse(Task<IResponse<ICollection<MapDataContract>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<IDictionaryRange<int, Map>>() != null);
+            Debug.Assert(task != null, "task != null");
             var values = this.bulkResponseConverter.Convert(task.Result);
             return values ?? new DictionaryRange<int, Map>(0);
         }
@@ -257,8 +272,7 @@ namespace GW2NET.V2.Maps
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollectionPage<Map> ConvertAsyncResponse(Task<IResponse<ICollection<MapDataContract>>> task, int pageIndex)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollectionPage<Map>>() != null);
+            Debug.Assert(task != null, "task != null");
             var values = this.pageResponseConverter.Convert(task.Result);
             if (values == null)
             {
@@ -273,8 +287,7 @@ namespace GW2NET.V2.Maps
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollection<int>>() != null);
+            Debug.Assert(task != null, "task != null");
             var ids = this.identifiersResponseConverter.Convert(task.Result);
             return ids ?? new List<int>(0);
         }
@@ -282,20 +295,8 @@ namespace GW2NET.V2.Maps
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private Map ConvertAsyncResponse(Task<IResponse<MapDataContract>> task)
         {
-            Contract.Requires(task != null);
+            Debug.Assert(task != null, "task != null");
             return this.responseConverter.Convert(task.Result);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when CodeContracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.responseConverter != null);
-            Contract.Invariant(this.identifiersResponseConverter != null);
-            Contract.Invariant(this.bulkResponseConverter != null);
-            Contract.Invariant(this.pageResponseConverter != null);
         }
     }
 }

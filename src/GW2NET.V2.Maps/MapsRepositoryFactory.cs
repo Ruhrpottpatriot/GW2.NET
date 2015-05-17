@@ -3,33 +3,33 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides methods and properties fore creating a map repository.
+//   Provides methods and properties for creating a map repository.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2NET.V2.Maps
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System;
     using System.Globalization;
 
     using GW2NET.Common;
     using GW2NET.Maps;
 
-    /// <summary>Provides methods and properties fore creating a map repository.</summary>
+    /// <summary>Provides methods and properties for creating a map repository.</summary>
     public class MapsRepositoryFactory : RepositoryFactoryBase<IMapRepository>
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MapsRepositoryFactory"/> class.
-        /// </summary>
-        /// <param name="serviceClient">
-        /// The service client.
-        /// </param>
+        /// <summary>Initializes a new instance of the <see cref="MapsRepositoryFactory"/> class.</summary>
+        /// <param name="serviceClient">The service client.</param>
         public MapsRepositoryFactory(IServiceClient serviceClient)
         {
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
             this.serviceClient = serviceClient;
         }
 
@@ -37,7 +37,6 @@ namespace GW2NET.V2.Maps
         /// <returns>A repository.</returns>
         public override IMapRepository ForDefaultCulture()
         {
-            Contract.Ensures(Contract.Result<IMapRepository>() != null);
             return new MapRepository(this.serviceClient);
         }
 
@@ -46,18 +45,9 @@ namespace GW2NET.V2.Maps
         /// <returns>A repository.</returns>
         public override IMapRepository ForCulture(CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<IMapRepository>() != null);
             IMapRepository repository = new MapRepository(this.serviceClient);
             repository.Culture = culture;
             return repository;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when COdeCOntracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
         }
     }
 }
