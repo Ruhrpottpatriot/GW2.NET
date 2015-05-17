@@ -6,8 +6,7 @@
 
 namespace GW2NET.V2.Build
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -30,16 +29,23 @@ namespace GW2NET.V2.Build
         public BuildService(IServiceClient serviceClient)
             : this(serviceClient, new ConverterForBuild())
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="BuildService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="converterForBuild">The converter for <see cref="Build"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForBuild"/> is a null reference.</exception>
         internal BuildService(IServiceClient serviceClient, IConverter<BuildDataContract, Build> converterForBuild)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(converterForBuild != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForBuild == null)
+            {
+                throw new ArgumentNullException("converterForBuild", "Precondition: converterForBuild != null");
+            }
 
             this.serviceClient = serviceClient;
             this.converterForBuild = converterForBuild;
@@ -102,15 +108,6 @@ namespace GW2NET.V2.Build
 
             value.Timestamp = response.Date;
             return value;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        // ReSharper disable once UnusedMember.Local
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForBuild != null);
         }
     }
 }

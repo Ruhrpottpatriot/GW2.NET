@@ -9,7 +9,7 @@
 
 namespace GW2NET.V2.Build.Converters
 {
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Builds;
     using GW2NET.Common;
@@ -17,15 +17,16 @@ namespace GW2NET.V2.Build.Converters
     /// <summary>Converts objects of type <see cref="BuildDataContract"/> to objects of type <see cref="Build"/>.</summary>
     internal sealed class ConverterForBuild : IConverter<BuildDataContract, Build>
     {
-        /// <summary>Converts the given object of type <see cref="BuildDataContract"/> to an object of type <see cref="Build"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Build Convert(BuildDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new Build
             {
-                // ReSharper disable once PossibleNullReferenceException
                 BuildId = value.BuildId
             };
         }
