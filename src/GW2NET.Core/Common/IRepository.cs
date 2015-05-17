@@ -36,6 +36,8 @@ namespace GW2NET.Common
         /// <summary>Finds every object with one of the given identifiers.</summary>
         /// <param name="identifiers">The identifiers of the objects to find.</param>
         /// <exception cref="NotSupportedException">The data source does not support searching for a range of objects.</exception>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="identifiers"/> is a null reference.</exception>
+        /// <exception cref="ArgumentException">The value of <paramref name="identifiers"/> is an empty collection.</exception>
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
         /// <returns>A collection of objects with one of the given identifiers.</returns>
         IDictionaryRange<TKey, TValue> FindAll(ICollection<TKey> identifiers);
@@ -57,6 +59,8 @@ namespace GW2NET.Common
         /// <summary>Finds every object with one of the given identifiers.</summary>
         /// <param name="identifiers">The identifiers of the objects to find.</param>
         /// <exception cref="NotSupportedException">The data source does not support searching for a range of objects.</exception>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="identifiers"/> is a null reference.</exception>
+        /// <exception cref="ArgumentException">The value of <paramref name="identifiers"/> is an empty collection.</exception>
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
         /// <returns>A collection of objects with one of the given identifiers.</returns>
         Task<IDictionaryRange<TKey, TValue>> FindAllAsync(ICollection<TKey> identifiers);
@@ -65,6 +69,8 @@ namespace GW2NET.Common
         /// <param name="identifiers">The identifiers of the objects to find.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <exception cref="NotSupportedException">The data source does not support searching for a range of objects.</exception>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="identifiers"/> is a null reference.</exception>
+        /// <exception cref="ArgumentException">The value of <paramref name="identifiers"/> is an empty collection.</exception>
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
         /// <exception cref="TaskCanceledException">A task was canceled.</exception>
         /// <returns>A collection of objects with one of the given identifiers.</returns>
