@@ -26,7 +26,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0")]
 
 // MEMO: [AssemblyFileVersion] is used for display
-[assembly: AssemblyFileVersion("1.0.*")]
+[assembly: AssemblyFileVersion("1.0")]
 
 // MEMO: [AssemblyInformationalVersion] is the NuGet package version.
 // The informational version uses different versioning rules, based on semantic versioning (SemVer).
