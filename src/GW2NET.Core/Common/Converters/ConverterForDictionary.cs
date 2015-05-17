@@ -8,9 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Common.Converters
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Linq;
 
     /// <summary>Converts objects of type <see cref="IDictionary{TKey,TValue}"/> to objects of type <see cref="IDictionary{TKey, TValue}"/>.</summary>
@@ -20,23 +19,29 @@ namespace GW2NET.Common.Converters
     /// <typeparam name="TValueOutput">The type of values in the output dictionary.</typeparam>
     public sealed class ConverterForIDictionary<TKeyInput, TValueInput, TKeyOutput, TValueOutput> : IConverter<IDictionary<TKeyInput, TValueInput>, IDictionary<TKeyOutput, TValueOutput>>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<KeyValuePair<TKeyInput, TValueInput>, KeyValuePair<TKeyOutput, TValueOutput>> converterForKeyValuePair;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForIDictionary{TKeyInput,TValueInput,TKeyOutput,TValueOutput}"/> class.</summary>
         /// <param name="converterForKeyValuePair">The converter for <see cref="KeyValuePair{TKey,TValue}"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="converterForKeyValuePair"/> is null.</exception>
         public ConverterForIDictionary(IConverter<KeyValuePair<TKeyInput, TValueInput>, KeyValuePair<TKeyOutput, TValueOutput>> converterForKeyValuePair)
         {
-            Contract.Requires(converterForKeyValuePair != null);
+            if (converterForKeyValuePair == null)
+            {
+                throw new ArgumentNullException("converterForKeyValuePair", "Precondition: converterForKeyValuePair != null");
+            }
+
             this.converterForKeyValuePair = converterForKeyValuePair;
         }
 
-        /// <summary>Converts the given object of type <see cref="IDictionary{TKey, TValue}"/> to an object of type <see cref="IDictionary{TKey, TValue}"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public IDictionary<TKeyOutput, TValueOutput> Convert(IDictionary<TKeyInput, TValueInput> value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var values = new Dictionary<TKeyOutput, TValueOutput>(value.Count) as IDictionary<TKeyOutput, TValueOutput>;
             foreach (var kvp in value.Select(this.converterForKeyValuePair.Convert))
             {
@@ -44,13 +49,6 @@ namespace GW2NET.Common.Converters
             }
 
             return values;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForKeyValuePair != null);
         }
     }
 }

@@ -8,28 +8,32 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.ChatLinks
 {
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Common;
 
-    /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="T:byte[]"/>.</summary>
+    /// <summary>Converts an array of 8-bit unsigned integers to and from its equivalent string representation that is encoded with base-64 digits.</summary>
     internal sealed class ConverterForBase64 : IConverter<string, byte[]>, IConverter<byte[], string>
     {
-        /// <summary>Converts the given object of type <see cref="string"/> to an object of type <see cref="T:byte[]"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public byte[] Convert(string value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return System.Convert.FromBase64String(value);
         }
 
-        /// <summary>Converts the given object of type <see cref="T:byte[]"/> to an object of type <see cref="string"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public string Convert(byte[] value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return System.Convert.ToBase64String(value);
         }
     }

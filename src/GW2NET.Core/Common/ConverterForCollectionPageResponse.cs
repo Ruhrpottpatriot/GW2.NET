@@ -9,9 +9,8 @@
 
 namespace GW2NET.Common
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Linq;
 
     /// <summary>Converts objects of type <see cref="IResponse{T}"/> to objects of type <see cref="ICollectionPage{T}"/>.</summary>
@@ -24,9 +23,14 @@ namespace GW2NET.Common
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForCollectionPageResponse{TDataContract,TValue}"/> class.</summary>
         /// <param name="converterForDataContract">The converter for <typeparamref name="TDataContract"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForDataContract"/> is a null reference.</exception>
         public ConverterForCollectionPageResponse(IConverter<TDataContract, TValue> converterForDataContract)
         {
-            Contract.Requires(converterForDataContract != null);
+            if (converterForDataContract == null)
+            {
+                throw new ArgumentNullException("converterForDataContract", "Precondition: converterForDataContract != null");
+            }
+
             this.converterForDataContract = converterForDataContract;
         }
 
@@ -65,13 +69,6 @@ namespace GW2NET.Common
             }
 
             return page;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForDataContract != null);
         }
     }
 }

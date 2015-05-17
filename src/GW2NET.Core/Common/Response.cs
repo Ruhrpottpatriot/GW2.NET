@@ -10,37 +10,41 @@ namespace GW2NET.Common
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
+    using System.Diagnostics;
     using System.Globalization;
 
     /// <summary>Provides the default implementation of the <see cref="IResponse{T}"/> interface.</summary>
     /// <typeparam name="T">The type of the response content.</typeparam>
     public class Response<T> : IResponse<T>
     {
-        /// <summary>Initializes a new instance of the <see cref="Response{T}"/> class.</summary>
-        public Response()
-        {
-            Contract.Ensures(this.ExtensionData != null);
-            this.ExtensionData = new Dictionary<string, string>();
-        }
+        private IDictionary<string, string> extensionData = new Dictionary<string, string>();
 
-        /// <summary>Gets or sets the response content.</summary>
+        /// <inheritdoc />
         public T Content { get; set; }
 
-        /// <summary>Gets or sets the locale.</summary>
+        /// <inheritdoc />
         public CultureInfo Culture { get; set; }
 
-        /// <summary>Gets or sets the <see cref="DateTimeOffset"/> at which the message originated..</summary>
+        /// <inheritdoc />
         public DateTimeOffset Date { get; set; }
 
-        /// <summary>Gets or sets a collection of custom response headers.</summary>
-        public IDictionary<string, string> ExtensionData { get; set; }
-
-        /// <summary>The invariant method for this class.</summary>
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
+        /// <inheritdoc />
+        public IDictionary<string, string> ExtensionData
         {
-            Contract.Invariant(this.ExtensionData != null);
+            get
+            {
+                Debug.Assert(this.extensionData != null);
+                return this.extensionData;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value", "Precondition: value != null");
+                }
+
+                this.extensionData = value;
+            }
         }
     }
 }

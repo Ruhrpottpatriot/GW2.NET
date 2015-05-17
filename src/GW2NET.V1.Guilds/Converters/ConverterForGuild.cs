@@ -8,8 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Guilds;
 using GW2NET.V1.Guilds.Json;
@@ -30,17 +28,25 @@ namespace GW2NET.V1.Guilds.Converters
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForGuild"/> class.</summary>
         /// <param name="converterForEmblem">The converter for <see cref="Emblem"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForEmblem"/> is a null reference.</exception>
         internal ConverterForGuild(IConverter<EmblemDataContract, Emblem> converterForEmblem)
         {
-            Contract.Requires(converterForEmblem != null);
-            Contract.Ensures(this.converterForEmblem != null);
+            if (converterForEmblem == null)
+            {
+                throw new ArgumentNullException("converterForEmblem", "Precondition: converterForEmblem != null");
+            }
+
             this.converterForEmblem = converterForEmblem;
         }
 
         /// <inheritdoc />
         public Guild Convert(GuildDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var guild = new Guild
             {
                 Name = value.Name, 
@@ -60,13 +66,6 @@ namespace GW2NET.V1.Guilds.Converters
             }
 
             return guild;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForEmblem != null);
         }
     }
 }

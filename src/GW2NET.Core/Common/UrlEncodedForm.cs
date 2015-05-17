@@ -10,7 +10,7 @@ namespace GW2NET.Common
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
+    using System.Diagnostics;
     using System.Linq;
 
     /// <summary>Represents a collection of form data that can be URL-encoded.</summary>
@@ -71,7 +71,6 @@ namespace GW2NET.Common
         /// <exception cref="FormatException">One or more query parameters violate the format for a valid URI as defined by RFC 2396.</exception>
         public string GetQueryString()
         {
-            Contract.Ensures(Contract.Result<string>() != null);
             return string.Join("&", this.Where(pair => !string.IsNullOrEmpty(pair.Value)).Select(EncodeNameValuePair));
         }
 
@@ -89,8 +88,8 @@ namespace GW2NET.Common
         /// <exception cref="FormatException">One or more query parameters violate the format for a valid URI as defined by RFC 2396.</exception>
         private static string EncodeNameValuePair(KeyValuePair<string, string> keyValuePair)
         {
-            Contract.Requires(keyValuePair.Key != null);
-            Contract.Requires(keyValuePair.Value != null);
+            Debug.Assert(keyValuePair.Key != null, "keyValuePair.Key != null");
+            Debug.Assert(keyValuePair.Value != null, "keyValuePair.Value != null");
             var name = Uri.EscapeUriString(keyValuePair.Key);
             var value = Uri.EscapeUriString(keyValuePair.Value);
 

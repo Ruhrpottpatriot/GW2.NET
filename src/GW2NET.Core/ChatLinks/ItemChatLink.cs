@@ -9,22 +9,40 @@
 namespace GW2NET.ChatLinks
 {
     using System;
-    using System.Diagnostics.Contracts;
+    using System.Diagnostics;
 
     /// <summary>Represents a chat link that links to an item.</summary>
     public class ItemChatLink : ChatLink
     {
-        /// <summary>Initializes a new instance of the <see cref="ItemChatLink"/> class.</summary>
-        public ItemChatLink()
-        {
-            this.Quantity = 1;
-        }
+        private int quantity = 1;
 
         /// <summary>Gets or sets the item identifier.</summary>
         public int ItemId { get; set; }
 
         /// <summary>Gets or sets an item quantity between 1 and 255, both inclusive.</summary>
-        public int Quantity { get; set; }
+        public int Quantity
+        {
+            get
+            {
+                Debug.Assert(this.quantity > 0, "this.quantity > 0");
+                Debug.Assert(this.quantity < 256, "this.quantity < 256");
+                return this.quantity;
+            }
+            set
+            {
+                if (value < 1)
+                {
+                    throw new ArgumentOutOfRangeException("value", value, "Precondition: value > 0");
+                }
+
+                if (value > 255)
+                {
+                    throw new ArgumentOutOfRangeException("value", value, "Precondition: value < 256");
+                }
+
+                this.quantity = value;
+            }
+        }
 
         /// <summary>Gets or sets the secondary upgrade identifier.</summary>
         public int? SecondarySuffixItemId { get; set; }
@@ -42,14 +60,6 @@ namespace GW2NET.ChatLinks
             var buffer = new byte[stream.Length];
             stream.Read(buffer, 0, buffer.Length);
             return string.Format("[&{0}]", Convert.ToBase64String(buffer));
-        }
-
-        /// <summary>The invariant method for this class.</summary>
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.Quantity >= 1);
-            Contract.Invariant(this.Quantity <= 255);
         }
     }
 }

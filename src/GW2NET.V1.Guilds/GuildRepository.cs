@@ -15,7 +15,6 @@ namespace GW2NET.V1.Guilds
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -33,21 +32,28 @@ namespace GW2NET.V1.Guilds
 
         /// <summary>Initializes a new instance of the <see cref="GuildRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public GuildRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterForGuild())
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="GuildRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="converterForGuild">The converter for <see cref="Guild"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForGuild"/> is a null reference.</exception>
         internal GuildRepository(IServiceClient serviceClient, IConverter<GuildDataContract, Guild> converterForGuild)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(converterForGuild != null);
-            Contract.Ensures(this.serviceClient != null);
-            Contract.Ensures(this.converterForGuild != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForGuild == null)
+            {
+                throw new ArgumentNullException("converterForGuild", "Precondition: converterForGuild != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForGuild = converterForGuild;
         }
@@ -220,14 +226,6 @@ namespace GW2NET.V1.Guilds
             }
 
             return this.converterForGuild.Convert(response.Content);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForGuild != null);
         }
     }
 }

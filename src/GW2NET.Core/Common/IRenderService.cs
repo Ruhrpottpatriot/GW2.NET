@@ -9,13 +9,11 @@
 namespace GW2NET.Common
 {
     using System;
-    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>Provides the interface for the render service.</summary>
     /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-    [ContractClass(typeof(ContractClassForIRenderService))]
     public interface IRenderService
     {
         /// <summary>Gets binary image data for the given file identifier and image format.</summary>

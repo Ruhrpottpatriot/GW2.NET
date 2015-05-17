@@ -8,9 +8,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.ChatLinks
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System.Diagnostics;
     using System.IO;
 
     using GW2NET.Common;
@@ -18,21 +18,22 @@ namespace GW2NET.ChatLinks
     /// <summary>Converts objects of type <see cref="T:byte[]"/> to objects of type <see cref="ChatLink"/>.</summary>
     internal sealed class ConverterForChatLink : IConverter<byte[], ChatLink>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IDictionary<int, IConverter<Stream, ChatLink>> typeConverters;
 
-        /// <summary>Initializes a new instance of the <see cref="ConverterForChatLink"/> class.</summary>
         public ConverterForChatLink()
         {
             this.typeConverters = GetKnownTypeConverters();
+            Debug.Assert(this.typeConverters != null);
         }
 
-        /// <summary>Converts the given object of type <see cref="T:byte[]"/> to an object of type <see cref="ChatLink"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public ChatLink Convert(byte[] value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             using (var stream = new MemoryStream(value, false))
             using (var reader = new BinaryReader(stream))
             {
@@ -47,11 +48,8 @@ namespace GW2NET.ChatLinks
             }
         }
 
-        /// <summary>Infrastructure. Gets default type converters for all known types.</summary>
-        /// <returns>The type converters.</returns>
         private static IDictionary<int, IConverter<Stream, ChatLink>> GetKnownTypeConverters()
         {
-            Contract.Ensures(Contract.Result<IDictionary<int, IConverter<Stream, ChatLink>>>() != null);
             return new Dictionary<int, IConverter<Stream, ChatLink>>
             {
                 { 1, new ConverterForCoinChatLink() }, 
@@ -64,13 +62,6 @@ namespace GW2NET.ChatLinks
                 { 11, new ConverterForSkinChatLink() }, 
                 { 12, new ConverterForOutfitChatLink() }, 
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.typeConverters != null);
         }
     }
 }

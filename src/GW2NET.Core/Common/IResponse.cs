@@ -10,11 +10,9 @@ namespace GW2NET.Common
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
 
     /// <summary>Provides the interface for service responses.</summary>
     /// <typeparam name="T">The type of the response content.</typeparam>
-    [ContractClass(typeof(ContractClassForIResponse<>))]
     public interface IResponse<T> : ILocalizable
     {
         /// <summary>Gets or sets the response content.</summary>

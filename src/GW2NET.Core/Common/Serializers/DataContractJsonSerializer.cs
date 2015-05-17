@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Common.Serializers
 {
-    using System.Diagnostics.Contracts;
     using System.IO;
     using System.Runtime.Serialization.Json;
 
@@ -67,13 +66,6 @@ namespace GW2NET.Common.Serializers
                     throw new SerializationException("An error occurred while serializing JSON data. See the inner exception for details.", serializationException);
                 }
             }
-        }
-
-        /// <summary>The invariant method for this class.</summary>
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serializer != null);
         }
     }
 }

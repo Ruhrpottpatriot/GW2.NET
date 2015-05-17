@@ -9,18 +9,16 @@
 namespace GW2NET.Common
 {
     using System;
-    using System.Diagnostics.Contracts;
 
     /// <summary>Provides contextual information for collections that are a subset of a larger collection.</summary>
-    [ContractClass(typeof(ContractClassForISubsetContext))]
     public interface ISubsetContext
     {
         /// <summary>Gets or sets the number of values in this subset.</summary>
-        /// <exception cref="ArgumentOutOfRangeException">The given value is negative.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The value is less than 0.</exception>
         int SubtotalCount { get; set; }
 
         /// <summary>Gets or sets the number of values in the collection.</summary>
-        /// <exception cref="ArgumentOutOfRangeException">The given value is negative.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The value is less than 0.</exception>
         int TotalCount { get; set; }
     }
 }

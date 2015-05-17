@@ -8,22 +8,26 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 
 namespace GW2NET.Common
 {
+    using System;
+
     /// <summary>Provides extension methods for <see cref="IResponse{T}" /> types.</summary>
     public static class ResponseExtensions
     {
         /// <summary>Gets the maximum number of values in a subset.</summary>
         /// <param name="instance">The response.</param>
         /// <typeparam name="T">The response content type.</typeparam>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="instance"/> is a null reference.</exception>
         /// <returns>The maximum number of values in a subset.</returns>
-        [Pure]
         public static int GetPageSize<T>(this IResponse<ICollection<T>> instance)
         {
-            Contract.Requires(instance != null);
-            Contract.Requires(instance.ExtensionData != null);
+            if (instance == null)
+            {
+                throw new ArgumentNullException("instance", "Precondition: instance != null");
+            }
+
             string header;
             if (!instance.ExtensionData.TryGetValue("X-Page-Size", out header))
             {
@@ -42,12 +46,15 @@ namespace GW2NET.Common
         /// <summary>Gets the number of subsets in a collection.</summary>
         /// <param name="instance">The response.</param>
         /// <typeparam name="T">The response content type.</typeparam>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="instance"/> is a null reference.</exception>
         /// <returns>The number of subsets in a collection.</returns>
-        [Pure]
         public static int GetPageTotal<T>(this IResponse<ICollection<T>> instance)
         {
-            Contract.Requires(instance != null);
-            Contract.Requires(instance.ExtensionData != null);
+            if (instance == null)
+            {
+                throw new ArgumentNullException("instance", "Precondition: instance != null");
+            }
+
             string header;
             if (!instance.ExtensionData.TryGetValue("X-Page-Total", out header))
             {
@@ -66,12 +73,15 @@ namespace GW2NET.Common
         /// <summary>Gets the number of values in a subset.</summary>
         /// <param name="instance">The response.</param>
         /// <typeparam name="T">The response content type.</typeparam>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="instance"/> is a null reference.</exception>
         /// <returns>The number of values in a subset.</returns>
-        [Pure]
         public static int GetResultCount<T>(this IResponse<ICollection<T>> instance)
         {
-            Contract.Requires(instance != null);
-            Contract.Requires(instance.ExtensionData != null);
+            if (instance == null)
+            {
+                throw new ArgumentNullException("instance", "Precondition: instance != null");
+            }
+
             string header;
             if (!instance.ExtensionData.TryGetValue("X-Result-Count", out header))
             {
@@ -90,12 +100,15 @@ namespace GW2NET.Common
         /// <summary>Gets the number of values in a collection.</summary>
         /// <param name="instance">The response.</param>
         /// <typeparam name="T">The response content type.</typeparam>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="instance"/> is a null reference.</exception>
         /// <returns>The number of values in a collection.</returns>
-        [Pure]
         public static int GetResultTotal<T>(this IResponse<ICollection<T>> instance)
         {
-            Contract.Requires(instance != null);
-            Contract.Requires(instance.ExtensionData != null);
+            if (instance == null)
+            {
+                throw new ArgumentNullException("instance", "Precondition: instance != null");
+            }
+
             string header;
             if (!instance.ExtensionData.TryGetValue("X-Result-Total", out header))
             {

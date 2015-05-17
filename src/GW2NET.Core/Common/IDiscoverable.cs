@@ -10,13 +10,11 @@ namespace GW2NET.Common
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>Provides the interface for data sources that support enumerating object identifiers.</summary>
     /// <typeparam name="T">The type of the identifiers.</typeparam>
-    [ContractClass(typeof(ContractClassForIDiscoverable<>))]
     public interface IDiscoverable<T>
     {
         /// <summary>Discovers identifiers of objects in the data source.</summary>

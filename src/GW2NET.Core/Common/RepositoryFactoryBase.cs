@@ -9,8 +9,8 @@
 
 namespace GW2NET.Common
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
 
     /// <summary>Provides methods for creating repository objects.</summary>
@@ -19,27 +19,40 @@ namespace GW2NET.Common
     {
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="language">The two-letter language code.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="language"/> is a null reference.</exception>
+        /// <exception cref="ArgumentException">The length of <paramref name="language"/> is not 2.</exception>
         /// <returns>A repository.</returns>
         public virtual TRepository this[string language]
         {
             get
             {
-                Contract.Requires(language != null);
-                Contract.Requires(language.Length == 2);
-                Contract.Ensures(Contract.Result<TRepository>() != null);
+                if (language == null)
+                {
+                    throw new ArgumentNullException("language", "Precondition: language != null");
+                }
+
+                if (language.Length != 2)
+                {
+                    throw new ArgumentException("Precondition: language.Length == 2", "language");
+                }
+
                 return this.ForCulture(new CultureInfo(language));
             }
         }
 
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="culture">The culture.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="culture"/> is a null reference.</exception>
         /// <returns>A repository.</returns>
         public virtual TRepository this[CultureInfo culture]
         {
             get
             {
-                Contract.Requires(culture != null);
-                Contract.Ensures(Contract.Result<TRepository>() != null);
+                if (culture == null)
+                {
+                    throw new ArgumentNullException("culture", "Precondition: culture != null");
+                }
+
                 return this.ForCulture(culture);
             }
         }
@@ -50,6 +63,7 @@ namespace GW2NET.Common
 
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="culture">The culture.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="culture"/> is a null reference.</exception>
         /// <returns>A repository.</returns>
         public abstract TRepository ForCulture(CultureInfo culture);
 
@@ -57,7 +71,6 @@ namespace GW2NET.Common
         /// <returns>A repository.</returns>
         public virtual TRepository ForCurrentCulture()
         {
-            Contract.Ensures(Contract.Result<TRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentCulture);
         }
 
@@ -66,7 +79,6 @@ namespace GW2NET.Common
         [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Consitent with the standard .NET naming.")]
         public virtual TRepository ForCurrentUICulture()
         {
-            Contract.Ensures(Contract.Result<TRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);
         }
     }

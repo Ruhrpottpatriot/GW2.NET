@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Common.Converters
 {
-    using System.Diagnostics.Contracts;
+    using System;
 
     /// <summary>Converts objects of type <see cref="T:object"/> to objects of type <see cref="T"/>.</summary>
     /// <typeparam name="T">The type to activate.</typeparam>
@@ -18,7 +18,11 @@ namespace GW2NET.Common.Converters
         /// <inheritdoc />
         T IConverter<object, T>.Convert(object value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new T();
         }
     }

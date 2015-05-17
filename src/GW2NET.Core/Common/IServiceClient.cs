@@ -9,12 +9,10 @@
 namespace GW2NET.Common
 {
     using System;
-    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>Provides the interface for service clients.</summary>
-    [ContractClass(typeof(ContractClassForIServiceClient))]
     public interface IServiceClient
     {
         /// <summary>Sends a request and returns the response.</summary>

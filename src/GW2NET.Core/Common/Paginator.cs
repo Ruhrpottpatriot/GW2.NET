@@ -11,7 +11,6 @@ namespace GW2NET.Common
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -22,11 +21,15 @@ namespace GW2NET.Common
         /// <param name="instance">The instance of <see cref="IPaginator{T}"/> that provides the pages.</param>
         /// <param name="pageCount">The number of pages to get.</param>
         /// <typeparam name="T">The type of elements on the page.</typeparam>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="instance"/> is a null reference.</exception>
         /// <returns>A collection of pages.</returns>
         public static IEnumerable<Lazy<ICollectionPage<T>>> FindAllPages<T>(this IPaginator<T> instance, int pageCount)
         {
-            Contract.Requires(instance != null);
-            Contract.Ensures(Contract.Result<IEnumerable<Lazy<ICollectionPage<T>>>>() != null);
+            if (instance == null)
+            {
+                throw new ArgumentNullException("instance", "Precondition: instance != null");
+            }
+
             for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
             {
                 var page = pageIndex;
@@ -39,11 +42,16 @@ namespace GW2NET.Common
         /// <param name="pageSize">The maximum number of page elements.</param>
         /// <param name="pageCount">The number of pages to get.</param>
         /// <typeparam name="T">The type of elements on the page.</typeparam>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="instance"/> is a null reference.</exception>
         /// <returns>A collection of pages.</returns>
         public static IEnumerable<Lazy<ICollectionPage<T>>> FindAllPages<T>(this IPaginator<T> instance, int pageSize, int pageCount)
         {
-            Contract.Requires(instance != null);
-            Contract.Ensures(Contract.Result<IEnumerable<Lazy<ICollectionPage<T>>>>() != null);
+            if (instance == null)
+            {
+                throw new ArgumentNullException("instance", "Precondition: instance != null");
+            }
+
+
             for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
             {
                 var page = pageIndex;
@@ -55,11 +63,15 @@ namespace GW2NET.Common
         /// <param name="instance">The instance of <see cref="IPaginator{T}"/> that provides the pages.</param>
         /// <param name="pageCount">The number of pages to get.</param>
         /// <typeparam name="T">The type of elements on the page.</typeparam>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="instance"/> is a null reference.</exception>
         /// <returns>A collection of pages.</returns>
         public static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsync<T>(this IPaginator<T> instance, int pageCount)
         {
-            Contract.Requires(instance != null);
-            Contract.Ensures(Contract.Result<IEnumerable<Task<ICollectionPage<T>>>>() != null);
+            if (instance == null)
+            {
+                throw new ArgumentNullException("instance", "Precondition: instance != null");
+            }
+
             return FindAllPagesAsync(instance, pageCount, CancellationToken.None);
         }
 
@@ -71,8 +83,11 @@ namespace GW2NET.Common
         /// <returns>A collection of pages.</returns>
         public static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsync<T>(this IPaginator<T> instance, int pageCount, CancellationToken cancellationToken)
         {
-            Contract.Requires(instance != null);
-            Contract.Ensures(Contract.Result<IEnumerable<Task<ICollectionPage<T>>>>() != null);
+            if (instance == null)
+            {
+                throw new ArgumentNullException("instance", "Precondition: instance != null");
+            }
+
             for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
             {
                 yield return instance.FindPageAsync(pageIndex, cancellationToken);
@@ -87,8 +102,11 @@ namespace GW2NET.Common
         /// <returns>A collection of pages.</returns>
         public static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsync<T>(this IPaginator<T> instance, int pageSize, int pageCount)
         {
-            Contract.Requires(instance != null);
-            Contract.Ensures(Contract.Result<IEnumerable<Task<ICollectionPage<T>>>>() != null);
+            if (instance == null)
+            {
+                throw new ArgumentNullException("instance", "Precondition: instance != null");
+            }
+
             return FindAllPagesAsync(instance, pageSize, pageCount, CancellationToken.None);
         }
 
@@ -101,8 +119,11 @@ namespace GW2NET.Common
         /// <returns>A collection of pages.</returns>
         public static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsync<T>(this IPaginator<T> instance, int pageSize, int pageCount, CancellationToken cancellationToken)
         {
-            Contract.Requires(instance != null);
-            Contract.Ensures(Contract.Result<IEnumerable<Task<ICollectionPage<T>>>>() != null);
+            if (instance == null)
+            {
+                throw new ArgumentNullException("instance", "Precondition: instance != null");
+            }
+
             for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
             {
                 yield return instance.FindPageAsync(pageIndex, pageSize, cancellationToken);

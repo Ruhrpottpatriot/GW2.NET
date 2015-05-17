@@ -11,8 +11,6 @@ namespace GW2NET.Common
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Linq;
 
     /// <summary>Converts objects of type <see cref="IResponse{T}"/> to objects of type <see cref="T:IDictionaryRange&lt;TKey, TValue&gt;"/>.</summary>
@@ -21,19 +19,26 @@ namespace GW2NET.Common
     /// <typeparam name="TValue">The type of the converted values.</typeparam>
     public sealed class ConverterForDictionaryRangeResponse<TDataContract, TKey, TValue> : IConverter<IResponse<ICollection<TDataContract>>, IDictionaryRange<TKey, TValue>>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<TDataContract, TValue> converterForDataContract;
 
-        /// <summary>Infrastructure. Holds a reference to a key selector expression.</summary>
         private readonly Func<TValue, TKey> keySelector;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForDictionaryRangeResponse{TDataContract,TKey,TValue}"/> class.</summary>
         /// <param name="converterForDataContract">The converter for <typeparamref name="TValue"/>.</param>
         /// <param name="keySelector">The key selector expression.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForDataContract"/> or <paramref name="keySelector"/> is a null reference.</exception>
         public ConverterForDictionaryRangeResponse(IConverter<TDataContract, TValue> converterForDataContract, Func<TValue, TKey> keySelector)
         {
-            Contract.Requires(converterForDataContract != null);
-            Contract.Requires(keySelector != null);
+            if (converterForDataContract == null)
+            {
+                throw new ArgumentNullException("converterForDataContract", "Precondition: converterForDataContract != null");
+            }
+
+            if (keySelector == null)
+            {
+                throw new ArgumentNullException("keySelector", "Precondition: keySelector != null");
+            }
+
             this.converterForDataContract = converterForDataContract;
             this.keySelector = keySelector;
         }
@@ -74,14 +79,6 @@ namespace GW2NET.Common
             }
 
             return range;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForDataContract != null);
-            Contract.Invariant(this.keySelector != null);
         }
     }
 }

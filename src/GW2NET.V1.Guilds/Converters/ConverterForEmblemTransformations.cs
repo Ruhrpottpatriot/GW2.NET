@@ -8,13 +8,13 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Guilds;
 
 namespace GW2NET.V1.Guilds.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="T:ICollection{string}"/> to objects of type <see cref="EmblemTransformations"/>.</summary>
     internal sealed class ConverterForEmblemTransformations : IConverter<ICollection<string>, EmblemTransformations>
     {
@@ -29,16 +29,25 @@ namespace GW2NET.V1.Guilds.Converters
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForEmblemTransformations"/> class.</summary>
         /// <param name="converterForEmblemTransformation">The converter for <see cref="EmblemTransformations"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForEmblemTransformation"/> is a null reference.</exception>
         internal ConverterForEmblemTransformations(IConverter<string, EmblemTransformations> converterForEmblemTransformation)
         {
-            Contract.Requires(converterForEmblemTransformation != null);
+            if (converterForEmblemTransformation == null)
+            {
+                throw new ArgumentNullException("converterForEmblemTransformation", "Precondition: converterForEmblemTransformation != null");
+            }
+
             this.converterForEmblemTransformation = converterForEmblemTransformation;
         }
 
         /// <inheritdoc />
         public EmblemTransformations Convert(ICollection<string> value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var result = default(EmblemTransformations);
             foreach (var s in value)
             {
@@ -46,13 +55,6 @@ namespace GW2NET.V1.Guilds.Converters
             }
 
             return result;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForEmblemTransformation != null);
         }
     }
 }

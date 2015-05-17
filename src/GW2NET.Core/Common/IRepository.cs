@@ -10,14 +10,12 @@ namespace GW2NET.Common
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>Provides the interface for data sources.</summary>
     /// <typeparam name="TKey">The type of the key values that uniquely identify the entities in the repository.</typeparam>
     /// <typeparam name="TValue">The type of the entities in the repository.</typeparam>
-    [ContractClass(typeof(ContractClassForIRepository<,>))]
     public interface IRepository<TKey, TValue> : IDiscoverable<TKey>, IPaginator<TValue>
     {
         /// <summary>Finds the object with the given identifier.</summary>

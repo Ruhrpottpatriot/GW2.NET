@@ -9,7 +9,6 @@
 namespace GW2NET.Common.Serializers
 {
     using System;
-    using System.Diagnostics.Contracts;
     using System.Text;
 
     /// <summary>Provides factory methods for the string serialization engine.</summary>
@@ -26,9 +25,14 @@ namespace GW2NET.Common.Serializers
 
         /// <summary>Initializes a new instance of the <see cref="StringSerializerFactory"/> class.</summary>
         /// <param name="encoding">The character encoding.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="encoding"/> is null.</exception>
         public StringSerializerFactory(Encoding encoding)
         {
-            Contract.Requires(encoding != null);
+            if (encoding == null)
+            {
+                throw new ArgumentNullException("encoding", "Precondition: encoding != null");
+            }
+
             this.encoding = encoding;
         }
 
@@ -43,13 +47,6 @@ namespace GW2NET.Common.Serializers
             }
 
             return (ISerializer<T>)new StringSerializer(this.encoding);
-        }
-
-        /// <summary>The invariant method for this class.</summary>
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.encoding != null);
         }
     }
 }

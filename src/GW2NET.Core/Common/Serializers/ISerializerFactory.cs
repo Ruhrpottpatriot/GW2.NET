@@ -8,10 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Common.Serializers
 {
-    using System.Diagnostics.Contracts;
-
     /// <summary>Provides the interface for serialization engine factories.</summary>
-    [ContractClass(typeof(SerializerFactoryContract))]
     public interface ISerializerFactory
     {
         /// <summary>Gets a serializer for the specified type.</summary>

@@ -11,7 +11,7 @@
 
 namespace GW2NET.Common
 {
-    using System.Diagnostics.Contracts;
+    using System;
 
     /// <summary>
     /// The API embeds page context in HTTP Link headers, but we currently do not have a parser for that header.
@@ -24,9 +24,14 @@ namespace GW2NET.Common
         /// <param name="collection">The collection.</param>
         /// <param name="pageIndex">The page index.</param>
         /// <typeparam name="T">The type of values in the collection.</typeparam>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="collection"/> is a null reference.</exception>
         public static void Patch<T>(ICollectionPage<T> collection, int pageIndex)
         {
-            Contract.Requires(collection != null);
+            if (collection == null)
+            {
+                throw new ArgumentNullException("collection", "Precondition: collection != null");
+            }
+
             collection.PageIndex = pageIndex;
             if (collection.PageCount > 0)
             {

@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Common.Serializers
 {
-    using System.Diagnostics.Contracts;
+    using System;
     using System.IO;
     using System.Text;
 
@@ -26,9 +26,14 @@ namespace GW2NET.Common.Serializers
 
         /// <summary>Initializes a new instance of the <see cref="StringSerializer"/> class.</summary>
         /// <param name="encoding">The character encoding.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="encoding"/> is null.</exception>
         public StringSerializer(Encoding encoding)
         {
-            Contract.Requires(encoding != null);
+            if (encoding == null)
+            {
+                throw new ArgumentNullException("encoding", "Precondition: encoding != null");
+            }
+
             this.encoding = encoding;
         }
 
@@ -68,13 +73,6 @@ namespace GW2NET.Common.Serializers
                     throw new SerializationException("An error occurred while serializing character data. See the inner exception for details.", exception);
                 }
             }
-        }
-
-        /// <summary>The invariant method for this class.</summary>
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.encoding != null);
         }
     }
 }

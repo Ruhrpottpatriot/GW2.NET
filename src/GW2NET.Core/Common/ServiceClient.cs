@@ -9,7 +9,7 @@
 namespace GW2NET.Common
 {
     using System;
-    using System.Diagnostics.Contracts;
+    using System.Diagnostics;
     using System.Globalization;
     using System.IO;
     using System.Linq;
@@ -39,12 +39,29 @@ namespace GW2NET.Common
         /// <param name="successSerializerFactory">The serializer factory.</param>
         /// <param name="errorSerializerFactory">The error serializer Factory.</param>
         /// <param name="gzipInflator">The GZIP inflator.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="baseUri"/> or <paramref name="successSerializerFactory"/> or <paramref name="errorSerializerFactory"/> or <paramref name="gzipInflator"/> is a null reference.</exception>
         public ServiceClient(Uri baseUri, ISerializerFactory successSerializerFactory, ISerializerFactory errorSerializerFactory, IConverter<Stream, Stream> gzipInflator)
         {
-            Contract.Requires(baseUri != null);
-            Contract.Requires(successSerializerFactory != null);
-            Contract.Requires(errorSerializerFactory != null);
-            Contract.Requires(gzipInflator != null);
+            if (baseUri == null)
+            {
+                throw new ArgumentNullException("baseUri", "Precondition: baseUri != null");
+            }
+
+            if (successSerializerFactory == null)
+            {
+                throw new ArgumentNullException("successSerializerFactory", "Precondition: successSerializerFactory != null");
+            }
+
+            if (errorSerializerFactory == null)
+            {
+                throw new ArgumentNullException("errorSerializerFactory", "Precondition: errorSerializerFactory != null");
+            }
+
+            if (gzipInflator == null)
+            {
+                throw new ArgumentNullException("gzipInflator", "Precondition: gzipInflator != null");
+            }
+
             this.baseUri = baseUri;
             this.successSerializerFactory = successSerializerFactory;
             this.errorSerializerFactory = errorSerializerFactory;
@@ -88,7 +105,7 @@ namespace GW2NET.Common
                 var httpWebRequest = CreateHttpWebRequest(uri);
                 using (var response = GetHttpWebResponse(httpWebRequest))
                 {
-                    Contract.Assume(response != null);
+                    Debug.Assert(response != null, "response != null");
                     return this.OnResponse<TResult>(response);
                 }
             }
@@ -175,8 +192,8 @@ namespace GW2NET.Common
         /// <exception cref="FormatException">One or more query parameters violate the format for a valid URI as defined by RFC 2396.</exception>
         private static Uri BuildUri(Uri baseUri, string resource, UrlEncodedForm formData)
         {
-            Contract.Requires(baseUri != null);
-            Contract.Requires(formData != null);
+            Debug.Assert(baseUri != null, "baseUri != null");
+            Debug.Assert(formData != null, "formData != null");
             var uriBuilder = new UriBuilder(baseUri)
             {
                 Path = resource,
@@ -190,15 +207,13 @@ namespace GW2NET.Common
         /// <returns>The <see cref="HttpWebRequest"/>.</returns>
         private static HttpWebRequest CreateHttpWebRequest(Uri uri)
         {
-            Contract.Requires(uri != null);
-            Contract.Ensures(Contract.Result<HttpWebRequest>() != null);
+            Debug.Assert(uri != null, "uri != null");
 
             // Create a new request object for the specified resource
             var request = (HttpWebRequest)WebRequest.Create(uri);
 
-            // Provide some hints to the static contracts checker
-            Contract.Assume(request != null);
-            Contract.Assume(request.Headers != null);
+            Debug.Assert(request != null, "request != null");
+            Debug.Assert(request.Headers != null, "request.Headers != null");
 
             // Set 'Accept-Encoding' to 'gzip'
             request.Headers[HttpRequestHeader.AcceptEncoding] = "gzip";
@@ -215,9 +230,9 @@ namespace GW2NET.Common
         /// <returns>An instance of the specified type.</returns>
         private static TResult DeserializeResponse<TResult>(HttpWebResponse response, ISerializerFactory serializerFactory, IConverter<Stream, Stream> gzipInflator)
         {
-            Contract.Requires(response != null);
-            Contract.Requires(serializerFactory != null);
-            Contract.Requires(gzipInflator != null);
+            Debug.Assert(response != null, "response != null");
+            Debug.Assert(serializerFactory != null, "serializerFactory != null");
+            Debug.Assert(gzipInflator != null, "gzipInflator != null");
 
             // Get the response content
             var stream = response.GetResponseStream();
@@ -228,7 +243,8 @@ namespace GW2NET.Common
                 return default(TResult);
             }
 
-            Contract.Assume(response.Headers != null);
+            Debug.Assert(response != null, "response != null");
+            Debug.Assert(response.Headers != null, "response.Headers != null");
 
             // Ensure that we are operating on decompressed data
             var contentEncoding = response.Headers["Content-Encoding"];
@@ -245,7 +261,7 @@ namespace GW2NET.Common
                 }
             }
 
-            Contract.Assume(stream.CanRead);
+            Debug.Assert(stream.CanRead, "stream.CanRead");
 
             // Create a serializer
             var serializer = serializerFactory.GetSerializer<TResult>();
@@ -260,7 +276,7 @@ namespace GW2NET.Common
         /// <exception cref="ServiceException">The exception that is thrown when an API error occurs.</exception>
         private static HttpWebResponse GetHttpWebResponse(HttpWebRequest webRequest)
         {
-            Contract.Requires(webRequest != null);
+            Debug.Assert(webRequest != null, "webRequest != null");
 
             try
             {
@@ -279,8 +295,7 @@ namespace GW2NET.Common
         /// <exception cref="ServiceException">The request could not be fulfilled.</exception>
         private static Task<HttpWebResponse> GetHttpWebResponseAsync(HttpWebRequest webRequest, CancellationToken cancellationToken)
         {
-            Contract.Requires(webRequest != null);
-            Contract.Ensures(Contract.Result<Task<HttpWebResponse>>() != null);
+            Debug.Assert(webRequest != null, "webRequest != null");
             cancellationToken.Register(webRequest.Abort);
             var tcs = new TaskCompletionSource<HttpWebResponse>();
             try
@@ -322,9 +337,7 @@ namespace GW2NET.Common
                 }
             }
 
-            var task = tcs.Task;
-            Contract.Assume(task != null);
-            return task;
+            return tcs.Task;
         }
 
         /// <summary>Infrastructure. Throws an exception for error responses.</summary>
@@ -334,10 +347,9 @@ namespace GW2NET.Common
         /// <exception cref="ServiceException">The exception that represents the error.</exception>
         private static void OnError(HttpWebResponse response, ISerializerFactory serializerFactory, IConverter<Stream, Stream> gzipInflator)
         {
-            Contract.Requires(response != null);
-            Contract.Requires(serializerFactory != null);
-            Contract.Requires(gzipInflator != null);
-
+            Debug.Assert(response != null, "response != null");
+            Debug.Assert(serializerFactory != null, "serializerFactory != null");
+            Debug.Assert(gzipInflator != null, "gzipInflator != null");
             string message;
 
             var contentType = response.ContentType;
@@ -368,11 +380,10 @@ namespace GW2NET.Common
         /// <returns>The object that represents the response.</returns>
         private static IResponse<T> OnSuccess<T>(HttpWebResponse response, ISerializerFactory serializerFactory, IConverter<Stream, Stream> gzipInflator)
         {
-            Contract.Requires(response != null);
-            Contract.Requires(serializerFactory != null);
-            Contract.Requires(gzipInflator != null);
-            Contract.Ensures(Contract.Result<IResponse<T>>() != null);
-            Contract.Ensures(Contract.Result<IResponse<T>>().ExtensionData != null);
+            Debug.Assert(response != null, "response != null");
+            Debug.Assert(response.Headers != null, "headers != null");
+            Debug.Assert(serializerFactory != null, "serializerFactory != null");
+            Debug.Assert(gzipInflator != null, "gzipInflator != null");
 
             // Create a new generic response object
             var value = new Response<T>();
@@ -380,11 +391,8 @@ namespace GW2NET.Common
             // Set the deserialized response content
             value.Content = DeserializeResponse<T>(response, serializerFactory, gzipInflator);
 
-            var headers = response.Headers;
-            Contract.Assume(headers != null);
-
             // Set the 'Date' header
-            var date = headers["Date"];
+            var date = response.Headers["Date"];
             if (date != null)
             {
 
@@ -392,16 +400,14 @@ namespace GW2NET.Common
             }
 
             // Set the 'Content-Language' header
-            var contentLanguage = headers["Content-Language"];
+            var contentLanguage = response.Headers["Content-Language"];
             if (contentLanguage != null)
             {
                 value.Culture = new CultureInfo(contentLanguage);
             }
 
             // Set the 'X'-tension headers
-            var headerKeys = headers.AllKeys;
-            Contract.Assume(headerKeys != null);
-            foreach (var key in headerKeys)
+            foreach (var key in response.Headers.AllKeys)
             {
                 if (key == null)
                 {
@@ -410,22 +416,12 @@ namespace GW2NET.Common
 
                 if (key.StartsWith("X-", StringComparison.Ordinal))
                 {
-                    value.ExtensionData[key] = headers[key];
+                    value.ExtensionData[key] = response.Headers[key];
                 }
             }
 
             // Return the response object
             return value;
-        }
-
-        /// <summary>The invariant method for this class.</summary>
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.baseUri != null);
-            Contract.Invariant(this.gzipInflator != null);
-            Contract.Invariant(this.successSerializerFactory != null);
-            Contract.Invariant(this.errorSerializerFactory != null);
         }
 
         /// <summary>Infrastructure. Handles a response.</summary>
@@ -435,8 +431,7 @@ namespace GW2NET.Common
         /// <exception cref="ServiceException">The request could not be fulfilled.</exception>
         private IResponse<TResult> OnResponse<TResult>(HttpWebResponse response)
         {
-            Contract.Requires(response != null);
-            Contract.Ensures(Contract.Result<IResponse<TResult>>() != null);
+            Debug.Assert(response != null, "response != null");
             try
             {
                 if (!response.StatusCode.IsSuccessStatusCode())

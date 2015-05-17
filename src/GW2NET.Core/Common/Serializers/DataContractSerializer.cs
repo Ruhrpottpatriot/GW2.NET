@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Common.Serializers
 {
-    using System.Diagnostics.Contracts;
+    using System;
     using System.IO;
     using System.Runtime.Serialization;
 
@@ -21,9 +21,14 @@ namespace GW2NET.Common.Serializers
 
         /// <summary>Initializes a new instance of the <see cref="DataContractSerializer{T}"/> class.</summary>
         /// <param name="serializer">The serializer.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="serializer"/> is null.</exception>
         public DataContractSerializer(XmlObjectSerializer serializer)
         {
-            Contract.Requires(serializer != null);
+            if (serializer == null)
+            {
+                throw new ArgumentNullException("serializer", "Precondition: serializer != null");
+            }
+
             this.serializer = serializer;
         }
 
@@ -53,13 +58,6 @@ namespace GW2NET.Common.Serializers
             {
                 this.serializer.WriteObject(stream, value);
             }
-        }
-
-        /// <summary>The invariant method for this class.</summary>
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serializer != null);
         }
     }
 }

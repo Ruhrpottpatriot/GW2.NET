@@ -9,13 +9,11 @@
 namespace GW2NET.Common
 {
     using System;
-    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>Provides the interface for types that perform pagination.</summary>
     /// <typeparam name="T">The type of elements on the page.</typeparam>
-    [ContractClass(typeof(ContractClassForIPaginator<>))]
     public interface IPaginator<T>
     {
         /// <summary>Finds the page with the specified page index.</summary>

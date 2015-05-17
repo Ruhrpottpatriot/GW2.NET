@@ -8,8 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.ChatLinks
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
     using System.IO;
 
     using GW2NET.Common;
@@ -17,12 +17,14 @@ namespace GW2NET.ChatLinks
     /// <summary>Converts objects of type <see cref="Stream"/> to objects of type <see cref="ItemChatLink"/>.</summary>
     internal sealed class ConverterForItemChatLink : IConverter<Stream, ItemChatLink>, IConverter<ItemChatLink, Stream>
     {
-        /// <summary>Converts the given object of type <see cref="Stream"/> to an object of type <see cref="ItemChatLink"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public ItemChatLink Convert(Stream value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             using (var reader = new BinaryReader(value))
             {
                 var quantity = reader.ReadByte();
@@ -60,12 +62,14 @@ namespace GW2NET.ChatLinks
             }
         }
 
-        /// <summary>Converts the given object of type <see cref="Stream"/> to an object of type <see cref="ItemChatLink"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Stream Convert(ItemChatLink value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var quantity = (byte)value.Quantity;
             var id = value.ItemId;
             byte flags = 0;

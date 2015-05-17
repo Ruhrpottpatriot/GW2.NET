@@ -9,7 +9,6 @@
 namespace GW2NET.Common
 {
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
 
     /// <summary>Represents a subset of values.</summary>
     /// <typeparam name="T">The type of elements in the subset.</typeparam>
@@ -32,7 +31,6 @@ namespace GW2NET.Common
         public CollectionPage(int capacity)
             : base(capacity)
         {
-            Contract.Requires(capacity >= 0);
         }
 
         /// <summary>Gets or sets the page index of the first page.</summary>

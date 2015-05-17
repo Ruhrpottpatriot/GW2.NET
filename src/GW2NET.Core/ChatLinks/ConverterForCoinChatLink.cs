@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.ChatLinks
 {
-    using System.Diagnostics.Contracts;
+    using System;
     using System.IO;
 
     using GW2NET.Common;
@@ -16,12 +16,14 @@ namespace GW2NET.ChatLinks
     /// <summary>Converts objects of type <see cref="Stream"/> to objects of type <see cref="CoinChatLink"/>.</summary>
     internal sealed class ConverterForCoinChatLink : IConverter<Stream, CoinChatLink>, IConverter<CoinChatLink, Stream>
     {
-        /// <summary>Converts the given object of type <see cref="Stream"/> to an object of type <see cref="CoinChatLink"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public CoinChatLink Convert(Stream value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             using (var reader = new BinaryReader(value))
             {
                 return new CoinChatLink
@@ -31,12 +33,14 @@ namespace GW2NET.ChatLinks
             }
         }
 
-        /// <summary>Converts the given object of type <see cref="CoinChatLink"/> to an object of type <see cref="Stream"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Stream Convert(CoinChatLink value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var stream = new MemoryStream();
             var buffer = new MemoryStream();
             using (var writer = new BinaryWriter(buffer))

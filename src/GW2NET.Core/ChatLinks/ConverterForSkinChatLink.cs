@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.ChatLinks
 {
-    using System.Diagnostics.Contracts;
+    using System;
     using System.IO;
 
     using GW2NET.Common;
@@ -16,12 +16,14 @@ namespace GW2NET.ChatLinks
     /// <summary>Converts objects of type <see cref="Stream"/> to objects of type <see cref="SkinChatLink"/>.</summary>
     internal sealed class ConverterForSkinChatLink : IConverter<Stream, SkinChatLink>
     {
-        /// <summary>Converts the given object of type <see cref="Stream"/> to an object of type <see cref="SkinChatLink"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public SkinChatLink Convert(Stream value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             using (var reader = new BinaryReader(value))
             {
                 return new SkinChatLink
@@ -31,12 +33,14 @@ namespace GW2NET.ChatLinks
             }
         }
 
-        /// <summary>Converts the given object of type <see cref="SkinChatLink"/> to an object of type <see cref="Stream"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Stream Convert(SkinChatLink value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var stream = new MemoryStream();
             var buffer = new MemoryStream();
             using (var writer = new BinaryWriter(buffer))

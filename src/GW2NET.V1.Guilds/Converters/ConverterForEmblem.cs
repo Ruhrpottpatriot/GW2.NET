@@ -8,14 +8,14 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Guilds;
 using GW2NET.V1.Guilds.Json;
 
 namespace GW2NET.V1.Guilds.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="EmblemDataContract"/> to objects of type <see cref="Emblem"/>.</summary>
     internal sealed class ConverterForEmblem : IConverter<EmblemDataContract, Emblem>
     {
@@ -30,16 +30,25 @@ namespace GW2NET.V1.Guilds.Converters
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForEmblem"/> class.</summary>
         /// <param name="converterForEmblemTransformations">The converter For Emblem Transformations.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForEmblemTransformations"/> is a null reference.</exception>
         internal ConverterForEmblem(IConverter<ICollection<string>, EmblemTransformations> converterForEmblemTransformations)
         {
-            Contract.Requires(converterForEmblemTransformations != null);
+            if (converterForEmblemTransformations == null)
+            {
+                throw new ArgumentNullException("converterForEmblemTransformations", "Precondition: converterForEmblemTransformations != null");
+            }
+
             this.converterForEmblemTransformations = converterForEmblemTransformations;
         }
 
         /// <inheritdoc />
         public Emblem Convert(EmblemDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var emblem = new Emblem
             {
                 BackgroundId = value.BackgroundId, 
@@ -55,13 +64,6 @@ namespace GW2NET.V1.Guilds.Converters
             }
 
             return emblem;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForEmblemTransformations != null);
         }
     }
 }
