@@ -8,10 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Worlds
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System;
     using System.Globalization;
-    using System.IO;
 
     using GW2NET.Common;
     using GW2NET.Worlds;
@@ -24,9 +22,14 @@ namespace GW2NET.V2.Worlds
 
         /// <summary>Initializes a new instance of the <see cref="WorldRepositoryFactory"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public WorldRepositoryFactory(IServiceClient serviceClient)
         {
-            Contract.Requires(serviceClient != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
             this.serviceClient = serviceClient;
         }
 
@@ -34,7 +37,6 @@ namespace GW2NET.V2.Worlds
         /// <returns>A repository.</returns>
         public override IWorldRepository ForDefaultCulture()
         {
-            Contract.Ensures(Contract.Result<IWorldRepository>() != null);
             return new WorldRepository(this.serviceClient);
         }
 
@@ -43,18 +45,9 @@ namespace GW2NET.V2.Worlds
         /// <returns>A repository.</returns>
         public override IWorldRepository ForCulture(CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<IWorldRepository>() != null);
             IWorldRepository repository = new WorldRepository(this.serviceClient);
             repository.Culture = culture;
             return repository;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when COdeCOntracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

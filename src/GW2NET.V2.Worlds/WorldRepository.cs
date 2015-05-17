@@ -10,8 +10,8 @@ namespace GW2NET.V2.Worlds
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -41,16 +41,16 @@ namespace GW2NET.V2.Worlds
 
         /// <summary>Initializes a new instance of the <see cref="WorldRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public WorldRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterForWorld())
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="WorldRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="converterForWorld">The converter for <see cref="World"/>.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="serviceClient"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForWorld"/> is a null reference.</exception>
         internal WorldRepository(IServiceClient serviceClient, IConverter<WorldDataContract, World> converterForWorld)
         {
             if (serviceClient == null)
@@ -62,8 +62,6 @@ namespace GW2NET.V2.Worlds
             {
                 throw new ArgumentNullException("converterForWorld", "Precondition failed: converterForWorld != null");
             }
-
-            Contract.EndContractBlock();
 
             this.serviceClient = serviceClient;
             this.converterForIdentifiersResponse = new ConverterForCollectionResponse<int, int>(new ConverterAdapter<int>());
@@ -284,8 +282,7 @@ namespace GW2NET.V2.Worlds
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private IDictionaryRange<int, World> ConvertAsyncResponse(Task<IResponse<ICollection<WorldDataContract>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<IDictionaryRange<int, World>>() != null);
+            Debug.Assert(task != null, "task != null");
             var values = this.converterForBulkResponse.Convert(task.Result);
             if (values == null)
             {
@@ -298,8 +295,7 @@ namespace GW2NET.V2.Worlds
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollectionPage<World> ConvertAsyncResponse(Task<IResponse<ICollection<WorldDataContract>>> task, int pageIndex)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollectionPage<World>>() != null);
+            Debug.Assert(task != null, "task != null");
             var values = this.converterForPageResponse.Convert(task.Result);
             if (values == null)
             {
@@ -314,8 +310,7 @@ namespace GW2NET.V2.Worlds
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollection<int>>() != null);
+            Debug.Assert(task != null, "task != null");
             var ids = this.converterForIdentifiersResponse.Convert(task.Result);
             if (ids == null)
             {
@@ -328,19 +323,8 @@ namespace GW2NET.V2.Worlds
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private World ConvertAsyncResponse(Task<IResponse<WorldDataContract>> task)
         {
-            Contract.Requires(task != null);
+            Debug.Assert(task != null, "task != null");
             return this.converterForResponse.Convert(task.Result);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForBulkResponse != null);
-            Contract.Invariant(this.converterForIdentifiersResponse != null);
-            Contract.Invariant(this.converterForPageResponse != null);
-            Contract.Invariant(this.converterForResponse != null);
-            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

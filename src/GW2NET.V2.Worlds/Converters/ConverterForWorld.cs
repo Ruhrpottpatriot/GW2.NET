@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Worlds
 {
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Common;
     using GW2NET.Worlds;
@@ -19,7 +19,11 @@ namespace GW2NET.V2.Worlds
         /// <inheritdoc />
         public World Convert(WorldDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new World
             {
                 WorldId = value.Id, 
