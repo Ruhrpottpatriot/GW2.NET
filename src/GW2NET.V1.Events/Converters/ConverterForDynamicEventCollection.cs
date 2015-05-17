@@ -9,8 +9,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.DynamicEvents;
 using GW2NET.V1.Events.Json;
@@ -20,7 +18,6 @@ namespace GW2NET.V1.Events.Converters
     /// <summary>Converts objects of type <see cref="EventCollectionDataContract"/> to objects of type <see cref="T:ICollection{DynamicEvent}"/>.</summary>
     internal sealed class ConverterForDynamicEventCollection : IConverter<EventCollectionDataContract, ICollection<DynamicEvent>>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<EventDataContract, DynamicEvent> converterForDynamicEvent;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForDynamicEventCollection"/> class.</summary>
@@ -31,18 +28,25 @@ namespace GW2NET.V1.Events.Converters
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForDynamicEventCollection"/> class.</summary>
         /// <param name="converterForDynamicEvent">The converter for <see cref="DynamicEvent"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForDynamicEvent"/> is a null reference.</exception>
         public ConverterForDynamicEventCollection(IConverter<EventDataContract, DynamicEvent> converterForDynamicEvent)
         {
-            Contract.Requires(converterForDynamicEvent != null);
+            if (converterForDynamicEvent == null)
+            {
+                throw new ArgumentNullException("converterForDynamicEvent", "Precondition: converterForDynamicEvent != null");
+            }
+
             this.converterForDynamicEvent = converterForDynamicEvent;
         }
 
-        /// <summary>Converts the given object of type <see cref="EventCollectionDataContract"/> to an object of type <see cref="T:ICollection{DynamicEvent}"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public ICollection<DynamicEvent> Convert(EventCollectionDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var eventDataContracts = value.Events;
             if (eventDataContracts == null)
             {
@@ -69,13 +73,6 @@ namespace GW2NET.V1.Events.Converters
             }
 
             return dynamicEvents;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForDynamicEvent != null);
         }
     }
 }

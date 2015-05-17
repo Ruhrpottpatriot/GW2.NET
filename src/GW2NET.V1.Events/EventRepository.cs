@@ -10,7 +10,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -22,6 +21,8 @@ using GW2NET.V1.Events.Json;
 
 namespace GW2NET.V1.Events
 {
+    using System.Diagnostics;
+
     /// <summary>Represents a repository that retrieves data from the /v1/event_details.json interface.</summary>
     public class EventRepository : IEventRepository
     {
@@ -41,10 +42,19 @@ namespace GW2NET.V1.Events
         /// <summary>Initializes a new instance of the <see cref="EventRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="converterForDynamicEventCollection">The converter for <see cref="T:ICollection{DynamicEvent}"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForDynamicEventCollection"/> is a null reference.</exception>
         internal EventRepository(IServiceClient serviceClient, IConverter<EventCollectionDataContract, ICollection<DynamicEvent>> converterForDynamicEventCollection)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(converterForDynamicEventCollection != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForDynamicEventCollection == null)
+            {
+                throw new ArgumentNullException("converterForDynamicEventCollection", "Precondition: converterForDynamicEventCollection != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForDynamicEventCollection = converterForDynamicEventCollection;
         }
@@ -282,7 +292,7 @@ namespace GW2NET.V1.Events
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private DynamicEvent ConvertsAsyncResponse(Task<IResponse<EventCollectionDataContract>> task, CultureInfo culture)
         {
-            Contract.Requires(task != null);
+            Debug.Assert(task != null, "task != null");
             var response = task.Result;
             var eventCollectionDataContract = response.Content;
             if (eventCollectionDataContract == null)

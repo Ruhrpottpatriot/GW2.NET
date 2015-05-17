@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="GatheringToolDataContract"/> to objects of type <see cref="ForagingTool"/>.</summary>
     internal sealed class ConverterForForagingTool : IConverter<GatheringToolDataContract, ForagingTool>
     {
-        /// <summary>Converts the given object of type <see cref="GatheringToolDataContract"/> to an object of type <see cref="ForagingTool"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public ForagingTool Convert(GatheringToolDataContract value)
         {
             Contract.Assume(value != null);

@@ -7,22 +7,24 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Common.Drawing;
 
 namespace GW2NET.V1.Continents.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="T:double[]"/> to objects of type <see cref="Size2D"/>.</summary>
     internal sealed class ConverterForSize2D : IConverter<double[], Size2D>
     {
-        /// <summary>Converts the given object of type <see cref="T:double[]"/> to an object of type <see cref="Size2D"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Size2D Convert(double[] value)
         {
-            Contract.Assume(value != null);
-            Contract.Assume(value.Length == 2);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new Size2D(value[0], value[1]);
         }
     }

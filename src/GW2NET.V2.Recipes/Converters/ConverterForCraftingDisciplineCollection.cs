@@ -35,9 +35,7 @@ namespace GW2NET.V2.Recipes
             this.converterForCraftingDiscipline = converterForCraftingDiscipline;
         }
 
-        /// <summary>Converts the given object of type <see cref="T:ICollection{string}"/> to an object of type <see cref="CraftingDisciplines"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public CraftingDisciplines Convert(ICollection<string> value)
         {
             Contract.Assume(value != null);

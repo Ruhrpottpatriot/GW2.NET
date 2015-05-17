@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="ConsumableDataContract"/> to objects of type <see cref="UpgradeRemoval"/>.</summary>
     internal sealed class ConverterForUpgradeRemoval : IConverter<ConsumableDataContract, UpgradeRemoval>
     {
-        /// <summary>Converts the given object of type <see cref="ConsumableDataContract"/> to an object of type <see cref="UpgradeRemoval"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public UpgradeRemoval Convert(ConsumableDataContract value)
         {
             Contract.Assume(value != null);

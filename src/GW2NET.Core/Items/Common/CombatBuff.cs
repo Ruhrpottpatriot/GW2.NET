@@ -8,8 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Items
 {
-    using System.Diagnostics.Contracts;
-
     using GW2NET.ChatLinks;
 
     /// <summary>Represents an item's combat buff.</summary>
@@ -25,11 +23,15 @@ namespace GW2NET.Items
         /// <returns>The <see cref="ChatLink"/>.</returns>
         public virtual ChatLink GetSkillChatLink()
         {
-            Contract.Requires(this.SkillId.HasValue);
-            Contract.Ensures(Contract.Result<ChatLink>() != null);
+            var skill = this.SkillId;
+            if (!skill.HasValue)
+            {
+                return null;
+            }
+
             return new SkillChatLink
             {
-                SkillId = this.SkillId.GetValueOrDefault()
+                SkillId = skill.Value
             };
         }
     }

@@ -8,18 +8,17 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Maps;
 using GW2NET.V1.Continents.Json;
 
 namespace GW2NET.V1.Continents.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="ContinentCollectionDataContract"/> to objects of type <see cref="ICollection{T}"/>.</summary>
     internal sealed class ConverterForContinentCollection : IConverter<ContinentCollectionDataContract, ICollection<Continent>>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<ContinentDataContract, Continent> converterForContinent;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForContinentCollection"/> class.</summary>
@@ -30,19 +29,25 @@ namespace GW2NET.V1.Continents.Converters
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForContinentCollection"/> class.</summary>
         /// <param name="converterForContinent">The converter for <see cref="Continent"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForContinent"/> is a null reference.</exception>
         internal ConverterForContinentCollection(IConverter<ContinentDataContract, Continent> converterForContinent)
         {
-            Contract.Requires(converterForContinent != null);
+            if (converterForContinent == null)
+            {
+                throw new ArgumentNullException("converterForContinent", "Precondition: converterForContinent != null");
+            }
+
             this.converterForContinent = converterForContinent;
         }
 
-        /// <summary>Converts the given object of type <see cref="ContinentCollectionDataContract"/> to an object of type <see cref="ICollection{Continent}"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public ICollection<Continent> Convert(ContinentCollectionDataContract value)
         {
-            Contract.Assume(value != null);
-            Contract.Assume(value.Continents != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var continents = new List<Continent>(value.Continents.Count);
             foreach (var kvp in value.Continents)
             {
@@ -62,13 +67,6 @@ namespace GW2NET.V1.Continents.Converters
             }
 
             return continents;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForContinent != null);
         }
     }
 }

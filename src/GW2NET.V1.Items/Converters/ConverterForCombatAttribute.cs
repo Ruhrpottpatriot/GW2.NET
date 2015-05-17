@@ -36,9 +36,7 @@ namespace GW2NET.V1.Items.Converters
             this.typeConverters = typeConverters;
         }
 
-        /// <summary>Converts the given object of type <see cref="V2.Items.AttributeDataContract"/> to an object of type <see cref="CombatAttribute"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public CombatAttribute Convert(AttributeDataContract value)
         {
             Contract.Assume(value != null);

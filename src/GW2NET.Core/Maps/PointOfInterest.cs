@@ -9,7 +9,6 @@
 namespace GW2NET.Maps
 {
     using System;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
 
     using GW2NET.ChatLinks;
@@ -100,7 +99,6 @@ namespace GW2NET.Maps
         /// <returns>The <see cref="ChatLink"/>.</returns>
         public virtual ChatLink GetMapChatLink()
         {
-            Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new PointOfInterestChatLink
             {
                 PointOfInterestId = this.PointOfInterestId

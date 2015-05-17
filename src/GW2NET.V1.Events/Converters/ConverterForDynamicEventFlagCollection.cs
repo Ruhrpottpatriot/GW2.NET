@@ -8,17 +8,16 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.DynamicEvents;
 
 namespace GW2NET.V1.Events.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="T:ICollection{string}"/> to objects of type <see cref="DynamicEventFlags"/>.</summary>
     internal sealed class ConverterForDynamicEventFlagCollection : IConverter<ICollection<string>, DynamicEventFlags>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<string, DynamicEventFlags> converterForDynamicEventFlag;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForDynamicEventFlagCollection"/> class.</summary>
@@ -29,18 +28,25 @@ namespace GW2NET.V1.Events.Converters
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForDynamicEventFlagCollection"/> class.</summary>
         /// <param name="converterForDynamicEventFlag">The converter for <see cref="DynamicEventFlags"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForDynamicEventFlag"/> is a null reference.</exception>
         public ConverterForDynamicEventFlagCollection(IConverter<string, DynamicEventFlags> converterForDynamicEventFlag)
         {
-            Contract.Requires(converterForDynamicEventFlag != null);
+            if (converterForDynamicEventFlag == null)
+            {
+                throw new ArgumentNullException("converterForDynamicEventFlag", "Precondition: converterForDynamicEventFlag != null");
+            }
+
             this.converterForDynamicEventFlag = converterForDynamicEventFlag;
         }
 
-        /// <summary>Converts the given object of type <see cref="T:ICollection{string}"/> to an object of type <see cref="DynamicEventFlags"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public DynamicEventFlags Convert(ICollection<string> value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var result = default(DynamicEventFlags);
             foreach (var s in value)
             {
@@ -48,13 +54,6 @@ namespace GW2NET.V1.Events.Converters
             }
 
             return result;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForDynamicEventFlag != null);
         }
     }
 }

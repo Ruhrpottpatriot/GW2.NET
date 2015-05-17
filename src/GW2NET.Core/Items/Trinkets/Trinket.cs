@@ -8,28 +8,33 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Items
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System.Diagnostics;
 
     using GW2NET.ChatLinks;
 
     /// <summary>Provides the base class for trinket types.</summary>
     public abstract class Trinket : Item, IUpgrade, IUpgradable
     {
-        /// <summary>Backing field for <see cref="InfixUpgrade"/>.</summary>
         private InfixUpgrade infixUpgrade = new InfixUpgrade();
 
-        /// <summary>Gets or sets the item's infixed combat upgrades.</summary>
+        /// <inheritdoc />
         public virtual InfixUpgrade InfixUpgrade
         {
             get
             {
+                Debug.Assert(this.infixUpgrade != null, "this.infixUpgrade != null");
                 return this.infixUpgrade;
             }
 
             set
             {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value", "Precondition: value != null");
+                }
+
                 this.infixUpgrade = value;
             }
         }
@@ -53,20 +58,12 @@ namespace GW2NET.Items
         /// <returns>The <see cref="ChatLink"/>.</returns>
         public override ChatLink GetItemChatLink()
         {
-            Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new ItemChatLink
             {
                 ItemId = this.ItemId, 
                 SuffixItemId = this.SuffixItemId, 
                 SecondarySuffixItemId = this.SecondarySuffixItemId
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.infixUpgrade != null);
         }
     }
 }

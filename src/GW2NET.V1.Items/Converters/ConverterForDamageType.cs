@@ -16,9 +16,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="DamageType"/>.</summary>
     internal sealed class ConverterForDamageType : IConverter<string, DamageType>
     {
-        /// <summary>Converts the given object of type <see cref="string"/> to an object of type <see cref="DamageType"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public DamageType Convert(string value)
         {
             DamageType result;

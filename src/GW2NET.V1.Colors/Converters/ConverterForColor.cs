@@ -7,22 +7,29 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
 using GW2NET.Colors;
 using GW2NET.Common;
 
 namespace GW2NET.V1.Colors.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="T:int[]"/> to objects of type <see cref="Color"/>.</summary>
     internal sealed class ConverterForColor : IConverter<int[], Color>
     {
-        /// <summary>Converts the given object of type <see cref="T:int[]"/> to an object of type <see cref="Color"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Color Convert(int[] value)
         {
-            Contract.Assume(value != null);
-            Contract.Assume(value.Length == 3);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
+            if (value.Length != 3)
+            {
+                throw new ArgumentException("Precondition: value.Length == 3", "value");
+            }
+
             return new Color(value[0], value[1], value[2]);
         }
     }

@@ -8,7 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Items
 {
-    using System.Diagnostics.Contracts;
+    using System;
+    using System.Diagnostics;
     using System.Globalization;
 
     using GW2NET.ChatLinks;
@@ -16,7 +17,6 @@ namespace GW2NET.Items
     /// <summary>Represents a stack of items.</summary>
     public class ItemStack
     {
-        /// <summary>Backing field.</summary>
         private int count = 1;
 
         /// <summary>Gets or sets the number of items in this stack.</summary>
@@ -24,13 +24,23 @@ namespace GW2NET.Items
         {
             get
             {
-                Contract.Ensures(Contract.Result<int>() >= 1 && Contract.Result<int>() <= 255);
+                Debug.Assert(this.count > 0, "this.count > 0");
+                Debug.Assert(this.count < 256, "this.count < 256");
                 return this.count;
             }
 
             set
             {
-                Contract.Requires(value >= 1 && value <= 255);
+                if (value < 1)
+                {
+                    throw new ArgumentOutOfRangeException("value", value, "Precondition: value > 0");
+                }
+
+                if (value > 255)
+                {
+                    throw new ArgumentOutOfRangeException("value", value, "Precondition: value < 256");
+                }
+
                 this.count = value;
             }
         }
@@ -45,13 +55,12 @@ namespace GW2NET.Items
         /// <returns>The <see cref="ChatLink"/>.</returns>
         public virtual ChatLink GetItemChatLink()
         {
-            Contract.Ensures(Contract.Result<ChatLink>() != null);
             var item = this.Item;
             if (item == null)
             {
                 return new ItemChatLink
                 {
-                    ItemId = this.ItemId, 
+                    ItemId = this.ItemId,
                     Quantity = this.Count
                 };
             }
@@ -77,13 +86,6 @@ namespace GW2NET.Items
             }
 
             return string.Format("{0} {1}", this.Count, item);
-        }
-
-        /// <summary>The invariant method for this class.</summary>
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.count >= 1 && this.count <= 255);
         }
     }
 }

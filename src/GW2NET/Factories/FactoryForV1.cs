@@ -7,7 +7,6 @@
 namespace GW2NET.Factories
 {
     using System;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Files;
@@ -28,16 +27,12 @@ namespace GW2NET.Factories
     /// <summary>Provides access to version 1 of the public API.</summary>
     public class FactoryForV1 : FactoryBase
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FactoryForV1"/> class.
-        /// </summary>
-        /// <param name="serviceClient">
-        /// The service client.
-        /// </param>
+        /// <summary>Initializes a new instance of the <see cref="FactoryForV1"/> class.</summary>
+        /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public FactoryForV1(IServiceClient serviceClient)
             : base(serviceClient)
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Gets access to the builds data source.</summary>
@@ -46,7 +41,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<IBuildService>() != null);
                 return new BuildService(this.ServiceClient);
             }
         }
@@ -57,7 +51,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<ColorRepositoryFactory>() != null);
                 return new ColorRepositoryFactory(this.ServiceClient);
             }
         }
@@ -68,29 +61,28 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<ContinentRepositoryFactory>() != null);
                 return new ContinentRepositoryFactory(this.ServiceClient);
             }
         }
 
         /// <summary>Gets access to the event names data source.</summary>
-        [Obsolete("Events are no longer supported by the api since megaserver transition.")]
+        // [Obsolete("Events are no longer supported by the api since megaserver transition.")]
+        // ^ not true, /v1/event_names.json is still supported
         public EventNameRepositoryFactory EventNames
         {
             get
             {
-                Contract.Ensures(Contract.Result<EventNameRepositoryFactory>() != null);
                 return new EventNameRepositoryFactory(this.ServiceClient);
             }
         }
 
         /// <summary>Gets access to the events data source.</summary>
-        [Obsolete("Events are no longer supported by the api since megaserver transition.", true)]
+        // [Obsolete("Events are no longer supported by the api since megaserver transition.")]
+        // ^ not true, /v1/event_details.json is still supported
         public EventRepositoryFactory Events
         {
             get
             {
-                Contract.Ensures(Contract.Result<EventRepositoryFactory>() != null);
                 return new EventRepositoryFactory(this.ServiceClient);
             }
         }
@@ -101,7 +93,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<IFileRepository>() != null);
                 return new FileRepository(this.ServiceClient);
             }
         }
@@ -111,7 +102,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<FloorRepositoryFactory>() != null);
                 return new FloorRepositoryFactory(this.ServiceClient);
             }
         }
@@ -121,7 +111,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<IGuildRepository>() != null);
                 return new GuildRepository(this.ServiceClient);
             }
         }
@@ -132,7 +121,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<ItemRepositoryFactory>() != null);
                 return new ItemRepositoryFactory(this.ServiceClient);
             }
         }
@@ -143,7 +131,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<MapNameRepositoryFactory>() != null);
                 return new MapNameRepositoryFactory(this.ServiceClient);
             }
         }
@@ -154,7 +141,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<MapRepositoryFactory>() != null);
                 return new MapRepositoryFactory(this.ServiceClient);
             }
         }
@@ -165,7 +151,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<RecipeRepositoryFactory>() != null);
                 return new RecipeRepositoryFactory(this.ServiceClient);
             }
         }
@@ -176,7 +161,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<SkinRepositoryFactory>() != null);
                 return new SkinRepositoryFactory(this.ServiceClient);
             }
         }
@@ -187,7 +171,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<WorldRepositoryFactory>() != null);
                 return new WorldRepositoryFactory(this.ServiceClient);
             }
         }
@@ -197,7 +180,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<FactoryForV1WvW>() != null);
                 return new FactoryForV1WvW(this.ServiceClient);
             }
         }

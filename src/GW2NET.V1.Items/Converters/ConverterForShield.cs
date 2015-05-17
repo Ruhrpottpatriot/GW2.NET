@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="WeaponDataContract"/> to objects of type <see cref="Shield"/>.</summary>
     internal sealed class ConverterForShield : IConverter<WeaponDataContract, Shield>
     {
-        /// <summary>Converts the given object of type <see cref="WeaponDataContract"/> to an object of type <see cref="Shield"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Shield Convert(WeaponDataContract value)
         {
             Contract.Assume(value != null);

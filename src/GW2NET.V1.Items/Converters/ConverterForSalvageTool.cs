@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="ToolDataContract"/> to objects of type <see cref="Tool"/>.</summary>
     internal sealed class ConverterForSalvageTool : IConverter<ToolDataContract, Tool>
     {
-        /// <summary>Converts the given object of type <see cref="ToolDataContract"/> to an object of type <see cref="Tool"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Tool Convert(ToolDataContract value)
         {
             Contract.Assume(value != null);

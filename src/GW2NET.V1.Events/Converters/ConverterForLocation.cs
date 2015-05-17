@@ -8,8 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Common.Drawing;
 using GW2NET.DynamicEvents;
@@ -17,13 +15,13 @@ using GW2NET.V1.Events.Json;
 
 namespace GW2NET.V1.Events.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="LocationDataContract"/> to objects of type <see cref="Location"/>.</summary>
     internal sealed class ConverterForLocation : IConverter<LocationDataContract, Location>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<double[], Vector3D> converterForVector3D;
 
-        /// <summary>Infrastructure. Holds a reference to a collection of type converters.</summary>
         private readonly IDictionary<string, IConverter<LocationDataContract, Location>> typeConverters;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForLocation"/> class.</summary>
@@ -35,20 +33,31 @@ namespace GW2NET.V1.Events.Converters
         /// <summary>Initializes a new instance of the <see cref="ConverterForLocation"/> class.</summary>
         /// <param name="typeConverters">The type converters.</param>
         /// <param name="converterForVector3D">The converter for <see cref="Vector3D"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="typeConverters"/> or <paramref name="converterForVector3D"/> is a null reference.</exception>
         public ConverterForLocation(IDictionary<string, IConverter<LocationDataContract, Location>> typeConverters, IConverter<double[], Vector3D> converterForVector3D)
         {
-            Contract.Requires(typeConverters != null);
-            Contract.Requires(converterForVector3D != null);
+            if (typeConverters == null)
+            {
+                throw new ArgumentNullException("typeConverters", "Precondition: typeConverters != null");
+            }
+
+            if (converterForVector3D == null)
+            {
+                throw new ArgumentNullException("converterForVector3D", "Precondition: converterForVector3D != null");
+            }
+
             this.typeConverters = typeConverters;
             this.converterForVector3D = converterForVector3D;
         }
 
-        /// <summary>Converts the given object of type <see cref="LocationDataContract"/> to an object of type <see cref="Location"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Location Convert(LocationDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             Location location;
             IConverter<LocationDataContract, Location> converter;
             if (this.typeConverters.TryGetValue(value.Type, out converter))
@@ -79,14 +88,6 @@ namespace GW2NET.V1.Events.Converters
                 { "cylinder", new ConverterForCylinderLocation() }, 
                 { "poly", new ConverterForPolygonLocation() }
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.typeConverters != null);
-            Contract.Invariant(this.converterForVector3D != null);
         }
     }
 }

@@ -7,22 +7,25 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.DynamicEvents;
 using GW2NET.V1.Events.Json;
 
 namespace GW2NET.V1.Events.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="LocationDataContract"/> to objects of type <see cref="CylinderLocation"/>.</summary>
     internal sealed class ConverterForCylinderLocation : IConverter<LocationDataContract, CylinderLocation>
     {
-        /// <summary>Converts the given object of type <see cref="LocationDataContract"/> to an object of type <see cref="CylinderLocation"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public CylinderLocation Convert(LocationDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new CylinderLocation
             {
                 Height = value.Height, 

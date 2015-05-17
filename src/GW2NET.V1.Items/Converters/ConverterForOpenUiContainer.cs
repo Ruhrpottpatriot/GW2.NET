@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="ContainerDataContract"/> to objects of type <see cref="OpenUiContainer"/>.</summary>
     internal sealed class ConverterForOpenUiContainer : IConverter<ContainerDataContract, OpenUiContainer>
     {
-        /// <summary>Converts the given object of type <see cref="ContainerDataContract"/> to an object of type <see cref="OpenUiContainer"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public OpenUiContainer Convert(ContainerDataContract value)
         {
             Contract.Assume(value != null);

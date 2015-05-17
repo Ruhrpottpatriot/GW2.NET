@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="WeaponDataContract"/> to objects of type <see cref="SmallBundle"/>.</summary>
     internal sealed class ConverterForSmallBundle : IConverter<WeaponDataContract, SmallBundle>
     {
-        /// <summary>Converts the given object of type <see cref="WeaponDataContract"/> to an object of type <see cref="SmallBundle"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public SmallBundle Convert(WeaponDataContract value)
         {
             Contract.Assume(value != null);

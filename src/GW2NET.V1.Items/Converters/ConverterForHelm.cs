@@ -16,9 +16,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="ArmorDataContract"/> to objects of type <see cref="Helm"/>.</summary>
     internal sealed class ConverterForHelm : IConverter<ArmorDataContract, Helm>
     {
-        /// <summary>Converts the given object of type <see cref="ArmorDataContract"/> to an object of type <see cref="Helm"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Helm Convert(ArmorDataContract value)
         {
             return new Helm();

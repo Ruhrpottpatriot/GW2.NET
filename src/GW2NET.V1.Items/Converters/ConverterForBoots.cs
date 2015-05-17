@@ -16,9 +16,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="ArmorDataContract"/> to objects of type <see cref="Boots"/>.</summary>
     internal sealed class ConverterForBoots : IConverter<ArmorDataContract, Boots>
     {
-        /// <summary>Converts the given object of type <see cref="ArmorDataContract"/> to an object of type <see cref="Boots"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Boots Convert(ArmorDataContract value)
         {
             return new Boots();

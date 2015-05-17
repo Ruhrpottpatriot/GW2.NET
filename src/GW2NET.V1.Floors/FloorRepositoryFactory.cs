@@ -8,8 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Floors
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System;
     using System.Globalization;
 
     using GW2NET.Common;
@@ -23,9 +22,14 @@ namespace GW2NET.V1.Floors
 
         /// <summary>Initializes a new instance of the <see cref="FloorRepositoryFactory"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public FloorRepositoryFactory(IServiceClient serviceClient)
         {
-            Contract.Requires(serviceClient != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
             this.serviceClient = serviceClient;
         }
 
@@ -36,7 +40,6 @@ namespace GW2NET.V1.Floors
         {
             get
             {
-                Contract.Ensures(Contract.Result<IFloorRepository>() != null);
                 return this.ForDefaultCulture(continentId);
             }
         }
@@ -44,14 +47,17 @@ namespace GW2NET.V1.Floors
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="continentId">The continent identifier.</param>
         /// <param name="language">The two-letter language code.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="language"/> is a null reference.</exception>
         /// <returns>A repository.</returns>
         public IFloorRepository this[int continentId, string language]
         {
             get
             {
-                Contract.Requires(language != null);
-                Contract.Requires(language.Length == 2);
-                Contract.Ensures(Contract.Result<IFloorRepository>() != null);
+                if (language == null)
+                {
+                    throw new ArgumentNullException("language", "Precondition: language != null");
+                }
+
                 return this.ForCulture(continentId, new CultureInfo(language));
             }
         }
@@ -59,13 +65,17 @@ namespace GW2NET.V1.Floors
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="continentId">The continent identifier.</param>
         /// <param name="culture">The culture.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="culture"/> is a null reference.</exception>
         /// <returns>A repository.</returns>
         public IFloorRepository this[int continentId, CultureInfo culture]
         {
             get
             {
-                Contract.Requires(culture != null);
-                Contract.Ensures(Contract.Result<IFloorRepository>() != null);
+                if (culture == null)
+                {
+                    throw new ArgumentNullException("culture", "Precondition: culture != null");
+                }
+
                 return this.ForCulture(continentId, culture);
             }
         }
@@ -75,17 +85,21 @@ namespace GW2NET.V1.Floors
         /// <returns>A repository.</returns>
         public IFloorRepository ForDefaultCulture(int continentId)
         {
-            Contract.Ensures(Contract.Result<IFloorRepository>() != null);
             return new FloorRepository(this.serviceClient, continentId);
         }
 
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="continentId">The continent identifier.</param>
         /// <param name="culture">The culture.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="culture"/> is a null reference.</exception>
         /// <returns>A repository.</returns>
         public IFloorRepository ForCulture(int continentId, CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<IFloorRepository>() != null);
+            if (culture == null)
+            {
+                throw new ArgumentNullException("culture", "Precondition: culture != null");
+            }
+
             IFloorRepository repository = new FloorRepository(this.serviceClient, continentId);
             repository.Culture = culture;
             return repository;
@@ -96,7 +110,6 @@ namespace GW2NET.V1.Floors
         /// <returns>A repository.</returns>
         public IFloorRepository ForCurrentCulture(int continentId)
         {
-            Contract.Ensures(Contract.Result<IFloorRepository>() != null);
             return this.ForCulture(continentId, CultureInfo.CurrentCulture);
         }
 
@@ -105,15 +118,7 @@ namespace GW2NET.V1.Floors
         /// <returns>A repository.</returns>
         public IFloorRepository ForCurrentUICulture(int continentId)
         {
-            Contract.Ensures(Contract.Result<IFloorRepository>() != null);
             return this.ForCulture(continentId, CultureInfo.CurrentUICulture);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

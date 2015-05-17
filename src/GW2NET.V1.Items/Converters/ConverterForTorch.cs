@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="WeaponDataContract"/> to objects of type <see cref="Torch"/>.</summary>
     internal sealed class ConverterForTorch : IConverter<WeaponDataContract, Torch>
     {
-        /// <summary>Converts the given object of type <see cref="WeaponDataContract"/> to an object of type <see cref="Torch"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Torch Convert(WeaponDataContract value)
         {
             Contract.Assume(value != null);

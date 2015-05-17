@@ -16,9 +16,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="ArmorDataContract"/> to objects of type <see cref="Shoulders"/>.</summary>
     internal sealed class ConverterForShoulders : IConverter<ArmorDataContract, Shoulders>
     {
-        /// <summary>Converts the given object of type <see cref="ArmorDataContract"/> to an object of type <see cref="Shoulders"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Shoulders Convert(ArmorDataContract value)
         {
             return new Shoulders();

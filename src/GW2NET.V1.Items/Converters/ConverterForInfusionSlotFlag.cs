@@ -16,9 +16,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="InfusionSlotFlags"/>.</summary>
     internal sealed class ConverterForInfusionSlotFlag : IConverter<string, InfusionSlotFlags>
     {
-        /// <summary>Converts the given object of type <see cref="string"/> to an object of type <see cref="InfusionSlotFlags"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public InfusionSlotFlags Convert(string value)
         {
             InfusionSlotFlags result;

@@ -10,7 +10,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -41,10 +40,19 @@ namespace GW2NET.V1.Events
         /// <summary>Initializes a new instance of the <see cref="EventNameRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="converterForDynamicEventNameCollection">The converter for <see cref="T:ICollection{DynamicEventName}"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForDynamicEventNameCollection"/> is a null reference.</exception>
         internal EventNameRepository(IServiceClient serviceClient, IConverter<ICollection<EventNameDataContract>, ICollection<DynamicEventName>> converterForDynamicEventNameCollection)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(converterForDynamicEventNameCollection != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForDynamicEventNameCollection == null)
+            {
+                throw new ArgumentNullException("converterForDynamicEventNameCollection", "Precondition: converterForDynamicEventNameCollection != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForDynamicEventNameCollection = converterForDynamicEventNameCollection;
         }
@@ -213,14 +221,6 @@ namespace GW2NET.V1.Events
             }
 
             return dynamicEventNames;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForDynamicEventNameCollection != null);
         }
     }
 }

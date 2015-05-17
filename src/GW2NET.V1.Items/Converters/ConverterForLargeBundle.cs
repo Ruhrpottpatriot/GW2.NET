@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="WeaponDataContract"/> to objects of type <see cref="LargeBundle"/>.</summary>
     internal sealed class ConverterForLargeBundle : IConverter<WeaponDataContract, LargeBundle>
     {
-        /// <summary>Converts the given object of type <see cref="WeaponDataContract"/> to an object of type <see cref="LargeBundle"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public LargeBundle Convert(WeaponDataContract value)
         {
             Contract.Assume(value != null);

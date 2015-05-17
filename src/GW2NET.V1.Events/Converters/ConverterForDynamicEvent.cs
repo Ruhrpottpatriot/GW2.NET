@@ -8,21 +8,19 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.DynamicEvents;
 using GW2NET.V1.Events.Json;
 
 namespace GW2NET.V1.Events.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="EventDataContract"/> to objects of type <see cref="DynamicEvent"/>.</summary>
     internal sealed class ConverterForDynamicEvent : IConverter<EventDataContract, DynamicEvent>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<ICollection<string>, DynamicEventFlags> converterForDynamicEventFlags;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<LocationDataContract, Location> converterForLocation;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForDynamicEvent"/> class.</summary>
@@ -34,20 +32,31 @@ namespace GW2NET.V1.Events.Converters
         /// <summary>Initializes a new instance of the <see cref="ConverterForDynamicEvent"/> class.</summary>
         /// <param name="converterForDynamicEventFlags">The converter for <see cref="DynamicEventFlags"/>.</param>
         /// <param name="converterForLocation">The converter for <see cref="Location"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForDynamicEventFlags"/> or <paramref name="converterForLocation"/> is a null reference.</exception>
         public ConverterForDynamicEvent(IConverter<ICollection<string>, DynamicEventFlags> converterForDynamicEventFlags, IConverter<LocationDataContract, Location> converterForLocation)
         {
-            Contract.Requires(converterForDynamicEventFlags != null);
-            Contract.Requires(converterForLocation != null);
+            if (converterForDynamicEventFlags == null)
+            {
+                throw new ArgumentNullException("converterForDynamicEventFlags", "Precondition: converterForDynamicEventFlags != null");
+            }
+
+            if (converterForLocation == null)
+            {
+                throw new ArgumentNullException("converterForLocation", "Precondition: converterForLocation != null");
+            }
+
             this.converterForDynamicEventFlags = converterForDynamicEventFlags;
             this.converterForLocation = converterForLocation;
         }
 
-        /// <summary>Converts the given object of type <see cref="EventDataContract"/> to an object of type <see cref="DynamicEvent"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public DynamicEvent Convert(EventDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var dynamicEvent = new DynamicEvent
             {
                 Name = value.Name, 
@@ -68,14 +77,6 @@ namespace GW2NET.V1.Events.Converters
             }
 
             return dynamicEvent;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForDynamicEventFlags != null);
-            Contract.Invariant(this.converterForLocation != null);
         }
     }
 }

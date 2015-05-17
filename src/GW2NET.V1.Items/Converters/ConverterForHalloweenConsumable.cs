@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="ConsumableDataContract"/> to objects of type <see cref="HalloweenConsumable"/>.</summary>
     internal sealed class ConverterForHalloweenConsumable : IConverter<ConsumableDataContract, HalloweenConsumable>
     {
-        /// <summary>Converts the given object of type <see cref="ConsumableDataContract"/> to an object of type <see cref="HalloweenConsumable"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public HalloweenConsumable Convert(ConsumableDataContract value)
         {
             Contract.Assume(value != null);

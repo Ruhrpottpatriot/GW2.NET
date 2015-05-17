@@ -9,7 +9,6 @@
 namespace GW2NET.Local.DynamicEvents.Xml
 {
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
     using System.Runtime.Serialization;
 
     /// <summary>Wraps a collection of rotating shifts.</summary>
@@ -29,7 +28,6 @@ namespace GW2NET.Local.DynamicEvents.Xml
         public ShiftCollectionContract(int capacity)
             : base(capacity)
         {
-            Contract.Requires(capacity >= 0);
         }
 
         /// <summary>Initializes a new instance of the <see cref="ShiftCollectionContract"/> class that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.</summary>

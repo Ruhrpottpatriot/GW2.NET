@@ -8,18 +8,18 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Maps;
 using GW2NET.V1.Floors.Json;
 
 namespace GW2NET.V1.Floors.Converters
 {
+    using System;
+    using System.Diagnostics;
+
     /// <summary>Converts objects of type <see cref="T:KeyValuePair{string, RegionDataContract}"/> to objects of type <see cref="T:KeyValuePair{int, Region}"/>.</summary>
     internal sealed class ConverterForRegionKeyValuePair : IConverter<KeyValuePair<string, RegionDataContract>, KeyValuePair<int, Region>>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<RegionDataContract, Region> converterForRegion;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForRegionKeyValuePair"/> class.</summary>
@@ -30,21 +30,24 @@ namespace GW2NET.V1.Floors.Converters
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForRegionKeyValuePair"/> class.</summary>
         /// <param name="converterForRegion">The converter for <see cref="Region"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForRegion"/> is a null reference.</exception>
         internal ConverterForRegionKeyValuePair(IConverter<RegionDataContract, Region> converterForRegion)
         {
-            Contract.Requires(converterForRegion != null);
+            if (converterForRegion == null)
+            {
+                throw new ArgumentNullException("converterForRegion", "Precondition: converterForRegion != null");
+            }
+
             this.converterForRegion = converterForRegion;
         }
 
-        /// <summary>Converts the given object of type <see cref="T:KeyValuePair{string, RegionDataContract}"/> to an object of type <see cref="T:KeyValuePair{int, Region}"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public KeyValuePair<int, Region> Convert(KeyValuePair<string, RegionDataContract> value)
         {
             var key = value.Key;
             var dataContract = value.Value;
-            Contract.Assume(key != null);
-            Contract.Assume(dataContract != null);
+            Debug.Assert(key != null, "key != null");
+            Debug.Assert(dataContract != null, "dataContract != null");
             int id;
             if (!int.TryParse(key, out id))
             {
@@ -54,13 +57,6 @@ namespace GW2NET.V1.Floors.Converters
             var region = this.converterForRegion.Convert(dataContract);
             region.RegionId = id;
             return new KeyValuePair<int, Region>(id, region);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForRegion != null);
         }
     }
 }

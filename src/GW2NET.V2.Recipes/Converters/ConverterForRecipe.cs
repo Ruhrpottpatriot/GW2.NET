@@ -55,9 +55,7 @@ namespace GW2NET.V2.Recipes
             this.typeConverters = typeConverters;
         }
 
-        /// <summary>Converts the given object of type <see cref="RecipeDataContract"/> to an object of type <see cref="Recipe"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Recipe Convert(RecipeDataContract value)
         {
             Contract.Assume(value != null);

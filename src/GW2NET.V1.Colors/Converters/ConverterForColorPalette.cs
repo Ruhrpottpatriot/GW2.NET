@@ -7,21 +7,19 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Colors;
 using GW2NET.Common;
 using GW2NET.V1.Colors.Json;
 
 namespace GW2NET.V1.Colors.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="ColorDataContract"/> to objects of type <see cref="ColorPalette"/>.</summary>
     internal sealed class ConverterForColorPalette : IConverter<ColorDataContract, ColorPalette>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<int[], Color> converterForColor;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<ColorModelDataContract, ColorModel> converterForColorModel;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForColorPalette"/> class.</summary>
@@ -35,18 +33,27 @@ namespace GW2NET.V1.Colors.Converters
         /// <param name="converterForColorModel">The converter for <see cref="ColorModel"/>.</param>
         internal ConverterForColorPalette(IConverter<int[], Color> converterForColor, IConverter<ColorModelDataContract, ColorModel> converterForColorModel)
         {
-            Contract.Requires(converterForColor != null);
-            Contract.Requires(converterForColorModel != null);
+            if (converterForColor == null)
+            {
+                throw new ArgumentNullException("converterForColor", "Precondition: converterForColor != null");
+            }
+
+            if (converterForColorModel == null)
+            {
+                throw new ArgumentNullException("converterForColorModel", "Precondition: converterForColorModel != null");
+            }
+
             this.converterForColor = converterForColor;
             this.converterForColorModel = converterForColorModel;
         }
 
-        /// <summary>Converts the given object of type <see cref="ColorDataContract"/> to an object of type <see cref="ColorPalette"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public ColorPalette Convert(ColorDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
 
             // Create a new color object
             var colorPalette = new ColorPalette
@@ -84,14 +91,6 @@ namespace GW2NET.V1.Colors.Converters
 
             // Return the color object
             return colorPalette;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForColor != null);
-            Contract.Invariant(this.converterForColorModel != null);
         }
     }
 }

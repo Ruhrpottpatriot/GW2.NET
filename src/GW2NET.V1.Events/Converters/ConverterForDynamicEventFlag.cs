@@ -9,16 +9,16 @@
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.DynamicEvents;
 
 namespace GW2NET.V1.Events.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="DynamicEventFlags"/>.</summary>
     internal sealed class ConverterForDynamicEventFlag : IConverter<string, DynamicEventFlags>
     {
-        /// <summary>The dynamic event flags.</summary>
         private readonly IDictionary<string, DynamicEventFlags> dynamicEventFlags;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForDynamicEventFlag"/> class.</summary>
@@ -29,18 +29,25 @@ namespace GW2NET.V1.Events.Converters
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForDynamicEventFlag"/> class.</summary>
         /// <param name="dynamicEventFlags">The known flags.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="dynamicEventFlags"/> is a null reference.</exception>
         internal ConverterForDynamicEventFlag(IDictionary<string, DynamicEventFlags> dynamicEventFlags)
         {
-            Contract.Requires(dynamicEventFlags != null);
+            if (dynamicEventFlags == null)
+            {
+                throw new ArgumentNullException("dynamicEventFlags", "Precondition: dynamicEventFlags != null");
+            }
+
             this.dynamicEventFlags = dynamicEventFlags;
         }
 
-        /// <summary>Converts the given object of type <see cref="string"/> to an object of type <see cref="DynamicEventFlags"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public DynamicEventFlags Convert(string value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             DynamicEventFlags result;
             if (this.dynamicEventFlags.TryGetValue(value, out result))
             {
@@ -58,13 +65,6 @@ namespace GW2NET.V1.Events.Converters
                 { "group_event", DynamicEventFlags.GroupEvent }, 
                 { "map_wide", DynamicEventFlags.MapWide }
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.dynamicEventFlags != null);
         }
     }
 }

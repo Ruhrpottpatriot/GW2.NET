@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="TrinketDataContract"/> to objects of type <see cref="Amulet"/>.</summary>
     internal sealed class ConverterForAmulet : IConverter<TrinketDataContract, Amulet>
     {
-        /// <summary>Converts the given object of type <see cref="TrinketDataContract"/> to an object of type <see cref="Amulet"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Amulet Convert(TrinketDataContract value)
         {
             Contract.Assume(value != null);

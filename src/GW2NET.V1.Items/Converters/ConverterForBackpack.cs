@@ -43,9 +43,7 @@ namespace GW2NET.V1.Items.Converters
             this.converterForInfixUpgrade = converterForInfixUpgrade;
         }
 
-        /// <summary>Converts the given object of type <see cref="ItemDataContract"/> to an object of type <see cref="Backpack"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Backpack Convert(ItemDataContract value)
         {
             Contract.Assume(value != null);

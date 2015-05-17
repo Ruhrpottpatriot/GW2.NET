@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="GatheringToolDataContract"/> to objects of type <see cref="MiningTool"/>.</summary>
     internal sealed class ConverterForMiningTool : IConverter<GatheringToolDataContract, MiningTool>
     {
-        /// <summary>Converts the given object of type <see cref="GatheringToolDataContract"/> to an object of type <see cref="MiningTool"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public MiningTool Convert(GatheringToolDataContract value)
         {
             Contract.Assume(value != null);

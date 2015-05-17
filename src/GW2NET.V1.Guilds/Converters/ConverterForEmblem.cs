@@ -36,9 +36,7 @@ namespace GW2NET.V1.Guilds.Converters
             this.converterForEmblemTransformations = converterForEmblemTransformations;
         }
 
-        /// <summary>Converts the given object of type <see cref="EmblemDataContract"/> to an object of type <see cref="Emblem"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Emblem Convert(EmblemDataContract value)
         {
             Contract.Assume(value != null);

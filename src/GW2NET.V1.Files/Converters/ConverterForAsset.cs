@@ -7,22 +7,25 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Files;
 using GW2NET.V1.Files.Json;
 
 namespace GW2NET.V1.Files.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="FileDataContract"/> to objects of type <see cref="Asset"/>.</summary>
     internal sealed class ConverterForAsset : IConverter<FileDataContract, Asset>
     {
-        /// <summary>Converts the given object of type <see cref="FileDataContract"/> to an object of type <see cref="Asset"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Asset Convert(FileDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new Asset
             {
                 FileId = value.FileId, 

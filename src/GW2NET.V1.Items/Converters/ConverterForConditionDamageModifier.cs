@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="ConditionDamageModifier"/>.</summary>
     internal sealed class ConverterForConditionDamageModifier : IConverter<AttributeDataContract, ConditionDamageModifier>
     {
-        /// <summary>Converts the given object of type <see cref="AttributeDataContract"/> to an object of type <see cref="ConditionDamageModifier"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public ConditionDamageModifier Convert(AttributeDataContract value)
         {
             Contract.Assume(value != null);

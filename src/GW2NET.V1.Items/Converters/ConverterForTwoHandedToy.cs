@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="WeaponDataContract"/> to objects of type <see cref="TwoHandedToy"/>.</summary>
     internal sealed class ConverterForTwoHandedToy : IConverter<WeaponDataContract, TwoHandedToy>
     {
-        /// <summary>Converts the given object of type <see cref="WeaponDataContract"/> to an object of type <see cref="TwoHandedToy"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public TwoHandedToy Convert(WeaponDataContract value)
         {
             Contract.Assume(value != null);

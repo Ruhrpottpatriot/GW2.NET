@@ -8,8 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Common.Serializers
 {
-    using System.Diagnostics.Contracts;
-
     using Newtonsoft.Json;
 
     /// <summary>Provides factory methods for the JSON.NET serialization engine.</summary>
@@ -37,9 +35,6 @@ namespace GW2NET.Common.Serializers
         {
             // Create a Json.NET serializer using a mix of default and explicit settings
             JsonSerializer serializer = JsonSerializer.CreateDefault(this.jsonSerializerSettings);
-
-            // Provide a hint to the static checker
-            Contract.Assume(serializer != null);
 
             // Return a serializer adapter for the newly created Json.NET serializer
             return new JsonSerializer<T>(serializer);

@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="ContainerDataContract"/> to objects of type <see cref="GiftBox"/>.</summary>
     internal sealed class ConverterForGiftBox : IConverter<ContainerDataContract, GiftBox>
     {
-        /// <summary>Converts the given object of type <see cref="ContainerDataContract"/> to an object of type <see cref="GiftBox"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public GiftBox Convert(ContainerDataContract value)
         {
             Contract.Assume(value != null);

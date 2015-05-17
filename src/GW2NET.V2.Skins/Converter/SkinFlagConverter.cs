@@ -18,9 +18,7 @@ namespace GW2NET.V2.Skins
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="SkinFlags"/>.</summary>
     internal sealed class SkinFlagConverter : IConverter<string, SkinFlags>
     {
-        /// <summary>Converts the given object of type <see cref="string"/> to an object of type <see cref="SkinFlags"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public SkinFlags Convert(string value)
         {
             Contract.Assume(value != null);

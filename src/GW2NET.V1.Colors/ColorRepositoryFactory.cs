@@ -8,8 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Colors
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System;
     using System.Globalization;
 
     using GW2NET.Colors;
@@ -23,35 +22,47 @@ namespace GW2NET.V1.Colors
 
         /// <summary>Initializes a new instance of the <see cref="ColorRepositoryFactory"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public ColorRepositoryFactory(IServiceClient serviceClient)
         {
-            Contract.Requires(serviceClient != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
             this.serviceClient = serviceClient;
         }
 
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="language">The two-letter language code.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="language"/> is a null reference.</exception>
         /// <returns>A repository.</returns>
         public IColorRepository this[string language]
         {
             get
             {
-                Contract.Requires(language != null);
-                Contract.Requires(language.Length == 2);
-                Contract.Ensures(Contract.Result<IColorRepository>() != null);
+                if (language == null)
+                {
+                    throw new ArgumentNullException("language", "Precondition: language != null");
+                }
+
                 return this.ForCulture(new CultureInfo(language));
             }
         }
 
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="culture">The culture.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="culture"/> is a null reference.</exception>
         /// <returns>A repository.</returns>
         public IColorRepository this[CultureInfo culture]
         {
             get
             {
-                Contract.Requires(culture != null);
-                Contract.Ensures(Contract.Result<IColorRepository>() != null);
+                if (culture == null)
+                {
+                    throw new ArgumentNullException("culture", "Precondition: culture != null");
+                }
+
                 return this.ForCulture(culture);
             }
         }
@@ -60,7 +71,6 @@ namespace GW2NET.V1.Colors
         /// <returns>A repository.</returns>
         public IColorRepository ForDefaultCulture()
         {
-            Contract.Ensures(Contract.Result<IColorRepository>() != null);
             return new ColorRepository(this.serviceClient);
         }
 
@@ -69,7 +79,6 @@ namespace GW2NET.V1.Colors
         /// <returns>A repository.</returns>
         public IColorRepository ForCulture(CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<IColorRepository>() != null);
             IColorRepository repository = new ColorRepository(this.serviceClient);
             repository.Culture = culture;
             return repository;
@@ -79,24 +88,14 @@ namespace GW2NET.V1.Colors
         /// <returns>A repository.</returns>
         public IColorRepository ForCurrentCulture()
         {
-            Contract.Ensures(Contract.Result<IColorRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentCulture);
         }
 
         /// <summary>Creates an instance for the current UI language.</summary>
-        /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
-        public IColorRepository ForCurrentUICulture(int continentId)
+        public IColorRepository ForCurrentUICulture()
         {
-            Contract.Ensures(Contract.Result<IColorRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

@@ -16,9 +16,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="ItemRarity"/>.</summary>
     internal sealed class ConverterForItemRarity : IConverter<string, ItemRarity>
     {
-        /// <summary>Converts the given object of type <see cref="string"/> to an object of type <see cref="ItemRarity"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public ItemRarity Convert(string value)
         {
             ItemRarity result;

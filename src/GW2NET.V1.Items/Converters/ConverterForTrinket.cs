@@ -48,9 +48,7 @@ namespace GW2NET.V1.Items.Converters
             this.typeConverters = typeConverters;
         }
 
-        /// <summary>Converts the given object of type <see cref="ItemDataContract"/> to an object of type <see cref="Trinket"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Trinket Convert(ItemDataContract value)
         {
             Contract.Assume(value != null);

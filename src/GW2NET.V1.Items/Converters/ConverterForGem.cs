@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="UpgradeComponentDataContract"/> to objects of type <see cref="Gem"/>.</summary>
     internal sealed class ConverterForGem : IConverter<UpgradeComponentDataContract, Gem>
     {
-        /// <summary>Converts the given object of type <see cref="UpgradeComponentDataContract"/> to an object of type <see cref="Gem"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Gem Convert(UpgradeComponentDataContract value)
         {
             Contract.Assume(value != null);

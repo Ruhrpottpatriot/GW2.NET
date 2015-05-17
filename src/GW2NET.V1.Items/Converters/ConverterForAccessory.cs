@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="TrinketDataContract"/> to objects of type <see cref="Accessory"/>.</summary>
     internal sealed class ConverterForAccessory : IConverter<TrinketDataContract, Accessory>
     {
-        /// <summary>Converts the given object of type <see cref="TrinketDataContract"/> to an object of type <see cref="Accessory"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Accessory Convert(TrinketDataContract value)
         {
             Contract.Assume(value != null);

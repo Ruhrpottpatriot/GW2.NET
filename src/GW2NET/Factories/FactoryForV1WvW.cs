@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Factories
 {
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Common;
     using GW2NET.V1.WorldVersusWorld.Matches;
@@ -20,10 +20,10 @@ namespace GW2NET.Factories
     {
         /// <summary>Initializes a new instance of the <see cref="FactoryForV1WvW"/> class. Initializes a new instance of the <see cref="FactoryBase"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public FactoryForV1WvW(IServiceClient serviceClient)
             : base(serviceClient)
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Gets access to the matches data source.</summary>
@@ -31,7 +31,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<IMatchRepository>() != null);
                 return new MatchRepository(this.ServiceClient);
             }
         }
@@ -41,7 +40,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<ObjectiveNameRepositoryFactory>() != null);
                 return new ObjectiveNameRepositoryFactory(this.ServiceClient);
             }
         }

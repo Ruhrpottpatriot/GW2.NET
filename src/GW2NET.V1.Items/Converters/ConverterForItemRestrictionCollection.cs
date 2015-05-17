@@ -35,9 +35,7 @@ namespace GW2NET.V1.Items.Converters
             this.converterForItemRestriction = converterForItemRestriction;
         }
 
-        /// <summary>Converts the given object of type <see cref="T:ICollection{string}"/> to an object of type <see cref="ItemRestrictions"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public ItemRestrictions Convert(ICollection<string> value)
         {
             Contract.Assume(value != null);

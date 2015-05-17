@@ -17,9 +17,7 @@ namespace GW2NET.V2.Recipes
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="CraftingDisciplines"/>.</summary>
     internal sealed class ConverterForCraftingDiscipline : IConverter<string, CraftingDisciplines>
     {
-        /// <summary>Converts the given object of type <see cref="string"/> to an object of type <see cref="CraftingDisciplines"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public CraftingDisciplines Convert(string value)
         {
             Contract.Assume(value != null);

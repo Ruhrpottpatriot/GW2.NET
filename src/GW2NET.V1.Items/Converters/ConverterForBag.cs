@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="ItemDataContract"/> to objects of type <see cref="Bag"/>.</summary>
     internal sealed class ConverterForBag : IConverter<ItemDataContract, Bag>
     {
-        /// <summary>Converts the given object of type <see cref="ItemDataContract"/> to an object of type <see cref="Bag"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Bag Convert(ItemDataContract value)
         {
             Contract.Assume(value != null);

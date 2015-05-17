@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="GizmoDataContract"/> to objects of type <see cref="DefaultGizmo"/>.</summary>
     internal sealed class ConverterForDefaultGizmo : IConverter<GizmoDataContract, DefaultGizmo>
     {
-        /// <summary>Converts the given object of type <see cref="GizmoDataContract"/> to an object of type <see cref="DefaultGizmo"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public DefaultGizmo Convert(GizmoDataContract value)
         {
             Contract.Assume(value != null);

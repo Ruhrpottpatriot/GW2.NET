@@ -8,8 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Factories
 {
-    using System.Diagnostics.Contracts;
-
     using GW2NET.Local.DynamicEvents;
 
     /// <summary>Provides access to specialty services that do not require a network connection.</summary>
@@ -20,7 +18,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<IDynamicEventRotationService>() != null);
                 return new DynamicEventRotationService();
             }
         }

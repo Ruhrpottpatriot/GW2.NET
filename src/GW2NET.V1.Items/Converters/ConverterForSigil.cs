@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="UpgradeComponentDataContract"/> to objects of type <see cref="Sigil"/>.</summary>
     internal sealed class ConverterForSigil : IConverter<UpgradeComponentDataContract, Sigil>
     {
-        /// <summary>Converts the given object of type <see cref="UpgradeComponentDataContract"/> to an object of type <see cref="Sigil"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Sigil Convert(UpgradeComponentDataContract value)
         {
             Contract.Assume(value != null);

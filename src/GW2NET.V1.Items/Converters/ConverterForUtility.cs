@@ -18,9 +18,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="ConsumableDataContract"/> to objects of type <see cref="Utility"/>.</summary>
     internal sealed class ConverterForUtility : IConverter<ConsumableDataContract, Utility>
     {
-        /// <summary>Converts the given object of type <see cref="ConsumableDataContract"/> to an object of type <see cref="Utility"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Utility Convert(ConsumableDataContract value)
         {
             Contract.Assume(value != null);

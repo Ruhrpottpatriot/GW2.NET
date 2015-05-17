@@ -16,9 +16,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="UpgradeComponentFlags"/>.</summary>
     internal sealed class ConverterForUpgradeComponentFlag : IConverter<string, UpgradeComponentFlags>
     {
-        /// <summary>Converts the given object of type <see cref="string"/> to an object of type <see cref="UpgradeComponentFlags"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public UpgradeComponentFlags Convert(string value)
         {
             UpgradeComponentFlags result;

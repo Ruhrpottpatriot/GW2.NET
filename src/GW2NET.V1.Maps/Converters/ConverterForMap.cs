@@ -36,9 +36,7 @@ namespace GW2NET.V1.Maps.Converters
             this.converterForRectangle = converterForRectangle;
         }
 
-        /// <summary>Converts the given object of type <see cref="MapDataContract"/> to an object of type <see cref="Map"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Map Convert(MapDataContract value)
         {
             Contract.Assume(value != null);

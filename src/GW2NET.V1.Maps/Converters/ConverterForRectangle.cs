@@ -34,9 +34,7 @@ namespace GW2NET.V1.Maps.Converters
             this.converterForVector2D = converterForVector2D;
         }
 
-        /// <summary>Converts the given object of type <see cref="T:double[][]"/> to an object of type <see cref="Rectangle"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Rectangle Convert(double[][] value)
         {
             Contract.Assume(value != null);

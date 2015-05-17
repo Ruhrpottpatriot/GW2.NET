@@ -7,8 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Common.Drawing;
 using GW2NET.Maps;
@@ -16,10 +14,11 @@ using GW2NET.V1.Floors.Json;
 
 namespace GW2NET.V1.Floors.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="PointOfInterestDataContract"/> to objects of type <see cref="PointOfInterest"/>.</summary>
     internal sealed class ConverterForPointOfInterest : IConverter<PointOfInterestDataContract, PointOfInterest>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<double[], Vector2D> converterForVector2D;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForPointOfInterest"/> class.</summary>
@@ -30,18 +29,24 @@ namespace GW2NET.V1.Floors.Converters
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForPointOfInterest"/> class.</summary>
         /// <param name="converterForVector2D">The converter for <see cref="Vector2D"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForVector2D"/> is a null reference.</exception>
         internal ConverterForPointOfInterest(IConverter<double[], Vector2D> converterForVector2D)
         {
-            Contract.Requires(converterForVector2D != null);
+            if (converterForVector2D == null)
+            {
+                throw new ArgumentNullException("converterForVector2D", "Precondition: converterForVector2D != null");
+            }
+
             this.converterForVector2D = converterForVector2D;
         }
 
-        /// <summary>Converts the given object of type <see cref="PointOfInterestDataContract"/> to an object of type <see cref="PointOfInterest"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public PointOfInterest Convert(PointOfInterestDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
 
             PointOfInterest pointOfInterest;
             switch (value.Type)
@@ -73,13 +78,6 @@ namespace GW2NET.V1.Floors.Converters
             }
 
             return pointOfInterest;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForVector2D != null);
         }
     }
 }

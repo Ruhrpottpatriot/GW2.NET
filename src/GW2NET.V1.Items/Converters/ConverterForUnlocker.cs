@@ -36,9 +36,7 @@ namespace GW2NET.V1.Items.Converters
             this.typeConverters = typeConverters;
         }
 
-        /// <summary>Converts the given object of type <see cref="ConsumableDataContract"/> to an object of type <see cref="Unlocker"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Unlocker Convert(ConsumableDataContract value)
         {
             Contract.Assume(value != null);

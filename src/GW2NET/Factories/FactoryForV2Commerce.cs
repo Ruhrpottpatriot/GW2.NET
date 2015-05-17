@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Factories
 {
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Commerce;
     using GW2NET.Common;
@@ -21,10 +21,10 @@ namespace GW2NET.Factories
     {
         /// <summary>Initializes a new instance of the <see cref="FactoryForV2Commerce"/> class. Initializes a new instance of the <see cref="FactoryBase"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public FactoryForV2Commerce(IServiceClient serviceClient)
             : base(serviceClient)
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Gets access to the gem exchange data source.</summary>
@@ -32,7 +32,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<ExchangeBrokerFactory>() != null);
                 return new ExchangeBrokerFactory(this.ServiceClient);
             }
         }
@@ -42,7 +41,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<IListingRepository>() != null);
                 return new ListingRepository(this.ServiceClient);
             }
         }
@@ -52,7 +50,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<IAggregateListingRepository>() != null);
                 return new AggregateListingRepository(this.ServiceClient);
             }
         }

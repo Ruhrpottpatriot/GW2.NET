@@ -12,8 +12,9 @@ using GW2NET.V1.Builds.Json;
 
 namespace GW2NET.V1.Builds
 {
+    using System;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -32,10 +33,14 @@ namespace GW2NET.V1.Builds
 
         /// <summary>Initializes a new instance of the <see cref="BuildService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public BuildService(IServiceClient serviceClient)
             : this(serviceClient, new ConverterForBuild())
         {
-            Contract.Requires(serviceClient != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
         }
 
         /// <summary>Initializes a new instance of the <see cref="BuildService"/> class.</summary>
@@ -43,8 +48,8 @@ namespace GW2NET.V1.Builds
         /// <param name="converterForBuild">The converter for <see cref="Build"/>.</param>
         internal BuildService(IServiceClient serviceClient, IConverter<BuildDataContract, Build> converterForBuild)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(converterForBuild != null);
+            Debug.Assert(serviceClient != null, "serviceClient != null");
+            Debug.Assert(converterForBuild != null, "converterForBuild != null");
             this.serviceClient = serviceClient;
             this.converterForBuild = converterForBuild;
         }
@@ -103,14 +108,6 @@ namespace GW2NET.V1.Builds
 
             value.Timestamp = response.Date;
             return value;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForBuild != null);
         }
     }
 }

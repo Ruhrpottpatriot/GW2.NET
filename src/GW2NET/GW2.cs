@@ -10,7 +10,6 @@ namespace GW2NET
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Common.Serializers;
@@ -48,7 +47,6 @@ namespace GW2NET
         /// <returns>The <see cref="IServiceClient"/>.</returns>
         private static IServiceClient GetRenderingProxy()
         {
-            Contract.Ensures(Contract.Result<IServiceClient>() != null);
             var baseUri = GetRenderingUri();
             var imageSerializerFactory = new BinarySerializerFactory();
             var jsonSerializerFactory = new JsonSerializerFactory();
@@ -60,18 +58,13 @@ namespace GW2NET
         /// <returns>A <see cref="Uri"/>.</returns>
         private static Uri GetRenderingUri()
         {
-            Contract.Ensures(Contract.Result<Uri>() != null);
-            Contract.Ensures(Contract.Result<Uri>().IsAbsoluteUri);
-            var baseUri = new Uri("https://render.guildwars2.com", UriKind.Absolute);
-            Contract.Assume(baseUri.IsAbsoluteUri);
-            return baseUri;
+            return new Uri("https://render.guildwars2.com", UriKind.Absolute);
         }
 
         /// <summary>Infrastructure. Creates and configures an instance of the default service client.</summary>
         /// <returns>The <see cref="IServiceClient"/>.</returns>
         private static IServiceClient GetRepositoryProxy()
         {
-            Contract.Ensures(Contract.Result<IServiceClient>() != null);
             var baseUri = GetRepositoryUri();
             var jsonSerializerFactory = new JsonSerializerFactory();
             var gzipInflator = new GzipInflator();
@@ -82,11 +75,7 @@ namespace GW2NET
         /// <returns>A <see cref="Uri"/>.</returns>
         private static Uri GetRepositoryUri()
         {
-            Contract.Ensures(Contract.Result<Uri>() != null);
-            Contract.Ensures(Contract.Result<Uri>().IsAbsoluteUri);
-            var baseUri = new Uri("https://api.guildwars2.com", UriKind.Absolute);
-            Contract.Assume(baseUri.IsAbsoluteUri);
-            return baseUri;
+            return new Uri("https://api.guildwars2.com", UriKind.Absolute);
         }
     }
 }

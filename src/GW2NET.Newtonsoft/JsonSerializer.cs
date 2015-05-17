@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Common.Serializers
 {
-    using System.Diagnostics.Contracts;
+    using System;
     using System.IO;
 
     using Newtonsoft.Json;
@@ -17,14 +17,19 @@ namespace GW2NET.Common.Serializers
     /// <typeparam name="T">The type that is being serialized.</typeparam>
     public class JsonSerializer<T> : ISerializer<T>
     {
-        /// <summary>Infrastructure. Holds a reference to the JSON.NET serializer.</summary>
+        /// <summary>Infrastructure. Holds a reference to the Json.NET serializer.</summary>
         private readonly JsonSerializer jsonSerializer;
 
         /// <summary>Initializes a new instance of the <see cref="JsonSerializer{T}"/> class.</summary>
-        /// <param name="jsonSerializer">The JSON.NET serializer.</param>
+        /// <param name="jsonSerializer">The Json.NET serializer.</param>
+        /// <exception cref="ArgumentNullException">The value of <see cref="jsonSerializer"/> is a null reference.</exception>
         public JsonSerializer(JsonSerializer jsonSerializer)
         {
-            Contract.Requires(jsonSerializer != null);
+            if (jsonSerializer == null)
+            {
+                throw new ArgumentNullException("jsonSerializer", "Precondition: jsonSerializer != null");
+            }
+
             this.jsonSerializer = jsonSerializer;
         }
 
@@ -72,13 +77,6 @@ namespace GW2NET.Common.Serializers
                     throw new SerializationException("An error occurred while serializing JSON data. See the inner exception for details.", jsonSerializationException);
                 }
             }
-        }
-
-        /// <summary>The invariant method for this class.</summary>
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.jsonSerializer != null);
         }
     }
 }

@@ -16,9 +16,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="ArmorDataContract"/> to objects of type <see cref="Leggings"/>.</summary>
     internal sealed class ConverterForLeggings : IConverter<ArmorDataContract, Leggings>
     {
-        /// <summary>Converts the given object of type <see cref="ArmorDataContract"/> to an object of type <see cref="Leggings"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Leggings Convert(ArmorDataContract value)
         {
             return new Leggings();

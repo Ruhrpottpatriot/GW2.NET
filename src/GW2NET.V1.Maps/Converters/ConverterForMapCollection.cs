@@ -36,9 +36,7 @@ namespace GW2NET.V1.Maps.Converters
             this.converterForMap = converterForMap;
         }
 
-        /// <summary>Converts the given object of type <see cref="MapCollectionDataContract"/> to an object of type <see cref="ICollection{Map}"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public ICollection<Map> Convert(MapCollectionDataContract value)
         {
             Contract.Assume(value != null);

@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="ToughnessModifier"/>.</summary>
     internal sealed class ConverterForToughnessModifier : IConverter<AttributeDataContract, ToughnessModifier>
     {
-        /// <summary>Converts the given object of type <see cref="AttributeDataContract"/> to an object of type <see cref="ToughnessModifier"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public ToughnessModifier Convert(AttributeDataContract value)
         {
             Contract.Assume(value != null);

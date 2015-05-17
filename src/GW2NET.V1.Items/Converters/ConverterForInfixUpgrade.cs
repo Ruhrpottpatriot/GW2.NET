@@ -43,9 +43,7 @@ namespace GW2NET.V1.Items.Converters
             this.converterForCombatBuff = converterForCombatBuff;
         }
 
-        /// <summary>Converts the given object of type <see cref="InfixUpgradeDataContract"/> to an object of type <see cref="InfixUpgrade"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public InfixUpgrade Convert(InfixUpgradeDataContract value)
         {
             Contract.Assume(value != null);

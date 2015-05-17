@@ -14,7 +14,6 @@ namespace GW2NET.V1.Continents
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -33,6 +32,7 @@ namespace GW2NET.V1.Continents
 
         /// <summary>Initializes a new instance of the <see cref="ContinentRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public ContinentRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterForContinentCollection())
         {
@@ -41,8 +41,19 @@ namespace GW2NET.V1.Continents
         /// <summary>Initializes a new instance of the <see cref="ContinentRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="converterForContinentCollection">The converter for <see cref="ICollection{Continent}"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForContinentCollection"/> is a null reference.</exception>
         internal ContinentRepository(IServiceClient serviceClient, IConverter<ContinentCollectionDataContract, ICollection<Continent>> converterForContinentCollection)
         {
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForContinentCollection == null)
+            {
+                throw new ArgumentNullException("converterForContinentCollection", "Precondition: converterForContinentCollection != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForContinentCollection = converterForContinentCollection;
         }
@@ -209,14 +220,6 @@ namespace GW2NET.V1.Continents
         Task<ICollectionPage<Continent>> IPaginator<Continent>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
-        }
-
-        /// <summary>The invariant method for this class.</summary>
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForContinentCollection != null);
         }
     }
 }

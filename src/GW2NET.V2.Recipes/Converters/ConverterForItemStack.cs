@@ -16,9 +16,7 @@ namespace GW2NET.V2.Recipes
     /// <summary>Converts objects of type <see cref="IngredientDataContract"/> to objects of type <see cref="ItemStack"/>.</summary>
     internal sealed class ConverterForItemStack : IConverter<IngredientDataContract, ItemStack>
     {
-        /// <summary>Converts the given object of type <see cref="IngredientDataContract"/> to an object of type <see cref="ItemStack"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public ItemStack Convert(IngredientDataContract value)
         {
             Contract.Assume(value != null);

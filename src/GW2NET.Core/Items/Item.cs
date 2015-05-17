@@ -10,7 +10,6 @@ namespace GW2NET.Items
 {
     using System;
     using System.Diagnostics;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
 
     using GW2NET.ChatLinks;
@@ -151,7 +150,6 @@ namespace GW2NET.Items
         /// <returns>The <see cref="ChatLink"/>.</returns>
         public virtual ChatLink GetItemChatLink()
         {
-            Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new ItemChatLink
             {
                 ItemId = this.ItemId

@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="ItemDataContract"/> to objects of type <see cref="TraitGuide"/>.</summary>
     internal sealed class ConverterForTraitGuide : IConverter<ItemDataContract, TraitGuide>
     {
-        /// <summary>Converts the given object of type <see cref="ItemDataContract"/> to an object of type <see cref="TraitGuide"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public TraitGuide Convert(ItemDataContract value)
         {
             Contract.Assume(value != null);

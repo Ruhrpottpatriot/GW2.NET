@@ -61,9 +61,7 @@ namespace GW2NET.V1.Items.Converters
             this.converterForItemRestrictions = converterForItemRestrictions;
         }
 
-        /// <summary>Converts the given object of type <see cref="ItemDataContract"/> to an object of type <see cref="Item"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Item Convert(ItemDataContract value)
         {
             Contract.Assume(value != null);

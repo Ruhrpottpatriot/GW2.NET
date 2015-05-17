@@ -7,18 +7,17 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Colors;
 using GW2NET.Common;
 using GW2NET.V1.Colors.Json;
 
 namespace GW2NET.V1.Colors.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="ColorModelDataContract"/> to objects of type <see cref="ColorModel"/>.</summary>
     internal sealed class ConverterForColorModel : IConverter<ColorModelDataContract, ColorModel>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<int[], Color> converterForColor;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForColorModel"/> class.</summary>
@@ -29,18 +28,25 @@ namespace GW2NET.V1.Colors.Converters
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForColorModel"/> class.</summary>
         /// <param name="converterForColor">The converter for <see cref="Color"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForColor"/> is a null reference.</exception>
         internal ConverterForColorModel(IConverter<int[], Color> converterForColor)
         {
-            Contract.Requires(converterForColor != null);
+            if (converterForColor == null)
+            {
+                throw new ArgumentNullException("converterForColor", "Precondition: converterForColor != null");
+            }
+
             this.converterForColor = converterForColor;
         }
 
-        /// <summary>Converts the given object of type <see cref="ColorModelDataContract"/> to an object of type <see cref="ColorModel"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public ColorModel Convert(ColorModelDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var colorModel = new ColorModel
             {
                 Brightness = value.Brightness, 
@@ -56,13 +62,6 @@ namespace GW2NET.V1.Colors.Converters
             }
 
             return colorModel;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForColor != null);
         }
     }
 }

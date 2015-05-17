@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="ConsumableDataContract"/> to objects of type <see cref="AppearanceChanger"/>.</summary>
     internal sealed class ConverterForAppearanceChanger : IConverter<ConsumableDataContract, AppearanceChanger>
     {
-        /// <summary>Converts the given object of type <see cref="ConsumableDataContract"/> to an object of type <see cref="AppearanceChanger"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public AppearanceChanger Convert(ConsumableDataContract value)
         {
             Contract.Assume(value != null);

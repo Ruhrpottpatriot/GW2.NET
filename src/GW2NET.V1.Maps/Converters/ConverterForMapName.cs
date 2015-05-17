@@ -17,9 +17,7 @@ namespace GW2NET.V1.Maps.Converters
     /// <summary>Converts objects of type <see cref="MapNameDataContract"/> to objects of type <see cref="MapName"/>.</summary>
     internal sealed class ConverterForMapName : IConverter<MapNameDataContract, MapName>
     {
-        /// <summary>Converts the given object of type <see cref="MapNameDataContract"/> to an object of type <see cref="MapName"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public MapName Convert(MapNameDataContract value)
         {
             Contract.Assume(value != null);

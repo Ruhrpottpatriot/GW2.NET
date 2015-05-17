@@ -17,9 +17,7 @@ namespace GW2NET.V2.Quaggans
     /// <summary>Converts objects of type <see cref="QuagganDataContract"/> to objects of type <see cref="Quaggan"/>.</summary>
     internal sealed class ConverterForQuaggan : IConverter<QuagganDataContract, Quaggan>
     {
-        /// <summary>Converts the given object of type <see cref="QuagganDataContract"/> to an object of type <see cref="Quaggan"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Quaggan Convert(QuagganDataContract value)
         {
             Contract.Assume(value != null);

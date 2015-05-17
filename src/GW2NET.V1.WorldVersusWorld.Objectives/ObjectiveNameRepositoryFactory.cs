@@ -84,9 +84,8 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         }
 
         /// <summary>Creates an instance for the current UI language.</summary>
-        /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
-        public IObjectiveNameRepository ForCurrentUICulture(int continentId)
+        public IObjectiveNameRepository ForCurrentUICulture()
         {
             Contract.Ensures(Contract.Result<IObjectiveNameRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);

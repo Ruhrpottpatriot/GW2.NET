@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="ContainerDataContract"/> to objects of type <see cref="DefaultContainer"/>.</summary>
     internal sealed class ConverterForDefaultContainer : IConverter<ContainerDataContract, DefaultContainer>
     {
-        /// <summary>Converts the given object of type <see cref="ContainerDataContract"/> to an object of type <see cref="DefaultContainer"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public DefaultContainer Convert(ContainerDataContract value)
         {
             Contract.Assume(value != null);

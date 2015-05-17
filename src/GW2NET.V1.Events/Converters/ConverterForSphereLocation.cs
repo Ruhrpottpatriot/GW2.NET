@@ -7,22 +7,25 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.DynamicEvents;
 using GW2NET.V1.Events.Json;
 
 namespace GW2NET.V1.Events.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="LocationDataContract"/> to objects of type <see cref="SphereLocation"/>.</summary>
     internal sealed class ConverterForSphereLocation : IConverter<LocationDataContract, SphereLocation>
     {
-        /// <summary>Converts the given object of type <see cref="LocationDataContract"/> to an object of type <see cref="SphereLocation"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public SphereLocation Convert(LocationDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new SphereLocation
             {
                 Radius = value.Radius, 

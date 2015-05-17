@@ -14,7 +14,6 @@ namespace GW2NET.V1.Colors
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -25,29 +24,34 @@ namespace GW2NET.V1.Colors
     /// <summary>Represents a repository that retrieves data from the /v1/colors.json interface.</summary>
     public class ColorRepository : IColorRepository
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<ColorCollectionDataContract, ICollection<ColorPalette>> converterForColorPaletteCollection;
 
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="ColorRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public ColorRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterForColorPaletteCollection())
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="ColorRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="converterForColorPaletteCollection">The converter for <see cref="ICollection{ColorPalette}"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForColorPaletteCollection"/> is a null reference.</exception>
         internal ColorRepository(IServiceClient serviceClient, IConverter<ColorCollectionDataContract, ICollection<ColorPalette>> converterForColorPaletteCollection)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(converterForColorPaletteCollection != null);
-            Contract.Ensures(this.serviceClient != null);
-            Contract.Ensures(this.converterForColorPaletteCollection != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForColorPaletteCollection == null)
+            {
+                throw new ArgumentNullException("converterForColorPaletteCollection", "Precondition: converterForColorPaletteCollection != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForColorPaletteCollection = converterForColorPaletteCollection;
         }
@@ -214,14 +218,6 @@ namespace GW2NET.V1.Colors
         Task<ICollectionPage<ColorPalette>> IPaginator<ColorPalette>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
-        }
-
-        /// <summary>The invariant method for this class.</summary>
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForColorPaletteCollection != null);
         }
     }
 }

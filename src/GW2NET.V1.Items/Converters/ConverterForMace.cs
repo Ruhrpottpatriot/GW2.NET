@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="WeaponDataContract"/> to objects of type <see cref="Mace"/>.</summary>
     internal sealed class ConverterForMace : IConverter<WeaponDataContract, Mace>
     {
-        /// <summary>Converts the given object of type <see cref="WeaponDataContract"/> to an object of type <see cref="Mace"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Mace Convert(WeaponDataContract value)
         {
             Contract.Assume(value != null);

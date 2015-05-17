@@ -10,12 +10,10 @@ namespace GW2NET.Local.DynamicEvents
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.DynamicEvents;
 
     /// <summary>Provides the interface for the event rotations service.</summary>
-    [ContractClass(typeof(ContractClassForIDynamicEventRotationService))]
     public interface IDynamicEventRotationService
     {
         /// <summary>Gets a collection of dynamic events and their rotating shifts</summary>

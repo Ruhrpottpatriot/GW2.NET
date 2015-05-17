@@ -7,14 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using System.Globalization;
 using GW2NET.Common;
 using GW2NET.DynamicEvents;
 
 namespace GW2NET.V1.Events
 {
+    using System;
+
     /// <summary>Provides methods for creating repository objects.</summary>
     public sealed class EventNameRepositoryFactory
     {
@@ -23,22 +23,30 @@ namespace GW2NET.V1.Events
 
         /// <summary>Initializes a new instance of the <see cref="EventNameRepositoryFactory"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public EventNameRepositoryFactory(IServiceClient serviceClient)
         {
-            Contract.Requires(serviceClient != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
             this.serviceClient = serviceClient;
         }
 
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="language">The two-letter language code.</param>
         /// <returns>A repository.</returns>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="language"/> is a null reference.</exception>
         public IEventNameRepository this[string language]
         {
             get
             {
-                Contract.Requires(language != null);
-                Contract.Requires(language.Length == 2);
-                Contract.Ensures(Contract.Result<IEventNameRepository>() != null);
+                if (language == null)
+                {
+                    throw new ArgumentNullException("language", "Precondition: language != null");
+                }
+
                 return this.ForCulture(new CultureInfo(language));
             }
         }
@@ -46,12 +54,16 @@ namespace GW2NET.V1.Events
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="culture">The culture.</param>
         /// <returns>A repository.</returns>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="culture"/> is a null reference.</exception>
         public IEventNameRepository this[CultureInfo culture]
         {
             get
             {
-                Contract.Requires(culture != null);
-                Contract.Ensures(Contract.Result<IEventNameRepository>() != null);
+                if (culture == null)
+                {
+                    throw new ArgumentNullException("culture", "Precondition: culture != null");
+                }
+
                 return this.ForCulture(culture);
             }
         }
@@ -60,7 +72,6 @@ namespace GW2NET.V1.Events
         /// <returns>A repository.</returns>
         public IEventNameRepository ForDefaultCulture()
         {
-            Contract.Ensures(Contract.Result<IEventNameRepository>() != null);
             return new EventNameRepository(this.serviceClient);
         }
 
@@ -69,7 +80,6 @@ namespace GW2NET.V1.Events
         /// <returns>A repository.</returns>
         public IEventNameRepository ForCulture(CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<IEventNameRepository>() != null);
             IEventNameRepository repository = new EventNameRepository(this.serviceClient);
             repository.Culture = culture;
             return repository;
@@ -79,24 +89,14 @@ namespace GW2NET.V1.Events
         /// <returns>A repository.</returns>
         public IEventNameRepository ForCurrentCulture()
         {
-            Contract.Ensures(Contract.Result<IEventNameRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentCulture);
         }
 
         /// <summary>Creates an instance for the current UI language.</summary>
-        /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
-        public IEventNameRepository ForCurrentUICulture(int continentId)
+        public IEventNameRepository ForCurrentUICulture()
         {
-            Contract.Ensures(Contract.Result<IEventNameRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

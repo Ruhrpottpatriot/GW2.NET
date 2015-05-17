@@ -34,9 +34,7 @@ namespace GW2NET.V2.Recipes
             this.converterForRecipeFlag = converterForRecipeFlag;
         }
 
-        /// <summary>Converts the given object of type <see cref="T:ICollection{string}"/> to an object of type <see cref="RecipeFlags"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public RecipeFlags Convert(ICollection<string> value)
         {
             Contract.Assume(value != null);

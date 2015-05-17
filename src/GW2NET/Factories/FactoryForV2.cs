@@ -9,7 +9,7 @@
 
 namespace GW2NET.Factories
 {
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Common;
     using GW2NET.Quaggans;
@@ -30,10 +30,10 @@ namespace GW2NET.Factories
     {
         /// <summary>Initializes a new instance of the <see cref="FactoryForV2"/> class. Initializes a new instance of the <see cref="FactoryBase"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public FactoryForV2(IServiceClient serviceClient)
             : base(serviceClient)
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Gets access to the v2 build service.</summary>
@@ -41,7 +41,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<IBuildService>() != null);
                 return new BuildService(this.ServiceClient);
             }
         }
@@ -51,7 +50,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<ColorRepositoryFactory>() != null);
                 return new ColorRepositoryFactory(this.ServiceClient);
             }
         }
@@ -61,7 +59,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<FactoryForV2Commerce>() != null);
                 return new FactoryForV2Commerce(this.ServiceClient);
             }
         }
@@ -71,7 +68,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<ContinentRepositoryFactory>() != null);
                 return new ContinentRepositoryFactory(this.ServiceClient);
             }
         }
@@ -81,7 +77,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<FileRepositoryFactoryV2>() != null);
                 return new FileRepositoryFactoryV2(this.ServiceClient);
             }
         }
@@ -91,7 +86,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<FloorRepositoryFactory>() != null);
                 return new FloorRepositoryFactory(this.ServiceClient);
             }
         }
@@ -101,7 +95,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<ItemRepositoryFactory>() != null);
                 return new ItemRepositoryFactory(this.ServiceClient);
             }
         }
@@ -111,7 +104,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<MapsRepositoryFactory>() != null);
                 return new MapsRepositoryFactory(this.ServiceClient);
             }
         }
@@ -121,7 +113,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<IQuagganRepository>() != null);
                 return new QuagganRepository(this.ServiceClient);
             }
         }
@@ -131,7 +122,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<RecipeRepositoryFactory>() != null);
                 return new RecipeRepositoryFactory(this.ServiceClient);
             }
         }
@@ -141,7 +131,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<SkinRepositoryFactory>() != null);
                 return new SkinRepositoryFactory(this.ServiceClient);
             }
         }
@@ -151,7 +140,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<WorldRepositoryFactory>() != null);
                 return new WorldRepositoryFactory(this.ServiceClient);
             }
         }

@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="ConsumableDataContract"/> to objects of type <see cref="ContentUnlocker"/>.</summary>
     internal sealed class ConverterForContentUnlocker : IConverter<ConsumableDataContract, ContentUnlocker>
     {
-        /// <summary>Converts the given object of type <see cref="ConsumableDataContract"/> to an object of type <see cref="ContentUnlocker"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public ContentUnlocker Convert(ConsumableDataContract value)
         {
             Contract.Assume(value != null);

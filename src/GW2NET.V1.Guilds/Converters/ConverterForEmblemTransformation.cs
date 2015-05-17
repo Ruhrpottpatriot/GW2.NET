@@ -16,9 +16,7 @@ namespace GW2NET.V1.Guilds.Converters
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="EmblemTransformations"/>.</summary>
     internal sealed class ConverterForEmblemTransformation : IConverter<string, EmblemTransformations>
     {
-        /// <summary>Converts the given object of type <see cref="string"/> to an object of type <see cref="EmblemTransformations"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public EmblemTransformations Convert(string value)
         {
             EmblemTransformations result;

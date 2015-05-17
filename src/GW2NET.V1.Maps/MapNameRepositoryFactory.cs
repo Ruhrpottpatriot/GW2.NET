@@ -84,9 +84,8 @@ namespace GW2NET.V1.Maps
         }
 
         /// <summary>Creates an instance for the current UI language.</summary>
-        /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
-        public IMapNameRepository ForCurrentUICulture(int continentId)
+        public IMapNameRepository ForCurrentUICulture()
         {
             Contract.Ensures(Contract.Result<IMapNameRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);

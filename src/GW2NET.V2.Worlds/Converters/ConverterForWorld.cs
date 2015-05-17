@@ -16,9 +16,7 @@ namespace GW2NET.V2.Worlds
     /// <summary>Converts objects of type <see cref="WorldDataContract"/> to objects of type <see cref="World"/>.</summary>
     internal sealed class ConverterForWorld : IConverter<WorldDataContract, World>
     {
-        /// <summary>Converts the given object of type <see cref="WorldDataContract"/> to an object of type <see cref="World"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public World Convert(WorldDataContract value)
         {
             Contract.Assume(value != null);

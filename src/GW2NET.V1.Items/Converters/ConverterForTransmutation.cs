@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="ConsumableDataContract"/> to objects of type <see cref="Transmutation"/>.</summary>
     internal sealed class ConverterForTransmutation : IConverter<ConsumableDataContract, Transmutation>
     {
-        /// <summary>Converts the given object of type <see cref="ConsumableDataContract"/> to an object of type <see cref="Transmutation"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Transmutation Convert(ConsumableDataContract value)
         {
             Contract.Assume(value != null);

@@ -9,8 +9,7 @@
 namespace GW2NET.Factories
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System.Diagnostics;
 
     using GW2NET.Common;
 
@@ -22,6 +21,7 @@ namespace GW2NET.Factories
 
         /// <summary>Initializes a new instance of the <see cref="FactoryBase"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         protected FactoryBase(IServiceClient serviceClient)
         {
             if (serviceClient == null)
@@ -29,7 +29,6 @@ namespace GW2NET.Factories
                 throw new ArgumentNullException("serviceClient", "Precondition failed: serviceClient != null");
             }
 
-            Contract.Ensures(this.serviceClient != null);
             this.serviceClient = serviceClient;
         }
 
@@ -38,17 +37,9 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<IServiceClient>() != null);
+                Debug.Assert(this.serviceClient != null, "this.serviceClient != null");
                 return this.serviceClient;
             }
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when CodeContracts are enabled.")]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the CodeContracts for .NET extension")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

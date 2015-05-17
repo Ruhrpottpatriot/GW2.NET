@@ -8,8 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Rendering
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -23,9 +22,14 @@ namespace GW2NET.Rendering
 
         /// <summary>Initializes a new instance of the <see cref="RenderService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public RenderService(IServiceClient serviceClient)
         {
-            Contract.Requires(serviceClient != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
             this.serviceClient = serviceClient;
         }
 
@@ -69,13 +73,6 @@ namespace GW2NET.Rendering
                     return response.Content;
                 },
             cancellationToken);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

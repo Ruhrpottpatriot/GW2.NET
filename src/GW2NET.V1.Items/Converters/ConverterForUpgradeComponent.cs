@@ -53,9 +53,7 @@ namespace GW2NET.V1.Items.Converters
             this.typeConverters = typeConverters;
         }
 
-        /// <summary>Converts the given object of type <see cref="ItemDataContract"/> to an object of type <see cref="UpgradeComponent"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public UpgradeComponent Convert(ItemDataContract value)
         {
             Contract.Assume(value != null);

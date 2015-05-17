@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="CombatBuffDataContract"/> to objects of type <see cref="CombatBuff"/>.</summary>
     internal sealed class ConverterForCombatBuff : IConverter<CombatBuffDataContract, CombatBuff>
     {
-        /// <summary>Converts the given object of type <see cref="CombatBuffDataContract"/> to an object of type <see cref="CombatBuff"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public CombatBuff Convert(CombatBuffDataContract value)
         {
             Contract.Assume(value != null);

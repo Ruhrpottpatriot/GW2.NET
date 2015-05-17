@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="GizmoDataContract"/> to objects of type <see cref="UnlimitedConsumable"/>.</summary>
     internal sealed class ConverterForUnlimitedConsumable : IConverter<GizmoDataContract, UnlimitedConsumable>
     {
-        /// <summary>Converts the given object of type <see cref="GizmoDataContract"/> to an object of type <see cref="UnlimitedConsumable"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public UnlimitedConsumable Convert(GizmoDataContract value)
         {
             Contract.Assume(value != null);

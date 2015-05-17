@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="WeaponDataContract"/> to objects of type <see cref="GreatSword"/>.</summary>
     internal sealed class ConverterForGreatSword : IConverter<WeaponDataContract, GreatSword>
     {
-        /// <summary>Converts the given object of type <see cref="WeaponDataContract"/> to an object of type <see cref="GreatSword"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public GreatSword Convert(WeaponDataContract value)
         {
             Contract.Assume(value != null);

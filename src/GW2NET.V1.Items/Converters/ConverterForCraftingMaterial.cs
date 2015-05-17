@@ -16,9 +16,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="ItemDataContract"/> to objects of type <see cref="CraftingMaterial"/>.</summary>
     internal sealed class ConverterForCraftingMaterial : IConverter<ItemDataContract, CraftingMaterial>
     {
-        /// <summary>Converts the given object of type <see cref="ItemDataContract"/> to an object of type <see cref="CraftingMaterial"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public CraftingMaterial Convert(ItemDataContract value)
         {
             return new CraftingMaterial();

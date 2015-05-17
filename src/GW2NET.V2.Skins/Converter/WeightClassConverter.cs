@@ -17,9 +17,7 @@ namespace GW2NET.V2.Skins
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="WeightClass"/>.</summary>
     internal sealed class WeightClassConverter : IConverter<string, WeightClass>
     {
-        /// <summary>Converts the given object of type <see cref="string"/> to an object of type <see cref="WeightClass"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public WeightClass Convert(string value)
         {
             WeightClass result;

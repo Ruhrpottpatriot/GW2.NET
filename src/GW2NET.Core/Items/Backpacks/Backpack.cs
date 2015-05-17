@@ -8,9 +8,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Items
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System.Diagnostics;
 
     using GW2NET.ChatLinks;
     using GW2NET.Skins;
@@ -18,7 +18,6 @@ namespace GW2NET.Items
     /// <summary>Represents a backpack.</summary>
     public class Backpack : Item, IUpgrade, IUpgradable, ISkinnable
     {
-        /// <summary>Backing field for <see cref="InfixUpgrade"/>.</summary>
         private InfixUpgrade infixUpgrade = new InfixUpgrade();
 
         /// <summary>Gets or sets the default skin. This is a navigation property. Use the value of <see cref="DefaultSkinId"/> to obtain a reference.</summary>
@@ -27,16 +26,22 @@ namespace GW2NET.Items
         /// <summary>Gets or sets the default skin identifier.</summary>
         public virtual int DefaultSkinId { get; set; }
 
-        /// <summary>Gets or sets the item's infixed combat upgrades.</summary>
+        /// <inheritdoc />
         public virtual InfixUpgrade InfixUpgrade
         {
             get
             {
+                Debug.Assert(this.infixUpgrade != null, "this.infixUpgrade != null");
                 return this.infixUpgrade;
             }
 
             set
             {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value", "Precondition: value != null");
+                }
+
                 this.infixUpgrade = value;
             }
         }
@@ -60,7 +65,6 @@ namespace GW2NET.Items
         /// <returns>The <see cref="ChatLink"/>.</returns>
         public override ChatLink GetItemChatLink()
         {
-            Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new ItemChatLink
             {
                 ItemId = this.ItemId, 
@@ -68,13 +72,6 @@ namespace GW2NET.Items
                 SecondarySuffixItemId = this.SecondarySuffixItemId, 
                 SkinId = this.DefaultSkinId
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.infixUpgrade != null);
         }
     }
 }

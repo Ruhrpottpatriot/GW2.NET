@@ -9,10 +9,8 @@
 namespace GW2NET.Items
 {
     using System;
-    using System.Diagnostics.Contracts;
 
     /// <summary>Provides the interface for items that provide combat bonuses while equipped.</summary>
-    [ContractClass(typeof(ContractClassForIUpgrade))]
     public interface IUpgrade
     {
         /// <summary>Gets or sets the item's infixed combat upgrades.</summary>

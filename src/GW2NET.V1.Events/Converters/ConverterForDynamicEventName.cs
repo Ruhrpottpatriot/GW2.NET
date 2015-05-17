@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.DynamicEvents;
 using GW2NET.V1.Events.Json;
@@ -17,13 +16,15 @@ namespace GW2NET.V1.Events.Converters
 {
     /// <summary>Converts objects of type <see cref="EventNameDataContract"/> to objects of type <see cref="DynamicEventName"/>.</summary>
     internal sealed class ConverterForDynamicEventName : IConverter<EventNameDataContract, DynamicEventName>
-    {
-        /// <summary>Converts the given object of type <see cref="EventNameDataContract"/> to an object of type <see cref="DynamicEventName"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+    {       
+        /// <inheritdoc />
         public DynamicEventName Convert(EventNameDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var eventName = new DynamicEventName
             {
                 Name = value.Name

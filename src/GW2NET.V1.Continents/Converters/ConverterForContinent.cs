@@ -7,8 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Common.Drawing;
 using GW2NET.Maps;
@@ -16,10 +14,11 @@ using GW2NET.V1.Continents.Json;
 
 namespace GW2NET.V1.Continents.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="ContinentDataContract"/> to objects of type <see cref="Continent"/>.</summary>
     internal sealed class ConverterForContinent : IConverter<ContinentDataContract, Continent>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<double[], Size2D> converterForSize2D;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForContinent"/> class.</summary>
@@ -30,18 +29,25 @@ namespace GW2NET.V1.Continents.Converters
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForContinent"/> class.</summary>
         /// <param name="converterForSize2D">The converter for <see cref="Size2D"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForSize2D"/> is a null reference.</exception>
         public ConverterForContinent(IConverter<double[], Size2D> converterForSize2D)
         {
-            Contract.Requires(converterForSize2D != null);
+            if (converterForSize2D == null)
+            {
+                throw new ArgumentNullException("converterForSize2D", "Precondition: converterForSize2D != null");
+            }
+
             this.converterForSize2D = converterForSize2D;
         }
 
-        /// <summary>Converts the given object of type <see cref="ContinentDataContract"/> to an object of type <see cref="Continent"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Continent Convert(ContinentDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var continent = new Continent
             {
                 Name = value.Name, 
@@ -56,13 +62,6 @@ namespace GW2NET.V1.Continents.Converters
             }
 
             return continent;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForSize2D != null);
         }
     }
 }

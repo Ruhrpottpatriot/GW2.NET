@@ -15,7 +15,6 @@ namespace GW2NET.V1.Files
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -33,19 +32,28 @@ namespace GW2NET.V1.Files
 
         /// <summary>Initializes a new instance of the <see cref="FileRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public FileRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterForAsset())
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="FileRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="converterForAsset">The converter for <see cref="Asset"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForAsset"/> is a null reference.</exception>
         internal FileRepository(IServiceClient serviceClient, IConverter<FileDataContract, Asset> converterForAsset)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(converterForAsset != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForAsset == null)
+            {
+                throw new ArgumentNullException("converterForAsset", "Precondition: converterForAsset != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForAsset = converterForAsset;
         }
@@ -214,14 +222,6 @@ namespace GW2NET.V1.Files
             }
 
             return values;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForAsset != null);
         }
     }
 }

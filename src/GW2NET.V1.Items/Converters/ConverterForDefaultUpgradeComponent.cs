@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="UpgradeComponentDataContract"/> to objects of type <see cref="DefaultUpgradeComponent"/>.</summary>
     internal sealed class ConverterForDefaultUpgradeComponent : IConverter<UpgradeComponentDataContract, DefaultUpgradeComponent>
     {
-        /// <summary>Converts the given object of type <see cref="UpgradeComponentDataContract"/> to an object of type <see cref="DefaultUpgradeComponent"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public DefaultUpgradeComponent Convert(UpgradeComponentDataContract value)
         {
             Contract.Assume(value != null);

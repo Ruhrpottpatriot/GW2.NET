@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="PowerModifier"/>.</summary>
     internal sealed class ConverterForPowerModifier : IConverter<AttributeDataContract, PowerModifier>
     {
-        /// <summary>Converts the given object of type <see cref="AttributeDataContract"/> to an object of type <see cref="PowerModifier"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public PowerModifier Convert(AttributeDataContract value)
         {
             Contract.Assume(value != null);

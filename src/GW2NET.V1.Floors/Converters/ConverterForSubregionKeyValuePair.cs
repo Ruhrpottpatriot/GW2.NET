@@ -8,14 +8,15 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Maps;
 using GW2NET.V1.Floors.Json;
 
 namespace GW2NET.V1.Floors.Converters
 {
+    using System;
+    using System.Diagnostics;
+
     /// <summary>Converts objects of type <see cref="T:KeyValuePair{string, SubregionDataContract}"/> to objects of type <see cref="T:KeyValuePair{int, Subregion}"/>.</summary>
     internal sealed class ConverterForSubregionKeyValuePair : IConverter<KeyValuePair<string, SubregionDataContract>, KeyValuePair<int, Subregion>>
     {
@@ -30,21 +31,24 @@ namespace GW2NET.V1.Floors.Converters
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForSubregionKeyValuePair"/> class.</summary>
         /// <param name="converterForSubregion">The converter for <see cref="Subregion"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForSubregion"/> is a null reference.</exception>
         public ConverterForSubregionKeyValuePair(IConverter<SubregionDataContract, Subregion> converterForSubregion)
         {
-            Contract.Requires(converterForSubregion != null);
+            if (converterForSubregion == null)
+            {
+                throw new ArgumentNullException("converterForSubregion", "Precondition: converterForSubregion != null");
+            }
+
             this.converterForSubregion = converterForSubregion;
         }
 
-        /// <summary>Converts the given object of type <see cref="T:KeyValuePair{string, SubregionDataContract}"/> to an object of type <see cref="T:KeyValuePair{int, Subregion}"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public KeyValuePair<int, Subregion> Convert(KeyValuePair<string, SubregionDataContract> value)
         {
             var key = value.Key;
             var dataContract = value.Value;
-            Contract.Assume(key != null);
-            Contract.Assume(dataContract != null);
+            Debug.Assert(key != null);
+            Debug.Assert(dataContract != null);
             int id;
             if (!int.TryParse(key, out id))
             {
@@ -54,13 +58,6 @@ namespace GW2NET.V1.Floors.Converters
             var subRegion = this.converterForSubregion.Convert(dataContract);
             subRegion.MapId = id;
             return new KeyValuePair<int, Subregion>(id, subRegion);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForSubregion != null);
         }
     }
 }

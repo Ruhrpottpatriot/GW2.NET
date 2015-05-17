@@ -9,8 +9,7 @@
 namespace GW2NET
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System.Diagnostics;
 
     using GW2NET.Common;
 
@@ -29,7 +28,6 @@ namespace GW2NET
                 throw new ArgumentNullException("serviceClient", "Precondition failed: serviceClient != null");
             }
 
-            Contract.Ensures(this.serviceClient != null);
             this.serviceClient = serviceClient;
         }
 
@@ -38,17 +36,9 @@ namespace GW2NET
         {
             get
             {
-                Contract.Ensures(Contract.Result<IServiceClient>() != null);
+                Debug.Assert(this.serviceClient != null, "this.serviceClient != null");
                 return this.serviceClient;
             }
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when CodeContracts are enabled.")]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the CodeContracts for .NET extension")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

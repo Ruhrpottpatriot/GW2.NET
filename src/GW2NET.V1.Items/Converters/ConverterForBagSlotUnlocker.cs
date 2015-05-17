@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="ConsumableDataContract"/> to objects of type <see cref="BagSlotUnlocker"/>.</summary>
     internal sealed class ConverterForBagSlotUnlocker : IConverter<ConsumableDataContract, BagSlotUnlocker>
     {
-        /// <summary>Converts the given object of type <see cref="ConsumableDataContract"/> to an object of type <see cref="BagSlotUnlocker"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public BagSlotUnlocker Convert(ConsumableDataContract value)
         {
             Contract.Assume(value != null);

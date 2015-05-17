@@ -36,9 +36,7 @@ namespace GW2NET.V1.Items.Converters
             this.converterForCollection = converterForCollection;
         }
 
-        /// <summary>Converts the given object of type <see cref="ItemCollectionDataContract"/> to an object of type <see cref="T:ICollection{int}"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public ICollection<int> Convert(ItemCollectionDataContract value)
         {
             Contract.Assume(value != null);

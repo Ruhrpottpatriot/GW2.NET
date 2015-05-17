@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Factories
 {
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Common;
     using GW2NET.Rendering;
@@ -18,10 +18,10 @@ namespace GW2NET.Factories
     {
         /// <summary>Initializes a new instance of the <see cref="FactoryForRendering"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public FactoryForRendering(IServiceClient serviceClient)
             : base(serviceClient)
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Gets access to the rendering service.</summary>
@@ -29,7 +29,6 @@ namespace GW2NET.Factories
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRenderService>() != null);
                 return new RenderService(this.ServiceClient);
             }
         }

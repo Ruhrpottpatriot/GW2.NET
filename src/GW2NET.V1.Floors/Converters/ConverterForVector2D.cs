@@ -7,22 +7,29 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Common.Drawing;
 
 namespace GW2NET.V1.Floors.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="T:double[]"/> to objects of type <see cref="Vector2D"/>.</summary>
     internal sealed class ConverterForVector2D : IConverter<double[], Vector2D>
     {
-        /// <summary>Converts the given object of type <see cref="T:double[]"/> to an object of type <see cref="Vector2D"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Vector2D Convert(double[] value)
         {
-            Contract.Assume(value != null);
-            Contract.Assume(value.Length == 2);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
+            if (value.Length != 2)
+            {
+                throw new ArgumentException("Precondition: value.Length == 2", "value");
+            }
+
             return new Vector2D(value[0], value[1]);
         }
     }

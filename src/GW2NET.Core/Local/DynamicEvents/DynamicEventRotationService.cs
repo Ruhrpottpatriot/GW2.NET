@@ -6,15 +6,13 @@
 //   Provides the default implementation of the event rotations service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System.Reflection;
-
 namespace GW2NET.Local.DynamicEvents
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
+    using System.Diagnostics;
     using System.Linq;
+    using System.Reflection;
     using System.Runtime.Serialization;
 
     using GW2NET.DynamicEvents;
@@ -59,8 +57,7 @@ namespace GW2NET.Local.DynamicEvents
         /// <returns>A collection of entities.</returns>
         private static IDictionary<Guid, DynamicEventRotation> ConvertRotationCollectionContract(ICollection<RotationContract> content)
         {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<IDictionary<Guid, DynamicEventRotation>>() != null);
+            Debug.Assert(content != null, "content != null");
 
             // Create a new collection of event rotations
             var values = new Dictionary<Guid, DynamicEventRotation>(content.Count);
@@ -68,7 +65,6 @@ namespace GW2NET.Local.DynamicEvents
             // Set the event rotations
             foreach (var value in content.Select(ConvertRotationContract))
             {
-                Contract.Assume(value != null);
                 values.Add(value.EventId, value);
             }
 
@@ -81,8 +77,7 @@ namespace GW2NET.Local.DynamicEvents
         /// <returns>An entity.</returns>
         private static DynamicEventRotation ConvertRotationContract(RotationContract content)
         {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<DynamicEventRotation>() != null);
+            Debug.Assert(content != null, "content != null");
 
             // Create a new rotation object
             var value = new DynamicEventRotation();
@@ -108,7 +103,7 @@ namespace GW2NET.Local.DynamicEvents
         /// <returns>A collection of entities.</returns>
         private static ICollection<DateTimeOffset> ConvertShiftCollectionContract(ShiftCollectionContract content)
         {
-            Contract.Requires(content != null);
+            Debug.Assert(content != null, "content != null");
 
             // Create a new collection of rotating shifts
             var values = new List<DateTimeOffset>(content.Count);

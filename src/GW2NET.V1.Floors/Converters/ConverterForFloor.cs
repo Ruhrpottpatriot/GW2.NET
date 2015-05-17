@@ -8,8 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Common.Converters;
 using GW2NET.Common.Drawing;
@@ -18,16 +16,15 @@ using GW2NET.V1.Floors.Json;
 
 namespace GW2NET.V1.Floors.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="FloorDataContract"/> to objects of type <see cref="Floor"/>.</summary>
     internal sealed class ConverterForFloor : IConverter<FloorDataContract, Floor>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<double[][], Rectangle> converterForRectangle;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<IDictionary<string, RegionDataContract>, IDictionary<int, Region>> converterForRegionCollection;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<double[], Size2D> converterForSize2D;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForFloor"/> class.</summary>
@@ -40,22 +37,36 @@ namespace GW2NET.V1.Floors.Converters
         /// <param name="converterForSize2D">The converter for <see cref="Size2D"/>.</param>
         /// <param name="converterForRectangle">The converter for <see cref="Rectangle"/>.</param>
         /// <param name="converterForRegionCollection">The converter for <see cref="T:IDictionary{int,Region}"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForSize2D"/> or <paramref name="converterForRectangle"/> or <paramref name="converterForRegionCollection"/> is a null reference.</exception>
         public ConverterForFloor(IConverter<double[], Size2D> converterForSize2D, IConverter<double[][], Rectangle> converterForRectangle, IConverter<IDictionary<string, RegionDataContract>, IDictionary<int, Region>> converterForRegionCollection)
         {
-            Contract.Requires(converterForSize2D != null);
-            Contract.Requires(converterForRectangle != null);
-            Contract.Requires(converterForRegionCollection != null);
+            if (converterForSize2D == null)
+            {
+                throw new ArgumentNullException("converterForSize2D", "Precondition: converterForSize2D != null");
+            }
+
+            if (converterForRectangle == null)
+            {
+                throw new ArgumentNullException("converterForRectangle", "Precondition: converterForRectangle != null");
+            }
+
+            if (converterForRegionCollection == null)
+            {
+                throw new ArgumentNullException("converterForRegionCollection", "Precondition: converterForRegionCollection != null");
+            }
+
             this.converterForSize2D = converterForSize2D;
             this.converterForRectangle = converterForRectangle;
             this.converterForRegionCollection = converterForRegionCollection;
         }
 
-        /// <summary>Converts the given object of type <see cref="FloorDataContract"/> to an object of type <see cref="Floor"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Floor Convert(FloorDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
 
             // Create a new floor object
             var floor = new Floor();
@@ -83,15 +94,6 @@ namespace GW2NET.V1.Floors.Converters
 
             // Return the floor object
             return floor;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForRectangle != null);
-            Contract.Invariant(this.converterForRegionCollection != null);
-            Contract.Invariant(this.converterForSize2D != null);
         }
     }
 }

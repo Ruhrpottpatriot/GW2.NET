@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="VitalityModifier"/>.</summary>
     internal sealed class ConverterForVitalityModifier : IConverter<AttributeDataContract, VitalityModifier>
     {
-        /// <summary>Converts the given object of type <see cref="AttributeDataContract"/> to an object of type <see cref="VitalityModifier"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public VitalityModifier Convert(AttributeDataContract value)
         {
             Contract.Assume(value != null);

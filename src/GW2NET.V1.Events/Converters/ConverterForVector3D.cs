@@ -7,22 +7,29 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Common.Drawing;
 
 namespace GW2NET.V1.Events.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="T:double[]"/> to objects of type <see cref="Vector3D"/>.</summary>
     internal sealed class ConverterForVector3D : IConverter<double[], Vector3D>
     {
-        /// <summary>Converts the given object of type <see cref="T:double[]"/> to an object of type <see cref="Vector3D"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Vector3D Convert(double[] value)
         {
-            Contract.Assume(value != null);
-            Contract.Assume(value.Length == 3);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
+            if (value.Length != 3)
+            {
+                throw new ArgumentException("Precondition: value.Length == 3", "value");
+            }
+
             return new Vector3D(value[0], value[1], value[2]);
         }
     }

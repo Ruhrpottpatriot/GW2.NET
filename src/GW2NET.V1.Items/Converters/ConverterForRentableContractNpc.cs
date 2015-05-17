@@ -17,9 +17,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="GizmoDataContract"/> to objects of type <see cref="RentableContractNpc"/>.</summary>
     internal sealed class ConverterForRentableContractNpc : IConverter<GizmoDataContract, RentableContractNpc>
     {
-        /// <summary>Converts the given object of type <see cref="GizmoDataContract"/> to an object of type <see cref="RentableContractNpc"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public RentableContractNpc Convert(GizmoDataContract value)
         {
             Contract.Assume(value != null);

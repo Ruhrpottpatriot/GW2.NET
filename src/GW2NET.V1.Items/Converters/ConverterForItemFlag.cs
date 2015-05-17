@@ -16,9 +16,7 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="ItemFlags"/>.</summary>
     internal sealed class ConverterForItemFlag : IConverter<string, ItemFlags>
     {
-        /// <summary>Converts the given object of type <see cref="string"/> to an object of type <see cref="ItemFlags"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public ItemFlags Convert(string value)
         {
             ItemFlags result;
