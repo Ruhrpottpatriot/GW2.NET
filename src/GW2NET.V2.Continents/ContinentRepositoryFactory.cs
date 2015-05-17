@@ -9,7 +9,7 @@
 
 namespace GW2NET.V2.Continents
 {
-    using System.Diagnostics.Contracts;
+    using System;
     using System.Globalization;
 
     using GW2NET.Common;
@@ -23,8 +23,14 @@ namespace GW2NET.V2.Continents
 
         /// <summary>Initializes a new instance of the <see cref="ContinentRepositoryFactory"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public ContinentRepositoryFactory(IServiceClient serviceClient)
         {
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
             this.serviceClient = serviceClient;
         }
 
@@ -32,16 +38,20 @@ namespace GW2NET.V2.Continents
         /// <returns>A repository.</returns>
         public override IContinentRepository ForDefaultCulture()
         {
-            Contract.Ensures(Contract.Result<IContinentRepository>() != null);
             return new ContinentRepository(this.serviceClient);
         }
 
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="culture">The culture.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="culture"/> is a null reference.</exception>
         /// <returns>A repository.</returns>
         public override IContinentRepository ForCulture(CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<IContinentRepository>() != null);
+            if (culture == null)
+            {
+                throw new ArgumentNullException("culture", "Precondition: culture != null");
+            }
+
             IContinentRepository repository = new ContinentRepository(this.serviceClient);
             repository.Culture = culture;
             return repository;

@@ -9,9 +9,10 @@
 
 namespace GW2NET.V2.Continents
 {
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -19,7 +20,6 @@ namespace GW2NET.V2.Continents
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
-    using GW2NET.Items;
     using GW2NET.Maps;
 
     /// <summary>Represents a repository that retrieves data from the /v2/continents interface.</summary>
@@ -42,21 +42,33 @@ namespace GW2NET.V2.Continents
 
         /// <summary>Initializes a new instance of the <see cref="ContinentRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public ContinentRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterAdapter<ICollection<int>>(), new ContinentConverter())
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="ContinentRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="identifiersConverter">The identifiers converter.</param>
         /// <param name="continentConverter">The continent converter.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="identifiersConverter"/> or <paramref name="continentConverter"/> is a null reference.</exception>
         internal ContinentRepository(IServiceClient serviceClient, IConverter<ICollection<int>, ICollection<int>> identifiersConverter, IConverter<ContinentDataContract, Continent> continentConverter)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(identifiersConverter != null);
-            Contract.Requires(continentConverter != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (identifiersConverter == null)
+            {
+                throw new ArgumentNullException("identifiersConverter", "Precondition: identifiersConverter != null");
+            }
+
+            if (continentConverter == null)
+            {
+                throw new ArgumentNullException("continentConverter", "Precondition: continentConverter != null");
+            }
             
             this.serviceClient = serviceClient;
 
@@ -259,8 +271,7 @@ namespace GW2NET.V2.Continents
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private IDictionaryRange<int, Continent> ConvertAsyncResponse(Task<IResponse<ICollection<ContinentDataContract>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<IDictionaryRange<int, Item>>() != null);
+            Debug.Assert(task != null, "task != null");
             var values = this.bulkResponseConverter.Convert(task.Result);
             if (values == null)
             {
@@ -273,8 +284,7 @@ namespace GW2NET.V2.Continents
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollectionPage<Continent> ConvertAsyncResponse(Task<IResponse<ICollection<ContinentDataContract>>> task, int pageIndex)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollectionPage<Item>>() != null);
+            Debug.Assert(task != null, "task != null");
             var values = this.pageResponseConverter.Convert(task.Result);
             if (values == null)
             {
@@ -289,8 +299,7 @@ namespace GW2NET.V2.Continents
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollection<int>>() != null);
+            Debug.Assert(task != null, "task != null");
             var ids = this.identifiersConverter.Convert(task.Result);
             if (ids == null)
             {
@@ -303,20 +312,8 @@ namespace GW2NET.V2.Continents
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private Continent ConvertAsyncResponse(Task<IResponse<ContinentDataContract>> task)
         {
-            Contract.Requires(task != null);
+            Debug.Assert(task != null, "task != null");
             return this.responseConverter.Convert(task.Result);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        // ReSharper disable once UnusedMember.Local
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.responseConverter != null);
-            Contract.Invariant(this.identifiersConverter != null);
-            Contract.Invariant(this.bulkResponseConverter != null);
-            Contract.Invariant(this.pageResponseConverter != null);
         }
     }
 }
