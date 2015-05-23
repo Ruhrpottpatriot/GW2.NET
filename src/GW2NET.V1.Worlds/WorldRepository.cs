@@ -16,7 +16,6 @@ namespace GW2NET.V1.Worlds
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -39,7 +38,6 @@ namespace GW2NET.V1.Worlds
         public WorldRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterForCollection<WorldDataContract, World>(new ConverterForWorld()))
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="WorldRepository"/> class.</summary>
@@ -48,8 +46,16 @@ namespace GW2NET.V1.Worlds
         /// <exception cref="ArgumentNullException"><paramref name="serviceClient"/> is <c>null</c>.</exception>
         internal WorldRepository(IServiceClient serviceClient, IConverter<ICollection<WorldDataContract>, ICollection<World>> converterForWorldCollection)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(converterForWorldCollection != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForWorldCollection == null)
+            {
+                throw new ArgumentNullException("converterForWorldCollection", "Precondition: converterForWorldCollection != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForWorldCollection = converterForWorldCollection;
         }
@@ -220,14 +226,6 @@ namespace GW2NET.V1.Worlds
             }
 
             return worlds;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForWorldCollection != null);
         }
     }
 }

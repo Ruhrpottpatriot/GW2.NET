@@ -7,13 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.V1.Worlds.Json;
-using GW2NET.Worlds;
-
 namespace GW2NET.V1.Worlds.Converters
 {
+    using System;
+
+    using GW2NET.Common;
+    using GW2NET.V1.Worlds.Json;
+    using GW2NET.Worlds;
+
     /// <summary>Converts objects of type <see cref="WorldDataContract"/> to objects of type <see cref="World"/>.</summary>
     internal sealed class ConverterForWorld : IConverter<WorldDataContract, World>
     {
@@ -22,7 +23,11 @@ namespace GW2NET.V1.Worlds.Converters
         /// <returns>The converted value.</returns>
         public World Convert(WorldDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var world = new World
             {
                 Name = value.Name

@@ -8,8 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Worlds
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System;
     using System.Globalization;
 
     using GW2NET.Common;
@@ -25,7 +24,11 @@ namespace GW2NET.V1.Worlds
         /// <param name="serviceClient">The service client.</param>
         public WorldRepositoryFactory(IServiceClient serviceClient)
         {
-            Contract.Requires(serviceClient != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
             this.serviceClient = serviceClient;
         }
 
@@ -36,7 +39,11 @@ namespace GW2NET.V1.Worlds
         {
             get
             {
-                Contract.Requires(language != null);
+                if (language == null)
+                {
+                    throw new ArgumentNullException("language", "Precondition: language != null");
+                }
+
                 return this.ForCulture(new CultureInfo(language));
             }
         }
@@ -48,7 +55,11 @@ namespace GW2NET.V1.Worlds
         {
             get
             {
-                Contract.Requires(culture != null);
+                if (culture == null)
+                {
+                    throw new ArgumentNullException("culture", "Precondition: culture != null");
+                }
+
                 return this.ForCulture(culture);
             }
         }
@@ -65,6 +76,11 @@ namespace GW2NET.V1.Worlds
         /// <returns>A repository.</returns>
         public IWorldRepository ForCulture(CultureInfo culture)
         {
+            if (culture == null)
+            {
+                throw new ArgumentNullException("culture", "Precondition: culture != null");
+            }
+
             IWorldRepository repository = new WorldRepository(this.serviceClient);
             repository.Culture = culture;
             return repository;
@@ -82,13 +98,6 @@ namespace GW2NET.V1.Worlds
         public IWorldRepository ForCurrentUICulture()
         {
             return this.ForCulture(CultureInfo.CurrentUICulture);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
         }
     }
 }
