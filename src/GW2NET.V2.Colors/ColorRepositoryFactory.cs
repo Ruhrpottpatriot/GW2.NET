@@ -9,8 +9,7 @@
 
 namespace GW2NET.V2.Colors
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System;
     using System.Globalization;
 
     using GW2NET.Colors;
@@ -26,7 +25,11 @@ namespace GW2NET.V2.Colors
         /// <param name="serviceClient">The service client.</param>
         public ColorRepositoryFactory(IServiceClient serviceClient)
         {
-            Contract.Requires(serviceClient != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
             this.serviceClient = serviceClient;
         }
 
@@ -45,14 +48,6 @@ namespace GW2NET.V2.Colors
             IColorRepository repository = new ColorRepository(this.serviceClient);
             repository.Culture = culture;
             return repository;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when COdeCOntracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

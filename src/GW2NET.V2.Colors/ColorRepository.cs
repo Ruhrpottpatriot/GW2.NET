@@ -9,10 +9,9 @@
 
 namespace GW2NET.V2.Colors
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -33,30 +32,44 @@ namespace GW2NET.V2.Colors
 
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<IResponse<ColorPaletteDataContract>, ColorPalette> converterForResponse;
-        
+
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<IResponse<ICollection<ColorPaletteDataContract>>, IDictionaryRange<int, ColorPalette>> converterForBulkResponse;
-        
+
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<IResponse<ICollection<ColorPaletteDataContract>>, ICollectionPage<ColorPalette>> converterForPageResponse;
-        
+
         /// <summary>Initializes a new instance of the <see cref="ColorRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public ColorRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterAdapter<ICollection<int>>(), new ColorPaletteConverter())
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="ColorRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="identifierConverter">The identifier converter.</param>
         /// <param name="colorPaletteConverter">The color palette converter.</param>
-        private ColorRepository(IServiceClient serviceClient, IConverter<ICollection<int>, ICollection<int>> identifierConverter, IConverter<ColorPaletteDataContract, ColorPalette> colorPaletteConverter)
+        private ColorRepository(
+            IServiceClient serviceClient
+            , IConverter<ICollection<int>, ICollection<int>> identifierConverter
+            , IConverter<ColorPaletteDataContract, ColorPalette> colorPaletteConverter)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(identifierConverter != null);
-            Contract.Requires(colorPaletteConverter != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (identifierConverter == null)
+            {
+                throw new ArgumentNullException("identifierConverter", "Precondition: identifierConverter != null");
+            }
+
+            if (colorPaletteConverter == null)
+            {
+                throw new ArgumentNullException("colorPaletteConverter", "Precondition: colorPaletteConverter != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForIdentifiersResponse = new ConverterForResponse<ICollection<int>, ICollection<int>>(identifierConverter);
             this.converterForResponse = new ConverterForResponse<ColorPaletteDataContract, ColorPalette>(colorPaletteConverter);
@@ -112,8 +125,8 @@ namespace GW2NET.V2.Colors
             IColorRepository self = this;
             var request = new ColorPalettePageRequest
             {
-                Page = pageIndex, 
-                PageSize = pageSize, 
+                Page = pageIndex,
+                PageSize = pageSize,
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<ColorPaletteDataContract>>(request);
@@ -147,7 +160,7 @@ namespace GW2NET.V2.Colors
         {
             IColorRepository self = this;
             return self.FindPageAsync(pageIndex, pageSize, CancellationToken.None);
-            }
+        }
 
         /// <inheritdoc />
         Task<ICollectionPage<ColorPalette>> IPaginator<ColorPalette>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
@@ -301,17 +314,6 @@ namespace GW2NET.V2.Colors
             PageContextPatchUtility.Patch(values, pageIndex);
 
             return values;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForResponse != null);
-            Contract.Invariant(this.converterForIdentifiersResponse != null);
-            Contract.Invariant(this.converterForBulkResponse != null);
-            Contract.Invariant(this.converterForPageResponse != null);
         }
     }
 }

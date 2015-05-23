@@ -9,8 +9,7 @@
 
 namespace GW2NET.V2.Colors
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Colors;
     using GW2NET.Common;
@@ -35,18 +34,27 @@ namespace GW2NET.V2.Colors
         /// <param name="colorModelConverter">The converter for <see cref="ColorModel"/>.</param>
         internal ColorPaletteConverter(IConverter<int[], Color> colorConverter, IConverter<ColorModelDataContract, ColorModel> colorModelConverter)
         {
-            Contract.Requires(colorConverter != null);
-            Contract.Requires(colorModelConverter != null);
+            if (colorConverter == null)
+            {
+                throw new ArgumentNullException("colorConverter", "Precondition: colorConverter != null");
+            }
+
+            if (colorModelConverter == null)
+            {
+                throw new ArgumentNullException("colorModelConverter", "Precondition: colorModelConverter != null");
+            }
+
             this.colorConverter = colorConverter;
             this.colorModelConverter = colorModelConverter;
         }
 
-        /// <summary>Converts the given object of type <typeparamref name="TInput"/> to an object of type <typeparamref name="TOutput"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public ColorPalette Convert(ColorPaletteDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
 
             // Create a new color object
             var colorPalette = new ColorPalette { Name = value.Name };
@@ -81,14 +89,6 @@ namespace GW2NET.V2.Colors
 
             // Return the color object
             return colorPalette;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.colorConverter != null);
-            Contract.Invariant(this.colorModelConverter != null);
         }
     }
 }
