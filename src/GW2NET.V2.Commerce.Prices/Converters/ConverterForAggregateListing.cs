@@ -8,9 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce.Prices
 {
+    using System;
     using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Commerce;
     using GW2NET.Common;
@@ -31,16 +30,22 @@ namespace GW2NET.V2.Commerce.Prices
         /// <param name="converterForAggregateOffer">The converter for <see cref="AggregateOffer"/>.</param>
         internal ConverterForAggregateListing(IConverter<AggregateOfferDataContract, AggregateOffer> converterForAggregateOffer)
         {
-            Contract.Requires(converterForAggregateOffer != null);
+            if (converterForAggregateOffer == null)
+            {
+                throw new ArgumentNullException("converterForAggregateOffer", "Precondition: converterForAggregateOffer != null");
+            }
+
             this.converterForAggregateOffer = converterForAggregateOffer;
         }
 
-        /// <summary>Converts the given object of type <see cref="AggregateListingDataContract"/> to an object of type <see cref="AggregateListing"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public AggregateListing Convert(AggregateListingDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var aggregateListing = new AggregateListing
             {
                 ItemId = value.Id
@@ -50,29 +55,18 @@ namespace GW2NET.V2.Commerce.Prices
             {
                 aggregateListing.BuyOffers = this.converterForAggregateOffer.Convert(buys);
             }
-            else
-            {
-                Debug.Assert(buys != null, "Expected 'buys' for aggregate listing");
-            }
+
+            Debug.Assert(buys != null, "buys != null");
 
             var sells = value.SellOffers;
             if (sells != null)
             {
                 aggregateListing.SellOffers = this.converterForAggregateOffer.Convert(sells);
             }
-            else
-            {
-                Debug.Assert(sells != null, "Expected 'sells' for aggregate listing");
-            }
+
+            Debug.Assert(sells != null, "Expected 'sells' for aggregate listing");
 
             return aggregateListing;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForAggregateOffer != null);
         }
     }
 }

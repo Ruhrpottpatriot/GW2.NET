@@ -8,10 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce.Prices
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -54,7 +54,6 @@ namespace GW2NET.V2.Commerce.Prices
         public AggregateListingRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterForAggregateListing())
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="AggregateListingRepository"/> class.</summary>
@@ -62,8 +61,16 @@ namespace GW2NET.V2.Commerce.Prices
         /// <param name="converterForAggregateListing">The converter for <see cref="AggregateListing"/>.</param>
         internal AggregateListingRepository(IServiceClient serviceClient, IConverter<AggregateListingDataContract, AggregateListing> converterForAggregateListing)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(converterForAggregateListing != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForAggregateListing == null)
+            {
+                throw new ArgumentNullException("converterForAggregateListing", "Precondition: converterForAggregateListing != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForIdentifiersResponse = new ConverterForCollectionResponse<int, int>(new ConverterAdapter<int>());
             this.converterForResponse = new ConverterForResponse<AggregateListingDataContract, AggregateListing>(converterForAggregateListing);
@@ -199,7 +206,7 @@ namespace GW2NET.V2.Commerce.Prices
         {
             var request = new AggregateListingPageRequest
             {
-                Page = pageIndex, 
+                Page = pageIndex,
                 PageSize = pageSize
             };
             var response = this.serviceClient.Send<ICollection<AggregateListingDataContract>>(request);
@@ -244,7 +251,7 @@ namespace GW2NET.V2.Commerce.Prices
         {
             var request = new AggregateListingPageRequest
             {
-                Page = pageIndex, 
+                Page = pageIndex,
                 PageSize = pageSize
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken);
@@ -285,17 +292,6 @@ namespace GW2NET.V2.Commerce.Prices
             PageContextPatchUtility.Patch(values, pageIndex);
 
             return values;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForBulkResponse != null);
-            Contract.Invariant(this.converterForIdentifiersResponse != null);
-            Contract.Invariant(this.converterForPageResponse != null);
-            Contract.Invariant(this.converterForResponse != null);
         }
     }
 }
