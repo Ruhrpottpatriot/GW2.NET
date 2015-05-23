@@ -7,13 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.V1.WorldVersusWorld.Objectives.Json;
-using GW2NET.WorldVersusWorld;
-
 namespace GW2NET.V1.WorldVersusWorld.Objectives.Converters
 {
+    using System;
+
+    using GW2NET.Common;
+    using GW2NET.V1.WorldVersusWorld.Objectives.Json;
+    using GW2NET.WorldVersusWorld;
+
     /// <summary>Converts objects of type <see cref="ObjectiveNameDataContract"/> to objects of type <see cref="ObjectiveName"/>.</summary>
     internal sealed class ConverterForObjectiveName : IConverter<ObjectiveNameDataContract, ObjectiveName>
     {
@@ -22,7 +23,11 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives.Converters
         /// <returns>The converted value.</returns>
         public ObjectiveName Convert(ObjectiveNameDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var objectiveName = new ObjectiveName
             {
                 Name = value.Name

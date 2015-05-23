@@ -14,7 +14,6 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -44,6 +43,16 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         /// <param name="converterForObjectiveName">The converter <see cref="ObjectiveName"/>.</param>
         internal ObjectiveNameRepository(IServiceClient serviceClient, IConverter<ObjectiveNameDataContract, ObjectiveName> converterForObjectiveName)
         {
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForObjectiveName == null)
+            {
+                throw new ArgumentNullException("converterForObjectiveName", "Precondition: converterForObjectiveName != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForObjectiveName = converterForObjectiveName;
         }
@@ -209,14 +218,6 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         Task<ICollectionPage<ObjectiveName>> IPaginator<ObjectiveName>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
-        }
-
-        /// <summary>The invariant method for this class.</summary>
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForObjectiveName != null);
         }
     }
 }
