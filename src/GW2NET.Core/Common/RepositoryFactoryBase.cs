@@ -31,11 +31,6 @@ namespace GW2NET.Common
                     throw new ArgumentNullException("language", "Precondition: language != null");
                 }
 
-                if (language.Length != 2)
-                {
-                    throw new ArgumentException("Precondition: language.Length == 2", "language");
-                }
-
                 return this.ForCulture(new CultureInfo(language));
             }
         }
@@ -76,7 +71,7 @@ namespace GW2NET.Common
 
         /// <summary>Creates an instance for the current UI language.</summary>
         /// <returns>A repository.</returns>
-        [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Consitent with the standard .NET naming.")]
+        [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Consistent with the standard .NET naming.")]
         public virtual TRepository ForCurrentUICulture()
         {
             return this.ForCulture(CultureInfo.CurrentUICulture);
