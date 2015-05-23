@@ -8,8 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using GW2NET.Common;
 using GW2NET.V1.WorldVersusWorld.Matches.Json;
@@ -17,6 +15,8 @@ using GW2NET.WorldVersusWorld;
 
 namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="MatchDataContract"/> to objects of type <see cref="Match"/>.</summary>
     internal sealed class ConverterForMatch : IConverter<MatchDataContract, Match>
     {
@@ -37,8 +37,16 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
         /// <param name="converterForCompetitiveMap">The competitive map data contract converter.</param>
         internal ConverterForMatch(IConverter<int[], Scoreboard> converterForScoreboard, IConverter<CompetitiveMapDataContract, CompetitiveMap> converterForCompetitiveMap)
         {
-            Contract.Requires(converterForScoreboard != null);
-            Contract.Requires(converterForCompetitiveMap != null);
+            if (converterForScoreboard == null)
+            {
+                throw new ArgumentNullException("converterForScoreboard", "Precondition: converterForScoreboard != null");
+            }
+
+            if (converterForCompetitiveMap == null)
+            {
+                throw new ArgumentNullException("converterForCompetitiveMap", "Precondition: converterForCompetitiveMap != null");
+            }
+
             this.converterForScoreboard = converterForScoreboard;
             this.converterForCompetitiveMap = converterForCompetitiveMap;
         }
@@ -48,7 +56,10 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
         /// <returns>The converted value.</returns>
         public Match Convert(MatchDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
 
             // Create a new match object
             var match = new Match
@@ -76,14 +87,6 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 
             // Return the match object
             return match;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForScoreboard != null);
-            Contract.Invariant(this.converterForCompetitiveMap != null);
         }
     }
 }

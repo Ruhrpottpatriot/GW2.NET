@@ -8,8 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using GW2NET.Common;
 using GW2NET.V1.WorldVersusWorld.Matches.Json;
@@ -17,6 +15,8 @@ using GW2NET.WorldVersusWorld;
 
 namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="CompetitiveMapDataContract"/> to objects of type <see cref="CompetitiveMap"/>.</summary>
     internal sealed class ConverterForCompetitiveMap : IConverter<CompetitiveMapDataContract, CompetitiveMap>
     {
@@ -45,10 +45,26 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
         /// <param name="converterForMapBonus">The converter for <see cref="MapBonus"/>.</param>
         internal ConverterForCompetitiveMap(IDictionary<string, IConverter<CompetitiveMapDataContract, CompetitiveMap>> typeConverters, IConverter<int[], Scoreboard> converterForScoreboard, IConverter<ObjectiveDataContract, Objective> converterForObjective, IConverter<MapBonusDataContract, MapBonus> converterForMapBonus)
         {
-            Contract.Requires(typeConverters != null);
-            Contract.Requires(converterForScoreboard != null);
-            Contract.Requires(converterForObjective != null);
-            Contract.Requires(converterForMapBonus != null);
+            if (typeConverters == null)
+            {
+                throw new ArgumentNullException("typeConverters", "Precondition: typeConverters != null");
+            }
+
+            if (converterForScoreboard == null)
+            {
+                throw new ArgumentNullException("converterForScoreboard", "Precondition: converterForScoreboard != null");
+            }
+
+            if (converterForObjective == null)
+            {
+                throw new ArgumentNullException("converterForObjective", "Precondition: converterForObjective != null");
+            }
+
+            if (converterForMapBonus == null)
+            {
+                throw new ArgumentNullException("converterForMapBonus", "Precondition: converterForMapBonus != null");
+            }
+
             this.converterForScoreboard = converterForScoreboard;
             this.converterForObjective = converterForObjective;
             this.converterForMapBonus = converterForMapBonus;
@@ -60,7 +76,10 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
         /// <returns>The converted value.</returns>
         public CompetitiveMap Convert(CompetitiveMapDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
 
             // Create a new map object
             CompetitiveMap competitiveMap;
@@ -73,7 +92,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
             {
                 competitiveMap = new UnknownCompetitiveMap();
             }
-            
+
             // Set the scoreboard
             var scores = value.Scores;
             if (scores != null && scores.Length == 3)
@@ -114,16 +133,6 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
                 {"BlueHome", new ConverterForBlueBorderlands()},
                 {"Center", new ConverterForEternalBattlegrounds()}
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.typeConverters != null);
-            Contract.Invariant(this.converterForMapBonus != null);
-            Contract.Invariant(this.converterForObjective != null);
-            Contract.Invariant(this.converterForScoreboard != null);
         }
     }
 }

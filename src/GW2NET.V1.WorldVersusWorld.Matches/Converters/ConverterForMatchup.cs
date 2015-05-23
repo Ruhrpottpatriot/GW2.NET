@@ -7,14 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.V1.WorldVersusWorld.Matches.Json;
-using GW2NET.WorldVersusWorld;
-
 namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
+    using System;
+
+    using GW2NET.Common;
+    using GW2NET.V1.WorldVersusWorld.Matches.Json;
+    using GW2NET.WorldVersusWorld;
+
     /// <summary>Converts objects of type <see cref="MatchupDataContract"/> to objects of type <see cref="Matchup"/>.</summary>
     internal sealed class ConverterForMatchup : IConverter<MatchupDataContract, Matchup>
     {
@@ -23,7 +23,10 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
         /// <returns>The converted value.</returns>
         public Matchup Convert(MatchupDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
 
             // Create a new matchup object
             var matchup = new Matchup

@@ -8,8 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
+
 using GW2NET.Common;
 using GW2NET.V1.WorldVersusWorld.Matches.Json;
 using GW2NET.WorldVersusWorld;
@@ -32,7 +31,11 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
         /// <param name="converterForTeamColor">The converter for <see cref="TeamColor"/>.</param>
         public ConverterForMapBonus(IConverter<string, TeamColor> converterForTeamColor)
         {
-            Contract.Requires(converterForTeamColor != null);
+            if (converterForTeamColor == null)
+            {
+                throw new ArgumentNullException("converterForTeamColor", "Precondition: converterForTeamColor != null");
+            }
+
             this.converterForTeamColor = converterForTeamColor;
         }
 
@@ -41,7 +44,10 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
         /// <returns>The converted value.</returns>
         public MapBonus Convert(MapBonusDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
 
             MapBonus mapBonus;
             if (string.Equals(value.Type, "bloodlust", StringComparison.OrdinalIgnoreCase))
@@ -60,13 +66,6 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
             }
 
             return mapBonus;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForTeamColor != null);
         }
     }
 }

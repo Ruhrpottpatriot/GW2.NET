@@ -7,13 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.V1.WorldVersusWorld.Matches.Json;
-using GW2NET.WorldVersusWorld;
-
 namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
+    using System;
+
+    using GW2NET.Common;
+    using GW2NET.V1.WorldVersusWorld.Matches.Json;
+    using GW2NET.WorldVersusWorld;
+
     /// <summary>Converts objects of type <see cref="CompetitiveMapDataContract"/> to objects of type <see cref="GreenBorderlands"/>.</summary>
     internal sealed class ConverterForGreenBorderlands : IConverter<CompetitiveMapDataContract, GreenBorderlands>
     {
@@ -22,8 +23,16 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
         /// <returns>The converted value.</returns>
         public GreenBorderlands Convert(CompetitiveMapDataContract value)
         {
-            Contract.Assume(value != null);
-            Contract.Assume(value.Type == "GreenHome");
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
+            if (value.Type != "GreenHome")
+            {
+                throw new ArgumentException("Precondition: value.Type == \"GreenHome\"", "value");
+            }
+
             return new GreenBorderlands();
         }
     }

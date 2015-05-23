@@ -21,6 +21,11 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
         /// <returns>The converted value.</returns>
         public TeamColor Convert(string value)
         {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             TeamColor teamColor;
             if (!Enum.TryParse(value, true, out teamColor))
             {

@@ -7,12 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.WorldVersusWorld;
-
 namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
+    using System;
+
+    using GW2NET.Common;
+    using GW2NET.WorldVersusWorld;
+
     /// <summary>Converts objects of type <see cref="T:int[]"/> to objects of type <see cref="Scoreboard"/>.</summary>
     internal sealed class ConverterForScoreboard : IConverter<int[], Scoreboard>
     {
@@ -21,12 +22,20 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
         /// <returns>The converted value.</returns>
         public Scoreboard Convert(int[] value)
         {
-            Contract.Assume(value != null);
-            Contract.Assume(value.Length == 3);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+            
+            if (value.Length != 3)
+            {
+                throw new ArgumentException("Precondition: value.Length == 3", "value");
+            }
+
             return new Scoreboard
             {
-                Red = value[0], 
-                Blue = value[1], 
+                Red = value[0],
+                Blue = value[1],
                 Green = value[2]
             };
         }

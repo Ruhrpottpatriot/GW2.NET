@@ -14,7 +14,6 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -47,6 +46,21 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
         /// <param name="converterForMatch">The converter <see cref="Match"/>.</param>
         internal MatchRepository(IServiceClient serviceClient, IConverter<MatchupDataContract, Matchup> converterForMatchup, IConverter<MatchDataContract, Match> converterForMatch)
         {
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForMatchup == null)
+            {
+                throw new ArgumentNullException("converterForMatchup", "Precondition: converterForMatchup != null");
+            }
+
+            if (converterForMatch == null)
+            {
+                throw new ArgumentNullException("converterForMatch", "Precondition: converterForMatch != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForMatchup = converterForMatchup;
             this.converterForMatch = converterForMatch;
@@ -206,15 +220,6 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
         Task<ICollectionPage<Match>> IPaginator<Match>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
-        }
-
-        /// <summary>The invariant method for this class.</summary>
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForMatchup != null);
-            Contract.Invariant(this.converterForMatch != null);
         }
     }
 }
