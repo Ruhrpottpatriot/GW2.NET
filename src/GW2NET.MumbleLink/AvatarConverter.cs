@@ -26,26 +26,13 @@
 
         public Avatar Convert(AvatarDataContract value)
         {
-            // Copy the context data to an unmanaged memory pointer
             var contextLength = (int)value.context_len;
             var ptr = Marshal.AllocHGlobal(contextLength);
             Marshal.Copy(value.context, 0, ptr, contextLength);
-
-            // Copy the unmanaged memory to a managed struct
             var mumbleContext = (MumbleContext)Marshal.PtrToStructure(ptr, typeof(MumbleContext));
 
-            // Convert data contracts to managed data types
-            // MEMO: for the first tick, only context data is available
             var avatarContext = this.avatarContextConverter.Convert(mumbleContext);
-            //if (value.uiTick == 1)
-            //{
-            //    return new Avatar
-            //    {
-            //        UiVersion = (int)value.uiVersion,
-            //        UiTick = value.uiTick,
-            //        Context = avatarContext
-            //    };
-            //}
+            avatarContext.SetInnerContext(value.context);
 
             IdentityDataContract identityDataContract;
             using (var stringStream = new MemoryStream(Encoding.UTF8.GetBytes(value.identity)))

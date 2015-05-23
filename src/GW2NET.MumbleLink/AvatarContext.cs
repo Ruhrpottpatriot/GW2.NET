@@ -6,15 +6,21 @@
 //   Provides contextual data about a player's avatar. Check the <see cref="AvatarContext" /> of two different players for equality to determine if the players are in the same map instance.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2NET.MumbleLink
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Net;
 
-    /// <summary>Provides contextual data about a player's avatar. Check the <see cref="AvatarContext"/> of two different players for equality to determine if the players are in the same map instance.</summary>
+    /// <summary>
+    ///     Provides contextual data about a player's avatar. Check the <see cref="AvatarContext" /> of two different
+    ///     players for equality to determine if the players are in the same map instance.
+    /// </summary>
     public sealed class AvatarContext : IEquatable<AvatarContext>
     {
+        private byte[] innerContext;
+
         /// <summary>Gets or sets the game client's build identifier.</summary>
         public int BuildId { get; set; }
 
@@ -33,21 +39,16 @@ namespace GW2NET.MumbleLink
         /// <summary>Gets or sets the shard identifier of the current shard.</summary>
         public int ShardId { get; set; }
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Operators do not require an explanation.")]
         public static bool operator ==(AvatarContext left, AvatarContext right)
         {
-            return object.Equals(left, right);
+            return Equals(left, right);
         }
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Operators do not require an explanation.")]
         public static bool operator !=(AvatarContext left, AvatarContext right)
         {
-            return !object.Equals(left, right);
+            return !Equals(left, right);
         }
 
-        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
-        /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
-        /// <param name="other">An object to compare with this object.</param>
         public bool Equals(AvatarContext other)
         {
             if (ReferenceEquals(null, other))
@@ -60,47 +61,56 @@ namespace GW2NET.MumbleLink
                 return true;
             }
 
-            return this.BuildId == other.BuildId && this.Instance == other.Instance && this.MapId == other.MapId && this.MapType == other.MapType
-                   && object.Equals(this.ServerAddress, other.ServerAddress) && this.ShardId == other.ShardId;
+            if (this.innerContext == null || other.innerContext == null)
+            {
+                return false;
+            }
+
+            var length = this.innerContext.Length;
+            if (length != other.innerContext.Length)
+            {
+                return false;
+            }
+
+            for (var i = 0; i < length; i++)
+            {
+                if (this.innerContext[i] != other.innerContext[i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
-        /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
-        /// <param name="obj">The object to compare with the current object. </param>
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            if (obj.GetType() != this.GetType())
-            {
-                return false;
-            }
-
-            return this.Equals((AvatarContext)obj);
+            return this.Equals(obj as AvatarContext);
         }
 
-        /// <summary>Serves as a hash function for a particular type.</summary>
-        /// <returns>A hash code for the current <see cref="T:System.Object"/>.</returns>
+        [SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode",
+            Justification = "The field is private, and no public API modifies it after it is already set.")]
         public override int GetHashCode()
         {
-            unchecked
+            return (this.innerContext != null ? this.innerContext.GetHashCode() : 0);
+        }
+
+        /// <summary>Sets the object that is used to compare the current object to another object of the same type.</summary>
+        /// <param name="context">The context that is used in comparisons.</param>
+        public void SetInnerContext(byte[] context)
+        {
+            if (context == null)
             {
-                int hashCode = this.BuildId;
-                hashCode = (hashCode * 397) ^ this.Instance;
-                hashCode = (hashCode * 397) ^ this.MapId;
-                hashCode = (hashCode * 397) ^ this.MapType;
-                hashCode = (hashCode * 397) ^ (this.ServerAddress != null ? this.ServerAddress.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ this.ShardId;
-                return hashCode;
+                throw new ArgumentNullException("context");
             }
+
+            if (this.innerContext != null)
+            {
+                throw new InvalidOperationException(
+                    "The inner context is already set for this instance. You can only do this once.");
+            }
+
+            this.innerContext = context;
         }
 
         /// <summary>Returns a string that represents the current object.</summary>

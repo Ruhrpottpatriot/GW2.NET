@@ -36,5 +36,34 @@
                 Assert.NotNull(avatar.Identity.Race == Race.Human);
             }
         }
+
+        [Theory]
+        [InlineData(@"blobs\1.bin", @"blobs\2.bin")]
+        public void CanCompareAvatarContext(string fileName1, string fileName2)
+        {
+            Assert.True(File.Exists(fileName1), "File.Exists(fileName1)");
+            Assert.True(File.Exists(fileName2), "File.Exists(fileName2)");
+            using (var memoryMappedFile1 = MemoryMappedFile.CreateFromFile(fileName1))
+            using (
+                var mumbleLinkFile1 = new MumbleLinkFile(
+                    memoryMappedFile1,
+                    new AvatarConverter(
+                        new AvatarContextConverter(new IPEndPointConverter()),
+                        new IdentityConverter(),
+                        new Vector3DConverter())))
+            using (var memoryMappedFile2 = MemoryMappedFile.CreateFromFile(fileName2))
+            using (
+                var mumbleLinkFile2 = new MumbleLinkFile(
+                    memoryMappedFile2,
+                    new AvatarConverter(
+                        new AvatarContextConverter(new IPEndPointConverter()),
+                        new IdentityConverter(),
+                        new Vector3DConverter())))
+            {
+                var avatar1 = mumbleLinkFile1.Read();
+                var avatar2 = mumbleLinkFile2.Read();
+                Assert.Equal(avatar1.Context, avatar2.Context);
+            }
+        }
     }
 }
