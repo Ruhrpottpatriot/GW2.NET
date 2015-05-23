@@ -8,9 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Items
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
@@ -42,11 +41,26 @@ namespace GW2NET.V2.Items
         /// <param name="converterForWeightClass">The converter for <see cref="WeightClass"/>.</param>
         /// <param name="converterForInfusionSlotCollection">The converter for <see cref="ICollection{InfusionSlot}"/>.</param>
         /// <param name="converterForInfixUpgrade">The converter for <see cref="InfixUpgrade"/>.</param>
-        public ConverterForArmor(IDictionary<string, IConverter<DetailsDataContract, Armor>> typeConverters, IConverter<string, WeightClass> converterForWeightClass, IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection, IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade)
+        public ConverterForArmor(
+            IDictionary<string, IConverter<DetailsDataContract, Armor>> typeConverters,
+            IConverter<string, WeightClass> converterForWeightClass,
+            IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection, IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade)
         {
-            Contract.Requires(converterForWeightClass != null);
-            Contract.Requires(converterForInfusionSlotCollection != null);
-            Contract.Requires(converterForInfixUpgrade != null);
+            if (converterForWeightClass == null)
+            {
+                throw new ArgumentNullException("converterForWeightClass", "Precondition: converterForWeightClass != null");
+            }
+
+            if (converterForInfusionSlotCollection == null)
+            {
+                throw new ArgumentNullException("converterForInfusionSlotCollection", "Precondition: converterForInfusionSlotCollection != null");
+            }
+
+            if (converterForInfixUpgrade == null)
+            {
+                throw new ArgumentNullException("converterForInfixUpgrade", "Precondition: converterForInfixUpgrade != null");
+            }
+
             this.converterForWeightClass = converterForWeightClass;
             this.converterForInfusionSlotCollection = converterForInfusionSlotCollection;
             this.converterForInfixUpgrade = converterForInfixUpgrade;
@@ -58,7 +72,11 @@ namespace GW2NET.V2.Items
         /// <returns>The converted value.</returns>
         public Armor Convert(DetailsDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             IConverter<DetailsDataContract, Armor> converter;
             var armor = this.typeConverters.TryGetValue(value.Type, out converter) ? converter.Convert(value) : new UnknownArmor();
             armor.WeightClass = this.converterForWeightClass.Convert(value.WeightClass);
@@ -100,15 +118,6 @@ namespace GW2NET.V2.Items
                 { "Leggings", new ConverterForLeggings() }, 
                 { "HelmAquatic", new ConverterForHelmAquatic() }, 
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForWeightClass != null);
-            Contract.Invariant(this.converterForInfusionSlotCollection != null);
-            Contract.Invariant(this.converterForInfixUpgrade != null);
         }
     }
 }

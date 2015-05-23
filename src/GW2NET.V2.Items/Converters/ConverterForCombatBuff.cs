@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Items
 {
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Common;
     using GW2NET.Items;
@@ -21,10 +21,14 @@ namespace GW2NET.V2.Items
         /// <returns>The converted value.</returns>
         public CombatBuff Convert(BuffDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new CombatBuff
             {
-                SkillId = value.SkillId, 
+                SkillId = value.SkillId,
                 Description = value.Description
             };
         }

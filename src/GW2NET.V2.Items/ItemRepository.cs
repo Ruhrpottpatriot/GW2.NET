@@ -8,10 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Items
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -70,7 +70,6 @@ namespace GW2NET.V2.Items
         public ItemRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterAdapter<ICollection<int>>(), new ConverterForItem())
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="ItemRepository"/> class.</summary>
@@ -79,9 +78,21 @@ namespace GW2NET.V2.Items
         /// <param name="converterForItem">The converter for <see cref="Item"/>.</param>
         internal ItemRepository(IServiceClient serviceClient, IConverter<ICollection<int>, ICollection<int>> converterForItemCollection, IConverter<ItemDataContract, Item> converterForItem)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(converterForItemCollection != null);
-            Contract.Requires(converterForItem != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForItemCollection == null)
+            {
+                throw new ArgumentNullException("converterForItemCollection", "Precondition: converterForItemCollection != null");
+            }
+
+            if (converterForItem == null)
+            {
+                throw new ArgumentNullException("converterForItem", "Precondition: converterForItem != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForIdentifiersResponse = new ConverterForResponse<ICollection<int>, ICollection<int>>(converterForItemCollection);
             this.converterForResponse = new ConverterForResponse<ItemDataContract, Item>(converterForItem);
@@ -121,7 +132,7 @@ namespace GW2NET.V2.Items
             IItemRepository self = this;
             var request = new ItemDetailsRequest
             {
-                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
+                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ItemDataContract>(request);
@@ -146,7 +157,7 @@ namespace GW2NET.V2.Items
             IItemRepository self = this;
             var request = new ItemBulkRequest
             {
-                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
+                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
@@ -185,7 +196,7 @@ namespace GW2NET.V2.Items
             IItemRepository self = this;
             var request = new ItemBulkRequest
             {
-                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
+                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
                 Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
@@ -205,7 +216,7 @@ namespace GW2NET.V2.Items
             IItemRepository self = this;
             var request = new ItemDetailsRequest
             {
-                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
+                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
                 Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ItemDataContract>(request, cancellationToken);
@@ -218,7 +229,7 @@ namespace GW2NET.V2.Items
             IItemRepository self = this;
             var request = new ItemPageRequest
             {
-                Page = pageIndex, 
+                Page = pageIndex,
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
@@ -233,8 +244,8 @@ namespace GW2NET.V2.Items
             IItemRepository self = this;
             var request = new ItemPageRequest
             {
-                Page = pageIndex, 
-                PageSize = pageSize, 
+                Page = pageIndex,
+                PageSize = pageSize,
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
@@ -256,7 +267,7 @@ namespace GW2NET.V2.Items
             IItemRepository self = this;
             var request = new ItemPageRequest
             {
-                Page = pageIndex, 
+                Page = pageIndex,
                 Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
@@ -276,8 +287,8 @@ namespace GW2NET.V2.Items
             IItemRepository self = this;
             var request = new ItemPageRequest
             {
-                Page = pageIndex, 
-                PageSize = pageSize, 
+                Page = pageIndex,
+                PageSize = pageSize,
                 Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
@@ -330,17 +341,6 @@ namespace GW2NET.V2.Items
         {
             Debug.Assert(task != null, "task != null");
             return this.converterForResponse.Convert(task.Result);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForResponse != null);
-            Contract.Invariant(this.converterForIdentifiersResponse != null);
-            Contract.Invariant(this.converterForBulkResponse != null);
-            Contract.Invariant(this.converterForPageResponse != null);
         }
     }
 }

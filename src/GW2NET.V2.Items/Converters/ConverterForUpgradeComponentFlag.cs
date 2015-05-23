@@ -21,6 +21,11 @@ namespace GW2NET.V2.Items
         /// <returns>The converted value.</returns>
         public UpgradeComponentFlags Convert(string value)
         {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             UpgradeComponentFlags result;
             if (Enum.TryParse(value, out result))
             {

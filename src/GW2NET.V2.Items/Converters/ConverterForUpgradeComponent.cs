@@ -8,9 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Items
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Items;
@@ -43,9 +42,21 @@ namespace GW2NET.V2.Items
         /// <param name="converterForInfixUpgrade">The converter for <see cref="InfixUpgrade"/>.</param>
         public ConverterForUpgradeComponent(IDictionary<string, IConverter<DetailsDataContract, UpgradeComponent>> typeConverters, IConverter<ICollection<string>, UpgradeComponentFlags> converterForUpgradeComponentFlagCollection, IConverter<ICollection<string>, InfusionSlotFlags> converterForInfusionSlotFlagCollection, IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade)
         {
-            Contract.Requires(converterForUpgradeComponentFlagCollection != null);
-            Contract.Requires(converterForInfusionSlotFlagCollection != null);
-            Contract.Requires(converterForInfixUpgrade != null);
+            if (converterForUpgradeComponentFlagCollection == null)
+            {
+                throw new ArgumentNullException("converterForUpgradeComponentFlagCollection", "Precondition: converterForUpgradeComponentFlagCollection != null");
+            }
+
+            if (converterForInfusionSlotFlagCollection == null)
+            {
+                throw new ArgumentNullException("converterForInfusionSlotFlagCollection", "Precondition: converterForInfusionSlotFlagCollection != null");
+            }
+
+            if (converterForInfixUpgrade == null)
+            {
+                throw new ArgumentNullException("converterForInfixUpgrade", "Precondition: converterForInfixUpgrade != null");
+            }
+
             this.converterForUpgradeComponentFlagCollection = converterForUpgradeComponentFlagCollection;
             this.converterForInfusionSlotFlagCollection = converterForInfusionSlotFlagCollection;
             this.converterForInfixUpgrade = converterForInfixUpgrade;
@@ -57,7 +68,11 @@ namespace GW2NET.V2.Items
         /// <returns>The converted value.</returns>
         public UpgradeComponent Convert(DetailsDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             UpgradeComponent upgradeComponent;
             IConverter<DetailsDataContract, UpgradeComponent> converter;
             if (this.typeConverters.TryGetValue(value.Type, out converter))
@@ -105,16 +120,6 @@ namespace GW2NET.V2.Items
                 { "Sigil", new ConverterForSigil() }, 
                 { "Rune", new ConverterForRune() }
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.typeConverters != null);
-            Contract.Invariant(this.converterForUpgradeComponentFlagCollection != null);
-            Contract.Invariant(this.converterForInfusionSlotFlagCollection != null);
-            Contract.Invariant(this.converterForInfixUpgrade != null);
         }
     }
 }

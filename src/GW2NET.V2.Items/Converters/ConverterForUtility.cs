@@ -9,7 +9,6 @@
 namespace GW2NET.V2.Items
 {
     using System;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Items;
@@ -22,7 +21,11 @@ namespace GW2NET.V2.Items
         /// <returns>The converted value.</returns>
         public Utility Convert(DetailsDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var utility = new Utility();
 
             // Set the duration

@@ -8,9 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Items
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Items;
@@ -31,7 +30,11 @@ namespace GW2NET.V2.Items
         /// <param name="converterForGameType">The converter for <see cref="GameTypes"/>.</param>
         internal ConverterForGameTypeCollection(IConverter<string, GameTypes> converterForGameType)
         {
-            Contract.Requires(converterForGameType != null);
+            if (converterForGameType == null)
+            {
+                throw new ArgumentNullException("converterForGameType", "Precondition: converterForGameType != null");
+            }
+
             this.converterForGameType = converterForGameType;
         }
 
@@ -40,7 +43,11 @@ namespace GW2NET.V2.Items
         /// <returns>The converted value.</returns>
         public GameTypes Convert(ICollection<string> value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var result = default(GameTypes);
             foreach (var s in value)
             {
@@ -48,13 +55,6 @@ namespace GW2NET.V2.Items
             }
 
             return result;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForGameType != null);
         }
     }
 }

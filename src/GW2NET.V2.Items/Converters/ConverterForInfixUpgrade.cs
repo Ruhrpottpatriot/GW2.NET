@@ -8,9 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Items
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
@@ -36,8 +35,16 @@ namespace GW2NET.V2.Items
         /// <param name="converterForCombatBuff">The converter for <see cref="CombatBuff"/>.</param>
         public ConverterForInfixUpgrade(IConverter<ICollection<AttributeDataContract>, ICollection<CombatAttribute>> converterForCombatAttributeCollection, IConverter<BuffDataContract, CombatBuff> converterForCombatBuff)
         {
-            Contract.Requires(converterForCombatAttributeCollection != null);
-            Contract.Requires(converterForCombatBuff != null);
+            if (converterForCombatAttributeCollection == null)
+            {
+                throw new ArgumentNullException("converterForCombatAttributeCollection", "Precondition: converterForCombatAttributeCollection != null");
+            }
+
+            if (converterForCombatBuff == null)
+            {
+                throw new ArgumentNullException("converterForCombatBuff", "Precondition: converterForCombatBuff != null");
+            }
+
             this.converterForCombatAttributeCollection = converterForCombatAttributeCollection;
             this.converterForCombatBuff = converterForCombatBuff;
         }
@@ -47,7 +54,11 @@ namespace GW2NET.V2.Items
         /// <returns>The converted value.</returns>
         public InfixUpgrade Convert(InfixUpgradeDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var infixUpgrade = new InfixUpgrade();
             var buffDataContract = value.Buff;
             if (buffDataContract != null)
@@ -62,14 +73,6 @@ namespace GW2NET.V2.Items
             }
 
             return infixUpgrade;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForCombatBuff != null);
-            Contract.Invariant(this.converterForCombatAttributeCollection != null);
         }
     }
 }

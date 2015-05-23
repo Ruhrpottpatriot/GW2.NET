@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Items
 {
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Common;
     using GW2NET.Items;
@@ -21,10 +21,14 @@ namespace GW2NET.V2.Items
         /// <returns>The converted value.</returns>
         public Bag Convert(DetailsDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new Bag
             {
-                Size = value.Size.GetValueOrDefault(), 
+                Size = value.Size.GetValueOrDefault(),
                 NoSellOrSort = value.NoSellOrSort.GetValueOrDefault()
             };
         }
