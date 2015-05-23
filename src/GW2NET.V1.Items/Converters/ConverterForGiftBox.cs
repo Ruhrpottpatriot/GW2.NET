@@ -7,20 +7,25 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.Items;
-using GW2NET.V1.Items.Json;
-
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+
+    using GW2NET.Common;
+    using GW2NET.Items;
+    using GW2NET.V1.Items.Json;
+
     /// <summary>Converts objects of type <see cref="ContainerDataContract"/> to objects of type <see cref="GiftBox"/>.</summary>
     internal sealed class ConverterForGiftBox : IConverter<ContainerDataContract, GiftBox>
     {
         /// <inheritdoc />
         public GiftBox Convert(ContainerDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new GiftBox();
         }
     }

@@ -7,15 +7,15 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.Items;
-using GW2NET.V1.Items.Json;
-
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+    using System.Collections.Generic;
+
+    using GW2NET.Common;
+    using GW2NET.Items;
+    using GW2NET.V1.Items.Json;
+
     /// <summary>Converts objects of type <see cref="ItemDataContract"/> to objects of type <see cref="Gizmo"/>.</summary>
     internal sealed class ConverterForGizmo : IConverter<ItemDataContract, Gizmo>
     {
@@ -32,14 +32,21 @@ namespace GW2NET.V1.Items.Converters
         /// <param name="typeConverters">The type converters.</param>
         internal ConverterForGizmo(IDictionary<string, IConverter<GizmoDataContract, Gizmo>> typeConverters)
         {
-            Contract.Requires(typeConverters != null);
+            if (typeConverters == null)
+            {
+                throw new ArgumentNullException("typeConverters", "Precondition: typeConverters != null");
+	}
             this.typeConverters = typeConverters;
         }
 
         /// <inheritdoc />
         public Gizmo Convert(ItemDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var gizmoDataContract = value.Gizmo;
             if (gizmoDataContract == null)
             {
@@ -66,13 +73,6 @@ namespace GW2NET.V1.Items.Converters
                 { "RentableContractNpc", new ConverterForRentableContractNpc() }, 
                 { "UnlimitedConsumable", new ConverterForUnlimitedConsumable() }, 
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.typeConverters != null);
         }
     }
 }

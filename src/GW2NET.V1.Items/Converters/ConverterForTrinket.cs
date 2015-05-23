@@ -7,16 +7,16 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.Common.Converters;
-using GW2NET.Items;
-using GW2NET.V1.Items.Json;
-
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+    using System.Collections.Generic;
+
+    using GW2NET.Common;
+    using GW2NET.Common.Converters;
+    using GW2NET.Items;
+    using GW2NET.V1.Items.Json;
+
     /// <summary>Converts objects of type <see cref="ItemDataContract"/> to objects of type <see cref="Trinket"/>.</summary>
     internal sealed class ConverterForTrinket : IConverter<ItemDataContract, Trinket>
     {
@@ -41,8 +41,16 @@ namespace GW2NET.V1.Items.Converters
         /// <param name="converterForInfixUpgrade">The converter for <see cref="InfixUpgrade"/>.</param>
         public ConverterForTrinket(IDictionary<string, IConverter<TrinketDataContract, Trinket>> typeConverters, IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection, IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade)
         {
-            Contract.Requires(converterForInfusionSlotCollection != null);
-            Contract.Requires(converterForInfixUpgrade != null);
+            if (converterForInfusionSlotCollection == null)
+            {
+                throw new ArgumentNullException("converterForInfusionSlotCollection", "Precondition: converterForInfusionSlotCollection != null");
+            }
+
+            if (converterForInfixUpgrade == null)
+            {
+                throw new ArgumentNullException("converterForInfixUpgrade", "Precondition: converterForInfixUpgrade != null");
+            }
+
             this.converterForInfusionSlotCollection = converterForInfusionSlotCollection;
             this.converterForInfixUpgrade = converterForInfixUpgrade;
             this.typeConverters = typeConverters;
@@ -51,7 +59,11 @@ namespace GW2NET.V1.Items.Converters
         /// <inheritdoc />
         public Trinket Convert(ItemDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var trinketDataContract = value.Trinket;
             if (trinketDataContract == null)
             {
@@ -106,15 +118,6 @@ namespace GW2NET.V1.Items.Converters
                 { "Accessory", new ConverterForAccessory() }, 
                 { "Ring", new ConverterForRing() }, 
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.typeConverters != null);
-            Contract.Invariant(this.converterForInfusionSlotCollection != null);
-            Contract.Invariant(this.converterForInfixUpgrade != null);
         }
     }
 }

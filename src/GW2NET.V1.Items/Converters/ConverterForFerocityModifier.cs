@@ -7,20 +7,25 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Items;
 using GW2NET.V1.Items.Json;
 
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="FerocityModifier"/>.</summary>
     internal sealed class ConverterForFerocityModifier : IConverter<AttributeDataContract, FerocityModifier>
     {
         /// <inheritdoc />
         public FerocityModifier Convert(AttributeDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var attribute = new FerocityModifier();
             int modifier;
             if (int.TryParse(value.Modifier, out modifier))

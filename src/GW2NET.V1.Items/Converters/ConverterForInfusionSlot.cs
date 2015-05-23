@@ -7,15 +7,15 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.Items;
-using GW2NET.V1.Items.Json;
-
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+    using System.Collections.Generic;
+
+    using GW2NET.Common;
+    using GW2NET.Items;
+    using GW2NET.V1.Items.Json;
+
     /// <summary>Converts objects of type <see cref="InfusionSlotDataContract"/> to objects of type <see cref="InfusionSlot"/>.</summary>
     internal sealed class ConverterForInfusionSlot : IConverter<InfusionSlotDataContract, InfusionSlot>
     {
@@ -32,14 +32,22 @@ namespace GW2NET.V1.Items.Converters
         /// <param name="converterForInfusionSlotFlagCollection">The converter for <see cref="InfusionSlotFlags"/>.</param>
         public ConverterForInfusionSlot(IConverter<ICollection<string>, InfusionSlotFlags> converterForInfusionSlotFlagCollection)
         {
-            Contract.Requires(converterForInfusionSlotFlagCollection != null);
+            if (converterForInfusionSlotFlagCollection == null)
+            {
+                throw new ArgumentNullException("converterForInfusionSlotFlagCollection", "Precondition: converterForInfusionSlotFlagCollection != null");
+            }
+
             this.converterForInfusionSlotFlagCollection = converterForInfusionSlotFlagCollection;
         }
 
         /// <inheritdoc />
         public InfusionSlot Convert(InfusionSlotDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var infusionSlot = new InfusionSlot();
             int itemId;
             if (int.TryParse(value.ItemId, out itemId))
@@ -54,13 +62,6 @@ namespace GW2NET.V1.Items.Converters
             }
 
             return infusionSlot;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForInfusionSlotFlagCollection != null);
         }
     }
 }

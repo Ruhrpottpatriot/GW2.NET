@@ -7,16 +7,16 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.Common.Converters;
-using GW2NET.Items;
-using GW2NET.V1.Items.Json;
-
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+    using System.Collections.Generic;
+
+    using GW2NET.Common;
+    using GW2NET.Common.Converters;
+    using GW2NET.Items;
+    using GW2NET.V1.Items.Json;
+
     /// <summary>Converts objects of type <see cref="ItemDataContract"/> to objects of type <see cref="Weapon"/>.</summary>
     internal sealed class ConverterForWeapon : IConverter<ItemDataContract, Weapon>
     {
@@ -45,10 +45,22 @@ namespace GW2NET.V1.Items.Converters
         /// <param name="converterForInfixUpgrade">The converter for <see cref="InfixUpgrade"/>.</param>
         public ConverterForWeapon(IDictionary<string, IConverter<WeaponDataContract, Weapon>> typeConverters, IConverter<string, DamageType> converterForDamageType, IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection, IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade)
         {
-            Contract.Requires(typeConverters != null);
-            Contract.Requires(converterForDamageType != null);
-            Contract.Requires(converterForInfixUpgrade != null);
-            Contract.Requires(converterForInfusionSlotCollection != null);
+            if (typeConverters == null)
+            {
+                throw new ArgumentNullException("typeConverters", "Precondition: typeConverters != null");
+	}
+            if (converterForDamageType == null)
+            {
+                throw new ArgumentNullException("converterForDamageType", "Precondition: converterForDamageType != null");
+            }
+            if (converterForInfixUpgrade == null)
+            {
+                throw new ArgumentNullException("converterForInfixUpgrade", "Precondition: converterForInfixUpgrade != null");
+            }
+            if (converterForInfusionSlotCollection == null)
+            {
+                throw new ArgumentNullException("converterForInfusionSlotCollection", "Precondition: converterForInfusionSlotCollection != null");
+            }
             this.converterForDamageType = converterForDamageType;
             this.converterForInfixUpgrade = converterForInfixUpgrade;
             this.typeConverters = typeConverters;
@@ -58,7 +70,11 @@ namespace GW2NET.V1.Items.Converters
         /// <inheritdoc />
         public Weapon Convert(ItemDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             Weapon weapon;
             var weaponDataContract = value.Weapon;
 
@@ -160,16 +176,6 @@ namespace GW2NET.V1.Items.Converters
                 { "SmallBundle", new ConverterForSmallBundle() }, 
                 { "LargeBundle", new ConverterForLargeBundle() }, 
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.typeConverters != null);
-            Contract.Invariant(this.converterForDamageType != null);
-            Contract.Invariant(this.converterForInfixUpgrade != null);
-            Contract.Invariant(this.converterForInfusionSlotCollection != null);
         }
     }
 }

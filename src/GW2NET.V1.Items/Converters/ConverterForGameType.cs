@@ -19,6 +19,11 @@ namespace GW2NET.V1.Items.Converters
         /// <inheritdoc />
         public GameTypes Convert(string value)
         {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             GameTypes result;
             if (Enum.TryParse(value, true, out result))
             {

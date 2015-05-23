@@ -7,20 +7,25 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.Items;
-using GW2NET.V1.Items.Json;
-
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+
+    using GW2NET.Common;
+    using GW2NET.Items;
+    using GW2NET.V1.Items.Json;
+
     /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="VitalityModifier"/>.</summary>
     internal sealed class ConverterForVitalityModifier : IConverter<AttributeDataContract, VitalityModifier>
     {
         /// <inheritdoc />
         public VitalityModifier Convert(AttributeDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var attribute = new VitalityModifier();
             int modifier;
             if (int.TryParse(value.Modifier, out modifier))

@@ -7,16 +7,15 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.Items;
-using GW2NET.V1.Items.Json;
-
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+    using System.Collections.Generic;
+
+    using GW2NET.Common;
+    using GW2NET.Items;
+    using GW2NET.V1.Items.Json;
+
     /// <summary>Converts objects of type <see cref="ItemDataContract"/> to objects of type <see cref="Item"/>.</summary>
     internal sealed class ConverterForItem : IConverter<ItemDataContract, Item>
     {
@@ -49,11 +48,31 @@ namespace GW2NET.V1.Items.Converters
         /// <param name="converterForItemRestrictions">The converter for <see cref="ItemRestrictions"/>.</param>
         public ConverterForItem(IDictionary<string, IConverter<ItemDataContract, Item>> typeConverters, IConverter<string, ItemRarity> converterForItemRarity, IConverter<ICollection<string>, GameTypes> converterForGameTypes, IConverter<ICollection<string>, ItemFlags> converterForItemFlags, IConverter<ICollection<string>, ItemRestrictions> converterForItemRestrictions)
         {
-            Contract.Requires(typeConverters != null);
-            Contract.Requires(converterForItemRarity != null);
-            Contract.Requires(converterForGameTypes != null);
-            Contract.Requires(converterForItemFlags != null);
-            Contract.Requires(converterForItemRestrictions != null);
+            if (typeConverters == null)
+            {
+                throw new ArgumentNullException("typeConverters", "Precondition: typeConverters != null");
+            }
+
+            if (converterForItemRarity == null)
+            {
+                throw new ArgumentNullException("converterForItemRarity", "Precondition: converterForItemRarity != null");
+            }
+
+            if (converterForGameTypes == null)
+            {
+                throw new ArgumentNullException("converterForGameTypes", "Precondition: converterForGameTypes != null");
+            }
+
+            if (converterForItemFlags == null)
+            {
+                throw new ArgumentNullException("converterForItemFlags", "Precondition: converterForItemFlags != null");
+            }
+
+            if (converterForItemRestrictions == null)
+            {
+                throw new ArgumentNullException("converterForItemRestrictions", "Precondition: converterForItemRestrictions != null");
+            }
+
             this.typeConverters = typeConverters;
             this.converterForItemRarity = converterForItemRarity;
             this.converterForGameTypes = converterForGameTypes;
@@ -64,7 +83,11 @@ namespace GW2NET.V1.Items.Converters
         /// <inheritdoc />
         public Item Convert(ItemDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             Item item;
             IConverter<ItemDataContract, Item> converter;
             if (this.typeConverters.TryGetValue(value.Type, out converter))
@@ -156,17 +179,6 @@ namespace GW2NET.V1.Items.Converters
                 { "UpgradeComponent", new ConverterForUpgradeComponent() }, 
                 { "Weapon", new ConverterForWeapon() }
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForGameTypes != null);
-            Contract.Invariant(this.converterForItemFlags != null);
-            Contract.Invariant(this.converterForItemRarity != null);
-            Contract.Invariant(this.converterForItemRestrictions != null);
-            Contract.Invariant(this.typeConverters != null);
         }
     }
 }

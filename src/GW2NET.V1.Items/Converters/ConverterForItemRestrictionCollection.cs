@@ -7,14 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.Items;
-
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+    using System.Collections.Generic;
+
+    using GW2NET.Common;
+    using GW2NET.Items;
+
     /// <summary>Converts objects of type <see cref="T:ICollection{string}"/> to objects of type <see cref="ItemRestrictions"/>.</summary>
     internal sealed class ConverterForItemRestrictionCollection : IConverter<ICollection<string>, ItemRestrictions>
     {
@@ -31,14 +31,22 @@ namespace GW2NET.V1.Items.Converters
         /// <param name="converterForItemRestriction">The converter for <see cref="ItemRestrictions"/>.</param>
         internal ConverterForItemRestrictionCollection(IConverter<string, ItemRestrictions> converterForItemRestriction)
         {
-            Contract.Requires(converterForItemRestriction != null);
+            if (converterForItemRestriction == null)
+            {
+                throw new ArgumentNullException("converterForItemRestriction", "Precondition: converterForItemRestriction != null");
+            }
+
             this.converterForItemRestriction = converterForItemRestriction;
         }
 
         /// <inheritdoc />
         public ItemRestrictions Convert(ICollection<string> value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var result = default(ItemRestrictions);
             foreach (var s in value)
             {
@@ -46,13 +54,6 @@ namespace GW2NET.V1.Items.Converters
             }
 
             return result;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForItemRestriction != null);
         }
     }
 }

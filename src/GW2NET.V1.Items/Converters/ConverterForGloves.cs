@@ -13,12 +13,19 @@ using GW2NET.V1.Items.Json;
 
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="ArmorDataContract"/> to objects of type <see cref="Gloves"/>.</summary>
     internal sealed class ConverterForGloves : IConverter<ArmorDataContract, Gloves>
     {
         /// <inheritdoc />
         public Gloves Convert(ArmorDataContract value)
         {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new Gloves();
         }
     }

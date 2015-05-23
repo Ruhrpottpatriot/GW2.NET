@@ -8,8 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Common.Converters;
 using GW2NET.Items;
@@ -17,6 +15,8 @@ using GW2NET.V1.Items.Json;
 
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="ItemDataContract"/> to objects of type <see cref="Backpack"/>.</summary>
     internal sealed class ConverterForBackpack : IConverter<ItemDataContract, Backpack>
     {
@@ -37,8 +37,16 @@ namespace GW2NET.V1.Items.Converters
         /// <param name="converterForInfixUpgrade">The converter for <see cref="InfixUpgrade"/>.</param>
         public ConverterForBackpack(IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection, IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade)
         {
-            Contract.Requires(converterForInfusionSlotCollection != null);
-            Contract.Requires(converterForInfixUpgrade != null);
+            if (converterForInfusionSlotCollection == null)
+            {
+                throw new ArgumentNullException("converterForInfusionSlotCollection", "Precondition: converterForInfusionSlotCollection != null");
+            }
+
+            if (converterForInfixUpgrade == null)
+            {
+                throw new ArgumentNullException("converterForInfixUpgrade", "Precondition: converterForInfixUpgrade != null");
+            }
+
             this.converterForInfusionSlotCollection = converterForInfusionSlotCollection;
             this.converterForInfixUpgrade = converterForInfixUpgrade;
         }
@@ -46,7 +54,11 @@ namespace GW2NET.V1.Items.Converters
         /// <inheritdoc />
         public Backpack Convert(ItemDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var backpack = new Backpack();
             int defaultSkinId;
             if (int.TryParse(value.DefaultSkin, out defaultSkinId))
@@ -85,14 +97,6 @@ namespace GW2NET.V1.Items.Converters
             }
 
             return backpack;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForInfusionSlotCollection != null);
-            Contract.Invariant(this.converterForInfixUpgrade != null);
         }
     }
 }

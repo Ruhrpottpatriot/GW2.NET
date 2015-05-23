@@ -7,15 +7,15 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.Common.Converters;
-using GW2NET.V1.Items.Json;
-
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+    using System.Collections.Generic;
+
+    using GW2NET.Common;
+    using GW2NET.Common.Converters;
+    using GW2NET.V1.Items.Json;
+
     /// <summary>Converts objects of type <see cref="ItemCollectionDataContract"/> to objects of type <see cref="T:ICollection{int}"/>.</summary>
     internal sealed class ConverterForItemCollection : IConverter<ItemCollectionDataContract, ICollection<int>>
     {
@@ -32,14 +32,22 @@ namespace GW2NET.V1.Items.Converters
         /// <param name="converterForCollection">The converter for <see cref="T:ICollection{int}"/>.</param>
         internal ConverterForItemCollection(IConverter<ICollection<int>, ICollection<int>> converterForCollection)
         {
-            Contract.Requires(converterForCollection != null);
+            if (converterForCollection == null)
+            {
+                throw new ArgumentNullException("converterForCollection", "Precondition: converterForCollection != null");
+            }
+
             this.converterForCollection = converterForCollection;
         }
 
         /// <inheritdoc />
         public ICollection<int> Convert(ItemCollectionDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var values = value.Items;
             if (values == null)
             {
@@ -47,13 +55,6 @@ namespace GW2NET.V1.Items.Converters
             }
 
             return this.converterForCollection.Convert(values);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForCollection != null);
         }
     }
 }

@@ -7,14 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.Items;
-
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+    using System.Collections.Generic;
+
+    using GW2NET.Common;
+    using GW2NET.Items;
+
     /// <summary>Converts objects of type <see cref="T:ICollection{string}"/> to objects of type <see cref="UpgradeComponentFlags"/>.</summary>
     internal sealed class ConverterForUpgradeComponentFlagCollection : IConverter<ICollection<string>, UpgradeComponentFlags>
     {
@@ -31,14 +31,22 @@ namespace GW2NET.V1.Items.Converters
         /// <param name="converterForUpgradeComponentFlag">The converter for <see cref="UpgradeComponentFlags"/>.</param>
         public ConverterForUpgradeComponentFlagCollection(IConverter<string, UpgradeComponentFlags> converterForUpgradeComponentFlag)
         {
-            Contract.Requires(converterForUpgradeComponentFlag != null);
+            if (converterForUpgradeComponentFlag == null)
+            {
+                throw new ArgumentNullException("converterForUpgradeComponentFlag", "Precondition: converterForUpgradeComponentFlag != null");
+            }
+
             this.converterForUpgradeComponentFlag = converterForUpgradeComponentFlag;
         }
 
         /// <inheritdoc />
         public UpgradeComponentFlags Convert(ICollection<string> value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var result = default(UpgradeComponentFlags);
             foreach (var s in value)
             {
@@ -46,13 +54,6 @@ namespace GW2NET.V1.Items.Converters
             }
 
             return result;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForUpgradeComponentFlag != null);
         }
     }
 }

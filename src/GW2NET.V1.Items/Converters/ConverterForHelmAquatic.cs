@@ -13,12 +13,19 @@ using GW2NET.V1.Items.Json;
 
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="ArmorDataContract"/> to objects of type <see cref="HelmAquatic"/>.</summary>
     internal sealed class ConverterForHelmAquatic : IConverter<ArmorDataContract, HelmAquatic>
     {
         /// <inheritdoc />
         public HelmAquatic Convert(ArmorDataContract value)
         {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new HelmAquatic();
         }
     }

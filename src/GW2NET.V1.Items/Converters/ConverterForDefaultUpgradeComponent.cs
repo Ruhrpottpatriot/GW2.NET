@@ -7,20 +7,25 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Items;
 using GW2NET.V1.Items.Json;
 
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="UpgradeComponentDataContract"/> to objects of type <see cref="DefaultUpgradeComponent"/>.</summary>
     internal sealed class ConverterForDefaultUpgradeComponent : IConverter<UpgradeComponentDataContract, DefaultUpgradeComponent>
     {
         /// <inheritdoc />
         public DefaultUpgradeComponent Convert(UpgradeComponentDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new DefaultUpgradeComponent();
         }
     }

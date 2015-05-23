@@ -7,20 +7,25 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Items;
 using GW2NET.V1.Items.Json;
 
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="ConsumableDataContract"/> to objects of type <see cref="DyeUnlocker"/>.</summary>
     internal sealed class ConverterForDyeUnlocker : IConverter<ConsumableDataContract, DyeUnlocker>
     {
         /// <inheritdoc />
         public DyeUnlocker Convert(ConsumableDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var dyeUnlocker = new DyeUnlocker();
             int colorId;
             if (int.TryParse(value.ColorId, out colorId))

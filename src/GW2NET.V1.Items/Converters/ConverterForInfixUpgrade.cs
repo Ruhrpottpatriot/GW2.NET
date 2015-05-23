@@ -7,16 +7,16 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.Common.Converters;
-using GW2NET.Items;
-using GW2NET.V1.Items.Json;
-
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+    using System.Collections.Generic;
+
+    using GW2NET.Common;
+    using GW2NET.Common.Converters;
+    using GW2NET.Items;
+    using GW2NET.V1.Items.Json;
+
     /// <summary>Converts objects of type <see cref="InfixUpgradeDataContract"/> to objects of type <see cref="InfixUpgrade"/>.</summary>
     internal sealed class ConverterForInfixUpgrade : IConverter<InfixUpgradeDataContract, InfixUpgrade>
     {
@@ -37,8 +37,16 @@ namespace GW2NET.V1.Items.Converters
         /// <param name="converterForCombatBuff">The converter for <see cref="CombatBuff"/>.</param>
         public ConverterForInfixUpgrade(IConverter<ICollection<AttributeDataContract>, ICollection<CombatAttribute>> converterForCombatAttributeCollection, IConverter<CombatBuffDataContract, CombatBuff> converterForCombatBuff)
         {
-            Contract.Requires(converterForCombatAttributeCollection != null);
-            Contract.Requires(converterForCombatBuff != null);
+            if (converterForCombatAttributeCollection == null)
+            {
+                throw new ArgumentNullException("converterForCombatAttributeCollection", "Precondition: converterForCombatAttributeCollection != null");
+            }
+
+            if (converterForCombatBuff == null)
+            {
+                throw new ArgumentNullException("converterForCombatBuff", "Precondition: converterForCombatBuff != null");
+            }
+
             this.converterForCombatAttributeCollection = converterForCombatAttributeCollection;
             this.converterForCombatBuff = converterForCombatBuff;
         }
@@ -46,7 +54,11 @@ namespace GW2NET.V1.Items.Converters
         /// <inheritdoc />
         public InfixUpgrade Convert(InfixUpgradeDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var infixUpgrade = new InfixUpgrade();
             var buffDataContract = value.Buff;
             if (buffDataContract != null)
@@ -61,14 +73,6 @@ namespace GW2NET.V1.Items.Converters
             }
 
             return infixUpgrade;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForCombatBuff != null);
-            Contract.Invariant(this.converterForCombatAttributeCollection != null);
         }
     }
 }

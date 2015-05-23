@@ -7,20 +7,25 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.Items;
-using GW2NET.V1.Items.Json;
-
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+
+    using GW2NET.Common;
+    using GW2NET.Items;
+    using GW2NET.V1.Items.Json;
+
     /// <summary>Converts objects of type <see cref="ToolDataContract"/> to objects of type <see cref="Tool"/>.</summary>
     internal sealed class ConverterForSalvageTool : IConverter<ToolDataContract, Tool>
     {
         /// <inheritdoc />
         public Tool Convert(ToolDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var salvageTool = new SalvageTool();
             int charges;
             if (int.TryParse(value.Charges, out charges))

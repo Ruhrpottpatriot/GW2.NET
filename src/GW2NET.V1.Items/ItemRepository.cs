@@ -7,21 +7,19 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.V1.Items.Converters;
-using GW2NET.V1.Items.Json;
-
 namespace GW2NET.V1.Items
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
     using GW2NET.Common;
     using GW2NET.Items;
+    using GW2NET.V1.Items.Converters;
+    using GW2NET.V1.Items.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/items.json and /v1/item_details.json interfaces. See the remarks section for important limitations regarding this implementation.</summary>
     /// <remarks>
@@ -66,7 +64,6 @@ namespace GW2NET.V1.Items
         public ItemRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterForItemCollection(), new ConverterForItem())
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="ItemRepository"/> class.</summary>
@@ -75,9 +72,21 @@ namespace GW2NET.V1.Items
         /// <param name="converterForItem">The converter for <see cref="Item"/>.</param>
         internal ItemRepository(IServiceClient serviceClient, IConverter<ItemCollectionDataContract, ICollection<int>> converterForItemCollection, IConverter<ItemDataContract, Item> converterForItem)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(converterForItemCollection != null);
-            Contract.Requires(converterForItem != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForItemCollection == null)
+            {
+                throw new ArgumentNullException("converterForItemCollection", "Precondition: converterForItemCollection != null");
+            }
+
+            if (converterForItem == null)
+            {
+                throw new ArgumentNullException("converterForItem", "Precondition: converterForItem != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForItemCollection = converterForItemCollection;
             this.converterForItem = converterForItem;
@@ -255,15 +264,6 @@ namespace GW2NET.V1.Items
             }
 
             return this.converterForItem.Convert(response.Content);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForItemCollection != null);
-            Contract.Invariant(this.converterForItem != null);
         }
     }
 }

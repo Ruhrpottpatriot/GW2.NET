@@ -7,20 +7,25 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Items;
 using GW2NET.V1.Items.Json;
 
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="ItemDataContract"/> to objects of type <see cref="Bag"/>.</summary>
     internal sealed class ConverterForBag : IConverter<ItemDataContract, Bag>
     {
         /// <inheritdoc />
         public Bag Convert(ItemDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var bagDataContract = value.Bag;
             if (bagDataContract == null)
             {

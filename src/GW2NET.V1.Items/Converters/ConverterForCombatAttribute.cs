@@ -8,14 +8,14 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Items;
 using GW2NET.V1.Items.Json;
 
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="CombatAttribute"/>.</summary>
     internal sealed class ConverterForCombatAttribute : IConverter<AttributeDataContract, CombatAttribute>
     {
@@ -32,14 +32,22 @@ namespace GW2NET.V1.Items.Converters
         /// <param name="typeConverters">The type converters.</param>
         public ConverterForCombatAttribute(IDictionary<string, IConverter<AttributeDataContract, CombatAttribute>> typeConverters)
         {
-            Contract.Requires(typeConverters != null);
+            if (typeConverters == null)
+            {
+                throw new ArgumentNullException("typeConverters", "Precondition: typeConverters != null");
+            }
+
             this.typeConverters = typeConverters;
         }
 
         /// <inheritdoc />
         public CombatAttribute Convert(AttributeDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             IConverter<AttributeDataContract, CombatAttribute> converter;
             if (this.typeConverters.TryGetValue(value.Attribute, out converter))
             {
@@ -63,13 +71,6 @@ namespace GW2NET.V1.Items.Converters
                 { "Toughness", new ConverterForToughnessModifier() }, 
                 { "Vitality", new ConverterForVitalityModifier() }
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.typeConverters != null);
         }
     }
 }

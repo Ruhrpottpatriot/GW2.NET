@@ -7,15 +7,15 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.Items;
-using GW2NET.V1.Items.Json;
-
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+    using System.Collections.Generic;
+
+    using GW2NET.Common;
+    using GW2NET.Items;
+    using GW2NET.V1.Items.Json;
+
     /// <summary>Converts objects of type <see cref="ItemDataContract"/> to objects of type <see cref="GatheringTool"/>.</summary>
     internal sealed class ConverterForGatheringTool : IConverter<ItemDataContract, GatheringTool>
     {
@@ -32,14 +32,22 @@ namespace GW2NET.V1.Items.Converters
         /// <param name="typeConverters">The type converters.</param>
         internal ConverterForGatheringTool(IDictionary<string, IConverter<GatheringToolDataContract, GatheringTool>> typeConverters)
         {
-            Contract.Requires(typeConverters != null);
+            if (typeConverters == null)
+            {
+                throw new ArgumentNullException("typeConverters", "Precondition: typeConverters != null");
+            }
+
             this.typeConverters = typeConverters;
         }
 
         /// <inheritdoc />
         public GatheringTool Convert(ItemDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             GatheringTool gatheringTool;
             var gatheringToolDataContract = value.GatheringTool;
 
@@ -72,13 +80,6 @@ namespace GW2NET.V1.Items.Converters
                 { "Logging", new ConverterForLoggingTool() }, 
                 { "Mining", new ConverterForMiningTool() }, 
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.typeConverters != null);
         }
     }
 }

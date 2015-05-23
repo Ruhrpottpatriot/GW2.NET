@@ -19,6 +19,11 @@ namespace GW2NET.V1.Items.Converters
         /// <inheritdoc />
         public InfusionSlotFlags Convert(string value)
         {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             InfusionSlotFlags result;
             if (Enum.TryParse(value, true, out result))
             {

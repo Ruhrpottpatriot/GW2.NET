@@ -7,20 +7,25 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Items;
 using GW2NET.V1.Items.Json;
 
 namespace GW2NET.V1.Items.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="WeaponDataContract"/> to objects of type <see cref="Focus"/>.</summary>
     internal sealed class ConverterForFocus : IConverter<WeaponDataContract, Focus>
     {
         /// <inheritdoc />
         public Focus Convert(WeaponDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new Focus();
         }
     }
