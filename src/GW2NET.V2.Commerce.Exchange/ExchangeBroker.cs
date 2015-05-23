@@ -8,9 +8,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce.Exchange
 {
+    using System;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -35,7 +35,6 @@ namespace GW2NET.V2.Commerce.Exchange
         public ExchangeBroker(IServiceClient serviceClient, string identifier)
             : this(serviceClient, identifier, new ConverterForGemQuotation())
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="ExchangeBroker"/> class.</summary>
@@ -44,8 +43,16 @@ namespace GW2NET.V2.Commerce.Exchange
         /// <param name="converterForGemQuotation">The converter <see cref="GemQuotation"/>.</param>
         internal ExchangeBroker(IServiceClient serviceClient, string identifier, IConverter<GemQuotationDataContract, GemQuotation> converterForGemQuotation)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(converterForGemQuotation != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForGemQuotation == null)
+            {
+                throw new ArgumentNullException("converterForGemQuotation", "Precondition: converterForGemQuotation != null");
+            }
+
             this.serviceClient = serviceClient;
             this.identifier = identifier;
             this.converterForResponse = new ConverterForResponse<GemQuotationDataContract, GemQuotation>(converterForGemQuotation);
@@ -56,7 +63,7 @@ namespace GW2NET.V2.Commerce.Exchange
         {
             var request = new ExchangeDetailsRequest()
             {
-                Identifier = this.identifier, 
+                Identifier = this.identifier,
                 Quantity = quantity
             };
             var response = this.serviceClient.Send<GemQuotationDataContract>(request);
@@ -83,7 +90,7 @@ namespace GW2NET.V2.Commerce.Exchange
         {
             var request = new ExchangeDetailsRequest
             {
-                Identifier = this.identifier, 
+                Identifier = this.identifier,
                 Quantity = quantity
             };
             var responseTask = this.serviceClient.SendAsync<GemQuotationDataContract>(request, cancellationToken);

@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce.Exchange
 {
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Commerce;
     using GW2NET.Common;
@@ -16,15 +16,17 @@ namespace GW2NET.V2.Commerce.Exchange
     /// <summary>Converts objects of type <see cref="GemQuotationDataContract"/> to objects of type <see cref="GemQuotation"/>.</summary>
     internal sealed class ConverterForGemQuotation : IConverter<GemQuotationDataContract, GemQuotation>
     {
-        /// <summary>Converts the given object of type <see cref="GemQuotationDataContract"/> to an object of type <see cref="GemQuotation"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public GemQuotation Convert(GemQuotationDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new GemQuotation
             {
-                CoinsPerGem = value.CoinsPerGem, 
+                CoinsPerGem = value.CoinsPerGem,
                 Receive = value.Quantity
             };
         }

@@ -8,8 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce.Exchange
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Commerce;
     using GW2NET.Common;
@@ -24,7 +23,11 @@ namespace GW2NET.V2.Commerce.Exchange
         /// <param name="serviceClient">The service client.</param>
         public ExchangeBrokerFactory(IServiceClient serviceClient)
         {
-            Contract.Requires(serviceClient != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+}
+
             this.serviceClient = serviceClient;
         }
 
@@ -35,7 +38,11 @@ namespace GW2NET.V2.Commerce.Exchange
         {
             get
             {
-                Contract.Requires(identifier != null);
+                if (identifier == null)
+                {
+                    throw new ArgumentNullException("identifier", "Precondition: identifier != null");
+                }
+
                 return this.ForCurrency(identifier);
             }
         }
@@ -45,16 +52,12 @@ namespace GW2NET.V2.Commerce.Exchange
         /// <returns>A broker.</returns>
         public IExchangeBroker ForCurrency(string identifier)
         {
-            Contract.Requires(identifier != null);
+            if (identifier == null)
+            {
+                throw new ArgumentNullException("identifier", "Precondition: identifier != null");
+            }
+
             return new ExchangeBroker(this.serviceClient, identifier);
-        }
-        
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when COdeCOntracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
         }
     }
 }
