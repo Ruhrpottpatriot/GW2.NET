@@ -112,18 +112,5 @@ namespace GW2NET.MumbleLink
 
             this.innerContext = context;
         }
-
-        /// <summary>Returns a string that represents the current object.</summary>
-        /// <returns>A string that represents the current object.</returns>
-        public override string ToString()
-        {
-            var serverAddress = this.ServerAddress;
-            if (serverAddress == null)
-            {
-                return base.ToString();
-            }
-
-            return serverAddress.ToString();
-        }
     }
 }
