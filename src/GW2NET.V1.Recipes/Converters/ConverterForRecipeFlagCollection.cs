@@ -8,13 +8,14 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
+
 using GW2NET.Common;
 using GW2NET.Recipes;
 
 namespace GW2NET.V1.Recipes.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="T:ICollection{string}"/> to objects of type <see cref="RecipeFlags"/>.</summary>
     internal sealed class ConverterForRecipeFlagCollection : IConverter<ICollection<string>, RecipeFlags>
     {
@@ -39,7 +40,11 @@ namespace GW2NET.V1.Recipes.Converters
         /// <returns>The converted value.</returns>
         public RecipeFlags Convert(ICollection<string> value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             RecipeFlags result = default(RecipeFlags);
             foreach (var s in value)
             {
@@ -47,13 +52,6 @@ namespace GW2NET.V1.Recipes.Converters
             }
 
             return result;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForRecipeFlag != null);
         }
     }
 }

@@ -9,8 +9,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
+
 using GW2NET.Common;
 using GW2NET.Common.Converters;
 using GW2NET.Items;
@@ -47,9 +46,21 @@ namespace GW2NET.V1.Recipes.Converters
         /// <param name="converterForItemStackCollection">The converter for <see cref="T:ICollection{ItemStack}"/>.</param>
         public ConverterForRecipe(IDictionary<string, IConverter<RecipeDataContract, Recipe>> typeConverters, IConverter<ICollection<string>, CraftingDisciplines> converterForCraftingDisciplineCollection, IConverter<ICollection<string>, RecipeFlags> converterForRecipeFlagCollection, IConverter<ICollection<IngredientDataContract>, ICollection<ItemStack>> converterForItemStackCollection)
         {
-            Contract.Requires(converterForCraftingDisciplineCollection != null);
-            Contract.Requires(converterForRecipeFlagCollection != null);
-            Contract.Requires(converterForItemStackCollection != null);
+            if (converterForCraftingDisciplineCollection == null)
+            {
+                throw new ArgumentNullException("converterForCraftingDisciplineCollection", "Precondition: converterForCraftingDisciplineCollection != null");
+            }
+
+            if (converterForRecipeFlagCollection == null)
+            {
+                throw new ArgumentNullException("converterForRecipeFlagCollection", "Precondition: converterForRecipeFlagCollection != null");
+            }
+
+            if (converterForItemStackCollection == null)
+            {
+                throw new ArgumentNullException("converterForItemStackCollection", "Precondition: converterForItemStackCollection != null");
+            }
+
             this.converterForCraftingDisciplineCollection = converterForCraftingDisciplineCollection;
             this.converterForRecipeFlagCollection = converterForRecipeFlagCollection;
             this.converterForItemStackCollection = converterForItemStackCollection;
@@ -61,7 +72,11 @@ namespace GW2NET.V1.Recipes.Converters
         /// <returns>The converted value.</returns>
         public Recipe Convert(RecipeDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             Recipe recipe;
             IConverter<RecipeDataContract, Recipe> converter;
             if (this.typeConverters.TryGetValue(value.Type, out converter))
@@ -179,16 +194,6 @@ namespace GW2NET.V1.Recipes.Converters
                 { "UpgradeComponent", new ConverterForObject<UpgradeComponentRecipe>() }, 
                 { "Warhorn", new ConverterForObject<WarHornRecipe>() }, 
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.typeConverters != null);
-            Contract.Invariant(this.converterForCraftingDisciplineCollection != null);
-            Contract.Invariant(this.converterForRecipeFlagCollection != null);
-            Contract.Invariant(this.converterForItemStackCollection != null);
         }
     }
 }

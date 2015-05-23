@@ -15,7 +15,6 @@ namespace GW2NET.V1.Recipes
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -40,7 +39,6 @@ namespace GW2NET.V1.Recipes
         public RecipeRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterForRecipeCollection(), new ConverterForRecipe())
         {
-            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="RecipeRepository"/> class.</summary>
@@ -49,9 +47,21 @@ namespace GW2NET.V1.Recipes
         /// <param name="converterForRecipe">The converter for <see cref="Recipe"/>.</param>
         internal RecipeRepository(IServiceClient serviceClient, IConverter<RecipeCollectionDataContract, ICollection<int>> converterForRecipeCollection, IConverter<RecipeDataContract, Recipe> converterForRecipe)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(converterForRecipeCollection != null);
-            Contract.Requires(converterForRecipe != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForRecipeCollection == null)
+            {
+                throw new ArgumentNullException("converterForRecipeCollection", "Precondition: converterForRecipeCollection != null");
+            }
+
+            if (converterForRecipe == null)
+            {
+                throw new ArgumentNullException("converterForRecipe", "Precondition: converterForRecipe != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForRecipeCollection = converterForRecipeCollection;
             this.converterForRecipe = converterForRecipe;
@@ -265,15 +275,6 @@ namespace GW2NET.V1.Recipes
             }
 
             return this.converterForRecipe.Convert(response.Content);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForRecipeCollection != null);
-            Contract.Invariant(this.converterForRecipe != null);
         }
     }
 }

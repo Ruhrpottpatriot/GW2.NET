@@ -7,13 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.Items;
-using GW2NET.V1.Recipes.Json;
-
 namespace GW2NET.V1.Recipes.Converters
 {
+    using System;
+
+    using GW2NET.Common;
+    using GW2NET.Items;
+    using GW2NET.V1.Recipes.Json;
+
     /// <summary>Converts objects of type <see cref="IngredientDataContract"/> to objects of type <see cref="ItemStack"/>.</summary>
     internal sealed class ConverterForItemStack : IConverter<IngredientDataContract, ItemStack>
     {
@@ -22,7 +23,11 @@ namespace GW2NET.V1.Recipes.Converters
         /// <returns>The converted value.</returns>
         public ItemStack Convert(IngredientDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var itemStack = new ItemStack();
             int itemId;
             if (int.TryParse(value.ItemId, out itemId))

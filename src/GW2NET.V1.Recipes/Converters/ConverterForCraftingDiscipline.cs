@@ -7,13 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.Recipes;
-
 namespace GW2NET.V1.Recipes.Converters
 {
+    using System;
+
+    using GW2NET.Common;
+    using GW2NET.Recipes;
+
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="CraftingDisciplines"/>.</summary>
     internal sealed class ConverterForCraftingDiscipline : IConverter<string, CraftingDisciplines>
     {
@@ -22,7 +22,11 @@ namespace GW2NET.V1.Recipes.Converters
         /// <returns>The converted value.</returns>
         public CraftingDisciplines Convert(string value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             CraftingDisciplines result;
             if (Enum.TryParse(value, true, out result))
             {

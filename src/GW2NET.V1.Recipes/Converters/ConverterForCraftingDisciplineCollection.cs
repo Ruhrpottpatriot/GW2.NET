@@ -8,13 +8,14 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
+
 using GW2NET.Common;
 using GW2NET.Recipes;
 
 namespace GW2NET.V1.Recipes.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="T:ICollection{string}"/> to objects of type <see cref="CraftingDisciplines"/>.</summary>
     internal sealed class ConverterForCraftingDisciplineCollection : IConverter<ICollection<string>, CraftingDisciplines>
     {
@@ -31,7 +32,11 @@ namespace GW2NET.V1.Recipes.Converters
         /// <param name="converterForCraftingDiscipline">The converter for <see cref="CraftingDisciplines"/></param>
         internal ConverterForCraftingDisciplineCollection(IConverter<string, CraftingDisciplines> converterForCraftingDiscipline)
         {
-            Contract.Requires(converterForCraftingDiscipline != null);
+            if (converterForCraftingDiscipline == null)
+            {
+                throw new ArgumentNullException("converterForCraftingDiscipline", "Precondition: converterForCraftingDiscipline != null");
+            }
+
             this.converterForCraftingDiscipline = converterForCraftingDiscipline;
         }
 
@@ -40,7 +45,11 @@ namespace GW2NET.V1.Recipes.Converters
         /// <returns>The converted value.</returns>
         public CraftingDisciplines Convert(ICollection<string> value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             CraftingDisciplines result = default(CraftingDisciplines);
             foreach (var s in value)
             {
@@ -48,13 +57,6 @@ namespace GW2NET.V1.Recipes.Converters
             }
 
             return result;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForCraftingDiscipline != null);
         }
     }
 }
