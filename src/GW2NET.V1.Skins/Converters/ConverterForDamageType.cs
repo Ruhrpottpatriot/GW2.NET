@@ -21,6 +21,11 @@ namespace GW2NET.V1.Skins.Converters
         /// <returns>The converted value.</returns>
         public DamageType Convert(string value)
         {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             DamageType result;
             if (Enum.TryParse(value, true, out result))
             {

@@ -7,13 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.Skins;
-using GW2NET.V1.Skins.Json;
-
 namespace GW2NET.V1.Skins.Converters
 {
+    using System;
+
+    using GW2NET.Common;
+    using GW2NET.Skins;
+    using GW2NET.V1.Skins.Json;
+
     /// <summary>Converts objects of type <see cref="SkinDataContract"/> to objects of type <see cref="BackpackSkin"/>.</summary>
     internal sealed class ConverterForBackpackSkin : IConverter<SkinDataContract, BackpackSkin>
     {
@@ -22,7 +23,11 @@ namespace GW2NET.V1.Skins.Converters
         /// <returns>The converted value.</returns>
         public BackpackSkin Convert(SkinDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new BackpackSkin();
         }
     }

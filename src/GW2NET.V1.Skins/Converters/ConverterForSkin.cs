@@ -9,8 +9,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
+
 using GW2NET.Common;
 using GW2NET.Items;
 using GW2NET.Skins;
@@ -42,9 +41,21 @@ namespace GW2NET.V1.Skins.Converters
         /// <param name="converterForSkinFlags">The converter for <see cref="SkinFlags"/>.</param>
         public ConverterForSkin(IDictionary<string, IConverter<SkinDataContract, Skin>> typeConverters, IConverter<ICollection<string>, ItemRestrictions> converterForItemRestrictions, IConverter<ICollection<string>, SkinFlags> converterForSkinFlags)
         {
-            Contract.Requires(typeConverters != null);
-            Contract.Requires(converterForItemRestrictions != null);
-            Contract.Requires(converterForSkinFlags != null);
+            if (typeConverters == null)
+            {
+                throw new ArgumentNullException("typeConverters", "Precondition: typeConverters != null");
+            }
+
+            if (converterForItemRestrictions == null)
+            {
+                throw new ArgumentNullException("converterForItemRestrictions", "Precondition: converterForItemRestrictions != null");
+            }
+
+            if (converterForSkinFlags == null)
+            {
+                throw new ArgumentNullException("converterForSkinFlags", "Precondition: converterForSkinFlags != null");
+            }
+
             this.converterForItemRestrictions = converterForItemRestrictions;
             this.converterForSkinFlags = converterForSkinFlags;
             this.typeConverters = typeConverters;
@@ -55,7 +66,11 @@ namespace GW2NET.V1.Skins.Converters
         /// <returns>The converted value.</returns>
         public Skin Convert(SkinDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             Skin skin;
             IConverter<SkinDataContract, Skin> converter;
             if (this.typeConverters.TryGetValue(value.Type, out converter))
@@ -108,15 +123,6 @@ namespace GW2NET.V1.Skins.Converters
                 { "Back", new ConverterForBackpackSkin() }, 
                 { "Weapon", new ConverterForWeaponSkin() }
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForItemRestrictions != null);
-            Contract.Invariant(this.converterForSkinFlags != null);
-            Contract.Invariant(this.typeConverters != null);
         }
     }
 }

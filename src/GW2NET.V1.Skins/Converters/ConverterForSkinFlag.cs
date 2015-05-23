@@ -7,13 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Diagnostics.Contracts;
-using GW2NET.Common;
-using GW2NET.Skins;
-
 namespace GW2NET.V1.Skins.Converters
 {
+    using System;
+
+    using GW2NET.Common;
+    using GW2NET.Skins;
+
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="SkinFlags"/>.</summary>
     internal sealed class ConverterForSkinFlag : IConverter<string, SkinFlags>
     {
@@ -22,7 +22,11 @@ namespace GW2NET.V1.Skins.Converters
         /// <returns>The converted value.</returns>
         public SkinFlags Convert(string value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             SkinFlags result;
             if (Enum.TryParse(value, true, out result))
             {

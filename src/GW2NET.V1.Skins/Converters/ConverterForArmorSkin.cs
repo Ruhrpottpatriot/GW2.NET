@@ -8,8 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
+
 using GW2NET.Common;
 using GW2NET.Common.Converters;
 using GW2NET.Items;
@@ -18,6 +17,8 @@ using GW2NET.V1.Skins.Json;
 
 namespace GW2NET.V1.Skins.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="SkinDataContract"/> to objects of type <see cref="ArmorSkin"/>.</summary>
     internal sealed class ConverterForArmorSkin : IConverter<SkinDataContract, ArmorSkin>
     {
@@ -38,8 +39,16 @@ namespace GW2NET.V1.Skins.Converters
         /// <param name="converterForWeightClass">The converter for <see cref="WeightClass"/>.</param>
         public ConverterForArmorSkin(IDictionary<string, IConverter<ArmorSkinDataContract, ArmorSkin>> typeConverters, IConverter<string, WeightClass> converterForWeightClass)
         {
-            Contract.Requires(typeConverters != null);
-            Contract.Requires(converterForWeightClass != null);
+            if (typeConverters == null)
+            {
+                throw new ArgumentNullException("typeConverters", "Precondition: typeConverters != null");
+            }
+
+            if (converterForWeightClass == null)
+            {
+                throw new ArgumentNullException("converterForWeightClass", "Precondition: converterForWeightClass != null");
+            }
+
             this.converterForWeightClass = converterForWeightClass;
             this.typeConverters = typeConverters;
         }
@@ -49,7 +58,11 @@ namespace GW2NET.V1.Skins.Converters
         /// <returns>The converted value.</returns>
         public ArmorSkin Convert(SkinDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             ArmorSkin armorSkin;
             var armorSkinDataContract = value.Armor;
             IConverter<ArmorSkinDataContract, ArmorSkin> converter;
@@ -90,14 +103,6 @@ namespace GW2NET.V1.Skins.Converters
                 { "Leggings", new ConverterForObject<LeggingsSkin>() }, 
                 { "HelmAquatic", new ConverterForObject<HelmAquaticSkin>() }, 
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.typeConverters != null);
-            Contract.Invariant(this.converterForWeightClass != null);
         }
     }
 }

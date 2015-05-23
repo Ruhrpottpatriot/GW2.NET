@@ -8,8 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
+
 using GW2NET.Common;
 using GW2NET.Common.Converters;
 using GW2NET.Items;
@@ -18,6 +17,8 @@ using GW2NET.V1.Skins.Json;
 
 namespace GW2NET.V1.Skins.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="SkinDataContract"/> to objects of type <see cref="WeaponSkin"/>.</summary>
     internal sealed class ConverterForWeaponSkin : IConverter<SkinDataContract, WeaponSkin>
     {
@@ -38,8 +39,16 @@ namespace GW2NET.V1.Skins.Converters
         /// <param name="converterForDamageType">The converter for <see cref="DamageType"/>.</param>
         public ConverterForWeaponSkin(IDictionary<string, IConverter<WeaponSkinDataContract, WeaponSkin>> typeConverters, IConverter<string, DamageType> converterForDamageType)
         {
-            Contract.Requires(typeConverters != null);
-            Contract.Requires(converterForDamageType != null);
+            if (typeConverters == null)
+            {
+                throw new ArgumentNullException("typeConverters", "Precondition: typeConverters != null");
+            }
+
+            if (converterForDamageType == null)
+            {
+                throw new ArgumentNullException("converterForDamageType", "Precondition: converterForDamageType != null");
+            }
+
             this.typeConverters = typeConverters;
             this.converterForDamageType = converterForDamageType;
         }
@@ -49,7 +58,11 @@ namespace GW2NET.V1.Skins.Converters
         /// <returns>The converted value.</returns>
         public WeaponSkin Convert(SkinDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             WeaponSkin weaponSkin;
             var weaponSkinDataContract = value.Weapon;
             IConverter<WeaponSkinDataContract, WeaponSkin> converter;
@@ -106,14 +119,6 @@ namespace GW2NET.V1.Skins.Converters
                 { "SmallBundle", new ConverterForObject<SmallBundleSkin>() }, 
                 { "LargeBundle", new ConverterForObject<LargeBundleSkin>() }
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.typeConverters != null);
-            Contract.Invariant(this.converterForDamageType != null);
         }
     }
 }

@@ -16,7 +16,6 @@ namespace GW2NET.V1.Skins
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -49,9 +48,21 @@ namespace GW2NET.V1.Skins
         /// <param name="converterForSkinCollection">The converter for <see cref="T:ICollection{int}"/>.</param>
         internal SkinRepository(IServiceClient serviceClient, IConverter<SkinDataContract, Skin> converterForSkin, IConverter<SkinCollectionDataContract, ICollection<int>> converterForSkinCollection)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(converterForSkin != null);
-            Contract.Requires(converterForSkinCollection != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForSkin == null)
+            {
+                throw new ArgumentNullException("converterForSkin", "Precondition: converterForSkin != null");
+            }
+
+            if (converterForSkinCollection == null)
+            {
+                throw new ArgumentNullException("converterForSkinCollection", "Precondition: converterForSkinCollection != null");
+            }
+
             this.converterForSkin = converterForSkin;
             this.converterForSkinCollection = converterForSkinCollection;
             this.serviceClient = serviceClient;
@@ -217,15 +228,6 @@ namespace GW2NET.V1.Skins
             }
 
             return this.converterForSkinCollection.Convert(response.Content);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForSkin != null);
-            Contract.Invariant(this.converterForSkinCollection != null);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]

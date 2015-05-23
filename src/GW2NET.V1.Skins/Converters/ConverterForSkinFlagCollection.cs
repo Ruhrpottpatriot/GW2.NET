@@ -8,13 +8,14 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
+
 using GW2NET.Common;
 using GW2NET.Skins;
 
 namespace GW2NET.V1.Skins.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="T:ICollection{string}"/> to objects of type <see cref="SkinFlags"/>.</summary>
     internal sealed class ConverterForSkinFlagCollection : IConverter<ICollection<string>, SkinFlags>
     {
@@ -31,7 +32,11 @@ namespace GW2NET.V1.Skins.Converters
         /// <param name="converterForSkinFlags">The converter for <see cref="SkinFlags"/>.</param>
         internal ConverterForSkinFlagCollection(IConverter<string, SkinFlags> converterForSkinFlags)
         {
-            Contract.Requires(converterForSkinFlags != null);
+            if (converterForSkinFlags == null)
+            {
+                throw new ArgumentNullException("converterForSkinFlags", "Precondition: converterForSkinFlags != null");
+            }
+
             this.converterForSkinFlags = converterForSkinFlags;
         }
 
@@ -40,7 +45,11 @@ namespace GW2NET.V1.Skins.Converters
         /// <returns>The converted value.</returns>
         public SkinFlags Convert(ICollection<string> value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var result = default(SkinFlags);
             foreach (var s in value)
             {
@@ -48,13 +57,6 @@ namespace GW2NET.V1.Skins.Converters
             }
 
             return result;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForSkinFlags != null);
         }
     }
 }
