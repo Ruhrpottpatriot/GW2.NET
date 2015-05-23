@@ -9,16 +9,11 @@
 namespace GW2NET.MumbleLink
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.IO;
     using System.IO.MemoryMappedFiles;
-    using System.Net;
     using System.Runtime.InteropServices;
-    using System.Runtime.Serialization.Json;
-    using System.Text;
 
     using GW2NET.Common;
-    using GW2NET.Common.Drawing;
+    using GW2NET.MumbleLink.Interop;
 
     /// <summary>Provides an implementation of the Mumble Link protocol.</summary>
     /// <example>
@@ -30,10 +25,12 @@ namespace GW2NET.MumbleLink
     /// }
     /// </code>
     /// </example>
-    public partial class MumbleLinkFile : IDisposable
+    public class MumbleLinkFile : IDisposable
     {
         /// <summary>Holds a reference to the shared memory block.</summary>
-        private readonly MemoryMappedFile mumbleLink;
+        private readonly MemoryMappedFile memoryMappedFile;
+
+        private static readonly Lazy<long> LazyPreferredCapacity = new Lazy<long>(GetPreferredCapacity); 
 
         /// <summary>The size of the shared memory block.</summary>
         private readonly int size;
@@ -41,11 +38,45 @@ namespace GW2NET.MumbleLink
         /// <summary>Indicates whether this object is disposed.</summary>
         private bool disposed;
 
-        /// <summary>Initializes a new instance of the <see cref="MumbleLinkFile"/> class.</summary>
+        private readonly IConverter<AvatarDataContract, Avatar> avatarConverter;
+
+        public const string MapName = "MumbleLink";
+
         public MumbleLinkFile()
+            : this(MemoryMappedFile.CreateOrOpen(MapName, PreferredCapacity), new AvatarConverter(new AvatarContextConverter(new IPEndPointConverter()), new IdentityConverter(), new Vector3DConverter()))
         {
-            this.size = Marshal.SizeOf(typeof(AvatarDataContract));
-            this.mumbleLink = MemoryMappedFile.CreateOrOpen("MumbleLink", this.size, MemoryMappedFileAccess.ReadWrite);
+        }
+
+        public MumbleLinkFile(MemoryMappedFile memoryMappedFile, IConverter<AvatarDataContract, Avatar> avatarConverter)
+        {
+            if (memoryMappedFile == null)
+            {
+                throw new ArgumentNullException("memoryMappedFile");
+            }
+
+            if (avatarConverter == null)
+            {
+                throw new ArgumentNullException("avatarConverter");
+            }
+
+            this.memoryMappedFile = memoryMappedFile;
+            this.avatarConverter = avatarConverter;
+        }
+
+        /// <summary>
+        /// Gets the preferred size for the memory mapped file.
+        /// </summary>
+        public static long PreferredCapacity
+        {
+            get
+            {
+                return LazyPreferredCapacity.Value;
+            }
+        }
+
+        private static long GetPreferredCapacity()
+        {
+            return Marshal.SizeOf(typeof(AvatarDataContract));
         }
 
         /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
@@ -64,10 +95,10 @@ namespace GW2NET.MumbleLink
                 throw new ObjectDisposedException(this.GetType().FullName);
             }
 
-            using (var stream = this.mumbleLink.CreateViewStream())
+            using (var stream = this.memoryMappedFile.CreateViewStream())
             {
                 // Copy the shared memory block to a local buffer in managed memory
-                var buffer = new byte[this.size];
+                var buffer = new byte[stream.Length];
                 stream.Read(buffer, 0, buffer.Length);
 
                 // Pin the managed memory so that the GC doesn't move it
@@ -96,7 +127,7 @@ namespace GW2NET.MumbleLink
                 }
 
                 // Convert data contracts to managed data types
-                return ConvertAvatarDataContract(avatarDataContract);
+                return this.avatarConverter.Convert(avatarDataContract);
             }
         }
 
@@ -111,107 +142,10 @@ namespace GW2NET.MumbleLink
 
             if (disposing)
             {
-                this.mumbleLink.Dispose();
+                this.memoryMappedFile.Dispose();
             }
 
             this.disposed = true;
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private static AvatarContext ConvertAvatarContextDataContract(MumbleContext context)
-        {
-            return new AvatarContext
-                {
-                    ServerAddress = ConvertServerAddress(context.serverAddress),
-                    MapId = (int)context.mapId,
-                    MapType = (int)context.mapType,
-                    ShardId = (int)context.shardId,
-                    Instance = (int)context.instance,
-                    BuildId = (int)context.buildId
-                };
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private static Avatar ConvertAvatarDataContract(AvatarDataContract dataContract)
-        {
-            // Copy the context data to an unmanaged memory pointer
-            var contextLength = (int)dataContract.context_len;
-            var ptr = Marshal.AllocHGlobal(contextLength);
-            Marshal.Copy(dataContract.context, 0, ptr, contextLength);
-
-            // Copy the unmanaged memory to a managed struct
-            var mumbleContext = (MumbleContext)Marshal.PtrToStructure(ptr, typeof(MumbleContext));
-
-            // Convert data contracts to managed data types
-            // MEMO: for the first tick, only context data is available
-            if (dataContract.uiTick == 1)
-            {
-                return new Avatar
-                    {
-                        UiVersion = (int)dataContract.uiVersion,
-                        UiTick = dataContract.uiTick,
-                        Context = ConvertAvatarContextDataContract(mumbleContext)
-                    };
-            }
-
-            return new Avatar
-                {
-                    UiVersion = (int)dataContract.uiVersion,
-                    UiTick = dataContract.uiTick,
-                    Context = ConvertAvatarContextDataContract(mumbleContext),
-                    Identity = ConvertIdentityDataContract(dataContract.identity),
-                    AvatarFront = ConvertVector3D(dataContract.fAvatarFront),
-                    AvatarTop = ConvertVector3D(dataContract.fAvatarPosition),
-                    AvatarPosition = ConvertVector3D(dataContract.fAvatarPosition),
-                    CameraFront = ConvertVector3D(dataContract.fCameraFront),
-                    CameraPosition = ConvertVector3D(dataContract.fCameraPosition)
-                };
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private static Identity ConvertIdentityDataContract(string identity)
-        {
-            var serializer = new DataContractJsonSerializer(typeof(IdentityDataContract));
-
-            IdentityDataContract dataContract;
-            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(identity)))
-            {
-                dataContract = (IdentityDataContract)serializer.ReadObject(stream);
-            }
-
-            return new Identity
-                {
-                    Name = dataContract.Name,
-                    Profession = (Profession)dataContract.Profession,
-                    Race = (Race)dataContract.Race,
-                    MapId = dataContract.MapId,
-                    WorldId = dataContract.WorldId,
-                    TeamColorId = dataContract.TeamColorId,
-                    Commander = dataContract.Commander,
-                    FieldOfView = dataContract.FieldOfView
-                };
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private static IPEndPoint ConvertServerAddress(SockaddrIn serverAddress)
-        {
-            return
-                new IPEndPoint(
-                    new IPAddress(
-                        new[]
-                            {
-                                serverAddress.sin_addr.S_un.S_un_b.s_b1, 
-                                serverAddress.sin_addr.S_un.S_un_b.s_b2, 
-                                serverAddress.sin_addr.S_un.S_un_b.s_b3, 
-                                serverAddress.sin_addr.S_un.S_un_b.s_b4
-                            }),
-                    serverAddress.sin_port);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private static Vector3D ConvertVector3D(float[] position)
-        {
-            return new Vector3D { X = position[0], Y = position[1], Z = position[2] };
         }
     }
 }
