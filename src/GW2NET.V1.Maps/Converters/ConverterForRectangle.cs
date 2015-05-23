@@ -7,13 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Common.Drawing;
 
 namespace GW2NET.V1.Maps.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="T:double[][]"/> to objects of type <see cref="Rectangle"/>.</summary>
     internal sealed class ConverterForRectangle : IConverter<double[][], Rectangle>
     {
@@ -30,15 +30,26 @@ namespace GW2NET.V1.Maps.Converters
         /// <param name="converterForVector2D">The converter for <see cref="Vector2D"/>.</param>
         internal ConverterForRectangle(IConverter<double[], Vector2D> converterForVector2D)
         {
-            Contract.Requires(converterForVector2D != null);
+            if (converterForVector2D == null)
+            {
+                throw new ArgumentNullException("converterForVector2D", "Precondition: converterForVector2D != null");
+            }
+
             this.converterForVector2D = converterForVector2D;
         }
 
         /// <inheritdoc />
         public Rectangle Convert(double[][] value)
         {
-            Contract.Assume(value != null);
-            Contract.Assume(value.Length == 2);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
+            if (value.Length != 2)
+            {
+                throw new ArgumentException("Precondition value.Length == 2", "value");
+            }
 
             var nw = default(Vector2D);
             var values1 = value[0];
@@ -55,13 +66,6 @@ namespace GW2NET.V1.Maps.Converters
             }
 
             return new Rectangle(nw, se);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForVector2D != null);
         }
     }
 }

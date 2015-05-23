@@ -8,8 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Maps
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System;
     using System.Globalization;
 
     using GW2NET.Common;
@@ -25,7 +24,11 @@ namespace GW2NET.V1.Maps
         /// <param name="serviceClient">The service client.</param>
         public MapNameRepositoryFactory(IServiceClient serviceClient)
         {
-            Contract.Requires(serviceClient != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
             this.serviceClient = serviceClient;
         }
 
@@ -36,7 +39,11 @@ namespace GW2NET.V1.Maps
         {
             get
             {
-                Contract.Requires(language != null);
+                if (language == null)
+                {
+                    throw new ArgumentNullException("language", "Precondition: language != null");
+                }
+
                 return this.ForCulture(new CultureInfo(language));
             }
         }
@@ -48,7 +55,11 @@ namespace GW2NET.V1.Maps
         {
             get
             {
-                Contract.Requires(culture != null);
+                if (culture == null)
+                {
+                    throw new ArgumentNullException("culture", "Precondition: culture != null");
+                }
+
                 return this.ForCulture(culture);
             }
         }
@@ -82,13 +93,6 @@ namespace GW2NET.V1.Maps
         public IMapNameRepository ForCurrentUICulture()
         {
             return this.ForCulture(CultureInfo.CurrentUICulture);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

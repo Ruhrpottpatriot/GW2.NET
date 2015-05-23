@@ -7,8 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using GW2NET.Common;
 using GW2NET.Common.Drawing;
 using GW2NET.Maps;
@@ -16,6 +14,8 @@ using GW2NET.V1.Maps.Json;
 
 namespace GW2NET.V1.Maps.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="MapDataContract"/> to objects of type <see cref="Map"/>.</summary>
     internal sealed class ConverterForMap : IConverter<MapDataContract, Map>
     {
@@ -32,26 +32,33 @@ namespace GW2NET.V1.Maps.Converters
         /// <param name="converterForRectangle">The converter for <see cref="Rectangle"/>.</param>
         public ConverterForMap(IConverter<double[][], Rectangle> converterForRectangle)
         {
-            Contract.Requires(converterForRectangle != null);
+            if (converterForRectangle == null)
+            {
+                throw new ArgumentNullException("converterForRectangle", "Precondition: converterForRectangle != null");
+            }
+
             this.converterForRectangle = converterForRectangle;
         }
 
         /// <inheritdoc />
         public Map Convert(MapDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
 
             // Create a new map object
             var map = new Map
             {
-                MapName = value.MapName, 
-                MinimumLevel = value.MinimumLevel, 
-                MaximumLevel = value.MaximumLevel, 
-                DefaultFloor = value.DefaultFloor, 
-                Floors = value.Floors, 
-                RegionId = value.RegionId, 
-                RegionName = value.RegionName, 
-                ContinentId = value.ContinentId, 
+                MapName = value.MapName,
+                MinimumLevel = value.MinimumLevel,
+                MaximumLevel = value.MaximumLevel,
+                DefaultFloor = value.DefaultFloor,
+                Floors = value.Floors,
+                RegionId = value.RegionId,
+                RegionName = value.RegionName,
+                ContinentId = value.ContinentId,
                 ContinentName = value.ContinentName
             };
 
@@ -87,13 +94,6 @@ namespace GW2NET.V1.Maps.Converters
 
             // Return the map object
             return map;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForRectangle != null);
         }
     }
 }

@@ -7,14 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.V1.Maps.Converters;
-using GW2NET.V1.Maps.Json;
-
 namespace GW2NET.V1.Maps
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -22,6 +18,8 @@ namespace GW2NET.V1.Maps
 
     using GW2NET.Common;
     using GW2NET.Maps;
+    using GW2NET.V1.Maps.Converters;
+    using GW2NET.V1.Maps.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/map_names.json interface.</summary>
     public class MapNameRepository : IMapNameRepository
@@ -44,6 +42,16 @@ namespace GW2NET.V1.Maps
         /// <param name="converterForMapName">The converter for <see cref="MapName"/>.</param>
         internal MapNameRepository(IServiceClient serviceClient, IConverter<MapNameDataContract, MapName> converterForMapName)
         {
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForMapName == null)
+            {
+                throw new ArgumentNullException("converterForMapName", "Precondition: converterForMapName != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForMapName = converterForMapName;
         }
@@ -211,14 +219,6 @@ namespace GW2NET.V1.Maps
         Task<ICollectionPage<MapName>> IPaginator<MapName>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
-        }
-
-        /// <summary>The invariant method for this class.</summary>
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForMapName != null);
         }
     }
 }

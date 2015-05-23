@@ -14,7 +14,6 @@ namespace GW2NET.V1.Maps
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -44,6 +43,16 @@ namespace GW2NET.V1.Maps
         /// <param name="converterForMapCollection">The converter for <see cref="ICollection{Map}"/>.</param>
         internal MapRepository(IServiceClient serviceClient, IConverter<MapCollectionDataContract, ICollection<Map>> converterForMapCollection)
         {
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForMapCollection == null)
+            {
+                throw new ArgumentNullException("converterForMapCollection", "Precondition: converterForMapCollection != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForMapCollection = converterForMapCollection;
         }
@@ -259,14 +268,6 @@ namespace GW2NET.V1.Maps
         Task<ICollectionPage<Map>> IPaginator<Map>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
-        }
-
-        /// <summary>The invariant method for this class.</summary>
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForMapCollection != null);
         }
     }
 }

@@ -8,14 +8,15 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
+
 using GW2NET.Common;
 using GW2NET.Maps;
 using GW2NET.V1.Maps.Json;
 
 namespace GW2NET.V1.Maps.Converters
 {
+    using System;
+
     /// <summary>Converts objects of type <see cref="MapCollectionDataContract"/> to objects of type <see cref="ICollection{T}"/>.</summary>
     internal sealed class ConverterForMapCollection : IConverter<MapCollectionDataContract, ICollection<Map>>
     {
@@ -32,14 +33,22 @@ namespace GW2NET.V1.Maps.Converters
         /// <param name="converterForMap">The converter for <see cref="Map"/>.</param>
         public ConverterForMapCollection(IConverter<MapDataContract, Map> converterForMap)
         {
-            Contract.Requires(converterForMap != null);
+            if (converterForMap == null)
+            {
+                throw new ArgumentNullException("converterForMap", "Precondition: converterForMap != null");
+            }
+
             this.converterForMap = converterForMap;
         }
 
         /// <inheritdoc />
         public ICollection<Map> Convert(MapCollectionDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var dataContracts = value.Maps;
             if (dataContracts == null)
             {
@@ -65,13 +74,6 @@ namespace GW2NET.V1.Maps.Converters
             }
 
             return maps;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForMap != null);
         }
     }
 }
