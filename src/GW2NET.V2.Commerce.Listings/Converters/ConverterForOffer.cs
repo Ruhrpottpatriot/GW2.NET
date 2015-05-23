@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce.Listings
 {
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Commerce;
     using GW2NET.Common;
@@ -21,11 +21,15 @@ namespace GW2NET.V2.Commerce.Listings
         /// <returns>The converted value.</returns>
         public Offer Convert(ListingOfferDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new Offer
             {
-                Listings = value.Listings, 
-                UnitPrice = value.UnitPrice, 
+                Listings = value.Listings,
+                UnitPrice = value.UnitPrice,
                 Quantity = value.Quantity
             };
         }

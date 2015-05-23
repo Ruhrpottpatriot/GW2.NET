@@ -8,10 +8,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce.Listings
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Commerce;
     using GW2NET.Common;
@@ -33,7 +32,11 @@ namespace GW2NET.V2.Commerce.Listings
         /// <param name="converterForOfferCollection">The converter for <see cref="ICollection{Offer}"/>.</param>
         internal ConverterForListing(IConverter<ICollection<ListingOfferDataContract>, ICollection<Offer>> converterForOfferCollection)
         {
-            Contract.Requires(converterForOfferCollection != null);
+            if (converterForOfferCollection == null)
+            {
+                throw new ArgumentNullException("converterForOfferCollection", "Precondition: converterForOfferCollection != null");
+            }
+
             this.converterForOfferCollection = converterForOfferCollection;
         }
 
@@ -42,7 +45,11 @@ namespace GW2NET.V2.Commerce.Listings
         /// <returns>The converted value.</returns>
         public Listing Convert(ListingDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var listing = new Listing
             {
                 ItemId = value.Id
@@ -53,29 +60,19 @@ namespace GW2NET.V2.Commerce.Listings
             {
                 listing.BuyOffers = this.converterForOfferCollection.Convert(buys) ?? new List<Offer>(0);
             }
-            else
-            {
-                Debug.Assert(buys != null, "Expected 'buys' for listing");
-            }
+
+            Debug.Assert(buys != null, "buys != null");
+
 
             var sells = value.SellOffers;
             if (sells != null)
             {
                 listing.SellOffers = this.converterForOfferCollection.Convert(sells) ?? new List<Offer>(0);
             }
-            else
-            {
-                Debug.Assert(sells != null, "Expected 'sells' for listing");
-            }
+
+            Debug.Assert(sells != null, "sells != null");
 
             return listing;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForOfferCollection != null);
         }
     }
 }

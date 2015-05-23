@@ -8,10 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce.Listings
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -61,8 +61,16 @@ namespace GW2NET.V2.Commerce.Listings
         /// <param name="converterForListing">The converter for <see cref="Listing"/>.</param>
         internal ListingRepository(IServiceClient serviceClient, IConverter<ListingDataContract, Listing> converterForListing)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(converterForListing != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForListing == null)
+            {
+                throw new ArgumentNullException("converterForListing", "Precondition: converterForListing != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForIdentifiersResponse = new ConverterForCollectionResponse<int, int>(new ConverterAdapter<int>());
             this.converterForResponse = new ConverterForResponse<ListingDataContract, Listing>(converterForListing);
@@ -199,7 +207,7 @@ namespace GW2NET.V2.Commerce.Listings
         {
             var request = new ListingPageRequest
             {
-                Page = pageIndex, 
+                Page = pageIndex,
                 PageSize = pageSize
             };
             var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
@@ -244,7 +252,7 @@ namespace GW2NET.V2.Commerce.Listings
         {
             var request = new ListingPageRequest
             {
-                Page = pageIndex, 
+                Page = pageIndex,
                 PageSize = pageSize
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken);
@@ -285,17 +293,6 @@ namespace GW2NET.V2.Commerce.Listings
             PageContextPatchUtility.Patch(values, pageIndex);
 
             return values;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForIdentifiersResponse != null);
-            Contract.Invariant(this.converterForResponse != null);
-            Contract.Invariant(this.converterForBulkResponse != null);
-            Contract.Invariant(this.converterForPageResponse != null);
         }
     }
 }
