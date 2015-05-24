@@ -11,3 +11,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
 
+[assembly:InternalsVisibleTo("GW2NET.V2.Files.Tests")]

@@ -1,9 +1,9 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FileRepositoryV2.cs" company="GW2.NET Coding Team">
+// <copyright file="FileRepository.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Defines the FileRepositoryV2 type.
+//   Defines the FileRepository type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -21,7 +21,7 @@ namespace GW2NET.V2.Files
     using GW2NET.Files;
 
     /// <summary>Represents a repository that retrieves data from the /v2/files interface.</summary>
-    public sealed class FileRepositoryV2 : IFileRepositoryV2
+    public sealed class FileRepository : IFileRepository
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
@@ -30,27 +30,27 @@ namespace GW2NET.V2.Files
         private readonly IConverter<IResponse<ICollection<string>>, ICollection<string>> identifiersConverter;
 
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<FileDataContract>, AssetV2> responseConverter;
+        private readonly IConverter<IResponse<FileDataContract>, Asset> responseConverter;
 
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<FileDataContract>>, ICollectionPage<AssetV2>> pageResponseConverter;
+        private readonly IConverter<IResponse<ICollection<FileDataContract>>, ICollectionPage<Asset>> pageResponseConverter;
 
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<FileDataContract>>, IDictionaryRange<string, AssetV2>> bulkResponseConverter;
+        private readonly IConverter<IResponse<ICollection<FileDataContract>>, IDictionaryRange<string, Asset>> bulkResponseConverter;
 
-        /// <summary>Initializes a new instance of the <see cref="FileRepositoryV2"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="FileRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
-        public FileRepositoryV2(IServiceClient serviceClient)
-            : this(serviceClient, new FileDataContractConverter())
+        public FileRepository(IServiceClient serviceClient)
+            : this(serviceClient, new AssetConverter())
         {
         }
 
-        /// <summary>Initializes a new instance of the <see cref="FileRepositoryV2"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="FileRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="contractToAssetConverter">The contract to asset converter.</param>
         /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="contractToAssetConverter"/> is a null reference.</exception>
-        internal FileRepositoryV2(IServiceClient serviceClient, IConverter<FileDataContract, AssetV2> contractToAssetConverter)
+        internal FileRepository(IServiceClient serviceClient, IConverter<FileDataContract, Asset> contractToAssetConverter)
         {
             if (serviceClient == null)
             {
@@ -65,9 +65,9 @@ namespace GW2NET.V2.Files
             this.serviceClient = serviceClient;
 
             this.identifiersConverter = new ConverterForCollectionResponse<string, string>(new ConverterAdapter<string>());
-            this.responseConverter = new ConverterForResponse<FileDataContract, AssetV2>(contractToAssetConverter);
-            this.bulkResponseConverter = new ConverterForDictionaryRangeResponse<FileDataContract, string, AssetV2>(contractToAssetConverter, value => value.FileId);
-            this.pageResponseConverter = new ConverterForCollectionPageResponse<FileDataContract, AssetV2>(contractToAssetConverter);
+            this.responseConverter = new ConverterForResponse<FileDataContract, Asset>(contractToAssetConverter);
+            this.bulkResponseConverter = new ConverterForDictionaryRangeResponse<FileDataContract, string, Asset>(contractToAssetConverter, value => value.Identifier);
+            this.pageResponseConverter = new ConverterForCollectionPageResponse<FileDataContract, Asset>(contractToAssetConverter);
         }
 
         /// <inheritdoc />
@@ -81,7 +81,7 @@ namespace GW2NET.V2.Files
         /// <inheritdoc />
         Task<ICollection<string>> IDiscoverable<string>.DiscoverAsync()
         {
-            return ((IFileRepositoryV2)this).DiscoverAsync(CancellationToken.None);
+            return ((IFileRepository)this).DiscoverAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
@@ -93,7 +93,7 @@ namespace GW2NET.V2.Files
         }
 
         /// <inheritdoc />
-        ICollectionPage<AssetV2> IPaginator<AssetV2>.FindPage(int pageIndex)
+        ICollectionPage<Asset> IPaginator<Asset>.FindPage(int pageIndex)
         {
             var request = new FilePageRequest { Page = pageIndex };
             var response = this.serviceClient.Send<ICollection<FileDataContract>>(request);
@@ -101,7 +101,7 @@ namespace GW2NET.V2.Files
 
             if (values == null)
             {
-                return new CollectionPage<AssetV2>(0);
+                return new CollectionPage<Asset>(0);
             }
 
             PageContextPatchUtility.Patch(values, pageIndex);
@@ -110,7 +110,7 @@ namespace GW2NET.V2.Files
         }
 
         /// <inheritdoc />
-        ICollectionPage<AssetV2> IPaginator<AssetV2>.FindPage(int pageIndex, int pageSize)
+        ICollectionPage<Asset> IPaginator<Asset>.FindPage(int pageIndex, int pageSize)
         {
             var request = new FilePageRequest { Page = pageIndex, PageSize = pageSize };
             var response = this.serviceClient.Send<ICollection<FileDataContract>>(request);
@@ -118,7 +118,7 @@ namespace GW2NET.V2.Files
 
             if (values == null)
             {
-                return new CollectionPage<AssetV2>(0);
+                return new CollectionPage<Asset>(0);
             }
 
             PageContextPatchUtility.Patch(values, pageIndex);
@@ -127,13 +127,13 @@ namespace GW2NET.V2.Files
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<AssetV2>> IPaginator<AssetV2>.FindPageAsync(int pageIndex)
+        Task<ICollectionPage<Asset>> IPaginator<Asset>.FindPageAsync(int pageIndex)
         {
-            return ((IFileRepositoryV2)this).FindPageAsync(pageIndex, CancellationToken.None);
+            return ((IFileRepository)this).FindPageAsync(pageIndex, CancellationToken.None);
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<AssetV2>> IPaginator<AssetV2>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        Task<ICollectionPage<Asset>> IPaginator<Asset>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             var request = new FilePageRequest { Page = pageIndex };
             var response = this.serviceClient.SendAsync<ICollection<FileDataContract>>(request, cancellationToken);
@@ -141,13 +141,13 @@ namespace GW2NET.V2.Files
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<AssetV2>> IPaginator<AssetV2>.FindPageAsync(int pageIndex, int pageSize)
+        Task<ICollectionPage<Asset>> IPaginator<Asset>.FindPageAsync(int pageIndex, int pageSize)
         {
-            return ((IFileRepositoryV2)this).FindPageAsync(pageIndex, pageSize, CancellationToken.None);
+            return ((IFileRepository)this).FindPageAsync(pageIndex, pageSize, CancellationToken.None);
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<AssetV2>> IPaginator<AssetV2>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        Task<ICollectionPage<Asset>> IPaginator<Asset>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             var request = new FilePageRequest
             {
@@ -159,7 +159,7 @@ namespace GW2NET.V2.Files
         }
 
         /// <inheritdoc />
-        AssetV2 IRepository<string, AssetV2>.Find(string identifier)
+        Asset IRepository<string, Asset>.Find(string identifier)
         {
             var request = new FileDetailRequest { Identifier = identifier };
             var response = this.serviceClient.Send<FileDataContract>(request);
@@ -167,85 +167,85 @@ namespace GW2NET.V2.Files
         }
 
         /// <inheritdoc />
-        IDictionaryRange<string, AssetV2> IRepository<string, AssetV2>.FindAll()
+        IDictionaryRange<string, Asset> IRepository<string, Asset>.FindAll()
         {
             var request = new FileBulkRequest();
             var response = this.serviceClient.Send<ICollection<FileDataContract>>(request);
-            return this.bulkResponseConverter.Convert(response) ?? new DictionaryRange<string, AssetV2>(0);
+            return this.bulkResponseConverter.Convert(response) ?? new DictionaryRange<string, Asset>(0);
         }
 
         /// <inheritdoc />
-        IDictionaryRange<string, AssetV2> IRepository<string, AssetV2>.FindAll(ICollection<string> identifiers)
+        IDictionaryRange<string, Asset> IRepository<string, Asset>.FindAll(ICollection<string> identifiers)
         {
             var request = new FileBulkRequest { Identifiers = identifiers };
             var response = this.serviceClient.Send<ICollection<FileDataContract>>(request);
-            return this.bulkResponseConverter.Convert(response) ?? new DictionaryRange<string, AssetV2>(0);
+            return this.bulkResponseConverter.Convert(response) ?? new DictionaryRange<string, Asset>(0);
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<string, AssetV2>> IRepository<string, AssetV2>.FindAllAsync()
+        Task<IDictionaryRange<string, Asset>> IRepository<string, Asset>.FindAllAsync()
         {
-            return ((IFileRepositoryV2)this).FindAllAsync(CancellationToken.None);
+            return ((IFileRepository)this).FindAllAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<string, AssetV2>> IRepository<string, AssetV2>.FindAllAsync(CancellationToken cancellationToken)
+        Task<IDictionaryRange<string, Asset>> IRepository<string, Asset>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new FileBulkRequest();
             var response = this.serviceClient.SendAsync<ICollection<FileDataContract>>(request, cancellationToken);
-            return response.ContinueWith<IDictionaryRange<string, AssetV2>>(this.ConvertAsyncResponse, cancellationToken);
+            return response.ContinueWith<IDictionaryRange<string, Asset>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<string, AssetV2>> IRepository<string, AssetV2>.FindAllAsync(ICollection<string> identifiers)
+        Task<IDictionaryRange<string, Asset>> IRepository<string, Asset>.FindAllAsync(ICollection<string> identifiers)
         {
-            return ((IFileRepositoryV2)this).FindAllAsync(identifiers, CancellationToken.None);
+            return ((IFileRepository)this).FindAllAsync(identifiers, CancellationToken.None);
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<string, AssetV2>> IRepository<string, AssetV2>.FindAllAsync(ICollection<string> identifiers, CancellationToken cancellationToken)
+        Task<IDictionaryRange<string, Asset>> IRepository<string, Asset>.FindAllAsync(ICollection<string> identifiers, CancellationToken cancellationToken)
         {
             var request = new FileBulkRequest { Identifiers = identifiers };
             var response = this.serviceClient.SendAsync<ICollection<FileDataContract>>(request, cancellationToken);
-            return response.ContinueWith<IDictionaryRange<string, AssetV2>>(this.ConvertAsyncResponse, cancellationToken);
+            return response.ContinueWith<IDictionaryRange<string, Asset>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         /// <inheritdoc />
-        Task<AssetV2> IRepository<string, AssetV2>.FindAsync(string identifier)
+        Task<Asset> IRepository<string, Asset>.FindAsync(string identifier)
         {
-            return ((IFileRepositoryV2)this).FindAsync(identifier, CancellationToken.None);
+            return ((IFileRepository)this).FindAsync(identifier, CancellationToken.None);
         }
 
         /// <inheritdoc />
-        Task<AssetV2> IRepository<string, AssetV2>.FindAsync(string identifier, CancellationToken cancellationToken)
+        Task<Asset> IRepository<string, Asset>.FindAsync(string identifier, CancellationToken cancellationToken)
         {
             var request = new FileDetailRequest { Identifier = identifier };
             var response = this.serviceClient.SendAsync<FileDataContract>(request, cancellationToken);
-            return response.ContinueWith<AssetV2>(this.ConvertAsyncResponse, cancellationToken);
+            return response.ContinueWith<Asset>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not part of the public API.")]
-        private AssetV2 ConvertAsyncResponse(Task<IResponse<FileDataContract>> task)
+        private Asset ConvertAsyncResponse(Task<IResponse<FileDataContract>> task)
         {
             Debug.Assert(task != null, "task != null");
             return this.responseConverter.Convert(task.Result);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not part of the public API.")]
-        private IDictionaryRange<string, AssetV2> ConvertAsyncResponse(Task<IResponse<ICollection<FileDataContract>>> task)
+        private IDictionaryRange<string, Asset> ConvertAsyncResponse(Task<IResponse<ICollection<FileDataContract>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.bulkResponseConverter.Convert(task.Result) ?? new DictionaryRange<string, AssetV2>(0);
+            return this.bulkResponseConverter.Convert(task.Result) ?? new DictionaryRange<string, Asset>(0);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not part of the public API.")]
-        private ICollectionPage<AssetV2> ConvertAsyncResponse(Task<IResponse<ICollection<FileDataContract>>> task, int pageIndex)
+        private ICollectionPage<Asset> ConvertAsyncResponse(Task<IResponse<ICollection<FileDataContract>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
             var values = this.pageResponseConverter.Convert(task.Result);
             if (values == null)
             {
-                return new CollectionPage<AssetV2>(0);
+                return new CollectionPage<Asset>(0);
             }
 
             PageContextPatchUtility.Patch(values, pageIndex);

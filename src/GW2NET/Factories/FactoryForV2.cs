@@ -73,11 +73,11 @@ namespace GW2NET.Factories
         }
 
         /// <summary>Gets access to the files data sources.</summary>
-        public FileRepositoryFactoryV2 Files
+        public FileRepositoryFactory Files
         {
             get
             {
-                return new FileRepositoryFactoryV2(this.ServiceClient);
+                return new FileRepositoryFactory(this.ServiceClient);
             }
         }
 
