@@ -25,11 +25,13 @@ namespace GW2NET.V1.Files.Converters
             {
                 throw new ArgumentNullException("value", "Precondition: value != null");
             }
-
+            const string IconUrlTemplate = @"https://render.guildwars2.com/file/{0}/{1}.{2}";
+            var iconUrl = string.Format(IconUrlTemplate, value.Signature, value.FileId, "png");
             return new Asset
             {
                 FileId = value.FileId, 
-                FileSignature = value.Signature
+                FileSignature = value.Signature,
+                IconFileUrl = new Uri(iconUrl, UriKind.Absolute)
             };
         }
     }

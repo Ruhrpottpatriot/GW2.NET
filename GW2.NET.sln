@@ -82,9 +82,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Floors", "src\GW2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.MumbleLink.Tests", "src\GW2NET.MumbleLink.Tests\GW2NET.MumbleLink.Tests.csproj", "{FC0BDFF8-D50B-44B7-8493-FB87B74F54B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Files.Tests", "src\GW2NET.V1.Files.Tests\GW2NET.V1.Files.Tests.csproj", "{F7105E24-7FDC-4F38-8F91-4F0C557BD12E}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 36
+		SccNumberOfProjects = 37
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
 		SccLocalPath0 = .
@@ -228,6 +230,10 @@ Global
 		SccProjectTopLevelParentUniqueName35 = GW2.NET.sln
 		SccProjectName35 = src/GW2NET.MumbleLink.Tests
 		SccLocalPath35 = src\\GW2NET.MumbleLink.Tests
+		SccProjectUniqueName36 = src\\GW2NET.V1.Files.Tests\\GW2NET.V1.Files.Tests.csproj
+		SccProjectTopLevelParentUniqueName36 = GW2.NET.sln
+		SccProjectName36 = src/GW2NET.V1.Files.Tests
+		SccLocalPath36 = src\\GW2NET.V1.Files.Tests
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -373,6 +379,10 @@ Global
 		{FC0BDFF8-D50B-44B7-8493-FB87B74F54B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC0BDFF8-D50B-44B7-8493-FB87B74F54B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC0BDFF8-D50B-44B7-8493-FB87B74F54B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7105E24-7FDC-4F38-8F91-4F0C557BD12E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7105E24-7FDC-4F38-8F91-4F0C557BD12E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7105E24-7FDC-4F38-8F91-4F0C557BD12E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7105E24-7FDC-4F38-8F91-4F0C557BD12E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -413,5 +423,6 @@ Global
 		{E0048487-3E7F-4036-BC50-508AF4C321E2} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{FEBB38C8-9836-4218-A943-7E45FA6FA4CC} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{FC0BDFF8-D50B-44B7-8493-FB87B74F54B8} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{F7105E24-7FDC-4F38-8F91-4F0C557BD12E} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 	EndGlobalSection
 EndGlobal
