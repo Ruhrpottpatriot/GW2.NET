@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>$id$</id>
@@ -9,20 +10,20 @@
     <licenseUrl><![CDATA[https://gw2dotnet.codeplex.com/license]]></licenseUrl>
     <projectUrl><![CDATA[https://gw2dotnet.codeplex.com/]]></projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>$description$</description>
-    <summary>
-      GW2.NET is an implementation of the Guild Wars 2 public API.
-
+    <summary>$description$</summary>
+    <description>
       Includes GW2NET.dll
+      
+      $description$
 
       Supported platforms:
       - .NET Framework 4.5+
       - Windows 8
       - Windows Phone 8.1
       - Portable Class Libraries
-    </summary>
+    </description>
     <releaseNotes>
-      - Made GetParameters and GetPathSegment in DiscoveryRequest virtual so they can be used with the /v2/floors url style
+      - Made GetParameters and GetPathSegment in DiscoveryRequest virtual
       - Changed constructor of abstract class FactoryBase to protected
       - Stylecop fixes across the board
       - Added support for v2/maps endpoint
@@ -30,13 +31,9 @@
       - Added support for v2/continents endpoint
       - Added support for v2/files endpoint
       - Renamed WvW property in Factoryfor V1 to WorldVersusWorld
-      - Added missing ObjectInvariant methods.
       - V2 Factories now implement RepositoryFactoryBase to reduce code repitition
       - Added obsolete warnings for all currently available v2 endpoints
-      - Added an obsolete error for the v1 events endpoint since it is already disabled
       - Fixed some bugs in the request classes
-      - Added interface and model class for v2/files since the old model/interface is not compatible with the new api layout
-      - Updated StyleCop settings
     </releaseNotes>
     <copyright>GNU General Public License version 2 (GPLv2)</copyright>
     <language>en, es, de, fr</language>

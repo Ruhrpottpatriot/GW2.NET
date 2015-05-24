@@ -9,8 +9,8 @@
     <licenseUrl><![CDATA[https://gw2dotnet.codeplex.com/license]]></licenseUrl>
     <projectUrl><![CDATA[https://gw2dotnet.codeplex.com/]]></projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>$description$</description>
-    <summary>
+    <summary>$description$</summary>
+    <description>
       Includes GW2NET.V2.Commerce.Prices.dll
 
       $description$
@@ -21,7 +21,7 @@
       - Windows 8
       - Windows Phone 8.1
       - Portable Class Libraries
-    </summary>
+    </description>
     <releaseNotes>Initial Release</releaseNotes>
     <copyright>GNU General Public License version 2 (GPLv2)</copyright>
     <language>en, es, de, fr</language>
