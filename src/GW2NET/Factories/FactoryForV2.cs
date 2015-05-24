@@ -13,7 +13,7 @@ namespace GW2NET.Factories
 
     using GW2NET.Common;
     using GW2NET.Quaggans;
-    using GW2NET.V2.Build;
+    using GW2NET.V2.Builds;
     using GW2NET.V2.Colors;
     using GW2NET.V2.Continents;
     using GW2NET.V2.Files;

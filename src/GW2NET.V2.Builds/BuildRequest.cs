@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Build
+namespace GW2NET.V2.Builds
 {
     using System.Collections.Generic;
 

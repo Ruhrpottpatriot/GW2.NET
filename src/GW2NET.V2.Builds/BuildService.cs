@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Build
+namespace GW2NET.V2.Builds
 {
     using System;
     using System.Threading;
@@ -12,7 +12,8 @@ namespace GW2NET.V2.Build
 
     using GW2NET.Builds;
     using GW2NET.Common;
-    using GW2NET.V2.Build.Converters;
+    using GW2NET.V2.Builds.Converters;
+    using GW2NET.V2.Builds.Json;
 
     /// <summary>Represents a service that retrieves data from the /v1/build.json interface.</summary>
     /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:2/build">wiki</a> for more information.</remarks>
