@@ -19,7 +19,7 @@ namespace GW2NET.MumbleLink
     /// <summary>Provides an implementation of the Mumble Link protocol.</summary>
     /// <example>
     ///     <code>
-    /// using (var mumbler = new MumbleLinkFile())
+    /// using (var mumbler = MumbleLinkFile.CreateOrOpen())
     /// {
     ///     var avatar = mumbler.Read();
     ///     Console.WriteLine("Hello " + avatar.Identity.Name + "!");
