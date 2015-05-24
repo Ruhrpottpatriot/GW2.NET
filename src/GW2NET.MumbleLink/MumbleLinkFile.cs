@@ -6,6 +6,7 @@
 //   Provides an implementation of the Mumble Link protocol.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2NET.MumbleLink
 {
     using System;
@@ -17,7 +18,7 @@ namespace GW2NET.MumbleLink
 
     /// <summary>Provides an implementation of the Mumble Link protocol.</summary>
     /// <example>
-    /// <code>
+    ///     <code>
     /// using (var mumbler = new MumbleLinkFile())
     /// {
     ///     var avatar = mumbler.Read();
@@ -27,25 +28,20 @@ namespace GW2NET.MumbleLink
     /// </example>
     public class MumbleLinkFile : IDisposable
     {
+        public const string MapName = "MumbleLink";
+
+        private static readonly Lazy<long> LazyPreferredCapacity = new Lazy<long>(GetPreferredCapacity);
+
+        private readonly IConverter<AvatarDataContract, Avatar> avatarConverter;
+
         /// <summary>Holds a reference to the shared memory block.</summary>
         private readonly MemoryMappedFile memoryMappedFile;
-
-        private static readonly Lazy<long> LazyPreferredCapacity = new Lazy<long>(GetPreferredCapacity); 
 
         /// <summary>The size of the shared memory block.</summary>
         private readonly int size;
 
         /// <summary>Indicates whether this object is disposed.</summary>
         private bool disposed;
-
-        private readonly IConverter<AvatarDataContract, Avatar> avatarConverter;
-
-        public const string MapName = "MumbleLink";
-
-        public MumbleLinkFile()
-            : this(MemoryMappedFile.CreateOrOpen(MapName, PreferredCapacity), new AvatarConverter(new AvatarContextConverter(new IPEndPointConverter()), new IdentityConverter(), new Vector3DConverter()))
-        {
-        }
 
         public MumbleLinkFile(MemoryMappedFile memoryMappedFile, IConverter<AvatarDataContract, Avatar> avatarConverter)
         {
@@ -64,7 +60,7 @@ namespace GW2NET.MumbleLink
         }
 
         /// <summary>
-        /// Gets the preferred size for the memory mapped file.
+        ///     Gets the preferred size for the memory mapped file.
         /// </summary>
         public static long PreferredCapacity
         {
@@ -74,9 +70,18 @@ namespace GW2NET.MumbleLink
             }
         }
 
-        private static long GetPreferredCapacity()
+        /// <summary>
+        ///     Creates or opens a memory-mapped file for the MumbleLink protocol.
+        /// </summary>
+        /// <returns>An object that provides wrapper methods for the MumbleLink protocol.</returns>
+        public static MumbleLinkFile CreateOrOpen()
         {
-            return Marshal.SizeOf(typeof(AvatarDataContract));
+            var memoryMappedFile = MemoryMappedFile.CreateOrOpen(MapName, PreferredCapacity);
+            var converter = new AvatarConverter(
+                new AvatarContextConverter(new IPEndPointConverter()),
+                new IdentityConverter(),
+                new Vector3DConverter());
+            return new MumbleLinkFile(memoryMappedFile, converter);
         }
 
         /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
@@ -87,7 +92,7 @@ namespace GW2NET.MumbleLink
         }
 
         /// <summary>Retrieves positional audio data from the shared memory block as defined by the Mumble Link protocol.</summary>
-        /// <returns>Positional audio data as an instance of the <see cref="Avatar"/> class.</returns>
+        /// <returns>Positional audio data as an instance of the <see cref="Avatar" /> class.</returns>
         public Avatar Read()
         {
             if (this.disposed)
@@ -146,6 +151,11 @@ namespace GW2NET.MumbleLink
             }
 
             this.disposed = true;
+        }
+
+        private static long GetPreferredCapacity()
+        {
+            return Marshal.SizeOf(typeof(AvatarDataContract));
         }
     }
 }
