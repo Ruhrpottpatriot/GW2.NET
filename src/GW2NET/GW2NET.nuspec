@@ -51,7 +51,7 @@
       <dependency id="GW2NET.V1.Worlds" version="1.0.0" />
       <dependency id="GW2NET.V1.WorldVersusWorld.Matches" version="1.0.0" />
       <dependency id="GW2NET.V1.WorldVersusWorld.Objectives" version="1.0.0" />
-      <dependency id="GW2NET.V2.Build" version="1.0.0" />
+      <dependency id="GW2NET.V2.Builds" version="1.0.0" />
       <dependency id="GW2NET.V2.Colors" version="1.0.0" />
       <dependency id="GW2NET.V2.Commerce.Exchange" version="1.0.0" />
       <dependency id="GW2NET.V2.Commerce.Listings" version="1.0.0" />

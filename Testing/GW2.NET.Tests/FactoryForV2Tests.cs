@@ -17,7 +17,7 @@ namespace GW2NET
         [Test]
         public void BuildTest()
         {
-            var build = GW2.V2.Build.GetBuild();
+            var build = GW2.V2.Builds.GetBuild();
 
             Assert.IsNotNull(build);
             Assert.That(build.BuildId, Is.GreaterThan(0));

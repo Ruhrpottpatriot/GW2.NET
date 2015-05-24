@@ -37,7 +37,7 @@ namespace GW2NET.Factories
 
         /// <summary>Gets access to the builds data source.</summary>
         [Obsolete("A build endpoint based on version 2 of the api is available. Usage of that version is recommended.")]
-        public IBuildService Build
+        public IBuildService Builds
         {
             get
             {

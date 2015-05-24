@@ -37,7 +37,7 @@ namespace GW2NET.Factories
         }
 
         /// <summary>Gets access to the v2 build service.</summary>
-        public IBuildService Build
+        public IBuildService Builds
         {
             get
             {

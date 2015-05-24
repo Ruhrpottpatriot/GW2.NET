@@ -110,9 +110,9 @@
       <Project>{926e82ec-49d0-43f2-8214-e06408619676}</Project>
       <Name>GW2NET.V1.WorldVersusWorld.Objectives</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GW2NET.V2.Build\GW2NET.V2.Build.csproj">
+    <ProjectReference Include="..\GW2NET.V2.Builds\GW2NET.V2.Builds.csproj">
       <Project>{5f2c2514-10b0-4b5b-b227-edd406377396}</Project>
-      <Name>GW2NET.V2.Build</Name>
+      <Name>GW2NET.V2.Builds</Name>
     </ProjectReference>
     <ProjectReference Include="..\GW2NET.V2.Colors\GW2NET.V2.Colors.csproj">
       <Project>{d5fd21bd-9d1f-4129-b3dd-fcdc0afd0830}</Project>
