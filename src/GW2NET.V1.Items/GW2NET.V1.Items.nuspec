@@ -13,7 +13,7 @@
     <summary>
       Includes GW2NET.V1.Items.dll
 
-      This library implements /v1/items.json and /v1/item_details.json
+      $description$
       <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/items&oldid=793794]]>
       <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/item_details&oldid=857326]]>
 

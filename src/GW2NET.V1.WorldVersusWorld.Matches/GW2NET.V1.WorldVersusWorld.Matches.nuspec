@@ -13,7 +13,7 @@
     <summary>
       Includes GW2NET.V1.WorldVersusWorld.Matches.dll
 
-      This library implements /v1/wvw/matches.json and /v1/wvw/match_details.json
+      $description$
       <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/wvw/matches&oldid=657959]]>
       <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/wvw/match_details&oldid=701039]]>
       

@@ -6,8 +6,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GW2.NET/V2/Files")]
-[assembly: AssemblyDescription("Implements /v2/files")]
+[assembly: AssemblyTitle("GW2.NET Files")]
+[assembly: AssemblyDescription("This library implements /v2/files")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
 

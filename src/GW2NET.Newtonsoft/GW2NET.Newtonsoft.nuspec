@@ -12,9 +12,9 @@
     <description>$description$</description>
     <summary>
       Includes GW2NET.Newtonsoft.dll
-
-      This library is used for de-serializing JSON data contracts. It uses Json.NET internally.
-
+      
+      $description$
+      
       Supported platforms:
       - .NET Framework 4.5+
       - Windows 8

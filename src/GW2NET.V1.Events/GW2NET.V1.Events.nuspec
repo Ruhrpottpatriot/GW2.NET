@@ -13,7 +13,7 @@
     <summary>
       Includes GW2NET.V1.Events.dll
 
-      This library implements /v1/event_names.json and /v1/event_details.json
+      $description$
       <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/event_names&oldid=657953]]>
       <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/event_details&oldid=749406]]>
       

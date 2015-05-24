@@ -13,7 +13,7 @@
     <summary>
       Includes GW2NET.V2.Builds.dll
 
-      This library implements /v2/build
+      $description$
       <![CDATA[https://wiki.guildwars2.com/index.php?title=API:2/build&oldid=985504]]>
       
       Supported platforms:

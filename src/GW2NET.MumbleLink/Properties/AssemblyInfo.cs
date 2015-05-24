@@ -13,8 +13,8 @@ using System.Runtime.CompilerServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GW2.NET.MumbleLink")]
-[assembly: AssemblyDescription("Implements the MumbleLink protocol.")]
+[assembly: AssemblyTitle("GW2.NET Mumble Link")]
+[assembly: AssemblyDescription("This library contains an implementation of the Mumble Link protocol")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
 [assembly: InternalsVisibleTo("GW2NET.MumbleLink.Tests")]

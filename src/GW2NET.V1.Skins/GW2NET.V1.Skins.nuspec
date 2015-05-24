@@ -13,7 +13,7 @@
     <summary>
       Includes GW2NET.V1.Skins.dll
 
-      This library implements /v1/skins.json and /v1/skin_details.json
+      $description$
       <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/skins&oldid=793790]]>
       <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/skin_details&oldid=793798]]>
 

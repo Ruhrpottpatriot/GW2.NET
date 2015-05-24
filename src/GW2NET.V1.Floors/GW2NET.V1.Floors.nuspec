@@ -13,7 +13,7 @@
     <summary>
       Includes GW2NET.V1.Floors.dll
 
-      This library implements /v1/map_floor.json
+      $description$
       <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/map_floor&oldid=897688]]>
       
       Supported platforms:

@@ -13,7 +13,7 @@
     <summary>
       Includes GW2NET.Compression.dll
       
-      This library is used for inflating streams that were compressed using a deflation algorithm.
+      $description$
 
       Supported platforms:
       - .NET Framework 4.5+

@@ -13,10 +13,7 @@
     <summary>
       Includes GW2NET.Core.dll
 
-      This library contains core components for GW2.NET:
-      - Interfaces
-      - Entity types
-      - Exception types
+      $description$
 
       Supported platforms:
       - .NET Framework 4.5+

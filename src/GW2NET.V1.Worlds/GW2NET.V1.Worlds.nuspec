@@ -13,7 +13,7 @@
     <summary>
       Includes GW2NET.V1.Worlds.dll
 
-      This library implements /v1/world_names.json
+      $description$
       <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/world_names&oldid=824500]]>
       
       Supported platforms:

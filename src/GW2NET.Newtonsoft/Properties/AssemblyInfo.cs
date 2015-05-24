@@ -13,7 +13,7 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GW2.NET Newtonsoft Serializer Assembly")]
-[assembly: AssemblyDescription("Json.NET-based serializer implementation for GW2.NET")]
+[assembly: AssemblyTitle("GW2.NET Newtonsoft JSON Framework")]
+[assembly: AssemblyDescription("This library is used for de-serializing JSON data contracts")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]

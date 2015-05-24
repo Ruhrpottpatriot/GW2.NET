@@ -13,7 +13,7 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GW2.NET Core Assembly")]
-[assembly: AssemblyDescription("Core components for GW2.NET")]
+[assembly: AssemblyTitle("GW2.NET Core")]
+[assembly: AssemblyDescription("This library contains core components for GW2.NET")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]

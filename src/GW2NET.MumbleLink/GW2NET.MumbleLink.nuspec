@@ -13,7 +13,7 @@
     <summary>
       Includes GW2NET.MumbleLink.dll
 
-      This library contains an implementation of the Mumble Link protocol.
+      $description$
       <![CDATA[http://wiki.guildwars2.com/wiki/Mumble]]>
 
       Supported platforms:
