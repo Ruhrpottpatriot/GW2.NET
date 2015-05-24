@@ -10,17 +10,19 @@
     <projectUrl>https://gw2dotnet.codeplex.com/</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
-    <!-- TODO: provide a short description of the package contents-->
-    <summary></summary>
+    <summary>
+      A .NET implementation of the Guild Wars 2 public API.
+      This implementation aims to provide .NET developers with an easy to use, well documented library and tools to use in their own applications which rely on data from the Guild Wars 2 API.
+      We want to provider users with an entry point to the api, that does not require the user to take every api node and piece the data back himself.
+    </summary>
     <releaseNotes>
       - Made GetParameters and GetPathSegment in DiscoveryRequest virtual so they can be used with the /v2/floors url style
       - Changed constructor of abstract class FactoryBase to protected
       - Stylecop fixes across the board
-      - Added Support for v2/floors endpoint and made it publicly available although the api endpoint is currently disabled.
-      - Added Support for v2/maps endpoint
-      - Added Support for v2/skins endpoint
-      - Added Support for v2/continents endpoint
-      - Added Support for v2/files endpoint
+      - Added support for v2/maps endpoint
+      - Added support for v2/skins endpoint
+      - Added support for v2/continents endpoint
+      - Added support for v2/files endpoint
       - Renamed WvW property in Factoryfor V1 to WorldVersusWorld
       - Added missing ObjectInvariant methods.
       - V2 Factories now implement RepositoryFactoryBase to reduce code repitition
@@ -58,7 +60,6 @@
       <dependency id="GW2NET.V2.Commerce.Prices" version="[$version$]" />
       <dependency id="GW2NET.V2.Continents" version="[$version$]" />
       <dependency id="GW2NET.V2.Files" version="[$version$]" />
-      <dependency id="GW2NET.V2.Floors" version="[$version$]" />
       <dependency id="GW2NET.V2.Items" version="[$version$]" />
       <dependency id="GW2NET.V2.Maps" version="[$version$]" />
       <dependency id="GW2NET.V2.Quaggans" version="[$version$]" />

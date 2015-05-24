@@ -78,8 +78,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Skins", "src\GW2N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Maps", "src\GW2NET.V2.Maps\GW2NET.V2.Maps.csproj", "{E0048487-3E7F-4036-BC50-508AF4C321E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Floors", "src\GW2NET.V2.Floors\GW2NET.V2.Floors.csproj", "{FEBB38C8-9836-4218-A943-7E45FA6FA4CC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.MumbleLink.Tests", "src\GW2NET.MumbleLink.Tests\GW2NET.MumbleLink.Tests.csproj", "{FC0BDFF8-D50B-44B7-8493-FB87B74F54B8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Files.Tests", "src\GW2NET.V1.Files.Tests\GW2NET.V1.Files.Tests.csproj", "{F7105E24-7FDC-4F38-8F91-4F0C557BD12E}"
@@ -88,7 +86,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Files.Tests", "sr
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 38
+		SccNumberOfProjects = 37
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
 		SccLocalPath0 = .
@@ -220,26 +218,22 @@ Global
 		SccProjectTopLevelParentUniqueName32 = GW2.NET.sln
 		SccProjectName32 = src/GW2NET.V2.Maps
 		SccLocalPath32 = src\\GW2NET.V2.Maps
-		SccProjectUniqueName33 = src\\GW2NET.V2.Floors\\GW2NET.V2.Floors.csproj
+		SccProjectUniqueName33 = src\\GW2NET.MumbleLink.Tests\\GW2NET.MumbleLink.Tests.csproj
 		SccProjectTopLevelParentUniqueName33 = GW2.NET.sln
-		SccProjectName33 = src/GW2NET.V2.Floors
-		SccLocalPath33 = src\\GW2NET.V2.Floors
-		SccProjectUniqueName34 = src\\GW2NET.MumbleLink.Tests\\GW2NET.MumbleLink.Tests.csproj
+		SccProjectName33 = src/GW2NET.MumbleLink.Tests
+		SccLocalPath33 = src\\GW2NET.MumbleLink.Tests
+		SccProjectUniqueName34 = src\\GW2NET.V1.Files.Tests\\GW2NET.V1.Files.Tests.csproj
 		SccProjectTopLevelParentUniqueName34 = GW2.NET.sln
-		SccProjectName34 = src/GW2NET.MumbleLink.Tests
-		SccLocalPath34 = src\\GW2NET.MumbleLink.Tests
-		SccProjectUniqueName35 = src\\GW2NET.V1.Files.Tests\\GW2NET.V1.Files.Tests.csproj
+		SccProjectName34 = src/GW2NET.V1.Files.Tests
+		SccLocalPath34 = src\\GW2NET.V1.Files.Tests
+		SccProjectUniqueName35 = src\\GW2NET.V2.Files.Tests\\GW2NET.V2.Files.Tests.csproj
 		SccProjectTopLevelParentUniqueName35 = GW2.NET.sln
-		SccProjectName35 = src/GW2NET.V1.Files.Tests
-		SccLocalPath35 = src\\GW2NET.V1.Files.Tests
-		SccProjectUniqueName36 = src\\GW2NET.V2.Files.Tests\\GW2NET.V2.Files.Tests.csproj
+		SccProjectName35 = src/GW2NET.V2.Files.Tests
+		SccLocalPath35 = src\\GW2NET.V2.Files.Tests
+		SccProjectUniqueName36 = src\\GW2NET.V2.Builds\\GW2NET.V2.Builds.csproj
 		SccProjectTopLevelParentUniqueName36 = GW2.NET.sln
-		SccProjectName36 = src/GW2NET.V2.Files.Tests
-		SccLocalPath36 = src\\GW2NET.V2.Files.Tests
-		SccProjectUniqueName37 = src\\GW2NET.V2.Builds\\GW2NET.V2.Builds.csproj
-		SccProjectTopLevelParentUniqueName37 = GW2.NET.sln
-		SccProjectName37 = src/GW2NET.V2.Builds
-		SccLocalPath37 = src\\GW2NET.V2.Builds
+		SccProjectName36 = src/GW2NET.V2.Builds
+		SccLocalPath36 = src\\GW2NET.V2.Builds
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -377,10 +371,6 @@ Global
 		{E0048487-3E7F-4036-BC50-508AF4C321E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0048487-3E7F-4036-BC50-508AF4C321E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0048487-3E7F-4036-BC50-508AF4C321E2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FEBB38C8-9836-4218-A943-7E45FA6FA4CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FEBB38C8-9836-4218-A943-7E45FA6FA4CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FEBB38C8-9836-4218-A943-7E45FA6FA4CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FEBB38C8-9836-4218-A943-7E45FA6FA4CC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FC0BDFF8-D50B-44B7-8493-FB87B74F54B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FC0BDFF8-D50B-44B7-8493-FB87B74F54B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC0BDFF8-D50B-44B7-8493-FB87B74F54B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -431,7 +421,6 @@ Global
 		{8991E557-F908-4FF4-9A3E-299869076887} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{9937ADF8-CEB8-48F2-9E12-C259CD454C17} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{E0048487-3E7F-4036-BC50-508AF4C321E2} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
-		{FEBB38C8-9836-4218-A943-7E45FA6FA4CC} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{FC0BDFF8-D50B-44B7-8493-FB87B74F54B8} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{F7105E24-7FDC-4F38-8F91-4F0C557BD12E} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{2F7B458D-A71B-40B0-BDD2-8BB8E11BD1FC} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
