@@ -14,6 +14,7 @@
       Includes GW2NET.V1.Colors.dll
 
       This library implements /v1/colors.json
+      https://wiki.guildwars2.com/index.php?title=API:1/colors&oldid=657966
 
       Supported platforms:
       - .NET Framework 4.5+

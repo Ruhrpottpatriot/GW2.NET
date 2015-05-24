@@ -14,7 +14,9 @@
       Includes GW2NET.V1.Events.dll
 
       This library implements /v1/event_names.json and /v1/event_details.json
-
+      https://wiki.guildwars2.com/index.php?title=API:1/event_names&oldid=657953
+      https://wiki.guildwars2.com/index.php?title=API:1/event_details&oldid=749406
+      
       Supported platforms:
       - .NET Framework 4.5+
       - Windows 8

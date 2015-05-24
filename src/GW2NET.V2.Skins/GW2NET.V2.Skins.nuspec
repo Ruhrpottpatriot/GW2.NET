@@ -14,7 +14,8 @@
       Includes GW2NET.V2.Skins.dll
 
       This library implements /v2/skins
-
+      https://wiki.guildwars2.com/index.php?title=API:2/skins&oldid=985515
+      
       Supported platforms:
       - .NET Framework 4.5+
       - Windows 8

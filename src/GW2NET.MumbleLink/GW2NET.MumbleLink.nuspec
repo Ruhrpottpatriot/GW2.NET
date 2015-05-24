@@ -14,6 +14,7 @@
       Includes GW2NET.MumbleLink.dll
 
       This library contains an implementation of the Mumble Link protocol.
+      http://wiki.guildwars2.com/wiki/Mumble
 
       Supported platforms:
       - .NET Framework 4.5.2+

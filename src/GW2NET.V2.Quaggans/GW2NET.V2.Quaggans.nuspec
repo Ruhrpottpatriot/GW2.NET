@@ -14,7 +14,8 @@
       Includes GW2NET.V2.Quaggans.dll
 
       This library implements /v2/quaggans
-
+      https://wiki.guildwars2.com/index.php?title=API:2/quaggans&oldid=872939
+      
       Supported platforms:
       - .NET Framework 4.5+
       - Windows 8

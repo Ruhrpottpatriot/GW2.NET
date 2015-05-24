@@ -14,7 +14,8 @@
       Includes GW2NET.V2.Files.dll
 
       This library implements /v2/files
-
+      https://wiki.guildwars2.com/index.php?title=API:2/files&oldid=985510
+      
       Supported platforms:
       - .NET Framework 4.5+
       - Windows 8

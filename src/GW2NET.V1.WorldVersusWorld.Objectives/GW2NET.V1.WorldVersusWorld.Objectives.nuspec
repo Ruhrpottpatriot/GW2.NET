@@ -13,8 +13,9 @@
     <summary>
       Includes GW2NET.V1.WorldVersusWorld.Objectives.dll
 
-      This library implements /v1/objective_names.json
-
+      This library implements /v1/wvw/objective_names.json
+      https://wiki.guildwars2.com/index.php?title=API:1/wvw/objective_names&oldid=657963
+      
       Supported platforms:
       - .NET Framework 4.5+
       - Windows 8

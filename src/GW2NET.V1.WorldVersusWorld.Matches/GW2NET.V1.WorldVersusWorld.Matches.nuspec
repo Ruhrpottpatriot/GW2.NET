@@ -13,8 +13,10 @@
     <summary>
       Includes GW2NET.V1.WorldVersusWorld.Matches.dll
 
-      This library implements /v1/matches.json and /v1/match_details.json
-
+      This library implements /v1/wvw/matches.json and /v1/wvw/match_details.json
+      https://wiki.guildwars2.com/index.php?title=API:1/wvw/matches&oldid=657959
+      https://wiki.guildwars2.com/index.php?title=API:1/wvw/match_details&oldid=701039
+      
       Supported platforms:
       - .NET Framework 4.5+
       - Windows 8

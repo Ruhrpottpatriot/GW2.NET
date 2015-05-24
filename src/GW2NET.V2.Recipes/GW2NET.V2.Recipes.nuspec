@@ -14,7 +14,9 @@
       Includes GW2NET.V2.Recipes.dll
 
       This library implements /v2/recipes
-
+      https://wiki.guildwars2.com/index.php?title=API:2/recipes&oldid=985513
+      https://wiki.guildwars2.com/index.php?title=API:2/recipes/search&oldid=985514
+      
       Supported platforms:
       - .NET Framework 4.5+
       - Windows 8

@@ -14,7 +14,8 @@
       Includes GW2NET.V1.Guilds.dll
 
       This library implements /v1/guild_details.json
-
+      https://wiki.guildwars2.com/index.php?title=API:1/guild_details&oldid=824214
+      
       Supported platforms:
       - .NET Framework 4.5+
       - Windows 8

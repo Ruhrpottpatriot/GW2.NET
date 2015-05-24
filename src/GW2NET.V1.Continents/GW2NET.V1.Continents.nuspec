@@ -14,7 +14,8 @@
       Includes GW2NET.V1.Continents.dll
 
       This library implements /v1/continents.json
-
+      https://wiki.guildwars2.com/index.php?title=API:1/continents&oldid=897319
+      
       Supported platforms:
       - .NET Framework 4.5+
       - Windows 8

@@ -14,7 +14,8 @@
       Includes GW2NET.V1.Worlds.dll
 
       This library implements /v1/world_names.json
-
+      https://wiki.guildwars2.com/index.php?title=API:1/world_names&oldid=824500
+      
       Supported platforms:
       - .NET Framework 4.5+
       - Windows 8

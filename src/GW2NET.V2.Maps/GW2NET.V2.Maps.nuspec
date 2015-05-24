@@ -14,7 +14,8 @@
       Includes GW2NET.V2.Maps.dll
 
       This library implements /v2/maps
-
+      https://wiki.guildwars2.com/index.php?title=API:2/maps&oldid=985512
+      
       Supported platforms:
       - .NET Framework 4.5+
       - Windows 8

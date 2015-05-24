@@ -14,7 +14,9 @@
       Includes GW2NET.V1.Maps.dll
 
       This library implements /v1/map_names.json and /v1/maps.json
-
+      https://wiki.guildwars2.com/index.php?title=API:1/map_names&oldid=764371
+      https://wiki.guildwars2.com/index.php?title=API:1/maps&oldid=897686
+      
       Supported platforms:
       - .NET Framework 4.5+
       - Windows 8

@@ -14,7 +14,8 @@
       Includes GW2NET.V1.Files.dll
 
       This library implements /v1/files.json
-
+      https://wiki.guildwars2.com/index.php?title=API:1/files&oldid=764362
+      
       Supported platforms:
       - .NET Framework 4.5+
       - Windows 8
