@@ -36,6 +36,7 @@
     <dependencies>
       <dependency id="GW2NET.Core" version="1.0.0" />
       <dependency id="GW2NET.Compression" version="1.0.0" />
+      <dependency id="GW2NET.Newtonsoft" version="1.0.0" />
       <dependency id="GW2NET.V1.Builds" version="1.0.0" />
       <dependency id="GW2NET.V1.Colors" version="1.0.0" />
       <dependency id="GW2NET.V1.Continents" version="1.0.0" />
@@ -65,9 +66,5 @@
       <dependency id="GW2NET.V2.Skins" version="1.0.0" />
       <dependency id="GW2NET.V2.Worlds" version="1.0.0" />
     </dependencies>
-    <references>
-      <reference file="GW2NET.dll" />
-      <reference file="GW2NET.Core.dll" />
-    </references>
   </metadata>
 </package>
