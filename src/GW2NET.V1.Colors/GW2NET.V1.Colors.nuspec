@@ -10,8 +10,17 @@
     <projectUrl>https://gw2dotnet.codeplex.com/</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
-    <!-- TODO: provide a short description of the package contents-->
-    <summary></summary>
+    <summary>
+      Includes GW2NET.V1.Colors.dll
+
+      This library implements /v1/colors.json
+
+      Supported platforms:
+      - .NET Framework 4.5+
+      - Windows 8
+      - Windows Phone 8.1
+      - Portable Class Libraries
+    </summary>
     <releaseNotes>Initial Release</releaseNotes>
     <copyright>GNU General Public License version 2 (GPLv2)</copyright>
     <language>en, es, de, fr</language>

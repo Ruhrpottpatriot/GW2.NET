@@ -10,8 +10,17 @@
     <projectUrl>https://gw2dotnet.codeplex.com/</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
-    <!-- TODO: provide a short description of the package contents-->
-    <summary></summary>
+    <summary>
+      Includes GW2NET.Compression.dll
+      
+      This library is used for inflating streams that were compressed using a deflation algorithm.
+
+      Supported platforms:
+      - .NET Framework 4.5+
+      - Windows 8
+      - Windows Phone 8.1
+      - Portable Class Libraries
+    </summary>
     <releaseNotes>Initial Release</releaseNotes>
     <copyright>GNU General Public License version 2 (GPLv2)</copyright>
     <language>en, es, de, fr</language>

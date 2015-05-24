@@ -11,9 +11,15 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>
-      A .NET implementation of the Guild Wars 2 public API.
-      This implementation aims to provide .NET developers with an easy to use, well documented library and tools to use in their own applications which rely on data from the Guild Wars 2 API.
-      We want to provider users with an entry point to the api, that does not require the user to take every api node and piece the data back himself.
+      GW2.NET is an implementation of the Guild Wars 2 public API.
+
+      Includes GW2NET.dll
+
+      Supported platforms:
+      - .NET Framework 4.5+
+      - Windows 8
+      - Windows Phone 8.1
+      - Portable Class Libraries
     </summary>
     <releaseNotes>
       - Made GetParameters and GetPathSegment in DiscoveryRequest virtual so they can be used with the /v2/floors url style
