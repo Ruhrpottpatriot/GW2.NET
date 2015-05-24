@@ -14,7 +14,7 @@ using System.Runtime.CompilerServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("GW2.NET.MumbleLink")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Implements the MumbleLink protocol.")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
 [assembly: InternalsVisibleTo("GW2NET.MumbleLink.Tests")]
