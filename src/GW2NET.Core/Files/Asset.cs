@@ -25,6 +25,9 @@ namespace GW2NET.Files
         /// <summary>Gets or sets file signature to be used with the render service.</summary>
         public virtual string FileSignature { get; set; }
 
+        /// <summary>Gets or sets the icon file URL.</summary>
+        public virtual Uri IconFileUrl { get; set; }
+
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
