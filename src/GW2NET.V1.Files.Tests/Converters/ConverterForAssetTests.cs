@@ -9,8 +9,8 @@
         private readonly ConverterForAsset converter = new ConverterForAsset();
 
         [Theory]
-        [InlineData("map_complete", 528724, "5A4E663071250EC72668C09E3C082E595A380BF7")]
-        public void CanConvert(string identifier, int fileId, string fileSignature)
+        [InlineData("map_complete", 528724, "5A4E663071250EC72668C09E3C082E595A380BF7", "https://render.guildwars2.com/file/5A4E663071250EC72668C09E3C082E595A380BF7/528724.png")]
+        public void CanConvert(string identifier, int fileId, string fileSignature, string icon)
         {
             var value = new FileDataContract
             {
@@ -23,7 +23,7 @@
             Assert.NotNull(result.IconFileUrl);
             Assert.Equal(fileId, result.FileId);
             Assert.Equal(fileSignature, result.FileSignature);
-            Assert.Equal(string.Format("https://render.guildwars2.com/file/{0}/{1}.png", fileSignature, fileId), result.IconFileUrl.ToString());
+            Assert.Equal(icon, result.IconFileUrl.ToString());
         }
     }
 }
