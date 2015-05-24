@@ -40,6 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="GW2NET.V2.Continents.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Requests\ContinentBulkRequest.cs" />
