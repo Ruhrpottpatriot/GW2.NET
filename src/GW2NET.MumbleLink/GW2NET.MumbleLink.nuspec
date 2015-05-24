@@ -16,5 +16,8 @@
     <copyright>GNU General Public License version 2 (GPLv2)</copyright>
     <language>en, es, de, fr</language>
     <tags>GW2</tags>
+    <dependencies>
+      <dependency id="GW2NET.Core" version="[$version$]" />
+    </dependencies>
   </metadata>
 </package>
