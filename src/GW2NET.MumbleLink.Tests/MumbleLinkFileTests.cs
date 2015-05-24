@@ -32,8 +32,6 @@
                 Assert.Equal("Isaac Newerton", avatar.Identity.Name);
                 Assert.Equal(Profession.Engineer, avatar.Identity.Profession);
                 Assert.Equal(Race.Human, avatar.Identity.Race);
-                Assert.NotNull(avatar.Identity.Profession == Profession.Engineer);
-                Assert.NotNull(avatar.Identity.Race == Race.Human);
             }
         }
 
