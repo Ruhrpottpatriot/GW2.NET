@@ -19,8 +19,8 @@ namespace GW2NET.Files
         /// <summary>Gets or sets the file identifier to be used with the render service.</summary>
         public virtual int FileId { get; set; }
 
-        /// <summary>Gets or sets the file name.</summary>
-        public virtual string FileName { get; set; }
+        /// <summary>Gets or sets the file identifier.</summary>
+        public virtual string Identifier { get; set; }
 
         /// <summary>Gets or sets file signature to be used with the render service.</summary>
         public virtual string FileSignature { get; set; }
@@ -98,7 +98,7 @@ namespace GW2NET.Files
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
-            var name = this.FileName;
+            var name = this.Identifier;
             if (name != null)
             {
                 return name;

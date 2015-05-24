@@ -106,8 +106,8 @@ namespace GW2NET.V1.Files
                     continue;
                 }
 
-                value.FileName = kvp.Key;
-                values.Add(value.FileName, value);
+                value.Identifier = kvp.Key;
+                values.Add(value.Identifier, value);
             }
 
             return values;
@@ -217,8 +217,8 @@ namespace GW2NET.V1.Files
                     continue;
                 }
 
-                value.FileName = kvp.Key;
-                values.Add(value.FileName, value);
+                value.Identifier = kvp.Key;
+                values.Add(value.Identifier, value);
             }
 
             return values;
