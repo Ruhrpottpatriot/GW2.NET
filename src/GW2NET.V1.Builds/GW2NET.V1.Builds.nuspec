@@ -7,14 +7,14 @@
     <authors>$author$</authors>
     <owners>$author$</owners>
     <licenseUrl>https://gw2dotnet.codeplex.com/license</licenseUrl>
-    <projectUrl>https://gw2dotnet.codeplex.com/</projectUrl>
+    <projectUrl><![CDATA[https://gw2dotnet.codeplex.com/]]></projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>
       Includes GW2NET.V1.Builds.dll
 
       This library implements /v1/build.json
-      https://wiki.guildwars2.com/index.php?title=API:1/build&oldid=657965
+      <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/build&oldid=657965]]>
 
       Supported platforms:
       - .NET Framework 4.5+

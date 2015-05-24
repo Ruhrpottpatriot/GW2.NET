@@ -6,16 +6,16 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>https://gw2dotnet.codeplex.com/license</licenseUrl>
-    <projectUrl>https://gw2dotnet.codeplex.com/</projectUrl>
+    <licenseUrl><![CDATA[https://gw2dotnet.codeplex.com/license]]></licenseUrl>
+    <projectUrl><![CDATA[https://gw2dotnet.codeplex.com/]]></projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>
       Includes GW2NET.V1.Recipes.dll
 
       This library implements /v1/recipes.json and /v1/recipe_details.json
-      https://wiki.guildwars2.com/index.php?title=API:1/recipes&oldid=657957
-      https://wiki.guildwars2.com/index.php?title=API:1/recipe_details&oldid=868643
+      <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/recipes&oldid=657957]]>
+      <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/recipe_details&oldid=868643]]>
       
       Supported platforms:
       - .NET Framework 4.5+

@@ -6,15 +6,15 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>https://gw2dotnet.codeplex.com/license</licenseUrl>
-    <projectUrl>https://gw2dotnet.codeplex.com/</projectUrl>
+    <licenseUrl><![CDATA[https://gw2dotnet.codeplex.com/license]]></licenseUrl>
+    <projectUrl><![CDATA[https://gw2dotnet.codeplex.com/]]></projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>
       Includes GW2NET.V2.Files.dll
 
       This library implements /v2/files
-      https://wiki.guildwars2.com/index.php?title=API:2/files&oldid=985510
+      <![CDATA[https://wiki.guildwars2.com/index.php?title=API:2/files&oldid=985510]]>
       
       Supported platforms:
       - .NET Framework 4.5+

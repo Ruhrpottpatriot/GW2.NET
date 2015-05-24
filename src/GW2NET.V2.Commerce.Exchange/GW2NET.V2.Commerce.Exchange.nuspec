@@ -6,17 +6,17 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>https://gw2dotnet.codeplex.com/license</licenseUrl>
-    <projectUrl>https://gw2dotnet.codeplex.com/</projectUrl>
+    <licenseUrl><![CDATA[https://gw2dotnet.codeplex.com/license]]></licenseUrl>
+    <projectUrl><![CDATA[https://gw2dotnet.codeplex.com/]]></projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>
       Includes GW2NET.V2.Commerce.Exchange.dll
 
       This library implements /v2/commerce/exchange
-      https://wiki.guildwars2.com/index.php?title=API:2/commerce/exchange&oldid=985506
-      https://wiki.guildwars2.com/index.php?title=API:2/commerce/exchange/coins&oldid=985507
-      https://wiki.guildwars2.com/index.php?title=API:2/commerce/exchange/gems&oldid=985508
+      <![CDATA[https://wiki.guildwars2.com/index.php?title=API:2/commerce/exchange&oldid=985506]]>
+      <![CDATA[https://wiki.guildwars2.com/index.php?title=API:2/commerce/exchange/coins&oldid=985507]]>
+      <![CDATA[https://wiki.guildwars2.com/index.php?title=API:2/commerce/exchange/gems&oldid=985508]]>
       
       Supported platforms:
       - .NET Framework 4.5+

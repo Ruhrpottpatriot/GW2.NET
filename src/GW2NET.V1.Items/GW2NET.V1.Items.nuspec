@@ -6,16 +6,16 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>https://gw2dotnet.codeplex.com/license</licenseUrl>
-    <projectUrl>https://gw2dotnet.codeplex.com/</projectUrl>
+    <licenseUrl><![CDATA[https://gw2dotnet.codeplex.com/license]]></licenseUrl>
+    <projectUrl><![CDATA[https://gw2dotnet.codeplex.com/]]></projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>
       Includes GW2NET.V1.Items.dll
 
       This library implements /v1/items.json and /v1/item_details.json
-      https://wiki.guildwars2.com/index.php?title=API:1/items&oldid=793794
-      https://wiki.guildwars2.com/index.php?title=API:1/item_details&oldid=857326
+      <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/items&oldid=793794]]>
+      <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/item_details&oldid=857326]]>
 
       Supported platforms:
       - .NET Framework 4.5+

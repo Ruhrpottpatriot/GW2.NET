@@ -6,16 +6,16 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>https://gw2dotnet.codeplex.com/license</licenseUrl>
-    <projectUrl>https://gw2dotnet.codeplex.com/</projectUrl>
+    <licenseUrl><![CDATA[https://gw2dotnet.codeplex.com/license]]></licenseUrl>
+    <projectUrl><![CDATA[https://gw2dotnet.codeplex.com/]]></projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>
       Includes GW2NET.V1.WorldVersusWorld.Matches.dll
 
       This library implements /v1/wvw/matches.json and /v1/wvw/match_details.json
-      https://wiki.guildwars2.com/index.php?title=API:1/wvw/matches&oldid=657959
-      https://wiki.guildwars2.com/index.php?title=API:1/wvw/match_details&oldid=701039
+      <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/wvw/matches&oldid=657959]]>
+      <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/wvw/match_details&oldid=701039]]>
       
       Supported platforms:
       - .NET Framework 4.5+

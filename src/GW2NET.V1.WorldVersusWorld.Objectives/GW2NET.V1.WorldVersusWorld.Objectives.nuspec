@@ -6,15 +6,15 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>https://gw2dotnet.codeplex.com/license</licenseUrl>
-    <projectUrl>https://gw2dotnet.codeplex.com/</projectUrl>
+    <licenseUrl><![CDATA[https://gw2dotnet.codeplex.com/license]]></licenseUrl>
+    <projectUrl><![CDATA[https://gw2dotnet.codeplex.com/]]></projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>
       Includes GW2NET.V1.WorldVersusWorld.Objectives.dll
 
       This library implements /v1/wvw/objective_names.json
-      https://wiki.guildwars2.com/index.php?title=API:1/wvw/objective_names&oldid=657963
+      <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/wvw/objective_names&oldid=657963]]>
       
       Supported platforms:
       - .NET Framework 4.5+

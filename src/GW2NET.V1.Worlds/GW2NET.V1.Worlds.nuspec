@@ -6,15 +6,15 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>https://gw2dotnet.codeplex.com/license</licenseUrl>
-    <projectUrl>https://gw2dotnet.codeplex.com/</projectUrl>
+    <licenseUrl><![CDATA[https://gw2dotnet.codeplex.com/license]]></licenseUrl>
+    <projectUrl><![CDATA[https://gw2dotnet.codeplex.com/]]></projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>
       Includes GW2NET.V1.Worlds.dll
 
       This library implements /v1/world_names.json
-      https://wiki.guildwars2.com/index.php?title=API:1/world_names&oldid=824500
+      <![CDATA[https://wiki.guildwars2.com/index.php?title=API:1/world_names&oldid=824500]]>
       
       Supported platforms:
       - .NET Framework 4.5+
