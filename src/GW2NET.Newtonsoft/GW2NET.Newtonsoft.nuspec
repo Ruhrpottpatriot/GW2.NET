@@ -18,6 +18,7 @@
     <tags>GW2</tags>
     <dependencies>
       <dependency id="GW2NET.Core" version="1.0.0" />
+      <dependency id="Newtonsoft.Json" version="6.0.6" />
     </dependencies>
   </metadata>
 </package>

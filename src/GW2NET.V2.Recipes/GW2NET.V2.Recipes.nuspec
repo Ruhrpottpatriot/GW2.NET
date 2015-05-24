@@ -1,24 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-    <metadata>
-        <id>GW2NET.V2.Recipes</id>
-        <version>$version$</version>
-        <title>GW2.NET</title>
-        <authors>GW2.NET Coding Team</authors>
-        <owners>GW2.NET Coding Team</owners>
-        <licenseUrl>https://gw2dotnet.codeplex.com/license</licenseUrl>
-        <projectUrl>https://gw2dotnet.codeplex.com/</projectUrl>
-        <requireLicenseAcceptance>true</requireLicenseAcceptance>
-        <description>A .NET implementation of the Guild Wars 2 public API.
-      This implementation aims to provide .NET developers with an easy to use, well documented library and tools to use in their own applications which rely on data from the Guild Wars 2 API.
-      We want to provider users with an entry point to the api, that does not require the user to take every api node and piece the data back himself.</description>
-        <summary>This software is licensed under the GNU General Public License version 2 (GPLv2). For a complete version of the license follow the link.</summary>
-        <releaseNotes>- Initial Release</releaseNotes>
-        <copyright>Copyright ©  2013 - 2015</copyright>
-        <language>en, es, de, fr</language>
-        <tags>GW2</tags>
-        <dependencies>
-            <dependency id="GW2.NET.Core" version="1.0.0" />
-        </dependencies>
-    </metadata>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://gw2dotnet.codeplex.com/license</licenseUrl>
+    <projectUrl>https://gw2dotnet.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>$description$</description>
+    <!-- TODO: provide a short description of the package contents-->
+    <summary></summary>
+    <releaseNotes>Initial Release</releaseNotes>
+    <copyright>GNU General Public License version 2 (GPLv2)</copyright>
+    <language>en, es, de, fr</language>
+    <tags>GW2</tags>
+    <dependencies>
+      <dependency id="GW2NET.Core" version="1.0.0" />
+    </dependencies>
+  </metadata>
 </package>
