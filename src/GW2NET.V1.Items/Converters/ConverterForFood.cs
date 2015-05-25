@@ -18,7 +18,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForFood : IConverter<ConsumableDataContract, Food>
     {
         /// <inheritdoc />
-        public Food Convert(ConsumableDataContract value)
+        public Food Convert(ConsumableDataContract value, object state)
         {
             if (value == null)
             {

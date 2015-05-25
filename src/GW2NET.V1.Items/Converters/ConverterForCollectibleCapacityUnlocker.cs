@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForCollectibleCapacityUnlocker : IConverter<ConsumableDataContract, CollectibleCapacityUnlocker>
     {
         /// <inheritdoc />
-        public CollectibleCapacityUnlocker Convert(ConsumableDataContract value)
+        public CollectibleCapacityUnlocker Convert(ConsumableDataContract value, object state)
         {
             if (value == null)
             {

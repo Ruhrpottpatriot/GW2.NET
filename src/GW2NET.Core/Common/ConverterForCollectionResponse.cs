@@ -35,7 +35,7 @@ namespace GW2NET.Common
         }
 
         /// <inheritdoc />
-        ICollection<TValue> IConverter<IResponse<ICollection<TDataContract>>, ICollection<TValue>>.Convert(IResponse<ICollection<TDataContract>> value)
+        ICollection<TValue> IConverter<IResponse<ICollection<TDataContract>>, ICollection<TValue>>.Convert(IResponse<ICollection<TDataContract>> value, object state)
         {
             if (value == null)
             {
@@ -50,7 +50,7 @@ namespace GW2NET.Common
 
             var collection = new List<TValue>(dataContracts.Count);
 
-            collection.AddRange(dataContracts.Select(this.converterForDataContract.Convert));
+            collection.AddRange(dataContracts.Select(value1 => this.converterForDataContract.Convert(value1, state)));
 
             foreach (var localizableItem in collection.OfType<ILocalizable>())
             {

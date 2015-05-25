@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForShortBow : IConverter<WeaponDataContract, ShortBow>
     {
         /// <inheritdoc />
-        public ShortBow Convert(WeaponDataContract value)
+        public ShortBow Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

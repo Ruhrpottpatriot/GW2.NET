@@ -100,7 +100,7 @@ namespace GW2NET.V1.Files
             };
             foreach (var kvp in content)
             {
-                var value = this.converterForAsset.Convert(kvp.Value);
+                var value = this.converterForAsset.Convert(kvp.Value, null);
                 if (value == null)
                 {
                     continue;
@@ -211,7 +211,7 @@ namespace GW2NET.V1.Files
             };
             foreach (var kvp in content)
             {
-                var value = this.converterForAsset.Convert(kvp.Value);
+                var value = this.converterForAsset.Convert(kvp.Value, null);
                 if (value == null)
                 {
                     continue;

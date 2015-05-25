@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForFerocityModifier : IConverter<AttributeDataContract, FerocityModifier>
     {
         /// <inheritdoc />
-        public FerocityModifier Convert(AttributeDataContract value)
+        public FerocityModifier Convert(AttributeDataContract value, object state)
         {
             if (value == null)
             {

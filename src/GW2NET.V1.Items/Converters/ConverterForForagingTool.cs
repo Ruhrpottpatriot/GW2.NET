@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForForagingTool : IConverter<GatheringToolDataContract, ForagingTool>
     {
         /// <inheritdoc />
-        public ForagingTool Convert(GatheringToolDataContract value)
+        public ForagingTool Convert(GatheringToolDataContract value, object state)
         {
             if (value == null)
             {

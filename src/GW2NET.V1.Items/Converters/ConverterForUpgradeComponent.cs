@@ -66,7 +66,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public UpgradeComponent Convert(ItemDataContract value)
+        public UpgradeComponent Convert(ItemDataContract value, object state)
         {
             if (value == null)
             {
@@ -83,7 +83,7 @@ namespace GW2NET.V1.Items.Converters
             IConverter<UpgradeComponentDataContract, UpgradeComponent> converter;
             if (this.typeConverters.TryGetValue(upgradeComponentDataContract.Type, out converter))
             {
-                upgradeComponent = converter.Convert(upgradeComponentDataContract);
+                upgradeComponent = converter.Convert(upgradeComponentDataContract, state);
             }
             else
             {
@@ -93,13 +93,13 @@ namespace GW2NET.V1.Items.Converters
             var flags = upgradeComponentDataContract.Flags;
             if (flags != null)
             {
-                upgradeComponent.UpgradeComponentFlags = this.converterForUpgradeComponentFlagCollection.Convert(flags);
+                upgradeComponent.UpgradeComponentFlags = this.converterForUpgradeComponentFlagCollection.Convert(flags, state);
             }
 
             var infusionUpgradeFlags = upgradeComponentDataContract.InfusionUpgradeFlags;
             if (infusionUpgradeFlags != null)
             {
-                upgradeComponent.InfusionUpgradeFlags = this.converterForInfusionSlotFlagCollection.Convert(infusionUpgradeFlags);
+                upgradeComponent.InfusionUpgradeFlags = this.converterForInfusionSlotFlagCollection.Convert(infusionUpgradeFlags, state);
             }
 
             upgradeComponent.Suffix = upgradeComponentDataContract.Suffix;
@@ -107,7 +107,7 @@ namespace GW2NET.V1.Items.Converters
             var infixUpgradeDataContract = upgradeComponentDataContract.InfixUpgrade;
             if (infixUpgradeDataContract != null)
             {
-                upgradeComponent.InfixUpgrade = this.converterForInfixUpgrade.Convert(infixUpgradeDataContract);
+                upgradeComponent.InfixUpgrade = this.converterForInfixUpgrade.Convert(infixUpgradeDataContract, state);
             }
 
             upgradeComponent.Bonuses = upgradeComponentDataContract.Bonuses;

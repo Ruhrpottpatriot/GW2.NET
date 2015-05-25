@@ -61,7 +61,7 @@ namespace GW2NET.V1.Floors.Converters
         }
 
         /// <inheritdoc />
-        public Floor Convert(FloorDataContract value)
+        public Floor Convert(FloorDataContract value, object state)
         {
             if (value == null)
             {
@@ -75,21 +75,21 @@ namespace GW2NET.V1.Floors.Converters
             var textureDimensions = value.TextureDimensions;
             if (textureDimensions != null && textureDimensions.Length == 2)
             {
-                floor.TextureDimensions = this.converterForSize2D.Convert(textureDimensions);
+                floor.TextureDimensions = this.converterForSize2D.Convert(textureDimensions, state);
             }
 
             // Set the clamped view dimensions
             var clampedView = value.ClampedView;
             if (clampedView != null && clampedView.Length == 2)
             {
-                floor.ClampedView = this.converterForRectangle.Convert(clampedView);
+                floor.ClampedView = this.converterForRectangle.Convert(clampedView, state);
             }
 
             // Set the regions
             var regionDataContracts = value.Regions;
             if (regionDataContracts != null)
             {
-                floor.Regions = this.converterForRegionCollection.Convert(regionDataContracts);
+                floor.Regions = this.converterForRegionCollection.Convert(regionDataContracts, state);
             }
 
             // Return the floor object

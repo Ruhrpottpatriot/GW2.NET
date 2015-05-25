@@ -63,8 +63,9 @@ namespace GW2NET.V1.Skins.Converters
 
         /// <summary>Converts the given object of type <see cref="SkinDataContract"/> to an object of type <see cref="Skin"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public Skin Convert(SkinDataContract value)
+        public Skin Convert(SkinDataContract value, object state)
         {
             if (value == null)
             {
@@ -75,7 +76,7 @@ namespace GW2NET.V1.Skins.Converters
             IConverter<SkinDataContract, Skin> converter;
             if (this.typeConverters.TryGetValue(value.Type, out converter))
             {
-                skin = converter.Convert(value);
+                skin = converter.Convert(value, state);
             }
             else
             {
@@ -87,13 +88,13 @@ namespace GW2NET.V1.Skins.Converters
             var flags = value.Flags;
             if (flags != null)
             {
-                skin.Flags = this.converterForSkinFlags.Convert(flags);
+                skin.Flags = this.converterForSkinFlags.Convert(flags, state);
             }
 
             var restrictions = value.Restrictions;
             if (restrictions != null)
             {
-                skin.Restrictions = this.converterForItemRestrictions.Convert(restrictions);
+                skin.Restrictions = this.converterForItemRestrictions.Convert(restrictions, state);
             }
 
             int iconFileId;

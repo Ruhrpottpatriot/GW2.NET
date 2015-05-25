@@ -42,7 +42,7 @@ namespace GW2NET.V1.Floors.Converters
         }
 
         /// <inheritdoc />
-        public RenownTask Convert(RenownTaskDataContract value)
+        public RenownTask Convert(RenownTaskDataContract value, object state)
         {
             if (value == null)
             {
@@ -59,7 +59,7 @@ namespace GW2NET.V1.Floors.Converters
             var coordinates = value.Coordinates;
             if (coordinates != null && coordinates.Length == 2)
             {
-                renownTask.Coordinates = this.converterForVector2D.Convert(coordinates);
+                renownTask.Coordinates = this.converterForVector2D.Convert(coordinates, state);
             }
 
             return renownTask;

@@ -40,7 +40,7 @@ namespace GW2NET.V1.Events.Converters
         }
 
         /// <inheritdoc />
-        public DynamicEventFlags Convert(ICollection<string> value)
+        public DynamicEventFlags Convert(ICollection<string> value, object state)
         {
             if (value == null)
             {
@@ -50,7 +50,7 @@ namespace GW2NET.V1.Events.Converters
             var result = default(DynamicEventFlags);
             foreach (var s in value)
             {
-                result |= this.converterForDynamicEventFlag.Convert(s);
+                result |= this.converterForDynamicEventFlag.Convert(s, state);
             }
 
             return result;

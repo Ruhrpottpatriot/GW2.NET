@@ -18,7 +18,7 @@ namespace GW2NET.V2.Skins
     internal sealed class WeightClassConverter : IConverter<string, WeightClass>
     {
         /// <inheritdoc />
-        public WeightClass Convert(string value)
+        public WeightClass Convert(string value, object state)
         {
             WeightClass result;
             return Enum.TryParse(value, true, out result) ? result : default(WeightClass);

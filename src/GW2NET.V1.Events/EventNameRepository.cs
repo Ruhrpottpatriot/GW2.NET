@@ -105,7 +105,7 @@ namespace GW2NET.V1.Events
                 TotalCount = eventNameDataContracts.Count
             };
 
-            foreach (var dynamicEventName in this.converterForDynamicEventNameCollection.Convert(eventNameDataContracts))
+            foreach (var dynamicEventName in this.converterForDynamicEventNameCollection.Convert(eventNameDataContracts, null))
             {
                 dynamicEventName.Culture = request.Culture;
                 dynamicEventNames.Add(dynamicEventName.EventId, dynamicEventName);
@@ -214,7 +214,7 @@ namespace GW2NET.V1.Events
                 TotalCount = eventNameDataContracts.Count
             };
 
-            foreach (var dynamicEventName in this.converterForDynamicEventNameCollection.Convert(eventNameDataContracts))
+            foreach (var dynamicEventName in this.converterForDynamicEventNameCollection.Convert(eventNameDataContracts, null))
             {
                 dynamicEventName.Culture = culture;
                 dynamicEventNames.Add(dynamicEventName.EventId, dynamicEventName);

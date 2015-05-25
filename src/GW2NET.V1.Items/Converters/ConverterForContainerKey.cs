@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForContainerKey : IConverter<GizmoDataContract, ContainerKey>
     {
         /// <inheritdoc />
-        public ContainerKey Convert(GizmoDataContract value)
+        public ContainerKey Convert(GizmoDataContract value, object state)
         {
             if (value == null)
             {

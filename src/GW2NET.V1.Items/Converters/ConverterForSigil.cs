@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForSigil : IConverter<UpgradeComponentDataContract, Sigil>
     {
         /// <inheritdoc />
-        public Sigil Convert(UpgradeComponentDataContract value)
+        public Sigil Convert(UpgradeComponentDataContract value, object state)
         {
             if (value == null)
             {

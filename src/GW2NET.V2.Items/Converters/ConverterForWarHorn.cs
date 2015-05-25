@@ -18,8 +18,9 @@ namespace GW2NET.V2.Items
     {
         /// <summary>Converts the given object of type <see cref="DetailsDataContract"/> to an object of type <see cref="WarHorn"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public WarHorn Convert(DetailsDataContract value)
+        public WarHorn Convert(DetailsDataContract value, object state)
         {
             if (value == null)
             {

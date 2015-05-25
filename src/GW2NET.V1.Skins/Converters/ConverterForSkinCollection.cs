@@ -43,8 +43,9 @@ namespace GW2NET.V1.Skins.Converters
 
         /// <summary>Converts the given object of type <see cref="SkinCollectionDataContract"/> to an object of type <see cref="T:ICollection{int}"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public ICollection<int> Convert(SkinCollectionDataContract value)
+        public ICollection<int> Convert(SkinCollectionDataContract value, object state)
         {
             if (value == null)
             {
@@ -57,7 +58,7 @@ namespace GW2NET.V1.Skins.Converters
                 return new List<int>(0);
             }
 
-            return this.converterForCollection.Convert(values);
+            return this.converterForCollection.Convert(values, state);
         }
     }
 }

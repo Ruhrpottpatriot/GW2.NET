@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForCombatBuff : IConverter<CombatBuffDataContract, CombatBuff>
     {
         /// <inheritdoc />
-        public CombatBuff Convert(CombatBuffDataContract value)
+        public CombatBuff Convert(CombatBuffDataContract value, object state)
         {
             if (value == null)
             {

@@ -112,7 +112,7 @@ namespace GW2NET.V1.Floors
                 return null;
             }
 
-            var floor = this.converterForFloor.Convert(response.Content);
+            var floor = this.converterForFloor.Convert(response.Content, null);
             if (floor == null)
             {
                 return null;
@@ -228,7 +228,7 @@ namespace GW2NET.V1.Floors
                 return null;
             }
 
-            var floor = this.converterForFloor.Convert(response.Content);
+            var floor = this.converterForFloor.Convert(response.Content, null);
             if (floor == null)
             {
                 return null;

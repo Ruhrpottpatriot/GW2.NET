@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForSpearGun : IConverter<WeaponDataContract, SpearGun>
     {
         /// <inheritdoc />
-        public SpearGun Convert(WeaponDataContract value)
+        public SpearGun Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

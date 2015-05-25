@@ -55,8 +55,9 @@ namespace GW2NET.V1.Skins.Converters
 
         /// <summary>Converts the given object of type <see cref="WeaponSkinDataContract"/> to an object of type <see cref="WeaponSkin"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public WeaponSkin Convert(SkinDataContract value)
+        public WeaponSkin Convert(SkinDataContract value, object state)
         {
             if (value == null)
             {
@@ -68,7 +69,7 @@ namespace GW2NET.V1.Skins.Converters
             IConverter<WeaponSkinDataContract, WeaponSkin> converter;
             if (weaponSkinDataContract != null && this.typeConverters.TryGetValue(weaponSkinDataContract.Type, out converter))
             {
-                weaponSkin = converter.Convert(weaponSkinDataContract);
+                weaponSkin = converter.Convert(weaponSkinDataContract, state);
             }
             else
             {
@@ -83,7 +84,7 @@ namespace GW2NET.V1.Skins.Converters
             var damageType = weaponSkinDataContract.DamageType;
             if (damageType != null)
             {
-                weaponSkin.DamageType = this.converterForDamageType.Convert(damageType);
+                weaponSkin.DamageType = this.converterForDamageType.Convert(damageType, state);
             }
 
             return weaponSkin;

@@ -132,7 +132,7 @@ namespace GW2NET.MumbleLink
                 }
 
                 // Convert data contracts to managed data types
-                return this.avatarConverter.Convert(avatarDataContract);
+                return this.avatarConverter.Convert(avatarDataContract, null);
             }
         }
 

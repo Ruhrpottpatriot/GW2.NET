@@ -53,8 +53,9 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 
         /// <summary>Converts the given object of type <see cref="MatchDataContract"/> to an object of type <see cref="Match"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public Match Convert(MatchDataContract value)
+        public Match Convert(MatchDataContract value, object state)
         {
             if (value == null)
             {
@@ -73,7 +74,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
             var scores = value.Scores;
             if (scores != null && scores.Length == 3)
             {
-                match.Scores = this.converterForScoreboard.Convert(scores);
+                match.Scores = this.converterForScoreboard.Convert(scores, state);
             }
 
             //// Set a collection of maps and their status
@@ -81,7 +82,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
             if (mapDataContracts != null)
             {
                 var values = new List<CompetitiveMap>(mapDataContracts.Count);
-                values.AddRange(mapDataContracts.Select(this.converterForCompetitiveMap.Convert).Where(o => o != null));
+                values.AddRange(mapDataContracts.Select(value1 => this.converterForCompetitiveMap.Convert(value1, state)).Where(o => o != null));
                 match.Maps = values;
             }
 

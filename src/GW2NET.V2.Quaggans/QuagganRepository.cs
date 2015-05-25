@@ -83,7 +83,7 @@ namespace GW2NET.V2.Quaggans
         {
             var request = new QuagganDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<string>>(request);
-            return this.converterForIdentifiersResponse.Convert(response) ?? new List<string>(0);
+            return this.converterForIdentifiersResponse.Convert(response, null) ?? new List<string>(0);
         }
 
         /// <inheritdoc />
@@ -109,7 +109,7 @@ namespace GW2NET.V2.Quaggans
                 Identifier = identifier
             };
             var response = this.serviceClient.Send<QuagganDataContract>(request);
-            return this.converterForResponse.Convert(response);
+            return this.converterForResponse.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -117,7 +117,7 @@ namespace GW2NET.V2.Quaggans
         {
             var request = new QuagganBulkRequest();
             var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
-            return this.converterForBulkResponse.Convert(response) ?? new DictionaryRange<string, Quaggan>(0);
+            return this.converterForBulkResponse.Convert(response, null) ?? new DictionaryRange<string, Quaggan>(0);
         }
 
         /// <inheritdoc />
@@ -128,7 +128,7 @@ namespace GW2NET.V2.Quaggans
                 Identifiers = identifiers.ToList()
             };
             var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
-            return this.converterForBulkResponse.Convert(response) ?? new DictionaryRange<string, Quaggan>(0);
+            return this.converterForBulkResponse.Convert(response, null) ?? new DictionaryRange<string, Quaggan>(0);
         }
 
         /// <inheritdoc />
@@ -190,7 +190,7 @@ namespace GW2NET.V2.Quaggans
                 Page = pageIndex
             };
             var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response);
+            var values = this.converterForPageResponse.Convert(response, null);
             if (values == null)
             {
                 return new CollectionPage<Quaggan>(0);
@@ -210,7 +210,7 @@ namespace GW2NET.V2.Quaggans
                 PageSize = pageSize
             };
             var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response);
+            var values = this.converterForPageResponse.Convert(response, null);
             if (values == null)
             {
                 return new CollectionPage<Quaggan>(0);
@@ -262,28 +262,28 @@ namespace GW2NET.V2.Quaggans
         private ICollection<string> ConvertAsyncResponse(Task<IResponse<ICollection<string>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.converterForIdentifiersResponse.Convert(task.Result) ?? new List<string>(0);
+            return this.converterForIdentifiersResponse.Convert(task.Result, null) ?? new List<string>(0);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private IDictionaryRange<string, Quaggan> ConvertAsyncResponse(Task<IResponse<ICollection<QuagganDataContract>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.converterForBulkResponse.Convert(task.Result) ?? new DictionaryRange<string, Quaggan>(0);
+            return this.converterForBulkResponse.Convert(task.Result, null) ?? new DictionaryRange<string, Quaggan>(0);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private Quaggan ConvertAsyncResponse(Task<IResponse<QuagganDataContract>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.converterForResponse.Convert(task.Result);
+            return this.converterForResponse.Convert(task.Result, null);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollectionPage<Quaggan> ConvertAsyncResponse(Task<IResponse<ICollection<QuagganDataContract>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForPageResponse.Convert(task.Result);
+            var values = this.converterForPageResponse.Convert(task.Result, null);
             if (values == null)
             {
                 return new CollectionPage<Quaggan>(0);

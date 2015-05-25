@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForSword : IConverter<WeaponDataContract, Sword>
     {
         /// <inheritdoc />
-        public Sword Convert(WeaponDataContract value)
+        public Sword Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

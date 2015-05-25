@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForRune : IConverter<UpgradeComponentDataContract, Rune>
     {
         /// <inheritdoc />
-        public Rune Convert(UpgradeComponentDataContract value)
+        public Rune Convert(UpgradeComponentDataContract value, object state)
         {
             if (value == null)
             {

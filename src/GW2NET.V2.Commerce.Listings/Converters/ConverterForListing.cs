@@ -42,8 +42,9 @@ namespace GW2NET.V2.Commerce.Listings
 
         /// <summary>Converts the given object of type <see cref="ListingDataContract"/> to an object of type <see cref="Listing"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public Listing Convert(ListingDataContract value)
+        public Listing Convert(ListingDataContract value, object state)
         {
             if (value == null)
             {
@@ -58,7 +59,7 @@ namespace GW2NET.V2.Commerce.Listings
             var buys = value.BuyOffers;
             if (buys != null)
             {
-                listing.BuyOffers = this.converterForOfferCollection.Convert(buys) ?? new List<Offer>(0);
+                listing.BuyOffers = this.converterForOfferCollection.Convert(buys, state) ?? new List<Offer>(0);
             }
 
             Debug.Assert(buys != null, "buys != null");
@@ -67,7 +68,7 @@ namespace GW2NET.V2.Commerce.Listings
             var sells = value.SellOffers;
             if (sells != null)
             {
-                listing.SellOffers = this.converterForOfferCollection.Convert(sells) ?? new List<Offer>(0);
+                listing.SellOffers = this.converterForOfferCollection.Convert(sells, state) ?? new List<Offer>(0);
             }
 
             Debug.Assert(sells != null, "sells != null");

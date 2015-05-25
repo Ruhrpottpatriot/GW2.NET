@@ -42,7 +42,7 @@ namespace GW2NET.V1.Maps.Converters
         }
 
         /// <inheritdoc />
-        public ICollection<Map> Convert(MapCollectionDataContract value)
+        public ICollection<Map> Convert(MapCollectionDataContract value, object state)
         {
             if (value == null)
             {
@@ -58,7 +58,7 @@ namespace GW2NET.V1.Maps.Converters
             var maps = new List<Map>(dataContracts.Count);
             foreach (var kvp in dataContracts)
             {
-                var map = this.converterForMap.Convert(kvp.Value);
+                var map = this.converterForMap.Convert(kvp.Value, state);
                 if (map == null)
                 {
                     continue;

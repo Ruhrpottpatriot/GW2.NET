@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForLeggings : IConverter<ArmorDataContract, Leggings>
     {
         /// <inheritdoc />
-        public Leggings Convert(ArmorDataContract value)
+        public Leggings Convert(ArmorDataContract value, object state)
         {
             if (value == null)
             {

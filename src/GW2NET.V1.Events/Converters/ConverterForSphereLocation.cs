@@ -19,7 +19,7 @@ namespace GW2NET.V1.Events.Converters
     internal sealed class ConverterForSphereLocation : IConverter<LocationDataContract, SphereLocation>
     {
         /// <inheritdoc />
-        public SphereLocation Convert(LocationDataContract value)
+        public SphereLocation Convert(LocationDataContract value, object state)
         {
             if (value == null)
             {

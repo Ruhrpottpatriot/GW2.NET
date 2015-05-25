@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForFocus : IConverter<WeaponDataContract, Focus>
     {
         /// <inheritdoc />
-        public Focus Convert(WeaponDataContract value)
+        public Focus Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

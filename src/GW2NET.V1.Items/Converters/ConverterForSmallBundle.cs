@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForSmallBundle : IConverter<WeaponDataContract, SmallBundle>
     {
         /// <inheritdoc />
-        public SmallBundle Convert(WeaponDataContract value)
+        public SmallBundle Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

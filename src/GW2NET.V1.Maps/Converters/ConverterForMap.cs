@@ -41,7 +41,7 @@ namespace GW2NET.V1.Maps.Converters
         }
 
         /// <inheritdoc />
-        public Map Convert(MapDataContract value)
+        public Map Convert(MapDataContract value, object state)
         {
             if (value == null)
             {
@@ -72,7 +72,7 @@ namespace GW2NET.V1.Maps.Converters
                     var se = mapRectangle[1];
                     if (se != null && se.Length == 2)
                     {
-                        map.MapRectangle = this.converterForRectangle.Convert(mapRectangle);
+                        map.MapRectangle = this.converterForRectangle.Convert(mapRectangle, state);
                     }
                 }
             }
@@ -87,7 +87,7 @@ namespace GW2NET.V1.Maps.Converters
                     var se = continentRectangle[1];
                     if (se != null && se.Length == 2)
                     {
-                        map.ContinentRectangle = this.converterForRectangle.Convert(continentRectangle);
+                        map.ContinentRectangle = this.converterForRectangle.Convert(continentRectangle, state);
                     }
                 }
             }

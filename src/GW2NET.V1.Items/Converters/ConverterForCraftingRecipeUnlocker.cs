@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForCraftingRecipeUnlocker : IConverter<ConsumableDataContract, CraftingRecipeUnlocker>
     {
         /// <inheritdoc />
-        public CraftingRecipeUnlocker Convert(ConsumableDataContract value)
+        public CraftingRecipeUnlocker Convert(ConsumableDataContract value, object state)
         {
             if (value == null)
             {

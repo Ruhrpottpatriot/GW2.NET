@@ -27,7 +27,7 @@ namespace GW2NET.ChatLinks
         }
 
         /// <inheritdoc />
-        public ChatLink Convert(byte[] value)
+        public ChatLink Convert(byte[] value, object state)
         {
             if (value == null)
             {
@@ -41,7 +41,7 @@ namespace GW2NET.ChatLinks
                 IConverter<Stream, ChatLink> converter;
                 if (this.typeConverters.TryGetValue(header, out converter))
                 {
-                    return converter.Convert(reader.BaseStream);
+                    return converter.Convert(reader.BaseStream, state);
                 }
 
                 return null;

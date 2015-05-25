@@ -40,7 +40,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public ItemFlags Convert(ICollection<string> value)
+        public ItemFlags Convert(ICollection<string> value, object state)
         {
             if (value == null)
             {
@@ -50,7 +50,7 @@ namespace GW2NET.V1.Items.Converters
             var result = default(ItemFlags);
             foreach (var s in value)
             {
-                result |= this.converterForItemFlag.Convert(s);
+                result |= this.converterForItemFlag.Convert(s, state);
             }
 
             return result;

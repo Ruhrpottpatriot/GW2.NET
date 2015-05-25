@@ -84,7 +84,7 @@ namespace GW2NET.V1.Floors.Converters
         }
 
         /// <inheritdoc />
-        public Subregion Convert(SubregionDataContract value)
+        public Subregion Convert(SubregionDataContract value, object state)
         {
             if (value == null)
             {
@@ -103,37 +103,37 @@ namespace GW2NET.V1.Floors.Converters
             var mapDimensions = value.MapRectangle;
             if (mapDimensions != null && mapDimensions.Length == 2)
             {
-                subRegion.MapRectangle = this.converterForRectangle.Convert(mapDimensions);
+                subRegion.MapRectangle = this.converterForRectangle.Convert(mapDimensions, state);
             }
 
             var continentDimensions = value.ContinentRectangle;
             if (continentDimensions != null && continentDimensions.Length == 2)
             {
-                subRegion.ContinentRectangle = this.converterForRectangle.Convert(continentDimensions);
+                subRegion.ContinentRectangle = this.converterForRectangle.Convert(continentDimensions, state);
             }
 
             var pointsOfInterest = value.PointsOfInterest;
             if (pointsOfInterest != null)
             {
-                subRegion.PointsOfInterest = this.converterForPointOfInterestCollection.Convert(pointsOfInterest);
+                subRegion.PointsOfInterest = this.converterForPointOfInterestCollection.Convert(pointsOfInterest, state);
             }
 
             var renownTasks = value.Tasks;
             if (renownTasks != null)
             {
-                subRegion.Tasks = this.converterForRenownTaskCollection.Convert(renownTasks);
+                subRegion.Tasks = this.converterForRenownTaskCollection.Convert(renownTasks, state);
             }
 
             var skillChallenges = value.SkillChallenges;
             if (skillChallenges != null)
             {
-                subRegion.SkillChallenges = this.converterForSkillChallengeCollection.Convert(skillChallenges);
+                subRegion.SkillChallenges = this.converterForSkillChallengeCollection.Convert(skillChallenges, state);
             }
 
             var sectors = value.Sectors;
             if (sectors != null)
             {
-                subRegion.Sectors = this.converterForSectorCollection.Convert(sectors);
+                subRegion.Sectors = this.converterForSectorCollection.Convert(sectors, state);
             }
 
             // Return the map object

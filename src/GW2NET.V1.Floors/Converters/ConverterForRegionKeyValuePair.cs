@@ -42,7 +42,7 @@ namespace GW2NET.V1.Floors.Converters
         }
 
         /// <inheritdoc />
-        public KeyValuePair<int, Region> Convert(KeyValuePair<string, RegionDataContract> value)
+        public KeyValuePair<int, Region> Convert(KeyValuePair<string, RegionDataContract> value, object state)
         {
             var key = value.Key;
             var dataContract = value.Value;
@@ -54,7 +54,7 @@ namespace GW2NET.V1.Floors.Converters
                 return default(KeyValuePair<int, Region>);
             }
 
-            var region = this.converterForRegion.Convert(dataContract);
+            var region = this.converterForRegion.Convert(dataContract, state);
             region.RegionId = id;
             return new KeyValuePair<int, Region>(id, region);
         }

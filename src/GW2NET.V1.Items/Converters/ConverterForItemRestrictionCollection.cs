@@ -40,7 +40,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public ItemRestrictions Convert(ICollection<string> value)
+        public ItemRestrictions Convert(ICollection<string> value, object state)
         {
             if (value == null)
             {
@@ -50,7 +50,7 @@ namespace GW2NET.V1.Items.Converters
             var result = default(ItemRestrictions);
             foreach (var s in value)
             {
-                result |= this.converterForItemRestriction.Convert(s);
+                result |= this.converterForItemRestriction.Convert(s, state);
             }
 
             return result;

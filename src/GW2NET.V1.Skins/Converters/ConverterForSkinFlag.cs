@@ -19,8 +19,9 @@ namespace GW2NET.V1.Skins.Converters
     {
         /// <summary>Converts the given object of type <see cref="string"/> to an object of type <see cref="SkinFlags"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public SkinFlags Convert(string value)
+        public SkinFlags Convert(string value, object state)
         {
             if (value == null)
             {

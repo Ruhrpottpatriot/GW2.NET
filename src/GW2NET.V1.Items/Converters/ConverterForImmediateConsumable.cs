@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForImmediateConsumable : IConverter<ConsumableDataContract, ImmediateConsumable>
     {
         /// <inheritdoc />
-        public ImmediateConsumable Convert(ConsumableDataContract value)
+        public ImmediateConsumable Convert(ConsumableDataContract value, object state)
         {
             if (value == null)
             {

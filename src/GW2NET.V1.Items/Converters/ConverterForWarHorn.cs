@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForWarHorn : IConverter<WeaponDataContract, WarHorn>
     {
         /// <inheritdoc />
-        public WarHorn Convert(WeaponDataContract value)
+        public WarHorn Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

@@ -41,7 +41,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public Unlocker Convert(ConsumableDataContract value)
+        public Unlocker Convert(ConsumableDataContract value, object state)
         {
             if (value == null)
             {
@@ -51,7 +51,7 @@ namespace GW2NET.V1.Items.Converters
             IConverter<ConsumableDataContract, Unlocker> converter;
             if (this.typeConverters.TryGetValue(value.UnlockType, out converter))
             {
-                return converter.Convert(value);
+                return converter.Convert(value, state);
             }
 
             return new UnknownUnlocker();

@@ -41,7 +41,7 @@ namespace GW2NET.V1.Colors.Converters
         }
 
         /// <inheritdoc />
-        public ICollection<ColorPalette> Convert(ColorCollectionDataContract value)
+        public ICollection<ColorPalette> Convert(ColorCollectionDataContract value, object state)
         {
             if (value == null)
             {
@@ -51,7 +51,7 @@ namespace GW2NET.V1.Colors.Converters
             var colorPalettes = new List<ColorPalette>(value.Colors.Count);
             foreach (var dataContract in value.Colors)
             {
-                var colorPalette = this.converterForColorPalette.Convert(dataContract.Value);
+                var colorPalette = this.converterForColorPalette.Convert(dataContract.Value, state);
                 if (colorPalette == null)
                 {
                     continue;

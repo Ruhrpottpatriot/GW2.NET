@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForGiftBox : IConverter<ContainerDataContract, GiftBox>
     {
         /// <inheritdoc />
-        public GiftBox Convert(ContainerDataContract value)
+        public GiftBox Convert(ContainerDataContract value, object state)
         {
             if (value == null)
             {

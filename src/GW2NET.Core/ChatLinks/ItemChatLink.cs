@@ -56,7 +56,7 @@ namespace GW2NET.ChatLinks
         /// <inheritdoc />
         public override string ToString()
         {
-            var stream = new ConverterForItemChatLink().Convert(this);
+            var stream = new ConverterForItemChatLink().Convert(this, null);
             var buffer = new byte[stream.Length];
             stream.Read(buffer, 0, buffer.Length);
             return string.Format("[&{0}]", Convert.ToBase64String(buffer));

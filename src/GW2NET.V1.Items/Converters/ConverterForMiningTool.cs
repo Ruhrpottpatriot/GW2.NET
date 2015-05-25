@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForMiningTool : IConverter<GatheringToolDataContract, MiningTool>
     {
         /// <inheritdoc />
-        public MiningTool Convert(GatheringToolDataContract value)
+        public MiningTool Convert(GatheringToolDataContract value, object state)
         {
             if (value == null)
             {

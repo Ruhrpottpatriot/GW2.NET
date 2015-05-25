@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForHammer : IConverter<WeaponDataContract, Hammer>
     {
         /// <inheritdoc />
-        public Hammer Convert(WeaponDataContract value)
+        public Hammer Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

@@ -40,7 +40,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public InfusionSlotFlags Convert(ICollection<string> value)
+        public InfusionSlotFlags Convert(ICollection<string> value, object state)
         {
             if (value == null)
             {
@@ -50,7 +50,7 @@ namespace GW2NET.V1.Items.Converters
             var result = default(InfusionSlotFlags);
             foreach (var s in value)
             {
-                result |= this.converterForInfusionSlotFlag.Convert(s);
+                result |= this.converterForInfusionSlotFlag.Convert(s, state);
             }
 
             return result;

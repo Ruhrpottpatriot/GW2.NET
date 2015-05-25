@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForCraftingMaterial : IConverter<ItemDataContract, CraftingMaterial>
     {
         /// <inheritdoc />
-        public CraftingMaterial Convert(ItemDataContract value)
+        public CraftingMaterial Convert(ItemDataContract value, object state)
         {
             if (value == null)
             {

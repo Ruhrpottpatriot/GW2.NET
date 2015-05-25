@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForConditionDamageModifier : IConverter<AttributeDataContract, ConditionDamageModifier>
     {
         /// <inheritdoc />
-        public ConditionDamageModifier Convert(AttributeDataContract value)
+        public ConditionDamageModifier Convert(AttributeDataContract value, object state)
         {
             if (value == null)
             {

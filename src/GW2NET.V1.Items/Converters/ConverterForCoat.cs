@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForCoat : IConverter<ArmorDataContract, Coat>
     {
         /// <inheritdoc />
-        public Coat Convert(ArmorDataContract value)
+        public Coat Convert(ArmorDataContract value, object state)
         {
             if (value == null)
             {

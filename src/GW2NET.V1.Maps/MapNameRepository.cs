@@ -97,7 +97,7 @@ namespace GW2NET.V1.Maps
                 return new DictionaryRange<int, MapName>(0);
             }
 
-            var values = response.Content.Select(this.converterForMapName.Convert).ToList();
+            var values = response.Content.Select(value => this.converterForMapName.Convert(value, null)).ToList();
             var mapNames = new DictionaryRange<int, MapName>(values.Count)
             {
                 SubtotalCount = values.Count,
@@ -143,7 +143,7 @@ namespace GW2NET.V1.Maps
                         return new DictionaryRange<int, MapName>(0);
                     }
 
-                    var values = response.Content.Select(this.converterForMapName.Convert).ToList();
+                    var values = response.Content.Select(value => this.converterForMapName.Convert(value, null)).ToList();
                     var mapNames = new DictionaryRange<int, MapName>(values.Count)
                     {
                         SubtotalCount = values.Count,

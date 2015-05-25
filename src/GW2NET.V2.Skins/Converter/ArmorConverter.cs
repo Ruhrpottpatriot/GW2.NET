@@ -52,7 +52,7 @@ namespace GW2NET.V2.Skins
         }
 
         /// <inheritdoc />
-        public ArmorSkin Convert(DetailsDataContract value)
+        public ArmorSkin Convert(DetailsDataContract value, object state)
         {
             if (value == null)
             {
@@ -63,7 +63,7 @@ namespace GW2NET.V2.Skins
 
             // ReSharper disable once PossibleNullReferenceException
             ArmorSkin skin = this.typeConverters.TryGetValue(value.Type, out converter)
-                                 ? converter.Convert(value)
+                                 ? converter.Convert(value, state)
                                  : new UnknownArmorSkin();
 
             if (skin == null)
@@ -74,7 +74,7 @@ namespace GW2NET.V2.Skins
             var weight = value.WeightClass;
             if (weight != null)
             {
-                skin.WeightClass = this.weightClassConverter.Convert(weight);
+                skin.WeightClass = this.weightClassConverter.Convert(weight, state);
             }
 
             return skin;

@@ -19,7 +19,7 @@ namespace GW2NET.V1.Builds.Converters
     internal sealed class ConverterForBuild : IConverter<BuildDataContract, Build>
     {
         /// <inheritdoc />
-        public Build Convert(BuildDataContract value)
+        public Build Convert(BuildDataContract value, object state)
         {
             if (value == null)
             {

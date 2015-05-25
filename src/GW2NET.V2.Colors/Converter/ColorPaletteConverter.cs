@@ -49,7 +49,7 @@ namespace GW2NET.V2.Colors
         }
 
         /// <inheritdoc />
-        public ColorPalette Convert(ColorPaletteDataContract value)
+        public ColorPalette Convert(ColorPaletteDataContract value, object state)
         {
             if (value == null)
             {
@@ -63,28 +63,28 @@ namespace GW2NET.V2.Colors
             var rgb = value.BaseRgb;
             if (rgb != null && rgb.Length == 3)
             {
-                colorPalette.BaseRgb = this.colorConverter.Convert(rgb);
+                colorPalette.BaseRgb = this.colorConverter.Convert(rgb, state);
             }
 
             // Set the color model for cloth
             var cloth = value.Cloth;
             if (cloth != null)
             {
-                colorPalette.Cloth = this.colorModelConverter.Convert(cloth);
+                colorPalette.Cloth = this.colorModelConverter.Convert(cloth, state);
             }
 
             // Set the color model for leather
             var leather = value.Leather;
             if (leather != null)
             {
-                colorPalette.Leather = this.colorModelConverter.Convert(leather);
+                colorPalette.Leather = this.colorModelConverter.Convert(leather, state);
             }
 
             // Set the color model for metal
             var metal = value.Metal;
             if (metal != null)
             {
-                colorPalette.Metal = this.colorModelConverter.Convert(metal);
+                colorPalette.Metal = this.colorModelConverter.Convert(metal, state);
             }
 
             // Return the color object

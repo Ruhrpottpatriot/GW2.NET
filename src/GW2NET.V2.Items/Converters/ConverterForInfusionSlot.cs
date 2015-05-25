@@ -40,8 +40,9 @@ namespace GW2NET.V2.Items
 
         /// <summary>Converts the given object of type <see cref="InfusionSlotDataContract"/> to an object of type <see cref="InfusionSlot"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public InfusionSlot Convert(InfusionSlotDataContract value)
+        public InfusionSlot Convert(InfusionSlotDataContract value, object state)
         {
             if (value == null)
             {
@@ -55,7 +56,7 @@ namespace GW2NET.V2.Items
             var flags = value.Flags;
             if (flags != null)
             {
-                infusionSlot.Flags = this.converterForInfusionSlotFlagCollection.Convert(flags);
+                infusionSlot.Flags = this.converterForInfusionSlotFlagCollection.Convert(flags, state);
             }
 
             return infusionSlot;

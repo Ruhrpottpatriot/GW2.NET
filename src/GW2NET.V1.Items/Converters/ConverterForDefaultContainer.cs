@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForDefaultContainer : IConverter<ContainerDataContract, DefaultContainer>
     {
         /// <inheritdoc />
-        public DefaultContainer Convert(ContainerDataContract value)
+        public DefaultContainer Convert(ContainerDataContract value, object state)
         {
             if (value == null)
             {

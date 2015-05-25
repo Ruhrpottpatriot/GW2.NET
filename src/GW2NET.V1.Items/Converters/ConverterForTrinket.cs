@@ -57,7 +57,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public Trinket Convert(ItemDataContract value)
+        public Trinket Convert(ItemDataContract value, object state)
         {
             if (value == null)
             {
@@ -74,7 +74,7 @@ namespace GW2NET.V1.Items.Converters
             IConverter<TrinketDataContract, Trinket> converter;
             if (this.typeConverters.TryGetValue(trinketDataContract.Type, out converter))
             {
-                trinket = converter.Convert(trinketDataContract);
+                trinket = converter.Convert(trinketDataContract, state);
             }
             else
             {
@@ -84,13 +84,13 @@ namespace GW2NET.V1.Items.Converters
             var infusionSlotDataContracts = trinketDataContract.InfusionSlots;
             if (infusionSlotDataContracts != null)
             {
-                trinket.InfusionSlots = this.converterForInfusionSlotCollection.Convert(infusionSlotDataContracts);
+                trinket.InfusionSlots = this.converterForInfusionSlotCollection.Convert(infusionSlotDataContracts, state);
             }
 
             var infixUpgradeDataContract = trinketDataContract.InfixUpgrade;
             if (infixUpgradeDataContract != null)
             {
-                trinket.InfixUpgrade = this.converterForInfixUpgrade.Convert(infixUpgradeDataContract);
+                trinket.InfixUpgrade = this.converterForInfixUpgrade.Convert(infixUpgradeDataContract, state);
             }
 
             int suffixItemId;

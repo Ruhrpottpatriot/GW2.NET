@@ -17,9 +17,10 @@ namespace GW2NET.Common
     {
         /// <summary>Converts the given object of type <typeparamref name="TInput"/> to an object of type <typeparamref name="TOutput"/>.</summary>
         /// <param name="value">The value to convert.</param>
-        /// <exception cref="ArgumentNullException">The value is a null reference.</exception>
+        /// <param name="state">An object containing specific information relevant to the conversion, or a null reference.</param>
+        /// <exception cref="ArgumentNullException">The value to convert is a null reference, or the value of <paramref name="state"/> is a null reference and <paramref name="state"/> is required to convert the given value.</exception>
         /// <exception cref="ArgumentException">The value can't be converted by the current converter.</exception>
         /// <returns>The converted value.</returns>
-        TOutput Convert(TInput value);
+        TOutput Convert(TInput value, object state);
     }
 }

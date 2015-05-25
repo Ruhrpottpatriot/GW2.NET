@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForTraitGuide : IConverter<ItemDataContract, TraitGuide>
     {
         /// <inheritdoc />
-        public TraitGuide Convert(ItemDataContract value)
+        public TraitGuide Convert(ItemDataContract value, object state)
         {
             if (value == null)
             {

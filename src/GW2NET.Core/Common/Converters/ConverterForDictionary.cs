@@ -35,7 +35,7 @@ namespace GW2NET.Common.Converters
         }
 
         /// <inheritdoc />
-        public IDictionary<TKeyOutput, TValueOutput> Convert(IDictionary<TKeyInput, TValueInput> value)
+        public IDictionary<TKeyOutput, TValueOutput> Convert(IDictionary<TKeyInput, TValueInput> value, object state)
         {
             if (value == null)
             {
@@ -43,7 +43,7 @@ namespace GW2NET.Common.Converters
             }
 
             var values = new Dictionary<TKeyOutput, TValueOutput>(value.Count) as IDictionary<TKeyOutput, TValueOutput>;
-            foreach (var kvp in value.Select(this.converterForKeyValuePair.Convert))
+            foreach (var kvp in value.Select(value1 => this.converterForKeyValuePair.Convert(value1, state)))
             {
                 values.Add(kvp);
             }

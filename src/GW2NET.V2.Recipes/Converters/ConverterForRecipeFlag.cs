@@ -17,7 +17,7 @@ namespace GW2NET.V2.Recipes
     internal sealed class ConverterForRecipeFlag : IConverter<string, RecipeFlags>
     {
         /// <inheritdoc />
-        public RecipeFlags Convert(string value)
+        public RecipeFlags Convert(string value, object state)
         {
             if (value == null)
             {

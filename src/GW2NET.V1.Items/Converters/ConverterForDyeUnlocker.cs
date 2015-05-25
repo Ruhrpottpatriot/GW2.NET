@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForDyeUnlocker : IConverter<ConsumableDataContract, DyeUnlocker>
     {
         /// <inheritdoc />
-        public DyeUnlocker Convert(ConsumableDataContract value)
+        public DyeUnlocker Convert(ConsumableDataContract value, object state)
         {
             if (value == null)
             {

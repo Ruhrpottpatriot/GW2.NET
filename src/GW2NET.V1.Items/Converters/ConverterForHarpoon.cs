@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForHarpoon : IConverter<WeaponDataContract, Harpoon>
     {
         /// <inheritdoc />
-        public Harpoon Convert(WeaponDataContract value)
+        public Harpoon Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

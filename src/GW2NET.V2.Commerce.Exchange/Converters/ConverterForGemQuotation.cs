@@ -17,7 +17,7 @@ namespace GW2NET.V2.Commerce.Exchange
     internal sealed class ConverterForGemQuotation : IConverter<GemQuotationDataContract, GemQuotation>
     {
         /// <inheritdoc />
-        public GemQuotation Convert(GemQuotationDataContract value)
+        public GemQuotation Convert(GemQuotationDataContract value, object state)
         {
             if (value == null)
             {

@@ -75,7 +75,7 @@ namespace GW2NET.V2.Files
         {
             var request = new FileDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<string>>(request);
-            return this.identifiersConverter.Convert(response) ?? new List<string>(0);
+            return this.identifiersConverter.Convert(response, null) ?? new List<string>(0);
         }
 
         /// <inheritdoc />
@@ -97,7 +97,7 @@ namespace GW2NET.V2.Files
         {
             var request = new FilePageRequest { Page = pageIndex };
             var response = this.serviceClient.Send<ICollection<FileDataContract>>(request);
-            var values = this.pageResponseConverter.Convert(response);
+            var values = this.pageResponseConverter.Convert(response, null);
 
             if (values == null)
             {
@@ -114,7 +114,7 @@ namespace GW2NET.V2.Files
         {
             var request = new FilePageRequest { Page = pageIndex, PageSize = pageSize };
             var response = this.serviceClient.Send<ICollection<FileDataContract>>(request);
-            var values = this.pageResponseConverter.Convert(response);
+            var values = this.pageResponseConverter.Convert(response, null);
 
             if (values == null)
             {
@@ -163,7 +163,7 @@ namespace GW2NET.V2.Files
         {
             var request = new FileDetailRequest { Identifier = identifier };
             var response = this.serviceClient.Send<FileDataContract>(request);
-            return this.responseConverter.Convert(response);
+            return this.responseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -171,7 +171,7 @@ namespace GW2NET.V2.Files
         {
             var request = new FileBulkRequest();
             var response = this.serviceClient.Send<ICollection<FileDataContract>>(request);
-            return this.bulkResponseConverter.Convert(response) ?? new DictionaryRange<string, Asset>(0);
+            return this.bulkResponseConverter.Convert(response, null) ?? new DictionaryRange<string, Asset>(0);
         }
 
         /// <inheritdoc />
@@ -179,7 +179,7 @@ namespace GW2NET.V2.Files
         {
             var request = new FileBulkRequest { Identifiers = identifiers };
             var response = this.serviceClient.Send<ICollection<FileDataContract>>(request);
-            return this.bulkResponseConverter.Convert(response) ?? new DictionaryRange<string, Asset>(0);
+            return this.bulkResponseConverter.Convert(response, null) ?? new DictionaryRange<string, Asset>(0);
         }
 
         /// <inheritdoc />
@@ -228,21 +228,21 @@ namespace GW2NET.V2.Files
         private Asset ConvertAsyncResponse(Task<IResponse<FileDataContract>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.responseConverter.Convert(task.Result);
+            return this.responseConverter.Convert(task.Result, null);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not part of the public API.")]
         private IDictionaryRange<string, Asset> ConvertAsyncResponse(Task<IResponse<ICollection<FileDataContract>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.bulkResponseConverter.Convert(task.Result) ?? new DictionaryRange<string, Asset>(0);
+            return this.bulkResponseConverter.Convert(task.Result, null) ?? new DictionaryRange<string, Asset>(0);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not part of the public API.")]
         private ICollectionPage<Asset> ConvertAsyncResponse(Task<IResponse<ICollection<FileDataContract>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.pageResponseConverter.Convert(task.Result);
+            var values = this.pageResponseConverter.Convert(task.Result, null);
             if (values == null)
             {
                 return new CollectionPage<Asset>(0);
@@ -257,7 +257,7 @@ namespace GW2NET.V2.Files
         private ICollection<string> ConvertAsyncResponse(Task<IResponse<ICollection<string>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.identifiersConverter.Convert(task.Result) ?? new List<string>(0);
+            return this.identifiersConverter.Convert(task.Result, null) ?? new List<string>(0);
         }
     }
 }

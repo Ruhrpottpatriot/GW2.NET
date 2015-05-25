@@ -18,8 +18,9 @@ namespace GW2NET.V2.Items
     {
         /// <summary>Converts the given object of type <see cref="DetailsDataContract"/> to an object of type <see cref="GiftBox"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public GiftBox Convert(DetailsDataContract value)
+        public GiftBox Convert(DetailsDataContract value, object state)
         {
             if (value == null)
             {

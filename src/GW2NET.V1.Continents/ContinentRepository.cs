@@ -99,7 +99,7 @@ namespace GW2NET.V1.Continents
                 return new DictionaryRange<int, Continent>(0);
             }
 
-            var values = this.converterForContinentCollection.Convert(response.Content);
+            var values = this.converterForContinentCollection.Convert(response.Content, null);
             var continents = new DictionaryRange<int, Continent>(values.Count)
             {
                 SubtotalCount = values.Count,
@@ -144,7 +144,7 @@ namespace GW2NET.V1.Continents
                         return new DictionaryRange<int, Continent>(0);
                     }
 
-                    var values = this.converterForContinentCollection.Convert(response.Content);
+                    var values = this.converterForContinentCollection.Convert(response.Content, null);
                     var continents = new DictionaryRange<int, Continent>(values.Count)
                     {
                         SubtotalCount = values.Count,

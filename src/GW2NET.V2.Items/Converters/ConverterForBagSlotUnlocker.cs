@@ -18,8 +18,9 @@ namespace GW2NET.V2.Items
     {
         /// <summary>Converts the given object of type <see cref="DetailsDataContract"/> to an object of type <see cref="BagSlotUnlocker"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public BagSlotUnlocker Convert(DetailsDataContract value)
+        public BagSlotUnlocker Convert(DetailsDataContract value, object state)
         {
             if (value == null)
             {

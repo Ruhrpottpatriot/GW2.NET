@@ -51,8 +51,9 @@ namespace GW2NET.V2.Items
 
         /// <summary>Converts the given object of type <see cref="DetailsDataContract"/> to an object of type <see cref="Backpack"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public Backpack Convert(DetailsDataContract value)
+        public Backpack Convert(DetailsDataContract value, object state)
         {
             if (value == null)
             {
@@ -64,13 +65,13 @@ namespace GW2NET.V2.Items
             var infusionSlotDataContracts = value.InfusionSlots;
             if (infusionSlotDataContracts != null)
             {
-                backpack.InfusionSlots = this.converterForInfusionSlotCollection.Convert(infusionSlotDataContracts);
+                backpack.InfusionSlots = this.converterForInfusionSlotCollection.Convert(infusionSlotDataContracts, state);
             }
 
             var infixUpgradeDataContract = value.InfixUpgrade;
             if (infixUpgradeDataContract != null)
             {
-                backpack.InfixUpgrade = this.converterForInfixUpgrade.Convert(infixUpgradeDataContract);
+                backpack.InfixUpgrade = this.converterForInfixUpgrade.Convert(infixUpgradeDataContract, state);
             }
 
             backpack.SuffixItemId = value.SuffixItemId;

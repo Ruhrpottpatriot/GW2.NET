@@ -88,7 +88,7 @@ namespace GW2NET.V2.Skins
         {
             var request = new SkinDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
-            return this.identifiersResponseConverter.Convert(response) ?? new List<int>(0);
+            return this.identifiersResponseConverter.Convert(response, null) ?? new List<int>(0);
         }
 
         /// <inheritdoc />
@@ -114,7 +114,7 @@ namespace GW2NET.V2.Skins
                 Culture = ((ILocalizable)this).Culture
             };
             var response = this.serviceClient.Send<SkinDataContract>(request);
-            return this.responseConverter.Convert(response);
+            return this.responseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -143,7 +143,7 @@ namespace GW2NET.V2.Skins
                 Culture = ((ISkinRepository)this).Culture
             };
             var response = this.serviceClient.Send<ICollection<SkinDataContract>>(request);
-            return this.bulkResponseConverter.Convert(response);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -155,7 +155,7 @@ namespace GW2NET.V2.Skins
                 Culture = ((ISkinRepository)this).Culture
             };
             var response = this.serviceClient.Send<ICollection<SkinDataContract>>(request);
-            return this.bulkResponseConverter.Convert(response);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -202,7 +202,7 @@ namespace GW2NET.V2.Skins
                 Culture = ((ISkinRepository)this).Culture
             };
             var response = this.serviceClient.Send<ICollection<SkinDataContract>>(request);
-            var values = this.pageResponseConverter.Convert(response);
+            var values = this.pageResponseConverter.Convert(response, null);
             PageContextPatchUtility.Patch(values, pageIndex);
             return values;
         }
@@ -217,7 +217,7 @@ namespace GW2NET.V2.Skins
                 Culture = ((ISkinRepository)this).Culture
             };
             var response = this.serviceClient.Send<ICollection<SkinDataContract>>(request);
-            var values = this.pageResponseConverter.Convert(response);
+            var values = this.pageResponseConverter.Convert(response, null);
             PageContextPatchUtility.Patch(values, pageIndex);
             return values;
         }
@@ -263,7 +263,7 @@ namespace GW2NET.V2.Skins
         private IDictionaryRange<int, Skin> ConvertAsyncResponse(Task<IResponse<ICollection<SkinDataContract>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.bulkResponseConverter.Convert(task.Result);
+            var values = this.bulkResponseConverter.Convert(task.Result, null);
             if (values == null)
             {
                 return new DictionaryRange<int, Skin>(0);
@@ -276,7 +276,7 @@ namespace GW2NET.V2.Skins
         private ICollectionPage<Skin> ConvertAsyncResponse(Task<IResponse<ICollection<SkinDataContract>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.pageResponseConverter.Convert(task.Result);
+            var values = this.pageResponseConverter.Convert(task.Result, null);
             if (values == null)
             {
                 return new CollectionPage<Skin>(0);
@@ -291,7 +291,7 @@ namespace GW2NET.V2.Skins
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            var ids = this.identifiersResponseConverter.Convert(task.Result);
+            var ids = this.identifiersResponseConverter.Convert(task.Result, null);
             if (ids == null)
             {
                 return new List<int>(0);
@@ -304,7 +304,7 @@ namespace GW2NET.V2.Skins
         private Skin ConvertAsyncResponse(Task<IResponse<SkinDataContract>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.responseConverter.Convert(task.Result);
+            return this.responseConverter.Convert(task.Result, null);
         }
     }
 }

@@ -102,7 +102,7 @@ namespace GW2NET.V1.Events
                 return null;
             }
 
-            var dynamicEvents = this.converterForDynamicEventCollection.Convert(eventCollectionDataContract);
+            var dynamicEvents = this.converterForDynamicEventCollection.Convert(eventCollectionDataContract, null);
             if (dynamicEvents == null)
             {
                 return null;
@@ -140,7 +140,7 @@ namespace GW2NET.V1.Events
                 return new DictionaryRange<Guid, DynamicEvent>(0);
             }
 
-            var dynamicEvents = this.converterForDynamicEventCollection.Convert(eventCollectionDataContract);
+            var dynamicEvents = this.converterForDynamicEventCollection.Convert(eventCollectionDataContract, null);
             if (dynamicEvents == null)
             {
                 return new DictionaryRange<Guid, DynamicEvent>(0);
@@ -269,7 +269,7 @@ namespace GW2NET.V1.Events
                 return new DictionaryRange<Guid, DynamicEvent>(0);
             }
 
-            var dynamicEvents = this.converterForDynamicEventCollection.Convert(eventCollectionDataContract);
+            var dynamicEvents = this.converterForDynamicEventCollection.Convert(eventCollectionDataContract, null);
             if (dynamicEvents == null)
             {
                 return new DictionaryRange<Guid, DynamicEvent>(0);
@@ -306,7 +306,7 @@ namespace GW2NET.V1.Events
                 return null;
             }
 
-            var dynamicEvents = this.converterForDynamicEventCollection.Convert(eventCollectionDataContract);
+            var dynamicEvents = this.converterForDynamicEventCollection.Convert(eventCollectionDataContract, null);
             if (dynamicEvents == null)
             {
                 return null;

@@ -18,7 +18,7 @@
                 Signature = fileSignature
             };
 
-            var result = this.converter.Convert(value);
+            var result = this.converter.Convert(value, null);
             Assert.NotNull(result);
             Assert.NotNull(result.IconFileUrl);
             Assert.Equal(fileId, result.FileId);

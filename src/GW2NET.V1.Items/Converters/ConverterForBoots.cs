@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForBoots : IConverter<ArmorDataContract, Boots>
     {
         /// <inheritdoc />
-        public Boots Convert(ArmorDataContract value)
+        public Boots Convert(ArmorDataContract value, object state)
         {
             if (value == null)
             {

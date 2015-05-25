@@ -64,7 +64,7 @@ namespace GW2NET.V2.Builds
                 return null;
             }
 
-            var value = this.converterForBuild.Convert(dataContract);
+            var value = this.converterForBuild.Convert(dataContract, null);
             if (value == null)
             {
                 return null;
@@ -101,7 +101,7 @@ namespace GW2NET.V2.Builds
                 return null;
             }
 
-            var value = this.converterForBuild.Convert(buildDataContract);
+            var value = this.converterForBuild.Convert(buildDataContract, null);
             if (value == null)
             {
                 return null;

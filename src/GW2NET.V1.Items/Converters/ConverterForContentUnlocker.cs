@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForContentUnlocker : IConverter<ConsumableDataContract, ContentUnlocker>
     {
         /// <inheritdoc />
-        public ContentUnlocker Convert(ConsumableDataContract value)
+        public ContentUnlocker Convert(ConsumableDataContract value, object state)
         {
             if (value == null)
             {

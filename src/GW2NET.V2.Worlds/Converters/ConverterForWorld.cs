@@ -17,7 +17,7 @@ namespace GW2NET.V2.Worlds
     internal sealed class ConverterForWorld : IConverter<WorldDataContract, World>
     {
         /// <inheritdoc />
-        public World Convert(WorldDataContract value)
+        public World Convert(WorldDataContract value, object state)
         {
             if (value == null)
             {

@@ -42,7 +42,7 @@ namespace GW2NET.V1.Floors.Converters
         }
 
         /// <inheritdoc />
-        public SkillChallenge Convert(SkillChallengeDataContract value)
+        public SkillChallenge Convert(SkillChallengeDataContract value, object state)
         {
             if (value == null)
             {
@@ -53,7 +53,7 @@ namespace GW2NET.V1.Floors.Converters
             var coordinates = value.Coordinates;
             if (coordinates != null && coordinates.Length == 2)
             {
-                skillChallenge.Coordinates = this.converterForVector2D.Convert(coordinates);
+                skillChallenge.Coordinates = this.converterForVector2D.Convert(coordinates, state);
             }
 
             return skillChallenge;

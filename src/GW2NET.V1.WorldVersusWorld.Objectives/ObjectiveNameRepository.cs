@@ -98,7 +98,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
                 return new DictionaryRange<int, ObjectiveName>(0);
             }
 
-            var values = response.Content.Select(this.converterForObjectiveName.Convert).ToList();
+            var values = response.Content.Select(value => this.converterForObjectiveName.Convert(value, null)).ToList();
             var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count)
             {
                 SubtotalCount = values.Count, 
@@ -143,7 +143,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
                     return new DictionaryRange<int, ObjectiveName>(0);
                 }
 
-                var values = response.Content.Select(this.converterForObjectiveName.Convert).ToList();
+                var values = response.Content.Select(value => this.converterForObjectiveName.Convert(value, null)).ToList();
                 var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count)
                 {
                     SubtotalCount = values.Count, 

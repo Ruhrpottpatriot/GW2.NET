@@ -17,7 +17,7 @@ namespace GW2NET.V2.Quaggans
     internal sealed class ConverterForQuaggan : IConverter<QuagganDataContract, Quaggan>
     {
         /// <inheritdoc />
-        public Quaggan Convert(QuagganDataContract value)
+        public Quaggan Convert(QuagganDataContract value, object state)
         {
             if (value == null)
             {

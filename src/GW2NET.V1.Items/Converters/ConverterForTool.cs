@@ -41,7 +41,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public Tool Convert(ItemDataContract value)
+        public Tool Convert(ItemDataContract value, object state)
         {
             if (value == null)
             {
@@ -57,7 +57,7 @@ namespace GW2NET.V1.Items.Converters
             IConverter<ToolDataContract, Tool> converterForTool;
             if (this.typeConverters.TryGetValue(toolDataContract.Type, out converterForTool))
             {
-                return converterForTool.Convert(toolDataContract);
+                return converterForTool.Convert(toolDataContract, state);
             }
 
             return new UnknownTool();

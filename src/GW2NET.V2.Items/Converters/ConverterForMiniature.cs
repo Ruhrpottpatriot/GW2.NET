@@ -18,8 +18,9 @@ namespace GW2NET.V2.Items
     {
         /// <summary>Converts the given object of type <see cref="DetailsDataContract"/> to an object of type <see cref="Miniature"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public Miniature Convert(DetailsDataContract value)
+        public Miniature Convert(DetailsDataContract value, object state)
         {
             if (value == null)
             {

@@ -40,7 +40,7 @@ namespace GW2NET.V2.Recipes
         }
 
         /// <inheritdoc />
-        public CraftingDisciplines Convert(ICollection<string> value)
+        public CraftingDisciplines Convert(ICollection<string> value, object state)
         {
             if (value == null)
             {
@@ -50,7 +50,7 @@ namespace GW2NET.V2.Recipes
             CraftingDisciplines result = default(CraftingDisciplines);
             foreach (var s in value)
             {
-                result |= this.converterForCraftingDiscipline.Convert(s);
+                result |= this.converterForCraftingDiscipline.Convert(s, state);
             }
 
             return result;

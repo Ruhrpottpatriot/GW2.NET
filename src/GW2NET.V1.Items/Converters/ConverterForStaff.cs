@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForStaff : IConverter<WeaponDataContract, Staff>
     {
         /// <inheritdoc />
-        public Staff Convert(WeaponDataContract value)
+        public Staff Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

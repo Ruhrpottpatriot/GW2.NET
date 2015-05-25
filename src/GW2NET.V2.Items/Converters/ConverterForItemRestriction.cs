@@ -18,8 +18,9 @@ namespace GW2NET.V2.Items
     {
         /// <summary>Converts the given object of type <see cref="string"/> to an object of type <see cref="ItemRestrictions"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public ItemRestrictions Convert(string value)
+        public ItemRestrictions Convert(string value, object state)
         {
             if (value == null)
             {

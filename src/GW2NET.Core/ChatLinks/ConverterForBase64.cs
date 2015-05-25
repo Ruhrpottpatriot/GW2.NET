@@ -16,7 +16,7 @@ namespace GW2NET.ChatLinks
     internal sealed class ConverterForBase64 : IConverter<string, byte[]>, IConverter<byte[], string>
     {
         /// <inheritdoc />
-        public byte[] Convert(string value)
+        public byte[] Convert(string value, object state)
         {
             if (value == null)
             {
@@ -27,7 +27,7 @@ namespace GW2NET.ChatLinks
         }
 
         /// <inheritdoc />
-        public string Convert(byte[] value)
+        public string Convert(byte[] value, object state)
         {
             if (value == null)
             {

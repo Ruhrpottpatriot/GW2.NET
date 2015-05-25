@@ -42,14 +42,14 @@ namespace GW2NET.V2.Skins
         }
 
         /// <inheritdoc />
-        public ItemRestrictions Convert(ICollection<string> value)
+        public ItemRestrictions Convert(ICollection<string> value, object state)
         {
             if (value == null)
             {
                 throw new ArgumentNullException("value", "Precondition: value != null");
             }
 
-            return value.Aggregate(default(ItemRestrictions), (current, s) => current | this.itemRestrictionConverter.Convert(s));
+            return value.Aggregate(default(ItemRestrictions), (current, s) => current | this.itemRestrictionConverter.Convert(s, state));
         }
     }
 }

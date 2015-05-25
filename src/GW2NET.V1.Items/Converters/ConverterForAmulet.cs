@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForAmulet : IConverter<TrinketDataContract, Amulet>
     {
         /// <inheritdoc />
-        public Amulet Convert(TrinketDataContract value)
+        public Amulet Convert(TrinketDataContract value, object state)
         {
             if (value == null)
             {

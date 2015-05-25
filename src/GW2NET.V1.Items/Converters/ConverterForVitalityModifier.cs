@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForVitalityModifier : IConverter<AttributeDataContract, VitalityModifier>
     {
         /// <inheritdoc />
-        public VitalityModifier Convert(AttributeDataContract value)
+        public VitalityModifier Convert(AttributeDataContract value, object state)
         {
             if (value == null)
             {

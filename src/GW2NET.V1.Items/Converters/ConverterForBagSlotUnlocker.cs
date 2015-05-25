@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForBagSlotUnlocker : IConverter<ConsumableDataContract, BagSlotUnlocker>
     {
         /// <inheritdoc />
-        public BagSlotUnlocker Convert(ConsumableDataContract value)
+        public BagSlotUnlocker Convert(ConsumableDataContract value, object state)
         {
             if (value == null)
             {

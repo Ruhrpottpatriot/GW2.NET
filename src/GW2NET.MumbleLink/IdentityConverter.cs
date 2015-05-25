@@ -6,7 +6,7 @@
 
     internal class IdentityConverter : IConverter<IdentityDataContract, Identity>
     {
-        public Identity Convert(IdentityDataContract value)
+        public Identity Convert(IdentityDataContract value, object state)
         {
             if (value == null)
             {

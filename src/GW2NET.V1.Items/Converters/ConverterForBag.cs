@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForBag : IConverter<ItemDataContract, Bag>
     {
         /// <inheritdoc />
-        public Bag Convert(ItemDataContract value)
+        public Bag Convert(ItemDataContract value, object state)
         {
             if (value == null)
             {

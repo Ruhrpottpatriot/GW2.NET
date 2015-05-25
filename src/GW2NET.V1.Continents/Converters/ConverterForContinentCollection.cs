@@ -41,7 +41,7 @@ namespace GW2NET.V1.Continents.Converters
         }
 
         /// <inheritdoc />
-        public ICollection<Continent> Convert(ContinentCollectionDataContract value)
+        public ICollection<Continent> Convert(ContinentCollectionDataContract value, object state)
         {
             if (value == null)
             {
@@ -51,7 +51,7 @@ namespace GW2NET.V1.Continents.Converters
             var continents = new List<Continent>(value.Continents.Count);
             foreach (var kvp in value.Continents)
             {
-                var continent = this.converterForContinent.Convert(kvp.Value);
+                var continent = this.converterForContinent.Convert(kvp.Value, state);
                 if (continent == null)
                 {
                     continue;

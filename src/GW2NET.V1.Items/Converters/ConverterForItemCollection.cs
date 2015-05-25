@@ -41,7 +41,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public ICollection<int> Convert(ItemCollectionDataContract value)
+        public ICollection<int> Convert(ItemCollectionDataContract value, object state)
         {
             if (value == null)
             {
@@ -54,7 +54,7 @@ namespace GW2NET.V1.Items.Converters
                 return new List<int>(0);
             }
 
-            return this.converterForCollection.Convert(values);
+            return this.converterForCollection.Convert(values, state);
         }
     }
 }

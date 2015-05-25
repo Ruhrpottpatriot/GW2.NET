@@ -42,7 +42,7 @@ namespace GW2NET.V1.Events.Converters
         }
 
         /// <inheritdoc />
-        public PolygonLocation Convert(LocationDataContract value)
+        public PolygonLocation Convert(LocationDataContract value, object state)
         {
             if (value == null)
             {
@@ -54,7 +54,7 @@ namespace GW2NET.V1.Events.Converters
             var zrange = value.ZRange;
             if (zrange != null && zrange.Length == 2)
             {
-                polygonLocation.ZRange = this.converterForVector2D.Convert(zrange);
+                polygonLocation.ZRange = this.converterForVector2D.Convert(zrange, state);
             }
 
             var points = value.Points;
@@ -68,7 +68,7 @@ namespace GW2NET.V1.Events.Converters
                         continue;
                     }
 
-                    polygonLocation.Points.Add(this.converterForVector2D.Convert(point));
+                    polygonLocation.Points.Add(this.converterForVector2D.Convert(point, state));
                 }
             }
 

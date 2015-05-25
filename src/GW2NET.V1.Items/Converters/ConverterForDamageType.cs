@@ -17,7 +17,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForDamageType : IConverter<string, DamageType>
     {
         /// <inheritdoc />
-        public DamageType Convert(string value)
+        public DamageType Convert(string value, object state)
         {
             if (value == null)
             {

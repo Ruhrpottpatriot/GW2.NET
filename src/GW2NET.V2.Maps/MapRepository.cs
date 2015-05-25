@@ -90,7 +90,7 @@ namespace GW2NET.V2.Maps
         {
             var request = new MapDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
-            return this.identifiersResponseConverter.Convert(response) ?? new List<int>(0);
+            return this.identifiersResponseConverter.Convert(response, null) ?? new List<int>(0);
         }
 
         /// <inheritdoc />
@@ -116,7 +116,7 @@ namespace GW2NET.V2.Maps
                 Culture = ((IMapRepository)this).Culture
             };
             var response = this.serviceClient.Send<MapDataContract>(request);
-            return this.responseConverter.Convert(response);
+            return this.responseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -127,7 +127,7 @@ namespace GW2NET.V2.Maps
                 Culture = ((IMapRepository)this).Culture
             };
             var response = this.serviceClient.Send<ICollection<MapDataContract>>(request);
-            return this.bulkResponseConverter.Convert(response);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -139,7 +139,7 @@ namespace GW2NET.V2.Maps
                 Culture = ((IMapRepository)this).Culture
             };
             var response = this.serviceClient.Send<ICollection<MapDataContract>>(request);
-            return this.bulkResponseConverter.Convert(response);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -204,7 +204,7 @@ namespace GW2NET.V2.Maps
                 Culture = ((IMapRepository)this).Culture
             };
             var response = this.serviceClient.Send<ICollection<MapDataContract>>(request);
-            var values = this.pageResponseConverter.Convert(response);
+            var values = this.pageResponseConverter.Convert(response, null);
             PageContextPatchUtility.Patch(values, pageIndex);
             return values;
         }
@@ -219,7 +219,7 @@ namespace GW2NET.V2.Maps
                 Culture = ((IMapRepository)this).Culture
             };
             var response = this.serviceClient.Send<ICollection<MapDataContract>>(request);
-            var values = this.pageResponseConverter.Convert(response);
+            var values = this.pageResponseConverter.Convert(response, null);
             PageContextPatchUtility.Patch(values, pageIndex);
             return values;
         }
@@ -265,7 +265,7 @@ namespace GW2NET.V2.Maps
         private IDictionaryRange<int, Map> ConvertAsyncResponse(Task<IResponse<ICollection<MapDataContract>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.bulkResponseConverter.Convert(task.Result);
+            var values = this.bulkResponseConverter.Convert(task.Result, null);
             return values ?? new DictionaryRange<int, Map>(0);
         }
 
@@ -273,7 +273,7 @@ namespace GW2NET.V2.Maps
         private ICollectionPage<Map> ConvertAsyncResponse(Task<IResponse<ICollection<MapDataContract>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.pageResponseConverter.Convert(task.Result);
+            var values = this.pageResponseConverter.Convert(task.Result, null);
             if (values == null)
             {
                 return new CollectionPage<Map>(0);
@@ -288,7 +288,7 @@ namespace GW2NET.V2.Maps
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            var ids = this.identifiersResponseConverter.Convert(task.Result);
+            var ids = this.identifiersResponseConverter.Convert(task.Result, null);
             return ids ?? new List<int>(0);
         }
 
@@ -296,7 +296,7 @@ namespace GW2NET.V2.Maps
         private Map ConvertAsyncResponse(Task<IResponse<MapDataContract>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.responseConverter.Convert(task.Result);
+            return this.responseConverter.Convert(task.Result, null);
         }
     }
 }

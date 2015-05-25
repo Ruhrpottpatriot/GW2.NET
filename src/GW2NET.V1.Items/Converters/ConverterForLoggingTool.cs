@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForLoggingTool : IConverter<GatheringToolDataContract, LoggingTool>
     {
         /// <inheritdoc />
-        public LoggingTool Convert(GatheringToolDataContract value)
+        public LoggingTool Convert(GatheringToolDataContract value, object state)
         {
             if (value == null)
             {

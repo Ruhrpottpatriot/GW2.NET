@@ -18,7 +18,7 @@ namespace GW2NET.V1.Events.Converters
     internal sealed class ConverterForVector3D : IConverter<double[], Vector3D>
     {
         /// <inheritdoc />
-        public Vector3D Convert(double[] value)
+        public Vector3D Convert(double[] value, object state)
         {
             if (value == null)
             {

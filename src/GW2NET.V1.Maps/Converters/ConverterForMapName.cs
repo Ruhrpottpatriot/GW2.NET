@@ -19,7 +19,7 @@ namespace GW2NET.V1.Maps.Converters
     internal sealed class ConverterForMapName : IConverter<MapNameDataContract, MapName>
     {
         /// <inheritdoc />
-        public MapName Convert(MapNameDataContract value)
+        public MapName Convert(MapNameDataContract value, object state)
         {
             if (value == null)
             {

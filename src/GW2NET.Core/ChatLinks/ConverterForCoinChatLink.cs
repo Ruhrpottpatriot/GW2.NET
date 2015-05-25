@@ -17,7 +17,7 @@ namespace GW2NET.ChatLinks
     internal sealed class ConverterForCoinChatLink : IConverter<Stream, CoinChatLink>, IConverter<CoinChatLink, Stream>
     {
         /// <inheritdoc />
-        public CoinChatLink Convert(Stream value)
+        public CoinChatLink Convert(Stream value, object state)
         {
             if (value == null)
             {
@@ -34,7 +34,7 @@ namespace GW2NET.ChatLinks
         }
 
         /// <inheritdoc />
-        public Stream Convert(CoinChatLink value)
+        public Stream Convert(CoinChatLink value, object state)
         {
             if (value == null)
             {

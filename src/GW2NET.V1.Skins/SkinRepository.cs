@@ -81,7 +81,7 @@ namespace GW2NET.V1.Skins
                 return new List<int>(0);
             }
 
-            return this.converterForSkinCollection.Convert(response.Content);
+            return this.converterForSkinCollection.Convert(response.Content, null);
         }
 
         /// <inheritdoc />
@@ -114,7 +114,7 @@ namespace GW2NET.V1.Skins
                 return null;
             }
 
-            var skin = this.converterForSkin.Convert(response.Content);
+            var skin = this.converterForSkin.Convert(response.Content, null);
             if (skin == null)
             {
                 return null;
@@ -227,7 +227,7 @@ namespace GW2NET.V1.Skins
                 return new List<int>(0);
             }
 
-            return this.converterForSkinCollection.Convert(response.Content);
+            return this.converterForSkinCollection.Convert(response.Content, null);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
@@ -239,7 +239,7 @@ namespace GW2NET.V1.Skins
                 return null;
             }
 
-            var skin = this.converterForSkin.Convert(response.Content);
+            var skin = this.converterForSkin.Convert(response.Content, null);
             if (skin == null)
             {
                 return null;

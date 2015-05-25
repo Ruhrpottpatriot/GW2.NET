@@ -89,7 +89,7 @@ namespace GW2NET.V1.Guilds
                 return null;
             }
 
-            return this.converterForGuild.Convert(response.Content);
+            return this.converterForGuild.Convert(response.Content, null);
         }
 
         /// <inheritdoc />
@@ -159,7 +159,7 @@ namespace GW2NET.V1.Guilds
                 return null;
             }
 
-            return this.converterForGuild.Convert(response.Content);
+            return this.converterForGuild.Convert(response.Content, null);
         }
 
         /// <inheritdoc />
@@ -225,7 +225,7 @@ namespace GW2NET.V1.Guilds
                 return null;
             }
 
-            return this.converterForGuild.Convert(response.Content);
+            return this.converterForGuild.Convert(response.Content, null);
         }
     }
 }

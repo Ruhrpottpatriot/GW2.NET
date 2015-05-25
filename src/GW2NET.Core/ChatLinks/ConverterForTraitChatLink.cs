@@ -17,7 +17,7 @@ namespace GW2NET.ChatLinks
     internal sealed class ConverterForTraitChatLink : IConverter<Stream, TraitChatLink>, IConverter<TraitChatLink, Stream>
     {
         /// <inheritdoc />
-        public TraitChatLink Convert(Stream value)
+        public TraitChatLink Convert(Stream value, object state)
         {
             if (value == null)
             {
@@ -34,7 +34,7 @@ namespace GW2NET.ChatLinks
         }
 
         /// <inheritdoc />
-        public Stream Convert(TraitChatLink value)
+        public Stream Convert(TraitChatLink value, object state)
         {
             if (value == null)
             {

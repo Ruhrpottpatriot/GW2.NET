@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForSalvageTool : IConverter<ToolDataContract, Tool>
     {
         /// <inheritdoc />
-        public Tool Convert(ToolDataContract value)
+        public Tool Convert(ToolDataContract value, object state)
         {
             if (value == null)
             {

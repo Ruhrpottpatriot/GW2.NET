@@ -17,7 +17,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForItemRarity : IConverter<string, ItemRarity>
     {
         /// <inheritdoc />
-        public ItemRarity Convert(string value)
+        public ItemRarity Convert(string value, object state)
         {
             if (value == null)
             {

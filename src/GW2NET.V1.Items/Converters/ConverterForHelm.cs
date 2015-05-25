@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForHelm : IConverter<ArmorDataContract, Helm>
     {
         /// <inheritdoc />
-        public Helm Convert(ArmorDataContract value)
+        public Helm Convert(ArmorDataContract value, object state)
         {
             if (value == null)
             {

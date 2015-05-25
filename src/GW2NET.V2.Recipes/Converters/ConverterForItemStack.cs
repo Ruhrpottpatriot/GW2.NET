@@ -17,7 +17,7 @@ namespace GW2NET.V2.Recipes
     internal sealed class ConverterForItemStack : IConverter<IngredientDataContract, ItemStack>
     {
         /// <inheritdoc />
-        public ItemStack Convert(IngredientDataContract value)
+        public ItemStack Convert(IngredientDataContract value, object state)
         {
             if (value == null)
             {

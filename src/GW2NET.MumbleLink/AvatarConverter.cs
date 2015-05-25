@@ -24,14 +24,14 @@
             this.vector3DConverter = vector3DConverter;
         }
 
-        public Avatar Convert(AvatarDataContract value)
+        public Avatar Convert(AvatarDataContract value, object state)
         {
             var contextLength = (int)value.context_len;
             var ptr = Marshal.AllocHGlobal(contextLength);
             Marshal.Copy(value.context, 0, ptr, contextLength);
             var mumbleContext = (MumbleContext)Marshal.PtrToStructure(ptr, typeof(MumbleContext));
 
-            var avatarContext = this.avatarContextConverter.Convert(mumbleContext);
+            var avatarContext = this.avatarContextConverter.Convert(mumbleContext, state);
             avatarContext.SetInnerContext(value.context);
 
             IdentityDataContract identityDataContract;
@@ -46,12 +46,12 @@
                 UiVersion = (int)value.uiVersion,
                 UiTick = value.uiTick,
                 Context = avatarContext,
-                Identity = this.identityConverter.Convert(identityDataContract),
-                AvatarFront = this.vector3DConverter.Convert(value.fAvatarFront),
-                AvatarTop = this.vector3DConverter.Convert(value.fAvatarPosition),
-                AvatarPosition = this.vector3DConverter.Convert(value.fAvatarPosition),
-                CameraFront = this.vector3DConverter.Convert(value.fCameraFront),
-                CameraPosition = this.vector3DConverter.Convert(value.fCameraPosition)
+                Identity = this.identityConverter.Convert(identityDataContract, state),
+                AvatarFront = this.vector3DConverter.Convert(value.fAvatarFront, state),
+                AvatarTop = this.vector3DConverter.Convert(value.fAvatarPosition, state),
+                AvatarPosition = this.vector3DConverter.Convert(value.fAvatarPosition, state),
+                CameraFront = this.vector3DConverter.Convert(value.fCameraFront, state),
+                CameraPosition = this.vector3DConverter.Convert(value.fCameraPosition, state)
             };
 
         }

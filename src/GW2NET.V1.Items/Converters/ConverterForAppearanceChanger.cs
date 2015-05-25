@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForAppearanceChanger : IConverter<ConsumableDataContract, AppearanceChanger>
     {
         /// <inheritdoc />
-        public AppearanceChanger Convert(ConsumableDataContract value)
+        public AppearanceChanger Convert(ConsumableDataContract value, object state)
         {
             if (value == null)
             {

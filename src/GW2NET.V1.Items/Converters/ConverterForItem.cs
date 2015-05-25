@@ -81,7 +81,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public Item Convert(ItemDataContract value)
+        public Item Convert(ItemDataContract value, object state)
         {
             if (value == null)
             {
@@ -92,7 +92,7 @@ namespace GW2NET.V1.Items.Converters
             IConverter<ItemDataContract, Item> converter;
             if (this.typeConverters.TryGetValue(value.Type, out converter))
             {
-                item = converter.Convert(value);
+                item = converter.Convert(value, state);
             }
             else
             {
@@ -114,7 +114,7 @@ namespace GW2NET.V1.Items.Converters
                 item.Level = level;
             }
 
-            item.Rarity = this.converterForItemRarity.Convert(value.Rarity);
+            item.Rarity = this.converterForItemRarity.Convert(value.Rarity, state);
 
             int vendorValue;
             if (int.TryParse(value.VendorValue, out vendorValue))
@@ -125,19 +125,19 @@ namespace GW2NET.V1.Items.Converters
             var gameTypes = value.GameTypes;
             if (gameTypes != null)
             {
-                item.GameTypes = this.converterForGameTypes.Convert(gameTypes);
+                item.GameTypes = this.converterForGameTypes.Convert(gameTypes, state);
             }
 
             var flags = value.Flags;
             if (flags != null)
             {
-                item.Flags = this.converterForItemFlags.Convert(flags);
+                item.Flags = this.converterForItemFlags.Convert(flags, state);
             }
 
             var restrictions = value.Restrictions;
             if (restrictions != null)
             {
-                item.Restrictions = this.converterForItemRestrictions.Convert(restrictions);
+                item.Restrictions = this.converterForItemRestrictions.Convert(restrictions, state);
             }
 
             int iconFileId;

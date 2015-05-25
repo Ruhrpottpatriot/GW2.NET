@@ -40,7 +40,7 @@ namespace GW2NET.V1.Colors.Converters
         }
 
         /// <inheritdoc />
-        public ColorModel Convert(ColorModelDataContract value)
+        public ColorModel Convert(ColorModelDataContract value, object state)
         {
             if (value == null)
             {
@@ -58,7 +58,7 @@ namespace GW2NET.V1.Colors.Converters
             var rgb = value.Rgb;
             if (rgb != null && rgb.Length == 3)
             {
-                colorModel.Rgb = this.converterForColor.Convert(rgb);
+                colorModel.Rgb = this.converterForColor.Convert(rgb, state);
             }
 
             return colorModel;

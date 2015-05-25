@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForOpenUiContainer : IConverter<ContainerDataContract, OpenUiContainer>
     {
         /// <inheritdoc />
-        public OpenUiContainer Convert(ContainerDataContract value)
+        public OpenUiContainer Convert(ContainerDataContract value, object state)
         {
             if (value == null)
             {

@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForUpgradeRemoval : IConverter<ConsumableDataContract, UpgradeRemoval>
     {
         /// <inheritdoc />
-        public UpgradeRemoval Convert(ConsumableDataContract value)
+        public UpgradeRemoval Convert(ConsumableDataContract value, object state)
         {
             if (value == null)
             {

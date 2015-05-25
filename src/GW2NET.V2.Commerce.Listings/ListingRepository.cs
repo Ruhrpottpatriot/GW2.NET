@@ -83,7 +83,7 @@ namespace GW2NET.V2.Commerce.Listings
         {
             var request = new ListingDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
-            var values = this.converterForIdentifiersResponse.Convert(response);
+            var values = this.converterForIdentifiersResponse.Convert(response, null);
             return values ?? new List<int>(0);
         }
 
@@ -110,7 +110,7 @@ namespace GW2NET.V2.Commerce.Listings
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo)
             };
             var response = this.serviceClient.Send<ListingDataContract>(request);
-            return this.converterForResponse.Convert(response);
+            return this.converterForResponse.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -118,7 +118,7 @@ namespace GW2NET.V2.Commerce.Listings
         {
             var request = new ListingBulkRequest();
             var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
-            return this.converterForBulkResponse.Convert(response) ?? new DictionaryRange<int, Listing>(0);
+            return this.converterForBulkResponse.Convert(response, null) ?? new DictionaryRange<int, Listing>(0);
         }
 
         /// <inheritdoc />
@@ -129,7 +129,7 @@ namespace GW2NET.V2.Commerce.Listings
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList()
             };
             var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
-            return this.converterForBulkResponse.Convert(response) ?? new DictionaryRange<int, Listing>(0);
+            return this.converterForBulkResponse.Convert(response, null) ?? new DictionaryRange<int, Listing>(0);
         }
 
         /// <inheritdoc />
@@ -191,7 +191,7 @@ namespace GW2NET.V2.Commerce.Listings
                 Page = pageIndex
             };
             var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response);
+            var values = this.converterForPageResponse.Convert(response, null);
             if (values == null)
             {
                 return new CollectionPage<Listing>(0);
@@ -211,7 +211,7 @@ namespace GW2NET.V2.Commerce.Listings
                 PageSize = pageSize
             };
             var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response);
+            var values = this.converterForPageResponse.Convert(response, null);
             if (values == null)
             {
                 return new CollectionPage<Listing>(0);
@@ -263,28 +263,28 @@ namespace GW2NET.V2.Commerce.Listings
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.converterForIdentifiersResponse.Convert(task.Result) ?? new List<int>(0);
+            return this.converterForIdentifiersResponse.Convert(task.Result, null) ?? new List<int>(0);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private IDictionaryRange<int, Listing> ConvertAsyncResponse(Task<IResponse<ICollection<ListingDataContract>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.converterForBulkResponse.Convert(task.Result) ?? new DictionaryRange<int, Listing>(0);
+            return this.converterForBulkResponse.Convert(task.Result, null) ?? new DictionaryRange<int, Listing>(0);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private Listing ConvertAsyncResponse(Task<IResponse<ListingDataContract>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.converterForResponse.Convert(task.Result);
+            return this.converterForResponse.Convert(task.Result, null);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollectionPage<Listing> ConvertAsyncResponse(Task<IResponse<ICollection<ListingDataContract>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForPageResponse.Convert(task.Result);
+            var values = this.converterForPageResponse.Convert(task.Result, null);
             if (values == null)
             {
                 return new CollectionPage<Listing>(0);

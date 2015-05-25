@@ -41,7 +41,7 @@ namespace GW2NET.V1.Events.Converters
         }
 
         /// <inheritdoc />
-        public DynamicEventFlags Convert(string value)
+        public DynamicEventFlags Convert(string value, object state)
         {
             if (value == null)
             {

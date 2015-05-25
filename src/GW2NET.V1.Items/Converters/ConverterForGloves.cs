@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForGloves : IConverter<ArmorDataContract, Gloves>
     {
         /// <inheritdoc />
-        public Gloves Convert(ArmorDataContract value)
+        public Gloves Convert(ArmorDataContract value, object state)
         {
             if (value == null)
             {

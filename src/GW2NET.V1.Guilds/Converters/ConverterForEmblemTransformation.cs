@@ -17,7 +17,7 @@ namespace GW2NET.V1.Guilds.Converters
     internal sealed class ConverterForEmblemTransformation : IConverter<string, EmblemTransformations>
     {
         /// <inheritdoc />
-        public EmblemTransformations Convert(string value)
+        public EmblemTransformations Convert(string value, object state)
         {
             EmblemTransformations result;
             if (Enum.TryParse(value, true, out result))

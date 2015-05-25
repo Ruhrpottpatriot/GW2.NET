@@ -18,8 +18,9 @@ namespace GW2NET.V2.Items
     {
         /// <summary>Converts the given object of type <see cref="DetailsDataContract"/> to an object of type <see cref="RentableContractNpc"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public RentableContractNpc Convert(DetailsDataContract value)
+        public RentableContractNpc Convert(DetailsDataContract value, object state)
         {
             if (value == null)
             {

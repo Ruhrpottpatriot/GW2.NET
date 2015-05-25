@@ -17,7 +17,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForGameType : IConverter<string, GameTypes>
     {
         /// <inheritdoc />
-        public GameTypes Convert(string value)
+        public GameTypes Convert(string value, object state)
         {
             if (value == null)
             {

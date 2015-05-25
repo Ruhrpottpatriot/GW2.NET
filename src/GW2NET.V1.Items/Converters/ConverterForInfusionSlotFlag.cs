@@ -17,7 +17,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForInfusionSlotFlag : IConverter<string, InfusionSlotFlags>
     {
         /// <inheritdoc />
-        public InfusionSlotFlags Convert(string value)
+        public InfusionSlotFlags Convert(string value, object state)
         {
             if (value == null)
             {

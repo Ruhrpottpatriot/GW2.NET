@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForLargeBundle : IConverter<WeaponDataContract, LargeBundle>
     {
         /// <inheritdoc />
-        public LargeBundle Convert(WeaponDataContract value)
+        public LargeBundle Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

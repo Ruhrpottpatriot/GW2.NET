@@ -39,7 +39,7 @@ namespace GW2NET.V2.Commerce.Prices
         }
 
         /// <inheritdoc />
-        public AggregateListing Convert(AggregateListingDataContract value)
+        public AggregateListing Convert(AggregateListingDataContract value, object state)
         {
             if (value == null)
             {
@@ -53,7 +53,7 @@ namespace GW2NET.V2.Commerce.Prices
             var buys = value.BuyOffers;
             if (buys != null)
             {
-                aggregateListing.BuyOffers = this.converterForAggregateOffer.Convert(buys);
+                aggregateListing.BuyOffers = this.converterForAggregateOffer.Convert(buys, state);
             }
 
             Debug.Assert(buys != null, "buys != null");
@@ -61,7 +61,7 @@ namespace GW2NET.V2.Commerce.Prices
             var sells = value.SellOffers;
             if (sells != null)
             {
-                aggregateListing.SellOffers = this.converterForAggregateOffer.Convert(sells);
+                aggregateListing.SellOffers = this.converterForAggregateOffer.Convert(sells, state);
             }
 
             Debug.Assert(sells != null, "Expected 'sells' for aggregate listing");

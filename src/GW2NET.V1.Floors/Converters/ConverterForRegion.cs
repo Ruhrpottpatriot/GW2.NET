@@ -52,7 +52,7 @@ namespace GW2NET.V1.Floors.Converters
         }
 
         /// <inheritdoc />
-        public Region Convert(RegionDataContract value)
+        public Region Convert(RegionDataContract value, object state)
         {
             if (value == null)
             {
@@ -69,14 +69,14 @@ namespace GW2NET.V1.Floors.Converters
             var labelCoordinates = value.LabelCoordinates;
             if (labelCoordinates != null && labelCoordinates.Length == 2)
             {
-                region.LabelCoordinates = this.converterForVector2D.Convert(labelCoordinates);
+                region.LabelCoordinates = this.converterForVector2D.Convert(labelCoordinates, state);
             }
 
             // Set the maps
             var subregionDataContracts = value.Maps;
             if (subregionDataContracts != null)
             {
-                region.Maps = this.converterForSubregionKeyValuePair.Convert(subregionDataContracts);
+                region.Maps = this.converterForSubregionKeyValuePair.Convert(subregionDataContracts, state);
             }
 
             // Return the region object

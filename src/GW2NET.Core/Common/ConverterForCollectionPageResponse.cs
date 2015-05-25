@@ -35,7 +35,7 @@ namespace GW2NET.Common
         }
 
         /// <inheritdoc />
-        ICollectionPage<TValue> IConverter<IResponse<ICollection<TDataContract>>, ICollectionPage<TValue>>.Convert(IResponse<ICollection<TDataContract>> value)
+        ICollectionPage<TValue> IConverter<IResponse<ICollection<TDataContract>>, ICollectionPage<TValue>>.Convert(IResponse<ICollection<TDataContract>> value, object state)
         {
             if (value == null)
             {
@@ -56,7 +56,7 @@ namespace GW2NET.Common
                 TotalCount = value.GetResultTotal()
             };
 
-            page.AddRange(dataContracts.Select(this.converterForDataContract.Convert));
+            page.AddRange(dataContracts.Select(value1 => this.converterForDataContract.Convert(value1, state)));
 
             foreach (var localizableItem in page.OfType<ILocalizable>())
             {

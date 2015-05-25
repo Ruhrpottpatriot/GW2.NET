@@ -51,7 +51,7 @@ namespace GW2NET.V1.Events.Converters
         }
 
         /// <inheritdoc />
-        public Location Convert(LocationDataContract value)
+        public Location Convert(LocationDataContract value, object state)
         {
             if (value == null)
             {
@@ -62,7 +62,7 @@ namespace GW2NET.V1.Events.Converters
             IConverter<LocationDataContract, Location> converter;
             if (this.typeConverters.TryGetValue(value.Type, out converter))
             {
-                location = converter.Convert(value);
+                location = converter.Convert(value, state);
             }
             else
             {
@@ -72,7 +72,7 @@ namespace GW2NET.V1.Events.Converters
             var center = value.Center;
             if (center != null && center.Length == 3)
             {
-                location.Center = this.converterForVector3D.Convert(center);
+                location.Center = this.converterForVector3D.Convert(center, state);
             }
 
             return location;

@@ -42,8 +42,9 @@ namespace GW2NET.V1.Skins.Converters
 
         /// <summary>Converts the given object of type <see cref="T:ICollection{string}"/> to an object of type <see cref="SkinFlags"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public SkinFlags Convert(ICollection<string> value)
+        public SkinFlags Convert(ICollection<string> value, object state)
         {
             if (value == null)
             {
@@ -53,7 +54,7 @@ namespace GW2NET.V1.Skins.Converters
             var result = default(SkinFlags);
             foreach (var s in value)
             {
-                result |= this.converterForSkinFlags.Convert(s);
+                result |= this.converterForSkinFlags.Convert(s, state);
             }
 
             return result;

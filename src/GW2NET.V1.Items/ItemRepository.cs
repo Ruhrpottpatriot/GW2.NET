@@ -105,7 +105,7 @@ namespace GW2NET.V1.Items
                 return new List<int>(0);
             }
 
-            return this.converterForItemCollection.Convert(response.Content);
+            return this.converterForItemCollection.Convert(response.Content, null);
         }
 
         /// <inheritdoc />
@@ -138,7 +138,7 @@ namespace GW2NET.V1.Items
                 return null;
             }
 
-            var item = this.converterForItem.Convert(response.Content);
+            var item = this.converterForItem.Convert(response.Content, null);
             item.Culture = request.Culture;
             return item;
         }
@@ -251,7 +251,7 @@ namespace GW2NET.V1.Items
                 return new List<int>(0);
             }
 
-            return this.converterForItemCollection.Convert(response.Content);
+            return this.converterForItemCollection.Convert(response.Content, null);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
@@ -263,7 +263,7 @@ namespace GW2NET.V1.Items
                 return null;
             }
 
-            return this.converterForItem.Convert(response.Content);
+            return this.converterForItem.Convert(response.Content, null);
         }
     }
 }

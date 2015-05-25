@@ -19,8 +19,9 @@ namespace GW2NET.V1.Recipes.Converters
     {
         /// <summary>Converts the given object of type <see cref="string"/> to an object of type <see cref="CraftingDisciplines"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public CraftingDisciplines Convert(string value)
+        public CraftingDisciplines Convert(string value, object state)
         {
             if (value == null)
             {

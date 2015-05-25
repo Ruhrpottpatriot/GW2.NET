@@ -51,8 +51,9 @@ namespace GW2NET.V2.Items
 
         /// <summary>Converts the given object of type <see cref="InfixUpgradeDataContract"/> to an object of type <see cref="InfixUpgrade"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public InfixUpgrade Convert(InfixUpgradeDataContract value)
+        public InfixUpgrade Convert(InfixUpgradeDataContract value, object state)
         {
             if (value == null)
             {
@@ -63,13 +64,13 @@ namespace GW2NET.V2.Items
             var buffDataContract = value.Buff;
             if (buffDataContract != null)
             {
-                infixUpgrade.Buff = this.converterForCombatBuff.Convert(buffDataContract);
+                infixUpgrade.Buff = this.converterForCombatBuff.Convert(buffDataContract, state);
             }
 
             var attributeDataContracts = value.Attributes;
             if (attributeDataContracts != null)
             {
-                infixUpgrade.Attributes = this.converterForCombatAttributeCollection.Convert(attributeDataContracts);
+                infixUpgrade.Attributes = this.converterForCombatAttributeCollection.Convert(attributeDataContracts, state);
             }
 
             return infixUpgrade;

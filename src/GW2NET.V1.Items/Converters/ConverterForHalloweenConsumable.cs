@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForHalloweenConsumable : IConverter<ConsumableDataContract, HalloweenConsumable>
     {
         /// <inheritdoc />
-        public HalloweenConsumable Convert(ConsumableDataContract value)
+        public HalloweenConsumable Convert(ConsumableDataContract value, object state)
         {
             if (value == null)
             {

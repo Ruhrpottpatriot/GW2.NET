@@ -37,8 +37,9 @@ namespace GW2NET.V1.Recipes.Converters
 
         /// <summary>Converts the given object of type <see cref="T:ICollection{string}"/> to an object of type <see cref="RecipeFlags"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public RecipeFlags Convert(ICollection<string> value)
+        public RecipeFlags Convert(ICollection<string> value, object state)
         {
             if (value == null)
             {
@@ -48,7 +49,7 @@ namespace GW2NET.V1.Recipes.Converters
             RecipeFlags result = default(RecipeFlags);
             foreach (var s in value)
             {
-                result |= this.converterForRecipeFlag.Convert(s);
+                result |= this.converterForRecipeFlag.Convert(s, state);
             }
 
             return result;

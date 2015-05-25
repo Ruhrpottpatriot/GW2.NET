@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForPrecisionModifier : IConverter<AttributeDataContract, PrecisionModifier>
     {
         /// <inheritdoc />
-        public PrecisionModifier Convert(AttributeDataContract value)
+        public PrecisionModifier Convert(AttributeDataContract value, object state)
         {
             if (value == null)
             {

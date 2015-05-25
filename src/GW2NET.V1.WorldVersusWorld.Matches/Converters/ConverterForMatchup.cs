@@ -20,8 +20,9 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     {
         /// <summary>Converts the given object of type <see cref="MatchupDataContract"/> to an object of type <see cref="Matchup"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public Matchup Convert(MatchupDataContract value)
+        public Matchup Convert(MatchupDataContract value, object state)
         {
             if (value == null)
             {

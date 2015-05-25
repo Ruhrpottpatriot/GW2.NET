@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForHealingModifier : IConverter<AttributeDataContract, HealingModifier>
     {
         /// <inheritdoc />
-        public HealingModifier Convert(AttributeDataContract value)
+        public HealingModifier Convert(AttributeDataContract value, object state)
         {
             if (value == null)
             {

@@ -18,7 +18,7 @@ namespace GW2NET.V1.Events.Converters
     internal sealed class ConverterForDynamicEventName : IConverter<EventNameDataContract, DynamicEventName>
     {       
         /// <inheritdoc />
-        public DynamicEventName Convert(EventNameDataContract value)
+        public DynamicEventName Convert(EventNameDataContract value, object state)
         {
             if (value == null)
             {

@@ -19,7 +19,7 @@ namespace GW2NET.V1.Events.Converters
     internal sealed class ConverterForCylinderLocation : IConverter<LocationDataContract, CylinderLocation>
     {
         /// <inheritdoc />
-        public CylinderLocation Convert(LocationDataContract value)
+        public CylinderLocation Convert(LocationDataContract value, object state)
         {
             if (value == null)
             {

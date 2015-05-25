@@ -97,7 +97,7 @@ namespace GW2NET.V1.Colors
                 return new DictionaryRange<int, ColorPalette>(0);
             }
 
-            var values = this.converterForColorPaletteCollection.Convert(response.Content);
+            var values = this.converterForColorPaletteCollection.Convert(response.Content, null);
             var colorPalettes = new DictionaryRange<int, ColorPalette>(values.Count)
             {
                 SubtotalCount = values.Count,
@@ -142,7 +142,7 @@ namespace GW2NET.V1.Colors
                         return new DictionaryRange<int, ColorPalette>(0);
                     }
 
-                    var values = this.converterForColorPaletteCollection.Convert(response.Content);
+                    var values = this.converterForColorPaletteCollection.Convert(response.Content, null);
                     var colorPalettes = new DictionaryRange<int, ColorPalette>(values.Count)
                     {
                         SubtotalCount = values.Count,

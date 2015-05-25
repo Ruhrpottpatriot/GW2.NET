@@ -108,7 +108,7 @@ namespace GW2NET.V2.Items
         {
             var request = new ItemDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
-            return this.converterForIdentifiersResponse.Convert(response) ?? new List<int>(0);
+            return this.converterForIdentifiersResponse.Convert(response, null) ?? new List<int>(0);
         }
 
         /// <inheritdoc />
@@ -136,7 +136,7 @@ namespace GW2NET.V2.Items
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ItemDataContract>(request);
-            return this.converterForResponse.Convert(response);
+            return this.converterForResponse.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -148,7 +148,7 @@ namespace GW2NET.V2.Items
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
-            return this.converterForBulkResponse.Convert(response);
+            return this.converterForBulkResponse.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -161,7 +161,7 @@ namespace GW2NET.V2.Items
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
-            return this.converterForBulkResponse.Convert(response);
+            return this.converterForBulkResponse.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -233,7 +233,7 @@ namespace GW2NET.V2.Items
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response);
+            var values = this.converterForPageResponse.Convert(response, null);
             PageContextPatchUtility.Patch(values, pageIndex);
             return values;
         }
@@ -249,7 +249,7 @@ namespace GW2NET.V2.Items
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response);
+            var values = this.converterForPageResponse.Convert(response, null);
             PageContextPatchUtility.Patch(values, pageIndex);
             return values;
         }
@@ -299,7 +299,7 @@ namespace GW2NET.V2.Items
         private IDictionaryRange<int, Item> ConvertAsyncResponse(Task<IResponse<ICollection<ItemDataContract>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForBulkResponse.Convert(task.Result);
+            var values = this.converterForBulkResponse.Convert(task.Result, null);
             if (values == null)
             {
                 return new DictionaryRange<int, Item>(0);
@@ -312,7 +312,7 @@ namespace GW2NET.V2.Items
         private ICollectionPage<Item> ConvertAsyncResponse(Task<IResponse<ICollection<ItemDataContract>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForPageResponse.Convert(task.Result);
+            var values = this.converterForPageResponse.Convert(task.Result, null);
             if (values == null)
             {
                 return new CollectionPage<Item>(0);
@@ -327,7 +327,7 @@ namespace GW2NET.V2.Items
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            var ids = this.converterForIdentifiersResponse.Convert(task.Result);
+            var ids = this.converterForIdentifiersResponse.Convert(task.Result, null);
             if (ids == null)
             {
                 return new List<int>(0);
@@ -340,7 +340,7 @@ namespace GW2NET.V2.Items
         private Item ConvertAsyncResponse(Task<IResponse<ItemDataContract>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.converterForResponse.Convert(task.Result);
+            return this.converterForResponse.Convert(task.Result, null);
         }
     }
 }

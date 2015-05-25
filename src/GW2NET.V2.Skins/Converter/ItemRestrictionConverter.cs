@@ -18,7 +18,7 @@ namespace GW2NET.V2.Skins
     internal sealed class ItemRestrictionConverter : IConverter<string, ItemRestrictions>
     {
         /// <inheritdoc />
-        public ItemRestrictions Convert(string value)
+        public ItemRestrictions Convert(string value, object state)
         {
             ItemRestrictions result;
             return Enum.TryParse(value, true, out result) ? result : default(ItemRestrictions);

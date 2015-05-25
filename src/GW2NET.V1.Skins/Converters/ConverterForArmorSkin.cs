@@ -55,8 +55,9 @@ namespace GW2NET.V1.Skins.Converters
 
         /// <summary>Converts the given object of type <see cref="SkinDataContract"/> to an object of type <see cref="ArmorSkin"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public ArmorSkin Convert(SkinDataContract value)
+        public ArmorSkin Convert(SkinDataContract value, object state)
         {
             if (value == null)
             {
@@ -68,7 +69,7 @@ namespace GW2NET.V1.Skins.Converters
             IConverter<ArmorSkinDataContract, ArmorSkin> converter;
             if (armorSkinDataContract != null && this.typeConverters.TryGetValue(armorSkinDataContract.Type, out converter))
             {
-                armorSkin = converter.Convert(armorSkinDataContract);
+                armorSkin = converter.Convert(armorSkinDataContract, state);
             }
             else
             {
@@ -83,7 +84,7 @@ namespace GW2NET.V1.Skins.Converters
             var weightClass = armorSkinDataContract.WeightClass;
             if (weightClass != null)
             {
-                armorSkin.WeightClass = this.converterForWeightClass.Convert(weightClass);
+                armorSkin.WeightClass = this.converterForWeightClass.Convert(weightClass, state);
             }
 
             return armorSkin;

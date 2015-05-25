@@ -16,7 +16,7 @@ namespace GW2NET.Common.Converters
         where T : new()
     {
         /// <inheritdoc />
-        T IConverter<object, T>.Convert(object value)
+        T IConverter<object, T>.Convert(object value, object state)
         {
             if (value == null)
             {

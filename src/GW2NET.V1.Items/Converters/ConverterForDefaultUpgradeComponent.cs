@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForDefaultUpgradeComponent : IConverter<UpgradeComponentDataContract, DefaultUpgradeComponent>
     {
         /// <inheritdoc />
-        public DefaultUpgradeComponent Convert(UpgradeComponentDataContract value)
+        public DefaultUpgradeComponent Convert(UpgradeComponentDataContract value, object state)
         {
             if (value == null)
             {

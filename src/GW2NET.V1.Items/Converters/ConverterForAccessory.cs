@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForAccessory : IConverter<TrinketDataContract, Accessory>
     {
         /// <inheritdoc />
-        public Accessory Convert(TrinketDataContract value)
+        public Accessory Convert(TrinketDataContract value, object state)
         {
             if (value == null)
             {

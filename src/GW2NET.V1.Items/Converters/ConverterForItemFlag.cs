@@ -17,7 +17,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForItemFlag : IConverter<string, ItemFlags>
     {
         /// <inheritdoc />
-        public ItemFlags Convert(string value)
+        public ItemFlags Convert(string value, object state)
         {
             if (value == null)
             {

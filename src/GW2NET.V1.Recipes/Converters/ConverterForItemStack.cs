@@ -20,8 +20,9 @@ namespace GW2NET.V1.Recipes.Converters
     {
         /// <summary>Converts the given object of type <see cref="IngredientDataContract"/> to an object of type <see cref="ItemStack"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public ItemStack Convert(IngredientDataContract value)
+        public ItemStack Convert(IngredientDataContract value, object state)
         {
             if (value == null)
             {

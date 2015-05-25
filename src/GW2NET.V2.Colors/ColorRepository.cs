@@ -85,7 +85,7 @@ namespace GW2NET.V2.Colors
         {
             var request = new ColorDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
-            return this.converterForIdentifiersResponse.Convert(response) ?? new List<int>(0);
+            return this.converterForIdentifiersResponse.Convert(response, null) ?? new List<int>(0);
         }
 
         /// <inheritdoc />
@@ -114,7 +114,7 @@ namespace GW2NET.V2.Colors
             };
 
             var response = this.serviceClient.Send<ICollection<ColorPaletteDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response);
+            var values = this.converterForPageResponse.Convert(response, null);
             PageContextPatchUtility.Patch(values, pageIndex);
             return values;
         }
@@ -130,7 +130,7 @@ namespace GW2NET.V2.Colors
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<ColorPaletteDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response);
+            var values = this.converterForPageResponse.Convert(response, null);
             PageContextPatchUtility.Patch(values, pageIndex);
             return values;
         }
@@ -187,7 +187,7 @@ namespace GW2NET.V2.Colors
             };
 
             var response = this.serviceClient.Send<ColorPaletteDataContract>(request);
-            return this.converterForResponse.Convert(response);
+            return this.converterForResponse.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -197,7 +197,7 @@ namespace GW2NET.V2.Colors
             var request = new ColorPaletteBulkRequest { Culture = self.Culture };
 
             var response = this.serviceClient.Send<ICollection<ColorPaletteDataContract>>(request);
-            return this.converterForBulkResponse.Convert(response);
+            return this.converterForBulkResponse.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -211,7 +211,7 @@ namespace GW2NET.V2.Colors
             };
 
             var response = this.serviceClient.Send<ICollection<ColorPaletteDataContract>>(request);
-            return this.converterForBulkResponse.Convert(response);
+            return this.converterForBulkResponse.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -275,7 +275,7 @@ namespace GW2NET.V2.Colors
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            var ids = this.converterForIdentifiersResponse.Convert(task.Result);
+            var ids = this.converterForIdentifiersResponse.Convert(task.Result, null);
             if (ids == null)
             {
                 return new List<int>(0);
@@ -287,7 +287,7 @@ namespace GW2NET.V2.Colors
         private IDictionaryRange<int, ColorPalette> ConvertAsyncResponse(Task<IResponse<ICollection<ColorPaletteDataContract>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForBulkResponse.Convert(task.Result);
+            var values = this.converterForBulkResponse.Convert(task.Result, null);
             if (values == null)
             {
                 return new DictionaryRange<int, ColorPalette>(0);
@@ -299,13 +299,13 @@ namespace GW2NET.V2.Colors
         private ColorPalette ConvertAsyncResponse(Task<IResponse<ColorPaletteDataContract>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.converterForResponse.Convert(task.Result);
+            return this.converterForResponse.Convert(task.Result, null);
         }
 
         private ICollectionPage<ColorPalette> ConvertAsyncResponse(Task<IResponse<ICollection<ColorPaletteDataContract>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForPageResponse.Convert(task.Result);
+            var values = this.converterForPageResponse.Convert(task.Result, null);
             if (values == null)
             {
                 return new CollectionPage<ColorPalette>(0);

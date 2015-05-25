@@ -42,7 +42,7 @@ namespace GW2NET.V1.Floors.Converters
         }
 
         /// <inheritdoc />
-        public Sector Convert(SectorDataContract value)
+        public Sector Convert(SectorDataContract value, object state)
         {
             if (value == null)
             {
@@ -58,7 +58,7 @@ namespace GW2NET.V1.Floors.Converters
             var coordinates = value.Coordinates;
             if (coordinates != null && coordinates.Length == 2)
             {
-                sector.Coordinates = this.converterForVector2D.Convert(coordinates);
+                sector.Coordinates = this.converterForVector2D.Convert(coordinates, state);
             }
 
             return sector;

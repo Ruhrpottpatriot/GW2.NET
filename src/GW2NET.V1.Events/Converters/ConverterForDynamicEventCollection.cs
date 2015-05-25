@@ -40,7 +40,7 @@ namespace GW2NET.V1.Events.Converters
         }
 
         /// <inheritdoc />
-        public ICollection<DynamicEvent> Convert(EventCollectionDataContract value)
+        public ICollection<DynamicEvent> Convert(EventCollectionDataContract value, object state)
         {
             if (value == null)
             {
@@ -62,7 +62,7 @@ namespace GW2NET.V1.Events.Converters
                     continue;
                 }
 
-                var dynamicEvent = this.converterForDynamicEvent.Convert(kvp.Value);
+                var dynamicEvent = this.converterForDynamicEvent.Convert(kvp.Value, state);
                 if (dynamicEvent == null)
                 {
                     continue;

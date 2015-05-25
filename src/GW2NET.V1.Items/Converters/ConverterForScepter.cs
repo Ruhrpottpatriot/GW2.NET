@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForScepter : IConverter<WeaponDataContract, Scepter>
     {
         /// <inheritdoc />
-        public Scepter Convert(WeaponDataContract value)
+        public Scepter Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

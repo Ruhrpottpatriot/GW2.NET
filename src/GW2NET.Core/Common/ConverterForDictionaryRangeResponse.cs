@@ -44,7 +44,7 @@ namespace GW2NET.Common
         }
 
         /// <inheritdoc />
-        IDictionaryRange<TKey, TValue> IConverter<IResponse<ICollection<TDataContract>>, IDictionaryRange<TKey, TValue>>.Convert(IResponse<ICollection<TDataContract>> value)
+        IDictionaryRange<TKey, TValue> IConverter<IResponse<ICollection<TDataContract>>, IDictionaryRange<TKey, TValue>>.Convert(IResponse<ICollection<TDataContract>> value, object state)
         {
             if (value == null)
             {
@@ -63,7 +63,7 @@ namespace GW2NET.Common
                 TotalCount = value.GetResultTotal()
             };
 
-            foreach (var item in dataContracts.Select(this.converterForDataContract.Convert))
+            foreach (var item in dataContracts.Select(value1 => this.converterForDataContract.Convert(value1, state)))
             {
                 range.Add(this.keySelector(item), item);
             }

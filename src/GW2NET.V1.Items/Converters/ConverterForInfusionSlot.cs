@@ -41,7 +41,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public InfusionSlot Convert(InfusionSlotDataContract value)
+        public InfusionSlot Convert(InfusionSlotDataContract value, object state)
         {
             if (value == null)
             {
@@ -58,7 +58,7 @@ namespace GW2NET.V1.Items.Converters
             var flags = value.Flags;
             if (flags != null)
             {
-                infusionSlot.Flags = this.converterForInfusionSlotFlagCollection.Convert(flags);
+                infusionSlot.Flags = this.converterForInfusionSlotFlagCollection.Convert(flags, state);
             }
 
             return infusionSlot;

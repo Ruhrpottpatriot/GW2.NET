@@ -40,8 +40,9 @@ namespace GW2NET.V2.Items
 
         /// <summary>Converts the given object of type <see cref="DetailsDataContract"/> to an object of type <see cref="Tool"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public Tool Convert(DetailsDataContract value)
+        public Tool Convert(DetailsDataContract value, object state)
         {
             if (value == null)
             {
@@ -51,7 +52,7 @@ namespace GW2NET.V2.Items
             IConverter<DetailsDataContract, Tool> converterForTool;
             if (this.typeConverters.TryGetValue(value.Type, out converterForTool))
             {
-                return converterForTool.Convert(value);
+                return converterForTool.Convert(value, state);
             }
 
             return new UnknownTool();

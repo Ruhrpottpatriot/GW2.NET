@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForTrophy : IConverter<ItemDataContract, Trophy>
     {
         /// <inheritdoc />
-        public Trophy Convert(ItemDataContract value)
+        public Trophy Convert(ItemDataContract value, object state)
         {
             if (value == null)
             {

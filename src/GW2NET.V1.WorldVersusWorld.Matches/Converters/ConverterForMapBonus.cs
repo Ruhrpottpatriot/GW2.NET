@@ -41,8 +41,9 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 
         /// <summary>Converts the given object of type <see cref="MapBonusDataContract"/> to an object of type <see cref="MapBonus"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public MapBonus Convert(MapBonusDataContract value)
+        public MapBonus Convert(MapBonusDataContract value, object state)
         {
             if (value == null)
             {
@@ -62,7 +63,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
             var owner = value.Owner;
             if (owner != null)
             {
-                mapBonus.Owner = this.converterForTeamColor.Convert(owner);
+                mapBonus.Owner = this.converterForTeamColor.Convert(owner, state);
             }
 
             return mapBonus;

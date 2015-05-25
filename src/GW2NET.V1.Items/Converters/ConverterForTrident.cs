@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForTrident : IConverter<WeaponDataContract, Trident>
     {
         /// <inheritdoc />
-        public Trident Convert(WeaponDataContract value)
+        public Trident Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

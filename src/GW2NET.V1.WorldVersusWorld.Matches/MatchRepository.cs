@@ -77,7 +77,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
             }
 
             var values = new List<Matchup>(response.Content.Matchups.Count);
-            values.AddRange(response.Content.Matchups.Select(this.converterForMatchup.Convert));
+            values.AddRange(response.Content.Matchups.Select(value => this.converterForMatchup.Convert(value, null)));
             return values;
         }
 
@@ -101,7 +101,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
                 }
 
                 var values = new List<Matchup>(response.Content.Matchups.Count);
-                values.AddRange(response.Content.Matchups.Select(this.converterForMatchup.Convert));
+                values.AddRange(response.Content.Matchups.Select(value => this.converterForMatchup.Convert(value, null)));
                 return values;
             }, cancellationToken);
         }
@@ -120,7 +120,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
                 return null;
             }
 
-            return this.converterForMatch.Convert(response.Content);
+            return this.converterForMatch.Convert(response.Content, null);
         }
 
         /// <inheritdoc />
@@ -182,7 +182,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
                     return null;
                 }
 
-                return this.converterForMatch.Convert(response.Content);
+                return this.converterForMatch.Convert(response.Content, null);
             }, cancellationToken);
         }
 

@@ -41,7 +41,7 @@ namespace GW2NET.V1.Guilds.Converters
         }
 
         /// <inheritdoc />
-        public EmblemTransformations Convert(ICollection<string> value)
+        public EmblemTransformations Convert(ICollection<string> value, object state)
         {
             if (value == null)
             {
@@ -51,7 +51,7 @@ namespace GW2NET.V1.Guilds.Converters
             var result = default(EmblemTransformations);
             foreach (var s in value)
             {
-                result |= this.converterForEmblemTransformation.Convert(s);
+                result |= this.converterForEmblemTransformation.Convert(s, state);
             }
 
             return result;

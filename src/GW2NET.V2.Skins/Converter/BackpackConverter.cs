@@ -18,7 +18,7 @@ namespace GW2NET.V2.Skins
     internal class BackpackConverter : IConverter<DetailsDataContract, BackpackSkin>
     {
         /// <inheritdoc />
-        public BackpackSkin Convert(DetailsDataContract value)
+        public BackpackSkin Convert(DetailsDataContract value, object state)
         {
             if (value == null)
             {

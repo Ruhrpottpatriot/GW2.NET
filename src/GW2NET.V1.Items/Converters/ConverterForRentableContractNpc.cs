@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForRentableContractNpc : IConverter<GizmoDataContract, RentableContractNpc>
     {
         /// <inheritdoc />
-        public RentableContractNpc Convert(GizmoDataContract value)
+        public RentableContractNpc Convert(GizmoDataContract value, object state)
         {
             if (value == null)
             {

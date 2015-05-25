@@ -80,7 +80,7 @@ namespace GW2NET.V1.Recipes
                 return new List<int>(0);
             }
 
-            return this.converterForRecipeCollection.Convert(response.Content);
+            return this.converterForRecipeCollection.Convert(response.Content, null);
         }
 
         /// <inheritdoc />
@@ -149,7 +149,7 @@ namespace GW2NET.V1.Recipes
                 return null;
             }
 
-            var recipe = this.converterForRecipe.Convert(response.Content);
+            var recipe = this.converterForRecipe.Convert(response.Content, null);
             recipe.Culture = request.Culture;
             return recipe;
         }
@@ -262,7 +262,7 @@ namespace GW2NET.V1.Recipes
                 return new List<int>(0);
             }
 
-            return this.converterForRecipeCollection.Convert(response.Content);
+            return this.converterForRecipeCollection.Convert(response.Content, null);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
@@ -274,7 +274,7 @@ namespace GW2NET.V1.Recipes
                 return null;
             }
 
-            return this.converterForRecipe.Convert(response.Content);
+            return this.converterForRecipe.Convert(response.Content, null);
         }
     }
 }

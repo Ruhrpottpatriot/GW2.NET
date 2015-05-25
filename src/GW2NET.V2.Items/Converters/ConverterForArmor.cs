@@ -69,8 +69,9 @@ namespace GW2NET.V2.Items
 
         /// <summary>Converts the given object of type <see cref="DetailsDataContract"/> to an object of type <see cref="Armor"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public Armor Convert(DetailsDataContract value)
+        public Armor Convert(DetailsDataContract value, object state)
         {
             if (value == null)
             {
@@ -78,19 +79,19 @@ namespace GW2NET.V2.Items
             }
 
             IConverter<DetailsDataContract, Armor> converter;
-            var armor = this.typeConverters.TryGetValue(value.Type, out converter) ? converter.Convert(value) : new UnknownArmor();
-            armor.WeightClass = this.converterForWeightClass.Convert(value.WeightClass);
+            var armor = this.typeConverters.TryGetValue(value.Type, out converter) ? converter.Convert(value, state) : new UnknownArmor();
+            armor.WeightClass = this.converterForWeightClass.Convert(value.WeightClass, state);
             armor.Defense = value.Defense.GetValueOrDefault();
             var infusionSlotDataContracts = value.InfusionSlots;
             if (infusionSlotDataContracts != null)
             {
-                armor.InfusionSlots = this.converterForInfusionSlotCollection.Convert(infusionSlotDataContracts);
+                armor.InfusionSlots = this.converterForInfusionSlotCollection.Convert(infusionSlotDataContracts, state);
             }
 
             var infixUpgradeDataContract = value.InfixUpgrade;
             if (infixUpgradeDataContract != null)
             {
-                armor.InfixUpgrade = this.converterForInfixUpgrade.Convert(infixUpgradeDataContract);
+                armor.InfixUpgrade = this.converterForInfixUpgrade.Convert(infixUpgradeDataContract, state);
             }
 
             armor.SuffixItemId = value.SuffixItemId;

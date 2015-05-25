@@ -18,7 +18,7 @@ namespace GW2NET.V1.Maps.Converters
     internal sealed class ConverterForVector2D : IConverter<double[], Vector2D>
     {
         /// <inheritdoc />
-        public Vector2D Convert(double[] value)
+        public Vector2D Convert(double[] value, object state)
         {
             if (value == null)
             {

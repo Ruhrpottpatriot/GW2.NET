@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForRing : IConverter<TrinketDataContract, Ring>
     {
         /// <inheritdoc />
-        public Ring Convert(TrinketDataContract value)
+        public Ring Convert(TrinketDataContract value, object state)
         {
             if (value == null)
             {

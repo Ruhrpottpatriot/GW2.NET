@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForShoulders : IConverter<ArmorDataContract, Shoulders>
     {
         /// <inheritdoc />
-        public Shoulders Convert(ArmorDataContract value)
+        public Shoulders Convert(ArmorDataContract value, object state)
         {
             if (value == null)
             {

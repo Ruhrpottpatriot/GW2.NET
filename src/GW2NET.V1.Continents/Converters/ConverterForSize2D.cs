@@ -18,7 +18,7 @@ namespace GW2NET.V1.Continents.Converters
     internal sealed class ConverterForSize2D : IConverter<double[], Size2D>
     {
         /// <inheritdoc />
-        public Size2D Convert(double[] value)
+        public Size2D Convert(double[] value, object state)
         {
             if (value == null)
             {

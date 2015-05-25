@@ -42,14 +42,14 @@ namespace GW2NET.V2.Skins
         }
 
         /// <inheritdoc />
-        public SkinFlags Convert(ICollection<string> value)
+        public SkinFlags Convert(ICollection<string> value, object state)
         {
             if (value == null)
             {
                 throw new ArgumentNullException("value", "Precondition: value != null");
             }
 
-            return value.Aggregate(default(SkinFlags), (current, s) => current | this.converterForSkinFlags.Convert(s));
+            return value.Aggregate(default(SkinFlags), (current, s) => current | this.converterForSkinFlags.Convert(s, state));
         }
     }
 }

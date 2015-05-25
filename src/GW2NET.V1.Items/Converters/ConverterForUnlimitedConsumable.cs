@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForUnlimitedConsumable : IConverter<GizmoDataContract, UnlimitedConsumable>
     {
         /// <inheritdoc />
-        public UnlimitedConsumable Convert(GizmoDataContract value)
+        public UnlimitedConsumable Convert(GizmoDataContract value, object state)
         {
             if (value == null)
             {

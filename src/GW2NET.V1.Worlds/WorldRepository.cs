@@ -108,7 +108,7 @@ namespace GW2NET.V1.Worlds
                 TotalCount = dataContracts.Count
             };
 
-            foreach (var world in this.converterForWorldCollection.Convert(dataContracts))
+            foreach (var world in this.converterForWorldCollection.Convert(dataContracts, null))
             {
                 world.Culture = request.Culture;
                 worlds.Add(world.WorldId, world);
@@ -219,7 +219,7 @@ namespace GW2NET.V1.Worlds
                 TotalCount = dataContracts.Count
             };
 
-            foreach (var world in this.converterForWorldCollection.Convert(dataContracts))
+            foreach (var world in this.converterForWorldCollection.Convert(dataContracts, null))
             {
                 world.Culture = culture;
                 worlds.Add(world.WorldId, world);

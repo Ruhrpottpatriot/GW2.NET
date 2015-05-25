@@ -39,7 +39,7 @@ namespace GW2NET.V1.Maps.Converters
         }
 
         /// <inheritdoc />
-        public Rectangle Convert(double[][] value)
+        public Rectangle Convert(double[][] value, object state)
         {
             if (value == null)
             {
@@ -55,14 +55,14 @@ namespace GW2NET.V1.Maps.Converters
             var values1 = value[0];
             if (values1 != null && values1.Length == 2)
             {
-                nw = this.converterForVector2D.Convert(values1);
+                nw = this.converterForVector2D.Convert(values1, state);
             }
 
             var se = default(Vector2D);
             var values2 = value[1];
             if (values2 != null && values2.Length == 2)
             {
-                se = this.converterForVector2D.Convert(values2);
+                se = this.converterForVector2D.Convert(values2, state);
             }
 
             return new Rectangle(nw, se);

@@ -17,7 +17,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForItemRestriction : IConverter<string, ItemRestrictions>
     {
         /// <inheritdoc />
-        public ItemRestrictions Convert(string value)
+        public ItemRestrictions Convert(string value, object state)
         {
             if (value == null)
             {

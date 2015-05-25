@@ -20,8 +20,9 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives.Converters
     {
         /// <summary>Converts the given object of type <see cref="ObjectiveNameDataContract"/> to an object of type <see cref="ObjectiveName"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public ObjectiveName Convert(ObjectiveNameDataContract value)
+        public ObjectiveName Convert(ObjectiveNameDataContract value, object state)
         {
             if (value == null)
             {

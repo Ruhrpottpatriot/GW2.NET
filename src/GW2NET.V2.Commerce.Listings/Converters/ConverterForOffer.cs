@@ -18,8 +18,9 @@ namespace GW2NET.V2.Commerce.Listings
     {
         /// <summary>Converts the given object of type <see cref="ListingOfferDataContract"/> to an object of type <see cref="Offer"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public Offer Convert(ListingOfferDataContract value)
+        public Offer Convert(ListingOfferDataContract value, object state)
         {
             if (value == null)
             {

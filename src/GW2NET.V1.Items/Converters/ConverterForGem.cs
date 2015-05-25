@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForGem : IConverter<UpgradeComponentDataContract, Gem>
     {
         /// <inheritdoc />
-        public Gem Convert(UpgradeComponentDataContract value)
+        public Gem Convert(UpgradeComponentDataContract value, object state)
         {
             if (value == null)
             {

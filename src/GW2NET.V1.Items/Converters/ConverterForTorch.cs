@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForTorch : IConverter<WeaponDataContract, Torch>
     {
         /// <inheritdoc />
-        public Torch Convert(WeaponDataContract value)
+        public Torch Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

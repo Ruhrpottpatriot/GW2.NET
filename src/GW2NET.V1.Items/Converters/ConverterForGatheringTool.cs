@@ -41,7 +41,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public GatheringTool Convert(ItemDataContract value)
+        public GatheringTool Convert(ItemDataContract value, object state)
         {
             if (value == null)
             {
@@ -54,7 +54,7 @@ namespace GW2NET.V1.Items.Converters
             IConverter<GatheringToolDataContract, GatheringTool> converter;
             if (this.typeConverters.TryGetValue(gatheringToolDataContract.Type, out converter))
             {
-                gatheringTool = converter.Convert(gatheringToolDataContract);
+                gatheringTool = converter.Convert(gatheringToolDataContract, state);
             }
             else
             {

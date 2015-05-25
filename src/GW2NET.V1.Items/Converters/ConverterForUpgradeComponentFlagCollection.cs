@@ -40,7 +40,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public UpgradeComponentFlags Convert(ICollection<string> value)
+        public UpgradeComponentFlags Convert(ICollection<string> value, object state)
         {
             if (value == null)
             {
@@ -50,7 +50,7 @@ namespace GW2NET.V1.Items.Converters
             var result = default(UpgradeComponentFlags);
             foreach (var s in value)
             {
-                result |= this.converterForUpgradeComponentFlag.Convert(s);
+                result |= this.converterForUpgradeComponentFlag.Convert(s, state);
             }
 
             return result;

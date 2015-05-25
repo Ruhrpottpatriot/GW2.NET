@@ -52,7 +52,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public Backpack Convert(ItemDataContract value)
+        public Backpack Convert(ItemDataContract value, object state)
         {
             if (value == null)
             {
@@ -75,13 +75,13 @@ namespace GW2NET.V1.Items.Converters
             var infusionSlotDataContracts = backpackDataContract.InfusionSlots;
             if (infusionSlotDataContracts != null)
             {
-                backpack.InfusionSlots = this.converterForInfusionSlotCollection.Convert(infusionSlotDataContracts);
+                backpack.InfusionSlots = this.converterForInfusionSlotCollection.Convert(infusionSlotDataContracts, state);
             }
 
             var infixUpgradeDataContract = backpackDataContract.InfixUpgrade;
             if (infixUpgradeDataContract != null)
             {
-                backpack.InfixUpgrade = this.converterForInfixUpgrade.Convert(infixUpgradeDataContract);
+                backpack.InfixUpgrade = this.converterForInfixUpgrade.Convert(infixUpgradeDataContract, state);
             }
 
             int suffixItemId;

@@ -69,8 +69,9 @@ namespace GW2NET.V1.Recipes.Converters
 
         /// <summary>Converts the given object of type <see cref="RecipeDataContract"/> to an object of type <see cref="Recipe"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public Recipe Convert(RecipeDataContract value)
+        public Recipe Convert(RecipeDataContract value, object state)
         {
             if (value == null)
             {
@@ -81,7 +82,7 @@ namespace GW2NET.V1.Recipes.Converters
             IConverter<RecipeDataContract, Recipe> converter;
             if (this.typeConverters.TryGetValue(value.Type, out converter))
             {
-                recipe = converter.Convert(value);
+                recipe = converter.Convert(value, state);
             }
             else
             {
@@ -121,19 +122,19 @@ namespace GW2NET.V1.Recipes.Converters
             var craftingDisciplines = value.CraftingDisciplines;
             if (craftingDisciplines != null)
             {
-                recipe.CraftingDisciplines = this.converterForCraftingDisciplineCollection.Convert(craftingDisciplines);
+                recipe.CraftingDisciplines = this.converterForCraftingDisciplineCollection.Convert(craftingDisciplines, state);
             }
 
             var flags = value.Flags;
             if (flags != null)
             {
-                recipe.Flags = this.converterForRecipeFlagCollection.Convert(flags);
+                recipe.Flags = this.converterForRecipeFlagCollection.Convert(flags, state);
             }
 
             var ingredients = value.Ingredients;
             if (ingredients != null)
             {
-                recipe.Ingredients = this.converterForItemStackCollection.Convert(ingredients);
+                recipe.Ingredients = this.converterForItemStackCollection.Convert(ingredients, state);
             }
 
             return recipe;

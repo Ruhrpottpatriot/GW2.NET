@@ -52,7 +52,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public InfixUpgrade Convert(InfixUpgradeDataContract value)
+        public InfixUpgrade Convert(InfixUpgradeDataContract value, object state)
         {
             if (value == null)
             {
@@ -63,13 +63,13 @@ namespace GW2NET.V1.Items.Converters
             var buffDataContract = value.Buff;
             if (buffDataContract != null)
             {
-                infixUpgrade.Buff = this.converterForCombatBuff.Convert(buffDataContract);
+                infixUpgrade.Buff = this.converterForCombatBuff.Convert(buffDataContract, state);
             }
 
             var attributeDataContracts = value.Attributes;
             if (attributeDataContracts != null)
             {
-                infixUpgrade.Attributes = this.converterForCombatAttributeCollection.Convert(attributeDataContracts);
+                infixUpgrade.Attributes = this.converterForCombatAttributeCollection.Convert(attributeDataContracts, state);
             }
 
             return infixUpgrade;

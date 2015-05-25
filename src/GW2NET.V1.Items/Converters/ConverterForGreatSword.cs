@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForGreatSword : IConverter<WeaponDataContract, GreatSword>
     {
         /// <inheritdoc />
-        public GreatSword Convert(WeaponDataContract value)
+        public GreatSword Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

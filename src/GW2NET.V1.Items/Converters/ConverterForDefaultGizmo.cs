@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForDefaultGizmo : IConverter<GizmoDataContract, DefaultGizmo>
     {
         /// <inheritdoc />
-        public DefaultGizmo Convert(GizmoDataContract value)
+        public DefaultGizmo Convert(GizmoDataContract value, object state)
         {
             if (value == null)
             {

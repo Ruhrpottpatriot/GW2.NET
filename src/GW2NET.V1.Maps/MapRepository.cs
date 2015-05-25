@@ -93,7 +93,7 @@ namespace GW2NET.V1.Maps
                 return null;
             }
 
-            var values = this.converterForMapCollection.Convert(response.Content);
+            var values = this.converterForMapCollection.Convert(response.Content, null);
             if (values == null)
             {
                 return null;
@@ -122,7 +122,7 @@ namespace GW2NET.V1.Maps
                 return new DictionaryRange<int, Map>(0);
             }
 
-            var values = this.converterForMapCollection.Convert(response.Content);
+            var values = this.converterForMapCollection.Convert(response.Content, null);
             var maps = new DictionaryRange<int, Map>(values.Count)
             {
                 SubtotalCount = values.Count,
@@ -168,7 +168,7 @@ namespace GW2NET.V1.Maps
                         return null;
                     }
 
-                    var values = this.converterForMapCollection.Convert(response.Content);
+                    var values = this.converterForMapCollection.Convert(response.Content, null);
                     var maps = new DictionaryRange<int, Map>(values.Count)
                     {
                         SubtotalCount = values.Count,
@@ -223,7 +223,7 @@ namespace GW2NET.V1.Maps
                         return null;
                     }
 
-                    var map = this.converterForMapCollection.Convert(response.Content).SingleOrDefault();
+                    var map = this.converterForMapCollection.Convert(response.Content, null).SingleOrDefault();
                     if (map != null)
                     {
                         map.Culture = request.Culture;

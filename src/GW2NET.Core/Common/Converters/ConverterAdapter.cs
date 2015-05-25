@@ -13,7 +13,7 @@ namespace GW2NET.Common.Converters
     public sealed class ConverterAdapter<T> : IConverter<T, T>
     {
         /// <inheritdoc />
-        T IConverter<T, T>.Convert(T value)
+        T IConverter<T, T>.Convert(T value, object state)
         {
             return value;
         }

@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForToughnessModifier : IConverter<AttributeDataContract, ToughnessModifier>
     {
         /// <inheritdoc />
-        public ToughnessModifier Convert(AttributeDataContract value)
+        public ToughnessModifier Convert(AttributeDataContract value, object state)
         {
             if (value == null)
             {

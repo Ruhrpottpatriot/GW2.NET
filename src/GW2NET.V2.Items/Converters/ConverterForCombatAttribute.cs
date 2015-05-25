@@ -40,8 +40,9 @@ namespace GW2NET.V2.Items
 
         /// <summary>Converts the given object of type <see cref="AttributeDataContract"/> to an object of type <see cref="CombatAttribute"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public CombatAttribute Convert(AttributeDataContract value)
+        public CombatAttribute Convert(AttributeDataContract value, object state)
         {
             if (value == null)
             {
@@ -51,7 +52,7 @@ namespace GW2NET.V2.Items
             IConverter<AttributeDataContract, CombatAttribute> converter;
             if (this.typeConverters.TryGetValue(value.Attribute, out converter))
             {
-                return converter.Convert(value);
+                return converter.Convert(value, state);
             }
 
             return new UnknownModifier();

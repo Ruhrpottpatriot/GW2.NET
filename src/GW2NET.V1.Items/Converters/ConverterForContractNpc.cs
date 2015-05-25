@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForContractNpc : IConverter<ConsumableDataContract, ContractNpc>
     {
         /// <inheritdoc />
-        public ContractNpc Convert(ConsumableDataContract value)
+        public ContractNpc Convert(ConsumableDataContract value, object state)
         {
             if (value == null)
             {

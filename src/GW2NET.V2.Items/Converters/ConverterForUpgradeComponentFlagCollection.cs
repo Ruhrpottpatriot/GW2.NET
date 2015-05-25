@@ -40,8 +40,9 @@ namespace GW2NET.V2.Items
 
         /// <summary>Converts the given object of type <see cref="T:ICollection{string}"/> to an object of type <see cref="UpgradeComponentFlags"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public UpgradeComponentFlags Convert(ICollection<string> value)
+        public UpgradeComponentFlags Convert(ICollection<string> value, object state)
         {
             if (value == null)
             {
@@ -51,7 +52,7 @@ namespace GW2NET.V2.Items
             var result = default(UpgradeComponentFlags);
             foreach (var s in value)
             {
-                result |= this.converterForUpgradeComponentFlag.Convert(s);
+                result |= this.converterForUpgradeComponentFlag.Convert(s, state);
             }
 
             return result;

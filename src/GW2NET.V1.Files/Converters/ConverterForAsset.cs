@@ -19,7 +19,7 @@ namespace GW2NET.V1.Files.Converters
     internal sealed class ConverterForAsset : IConverter<FileDataContract, Asset>
     {
         /// <inheritdoc />
-        public Asset Convert(FileDataContract value)
+        public Asset Convert(FileDataContract value, object state)
         {
             if (value == null)
             {

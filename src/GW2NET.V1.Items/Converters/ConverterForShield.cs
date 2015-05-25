@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForShield : IConverter<WeaponDataContract, Shield>
     {
         /// <inheritdoc />
-        public Shield Convert(WeaponDataContract value)
+        public Shield Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

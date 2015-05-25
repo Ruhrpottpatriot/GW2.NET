@@ -18,7 +18,7 @@ namespace GW2NET.V2.Colors
     internal sealed class ColorConverter : IConverter<int[], Color>
     {
         /// <inheritdoc />
-        public Color Convert(int[] value)
+        public Color Convert(int[] value, object state)
         {
             if (value == null)
             {

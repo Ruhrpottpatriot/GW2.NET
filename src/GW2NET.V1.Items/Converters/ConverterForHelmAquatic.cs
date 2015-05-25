@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForHelmAquatic : IConverter<ArmorDataContract, HelmAquatic>
     {
         /// <inheritdoc />
-        public HelmAquatic Convert(ArmorDataContract value)
+        public HelmAquatic Convert(ArmorDataContract value, object state)
         {
             if (value == null)
             {

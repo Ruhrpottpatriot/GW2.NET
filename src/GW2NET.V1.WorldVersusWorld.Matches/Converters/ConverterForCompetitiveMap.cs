@@ -73,8 +73,9 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 
         /// <summary>Converts the given object of type <see cref="CompetitiveMapDataContract"/> to an object of type <see cref="CompetitiveMap"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public CompetitiveMap Convert(CompetitiveMapDataContract value)
+        public CompetitiveMap Convert(CompetitiveMapDataContract value, object state)
         {
             if (value == null)
             {
@@ -86,7 +87,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
             IConverter<CompetitiveMapDataContract, CompetitiveMap> converter;
             if (this.typeConverters.TryGetValue(value.Type, out converter))
             {
-                competitiveMap = converter.Convert(value);
+                competitiveMap = converter.Convert(value, state);
             }
             else
             {
@@ -97,7 +98,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
             var scores = value.Scores;
             if (scores != null && scores.Length == 3)
             {
-                competitiveMap.Scores = this.converterForScoreboard.Convert(scores);
+                competitiveMap.Scores = this.converterForScoreboard.Convert(scores, state);
             }
 
             // Set the status of each objective
@@ -105,7 +106,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
             if (objectiveDataContracts != null)
             {
                 var objectives = new List<Objective>(objectiveDataContracts.Count);
-                objectives.AddRange(objectiveDataContracts.Select(this.converterForObjective.Convert));
+                objectives.AddRange(objectiveDataContracts.Select(value1 => this.converterForObjective.Convert(value1, state)));
                 competitiveMap.Objectives = objectives;
             }
 
@@ -114,7 +115,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
             if (bonusDataContracts != null)
             {
                 var bonuses = new List<MapBonus>(bonusDataContracts.Count);
-                bonuses.AddRange(bonusDataContracts.Select(this.converterForMapBonus.Convert).Where(mapBonus => mapBonus != null));
+                bonuses.AddRange(bonusDataContracts.Select(value1 => this.converterForMapBonus.Convert(value1, state)).Where(mapBonus => mapBonus != null));
                 competitiveMap.Bonuses = bonuses;
             }
 

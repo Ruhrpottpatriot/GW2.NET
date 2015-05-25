@@ -72,7 +72,7 @@ namespace GW2NET.V2.Recipes
         }
 
         /// <inheritdoc />
-        public Recipe Convert(RecipeDataContract value)
+        public Recipe Convert(RecipeDataContract value, object state)
         {
             if (value == null)
             {
@@ -83,7 +83,7 @@ namespace GW2NET.V2.Recipes
             IConverter<RecipeDataContract, Recipe> converter;
             if (this.typeConverters.TryGetValue(value.Type, out converter))
             {
-                recipe = converter.Convert(value);
+                recipe = converter.Convert(value, state);
             }
             else
             {
@@ -99,19 +99,19 @@ namespace GW2NET.V2.Recipes
             var craftingDisciplines = value.Disciplines;
             if (craftingDisciplines != null)
             {
-                recipe.CraftingDisciplines = this.converterForCraftingDisciplineCollection.Convert(craftingDisciplines);
+                recipe.CraftingDisciplines = this.converterForCraftingDisciplineCollection.Convert(craftingDisciplines, state);
             }
 
             var flags = value.Flags;
             if (flags != null)
             {
-                recipe.Flags = this.converterForRecipeFlagCollection.Convert(flags);
+                recipe.Flags = this.converterForRecipeFlagCollection.Convert(flags, state);
             }
 
             var ingredients = value.Ingredients;
             if (ingredients != null)
             {
-                recipe.Ingredients = this.converterForItemStackCollection.Convert(ingredients);
+                recipe.Ingredients = this.converterForItemStackCollection.Convert(ingredients, state);
             }
 
             return recipe;

@@ -20,8 +20,9 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     {
         /// <summary>Converts the given object of type <see cref="CompetitiveMapDataContract"/> to an object of type <see cref="GreenBorderlands"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public GreenBorderlands Convert(CompetitiveMapDataContract value)
+        public GreenBorderlands Convert(CompetitiveMapDataContract value, object state)
         {
             if (value == null)
             {

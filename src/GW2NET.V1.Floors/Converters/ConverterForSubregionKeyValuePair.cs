@@ -43,7 +43,7 @@ namespace GW2NET.V1.Floors.Converters
         }
 
         /// <inheritdoc />
-        public KeyValuePair<int, Subregion> Convert(KeyValuePair<string, SubregionDataContract> value)
+        public KeyValuePair<int, Subregion> Convert(KeyValuePair<string, SubregionDataContract> value, object state)
         {
             var key = value.Key;
             var dataContract = value.Value;
@@ -55,7 +55,7 @@ namespace GW2NET.V1.Floors.Converters
                 return default(KeyValuePair<int, Subregion>);
             }
 
-            var subRegion = this.converterForSubregion.Convert(dataContract);
+            var subRegion = this.converterForSubregion.Convert(dataContract, state);
             subRegion.MapId = id;
             return new KeyValuePair<int, Subregion>(id, subRegion);
         }

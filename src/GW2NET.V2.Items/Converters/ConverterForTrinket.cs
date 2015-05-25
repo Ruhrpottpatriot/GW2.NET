@@ -56,8 +56,9 @@ namespace GW2NET.V2.Items
 
         /// <summary>Converts the given object of type <see cref="DetailsDataContract"/> to an object of type <see cref="Trinket"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public Trinket Convert(DetailsDataContract value)
+        public Trinket Convert(DetailsDataContract value, object state)
         {
             if (value == null)
             {
@@ -68,7 +69,7 @@ namespace GW2NET.V2.Items
             IConverter<DetailsDataContract, Trinket> converter;
             if (this.typeConverters.TryGetValue(value.Type, out converter))
             {
-                trinket = converter.Convert(value);
+                trinket = converter.Convert(value, state);
             }
             else
             {
@@ -78,13 +79,13 @@ namespace GW2NET.V2.Items
             var infusionSlotDataContracts = value.InfusionSlots;
             if (infusionSlotDataContracts != null)
             {
-                trinket.InfusionSlots = this.converterForInfusionSlotCollection.Convert(infusionSlotDataContracts);
+                trinket.InfusionSlots = this.converterForInfusionSlotCollection.Convert(infusionSlotDataContracts, state);
             }
 
             var infixUpgradeDataContract = value.InfixUpgrade;
             if (infixUpgradeDataContract != null)
             {
-                trinket.InfixUpgrade = this.converterForInfixUpgrade.Convert(infixUpgradeDataContract);
+                trinket.InfixUpgrade = this.converterForInfixUpgrade.Convert(infixUpgradeDataContract, state);
             }
 
             trinket.SuffixItemId = value.SuffixItemId;

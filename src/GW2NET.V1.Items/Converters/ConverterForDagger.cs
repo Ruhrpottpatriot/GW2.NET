@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForDagger : IConverter<WeaponDataContract, Dagger>
     {
         /// <inheritdoc />
-        public Dagger Convert(WeaponDataContract value)
+        public Dagger Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

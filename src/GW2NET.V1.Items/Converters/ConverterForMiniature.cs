@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForMiniature : IConverter<ItemDataContract, Miniature>
     {
         /// <inheritdoc />
-        public Miniature Convert(ItemDataContract value)
+        public Miniature Convert(ItemDataContract value, object state)
         {
             if (value == null)
             {

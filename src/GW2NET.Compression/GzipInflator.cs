@@ -18,7 +18,7 @@ namespace GW2NET.Compression
     public class GzipInflator : IConverter<Stream, Stream>
     {
         /// <inheritdoc />
-        public Stream Convert(Stream value)
+        public Stream Convert(Stream value, object state)
         {
             if (value == null)
             {

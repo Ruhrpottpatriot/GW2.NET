@@ -20,11 +20,11 @@
             this.ipEndPointConverter = ipEndPointConverter;
         }
 
-        public AvatarContext Convert(MumbleContext value)
+        public AvatarContext Convert(MumbleContext value, object state)
         {
             return new AvatarContext
             {
-                ServerAddress = this.ipEndPointConverter.Convert(value.serverAddress),
+                ServerAddress = this.ipEndPointConverter.Convert(value.serverAddress, state),
                 MapId = (int)value.mapId,
                 MapType = (int)value.mapType,
                 ShardId = (int)value.shardId,

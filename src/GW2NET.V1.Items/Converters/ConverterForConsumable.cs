@@ -41,7 +41,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public Consumable Convert(ItemDataContract value)
+        public Consumable Convert(ItemDataContract value, object state)
         {
             if (value == null)
             {
@@ -57,7 +57,7 @@ namespace GW2NET.V1.Items.Converters
             IConverter<ConsumableDataContract, Consumable> converter;
             if (this.typeConverters.TryGetValue(consumableDataContract.Type, out converter))
             {
-                return converter.Convert(consumableDataContract);
+                return converter.Convert(consumableDataContract, state);
             }
 
             return new UnknownConsumable();

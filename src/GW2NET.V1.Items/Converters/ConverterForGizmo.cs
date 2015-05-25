@@ -40,7 +40,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public Gizmo Convert(ItemDataContract value)
+        public Gizmo Convert(ItemDataContract value, object state)
         {
             if (value == null)
             {
@@ -56,7 +56,7 @@ namespace GW2NET.V1.Items.Converters
             IConverter<GizmoDataContract, Gizmo> converter;
             if (this.typeConverters.TryGetValue(gizmoDataContract.Type, out converter))
             {
-                return converter.Convert(gizmoDataContract);
+                return converter.Convert(gizmoDataContract, state);
             }
 
             return new UnknownGizmo();

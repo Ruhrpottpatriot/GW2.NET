@@ -17,7 +17,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForWeightClass : IConverter<string, WeightClass>
     {
         /// <inheritdoc />
-        public WeightClass Convert(string value)
+        public WeightClass Convert(string value, object state)
         {
             if (value == null)
             {

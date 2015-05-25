@@ -32,7 +32,7 @@ namespace GW2NET.Common
         }
 
         /// <inheritdoc />
-        TValue IConverter<IResponse<TDataContract>, TValue>.Convert(IResponse<TDataContract> value)
+        TValue IConverter<IResponse<TDataContract>, TValue>.Convert(IResponse<TDataContract> value, object state)
         {
             if (value == null)
             {
@@ -45,7 +45,7 @@ namespace GW2NET.Common
                 return default(TValue);
             }
 
-            var item = this.converterForDataContract.Convert(dataContract);
+            var item = this.converterForDataContract.Convert(dataContract, state);
             var localizableItem = item as ILocalizable;
             if (localizableItem != null)
             {

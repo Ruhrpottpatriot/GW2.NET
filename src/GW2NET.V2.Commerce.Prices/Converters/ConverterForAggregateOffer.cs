@@ -18,8 +18,9 @@ namespace GW2NET.V2.Commerce.Prices
     {
         /// <summary>Converts the given object of type <see cref="AggregateOfferDataContract"/> to an object of type <see cref="AggregateOffer"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public AggregateOffer Convert(AggregateOfferDataContract value)
+        public AggregateOffer Convert(AggregateOfferDataContract value, object state)
         {
             if (value == null)
             {

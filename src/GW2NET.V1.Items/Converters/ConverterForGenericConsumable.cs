@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForGenericConsumable : IConverter<ConsumableDataContract, GenericConsumable>
     {
         /// <inheritdoc />
-        public GenericConsumable Convert(ConsumableDataContract value)
+        public GenericConsumable Convert(ConsumableDataContract value, object state)
         {
             if (value == null)
             {

@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForBankTabUnlocker : IConverter<ConsumableDataContract, BankTabUnlocker>
     {
         /// <inheritdoc />
-        public BankTabUnlocker Convert(ConsumableDataContract value)
+        public BankTabUnlocker Convert(ConsumableDataContract value, object state)
         {
             if (value == null)
             {

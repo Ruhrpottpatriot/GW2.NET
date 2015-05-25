@@ -33,7 +33,7 @@ namespace GW2NET.Common.Converters
         }
 
         /// <inheritdoc />
-        public ICollection<TOutput> Convert(ICollection<TInput> value)
+        public ICollection<TOutput> Convert(ICollection<TInput> value, object state)
         {
             if (value == null)
             {
@@ -41,7 +41,7 @@ namespace GW2NET.Common.Converters
             }
 
             var values = new List<TOutput>(value.Count);
-            values.AddRange(value.Select(this.converterForOutput.Convert));
+            values.AddRange(value.Select(value1 => this.converterForOutput.Convert(value1, state)));
             return values;
         }
     }

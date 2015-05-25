@@ -18,8 +18,9 @@ namespace GW2NET.V2.Items
     {
         /// <summary>Converts the given object of type <see cref="AttributeDataContract"/> to an object of type <see cref="FerocityModifier"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public FerocityModifier Convert(AttributeDataContract value)
+        public FerocityModifier Convert(AttributeDataContract value, object state)
         {
             if (value == null)
             {

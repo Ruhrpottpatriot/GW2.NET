@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForLongBow : IConverter<WeaponDataContract, LongBow>
     {
         /// <inheritdoc />
-        public LongBow Convert(WeaponDataContract value)
+        public LongBow Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

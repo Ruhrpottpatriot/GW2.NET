@@ -55,7 +55,7 @@ namespace GW2NET.V2.Skins
 
         /// <inheritdoc />
         [SuppressMessage("ReSharper", "PossibleNullReferenceException", Justification = "Contracts make sure taht 'value' is not null.")]
-        public WeaponSkin Convert(DetailsDataContract value)
+        public WeaponSkin Convert(DetailsDataContract value, object state)
         {
             if (value == null)
             {
@@ -65,7 +65,7 @@ namespace GW2NET.V2.Skins
             IConverter<DetailsDataContract, WeaponSkin> converter;
 
             var skin = this.typeConverters.TryGetValue(value.Type, out converter)
-                           ? converter.Convert(value)
+                           ? converter.Convert(value, state)
                            : new UnknownWeaponSkin();
 
             if (skin == null)
@@ -76,7 +76,7 @@ namespace GW2NET.V2.Skins
             var damageClass = value.DamageClass;
             if (damageClass != null)
             {
-                skin.DamageType = this.damageClassConverter.Convert(damageClass);
+                skin.DamageType = this.damageClassConverter.Convert(damageClass, state);
             }
 
             return skin;

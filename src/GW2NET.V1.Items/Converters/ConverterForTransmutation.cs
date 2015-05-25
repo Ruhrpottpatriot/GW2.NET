@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForTransmutation : IConverter<ConsumableDataContract, Transmutation>
     {
         /// <inheritdoc />
-        public Transmutation Convert(ConsumableDataContract value)
+        public Transmutation Convert(ConsumableDataContract value, object state)
         {
             if (value == null)
             {

@@ -41,7 +41,7 @@ namespace GW2NET.V1.Continents.Converters
         }
 
         /// <inheritdoc />
-        public Continent Convert(ContinentDataContract value)
+        public Continent Convert(ContinentDataContract value, object state)
         {
             if (value == null)
             {
@@ -58,7 +58,7 @@ namespace GW2NET.V1.Continents.Converters
             var dimensions = value.ContinentDimensions;
             if (dimensions != null && dimensions.Length == 2)
             {
-                continent.ContinentDimensions = this.converterForSize2D.Convert(dimensions);
+                continent.ContinentDimensions = this.converterForSize2D.Convert(dimensions, state);
             }
 
             return continent;

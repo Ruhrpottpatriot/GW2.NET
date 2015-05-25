@@ -17,7 +17,7 @@ namespace GW2NET.V2.Continents
     internal sealed class ContinentConverter : IConverter<ContinentDataContract, Continent>
     {
         /// <inheritdoc />
-        public Continent Convert(ContinentDataContract value)
+        public Continent Convert(ContinentDataContract value, object state)
         {
             return new Continent
                        {

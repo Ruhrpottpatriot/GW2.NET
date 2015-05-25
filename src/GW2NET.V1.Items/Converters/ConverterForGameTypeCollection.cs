@@ -40,7 +40,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public GameTypes Convert(ICollection<string> value)
+        public GameTypes Convert(ICollection<string> value, object state)
         {
             if (value == null)
             {
@@ -50,7 +50,7 @@ namespace GW2NET.V1.Items.Converters
             var result = default(GameTypes);
             foreach (var s in value)
             {
-                result |= this.converterForGameType.Convert(s);
+                result |= this.converterForGameType.Convert(s, state);
             }
 
             return result;

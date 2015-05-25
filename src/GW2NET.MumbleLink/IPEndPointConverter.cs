@@ -7,7 +7,7 @@
 
     internal class IPEndPointConverter : IConverter<SockaddrIn, IPEndPoint>
     {
-        public IPEndPoint Convert(SockaddrIn value)
+        public IPEndPoint Convert(SockaddrIn value, object state)
         {
             return
                 new IPEndPoint(

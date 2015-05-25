@@ -41,7 +41,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public Container Convert(ItemDataContract value)
+        public Container Convert(ItemDataContract value, object state)
         {
             if (value == null)
             {
@@ -57,7 +57,7 @@ namespace GW2NET.V1.Items.Converters
             IConverter<ContainerDataContract, Container> converter;
             if (this.typeConverters.TryGetValue(containerDataContract.Type, out converter))
             {
-                return converter.Convert(containerDataContract);
+                return converter.Convert(containerDataContract, state);
             }
 
             return new UnknownContainer();

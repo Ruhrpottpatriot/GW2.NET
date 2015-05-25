@@ -18,7 +18,7 @@ namespace GW2NET.V2.Skins
     internal sealed class DamageClassConverter : IConverter<string, DamageType>
     {
         /// <inheritdoc />
-        public DamageType Convert(string value)
+        public DamageType Convert(string value, object state)
         {
             DamageType result;
             return Enum.TryParse(value, out result) ? result : default(DamageType);

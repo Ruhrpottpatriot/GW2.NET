@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForAxe : IConverter<WeaponDataContract, Axe>
     {
         /// <inheritdoc />
-        public Axe Convert(WeaponDataContract value)
+        public Axe Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

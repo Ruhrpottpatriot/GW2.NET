@@ -17,7 +17,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForUpgradeComponentFlag : IConverter<string, UpgradeComponentFlags>
     {
         /// <inheritdoc />
-        public UpgradeComponentFlags Convert(string value)
+        public UpgradeComponentFlags Convert(string value, object state)
         {
             if (value == null)
             {

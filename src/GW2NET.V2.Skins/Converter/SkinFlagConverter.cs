@@ -18,7 +18,7 @@ namespace GW2NET.V2.Skins
     internal sealed class SkinFlagConverter : IConverter<string, SkinFlags>
     {
         /// <inheritdoc />
-        public SkinFlags Convert(string value)
+        public SkinFlags Convert(string value, object state)
         {
             if (value == null)
             {

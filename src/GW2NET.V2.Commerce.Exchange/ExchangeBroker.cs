@@ -67,7 +67,7 @@ namespace GW2NET.V2.Commerce.Exchange
                 Quantity = quantity
             };
             var response = this.serviceClient.Send<GemQuotationDataContract>(request);
-            var value = this.converterForResponse.Convert(response);
+            var value = this.converterForResponse.Convert(response, null);
             if (value == null)
             {
                 return null;
@@ -101,7 +101,7 @@ namespace GW2NET.V2.Commerce.Exchange
         private GemQuotation ConvertAsyncResponse(Task<IResponse<GemQuotationDataContract>> task, long quantity)
         {
             Debug.Assert(task != null, "task != null");
-            var value = this.converterForResponse.Convert(task.Result);
+            var value = this.converterForResponse.Convert(task.Result, null);
             if (value == null)
             {
                 return null;

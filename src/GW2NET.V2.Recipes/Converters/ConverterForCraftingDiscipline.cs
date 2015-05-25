@@ -17,7 +17,7 @@ namespace GW2NET.V2.Recipes
     internal sealed class ConverterForCraftingDiscipline : IConverter<string, CraftingDisciplines>
     {
         /// <inheritdoc />
-        public CraftingDisciplines Convert(string value)
+        public CraftingDisciplines Convert(string value, object state)
         {
             if (value == null)
             {

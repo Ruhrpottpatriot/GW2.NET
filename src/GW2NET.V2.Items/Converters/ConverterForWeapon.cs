@@ -71,8 +71,9 @@ namespace GW2NET.V2.Items
 
         /// <summary>Converts the given object of type <see cref="DetailsDataContract"/> to an object of type <see cref="Weapon"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public Weapon Convert(DetailsDataContract value)
+        public Weapon Convert(DetailsDataContract value, object state)
         {
             if (value == null)
             {
@@ -83,14 +84,14 @@ namespace GW2NET.V2.Items
             IConverter<DetailsDataContract, Weapon> converter;
             if (this.typeConverters.TryGetValue(value.Type, out converter))
             {
-                weapon = converter.Convert(value);
+                weapon = converter.Convert(value, state);
             }
             else
             {
                 weapon = new UnknownWeapon();
             }
 
-            weapon.DamageType = this.converterForDamageType.Convert(value.DamageType);
+            weapon.DamageType = this.converterForDamageType.Convert(value.DamageType, state);
 
             weapon.MinimumPower = value.MinimumPower.GetValueOrDefault();
             weapon.MaximumPower = value.MaximumPower.GetValueOrDefault();
@@ -99,13 +100,13 @@ namespace GW2NET.V2.Items
             var infusionSlotDataContracts = value.InfusionSlots;
             if (infusionSlotDataContracts != null)
             {
-                weapon.InfusionSlots = this.converterForInfusionSlotCollection.Convert(infusionSlotDataContracts);
+                weapon.InfusionSlots = this.converterForInfusionSlotCollection.Convert(infusionSlotDataContracts, state);
             }
 
             var infixUpgradeDataContract = value.InfixUpgrade;
             if (infixUpgradeDataContract != null)
             {
-                weapon.InfixUpgrade = this.converterForInfixUpgrade.Convert(infixUpgradeDataContract);
+                weapon.InfixUpgrade = this.converterForInfixUpgrade.Convert(infixUpgradeDataContract, state);
             }
 
             weapon.SuffixItemId = value.SuffixItemId;

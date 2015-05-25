@@ -40,7 +40,7 @@ namespace GW2NET.V1.Guilds.Converters
         }
 
         /// <inheritdoc />
-        public Guild Convert(GuildDataContract value)
+        public Guild Convert(GuildDataContract value, object state)
         {
             if (value == null)
             {
@@ -62,7 +62,7 @@ namespace GW2NET.V1.Guilds.Converters
             var emblem = value.Emblem;
             if (emblem != null)
             {
-                guild.Emblem = this.converterForEmblem.Convert(emblem);
+                guild.Emblem = this.converterForEmblem.Convert(emblem, state);
             }
 
             return guild;

@@ -41,8 +41,9 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 
         /// <summary>Converts the given object of type <see cref="ObjectiveDataContract"/> to an object of type <see cref="Objective"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public Objective Convert(ObjectiveDataContract value)
+        public Objective Convert(ObjectiveDataContract value, object state)
         {
             if (value == null)
             {
@@ -59,7 +60,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
             var owner = value.Owner;
             if (owner != null)
             {
-                objective.Owner = this.converterForTeamColor.Convert(owner);
+                objective.Owner = this.converterForTeamColor.Convert(owner, state);
             }
 
             // Set the guild identifier of the guild that claimed the objective

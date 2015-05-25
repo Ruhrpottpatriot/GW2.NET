@@ -19,8 +19,9 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     {
         /// <summary>Converts the given object of type <see cref="T:int[]"/> to an object of type <see cref="Scoreboard"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public Scoreboard Convert(int[] value)
+        public Scoreboard Convert(int[] value, object state)
         {
             if (value == null)
             {

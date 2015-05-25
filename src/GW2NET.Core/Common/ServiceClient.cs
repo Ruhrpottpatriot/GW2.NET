@@ -253,7 +253,7 @@ namespace GW2NET.Common
                 var compressed = contentEncoding.Equals("gzip", StringComparison.OrdinalIgnoreCase);
                 if (compressed)
                 {
-                    var uncompressed = gzipInflator.Convert(stream);
+                    var uncompressed = gzipInflator.Convert(stream, null);
                     if (uncompressed != null)
                     {
                         stream = uncompressed;

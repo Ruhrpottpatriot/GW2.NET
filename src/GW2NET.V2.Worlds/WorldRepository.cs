@@ -78,7 +78,7 @@ namespace GW2NET.V2.Worlds
         {
             var request = new WorldDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
-            var values = this.converterForIdentifiersResponse.Convert(response);
+            var values = this.converterForIdentifiersResponse.Convert(response, null);
             return values ?? new List<int>(0);
         }
 
@@ -107,7 +107,7 @@ namespace GW2NET.V2.Worlds
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<WorldDataContract>(request);
-            return this.converterForResponse.Convert(response);
+            return this.converterForResponse.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -119,7 +119,7 @@ namespace GW2NET.V2.Worlds
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<WorldDataContract>>(request);
-            var values = this.converterForBulkResponse.Convert(response);
+            var values = this.converterForBulkResponse.Convert(response, null);
             return values ?? new DictionaryRange<int, World>(0);
         }
 
@@ -133,7 +133,7 @@ namespace GW2NET.V2.Worlds
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList()
             };
             var response = this.serviceClient.Send<ICollection<WorldDataContract>>(request);
-            var values = this.converterForBulkResponse.Convert(response);
+            var values = this.converterForBulkResponse.Convert(response, null);
             return values ?? new DictionaryRange<int, World>(0);
         }
 
@@ -206,7 +206,7 @@ namespace GW2NET.V2.Worlds
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<WorldDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response);
+            var values = this.converterForPageResponse.Convert(response, null);
             if (values == null)
             {
                 return new CollectionPage<World>(0);
@@ -228,7 +228,7 @@ namespace GW2NET.V2.Worlds
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<WorldDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response);
+            var values = this.converterForPageResponse.Convert(response, null);
             if (values == null)
             {
                 return new CollectionPage<World>(0);
@@ -283,7 +283,7 @@ namespace GW2NET.V2.Worlds
         private IDictionaryRange<int, World> ConvertAsyncResponse(Task<IResponse<ICollection<WorldDataContract>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForBulkResponse.Convert(task.Result);
+            var values = this.converterForBulkResponse.Convert(task.Result, null);
             if (values == null)
             {
                 return new DictionaryRange<int, World>(0);
@@ -296,7 +296,7 @@ namespace GW2NET.V2.Worlds
         private ICollectionPage<World> ConvertAsyncResponse(Task<IResponse<ICollection<WorldDataContract>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForPageResponse.Convert(task.Result);
+            var values = this.converterForPageResponse.Convert(task.Result, null);
             if (values == null)
             {
                 return new CollectionPage<World>(0);
@@ -311,7 +311,7 @@ namespace GW2NET.V2.Worlds
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            var ids = this.converterForIdentifiersResponse.Convert(task.Result);
+            var ids = this.converterForIdentifiersResponse.Convert(task.Result, null);
             if (ids == null)
             {
                 return new List<int>(0);
@@ -324,7 +324,7 @@ namespace GW2NET.V2.Worlds
         private World ConvertAsyncResponse(Task<IResponse<WorldDataContract>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.converterForResponse.Convert(task.Result);
+            return this.converterForResponse.Convert(task.Result, null);
         }
     }
 }

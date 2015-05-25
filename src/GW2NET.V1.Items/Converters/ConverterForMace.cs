@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForMace : IConverter<WeaponDataContract, Mace>
     {
         /// <inheritdoc />
-        public Mace Convert(WeaponDataContract value)
+        public Mace Convert(WeaponDataContract value, object state)
         {
             if (value == null)
             {

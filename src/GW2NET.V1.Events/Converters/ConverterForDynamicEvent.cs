@@ -50,7 +50,7 @@ namespace GW2NET.V1.Events.Converters
         }
 
         /// <inheritdoc />
-        public DynamicEvent Convert(EventDataContract value)
+        public DynamicEvent Convert(EventDataContract value, object state)
         {
             if (value == null)
             {
@@ -67,13 +67,13 @@ namespace GW2NET.V1.Events.Converters
             var flags = value.Flags;
             if (flags != null)
             {
-                dynamicEvent.Flags = this.converterForDynamicEventFlags.Convert(flags);
+                dynamicEvent.Flags = this.converterForDynamicEventFlags.Convert(flags, state);
             }
 
             var location = value.Location;
             if (location != null)
             {
-                dynamicEvent.Location = this.converterForLocation.Convert(location);
+                dynamicEvent.Location = this.converterForLocation.Convert(location, state);
             }
 
             return dynamicEvent;

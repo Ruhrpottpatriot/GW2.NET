@@ -41,7 +41,7 @@ namespace GW2NET.V1.Floors.Converters
         }
 
         /// <inheritdoc />
-        public PointOfInterest Convert(PointOfInterestDataContract value)
+        public PointOfInterest Convert(PointOfInterestDataContract value, object state)
         {
             if (value == null)
             {
@@ -74,7 +74,7 @@ namespace GW2NET.V1.Floors.Converters
             var coordinates = value.Coordinates;
             if (coordinates != null && coordinates.Length == 2)
             {
-                pointOfInterest.Coordinates = this.converterForVector2D.Convert(coordinates);
+                pointOfInterest.Coordinates = this.converterForVector2D.Convert(coordinates, state);
             }
 
             return pointOfInterest;

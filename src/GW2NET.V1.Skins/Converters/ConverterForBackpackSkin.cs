@@ -20,8 +20,9 @@ namespace GW2NET.V1.Skins.Converters
     {
         /// <summary>Converts the given object of type <see cref="SkinDataContract"/> to an object of type <see cref="BackpackSkin"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public BackpackSkin Convert(SkinDataContract value)
+        public BackpackSkin Convert(SkinDataContract value, object state)
         {
             if (value == null)
             {

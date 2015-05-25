@@ -18,8 +18,9 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     {
         /// <summary>Converts the given object of type <see cref="string"/> to an object of type <see cref="TeamColor"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public TeamColor Convert(string value)
+        public TeamColor Convert(string value, object state)
         {
             if (value == null)
             {

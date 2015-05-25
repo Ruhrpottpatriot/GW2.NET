@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForAlcohol : IConverter<ConsumableDataContract, Alcohol>
     {
         /// <inheritdoc />
-        public Alcohol Convert(ConsumableDataContract value)
+        public Alcohol Convert(ConsumableDataContract value, object state)
         {
             if (value == null)
             {

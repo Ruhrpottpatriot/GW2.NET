@@ -27,8 +27,8 @@ namespace GW2NET.ChatLinks
             input = input.Trim('[', ']', '&');
             var converterForBase64 = new ConverterForBase64();
             var converterForChatLink = new ConverterForChatLink();
-            var bytes = converterForBase64.Convert(input);
-            return converterForChatLink.Convert(bytes);
+            var bytes = converterForBase64.Convert(input, null);
+            return converterForChatLink.Convert(bytes, null);
         }
 
         /// <summary>Decodes chat links of the specified type.</summary>

@@ -67,7 +67,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public Armor Convert(ItemDataContract value)
+        public Armor Convert(ItemDataContract value, object state)
         {
             if (value == null)
             {
@@ -79,7 +79,7 @@ namespace GW2NET.V1.Items.Converters
             IConverter<ArmorDataContract, Armor> converter;
             if (armorDataContract != null && this.typeConverters.TryGetValue(armorDataContract.Type, out converter))
             {
-                armor = converter.Convert(armorDataContract);
+                armor = converter.Convert(armorDataContract, state);
             }
             else
             {
@@ -97,7 +97,7 @@ namespace GW2NET.V1.Items.Converters
                 return armor;
             }
 
-            armor.WeightClass = this.converterForWeightClass.Convert(armorDataContract.WeightClass);
+            armor.WeightClass = this.converterForWeightClass.Convert(armorDataContract.WeightClass, state);
             int defense;
             if (int.TryParse(armorDataContract.Defense, out defense))
             {
@@ -107,13 +107,13 @@ namespace GW2NET.V1.Items.Converters
             var infusionSlotDataContracts = armorDataContract.InfusionSlots;
             if (infusionSlotDataContracts != null)
             {
-                armor.InfusionSlots = this.converterForInfusionSlotCollection.Convert(infusionSlotDataContracts);
+                armor.InfusionSlots = this.converterForInfusionSlotCollection.Convert(infusionSlotDataContracts, state);
             }
 
             var infixUpgradeDataContract = armorDataContract.InfixUpgrade;
             if (infixUpgradeDataContract != null)
             {
-                armor.InfixUpgrade = this.converterForInfixUpgrade.Convert(infixUpgradeDataContract);
+                armor.InfixUpgrade = this.converterForInfixUpgrade.Convert(infixUpgradeDataContract, state);
             }
 
             int suffixItemId;

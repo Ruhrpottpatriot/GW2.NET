@@ -41,7 +41,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        public CombatAttribute Convert(AttributeDataContract value)
+        public CombatAttribute Convert(AttributeDataContract value, object state)
         {
             if (value == null)
             {
@@ -51,7 +51,7 @@ namespace GW2NET.V1.Items.Converters
             IConverter<AttributeDataContract, CombatAttribute> converter;
             if (this.typeConverters.TryGetValue(value.Attribute, out converter))
             {
-                return converter.Convert(value);
+                return converter.Convert(value, state);
             }
 
             return new UnknownModifier();

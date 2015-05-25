@@ -40,7 +40,7 @@ namespace GW2NET.V2.Maps
         }
 
         /// <inheritdoc />
-        public Rectangle Convert(double[][] value)
+        public Rectangle Convert(double[][] value, object state)
         {
             if (value == null)
             {
@@ -56,14 +56,14 @@ namespace GW2NET.V2.Maps
             var coordiantes = value[0];
             if (coordiantes != null && coordiantes.Length == 2)
             {
-                vectorNorthWest = this.vectorConverter.Convert(coordiantes);
+                vectorNorthWest = this.vectorConverter.Convert(coordiantes, state);
             }
 
             var vectorSouthEast = default(Vector2D);
             coordiantes = value[1];
             if (coordiantes != null && coordiantes.Length == 2)
             {
-                vectorSouthEast = this.vectorConverter.Convert(coordiantes);
+                vectorSouthEast = this.vectorConverter.Convert(coordiantes, state);
             }
 
             return new Rectangle(vectorNorthWest, vectorSouthEast);

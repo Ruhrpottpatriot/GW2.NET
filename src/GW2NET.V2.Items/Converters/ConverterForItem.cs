@@ -80,8 +80,9 @@ namespace GW2NET.V2.Items
 
         /// <summary>Converts the given object of type <see cref="ItemDataContract"/> to an object of type <see cref="Item"/>.</summary>
         /// <param name="value">The value to convert.</param>
+        /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public Item Convert(ItemDataContract value)
+        public Item Convert(ItemDataContract value, object state)
         {
             if (value == null)
             {
@@ -92,7 +93,7 @@ namespace GW2NET.V2.Items
             IConverter<DetailsDataContract, Item> converterForItem;
             if (this.typeConverters.TryGetValue(value.Type, out converterForItem))
             {
-                item = converterForItem.Convert(value.Details);
+                item = converterForItem.Convert(value.Details, state);
             }
             else
             {
@@ -103,7 +104,7 @@ namespace GW2NET.V2.Items
             item.Name = value.Name;
             item.Description = value.Description;
             item.Level = value.Level;
-            item.Rarity = this.converterForItemRarity.Convert(value.Rarity);
+            item.Rarity = this.converterForItemRarity.Convert(value.Rarity, state);
             item.VendorValue = value.VendorValue;
             var skinnableItem = item as ISkinnable;
             if (skinnableItem != null)
@@ -118,19 +119,19 @@ namespace GW2NET.V2.Items
             var gameTypes = value.GameTypes;
             if (gameTypes != null)
             {
-                item.GameTypes = this.converterForGameTypes.Convert(gameTypes);
+                item.GameTypes = this.converterForGameTypes.Convert(gameTypes, state);
             }
 
             var flags = value.Flags;
             if (flags != null)
             {
-                item.Flags = this.converterForItemFlags.Convert(flags);
+                item.Flags = this.converterForItemFlags.Convert(flags, state);
             }
 
             var restrictions = value.Restrictions;
             if (restrictions != null)
             {
-                item.Restrictions = this.converterForItemRestrictions.Convert(restrictions);
+                item.Restrictions = this.converterForItemRestrictions.Convert(restrictions, state);
             }
 
             // Set the icon file identifier and signature

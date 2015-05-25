@@ -19,7 +19,7 @@ namespace GW2NET.V1.Items.Converters
     internal sealed class ConverterForPowerModifier : IConverter<AttributeDataContract, PowerModifier>
     {
         /// <inheritdoc />
-        public PowerModifier Convert(AttributeDataContract value)
+        public PowerModifier Convert(AttributeDataContract value, object state)
         {
             if (value == null)
             {

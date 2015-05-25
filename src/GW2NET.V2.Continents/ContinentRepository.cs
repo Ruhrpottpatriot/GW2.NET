@@ -86,7 +86,7 @@ namespace GW2NET.V2.Continents
         {
             var request = new ContinentDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
-            return this.identifiersConverter.Convert(response) ?? new List<int>(0);
+            return this.identifiersConverter.Convert(response, null) ?? new List<int>(0);
         }
 
         /// <inheritdoc />
@@ -113,7 +113,7 @@ namespace GW2NET.V2.Continents
             };
             var response = this.serviceClient.Send<ICollection<ContinentDataContract>>(request);
 
-            var values = this.pageResponseConverter.Convert(response);
+            var values = this.pageResponseConverter.Convert(response, null);
 
             if (values == null)
             {
@@ -134,7 +134,7 @@ namespace GW2NET.V2.Continents
                 Culture = ((ILocalizable)this).Culture
             };
             var response = this.serviceClient.Send<ICollection<ContinentDataContract>>(request);
-            var values = this.pageResponseConverter.Convert(response);
+            var values = this.pageResponseConverter.Convert(response, null);
 
             if (values == null)
             {
@@ -192,7 +192,7 @@ namespace GW2NET.V2.Continents
                 Culture = ((ILocalizable)this).Culture
             };
             var response = this.serviceClient.Send<ContinentDataContract>(request);
-            return this.responseConverter.Convert(response);
+            return this.responseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -200,7 +200,7 @@ namespace GW2NET.V2.Continents
         {
             var request = new ContinentBulkRequest { Culture = ((ILocalizable)this).Culture };
             var response = this.serviceClient.Send<ICollection<ContinentDataContract>>(request);
-            return this.bulkResponseConverter.Convert(response);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -212,7 +212,7 @@ namespace GW2NET.V2.Continents
                 Culture = ((ILocalizable)this).Culture
             };
             var response = this.serviceClient.Send<ICollection<ContinentDataContract>>(request);
-            return this.bulkResponseConverter.Convert(response);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -272,7 +272,7 @@ namespace GW2NET.V2.Continents
         private IDictionaryRange<int, Continent> ConvertAsyncResponse(Task<IResponse<ICollection<ContinentDataContract>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.bulkResponseConverter.Convert(task.Result);
+            var values = this.bulkResponseConverter.Convert(task.Result, null);
             if (values == null)
             {
                 return new DictionaryRange<int, Continent>(0);
@@ -285,7 +285,7 @@ namespace GW2NET.V2.Continents
         private ICollectionPage<Continent> ConvertAsyncResponse(Task<IResponse<ICollection<ContinentDataContract>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.pageResponseConverter.Convert(task.Result);
+            var values = this.pageResponseConverter.Convert(task.Result, null);
             if (values == null)
             {
                 return new CollectionPage<Continent>(0);
@@ -300,7 +300,7 @@ namespace GW2NET.V2.Continents
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            var ids = this.identifiersConverter.Convert(task.Result);
+            var ids = this.identifiersConverter.Convert(task.Result, null);
             if (ids == null)
             {
                 return new List<int>(0);
@@ -313,7 +313,7 @@ namespace GW2NET.V2.Continents
         private Continent ConvertAsyncResponse(Task<IResponse<ContinentDataContract>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.responseConverter.Convert(task.Result);
+            return this.responseConverter.Convert(task.Result, null);
         }
     }
 }

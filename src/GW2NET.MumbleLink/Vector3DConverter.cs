@@ -8,7 +8,7 @@ namespace GW2NET.MumbleLink
 
     internal class Vector3DConverter : IConverter<float[], Vector3D>
     {
-        public Vector3D Convert(float[] value)
+        public Vector3D Convert(float[] value, object state)
         {
             if (value == null)
             {

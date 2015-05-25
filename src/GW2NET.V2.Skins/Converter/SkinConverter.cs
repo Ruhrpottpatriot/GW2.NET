@@ -62,7 +62,7 @@ namespace GW2NET.V2.Skins
         }
 
         /// <inheritdoc />
-        public Skin Convert(SkinDataContract value)
+        public Skin Convert(SkinDataContract value, object state)
         {
             if (value == null)
             {
@@ -73,7 +73,7 @@ namespace GW2NET.V2.Skins
 
             // ReSharper disable once PossibleNullReferenceException
             Skin skin = this.typeConverters.TryGetValue(value.Type, out converter)
-                            ? converter.Convert(value.Details)
+                            ? converter.Convert(value.Details, state)
                             : new UnknownSkin();
 
             skin.Name = value.Name;
@@ -81,13 +81,13 @@ namespace GW2NET.V2.Skins
             var flags = value.Flags;
             if (flags != null)
             {
-                skin.Flags = this.skinFlagsConverter.Convert(flags);
+                skin.Flags = this.skinFlagsConverter.Convert(flags, state);
             }
 
             var restrictions = value.Restrictions;
             if (restrictions != null)
             {
-                skin.Restrictions = this.itemRestrictionsConverter.Convert(restrictions);
+                skin.Restrictions = this.itemRestrictionsConverter.Convert(restrictions, state);
             }
 
             // Process the URI. Note since the V2 api the URI doesn't have to be built by hand anymore.
