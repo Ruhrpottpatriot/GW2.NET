@@ -45,13 +45,16 @@ namespace GW2NET.Common
                 return default(TValue);
             }
 
-            var item = this.converterForDataContract.Convert(dataContract, state);
+            var item = this.converterForDataContract.Convert(dataContract, state ?? value);
+
+            // TODO: Refactor converters so that this code can be deleted
             var localizableItem = item as ILocalizable;
             if (localizableItem != null)
             {
                 localizableItem.Culture = value.Culture;
             }
 
+            // TODO: Refactor converters so that this code can be deleted
             var timeSensitiveItem = item as ITimeSensitive;
             if (timeSensitiveItem != null)
             {
