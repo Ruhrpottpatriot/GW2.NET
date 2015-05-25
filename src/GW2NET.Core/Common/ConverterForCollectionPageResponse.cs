@@ -42,6 +42,13 @@ namespace GW2NET.Common
                 return new CollectionPage<TValue>(0);
             }
 
+            // MEMO: expect the page index as state argument, because we can't parse Link headers yet
+            var pageIndex = state as int?;
+            if (!pageIndex.HasValue)
+            {
+                throw new ArgumentException("Precondition: state is int", "state");
+            }
+
             var dataContracts = value.Content;
             if (dataContracts == null)
             {
@@ -56,13 +63,18 @@ namespace GW2NET.Common
                 TotalCount = value.GetResultTotal()
             };
 
-            page.AddRange(dataContracts.Select(value1 => this.converterForDataContract.Convert(value1, state)));
+            page.AddRange(dataContracts.Select(dataContract => this.converterForDataContract.Convert(dataContract, value)));
 
+            // TODO: replace this code with an implementation of the Link header
+            PageContextPatchUtility.Patch(page, pageIndex.Value);
+
+            // TODO: Refactor data contract converters so that this code can be deleted
             foreach (var localizableItem in page.OfType<ILocalizable>())
             {
                 localizableItem.Culture = value.Culture;
             }
 
+            // TODO: Refactor data contract converters so that this code can be deleted
             foreach (var timeSensitiveItem in page.OfType<ITimeSensitive>())
             {
                 timeSensitiveItem.Timestamp = value.Date;

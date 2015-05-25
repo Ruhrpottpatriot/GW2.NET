@@ -63,16 +63,18 @@ namespace GW2NET.Common
                 TotalCount = value.GetResultTotal()
             };
 
-            foreach (var item in dataContracts.Select(value1 => this.converterForDataContract.Convert(value1, state)))
+            foreach (var item in dataContracts.Select(dataContract => this.converterForDataContract.Convert(dataContract, value)))
             {
                 range.Add(this.keySelector(item), item);
             }
 
+            // TODO: Refactor data contract converters so that this code can be deleted
             foreach (var localizableItem in range.Values.OfType<ILocalizable>())
             {
                 localizableItem.Culture = value.Culture;
             }
 
+            // TODO: Refactor data contract converters so that this code can be deleted
             foreach (var timeSensitiveItem in range.Values.OfType<ITimeSensitive>())
             {
                 timeSensitiveItem.Timestamp = value.Date;
