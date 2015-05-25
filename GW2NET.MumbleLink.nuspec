@@ -37,7 +37,7 @@
 	</metadata>
 	<files>
 		<!-- net40 -->
-		<file target="lib\net40" src="Code\GW2NET.MumbleLink\bin\Release\**\*.dll" />
-		<file target="lib\net40" src="Code\GW2NET.MumbleLink\bin\Release\**\*.xml" />
+		<file target="lib\net40" src="Code\GW2NET.MumbleLink\bin\Release\**\GW2*.dll" />
+		<file target="lib\net40" src="Code\GW2NET.MumbleLink\bin\Release\**\GW2*.xml" />
 	</files>
 </package>
