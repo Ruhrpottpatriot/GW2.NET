@@ -14,7 +14,7 @@ namespace GW2NET.ChatLinks
     using GW2NET.Common;
 
     /// <summary>Converts objects of type <see cref="Stream"/> to objects of type <see cref="OutfitChatLink"/>.</summary>
-    internal sealed class ConverterForOutfitChatLink : IConverter<Stream, OutfitChatLink>
+    internal sealed class ConverterForOutfitChatLink : IConverter<Stream, OutfitChatLink>, IConverter<OutfitChatLink, Stream>
     {
         /// <inheritdoc />
         public OutfitChatLink Convert(Stream value)
