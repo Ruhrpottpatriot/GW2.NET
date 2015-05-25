@@ -10,3 +10,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("This library implements /v2/worlds")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
+
+[assembly: InternalsVisibleTo("GW2NET.V2.Worlds.Tests")]

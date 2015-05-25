@@ -84,9 +84,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Files.Tests", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Files.Tests", "src\GW2NET.V2.Files.Tests\GW2NET.V2.Files.Tests.csproj", "{2F7B458D-A71B-40B0-BDD2-8BB8E11BD1FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Worlds.Tests", "src\GW2NET.V2.Worlds.Tests\GW2NET.V2.Worlds.Tests.csproj", "{7EF7A6AF-BCBA-43E7-9819-528DB8137755}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 37
+		SccNumberOfProjects = 38
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
 		SccLocalPath0 = .
@@ -234,6 +236,10 @@ Global
 		SccProjectTopLevelParentUniqueName36 = GW2.NET.sln
 		SccProjectName36 = src/GW2NET.V2.Builds
 		SccLocalPath36 = src\\GW2NET.V2.Builds
+		SccProjectUniqueName37 = src\\GW2NET.V2.Worlds.Tests\\GW2NET.V2.Worlds.Tests.csproj
+		SccProjectTopLevelParentUniqueName37 = GW2.NET.sln
+		SccProjectName37 = src/GW2NET.V2.Worlds.Tests
+		SccLocalPath37 = src\\GW2NET.V2.Worlds.Tests
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -383,6 +389,10 @@ Global
 		{2F7B458D-A71B-40B0-BDD2-8BB8E11BD1FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F7B458D-A71B-40B0-BDD2-8BB8E11BD1FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F7B458D-A71B-40B0-BDD2-8BB8E11BD1FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EF7A6AF-BCBA-43E7-9819-528DB8137755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EF7A6AF-BCBA-43E7-9819-528DB8137755}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EF7A6AF-BCBA-43E7-9819-528DB8137755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EF7A6AF-BCBA-43E7-9819-528DB8137755}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -424,5 +434,6 @@ Global
 		{FC0BDFF8-D50B-44B7-8493-FB87B74F54B8} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{F7105E24-7FDC-4F38-8F91-4F0C557BD12E} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{2F7B458D-A71B-40B0-BDD2-8BB8E11BD1FC} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{7EF7A6AF-BCBA-43E7-9819-528DB8137755} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 	EndGlobalSection
 EndGlobal
