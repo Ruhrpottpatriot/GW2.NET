@@ -24,10 +24,22 @@ namespace GW2NET.V2.Worlds
                 throw new ArgumentNullException("value", "Precondition: value != null");
             }
 
+            if (state == null)
+            {
+                throw new ArgumentNullException("state", "Precondition: state != null");
+            }
+
+            var response = state as IResponse<WorldDataContract>;
+            if (response == null)
+            {
+                throw new ArgumentException("Precondition: state is IResponse<WorldDataContract>", "state");
+            }
+  
             return new World
             {
                 WorldId = value.Id, 
-                Name = value.Name
+                Name = value.Name,
+                Culture = response.Culture
             };
         }
     }
