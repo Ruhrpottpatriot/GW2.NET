@@ -202,9 +202,8 @@ namespace GW2NET.V2.Skins
                 Culture = ((ISkinRepository)this).Culture
             };
             var response = this.serviceClient.Send<ICollection<SkinDataContract>>(request);
-            var values = this.pageResponseConverter.Convert(response, null);
-            PageContextPatchUtility.Patch(values, pageIndex);
-            return values;
+            var values = this.pageResponseConverter.Convert(response, pageIndex);
+            return values ?? new CollectionPage<Skin>(0);
         }
 
         /// <inheritdoc />
@@ -217,9 +216,8 @@ namespace GW2NET.V2.Skins
                 Culture = ((ISkinRepository)this).Culture
             };
             var response = this.serviceClient.Send<ICollection<SkinDataContract>>(request);
-            var values = this.pageResponseConverter.Convert(response, null);
-            PageContextPatchUtility.Patch(values, pageIndex);
-            return values;
+            var values = this.pageResponseConverter.Convert(response, pageIndex);
+            return values ?? new CollectionPage<Skin>(0);
         }
 
         /// <inheritdoc />
@@ -276,15 +274,8 @@ namespace GW2NET.V2.Skins
         private ICollectionPage<Skin> ConvertAsyncResponse(Task<IResponse<ICollection<SkinDataContract>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.pageResponseConverter.Convert(task.Result, null);
-            if (values == null)
-            {
-                return new CollectionPage<Skin>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-
-            return values;
+            var values = this.pageResponseConverter.Convert(task.Result, pageIndex);
+            return values ?? new CollectionPage<Skin>(0);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]

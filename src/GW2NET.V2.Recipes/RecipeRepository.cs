@@ -282,9 +282,8 @@ namespace GW2NET.V2.Recipes
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<RecipeDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response, null);
-            PageContextPatchUtility.Patch(values, pageIndex);
-            return values;
+            var values = this.converterForPageResponse.Convert(response, pageIndex);
+            return values ?? new CollectionPage<Recipe>(0);
         }
 
         /// <inheritdoc />
@@ -298,9 +297,8 @@ namespace GW2NET.V2.Recipes
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<RecipeDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response, null);
-            PageContextPatchUtility.Patch(values, pageIndex);
-            return values;
+            var values = this.converterForPageResponse.Convert(response, pageIndex);
+            return values ?? new CollectionPage<Recipe>(0);
         }
 
         /// <inheritdoc />
@@ -361,15 +359,8 @@ namespace GW2NET.V2.Recipes
         private ICollectionPage<Recipe> ConvertAsyncResponse(Task<IResponse<ICollection<RecipeDataContract>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForPageResponse.Convert(task.Result, null);
-            if (values == null)
-            {
-                return new CollectionPage<Recipe>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-
-            return values;
+            var values = this.converterForPageResponse.Convert(task.Result, pageIndex);
+            return values ?? new CollectionPage<Recipe>(0);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]

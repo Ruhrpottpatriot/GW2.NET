@@ -97,16 +97,8 @@ namespace GW2NET.V2.Files
         {
             var request = new FilePageRequest { Page = pageIndex };
             var response = this.serviceClient.Send<ICollection<FileDataContract>>(request);
-            var values = this.pageResponseConverter.Convert(response, null);
-
-            if (values == null)
-            {
-                return new CollectionPage<Asset>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-
-            return values;
+            var values = this.pageResponseConverter.Convert(response, pageIndex);
+            return values ?? new CollectionPage<Asset>(0);
         }
 
         /// <inheritdoc />
@@ -114,16 +106,8 @@ namespace GW2NET.V2.Files
         {
             var request = new FilePageRequest { Page = pageIndex, PageSize = pageSize };
             var response = this.serviceClient.Send<ICollection<FileDataContract>>(request);
-            var values = this.pageResponseConverter.Convert(response, null);
-
-            if (values == null)
-            {
-                return new CollectionPage<Asset>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-
-            return values;
+            var values = this.pageResponseConverter.Convert(response, pageIndex);
+            return values ?? new CollectionPage<Asset>(0);
         }
 
         /// <inheritdoc />
@@ -242,15 +226,8 @@ namespace GW2NET.V2.Files
         private ICollectionPage<Asset> ConvertAsyncResponse(Task<IResponse<ICollection<FileDataContract>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.pageResponseConverter.Convert(task.Result, null);
-            if (values == null)
-            {
-                return new CollectionPage<Asset>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-
-            return values;
+            var values = this.pageResponseConverter.Convert(task.Result, pageIndex);
+            return values ?? new CollectionPage<Asset>(0);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not part of the public API.")]

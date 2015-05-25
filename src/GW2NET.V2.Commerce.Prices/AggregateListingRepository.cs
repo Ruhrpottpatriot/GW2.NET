@@ -190,15 +190,8 @@ namespace GW2NET.V2.Commerce.Prices
                 Page = pageIndex
             };
             var response = this.serviceClient.Send<ICollection<AggregateListingDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response, null);
-            if (values == null)
-            {
-                return new CollectionPage<AggregateListing>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-
-            return values;
+            var values = this.converterForPageResponse.Convert(response, pageIndex);
+            return values ?? new CollectionPage<AggregateListing>(0);
         }
 
         /// <inheritdoc />
@@ -210,15 +203,8 @@ namespace GW2NET.V2.Commerce.Prices
                 PageSize = pageSize
             };
             var response = this.serviceClient.Send<ICollection<AggregateListingDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response, null);
-            if (values == null)
-            {
-                return new CollectionPage<AggregateListing>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-
-            return values;
+            var values = this.converterForPageResponse.Convert(response, pageIndex);
+            return values ?? new CollectionPage<AggregateListing>(0);
         }
 
         /// <inheritdoc />
@@ -283,15 +269,8 @@ namespace GW2NET.V2.Commerce.Prices
         private ICollectionPage<AggregateListing> ConvertAsyncResponse(Task<IResponse<ICollection<AggregateListingDataContract>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForPageResponse.Convert(task.Result, null);
-            if (values == null)
-            {
-                return new CollectionPage<AggregateListing>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-
-            return values;
+            var values = this.converterForPageResponse.Convert(task.Result, pageIndex);
+            return values ?? new CollectionPage<AggregateListing>(0);
         }
     }
 }

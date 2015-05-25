@@ -191,15 +191,8 @@ namespace GW2NET.V2.Commerce.Listings
                 Page = pageIndex
             };
             var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response, null);
-            if (values == null)
-            {
-                return new CollectionPage<Listing>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-
-            return values;
+            var values = this.converterForPageResponse.Convert(response, pageIndex);
+            return values ?? new CollectionPage<Listing>(0);
         }
 
         /// <inheritdoc />
@@ -211,15 +204,8 @@ namespace GW2NET.V2.Commerce.Listings
                 PageSize = pageSize
             };
             var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response, null);
-            if (values == null)
-            {
-                return new CollectionPage<Listing>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-
-            return values;
+            var values = this.converterForPageResponse.Convert(response, pageIndex);
+            return values ?? new CollectionPage<Listing>(0);
         }
 
         /// <inheritdoc />
@@ -284,15 +270,8 @@ namespace GW2NET.V2.Commerce.Listings
         private ICollectionPage<Listing> ConvertAsyncResponse(Task<IResponse<ICollection<ListingDataContract>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForPageResponse.Convert(task.Result, null);
-            if (values == null)
-            {
-                return new CollectionPage<Listing>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-
-            return values;
+            var values = this.converterForPageResponse.Convert(task.Result, pageIndex);
+            return values ?? new CollectionPage<Listing>(0);
         }
     }
 }

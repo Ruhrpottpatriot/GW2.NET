@@ -112,16 +112,8 @@ namespace GW2NET.V2.Continents
                 Culture = ((ILocalizable)this).Culture
             };
             var response = this.serviceClient.Send<ICollection<ContinentDataContract>>(request);
-
-            var values = this.pageResponseConverter.Convert(response, null);
-
-            if (values == null)
-            {
-                return new CollectionPage<Continent>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-            return values;
+            var values = this.pageResponseConverter.Convert(response, pageIndex);
+            return values ?? new CollectionPage<Continent>(0);
         }
 
         /// <inheritdoc />
@@ -134,16 +126,8 @@ namespace GW2NET.V2.Continents
                 Culture = ((ILocalizable)this).Culture
             };
             var response = this.serviceClient.Send<ICollection<ContinentDataContract>>(request);
-            var values = this.pageResponseConverter.Convert(response, null);
-
-            if (values == null)
-            {
-                return new CollectionPage<Continent>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-
-            return values;
+            var values = this.pageResponseConverter.Convert(response, pageIndex);
+            return values ?? new CollectionPage<Continent>(0);
         }
 
         /// <inheritdoc />
@@ -285,15 +269,8 @@ namespace GW2NET.V2.Continents
         private ICollectionPage<Continent> ConvertAsyncResponse(Task<IResponse<ICollection<ContinentDataContract>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.pageResponseConverter.Convert(task.Result, null);
-            if (values == null)
-            {
-                return new CollectionPage<Continent>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-
-            return values;
+            var values = this.pageResponseConverter.Convert(task.Result, pageIndex);
+            return values ?? new CollectionPage<Continent>(0);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]

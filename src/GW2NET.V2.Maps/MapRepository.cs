@@ -204,9 +204,8 @@ namespace GW2NET.V2.Maps
                 Culture = ((IMapRepository)this).Culture
             };
             var response = this.serviceClient.Send<ICollection<MapDataContract>>(request);
-            var values = this.pageResponseConverter.Convert(response, null);
-            PageContextPatchUtility.Patch(values, pageIndex);
-            return values;
+            var values = this.pageResponseConverter.Convert(response, pageIndex);
+            return values ?? new CollectionPage<Map>(0);
         }
 
         /// <inheritdoc />
@@ -219,9 +218,8 @@ namespace GW2NET.V2.Maps
                 Culture = ((IMapRepository)this).Culture
             };
             var response = this.serviceClient.Send<ICollection<MapDataContract>>(request);
-            var values = this.pageResponseConverter.Convert(response, null);
-            PageContextPatchUtility.Patch(values, pageIndex);
-            return values;
+            var values = this.pageResponseConverter.Convert(response, pageIndex);
+            return values ?? new CollectionPage<Map>(0);
         }
 
         /// <inheritdoc />
@@ -273,15 +271,8 @@ namespace GW2NET.V2.Maps
         private ICollectionPage<Map> ConvertAsyncResponse(Task<IResponse<ICollection<MapDataContract>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.pageResponseConverter.Convert(task.Result, null);
-            if (values == null)
-            {
-                return new CollectionPage<Map>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-
-            return values;
+            var values = this.pageResponseConverter.Convert(task.Result, pageIndex);
+            return values ?? new CollectionPage<Map>(0);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]

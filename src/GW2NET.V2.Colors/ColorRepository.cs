@@ -114,9 +114,8 @@ namespace GW2NET.V2.Colors
             };
 
             var response = this.serviceClient.Send<ICollection<ColorPaletteDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response, null);
-            PageContextPatchUtility.Patch(values, pageIndex);
-            return values;
+            var values = this.converterForPageResponse.Convert(response, pageIndex);
+            return values ?? new CollectionPage<ColorPalette>();
         }
 
         /// <inheritdoc />
@@ -130,9 +129,8 @@ namespace GW2NET.V2.Colors
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<ColorPaletteDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response, null);
-            PageContextPatchUtility.Patch(values, pageIndex);
-            return values;
+            var values = this.converterForPageResponse.Convert(response, pageIndex);
+            return values ?? new CollectionPage<ColorPalette>(0);
         }
 
         /// <inheritdoc />
@@ -305,15 +303,8 @@ namespace GW2NET.V2.Colors
         private ICollectionPage<ColorPalette> ConvertAsyncResponse(Task<IResponse<ICollection<ColorPaletteDataContract>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForPageResponse.Convert(task.Result, null);
-            if (values == null)
-            {
-                return new CollectionPage<ColorPalette>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-
-            return values;
+            var values = this.converterForPageResponse.Convert(task.Result, pageIndex);
+            return values ?? new CollectionPage<ColorPalette>(0);
         }
     }
 }
