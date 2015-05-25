@@ -43,7 +43,7 @@ namespace GW2NET.V2.Worlds
         /// <param name="serviceClient">The service client.</param>
         /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public WorldRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterForWorld())
+            : this(serviceClient, new WorldConverter())
         {
         }
 

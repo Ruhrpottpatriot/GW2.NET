@@ -46,7 +46,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\ConverterForWorld.cs" />
+    <Compile Include="Converters\WorldConverter.cs" />
     <Compile Include="Json\WorldDataContract.cs" />
     <Compile Include="WorldBulkRequest.cs" />
     <Compile Include="WorldDetailsRequest.cs" />
