@@ -15,7 +15,7 @@ namespace GW2NET.V2.Colors
     using GW2NET.Common;
 
     /// <summary>Converts objects of type <see cref="T:int[]"/> to objects of type <see cref="Color"/>.</summary>
-    internal sealed class ColorConverter : IConverter<int[], Color>
+    public sealed class ColorConverter : IConverter<int[], Color>
     {
         /// <inheritdoc />
         public Color Convert(int[] value, object state)
