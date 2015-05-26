@@ -19,7 +19,7 @@ namespace GW2NET.V2.Colors
         {
             get
             {
-                return "v2/colors";
+                return "/v2/colors";
             }
         }
     }
