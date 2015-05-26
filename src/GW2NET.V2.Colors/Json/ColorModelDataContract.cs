@@ -14,7 +14,7 @@ namespace GW2NET.V2.Colors
 
     [DataContract]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/colors")]
-    internal sealed class ColorModelDataContract
+    public sealed class ColorModelDataContract
     {
         [DataMember(Name = "brightness", Order = 0)]
         internal int Brightness { get; set; }

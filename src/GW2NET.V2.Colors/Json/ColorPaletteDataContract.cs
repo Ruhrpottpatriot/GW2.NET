@@ -12,7 +12,7 @@ namespace GW2NET.V2.Colors
     using System.Runtime.Serialization;
 
     [DataContract]
-    internal sealed class ColorPaletteDataContract
+    public sealed class ColorPaletteDataContract
     {
         [DataMember(Name = "id", Order = 0)]
         internal int Id { get; set; }
