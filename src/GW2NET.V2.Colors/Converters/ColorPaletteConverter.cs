@@ -50,39 +50,25 @@ namespace GW2NET.V2.Colors
                 throw new ArgumentNullException("value", "Precondition: value != null");
             }
 
-            // Create a new color object
-            var colorPalette = new ColorPalette { Name = value.Name };
-
-            // Set the RGB values
-            var rgb = value.BaseRgb;
-            if (rgb != null && rgb.Length == 3)
+            if (state == null)
             {
-                colorPalette.BaseRgb = this.colorConverter.Convert(rgb, state);
+                throw new ArgumentNullException("state", "Precondition: state != null");
             }
 
-            // Set the color model for cloth
-            var cloth = value.Cloth;
-            if (cloth != null)
+            var response = state as IResponse<ColorPaletteDataContract>;
+            if (response == null)
             {
-                colorPalette.Cloth = this.colorModelConverter.Convert(cloth, state);
+                throw new ArgumentException("Precondition: state is IResponse<ColorPaletteDataContract>", "state");
             }
 
-            // Set the color model for leather
-            var leather = value.Leather;
-            if (leather != null)
+            return new ColorPalette
             {
-                colorPalette.Leather = this.colorModelConverter.Convert(leather, state);
-            }
-
-            // Set the color model for metal
-            var metal = value.Metal;
-            if (metal != null)
-            {
-                colorPalette.Metal = this.colorModelConverter.Convert(metal, state);
-            }
-
-            // Return the color object
-            return colorPalette;
+                Name = value.Name,
+                BaseRgb = this.colorConverter.Convert(value.BaseRgb, state),
+                Cloth = this.colorModelConverter.Convert(value.Cloth, state),
+                Leather = this.colorModelConverter.Convert(value.Leather, state),
+                Metal = this.colorModelConverter.Convert(value.Metal, state)
+            };
         }
     }
 }
