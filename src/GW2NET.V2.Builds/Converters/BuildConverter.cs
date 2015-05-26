@@ -26,9 +26,21 @@ namespace GW2NET.V2.Builds.Converters
                 throw new ArgumentNullException("value", "Precondition: value != null");
             }
 
+            if (state == null)
+            {
+                throw new ArgumentNullException("state", "Precondition: state != null");
+            }
+
+            var response = state as IResponse<BuildDataContract>;
+            if (response == null)
+            {
+                throw new ArgumentException("Precondition: state is IResponse<BuildDataContract>", "state");
+            }
+
             return new Build
             {
-                BuildId = value.BuildId
+                BuildId = value.BuildId,
+                Timestamp = response.Date
             };
         }
     }
