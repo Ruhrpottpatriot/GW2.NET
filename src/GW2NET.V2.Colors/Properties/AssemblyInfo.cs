@@ -10,4 +10,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("This library implements /v2/colors")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
-[assembly: InternalsVisibleTo("GW2NET.V2.Colors.Tests")]

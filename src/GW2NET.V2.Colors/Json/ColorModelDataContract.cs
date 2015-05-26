@@ -17,21 +17,21 @@ namespace GW2NET.V2.Colors
     public sealed class ColorModelDataContract
     {
         [DataMember(Name = "brightness", Order = 0)]
-        internal int Brightness { get; set; }
+        public int Brightness { get; set; }
 
         [DataMember(Name = "contrast", Order = 1)]
-        internal double Contrast { get; set; }
+        public double Contrast { get; set; }
 
         [DataMember(Name = "hue", Order = 2)]
-        internal int Hue { get; set; }
+        public int Hue { get; set; }
 
         [DataMember(Name = "saturation", Order = 3)]
-        internal double Saturation { get; set; }
+        public double Saturation { get; set; }
 
         [DataMember(Name = "lightness", Order = 4)]
-        internal double Lightness { get; set; }
+        public double Lightness { get; set; }
 
         [DataMember(Name = "rgb", Order = 5)]
-        internal int[] Rgb { get; set; }
+        public int[] Rgb { get; set; }
     }
 }

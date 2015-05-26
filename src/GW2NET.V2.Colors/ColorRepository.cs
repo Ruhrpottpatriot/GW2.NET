@@ -41,16 +41,9 @@ namespace GW2NET.V2.Colors
 
         /// <summary>Initializes a new instance of the <see cref="ColorRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        public ColorRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterAdapter<ICollection<int>>(), new ColorPaletteConverter())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="ColorRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
         /// <param name="identifierConverter">The identifier converter.</param>
         /// <param name="colorPaletteConverter">The color palette converter.</param>
-        private ColorRepository(
+        public ColorRepository(
             IServiceClient serviceClient
             , IConverter<ICollection<int>, ICollection<int>> identifierConverter
             , IConverter<ColorPaletteDataContract, ColorPalette> colorPaletteConverter)

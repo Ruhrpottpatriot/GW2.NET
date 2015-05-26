@@ -24,15 +24,9 @@ namespace GW2NET.V2.Colors
         private readonly IConverter<ColorModelDataContract, ColorModel> colorModelConverter;
 
         /// <summary>Initializes a new instance of the <see cref="ColorPaletteConverter"/> class.</summary>
-        public ColorPaletteConverter()
-            : this(new ColorConverter(), new ColorModelConverter())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="ColorPaletteConverter"/> class.</summary>
         /// <param name="colorConverter">The converter for <see cref="Color"/>.</param>
         /// <param name="colorModelConverter">The converter for <see cref="ColorModel"/>.</param>
-        internal ColorPaletteConverter(IConverter<int[], Color> colorConverter, IConverter<ColorModelDataContract, ColorModel> colorModelConverter)
+        public ColorPaletteConverter(IConverter<int[], Color> colorConverter, IConverter<ColorModelDataContract, ColorModel> colorModelConverter)
         {
             if (colorConverter == null)
             {

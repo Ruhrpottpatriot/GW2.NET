@@ -10,10 +10,12 @@
 namespace GW2NET.V2.Colors
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
 
     using GW2NET.Colors;
     using GW2NET.Common;
+    using GW2NET.Common.Converters;
 
     /// <summary>Provides methods and properties for creating a color repository.</summary>
     public sealed class ColorRepositoryFactory : RepositoryFactoryBase<IColorRepository>
@@ -37,7 +39,7 @@ namespace GW2NET.V2.Colors
         /// <returns>A repository.</returns>
         public override IColorRepository ForDefaultCulture()
         {
-            return new ColorRepository(this.serviceClient);
+            return new ColorRepository(this.serviceClient, new ConverterAdapter<ICollection<int>>(), new ColorPaletteConverter(new ColorConverter(), new ColorModelConverter(new ColorConverter())));
         }
 
         /// <summary>Creates an instance for the given language.</summary>
@@ -45,7 +47,7 @@ namespace GW2NET.V2.Colors
         /// <returns>A repository.</returns>
         public override IColorRepository ForCulture(CultureInfo culture)
         {
-            IColorRepository repository = new ColorRepository(this.serviceClient);
+            IColorRepository repository = new ColorRepository(this.serviceClient, new ConverterAdapter<ICollection<int>>(), new ColorPaletteConverter(new ColorConverter(), new ColorModelConverter(new ColorConverter())));
             repository.Culture = culture;
             return repository;
         }

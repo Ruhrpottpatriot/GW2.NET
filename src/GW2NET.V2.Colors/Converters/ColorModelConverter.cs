@@ -21,14 +21,8 @@ namespace GW2NET.V2.Colors
         private readonly IConverter<int[], Color> converterForColor;
 
         /// <summary>Initializes a new instance of the <see cref="ColorModelConverter"/> class.</summary>
-        internal ColorModelConverter()
-            : this(new ColorConverter())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="ColorModelConverter"/> class.</summary>
         /// <param name="converterForColor">The converter for <see cref="Color"/>.</param>
-        internal ColorModelConverter(IConverter<int[], Color> converterForColor)
+        public ColorModelConverter(IConverter<int[], Color> converterForColor)
         {
             if (converterForColor == null)
             {
