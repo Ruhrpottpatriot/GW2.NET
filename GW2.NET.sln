@@ -86,9 +86,57 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Files.Tests", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Worlds.Tests", "src\GW2NET.V2.Worlds.Tests\GW2NET.V2.Worlds.Tests.csproj", "{7EF7A6AF-BCBA-43E7-9819-528DB8137755}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Builds.Tests", "src\GW2NET.V2.Builds.Tests\GW2NET.V2.Builds.Tests.csproj", "{D431AA14-5D60-46CD-B4D5-3C67397C2B01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Colors.Tests", "src\GW2NET.V2.Colors.Tests\GW2NET.V2.Colors.Tests.csproj", "{015D5CB4-B8F3-4197-AD37-B3CBDC571EA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Commerce.Exchange.Tests", "src\GW2NET.V2.Commerce.Exchange.Tests\GW2NET.V2.Commerce.Exchange.Tests.csproj", "{E8670EC0-899C-416A-A73B-BF62C42E9CDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Commerce.Listings.Tests", "src\GW2NET.V2.Commerce.Listings.Tests\GW2NET.V2.Commerce.Listings.Tests.csproj", "{55211BC2-D7F2-4EFA-A026-82DDECB2C9D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Commerce.Prices.Tests", "src\GW2NET.V2.Commerce.Prices.Tests\GW2NET.V2.Commerce.Prices.Tests.csproj", "{BD58BAD5-6414-4343-8D18-FAB92C490CDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Continents.Tests", "src\GW2NET.V2.Continents.Tests\GW2NET.V2.Continents.Tests.csproj", "{AB7276EF-FC12-48E9-B2FF-42B26987C42E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Items.Tests", "src\GW2NET.V2.Items.Tests\GW2NET.V2.Items.Tests.csproj", "{A6E57E72-CD73-4B6B-A9C7-A368234CA6A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Maps.Tests", "src\GW2NET.V2.Maps.Tests\GW2NET.V2.Maps.Tests.csproj", "{6F7AF5C8-51C7-4A75-8236-A76456E0D753}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Quaggans.Tests", "src\GW2NET.V2.Quaggans.Tests\GW2NET.V2.Quaggans.Tests.csproj", "{8D0E77A4-5B93-4BB4-8328-A36D2DBD1ABB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Recipes.Tests", "src\GW2NET.V2.Recipes.Tests\GW2NET.V2.Recipes.Tests.csproj", "{66550043-D66C-4B98-A2A2-5E56A9AF7908}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Skins.Tests", "src\GW2NET.V2.Skins.Tests\GW2NET.V2.Skins.Tests.csproj", "{2A32B1BA-B3CF-413A-BC09-163EE4E3B684}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Worlds.Tests", "src\GW2NET.V1.Worlds.Tests\GW2NET.V1.Worlds.Tests.csproj", "{7413DF0B-8513-42ED-9470-5217F18250A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Skins.Tests", "src\GW2NET.V1.Skins.Tests\GW2NET.V1.Skins.Tests.csproj", "{56485271-9D45-41CB-AA3B-7A5E64C00850}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Recipes.Tests", "src\GW2NET.V1.Recipes.Tests\GW2NET.V1.Recipes.Tests.csproj", "{2C6FB74B-A7E5-4DE2-80A0-7108941CEEE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Maps.Tests", "src\GW2NET.V1.Maps.Tests\GW2NET.V1.Maps.Tests.csproj", "{94C3A0A9-6C71-4120-814B-5C97CDB5BEE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Items.Tests", "src\GW2NET.V1.Items.Tests\GW2NET.V1.Items.Tests.csproj", "{643AB801-F173-4995-8158-3AA461695943}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Guilds.Tests", "src\GW2NET.V1.Guilds.Tests\GW2NET.V1.Guilds.Tests.csproj", "{0D1F86B9-70CD-4273-9353-72C0F5639BFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Floors.Tests", "src\GW2NET.V1.Floors.Tests\GW2NET.V1.Floors.Tests.csproj", "{358B3ED3-20E0-49D3-83C4-7C4A9B3856E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Events.Tests", "src\GW2NET.V1.Events.Tests\GW2NET.V1.Events.Tests.csproj", "{D8B5F446-0073-4533-BD44-6B70413BC9A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Continents.Tests", "src\GW2NET.V1.Continents.Tests\GW2NET.V1.Continents.Tests.csproj", "{0CE04E0E-BB21-49C3-B899-19FD447762CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Colors.Tests", "src\GW2NET.V1.Colors.Tests\GW2NET.V1.Colors.Tests.csproj", "{8B7B5902-216E-4736-B8B7-AC337F2658A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Builds.Tests", "src\GW2NET.V1.Builds.Tests\GW2NET.V1.Builds.Tests.csproj", "{127F6F7D-4ADC-464C-9E5B-89AE2F3ED1BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.WorldVersusWorld.Matches.Tests", "src\GW2NET.V1.WorldVersusWorld.Matches.Tests\GW2NET.V1.WorldVersusWorld.Matches.Tests.csproj", "{C037B8E6-6DA7-41F8-B3BB-D356605331C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.WorldVersusWorld.Objectives.Tests", "src\GW2NET.V1.WorldVersusWorld.Objectives.Tests\GW2NET.V1.WorldVersusWorld.Objectives.Tests.csproj", "{6E237424-818F-4D25-BE7D-6C61691B9B56}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 38
+		SccNumberOfProjects = 62
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
 		SccLocalPath0 = .
@@ -240,6 +288,102 @@ Global
 		SccProjectTopLevelParentUniqueName37 = GW2.NET.sln
 		SccProjectName37 = src/GW2NET.V2.Worlds.Tests
 		SccLocalPath37 = src\\GW2NET.V2.Worlds.Tests
+		SccProjectUniqueName38 = src\\GW2NET.V2.Builds.Tests\\GW2NET.V2.Builds.Tests.csproj
+		SccProjectTopLevelParentUniqueName38 = GW2.NET.sln
+		SccProjectName38 = src/GW2NET.V2.Builds.Tests
+		SccLocalPath38 = src\\GW2NET.V2.Builds.Tests
+		SccProjectUniqueName39 = src\\GW2NET.V2.Colors.Tests\\GW2NET.V2.Colors.Tests.csproj
+		SccProjectTopLevelParentUniqueName39 = GW2.NET.sln
+		SccProjectName39 = src/GW2NET.V2.Colors.Tests
+		SccLocalPath39 = src\\GW2NET.V2.Colors.Tests
+		SccProjectUniqueName40 = src\\GW2NET.V2.Commerce.Exchange.Tests\\GW2NET.V2.Commerce.Exchange.Tests.csproj
+		SccProjectTopLevelParentUniqueName40 = GW2.NET.sln
+		SccProjectName40 = src/GW2NET.V2.Commerce.Exchange.Tests
+		SccLocalPath40 = src\\GW2NET.V2.Commerce.Exchange.Tests
+		SccProjectUniqueName41 = src\\GW2NET.V2.Commerce.Listings.Tests\\GW2NET.V2.Commerce.Listings.Tests.csproj
+		SccProjectTopLevelParentUniqueName41 = GW2.NET.sln
+		SccProjectName41 = src/GW2NET.V2.Commerce.Listings.Tests
+		SccLocalPath41 = src\\GW2NET.V2.Commerce.Listings.Tests
+		SccProjectUniqueName42 = src\\GW2NET.V2.Commerce.Prices.Tests\\GW2NET.V2.Commerce.Prices.Tests.csproj
+		SccProjectTopLevelParentUniqueName42 = GW2.NET.sln
+		SccProjectName42 = src/GW2NET.V2.Commerce.Prices.Tests
+		SccLocalPath42 = src\\GW2NET.V2.Commerce.Prices.Tests
+		SccProjectUniqueName43 = src\\GW2NET.V2.Continents.Tests\\GW2NET.V2.Continents.Tests.csproj
+		SccProjectTopLevelParentUniqueName43 = GW2.NET.sln
+		SccProjectName43 = src/GW2NET.V2.Continents.Tests
+		SccLocalPath43 = src\\GW2NET.V2.Continents.Tests
+		SccProjectUniqueName44 = src\\GW2NET.V2.Items.Tests\\GW2NET.V2.Items.Tests.csproj
+		SccProjectTopLevelParentUniqueName44 = GW2.NET.sln
+		SccProjectName44 = src/GW2NET.V2.Items.Tests
+		SccLocalPath44 = src\\GW2NET.V2.Items.Tests
+		SccProjectUniqueName45 = src\\GW2NET.V2.Maps.Tests\\GW2NET.V2.Maps.Tests.csproj
+		SccProjectTopLevelParentUniqueName45 = GW2.NET.sln
+		SccProjectName45 = src/GW2NET.V2.Maps.Tests
+		SccLocalPath45 = src\\GW2NET.V2.Maps.Tests
+		SccProjectUniqueName46 = src\\GW2NET.V2.Quaggans.Tests\\GW2NET.V2.Quaggans.Tests.csproj
+		SccProjectTopLevelParentUniqueName46 = GW2.NET.sln
+		SccProjectName46 = src/GW2NET.V2.Quaggans.Tests
+		SccLocalPath46 = src\\GW2NET.V2.Quaggans.Tests
+		SccProjectUniqueName47 = src\\GW2NET.V2.Recipes.Tests\\GW2NET.V2.Recipes.Tests.csproj
+		SccProjectTopLevelParentUniqueName47 = GW2.NET.sln
+		SccProjectName47 = src/GW2NET.V2.Recipes.Tests
+		SccLocalPath47 = src\\GW2NET.V2.Recipes.Tests
+		SccProjectUniqueName48 = src\\GW2NET.V2.Skins.Tests\\GW2NET.V2.Skins.Tests.csproj
+		SccProjectTopLevelParentUniqueName48 = GW2.NET.sln
+		SccProjectName48 = src/GW2NET.V2.Skins.Tests
+		SccLocalPath48 = src\\GW2NET.V2.Skins.Tests
+		SccProjectUniqueName49 = src\\GW2NET.V1.Worlds.Tests\\GW2NET.V1.Worlds.Tests.csproj
+		SccProjectTopLevelParentUniqueName49 = GW2.NET.sln
+		SccProjectName49 = src/GW2NET.V1.Worlds.Tests
+		SccLocalPath49 = src\\GW2NET.V1.Worlds.Tests
+		SccProjectUniqueName50 = src\\GW2NET.V1.Skins.Tests\\GW2NET.V1.Skins.Tests.csproj
+		SccProjectTopLevelParentUniqueName50 = GW2.NET.sln
+		SccProjectName50 = src/GW2NET.V1.Skins.Tests
+		SccLocalPath50 = src\\GW2NET.V1.Skins.Tests
+		SccProjectUniqueName51 = src\\GW2NET.V1.Recipes.Tests\\GW2NET.V1.Recipes.Tests.csproj
+		SccProjectTopLevelParentUniqueName51 = GW2.NET.sln
+		SccProjectName51 = src/GW2NET.V1.Recipes.Tests
+		SccLocalPath51 = src\\GW2NET.V1.Recipes.Tests
+		SccProjectUniqueName52 = src\\GW2NET.V1.Maps.Tests\\GW2NET.V1.Maps.Tests.csproj
+		SccProjectTopLevelParentUniqueName52 = GW2.NET.sln
+		SccProjectName52 = src/GW2NET.V1.Maps.Tests
+		SccLocalPath52 = src\\GW2NET.V1.Maps.Tests
+		SccProjectUniqueName53 = src\\GW2NET.V1.Items.Tests\\GW2NET.V1.Items.Tests.csproj
+		SccProjectTopLevelParentUniqueName53 = GW2.NET.sln
+		SccProjectName53 = src/GW2NET.V1.Items.Tests
+		SccLocalPath53 = src\\GW2NET.V1.Items.Tests
+		SccProjectUniqueName54 = src\\GW2NET.V1.Guilds.Tests\\GW2NET.V1.Guilds.Tests.csproj
+		SccProjectTopLevelParentUniqueName54 = GW2.NET.sln
+		SccProjectName54 = src/GW2NET.V1.Guilds.Tests
+		SccLocalPath54 = src\\GW2NET.V1.Guilds.Tests
+		SccProjectUniqueName55 = src\\GW2NET.V1.Floors.Tests\\GW2NET.V1.Floors.Tests.csproj
+		SccProjectTopLevelParentUniqueName55 = GW2.NET.sln
+		SccProjectName55 = src/GW2NET.V1.Floors.Tests
+		SccLocalPath55 = src\\GW2NET.V1.Floors.Tests
+		SccProjectUniqueName56 = src\\GW2NET.V1.Events.Tests\\GW2NET.V1.Events.Tests.csproj
+		SccProjectTopLevelParentUniqueName56 = GW2.NET.sln
+		SccProjectName56 = src/GW2NET.V1.Events.Tests
+		SccLocalPath56 = src\\GW2NET.V1.Events.Tests
+		SccProjectUniqueName57 = src\\GW2NET.V1.Continents.Tests\\GW2NET.V1.Continents.Tests.csproj
+		SccProjectTopLevelParentUniqueName57 = GW2.NET.sln
+		SccProjectName57 = src/GW2NET.V1.Continents.Tests
+		SccLocalPath57 = src\\GW2NET.V1.Continents.Tests
+		SccProjectUniqueName58 = src\\GW2NET.V1.Colors.Tests\\GW2NET.V1.Colors.Tests.csproj
+		SccProjectTopLevelParentUniqueName58 = GW2.NET.sln
+		SccProjectName58 = src/GW2NET.V1.Colors.Tests
+		SccLocalPath58 = src\\GW2NET.V1.Colors.Tests
+		SccProjectUniqueName59 = src\\GW2NET.V1.Builds.Tests\\GW2NET.V1.Builds.Tests.csproj
+		SccProjectTopLevelParentUniqueName59 = GW2.NET.sln
+		SccProjectName59 = src/GW2NET.V1.Builds.Tests
+		SccLocalPath59 = src\\GW2NET.V1.Builds.Tests
+		SccProjectUniqueName60 = src\\GW2NET.V1.WorldVersusWorld.Matches.Tests\\GW2NET.V1.WorldVersusWorld.Matches.Tests.csproj
+		SccProjectTopLevelParentUniqueName60 = GW2.NET.sln
+		SccProjectName60 = src/GW2NET.V1.WorldVersusWorld.Matches.Tests
+		SccLocalPath60 = src\\GW2NET.V1.WorldVersusWorld.Matches.Tests
+		SccProjectUniqueName61 = src\\GW2NET.V1.WorldVersusWorld.Objectives.Tests\\GW2NET.V1.WorldVersusWorld.Objectives.Tests.csproj
+		SccProjectTopLevelParentUniqueName61 = GW2.NET.sln
+		SccProjectName61 = src/GW2NET.V1.WorldVersusWorld.Objectives.Tests
+		SccLocalPath61 = src\\GW2NET.V1.WorldVersusWorld.Objectives.Tests
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -393,6 +537,102 @@ Global
 		{7EF7A6AF-BCBA-43E7-9819-528DB8137755}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EF7A6AF-BCBA-43E7-9819-528DB8137755}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EF7A6AF-BCBA-43E7-9819-528DB8137755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D431AA14-5D60-46CD-B4D5-3C67397C2B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D431AA14-5D60-46CD-B4D5-3C67397C2B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D431AA14-5D60-46CD-B4D5-3C67397C2B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D431AA14-5D60-46CD-B4D5-3C67397C2B01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{015D5CB4-B8F3-4197-AD37-B3CBDC571EA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{015D5CB4-B8F3-4197-AD37-B3CBDC571EA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{015D5CB4-B8F3-4197-AD37-B3CBDC571EA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{015D5CB4-B8F3-4197-AD37-B3CBDC571EA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8670EC0-899C-416A-A73B-BF62C42E9CDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8670EC0-899C-416A-A73B-BF62C42E9CDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8670EC0-899C-416A-A73B-BF62C42E9CDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8670EC0-899C-416A-A73B-BF62C42E9CDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55211BC2-D7F2-4EFA-A026-82DDECB2C9D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55211BC2-D7F2-4EFA-A026-82DDECB2C9D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55211BC2-D7F2-4EFA-A026-82DDECB2C9D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55211BC2-D7F2-4EFA-A026-82DDECB2C9D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD58BAD5-6414-4343-8D18-FAB92C490CDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD58BAD5-6414-4343-8D18-FAB92C490CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD58BAD5-6414-4343-8D18-FAB92C490CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD58BAD5-6414-4343-8D18-FAB92C490CDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB7276EF-FC12-48E9-B2FF-42B26987C42E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB7276EF-FC12-48E9-B2FF-42B26987C42E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB7276EF-FC12-48E9-B2FF-42B26987C42E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB7276EF-FC12-48E9-B2FF-42B26987C42E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6E57E72-CD73-4B6B-A9C7-A368234CA6A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6E57E72-CD73-4B6B-A9C7-A368234CA6A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6E57E72-CD73-4B6B-A9C7-A368234CA6A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6E57E72-CD73-4B6B-A9C7-A368234CA6A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F7AF5C8-51C7-4A75-8236-A76456E0D753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F7AF5C8-51C7-4A75-8236-A76456E0D753}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F7AF5C8-51C7-4A75-8236-A76456E0D753}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F7AF5C8-51C7-4A75-8236-A76456E0D753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D0E77A4-5B93-4BB4-8328-A36D2DBD1ABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D0E77A4-5B93-4BB4-8328-A36D2DBD1ABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D0E77A4-5B93-4BB4-8328-A36D2DBD1ABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D0E77A4-5B93-4BB4-8328-A36D2DBD1ABB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66550043-D66C-4B98-A2A2-5E56A9AF7908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66550043-D66C-4B98-A2A2-5E56A9AF7908}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66550043-D66C-4B98-A2A2-5E56A9AF7908}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66550043-D66C-4B98-A2A2-5E56A9AF7908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A32B1BA-B3CF-413A-BC09-163EE4E3B684}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A32B1BA-B3CF-413A-BC09-163EE4E3B684}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A32B1BA-B3CF-413A-BC09-163EE4E3B684}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A32B1BA-B3CF-413A-BC09-163EE4E3B684}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7413DF0B-8513-42ED-9470-5217F18250A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7413DF0B-8513-42ED-9470-5217F18250A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7413DF0B-8513-42ED-9470-5217F18250A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7413DF0B-8513-42ED-9470-5217F18250A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56485271-9D45-41CB-AA3B-7A5E64C00850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56485271-9D45-41CB-AA3B-7A5E64C00850}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56485271-9D45-41CB-AA3B-7A5E64C00850}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56485271-9D45-41CB-AA3B-7A5E64C00850}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C6FB74B-A7E5-4DE2-80A0-7108941CEEE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C6FB74B-A7E5-4DE2-80A0-7108941CEEE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C6FB74B-A7E5-4DE2-80A0-7108941CEEE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C6FB74B-A7E5-4DE2-80A0-7108941CEEE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94C3A0A9-6C71-4120-814B-5C97CDB5BEE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94C3A0A9-6C71-4120-814B-5C97CDB5BEE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94C3A0A9-6C71-4120-814B-5C97CDB5BEE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94C3A0A9-6C71-4120-814B-5C97CDB5BEE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{643AB801-F173-4995-8158-3AA461695943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{643AB801-F173-4995-8158-3AA461695943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{643AB801-F173-4995-8158-3AA461695943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{643AB801-F173-4995-8158-3AA461695943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D1F86B9-70CD-4273-9353-72C0F5639BFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D1F86B9-70CD-4273-9353-72C0F5639BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D1F86B9-70CD-4273-9353-72C0F5639BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D1F86B9-70CD-4273-9353-72C0F5639BFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{358B3ED3-20E0-49D3-83C4-7C4A9B3856E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{358B3ED3-20E0-49D3-83C4-7C4A9B3856E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{358B3ED3-20E0-49D3-83C4-7C4A9B3856E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{358B3ED3-20E0-49D3-83C4-7C4A9B3856E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8B5F446-0073-4533-BD44-6B70413BC9A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8B5F446-0073-4533-BD44-6B70413BC9A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8B5F446-0073-4533-BD44-6B70413BC9A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8B5F446-0073-4533-BD44-6B70413BC9A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CE04E0E-BB21-49C3-B899-19FD447762CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CE04E0E-BB21-49C3-B899-19FD447762CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CE04E0E-BB21-49C3-B899-19FD447762CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CE04E0E-BB21-49C3-B899-19FD447762CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B7B5902-216E-4736-B8B7-AC337F2658A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B7B5902-216E-4736-B8B7-AC337F2658A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B7B5902-216E-4736-B8B7-AC337F2658A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B7B5902-216E-4736-B8B7-AC337F2658A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{127F6F7D-4ADC-464C-9E5B-89AE2F3ED1BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{127F6F7D-4ADC-464C-9E5B-89AE2F3ED1BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{127F6F7D-4ADC-464C-9E5B-89AE2F3ED1BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{127F6F7D-4ADC-464C-9E5B-89AE2F3ED1BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C037B8E6-6DA7-41F8-B3BB-D356605331C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C037B8E6-6DA7-41F8-B3BB-D356605331C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C037B8E6-6DA7-41F8-B3BB-D356605331C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C037B8E6-6DA7-41F8-B3BB-D356605331C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E237424-818F-4D25-BE7D-6C61691B9B56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E237424-818F-4D25-BE7D-6C61691B9B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E237424-818F-4D25-BE7D-6C61691B9B56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E237424-818F-4D25-BE7D-6C61691B9B56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -435,5 +675,29 @@ Global
 		{F7105E24-7FDC-4F38-8F91-4F0C557BD12E} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{2F7B458D-A71B-40B0-BDD2-8BB8E11BD1FC} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{7EF7A6AF-BCBA-43E7-9819-528DB8137755} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{D431AA14-5D60-46CD-B4D5-3C67397C2B01} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{015D5CB4-B8F3-4197-AD37-B3CBDC571EA4} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{E8670EC0-899C-416A-A73B-BF62C42E9CDE} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{55211BC2-D7F2-4EFA-A026-82DDECB2C9D8} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{BD58BAD5-6414-4343-8D18-FAB92C490CDA} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{AB7276EF-FC12-48E9-B2FF-42B26987C42E} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{A6E57E72-CD73-4B6B-A9C7-A368234CA6A5} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{6F7AF5C8-51C7-4A75-8236-A76456E0D753} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{8D0E77A4-5B93-4BB4-8328-A36D2DBD1ABB} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{66550043-D66C-4B98-A2A2-5E56A9AF7908} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{2A32B1BA-B3CF-413A-BC09-163EE4E3B684} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{7413DF0B-8513-42ED-9470-5217F18250A0} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{56485271-9D45-41CB-AA3B-7A5E64C00850} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{2C6FB74B-A7E5-4DE2-80A0-7108941CEEE4} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{94C3A0A9-6C71-4120-814B-5C97CDB5BEE1} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{643AB801-F173-4995-8158-3AA461695943} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{0D1F86B9-70CD-4273-9353-72C0F5639BFC} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{358B3ED3-20E0-49D3-83C4-7C4A9B3856E5} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{D8B5F446-0073-4533-BD44-6B70413BC9A4} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{0CE04E0E-BB21-49C3-B899-19FD447762CB} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{8B7B5902-216E-4736-B8B7-AC337F2658A5} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{127F6F7D-4ADC-464C-9E5B-89AE2F3ED1BA} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{C037B8E6-6DA7-41F8-B3BB-D356605331C3} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{6E237424-818F-4D25-BE7D-6C61691B9B56} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 	EndGlobalSection
 EndGlobal
