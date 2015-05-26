@@ -48,8 +48,8 @@
   <ItemGroup>
     <Compile Include="ColorPaletteBulkRequest.cs" />
     <Compile Include="ColorPalettePageRequest.cs" />
-    <Compile Include="Converter\ColorConverter.cs" />
-    <Compile Include="Converter\ColorModelConverter.cs" />
+    <Compile Include="Converters\ColorConverter.cs" />
+    <Compile Include="Converters\ColorModelConverter.cs" />
     <Compile Include="Json\ColorPaletteDataContract.cs" />
     <Compile Include="ColorPaletteDetailRequest.cs" />
     <Compile Include="ColorDiscoveryRequest.cs" />
@@ -57,7 +57,7 @@
     <Compile Include="ColorRepository.cs" />
     <Compile Include="ColorRepositoryFactory.cs" />
     <Compile Include="ColorRequest.cs" />
-    <Compile Include="Converter\ColorPaletteConverter.cs" />
+    <Compile Include="Converters\ColorPaletteConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), SharedAssemblyInfo.cs))\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
