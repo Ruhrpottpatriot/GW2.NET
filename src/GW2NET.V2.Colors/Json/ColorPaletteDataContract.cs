@@ -15,21 +15,21 @@ namespace GW2NET.V2.Colors
     public sealed class ColorPaletteDataContract
     {
         [DataMember(Name = "id", Order = 0)]
-        internal int Id { get; set; }
+        public int Id { get; set; }
 
         [DataMember(Name = "name", Order = 1)]
-        internal string Name { get; set; }
+        public string Name { get; set; }
 
         [DataMember(Name = "base_rgb", Order = 2)]
-        internal int[] BaseRgb { get; set; }
+        public int[] BaseRgb { get; set; }
 
         [DataMember(Name = "cloth", Order = 3)]
-        internal ColorModelDataContract Cloth { get; set; }
+        public ColorModelDataContract Cloth { get; set; }
 
         [DataMember(Name = "leather", Order = 4)]
-        internal ColorModelDataContract Leather { get; set; }
+        public ColorModelDataContract Leather { get; set; }
 
         [DataMember(Name = "metal", Order = 4)]
-        internal ColorModelDataContract Metal { get; set; }
+        public ColorModelDataContract Metal { get; set; }
     }
 }
