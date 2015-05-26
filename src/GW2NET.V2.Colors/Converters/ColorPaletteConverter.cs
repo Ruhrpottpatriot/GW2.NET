@@ -7,12 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Colors
+namespace GW2NET.V2.Colors.Converters
 {
     using System;
 
     using GW2NET.Colors;
     using GW2NET.Common;
+    using GW2NET.V2.Colors.Json;
 
     /// <summary>Converts objects of type <see cref="ColorModelDataContract"/> to objects of type <see cref="ColorPalette"/>.</summary>
     public sealed class ColorPaletteConverter : IConverter<ColorPaletteDataContract, ColorPalette>

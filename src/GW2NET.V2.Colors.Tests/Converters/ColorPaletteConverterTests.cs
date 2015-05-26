@@ -3,6 +3,7 @@
     using System.Globalization;
 
     using GW2NET.Common;
+    using GW2NET.V2.Colors.Json;
 
     using Xunit;
 

@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Colors
+namespace GW2NET.V2.Colors.Json
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

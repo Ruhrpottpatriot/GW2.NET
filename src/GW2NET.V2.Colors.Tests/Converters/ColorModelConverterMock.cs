@@ -2,6 +2,7 @@
 {
     using GW2NET.Colors;
     using GW2NET.Common;
+    using GW2NET.V2.Colors.Json;
 
     public class ColorModelConverterMock : IConverter<ColorModelDataContract, ColorModel>
     {
