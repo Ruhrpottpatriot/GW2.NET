@@ -59,6 +59,16 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GW2NET.Core\GW2NET.Core.csproj">
+      <Project>{05f3d999-0470-4123-8c80-af4ac2385e7c}</Project>
+      <Name>GW2NET.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Events\GW2NET.V1.Events.csproj">
+      <Project>{c7624cd0-f810-469f-b5cf-11715afc41d2}</Project>
+      <Name>GW2NET.V1.Events</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

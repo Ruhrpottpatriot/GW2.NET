@@ -59,6 +59,16 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GW2NET.Core\GW2NET.Core.csproj">
+      <Project>{05f3d999-0470-4123-8c80-af4ac2385e7c}</Project>
+      <Name>GW2NET.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Continents\GW2NET.V1.Continents.csproj">
+      <Project>{489aaa0e-7ef9-4423-843a-fa3a11bee156}</Project>
+      <Name>GW2NET.V1.Continents</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

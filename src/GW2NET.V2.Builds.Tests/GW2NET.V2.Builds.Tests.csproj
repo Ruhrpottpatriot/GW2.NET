@@ -41,6 +41,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\GW2NET.Core\GW2NET.Core.csproj">
+      <Project>{05f3d999-0470-4123-8c80-af4ac2385e7c}</Project>
+      <Name>GW2NET.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GW2NET.V2.Builds\GW2NET.V2.Builds.csproj">
       <Project>{5f2c2514-10b0-4b5b-b227-edd406377396}</Project>
       <Name>GW2NET.V2.Builds</Name>
