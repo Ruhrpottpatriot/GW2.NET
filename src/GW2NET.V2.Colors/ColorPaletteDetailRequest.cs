@@ -15,7 +15,7 @@ namespace GW2NET.V2.Colors
     using GW2NET.Common;
 
     /// <summary>Represents a details request that targets the /v2/colors interface.</summary>
-    internal sealed class ColorPaletteDetailRequest : DetailsRequest, ILocalizable
+    public sealed class ColorPaletteDetailRequest : DetailsRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }

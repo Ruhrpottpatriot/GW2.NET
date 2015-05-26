@@ -12,7 +12,7 @@ namespace GW2NET.V2.Colors
     using GW2NET.Common;
 
     /// <summary>Represents a discovery request that targets the /v2/colors interface.</summary>
-    internal sealed class ColorDiscoveryRequest : DiscoveryRequest
+    public sealed class ColorDiscoveryRequest : DiscoveryRequest
     {
         /// <summary>Gets the resource path.</summary>
         public override string Resource
