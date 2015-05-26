@@ -43,7 +43,7 @@
     <None Include="GW2NET.V2.Builds.nuspec" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\ConverterForBuild.cs" />
+    <Compile Include="Converters\BuildConverter.cs" />
     <Compile Include="Json\BuildDataContract.cs" />
     <Compile Include="BuildRequest.cs" />
     <Compile Include="BuildService.cs" />

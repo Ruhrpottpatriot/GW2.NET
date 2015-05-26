@@ -28,7 +28,7 @@ namespace GW2NET.V2.Builds
         /// <summary> Initializes a new instance of the <see cref="BuildService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public BuildService(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterForBuild())
+            : this(serviceClient, new BuildConverter())
         {
         }
 
