@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="Converters\ColorConverterMock.cs" />
     <Compile Include="Converters\ColorConverterTests.cs" />
+    <Compile Include="Converters\ColorModelConverterMock.cs" />
     <Compile Include="Converters\ColorModelConverterTests.cs" />
+    <Compile Include="Converters\ColorPaletteConverterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
