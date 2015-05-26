@@ -10,6 +10,7 @@
 namespace GW2NET.Common
 {
     using System;
+    using System.Diagnostics;
 
     /// <summary>Converts objects of type <see cref="IResponse{T}"/> to objects of type <see cref="TValue"/>.</summary>
     /// <typeparam name="TDataContract">The type of data contracts in the response content.</typeparam>
@@ -47,19 +48,23 @@ namespace GW2NET.Common
 
             var item = this.converterForDataContract.Convert(dataContract, value);
 
+
+#if (DEBUG)
             // TODO: Refactor data contract converters so that this code can be deleted
             var localizableItem = item as ILocalizable;
             if (localizableItem != null)
             {
-                localizableItem.Culture = value.Culture;
+                Debug.Assert(Equals(localizableItem.Culture, value.Culture), "Equals(localizableItem.Culture, value.Culture)");
             }
 
             // TODO: Refactor data contract converters so that this code can be deleted
             var timeSensitiveItem = item as ITimeSensitive;
             if (timeSensitiveItem != null)
             {
-                timeSensitiveItem.Timestamp = value.Date;
+                Debug.Assert(timeSensitiveItem.Timestamp == value.Date, "timeSensitiveItem.Timestamp == value.Date");
             }
+#endif
+
 
             return item;
         }

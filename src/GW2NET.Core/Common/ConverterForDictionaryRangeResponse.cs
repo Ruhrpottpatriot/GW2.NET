@@ -11,6 +11,7 @@ namespace GW2NET.Common
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
 
     /// <summary>Converts objects of type <see cref="IResponse{T}"/> to objects of type <see cref="T:IDictionaryRange&lt;TKey, TValue&gt;"/>.</summary>
@@ -68,17 +69,20 @@ namespace GW2NET.Common
                 range.Add(this.keySelector(item), item);
             }
 
+#if (DEBUG)
             // TODO: Refactor data contract converters so that this code can be deleted
             foreach (var localizableItem in range.Values.OfType<ILocalizable>())
             {
-                localizableItem.Culture = value.Culture;
+                Debug.Assert(Equals(localizableItem.Culture, value.Culture), "Equals(localizableItem.Culture, value.Culture)");
             }
+
 
             // TODO: Refactor data contract converters so that this code can be deleted
             foreach (var timeSensitiveItem in range.Values.OfType<ITimeSensitive>())
             {
-                timeSensitiveItem.Timestamp = value.Date;
+                Debug.Assert(timeSensitiveItem.Timestamp == value.Date, "timeSensitiveItem.Timestamp == value.Date");
             }
+#endif
 
             return range;
         }

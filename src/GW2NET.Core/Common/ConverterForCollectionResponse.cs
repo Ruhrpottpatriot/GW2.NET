@@ -11,6 +11,7 @@ namespace GW2NET.Common
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
 
     /// <summary>Converts objects of type <see cref="IResponse{T}"/> to objects of type <see cref="ICollection{T}"/>.</summary>
@@ -52,15 +53,20 @@ namespace GW2NET.Common
 
             collection.AddRange(dataContracts.Select(value1 => this.converterForDataContract.Convert(value1, state)));
 
+#if (DEBUG)
+            // TODO: Refactor data contract converters so that this code can be deleted
             foreach (var localizableItem in collection.OfType<ILocalizable>())
             {
-                localizableItem.Culture = value.Culture;
+                Debug.Assert(Equals(localizableItem.Culture, value.Culture), "Equals(localizableItem.Culture, value.Culture)");
             }
 
+
+            // TODO: Refactor data contract converters so that this code can be deleted
             foreach (var timeSensitiveItem in collection.OfType<ITimeSensitive>())
             {
-                timeSensitiveItem.Timestamp = value.Date;
+                Debug.Assert(timeSensitiveItem.Timestamp == value.Date, "timeSensitiveItem.Timestamp == value.Date");
             }
+#endif
 
             return collection;
         }
