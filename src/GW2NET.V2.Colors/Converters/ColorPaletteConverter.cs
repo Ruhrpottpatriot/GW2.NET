@@ -63,11 +63,13 @@ namespace GW2NET.V2.Colors
 
             return new ColorPalette
             {
+                ColorId = value.Id,
                 Name = value.Name,
                 BaseRgb = this.colorConverter.Convert(value.BaseRgb, state),
                 Cloth = this.colorModelConverter.Convert(value.Cloth, state),
                 Leather = this.colorModelConverter.Convert(value.Leather, state),
-                Metal = this.colorModelConverter.Convert(value.Metal, state)
+                Metal = this.colorModelConverter.Convert(value.Metal, state),
+                Culture = response.Culture
             };
         }
     }
