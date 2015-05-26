@@ -6,31 +6,43 @@
 
 namespace GW2NET.Common
 {
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Globalization;
 
-    /// <summary>Represents a request, targeting any the v2/ endpoint.</summary>
+    /// <summary>Provides the base class for requests for content with a given locale.</summary>
     public abstract class LocalizableRequest : IRequest, ILocalizable
     {
-        /// <summary>Gets or sets the locale.</summary>
+        /// <inheritdoc />
         public CultureInfo Culture { get; set; }
 
-        /// <summary>Gets the resource path.</summary>
+        /// <inheritdoc />
         public abstract string Resource { get; }
 
-        /// <summary>Gets the request parameters.</summary>
-        /// <returns>A collection of parameters.</returns>
-        public virtual IEnumerable<KeyValuePair<string, string>> GetParameters()
+        /// <inheritdoc />
+        public IEnumerable<KeyValuePair<string, string>> GetParameters()
         {
-            // Get the 'lang' parameter
-            if (this.Culture != null)
+            var lang = this.Culture;
+
+            foreach (var parameter in this.GetParameters(lang))
             {
-                yield return new KeyValuePair<string, string>("lang", this.Culture.TwoLetterISOLanguageName);
+                Debug.Assert(!string.Equals(parameter.Key, "lang", StringComparison.OrdinalIgnoreCase), "parameter.Key != lang");
+                yield return parameter;
+            }
+
+            if (lang != null)
+            {
+                yield return new KeyValuePair<string, string>("lang", lang.TwoLetterISOLanguageName);
             }
         }
 
-        /// <summary>The get path segments.</summary>
-        /// <returns>The <see cref="IEnumerable{T}"/>.</returns>
+        protected virtual IEnumerable<KeyValuePair<string, string>> GetParameters(CultureInfo culture)
+        {
+            yield break;
+        }
+
+        /// <inheritdoc />
         public virtual IEnumerable<string> GetPathSegments()
         {
             yield break;
