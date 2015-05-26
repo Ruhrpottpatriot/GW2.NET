@@ -15,7 +15,7 @@ namespace GW2NET.V2.Colors
     using GW2NET.Common;
 
     /// <summary>Converts objects of type <see cref="ColorModelDataContract"/> to objects of type <see cref="ColorModel"/>.</summary>
-    internal sealed class ColorModelConverter : IConverter<ColorModelDataContract, ColorModel>
+    public sealed class ColorModelConverter : IConverter<ColorModelDataContract, ColorModel>
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<int[], Color> converterForColor;
