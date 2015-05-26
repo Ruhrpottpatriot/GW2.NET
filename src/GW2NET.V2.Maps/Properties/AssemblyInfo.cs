@@ -10,3 +10,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("This library implements /v2/maps")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
+[assembly: InternalsVisibleTo("GW2NET.V2.Maps.Tests")]

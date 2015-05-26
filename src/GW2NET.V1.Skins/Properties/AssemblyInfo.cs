@@ -10,3 +10,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("This library implements /v1/skins.json and /v1/skin_details.json")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
+[assembly: InternalsVisibleTo("GW2NET.V1.Skins.Tests")]

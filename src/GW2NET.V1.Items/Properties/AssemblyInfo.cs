@@ -10,3 +10,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("This library implements /v1/items.json and /v1/item_details.json")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
+[assembly: InternalsVisibleTo("GW2NET.V1.Items.Tests")]

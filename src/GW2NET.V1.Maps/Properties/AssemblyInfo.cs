@@ -10,3 +10,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("This library implements /v1/map_names.json and /v1/maps.json")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
+[assembly: InternalsVisibleTo("GW2NET.V1.Maps.Tests")]

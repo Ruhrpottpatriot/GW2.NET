@@ -10,5 +10,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("This library implements /v2/files")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
-
-[assembly:InternalsVisibleTo("GW2NET.V2.Files.Tests")]
+[assembly: InternalsVisibleTo("GW2NET.V2.Files.Tests")]

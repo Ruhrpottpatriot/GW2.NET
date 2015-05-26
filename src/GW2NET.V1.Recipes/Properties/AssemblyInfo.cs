@@ -10,3 +10,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("This library implements /v1/recipes.json and /v1/recipe_details.json")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
+[assembly: InternalsVisibleTo("GW2NET.V1.Recipes.Tests")]
