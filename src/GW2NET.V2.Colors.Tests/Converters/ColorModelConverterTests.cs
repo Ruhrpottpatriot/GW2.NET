@@ -23,19 +23,15 @@
         public void CanConvert(int brightness, double contrast, int hue, double saturation, double lightness, int[] rgb)
         {
             var value = new ColorModelDataContract
-                            {
-                                Brightness = brightness,
-                                Contrast = contrast,
-                                Hue = hue,
-                                Saturation = saturation,
-                                Lightness = lightness,
-                                Rgb = rgb
-                            };
-            var state = new Response<ColorModelDataContract>
-                            {
-                                Content = value
-                            };
-            var result = this.converter.Convert(value, state);
+            {
+                Brightness = brightness,
+                Contrast = contrast,
+                Hue = hue,
+                Saturation = saturation,
+                Lightness = lightness,
+                Rgb = rgb
+            };
+            var result = this.converter.Convert(value, null);
             Assert.NotNull(result);
             Assert.Equal(brightness, result.Brightness);
             Assert.Equal(contrast, result.Contrast);

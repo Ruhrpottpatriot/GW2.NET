@@ -2,7 +2,6 @@
 {
     using System.Globalization;
 
-    using GW2NET.Colors;
     using GW2NET.Common;
 
     using Xunit;
