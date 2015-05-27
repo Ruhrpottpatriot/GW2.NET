@@ -14,9 +14,9 @@ namespace GW2NET.V2.Builds.Json
 
     [DataContract]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/build")]
-    internal sealed class BuildDataContract
+    public sealed class BuildDataContract
     {
         [DataMember(Name = "id", Order = 0)]
-        internal int BuildId { get; set; }
+        public int BuildId { get; set; }
     }
 }

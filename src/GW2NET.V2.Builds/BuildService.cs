@@ -36,7 +36,7 @@ namespace GW2NET.V2.Builds
         /// <param name="serviceClient">The service client.</param>
         /// <param name="converterForBuild">The converter for <see cref="Build"/>.</param>
         /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForBuild"/> is a null reference.</exception>
-        internal BuildService(IServiceClient serviceClient, IConverter<BuildDataContract, Build> converterForBuild)
+        public BuildService(IServiceClient serviceClient, IConverter<BuildDataContract, Build> converterForBuild)
         {
             if (serviceClient == null)
             {

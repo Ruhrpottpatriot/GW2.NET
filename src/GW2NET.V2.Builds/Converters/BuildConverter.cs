@@ -16,7 +16,7 @@ namespace GW2NET.V2.Builds.Converters
     using GW2NET.V2.Builds.Json;
 
     /// <summary>Converts objects of type <see cref="BuildDataContract"/> to objects of type <see cref="Build"/>.</summary>
-    internal sealed class BuildConverter : IConverter<BuildDataContract, Build>
+    public sealed class BuildConverter : IConverter<BuildDataContract, Build>
     {
         /// <inheritdoc />
         public Build Convert(BuildDataContract value, object state)
