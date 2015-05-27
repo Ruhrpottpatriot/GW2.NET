@@ -32,16 +32,21 @@ namespace GW2NET
         public GW2Bootstrapper(string apiKey)
         {
             // Create instances of the ServiceClients used for the repositories.
-            IServiceClient authServiceClient = this.CreateAuthorizedServiceClient(apiKey);
             IServiceClient serviceClient = this.CreateServiceClient();
             IServiceClient renderingServiceClient = this.CreateRenderingServiceClient();
 
             // Pupulate the repository properties
             this.V1 = new FactoryForV1(serviceClient);
             this.V2 = new FactoryForV2(serviceClient);
-            this.V2Authorized = new FactoryForV2Authorized(authServiceClient);
             this.Rendering = new FactoryForRendering(renderingServiceClient);
             this.Local = new FactoryForLocal();
+
+            // Authorisation specific code.
+            if (KeyUtilities.IsValid(apiKey))
+            {
+                IServiceClient authServiceClient = this.CreateAuthorizedServiceClient(apiKey);
+                this.V2Authorized = new FactoryForV2Authorized(authServiceClient);
+            }
         }
 
         /// <summary>Gets access to specialty services that do not require a network connection.</summary>
@@ -63,7 +68,14 @@ namespace GW2NET
         /// <param name="apiKey">The api key.</param>
         public void SetApiKey(string apiKey)
         {
-            this.V2Authorized = new FactoryForV2Authorized(this.CreateAuthorizedServiceClient(apiKey));
+            if (KeyUtilities.IsValid(apiKey))
+            {
+                this.V2Authorized = new FactoryForV2Authorized(this.CreateAuthorizedServiceClient(apiKey));
+            }
+            else
+            {
+                throw new ArgumentException("The api key didn't have the required format.", "apiKey");
+            }
         }
 
         /// <summary>Infrastructure. Creates and configures an instance of the default service client.</summary>

@@ -87,6 +87,7 @@
     <Compile Include="Commerce\IListingRepository.cs" />
     <Compile Include="Commerce\Listing.cs" />
     <Compile Include="Commerce\Offer.cs" />
+    <Compile Include="Common\KeyUtilities.cs" />
     <Compile Include="Common\ServiceClientAuthorized.cs" />
     <Compile Include="Common\BulkRequest.cs" />
     <Compile Include="Common\CollectionPage.cs" />
