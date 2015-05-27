@@ -12,7 +12,6 @@ namespace GW2NET.V2.Builds
 
     using GW2NET.Builds;
     using GW2NET.Common;
-    using GW2NET.V2.Builds.Converters;
     using GW2NET.V2.Builds.Json;
 
     /// <summary>Represents a service that retrieves data from the /v1/build.json interface.</summary>
@@ -24,13 +23,6 @@ namespace GW2NET.V2.Builds
 
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IConverter<BuildDataContract, Build> converterForBuild;
-
-        /// <summary> Initializes a new instance of the <see cref="BuildService"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        public BuildService(IServiceClient serviceClient)
-            : this(serviceClient, new BuildConverter())
-        {
-        }
 
         /// <summary>Initializes a new instance of the <see cref="BuildService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
