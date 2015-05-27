@@ -110,6 +110,14 @@
       <Project>{926e82ec-49d0-43f2-8214-e06408619676}</Project>
       <Name>GW2NET.V1.WorldVersusWorld.Objectives</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Accounts.Characters\GW2NET.V2.Accounts.Characters.csproj">
+      <Project>{9d582bc4-d182-4373-a8d5-04607f4094b1}</Project>
+      <Name>GW2NET.V2.Accounts.Characters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Account\GW2NET.V2.Accounts.csproj">
+      <Project>{2c83d314-3c3f-470b-a4cc-b6e3e1f48ea2}</Project>
+      <Name>GW2NET.V2.Accounts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GW2NET.V2.Builds\GW2NET.V2.Builds.csproj">
       <Project>{5f2c2514-10b0-4b5b-b227-edd406377396}</Project>
       <Name>GW2NET.V2.Builds</Name>
@@ -172,9 +180,9 @@
     </Compile>
     <Compile Include="Factories\FactoryForV1WvW.cs" />
     <Compile Include="Factories\FactoryForV2.cs" />
+    <Compile Include="Factories\FactoryForV2Authorized.cs" />
     <Compile Include="Factories\FactoryForV2Commerce.cs" />
-    <Compile Include="GW2.cs" />
-    <Compile Include="ServiceFactory.cs" />
+    <Compile Include="GW2Bootstrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), SharedAssemblyInfo.cs))\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>

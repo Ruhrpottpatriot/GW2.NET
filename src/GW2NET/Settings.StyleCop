@@ -1,5 +1,7 @@
 <StyleCopSettings Version="105">
   <GlobalSettings>
-    <StringProperty Name="Culture">en-US</StringProperty>
+    <CollectionProperty Name="RecognizedWords">
+      <Value>gzip</Value>
+    </CollectionProperty>
   </GlobalSettings>
 </StyleCopSettings>

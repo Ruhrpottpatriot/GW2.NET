@@ -47,7 +47,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\Account.cs" />
+    <Compile Include="Accounts\IAccountRepository.cs" />
     <Compile Include="Builds\Build.cs" />
+    <Compile Include="Characters\Character.cs" />
+    <Compile Include="Characters\Gender.cs" />
+    <Compile Include="Characters\ICharacterRepository.cs" />
     <Compile Include="ChatLinks\ChatLink.cs" />
     <Compile Include="ChatLinks\ChatLinkFactory.cs" />
     <Compile Include="ChatLinks\CoinChatLink.cs" />
@@ -82,6 +87,7 @@
     <Compile Include="Commerce\IListingRepository.cs" />
     <Compile Include="Commerce\Listing.cs" />
     <Compile Include="Commerce\Offer.cs" />
+    <Compile Include="Common\ServiceClientAuthorized.cs" />
     <Compile Include="Common\BulkRequest.cs" />
     <Compile Include="Common\CollectionPage.cs" />
     <Compile Include="Common\ConverterForCollectionPageResponse.cs" />

@@ -84,6 +84,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="FactoryForV2Tests.cs" />
+    <Compile Include="Foo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PaginatorTests.cs" />
   </ItemGroup>
@@ -94,6 +95,10 @@
     <ProjectReference Include="..\..\src\GW2NET.Core\GW2NET.Core.csproj">
       <Project>{05f3d999-0470-4123-8c80-af4ac2385e7c}</Project>
       <Name>GW2NET.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\GW2NET.V2.Account\GW2NET.V2.Accounts.csproj">
+      <Project>{2C83D314-3C3F-470B-A4CC-B6E3E1F48EA2}</Project>
+      <Name>GW2NET.V2.Accounts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\GW2NET.V2.Colors\GW2NET.V2.Colors.csproj">
       <Project>{D5FD21BD-9D1F-4129-B3DD-FCDC0AFD0830}</Project>

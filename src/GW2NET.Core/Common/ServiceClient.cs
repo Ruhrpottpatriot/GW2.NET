@@ -87,7 +87,7 @@ namespace GW2NET.Common
             try
             {
                 var resource = string.Format(request.Resource, request.GetPathSegments().Cast<object>().ToArray());
-                uri = BuildUri(this.baseUri, resource, formData);
+                uri = this.BuildRequestUri(this.baseUri, resource, formData);
             }
             catch (FormatException formatException)
             {
@@ -102,8 +102,8 @@ namespace GW2NET.Common
             // Handle the request
             try
             {
-                var httpWebRequest = CreateHttpWebRequest(uri);
-                using (var response = GetHttpWebResponse(httpWebRequest))
+                var httpWebRequest = this.CreateHttpWebRequest(uri);
+                using (var response = this.GetHttpWebResponse(httpWebRequest))
                 {
                     Debug.Assert(response != null, "response != null");
                     return this.OnResponse<TResult>(response);
@@ -148,7 +148,7 @@ namespace GW2NET.Common
             try
             {
                 var resource = string.Format(request.Resource, request.GetPathSegments().Cast<object>().ToArray());
-                uri = BuildUri(this.baseUri, resource, formData);
+                uri = this.BuildRequestUri(this.baseUri, resource, formData);
             }
             catch (FormatException formatException)
             {
@@ -161,8 +161,8 @@ namespace GW2NET.Common
             }
 
             // Handle the request
-            var httpWebRequest = CreateHttpWebRequest(uri);
-            return GetHttpWebResponseAsync(httpWebRequest, cancellationToken).ContinueWith(
+            var httpWebRequest = this.CreateHttpWebRequest(uri);
+            return this.GetHttpWebResponseAsync(httpWebRequest, cancellationToken).ContinueWith(
                 task =>
                 {
                     using (var response = task.Result)
@@ -190,7 +190,7 @@ namespace GW2NET.Common
         /// <param name="formData">The form data.</param>
         /// <returns>The <see cref="Uri"/>.</returns>
         /// <exception cref="FormatException">One or more query parameters violate the format for a valid URI as defined by RFC 2396.</exception>
-        private static Uri BuildUri(Uri baseUri, string resource, UrlEncodedForm formData)
+        protected virtual Uri BuildRequestUri(Uri baseUri, string resource, UrlEncodedForm formData)
         {
             Debug.Assert(baseUri != null, "baseUri != null");
             Debug.Assert(formData != null, "formData != null");
@@ -205,7 +205,7 @@ namespace GW2NET.Common
         /// <summary>Infrastructure. Creates and configures a new instance of the <see cref="HttpWebRequest"/> class.</summary>
         /// <param name="uri">The resource <see cref="Uri"/>.</param>
         /// <returns>The <see cref="HttpWebRequest"/>.</returns>
-        private static HttpWebRequest CreateHttpWebRequest(Uri uri)
+        protected virtual HttpWebRequest CreateHttpWebRequest(Uri uri)
         {
             Debug.Assert(uri != null, "uri != null");
 
@@ -228,7 +228,7 @@ namespace GW2NET.Common
         /// <param name="gzipInflator">The GZIP inflator.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        private static TResult DeserializeResponse<TResult>(HttpWebResponse response, ISerializerFactory serializerFactory, IConverter<Stream, Stream> gzipInflator)
+        private TResult DeserializeResponse<TResult>(HttpWebResponse response, ISerializerFactory serializerFactory, IConverter<Stream, Stream> gzipInflator)
         {
             Debug.Assert(response != null, "response != null");
             Debug.Assert(serializerFactory != null, "serializerFactory != null");
@@ -274,7 +274,7 @@ namespace GW2NET.Common
         /// <param name="webRequest">The <see cref="HttpWebRequest"/>.</param>
         /// <returns>The <see cref="HttpWebResponse"/>.</returns>
         /// <exception cref="ServiceException">The exception that is thrown when an API error occurs.</exception>
-        private static HttpWebResponse GetHttpWebResponse(HttpWebRequest webRequest)
+        private HttpWebResponse GetHttpWebResponse(HttpWebRequest webRequest)
         {
             Debug.Assert(webRequest != null, "webRequest != null");
 
@@ -293,7 +293,7 @@ namespace GW2NET.Common
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The <see cref="HttpWebResponse"/>.</returns>
         /// <exception cref="ServiceException">The request could not be fulfilled.</exception>
-        private static Task<HttpWebResponse> GetHttpWebResponseAsync(HttpWebRequest webRequest, CancellationToken cancellationToken)
+        private Task<HttpWebResponse> GetHttpWebResponseAsync(HttpWebRequest webRequest, CancellationToken cancellationToken)
         {
             Debug.Assert(webRequest != null, "webRequest != null");
             cancellationToken.Register(webRequest.Abort);
@@ -345,7 +345,7 @@ namespace GW2NET.Common
         /// <param name="serializerFactory">The factory class that provides the serialization engine for the response.</param>
         /// <param name="gzipInflator">The GZIP inflator that decompresses the response.</param>
         /// <exception cref="ServiceException">The exception that represents the error.</exception>
-        private static void OnError(HttpWebResponse response, ISerializerFactory serializerFactory, IConverter<Stream, Stream> gzipInflator)
+        private void OnError(HttpWebResponse response, ISerializerFactory serializerFactory, IConverter<Stream, Stream> gzipInflator)
         {
             Debug.Assert(response != null, "response != null");
             Debug.Assert(serializerFactory != null, "serializerFactory != null");
@@ -378,7 +378,7 @@ namespace GW2NET.Common
         /// <param name="gzipInflator">The GZIP inflator that decompresses the response.</param>
         /// <typeparam name="T">The type of the response content.</typeparam>
         /// <returns>The object that represents the response.</returns>
-        private static IResponse<T> OnSuccess<T>(HttpWebResponse response, ISerializerFactory serializerFactory, IConverter<Stream, Stream> gzipInflator)
+        private IResponse<T> OnSuccess<T>(HttpWebResponse response, ISerializerFactory serializerFactory, IConverter<Stream, Stream> gzipInflator)
         {
             Debug.Assert(response != null, "response != null");
             Debug.Assert(response.Headers != null, "headers != null");

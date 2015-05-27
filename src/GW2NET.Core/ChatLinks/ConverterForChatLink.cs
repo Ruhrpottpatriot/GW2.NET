@@ -18,8 +18,11 @@ namespace GW2NET.ChatLinks
     /// <summary>Converts objects of type <see cref="T:byte[]"/> to objects of type <see cref="ChatLink"/>.</summary>
     internal sealed class ConverterForChatLink : IConverter<byte[], ChatLink>
     {
+        /// <summary>Infrastructure. Holds references to the type converters.
+        /// </summary>
         private readonly IDictionary<int, IConverter<Stream, ChatLink>> typeConverters;
 
+        /// <summary>Initializes a new instance of the <see cref="ConverterForChatLink"/> class.</summary>
         public ConverterForChatLink()
         {
             this.typeConverters = GetKnownTypeConverters();
@@ -48,6 +51,9 @@ namespace GW2NET.ChatLinks
             }
         }
 
+        /// <summary>Gets the known type converter.</summary>
+        /// <returns> The <see cref="IDictionary{TKey, TValue}"/>.
+        /// </returns>
         private static IDictionary<int, IConverter<Stream, ChatLink>> GetKnownTypeConverters()
         {
             return new Dictionary<int, IConverter<Stream, ChatLink>>

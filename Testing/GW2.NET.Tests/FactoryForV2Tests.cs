@@ -1,23 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GW2NET
+﻿namespace GW2NET
 {
-    using System.Diagnostics;
-    using System.Runtime.Remoting;
-
     using NUnit.Framework;
 
     [TestFixture]
     public class FactoryForV2Tests
     {
+        private GW2Bootstrapper bootstrapper;
+
+        [SetUp]
+        public void SetUp()
+        {
+            this.bootstrapper = new GW2Bootstrapper();
+        }
+
+
         [Test]
         public void BuildTest()
         {
-            var build = GW2.V2.Builds.GetBuild();
+            var build = this.bootstrapper.V2.Builds.GetBuild();
 
             Assert.IsNotNull(build);
             Assert.That(build.BuildId, Is.GreaterThan(0));
@@ -26,7 +26,7 @@ namespace GW2NET
         [Test]
         public void ColorIdTest()
         {
-            var ids = GW2.V2.Colors.ForDefaultCulture().Discover();
+            var ids = this.bootstrapper.V2.Colors.ForDefaultCulture().Discover();
 
             Assert.IsNotNull(ids);
 
@@ -37,7 +37,7 @@ namespace GW2NET
         [Test]
         public void ColorDetailsTest()
         {
-            var color = GW2.V2.Colors.ForDefaultCulture().Find(5);
+            var color = this.bootstrapper.V2.Colors.ForDefaultCulture().Find(5);
 
             Assert.NotNull(color);
         }
