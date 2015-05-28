@@ -29,15 +29,8 @@ namespace GW2NET.V2.Skins
             }
         }
 
-        /// <summary>Gets the request parameters.</summary>
-        /// <returns>A collection of parameters.</returns>
-        public override IEnumerable<KeyValuePair<string, string>> GetParameters()
+        protected override IEnumerable<KeyValuePair<string, string>> GetParameters(string id)
         {
-            foreach (var parameter in base.GetParameters())
-            {
-                yield return parameter;
-            }
-
             var culture = this.Culture;
             if (culture != null)
             {

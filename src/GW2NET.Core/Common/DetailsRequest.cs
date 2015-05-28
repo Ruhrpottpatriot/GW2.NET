@@ -9,7 +9,9 @@
 
 namespace GW2NET.Common
 {
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
 
     /// <summary>Provides the base class for resource details requests.</summary>
     public abstract class DetailsRequest : IDetailsRequest
@@ -22,9 +24,21 @@ namespace GW2NET.Common
 
         /// <summary>Gets the request parameters.</summary>
         /// <returns>A collection of parameters.</returns>
-        public virtual IEnumerable<KeyValuePair<string, string>> GetParameters()
+        public IEnumerable<KeyValuePair<string, string>> GetParameters()
         {
-            yield return new KeyValuePair<string, string>("id", this.Identifier);
+            var id = this.Identifier;
+            foreach (var parameter in this.GetParameters(id))
+            {
+                Debug.Assert(!string.Equals(parameter.Key, "id", StringComparison.OrdinalIgnoreCase), "parameter.Key != id");
+                yield return parameter;
+            }
+
+            yield return new KeyValuePair<string, string>("id", id);
+        }
+
+        protected virtual IEnumerable<KeyValuePair<string, string>> GetParameters(string id)
+        {
+            yield break;
         }
     }
 }
