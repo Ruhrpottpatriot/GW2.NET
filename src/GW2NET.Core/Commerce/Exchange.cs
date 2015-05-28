@@ -14,13 +14,10 @@ namespace GW2NET.Commerce
     using GW2NET.Common;
 
     /// <summary>Represents the gems from/to gold exchange rate.</summary>
-    public class GemQuotation : ITimeSensitive
+    public class Exchange : ITimeSensitive
     {
         /// <summary>Gets or sets the coins per gem.</summary>
         public int CoinsPerGem { get; set; }
-
-        /// <summary>Gets or sets the identifier.</summary>
-        public string Id { get; set; }
 
         /// <summary>Gets or sets the number of gems/coins to receive.</summary>
         public long Receive { get; set; }
@@ -31,8 +28,8 @@ namespace GW2NET.Commerce
         /// <summary>Gets or sets the timestamp.</summary>
         public DateTimeOffset Timestamp { get; set; }
 
-        /// <summary>Gets a coin chat link for the amount of coins per gem.</summary>
-        public CoinChatLink GetCoinsPerGemChatLink()
+        /// <summary>Gets a chat link for the value of <see cref="CoinsPerGem"/>.</summary>
+        public CoinChatLink GetCoinChatLink()
         {
             return new CoinChatLink
             {

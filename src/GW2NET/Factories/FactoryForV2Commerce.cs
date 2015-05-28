@@ -13,6 +13,7 @@ namespace GW2NET.Factories
     using GW2NET.Commerce;
     using GW2NET.Common;
     using GW2NET.V2.Commerce.Exchange;
+    using GW2NET.V2.Commerce.Exchange.Converters;
     using GW2NET.V2.Commerce.Listings;
     using GW2NET.V2.Commerce.Prices;
 
@@ -28,11 +29,11 @@ namespace GW2NET.Factories
         }
 
         /// <summary>Gets access to the gem exchange data source.</summary>
-        public ExchangeBrokerFactory Exchange
+        public ICurrencyExchange Exchange
         {
             get
             {
-                return new ExchangeBrokerFactory(this.ServiceClient);
+                return new CurrencyExchange(this.ServiceClient, new ExchangeConverter());
             }
         }
 

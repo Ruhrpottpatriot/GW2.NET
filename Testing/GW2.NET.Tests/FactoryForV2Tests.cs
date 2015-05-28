@@ -41,5 +41,23 @@
 
             Assert.NotNull(color);
         }
+
+        [Test]
+        public void GemsExchangeTest()
+        {
+            var exchange = this.bootstrapper.V2.Commerce.Exchange.GetCoins(gems: 100);
+
+            Assert.NotNull(exchange);
+            Assert.AreEqual(exchange.Send, 100);
+        }
+
+        [Test]
+        public void CoinsExchangeTest()
+        {
+            var exchange = this.bootstrapper.V2.Commerce.Exchange.GetGems(coins: 100000);
+
+            Assert.NotNull(exchange);
+            Assert.AreEqual(exchange.Send, 100000);
+        }
     }
 }

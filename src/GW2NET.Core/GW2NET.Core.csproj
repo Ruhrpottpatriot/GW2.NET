@@ -81,9 +81,9 @@
     <Compile Include="Colors\IColorRepository.cs" />
     <Compile Include="Commerce\AggregateListing.cs" />
     <Compile Include="Commerce\AggregateOffer.cs" />
-    <Compile Include="Commerce\GemQuotation.cs" />
+    <Compile Include="Commerce\Exchange.cs" />
     <Compile Include="Commerce\IAggregateListingRepository.cs" />
-    <Compile Include="Commerce\IExchangeBroker.cs" />
+    <Compile Include="Commerce\ICurrencyExchange.cs" />
     <Compile Include="Commerce\IListingRepository.cs" />
     <Compile Include="Commerce\Listing.cs" />
     <Compile Include="Commerce\Offer.cs" />
@@ -109,7 +109,6 @@
     <Compile Include="Common\Drawing\Vector3D.cs" />
     <Compile Include="Common\ErrorResult.cs" />
     <Compile Include="Common\HttpStatusCodeExtensions.cs" />
-    <Compile Include="Common\IBroker.cs" />
     <Compile Include="Common\IBuildService.cs" />
     <Compile Include="Common\IBulkRequest.cs" />
     <Compile Include="Common\ICollectionPage.cs" />
