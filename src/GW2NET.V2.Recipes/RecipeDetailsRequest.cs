@@ -24,7 +24,7 @@ namespace GW2NET.V2.Recipes
         {
             get
             {
-                return "/v2/recipes/{0}";
+                return "/v2/recipes";
             }
         }
 

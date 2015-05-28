@@ -25,7 +25,7 @@ namespace GW2NET.V2.Continents
         {
             get
             {
-                return "/v2/continents/{0}";
+                return "/v2/continents";
             }
         }
 

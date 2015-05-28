@@ -24,7 +24,7 @@ namespace GW2NET.V2.Worlds
         {
             get
             {
-                return "/v2/worlds/{0}";
+                return "/v2/worlds";
             }
         }
 

@@ -25,7 +25,7 @@ namespace GW2NET.V2.Maps
         {
             get
             {
-                return "/v2/maps/{0}";
+                return "/v2/maps";
             }
         }
 

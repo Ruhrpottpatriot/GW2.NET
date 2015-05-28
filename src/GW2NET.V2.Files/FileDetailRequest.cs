@@ -19,7 +19,7 @@ namespace GW2NET.V2.Files
         {
             get
             {
-                return "/v2/files/{0}";
+                return "/v2/files";
             }
         }
     }

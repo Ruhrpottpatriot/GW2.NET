@@ -24,7 +24,7 @@ namespace GW2NET.V2.Items
         {
             get
             {
-                return "/v2/items/{0}";
+                return "/v2/items";
             }
         }
 

@@ -25,7 +25,7 @@ namespace GW2NET.V2.Skins
         {
             get
             {
-                return "/v2/skins/{0}";
+                return "/v2/skins";
             }
         }
 
