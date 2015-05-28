@@ -41,11 +41,5 @@ namespace GW2NET.Common
         {
             yield break;
         }
-
-        /// <inheritdoc />
-        public virtual IEnumerable<string> GetPathSegments()
-        {
-            yield break;
-        }
     }
 }

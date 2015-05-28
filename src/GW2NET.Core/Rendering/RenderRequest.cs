@@ -28,7 +28,10 @@ namespace GW2NET.Rendering
         {
             get
             {
-                return @"file/{0}/{1}.{2}";
+                var signature = this.FileSignature;
+                var id = this.FileId.ToString(NumberFormatInfo.InvariantInfo);
+                var format = this.ImageFormat;
+                return string.Format(@"file/{0}/{1}.{2}", signature, id, format);
             }
         }
 
@@ -37,18 +40,6 @@ namespace GW2NET.Rendering
         public IEnumerable<KeyValuePair<string, string>> GetParameters()
         {
             yield break;
-        }
-
-        /// <summary>Gets additional path segments for the targeted resource.</summary>
-        /// <returns>A collection of path segments.</returns>
-        public IEnumerable<string> GetPathSegments()
-        {
-            return new List<string>
-            {
-                this.FileSignature, 
-                this.FileId.ToString(NumberFormatInfo.InvariantInfo), 
-                this.ImageFormat
-            };
         }
     }
 }

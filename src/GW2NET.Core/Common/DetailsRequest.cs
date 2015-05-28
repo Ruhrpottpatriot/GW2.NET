@@ -24,14 +24,7 @@ namespace GW2NET.Common
         /// <returns>A collection of parameters.</returns>
         public virtual IEnumerable<KeyValuePair<string, string>> GetParameters()
         {
-            yield break;
-        }
-
-        /// <summary>Gets additional path segments for the targeted resource.</summary>
-        /// <returns>A collection of path segments.</returns>
-        public virtual IEnumerable<string> GetPathSegments()
-        {
-            yield return this.Identifier;
+            yield return new KeyValuePair<string, string>("id", this.Identifier);
         }
     }
 }

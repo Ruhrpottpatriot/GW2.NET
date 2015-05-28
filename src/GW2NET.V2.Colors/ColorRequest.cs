@@ -36,12 +36,5 @@ namespace GW2NET.V2.Colors
                 yield return new KeyValuePair<string, string>("lang", this.Culture.TwoLetterISOLanguageName);
             }
         }
-
-        /// <summary>The get path segments.</summary>
-        /// <returns>The <see cref="IEnumerable{T}"/>.</returns>
-        public IEnumerable<string> GetPathSegments()
-        {
-            yield break;
-        }
     }
 }

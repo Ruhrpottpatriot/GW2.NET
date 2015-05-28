@@ -48,12 +48,5 @@ namespace GW2NET.V1.Events.Json
                 yield return new KeyValuePair<string, string>("lang", this.Culture.TwoLetterISOLanguageName);
             }
         }
-
-        /// <summary>Gets additional path segments for the targeted resource.</summary>
-        /// <returns>A collection of path segments.</returns>
-        public IEnumerable<string> GetPathSegments()
-        {
-            yield break;
-        }
     }
 }

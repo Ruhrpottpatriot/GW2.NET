@@ -31,10 +31,5 @@ namespace GW2NET.V2.Commerce.Exchange
                 yield return new KeyValuePair<string, string>("quantity", quantity.Value.ToString(NumberFormatInfo.InvariantInfo));
             }
         }
-
-        public IEnumerable<string> GetPathSegments()
-        {
-            yield break;
-        }
     }
 }

@@ -46,11 +46,5 @@ namespace GW2NET.V2.Recipes
                 yield return new KeyValuePair<string, string>("output", output.Value.ToString(NumberFormatInfo.InvariantInfo));
             }
         }
-
-        /// <inheritdoc />
-        IEnumerable<string> IRequest.GetPathSegments()
-        {
-            yield break;
-        }
     }
 }

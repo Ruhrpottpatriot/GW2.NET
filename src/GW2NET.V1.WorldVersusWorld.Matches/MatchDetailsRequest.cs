@@ -37,12 +37,5 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
                 yield return new KeyValuePair<string, string>("match_id", this.MatchId);
             }
         }
-
-        /// <summary>Gets additional path segments for the targeted resource.</summary>
-        /// <returns>A collection of path segments.</returns>
-        public IEnumerable<string> GetPathSegments()
-        {
-            yield break;
-        }
     }
 }
