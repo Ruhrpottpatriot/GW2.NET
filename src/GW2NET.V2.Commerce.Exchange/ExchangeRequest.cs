@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a details request that targets the /v2/commerce/exchange interface.
+//   Provides the base class for requests that targets the /v2/commerce/exchange interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce.Exchange
@@ -13,7 +13,7 @@ namespace GW2NET.V2.Commerce.Exchange
 
     using GW2NET.Common;
 
-    /// <summary>Represents a details request that targets the /v2/commerce/exchange interface.</summary>
+    /// <summary>Provides the base class for requests that targets the /v2/commerce/exchange interface.</summary>
     public abstract class ExchangeRequest : IRequest
     {
         /// <summary>Gets or sets the quantity.</summary>
