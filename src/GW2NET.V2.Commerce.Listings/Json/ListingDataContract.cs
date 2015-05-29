@@ -6,7 +6,7 @@
 //   Defines the ListingDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Commerce.Listings
+namespace GW2NET.V2.Commerce.Listings.Json
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -14,19 +14,15 @@ namespace GW2NET.V2.Commerce.Listings
 
     [DataContract]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/commerce/listings")]
-    internal sealed class ListingDataContract
+    public sealed class ListingDataContract
     {
-        #region Properties
-
         [DataMember(Name = "buys", Order = 1)]
-        internal ICollection<ListingOfferDataContract> BuyOffers { get; set; }
+        public ICollection<ListingOfferDataContract> BuyOffers { get; set; }
 
         [DataMember(Name = "id", Order = 0)]
-        internal int Id { get; set; }
+        public int Id { get; set; }
 
         [DataMember(Name = "sells", Order = 2)]
-        internal ICollection<ListingOfferDataContract> SellOffers { get; set; }
-
-        #endregion
+        public ICollection<ListingOfferDataContract> SellOffers { get; set; }
     }
 }

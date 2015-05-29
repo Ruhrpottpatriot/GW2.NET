@@ -46,8 +46,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\ConverterForListing.cs" />
-    <Compile Include="Converters\ConverterForOffer.cs" />
+    <Compile Include="Json\ListingConverter.cs" />
+    <Compile Include="Json\OfferConverter.cs" />
     <Compile Include="Json\ListingDataContract.cs" />
     <Compile Include="Json\ListingOfferDataContract.cs" />
     <Compile Include="ListingBulkRequest.cs" />
@@ -62,6 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="GW2NET.V2.Commerce.Listings.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converters\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
