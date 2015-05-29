@@ -52,31 +52,24 @@ namespace GW2NET.V2.Commerce.Listings
 
         /// <summary>Initializes a new instance of the <see cref="ListingRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        public ListingRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ListingConverter(new ConverterForCollection<ListingOfferDataContract, Offer>(new OfferConverter())))
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="ListingRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="converterForListing">The converter for <see cref="Listing"/>.</param>
-        internal ListingRepository(IServiceClient serviceClient, IConverter<ListingDataContract, Listing> converterForListing)
+        /// <param name="listingConverter">The converter for <see cref="Listing"/>.</param>
+        public ListingRepository(IServiceClient serviceClient, IConverter<ListingDataContract, Listing> listingConverter)
         {
             if (serviceClient == null)
             {
                 throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
             }
 
-            if (converterForListing == null)
+            if (listingConverter == null)
             {
-                throw new ArgumentNullException("converterForListing", "Precondition: converterForListing != null");
+                throw new ArgumentNullException("listingConverter", "Precondition: listingConverter != null");
             }
 
             this.serviceClient = serviceClient;
             this.converterForIdentifiersResponse = new ConverterForCollectionResponse<int, int>(new ConverterAdapter<int>());
-            this.converterForResponse = new ConverterForResponse<ListingDataContract, Listing>(converterForListing);
-            this.converterForBulkResponse = new ConverterForDictionaryRangeResponse<ListingDataContract, int, Listing>(converterForListing, listing => listing.ItemId);
-            this.converterForPageResponse = new ConverterForCollectionPageResponse<ListingDataContract, Listing>(converterForListing);
+            this.converterForResponse = new ConverterForResponse<ListingDataContract, Listing>(listingConverter);
+            this.converterForBulkResponse = new ConverterForDictionaryRangeResponse<ListingDataContract, int, Listing>(listingConverter, listing => listing.ItemId);
+            this.converterForPageResponse = new ConverterForCollectionPageResponse<ListingDataContract, Listing>(listingConverter);
         }
 
         /// <inheritdoc />

@@ -12,9 +12,11 @@ namespace GW2NET.Factories
 
     using GW2NET.Commerce;
     using GW2NET.Common;
+    using GW2NET.Common.Converters;
     using GW2NET.V2.Commerce.Exchange;
     using GW2NET.V2.Commerce.Exchange.Converters;
     using GW2NET.V2.Commerce.Listings;
+    using GW2NET.V2.Commerce.Listings.DataContracts;
     using GW2NET.V2.Commerce.Prices;
 
     /// <summary>Provides access to commerce data sources based on the /v2/ api.</summary>
@@ -42,7 +44,10 @@ namespace GW2NET.Factories
         {
             get
             {
-                return new ListingRepository(this.ServiceClient);
+                var offerConverter = new OfferConverter();
+                var offerCollectionConverter = new ConverterForCollection<ListingOfferDataContract, Offer>(offerConverter);
+                var listingConverter = new ListingConverter(offerCollectionConverter);
+                return new ListingRepository(this.ServiceClient, listingConverter);
             }
         }
 
