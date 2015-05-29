@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="ListingDataContract" /> to objects of type <see cref="Listing" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Commerce.Listings.Json
+namespace GW2NET.V2.Commerce.Listings.DataContracts
 {
     using System;
     using System.Collections.Generic;

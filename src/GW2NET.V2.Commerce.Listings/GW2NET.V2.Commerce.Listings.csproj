@@ -46,10 +46,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Json\ListingConverter.cs" />
-    <Compile Include="Json\OfferConverter.cs" />
-    <Compile Include="Json\ListingDataContract.cs" />
-    <Compile Include="Json\ListingOfferDataContract.cs" />
+    <Compile Include="DataContracts\ListingConverter.cs" />
+    <Compile Include="DataContracts\OfferConverter.cs" />
+    <Compile Include="DataContracts\ListingDataContract.cs" />
+    <Compile Include="DataContracts\ListingOfferDataContract.cs" />
     <Compile Include="ListingBulkRequest.cs" />
     <Compile Include="ListingDetailsRequest.cs" />
     <Compile Include="ListingDiscoveryRequest.cs" />
@@ -63,9 +63,7 @@
   <ItemGroup>
     <None Include="GW2NET.V2.Commerce.Listings.nuspec" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

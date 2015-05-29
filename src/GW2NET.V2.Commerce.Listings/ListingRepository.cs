@@ -21,7 +21,7 @@ namespace GW2NET.V2.Commerce.Listings
     using GW2NET.Common;
     using GW2NET.Common.Converters;
     using GW2NET.Items;
-    using GW2NET.V2.Commerce.Listings.Json;
+    using GW2NET.V2.Commerce.Listings.DataContracts;
 
     /// <summary>Represents a repository that retrieves data from the /v2/commerce/listings interface. See the remarks section for important limitations regarding this implementation.</summary>
     /// <remarks>
@@ -53,7 +53,7 @@ namespace GW2NET.V2.Commerce.Listings
         /// <summary>Initializes a new instance of the <see cref="ListingRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public ListingRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ListingConverter())
+            : this(serviceClient, new ListingConverter(new ConverterForCollection<ListingOfferDataContract, Offer>(new OfferConverter())))
         {
         }
 
