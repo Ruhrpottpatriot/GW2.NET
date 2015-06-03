@@ -22,11 +22,7 @@ namespace GW2NET.V2.Items
         /// <returns>The converted value.</returns>
         public CraftingMaterial Convert(DetailsDataContract value, object state)
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException("value", "Precondition: value != null");
-            }
-
+            // MEMO: value is always null here because crafting materials never have details
             return new CraftingMaterial();
         }
     }
