@@ -23,10 +23,10 @@ using System.Runtime.InteropServices;
 // Format         ---> {major}.0
 // Valid examples ---> 1.0; 2.0; 3.0; 32767.0
 // The reasoning is that only the major version component indicates breaking changes.
-[assembly: AssemblyVersion("1.0")]
+[assembly: AssemblyVersion("1.1")]
 
 // MEMO: [AssemblyFileVersion] is used for display
-[assembly: AssemblyFileVersion("1.0")]
+[assembly: AssemblyFileVersion("1.1")]
 
 // MEMO: [AssemblyInformationalVersion] is the NuGet package version.
 // The informational version uses different versioning rules, based on semantic versioning (SemVer).
@@ -35,4 +35,4 @@ using System.Runtime.InteropServices;
 // Note: version '1.0.0' is considered greater than '1.0.0-beta'.
 // Note: version '1.0.0-beta1' is considered greater than '1.0.0-beta12' ---> lexical sort instead of numeric sort.
 // More information: http://semver.org/
-[assembly: AssemblyInformationalVersion("1.0.1")]
+[assembly: AssemblyInformationalVersion("1.1.0")]
