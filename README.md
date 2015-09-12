@@ -5,6 +5,7 @@ We aim to provide all .NET developers an easy to use, well documented library an
 Currently this wrapper is the most complete .NET implementation out there and of the writing of this readme the most complete of all. We are a bit proud of that.
 
 We also have a chat, that you can use if you have questions and think an issue is too big for it
+
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Ruhrpottpatriot/GW2.NET?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 So without further ado, happy coding and see you ingame folks!
