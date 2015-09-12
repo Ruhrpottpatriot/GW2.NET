@@ -115,7 +115,7 @@
       <Name>GW2NET.V2.Accounts.Characters</Name>
     </ProjectReference>
     <ProjectReference Include="..\GW2NET.V2.Account\GW2NET.V2.Accounts.csproj">
-      <Project>{2c83d314-3c3f-470b-a4cc-b6e3e1f48ea2}</Project>
+      <Project>{2C83D314-3C3F-470B-A4CC-B6E3E1F48EA2}</Project>
       <Name>GW2NET.V2.Accounts</Name>
     </ProjectReference>
     <ProjectReference Include="..\GW2NET.V2.Builds\GW2NET.V2.Builds.csproj">

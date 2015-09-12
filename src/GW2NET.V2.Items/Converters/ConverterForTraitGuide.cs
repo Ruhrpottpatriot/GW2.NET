@@ -8,8 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Items
 {
-    using System;
-
     using GW2NET.Common;
     using GW2NET.Items;
 
@@ -22,11 +20,7 @@ namespace GW2NET.V2.Items
         /// <returns>The converted value.</returns>
         public TraitGuide Convert(DetailsDataContract value, object state)
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException("value", "Precondition: value != null");
-            }
-
+            // MEMO: value can be null / is always null
             return new TraitGuide();
         }
     }

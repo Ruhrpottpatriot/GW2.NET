@@ -25,7 +25,7 @@ namespace GW2NET.V1.Recipes.Converters
         private readonly IConverter<ICollection<string>, CraftingDisciplines> converterForCraftingDisciplineCollection;
 
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<ICollection<IngredientDataContract>, ICollection<ItemStack>> converterForItemStackCollection;
+        private readonly IConverter<ICollection<IngredientDataContract>, ICollection<ItemQuantity>> converterForItemQuantityCollection;
 
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<ICollection<string>, RecipeFlags> converterForRecipeFlagCollection;
@@ -35,7 +35,7 @@ namespace GW2NET.V1.Recipes.Converters
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForRecipe"/> class.</summary>
         public ConverterForRecipe()
-            : this(GetKnownTypeConverters(), new ConverterForCraftingDisciplineCollection(), new ConverterForRecipeFlagCollection(), new ConverterForCollection<IngredientDataContract, ItemStack>(new ConverterForItemStack()))
+            : this(GetKnownTypeConverters(), new ConverterForCraftingDisciplineCollection(), new ConverterForRecipeFlagCollection(), new ConverterForCollection<IngredientDataContract, ItemQuantity>(new ConverterForItemQuantity()))
         {
         }
 
@@ -43,8 +43,8 @@ namespace GW2NET.V1.Recipes.Converters
         /// <param name="typeConverters">The type converters.</param>
         /// <param name="converterForCraftingDisciplineCollection">The converter for <see cref="CraftingDisciplines"/>.</param>
         /// <param name="converterForRecipeFlagCollection">The converter for <see cref="RecipeFlags"/>.</param>
-        /// <param name="converterForItemStackCollection">The converter for <see cref="T:ICollection{ItemStack}"/>.</param>
-        public ConverterForRecipe(IDictionary<string, IConverter<RecipeDataContract, Recipe>> typeConverters, IConverter<ICollection<string>, CraftingDisciplines> converterForCraftingDisciplineCollection, IConverter<ICollection<string>, RecipeFlags> converterForRecipeFlagCollection, IConverter<ICollection<IngredientDataContract>, ICollection<ItemStack>> converterForItemStackCollection)
+        /// <param name="converterForItemQuantityCollection">The converter for <see cref="T:ICollection{ItemQuantity}"/>.</param>
+        public ConverterForRecipe(IDictionary<string, IConverter<RecipeDataContract, Recipe>> typeConverters, IConverter<ICollection<string>, CraftingDisciplines> converterForCraftingDisciplineCollection, IConverter<ICollection<string>, RecipeFlags> converterForRecipeFlagCollection, IConverter<ICollection<IngredientDataContract>, ICollection<ItemQuantity>> converterForItemQuantityCollection)
         {
             if (converterForCraftingDisciplineCollection == null)
             {
@@ -56,14 +56,14 @@ namespace GW2NET.V1.Recipes.Converters
                 throw new ArgumentNullException("converterForRecipeFlagCollection", "Precondition: converterForRecipeFlagCollection != null");
             }
 
-            if (converterForItemStackCollection == null)
+            if (converterForItemQuantityCollection == null)
             {
-                throw new ArgumentNullException("converterForItemStackCollection", "Precondition: converterForItemStackCollection != null");
+                throw new ArgumentNullException("converterForItemQuantityCollection", "Precondition: converterForItemQuantityCollection != null");
             }
 
             this.converterForCraftingDisciplineCollection = converterForCraftingDisciplineCollection;
             this.converterForRecipeFlagCollection = converterForRecipeFlagCollection;
-            this.converterForItemStackCollection = converterForItemStackCollection;
+            this.converterForItemQuantityCollection = converterForItemQuantityCollection;
             this.typeConverters = typeConverters;
         }
 
@@ -134,7 +134,7 @@ namespace GW2NET.V1.Recipes.Converters
             var ingredients = value.Ingredients;
             if (ingredients != null)
             {
-                recipe.Ingredients = this.converterForItemStackCollection.Convert(ingredients, state);
+                recipe.Ingredients = this.converterForItemQuantityCollection.Convert(ingredients, state);
             }
 
             return recipe;
