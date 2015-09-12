@@ -6,6 +6,9 @@
 //   Represents a repository that retrieves data from the /v2/quaggans interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
+using GW2NET.Common.Converters;
+
 namespace GW2NET.V2.Quaggans
 {
     using System;
@@ -40,13 +43,8 @@ namespace GW2NET.V2.Quaggans
         /// <summary>Initializes a new instance of the <see cref="QuagganRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public QuagganRepository(IServiceClient serviceClient)
+            : this(serviceClient, new ConverterAdapter<ICollection<string>>(), new ConverterForQuaggan())
         {
-            if (serviceClient == null)
-            {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
-            }
-
-            this.serviceClient = serviceClient;
         }
 
         /// <summary>Initializes a new instance of the <see cref="QuagganRepository"/> class.</summary>
