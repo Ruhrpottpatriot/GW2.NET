@@ -1,4 +1,6 @@
 ## Introduction
+
+[![Join the chat at https://gitter.im/Ruhrpottpatriot/GW2.NET](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Ruhrpottpatriot/GW2.NET?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 So, what is this project all about?
 We aim to provide all .NET developers an easy to use, well documented library and tools to use in their own applications using Guild Wars 2 data. The goal is to provide the developers with an entry point to the api service, without having to piece the scattered information together for themselves. While the /V2/ nodes have made live mauch easier, there is still work to do and we take (msot) of it off your back!
 
