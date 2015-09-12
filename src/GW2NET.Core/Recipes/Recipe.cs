@@ -32,7 +32,7 @@ namespace GW2NET.Recipes
         public virtual RecipeFlags Flags { get; set; }
 
         /// <summary>Gets or sets a collection of the required ingredients.</summary>
-        public virtual ICollection<ItemStack> Ingredients { get; set; }
+        public virtual ICollection<ItemQuantity> Ingredients { get; set; }
 
         /// <summary>Gets or sets the recipe's minimum rating.</summary>
         public virtual int MinimumRating { get; set; }

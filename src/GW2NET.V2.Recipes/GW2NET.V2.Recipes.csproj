@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="Converters\ConverterForCraftingDiscipline.cs" />
     <Compile Include="Converters\ConverterForCraftingDisciplineCollection.cs" />
-    <Compile Include="Converters\ConverterForItemStack.cs" />
+    <Compile Include="Converters\ConverterForItemQuantity.cs" />
     <Compile Include="Converters\ConverterForRecipe.cs" />
     <Compile Include="Converters\ConverterForRecipeFlag.cs" />
     <Compile Include="Converters\ConverterForRecipeFlagCollection.cs" />

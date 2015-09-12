@@ -23,7 +23,7 @@ namespace GW2NET.V2.Recipes
         private readonly IConverter<ICollection<string>, CraftingDisciplines> converterForCraftingDisciplineCollection;
 
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<ICollection<IngredientDataContract>, ICollection<ItemStack>> converterForItemStackCollection;
+        private readonly IConverter<ICollection<IngredientDataContract>, ICollection<ItemQuantity>> converterForItemStackCollection;
 
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<ICollection<string>, RecipeFlags> converterForRecipeFlagCollection;
@@ -33,7 +33,7 @@ namespace GW2NET.V2.Recipes
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForRecipe"/> class.</summary>
         public ConverterForRecipe()
-            : this(GetKnownTypeConverters(), new ConverterForCraftingDisciplineCollection(), new ConverterForRecipeFlagCollection(), new ConverterForCollection<IngredientDataContract, ItemStack>(new ConverterForItemStack()))
+            : this(GetKnownTypeConverters(), new ConverterForCraftingDisciplineCollection(), new ConverterForRecipeFlagCollection(), new ConverterForCollection<IngredientDataContract, ItemQuantity>(new ConverterForItemQuantity()))
         {
         }
 
@@ -41,9 +41,9 @@ namespace GW2NET.V2.Recipes
         /// <param name="typeConverters">The type converters.</param>
         /// <param name="converterForCraftingDisciplineCollection">The converter for <see cref="CraftingDisciplines"/>.</param>
         /// <param name="converterForRecipeFlagCollection">The converter for <see cref="RecipeFlags"/>.</param>
-        /// <param name="converterForItemStackCollection">The converter for <see cref="T:ICollection{ItemStack}"/>.</param>
+        /// <param name="converterForItemStackCollection">The converter for <see cref="T:ICollection{ItemQuantity}"/>.</param>
         /// <exception cref="ArgumentNullException">The value of <paramref name="typeConverters"/> or <paramref name="converterForCraftingDisciplineCollection"/> or <paramref name="converterForRecipeFlagCollection"/> or <paramref name="converterForItemStackCollection"/> is a null reference.</exception>
-        public ConverterForRecipe(IDictionary<string, IConverter<RecipeDataContract, Recipe>> typeConverters, IConverter<ICollection<string>, CraftingDisciplines> converterForCraftingDisciplineCollection, IConverter<ICollection<string>, RecipeFlags> converterForRecipeFlagCollection, IConverter<ICollection<IngredientDataContract>, ICollection<ItemStack>> converterForItemStackCollection)
+        public ConverterForRecipe(IDictionary<string, IConverter<RecipeDataContract, Recipe>> typeConverters, IConverter<ICollection<string>, CraftingDisciplines> converterForCraftingDisciplineCollection, IConverter<ICollection<string>, RecipeFlags> converterForRecipeFlagCollection, IConverter<ICollection<IngredientDataContract>, ICollection<ItemQuantity>> converterForItemStackCollection)
         {
             if (typeConverters == null)
             {
