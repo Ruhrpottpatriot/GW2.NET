@@ -21,11 +21,7 @@ namespace GW2NET.V1.Items.Converters
         /// <inheritdoc />
         public TraitGuide Convert(ItemDataContract value)
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException("value", "Precondition: value != null");
-            }
-
+            // MEMO: value can be null / is always null
             return new TraitGuide();
         }
     }
