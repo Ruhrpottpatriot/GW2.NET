@@ -37,9 +37,6 @@ namespace GW2NET.MumbleLink
         /// <summary>Holds a reference to the shared memory block.</summary>
         private readonly MemoryMappedFile memoryMappedFile;
 
-        /// <summary>The size of the shared memory block.</summary>
-        private readonly int size;
-
         /// <summary>Indicates whether this object is disposed.</summary>
         private bool disposed;
 
