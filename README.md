@@ -117,7 +117,7 @@ So without further ado, happy coding and see you ingame folks!
 [v1-nuget-maps]:https://www.nuget.org/packages/GW2NET.V1.Maps
 [v1-nuget-worlds-badge]:https://img.shields.io/nuget/v/GW2NET.V1.Worlds.svg
 [v1-nuget-worlds]:https://www.nuget.org/packages/GW2NET.V1.Worlds
-[v1-nuget-events-badge]:https://img.shields.io/nuget/v/GW2NET.V1.Events.svg|/
+[v1-nuget-events-badge]:https://img.shields.io/nuget/v/GW2NET.V1.Events.svg
 [v1-nuget-events]:https://www.nuget.org/packages/GW2NET.V1.Events
 [v1-nuget-guilds-badge]:https://img.shields.io/nuget/v/GW2NET.V1.Guilds.svg
 [v1-nuget-guilds]:https://www.nuget.org/packages/GW2NET.V1.Guilds
