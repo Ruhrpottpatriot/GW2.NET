@@ -50,8 +50,9 @@
     <Compile Include="AccountRepository.cs" />
     <Compile Include="AccountRepositoryFactory.cs" />
     <Compile Include="Requests\AccountRequest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="$(SolutionDir)SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup />
