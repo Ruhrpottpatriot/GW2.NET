@@ -18,14 +18,14 @@ So without further ado, happy coding and see you ingame folks!
  - [Source code][source]
 
  [nuget]: https://www.nuget.org/packages/GW2NET/
- [source]: https://github.com/Ruhrpottpatriot/gw2dotnet
+ [source]: https://github.com/Ruhrpottpatriot/GW2.NET
 
 ## Troubleshooting and support
 
  - Usage or programming related question? Open an issue on the [issue tracker][tracker]
  - Found a bug or missing a feature? Feed the [issue tracker][tracker]
 
-[tracker]: https://github.com/Ruhrpottpatriot/gw2dotnet/issues
+[tracker]: https://github.com/Ruhrpottpatriot/GW2.NET/issues
 
 
 |  | Windows (x86/amd64) |
@@ -34,8 +34,12 @@ So without further ado, happy coding and see you ingame folks!
 
 [appveyor]: http://appveyor.com/
 
-[master-win-badge]: https://ci.appveyor.com/api/projects/status/jgtvrg532cera58c/branch/master?svg=true
-[master-win]: https://ci.appveyor.com/project/Ruhrpottpatriot/gw2dotnet/branch/master
+[![Build status]()]()
+
+
+
+[master-win-badge]: https://ci.appveyor.com/api/projects/status/4v736o2quhwa36yl/branch/master?svg=true
+[master-win]: https://ci.appveyor.com/project/Ruhrpottpatriot/gw2-net/branch/master
 
 ## Quick contributing guide
 
@@ -45,7 +49,7 @@ So without further ado, happy coding and see you ingame folks!
 
  More thorough information available in the [wiki][wiki].
 
- [wiki]: https://github.com/Ruhrpottpatriot/gw2dotnet/wiki
+ [wiki]: https://github.com/Ruhrpottpatriot/GW2.NET/wiki
 
 
 ## Implementation Progress
