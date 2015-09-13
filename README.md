@@ -33,11 +33,6 @@ So without further ado, happy coding and see you ingame folks!
 | **master** | [![master win][master-win-badge]][master-win] |
 
 [appveyor]: http://appveyor.com/
-
-[![Build status]()]()
-
-
-
 [master-win-badge]: https://ci.appveyor.com/api/projects/status/4v736o2quhwa36yl/branch/master?svg=true
 [master-win]: https://ci.appveyor.com/project/Ruhrpottpatriot/gw2-net/branch/master
 
