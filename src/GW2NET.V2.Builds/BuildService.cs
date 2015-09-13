@@ -56,7 +56,7 @@ namespace GW2NET.V2.Builds
                 return null;
             }
 
-            var value = this.converterForBuild.Convert(dataContract, null);
+            var value = this.converterForBuild.Convert(dataContract, response);
             if (value == null)
             {
                 return null;
