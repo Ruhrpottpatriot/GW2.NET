@@ -55,8 +55,9 @@
     <Compile Include="DataContracts\CharacterDataContract.cs" />
     <Compile Include="Converter\GenderConverter.cs" />
     <Compile Include="Converter\ProfesionConverter.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+	<Compile Include="$(SolutionDir)SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Converter\RaceConverter.cs" />
   </ItemGroup>
