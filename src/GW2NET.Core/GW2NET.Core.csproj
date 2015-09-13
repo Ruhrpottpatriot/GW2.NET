@@ -41,12 +41,6 @@
     <DocumentationFile>bin\Release\GW2NET.Core.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-    <EmbeddedResource Include="Local\DynamicEvents\Rotations.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Accounts\Account.cs" />
     <Compile Include="Accounts\IAccountRepository.cs" />
     <Compile Include="Builds\Build.cs" />
@@ -435,6 +429,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="GW2NET.Core.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Local\DynamicEvents\Rotations.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
