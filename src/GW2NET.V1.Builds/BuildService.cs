@@ -65,14 +65,7 @@ namespace GW2NET.V1.Builds
                 return null;
             }
 
-            var value = this.converterForBuild.Convert(buildDataContract, null);
-            if (value == null)
-            {
-                return null;
-            }
-
-            value.Timestamp = response.Date;
-            return value;
+            return this.converterForBuild.Convert(buildDataContract, response);
         }
 
         /// <inheritdoc />
@@ -100,14 +93,7 @@ namespace GW2NET.V1.Builds
                 return null;
             }
 
-            var value = this.converterForBuild.Convert(buildDataContract, null);
-            if (value == null)
-            {
-                return null;
-            }
-
-            value.Timestamp = response.Date;
-            return value;
+            return this.converterForBuild.Convert(buildDataContract, response);
         }
     }
 }

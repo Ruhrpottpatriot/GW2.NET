@@ -28,7 +28,7 @@ namespace GW2NET.V2.Builds.Converters
 
             if (state == null)
             {
-                throw new ArgumentNullException("state", "Precondition: state != null");
+                throw new ArgumentNullException("state", "Precondition: state is IResponse<BuildDataContract>");
             }
 
             var response = state as IResponse<BuildDataContract>;
