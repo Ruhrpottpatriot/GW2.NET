@@ -39,36 +39,36 @@
     <language>en, es, de, fr</language>
     <tags>GW2</tags>
     <dependencies>
-      <dependency id="GW2NET.Core" version="[$version$]" />
-      <dependency id="GW2NET.Compression" version="[$version$]" />
-      <dependency id="GW2NET.Newtonsoft" version="[$version$]" />
-      <dependency id="GW2NET.V1.Builds" version="[$version$]" />
-      <dependency id="GW2NET.V1.Colors" version="[$version$]" />
-      <dependency id="GW2NET.V1.Continents" version="[$version$]" />
-      <dependency id="GW2NET.V1.Events" version="[$version$]" />
-      <dependency id="GW2NET.V1.Files" version="[$version$]" />
-      <dependency id="GW2NET.V1.Floors" version="[$version$]" />
-      <dependency id="GW2NET.V1.Guilds" version="[$version$]" />
-      <dependency id="GW2NET.V1.Items" version="[$version$]" />
-      <dependency id="GW2NET.V1.Skins" version="[$version$]" />
-      <dependency id="GW2NET.V1.Recipes" version="[$version$]" />
-      <dependency id="GW2NET.V1.Maps" version="[$version$]" />
-      <dependency id="GW2NET.V1.Worlds" version="[$version$]" />
-      <dependency id="GW2NET.V1.WorldVersusWorld.Matches" version="[$version$]" />
-      <dependency id="GW2NET.V1.WorldVersusWorld.Objectives" version="[$version$]" />
-      <dependency id="GW2NET.V2.Builds" version="[$version$]" />
-      <dependency id="GW2NET.V2.Colors" version="[$version$]" />
-      <dependency id="GW2NET.V2.Commerce.Exchange" version="[$version$]" />
-      <dependency id="GW2NET.V2.Commerce.Listings" version="[$version$]" />
-      <dependency id="GW2NET.V2.Commerce.Prices" version="[$version$]" />
-      <dependency id="GW2NET.V2.Continents" version="[$version$]" />
-      <dependency id="GW2NET.V2.Files" version="[$version$]" />
-      <dependency id="GW2NET.V2.Items" version="[$version$]" />
-      <dependency id="GW2NET.V2.Maps" version="[$version$]" />
-      <dependency id="GW2NET.V2.Quaggans" version="[$version$]" />
-      <dependency id="GW2NET.V2.Recipes" version="[$version$]" />
-      <dependency id="GW2NET.V2.Skins" version="[$version$]" />
-      <dependency id="GW2NET.V2.Worlds" version="[$version$]" />
+      <dependency id="GW2NET.Core" version="[$version$,2.0)" />
+      <dependency id="GW2NET.Compression" version="[$version$,2.0)" />
+      <dependency id="GW2NET.Newtonsoft" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V1.Builds" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V1.Colors" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V1.Continents" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V1.Events" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V1.Files" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V1.Floors" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V1.Guilds" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V1.Items" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V1.Skins" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V1.Recipes" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V1.Maps" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V1.Worlds" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V1.WorldVersusWorld.Matches" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V1.WorldVersusWorld.Objectives" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V2.Builds" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V2.Colors" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V2.Commerce.Exchange" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V2.Commerce.Listings" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V2.Commerce.Prices" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V2.Continents" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V2.Files" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V2.Items" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V2.Maps" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V2.Quaggans" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V2.Recipes" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V2.Skins" version="[$version$,2.0)" />
+      <dependency id="GW2NET.V2.Worlds" version="[$version$,2.0)" />
     </dependencies>
   </metadata>
 </package>

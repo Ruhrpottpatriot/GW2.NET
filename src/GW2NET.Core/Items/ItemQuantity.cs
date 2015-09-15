@@ -24,14 +24,14 @@ namespace GW2NET.Items
         {
             get
             {
-                Debug.Assert(this.count >= 1, "this.count >= 1");
+                Debug.Assert(this.count > 0, "this.count > 0");
                 return this.count;
             }
             set
             {
                 if (value < 1)
                 {
-                    throw new ArgumentOutOfRangeException("value", value, "Precondition: value >= 1");
+                    throw new ArgumentOutOfRangeException("value", value, "Precondition: value > 0");
                 }
 
                 this.count = value;

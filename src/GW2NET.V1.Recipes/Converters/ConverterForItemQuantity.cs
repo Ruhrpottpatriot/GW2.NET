@@ -7,8 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics;
-
 namespace GW2NET.V1.Recipes.Converters
 {
     using System;
@@ -38,13 +36,9 @@ namespace GW2NET.V1.Recipes.Converters
             }
 
             int count;
-            if (int.TryParse(value.Count, out count) && count >= 1)
+            if (int.TryParse(value.Count, out count) && count > 0)
             {
                 quantity.Count = count;
-            }
-            else
-            {
-                quantity.Count = 1;
             }
 
             return quantity;

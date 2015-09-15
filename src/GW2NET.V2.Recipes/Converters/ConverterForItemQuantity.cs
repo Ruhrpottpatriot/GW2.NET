@@ -29,7 +29,7 @@ namespace GW2NET.V2.Recipes
                 ItemId = value.ItemId
             };
 
-            if (value.Count >= 1)
+            if (value.Count > 0)
             {
                 itemQuantity.Count = value.Count;
             }
