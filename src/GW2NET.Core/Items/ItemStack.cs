@@ -25,7 +25,6 @@ namespace GW2NET.Items
             get
             {
                 Debug.Assert(this.count > 0, "this.count > 0");
-                Debug.Assert(this.count < 256, "this.count < 256");
                 return this.count;
             }
 
@@ -34,11 +33,6 @@ namespace GW2NET.Items
                 if (value < 1)
                 {
                     throw new ArgumentOutOfRangeException("value", value, "Precondition: value > 0");
-                }
-
-                if (value > 255)
-                {
-                    throw new ArgumentOutOfRangeException("value", value, "Precondition: value < 256");
                 }
 
                 this.count = value;
@@ -55,17 +49,17 @@ namespace GW2NET.Items
         /// <returns>The <see cref="ChatLink"/>.</returns>
         public virtual ChatLink GetItemChatLink()
         {
+            ItemChatLink chatLink;
             var item = this.Item;
             if (item == null)
             {
-                return new ItemChatLink
-                {
-                    ItemId = this.ItemId,
-                    Quantity = this.Count
-                };
+                chatLink = new ItemChatLink { ItemId = this.ItemId };
+            }
+            else
+            {
+                chatLink = (ItemChatLink)item.GetItemChatLink();
             }
 
-            var chatLink = (ItemChatLink)item.GetItemChatLink();
             chatLink.Quantity = this.Count;
             return chatLink;
         }

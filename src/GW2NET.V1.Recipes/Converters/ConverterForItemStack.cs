@@ -36,13 +36,9 @@ namespace GW2NET.V1.Recipes.Converters
             }
 
             int count;
-            if (int.TryParse(value.Count, out count) && (count >= 1 && count <= 255))
+            if (int.TryParse(value.Count, out count) && count > 0)
             {
                 itemStack.Count = count;
-            }
-            else
-            {
-                itemStack.Count = 1;
             }
 
             return itemStack;
