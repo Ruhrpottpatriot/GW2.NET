@@ -23,7 +23,7 @@
       - Windows Phone 8.1
       - Portable Class Libraries
     </description>
-    <releaseNotes>Initial Release</releaseNotes>
+    <releaseNotes>Fixing regressions in json converters for /v1/recipe_details.json</releaseNotes>
     <copyright>GNU General Public License version 2 (GPLv2)</copyright>
     <language>en, es, de, fr</language>
     <tags>GW2</tags>
