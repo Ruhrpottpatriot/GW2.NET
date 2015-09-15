@@ -33,7 +33,7 @@ namespace GW2NET.V2.Recipes
     ///         <description><see cref="Recipe"/>: <see cref="Recipe.OutputItem"/> is always <c>null</c>. Use the value of <see cref="Recipe.OutputItemId"/> to retrieve the output item.</description>
     ///     </item>
     ///     <item>
-    ///         <description><see cref="ItemQuantity"/>: <see cref="ItemQuantity.Item"/> is always <c>null</c>. Use the value of <see cref="ItemQuantity.ItemId"/> to retrieve the ingredient item.</description>
+    ///         <description><see cref="ItemStack"/>: <see cref="ItemStack.Item"/> is always <c>null</c>. Use the value of <see cref="ItemStack.ItemId"/> to retrieve the ingredient item.</description>
     ///     </item>
     /// </list>
     /// </remarks>

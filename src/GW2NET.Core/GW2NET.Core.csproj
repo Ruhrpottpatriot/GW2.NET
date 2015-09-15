@@ -235,7 +235,7 @@
     <Compile Include="Items\ItemFlags.cs" />
     <Compile Include="Items\ItemRarity.cs" />
     <Compile Include="Items\ItemRestrictions.cs" />
-    <Compile Include="Items\ItemQuantity.cs" />
+    <Compile Include="Items\ItemStack.cs" />
     <Compile Include="Items\Miniatures\Miniature.cs" />
     <Compile Include="Items\Tools\SalvageTool.cs" />
     <Compile Include="Items\Tools\Tool.cs" />
