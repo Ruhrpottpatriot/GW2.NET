@@ -11,7 +11,7 @@ namespace GW2NET.V2.Commerce.Exchange
     using GW2NET.Common;
 
     /// <summary>Represents a discovery request that targets the /v2/commerce/exchange interface.</summary>
-    internal sealed class ExchangeDiscoveryRequest : DiscoveryRequest
+    public sealed class ExchangeDiscoveryRequest : DiscoveryRequest
     {
         /// <summary>Gets the resource path.</summary>
         public override string Resource

@@ -13,7 +13,7 @@ namespace GW2NET.V1.Skins
     using GW2NET.Common;
 
     /// <summary>Represents a request for a list of skin identifiers.</summary>
-    internal sealed class SkinDiscoveryRequest : IRequest
+    public sealed class SkinDiscoveryRequest : IRequest
     {
         /// <summary>Gets the resource path.</summary>
         public string Resource

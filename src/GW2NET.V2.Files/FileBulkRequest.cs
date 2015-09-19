@@ -12,7 +12,7 @@ namespace GW2NET.V2.Files
     using GW2NET.Common;
 
     /// <summary>Provides data for a bulk request against the v2/files endpoint.</summary>
-    internal sealed class FileBulkRequest : BulkRequest
+    public sealed class FileBulkRequest : BulkRequest
     {
         /// <summary>Gets the resource path.</summary>
         public override string Resource

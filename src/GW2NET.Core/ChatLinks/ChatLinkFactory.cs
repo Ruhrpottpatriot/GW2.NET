@@ -10,6 +10,8 @@ namespace GW2NET.ChatLinks
 {
     using System;
 
+    using GW2NET.Common.Converters;
+
     /// <summary>Factory class. Provides factory methods for creating <see cref="ChatLink"/> instances.</summary>
     public class ChatLinkFactory
     {
@@ -21,14 +23,14 @@ namespace GW2NET.ChatLinks
         {
             if (input == null)
             {
-                throw new ArgumentNullException("input", "Precondition: input != null");
+                throw new ArgumentNullException("input");
             }
 
             input = input.Trim('[', ']', '&');
-            var converterForBase64 = new ConverterForBase64();
-            var converterForChatLink = new ConverterForChatLink();
-            var bytes = converterForBase64.Convert(input, null);
-            return converterForChatLink.Convert(bytes, null);
+            var base64Converter = new Base64Converter();
+            var chatLinkConverter = new ChatLinkConverter();
+            var bytes = base64Converter.Convert(input, null);
+            return chatLinkConverter.Convert(bytes, null);
         }
 
         /// <summary>Decodes chat links of the specified type.</summary>
@@ -40,7 +42,7 @@ namespace GW2NET.ChatLinks
         {
             if (input == null)
             {
-                throw new ArgumentNullException("input", "Precondition: input != null");
+                throw new ArgumentNullException("input");
             }
 
             return this.Decode(input) as T;

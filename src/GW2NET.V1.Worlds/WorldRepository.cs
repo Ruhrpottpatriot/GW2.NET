@@ -27,37 +27,30 @@ namespace GW2NET.V1.Worlds
     /// <summary>Represents a repository that retrieves data from the /v1/world_names.json interface.</summary>
     public class WorldRepository : IWorldRepository
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<ICollection<WorldDataContract>, ICollection<World>> converterForWorldCollection;
+        
+        private readonly IConverter<ICollection<WorldDTO>, ICollection<World>> worldCollectionConverter;
 
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="WorldRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        public WorldRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterForCollection<WorldDataContract, World>(new ConverterForWorld()))
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="WorldRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="converterForWorldCollection">The converter for <see cref="World"/>.</param>
+        /// <param name="serviceClient"></param>
+        /// <param name="worldCollectionConverter">The converter for <see cref="World"/>.</param>
         /// <exception cref="ArgumentNullException"><paramref name="serviceClient"/> is <c>null</c>.</exception>
-        internal WorldRepository(IServiceClient serviceClient, IConverter<ICollection<WorldDataContract>, ICollection<World>> converterForWorldCollection)
+        public WorldRepository(IServiceClient serviceClient, IConverter<ICollection<WorldDTO>, ICollection<World>> worldCollectionConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
-            if (converterForWorldCollection == null)
+            if (worldCollectionConverter == null)
             {
-                throw new ArgumentNullException("converterForWorldCollection", "Precondition: converterForWorldCollection != null");
+                throw new ArgumentNullException("worldCollectionConverter");
             }
 
             this.serviceClient = serviceClient;
-            this.converterForWorldCollection = converterForWorldCollection;
+            this.worldCollectionConverter = worldCollectionConverter;
         }
 
         /// <inheritdoc />
@@ -95,7 +88,7 @@ namespace GW2NET.V1.Worlds
             {
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<ICollection<WorldDataContract>>(request);
+            var response = this.serviceClient.Send<ICollection<WorldDTO>>(request);
             var dataContracts = response.Content;
             if (dataContracts == null)
             {
@@ -108,7 +101,7 @@ namespace GW2NET.V1.Worlds
                 TotalCount = dataContracts.Count
             };
 
-            foreach (var world in this.converterForWorldCollection.Convert(dataContracts, null))
+            foreach (var world in this.worldCollectionConverter.Convert(dataContracts, null))
             {
                 world.Culture = request.Culture;
                 worlds.Add(world.WorldId, world);
@@ -138,7 +131,7 @@ namespace GW2NET.V1.Worlds
             {
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<WorldDTO>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, request.Culture), cancellationToken);
         }
 
@@ -203,7 +196,7 @@ namespace GW2NET.V1.Worlds
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<int, World> ConvertAsyncResponse(Task<IResponse<ICollection<WorldDataContract>>> task, CultureInfo culture)
+        private IDictionaryRange<int, World> ConvertAsyncResponse(Task<IResponse<ICollection<WorldDTO>>> task, CultureInfo culture)
         {
             Debug.Assert(task != null, "task != null");
             var response = task.Result;
@@ -219,7 +212,7 @@ namespace GW2NET.V1.Worlds
                 TotalCount = dataContracts.Count
             };
 
-            foreach (var world in this.converterForWorldCollection.Convert(dataContracts, null))
+            foreach (var world in this.worldCollectionConverter.Convert(dataContracts, null))
             {
                 world.Culture = culture;
                 worlds.Add(world.WorldId, world);

@@ -14,38 +14,33 @@ namespace GW2NET.V2.Accounts
     using System.Threading.Tasks;
     using GW2NET.Accounts;
     using GW2NET.Common;
+    using GW2NET.Common.Converters;
+    using GW2NET.V2.Accounts.Json;
 
     /// <summary>Represents a repository that retrieves data from the authorized /v2/account interface.</summary>
     public class AccountRepository : IAccountRepository
     {
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Infrastructure. Holds a reference to the response converter.
         /// </summary>
-        private readonly IConverter<IResponse<AccountDataContract>, Account> responseConverter;
+        private readonly IConverter<IResponse<AccountDTO>, Account> responseConverter;
 
         /// <summary>Initializes a new instance of the <see cref="AccountRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        public AccountRepository(IServiceClient serviceClient)
-            : this(serviceClient, new AccountConverter())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="AccountRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
+        /// <param name="serviceClient"></param>
         /// <param name="responseConverter">The response converter.</param>
-        private AccountRepository(IServiceClient serviceClient, IConverter<AccountDataContract, Account> responseConverter)
+        public AccountRepository(IServiceClient serviceClient, IConverter<AccountDTO, Account> responseConverter)
         {
             this.serviceClient = serviceClient;
-            this.responseConverter = new ConverterForResponse<AccountDataContract, Account>(responseConverter);
+            this.responseConverter = new ResponseConverter<AccountDTO, Account>(responseConverter);
         }
 
         /// <inheritdoc />
         Account IAccountRepository.GetInformation()
         {
             IRequest request = new AccountRequest();
-            IResponse<AccountDataContract> response = this.serviceClient.Send<AccountDataContract>(request);
+            IResponse<AccountDTO> response = this.serviceClient.Send<AccountDTO>(request);
             return this.responseConverter.Convert(response, null);
         }
 
@@ -59,14 +54,14 @@ namespace GW2NET.V2.Accounts
         Task<Account> IAccountRepository.GetInformationAsync(CancellationToken cancellationToken)
         {
             var request = new AccountRequest();
-            var response = this.serviceClient.SendAsync<AccountDataContract>(request, cancellationToken);
+            var response = this.serviceClient.SendAsync<AccountDTO>(request, cancellationToken);
             return response.ContinueWith<Account>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         /// <summary>Converts an asynchronous response to the type requested.</summary>
         /// <param name="task">The task to convert.</param>
         /// <returns>An <see cref="Account"/>.</returns>
-        private Account ConvertAsyncResponse(Task<IResponse<AccountDataContract>> task)
+        private Account ConvertAsyncResponse(Task<IResponse<AccountDTO>> task)
         {
             Debug.Assert(task != null, "task != null");
 

@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Maps
+namespace GW2NET.V2.Maps.Converter
 {
     using System;
 
@@ -15,14 +15,14 @@ namespace GW2NET.V2.Maps
     using GW2NET.Common.Drawing;
 
     /// <summary>Converts objects of type <see cref="T:double[]"/> to objects of type <see cref="Vector2D"/>.</summary>
-    internal sealed class Vector2DConverter : IConverter<double[], Vector2D>
+    public sealed class Vector2DConverter : IConverter<double[], Vector2D>
     {
         /// <inheritdoc />
         public Vector2D Convert(double[] value, object state)
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value", "Precondition: value != null");
+                throw new ArgumentNullException("value");
             }
 
             if (value.Length != 2)

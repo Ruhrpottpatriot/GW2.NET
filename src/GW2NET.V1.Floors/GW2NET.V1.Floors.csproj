@@ -46,35 +46,49 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\ConverterForFloor.cs" />
-    <Compile Include="Converters\ConverterForPointOfInterest.cs" />
-    <Compile Include="Converters\ConverterForRectangle.cs" />
-    <Compile Include="Converters\ConverterForRegion.cs" />
-    <Compile Include="Converters\ConverterForRegionKeyValuePair.cs" />
-    <Compile Include="Converters\ConverterForRenownTask.cs" />
-    <Compile Include="Converters\ConverterForSector.cs" />
-    <Compile Include="Converters\ConverterForSize2D.cs" />
-    <Compile Include="Converters\ConverterForSkillChallenge.cs" />
-    <Compile Include="Converters\ConverterForSubregion.cs" />
-    <Compile Include="Converters\ConverterForSubregionKeyValuePair.cs" />
-    <Compile Include="Converters\ConverterForVector2D.cs" />
+    <Compile Include="Converters\FloorConverter.cs" />
+    <Compile Include="Converters\PointOfInterestConverter.cs" />
+    <Compile Include="Converters\PointOfInterestConverters.cs">
+      <DependentUpon>PointOfInterestConverters.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Converters\RectangleConverter.cs" />
+    <Compile Include="Converters\RegionConverter.cs" />
+    <Compile Include="Converters\RegionKeyValuePairConverter.cs" />
+    <Compile Include="Converters\RenownTaskConverter.cs" />
+    <Compile Include="Converters\SectorConverter.cs" />
+    <Compile Include="Converters\Size2DConverter.cs" />
+    <Compile Include="Converters\SkillChallengeConverter.cs" />
+    <Compile Include="Converters\SubregionConverter.cs" />
+    <Compile Include="Converters\SubregionKeyValuePairConverter.cs" />
+    <Compile Include="Converters\Vector2DConverter.cs" />
     <Compile Include="FloorRepository.cs" />
-    <Compile Include="FloorRepositoryFactory.cs" />
     <Compile Include="FloorRequest.cs" />
-    <Compile Include="Json\FloorDataContract.cs" />
-    <Compile Include="Json\PointOfInterestDataContract.cs" />
-    <Compile Include="Json\RegionDataContract.cs" />
-    <Compile Include="Json\RenownTaskDataContract.cs" />
-    <Compile Include="Json\SectorDataContract.cs" />
-    <Compile Include="Json\SkillChallengeDataContract.cs" />
-    <Compile Include="Json\SubregionDataContract.cs" />
+    <Compile Include="Json\FloorDTO.cs" />
+    <Compile Include="Json\PointOfInterestDTO.cs" />
+    <Compile Include="Json\RegionDTO.cs" />
+    <Compile Include="Json\RenownTaskDTO.cs" />
+    <Compile Include="Json\SectorDTO.cs" />
+    <Compile Include="Json\SkillChallengeDTO.cs" />
+    <Compile Include="Json\SubregionDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="$(SolutionDir)SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Converters\ConverterTemplate.t4" />
     <None Include="GW2NET.V1.Floors.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Converters\PointOfInterestConverters.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PointOfInterestConverters.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

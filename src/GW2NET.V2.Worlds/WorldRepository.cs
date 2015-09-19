@@ -19,55 +19,42 @@ namespace GW2NET.V2.Worlds
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
+    using GW2NET.V2.Worlds.Json;
     using GW2NET.Worlds;
 
     /// <summary>Represents a repository that retrieves data from the /v2/worlds interface.</summary>
     public class WorldRepository : IWorldRepository
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<WorldDataContract>>, IDictionaryRange<int, World>> converterForBulkResponse;
+        
+        private readonly IConverter<IResponse<ICollection<WorldDTO>>, IDictionaryRange<int, World>> bulkResponseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<int>>, ICollection<int>> converterForIdentifiersResponse;
+        
+        private readonly IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<WorldDataContract>>, ICollectionPage<World>> converterForPageResponse;
+        
+        private readonly IConverter<IResponse<ICollection<WorldDTO>>, ICollectionPage<World>> pageResponseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<WorldDataContract>, World> converterForResponse;
+        
+        private readonly IConverter<IResponse<WorldDTO>, World> responseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="WorldRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
-        public WorldRepository(IServiceClient serviceClient)
-            : this(serviceClient, new WorldConverter())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="WorldRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="converterForWorld">The converter for <see cref="World"/>.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForWorld"/> is a null reference.</exception>
-        internal WorldRepository(IServiceClient serviceClient, IConverter<WorldDataContract, World> converterForWorld)
+        /// <param name="serviceClient"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public WorldRepository(IServiceClient serviceClient, IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter, IConverter<IResponse<WorldDTO>, World> responseConverter, IConverter<IResponse<ICollection<WorldDTO>>, IDictionaryRange<int, World>> bulkResponseConverter, IConverter<IResponse<ICollection<WorldDTO>>, ICollectionPage<World>> pageResponseConverter)
         {
             if (serviceClient == null)
             {
                 throw new ArgumentNullException("serviceClient", "Precondition failed: serviceClient != null");
             }
 
-            if (converterForWorld == null)
-            {
-                throw new ArgumentNullException("converterForWorld", "Precondition failed: converterForWorld != null");
-            }
-
             this.serviceClient = serviceClient;
-            this.converterForIdentifiersResponse = new ConverterForCollectionResponse<int, int>(new ConverterAdapter<int>());
-            this.converterForResponse = new ConverterForResponse<WorldDataContract, World>(converterForWorld);
-            this.converterForBulkResponse = new ConverterForDictionaryRangeResponse<WorldDataContract, int, World>(converterForWorld, value => value.WorldId);
-            this.converterForPageResponse = new ConverterForCollectionPageResponse<WorldDataContract, World>(converterForWorld);
+            this.identifiersResponseConverter = identifiersResponseConverter;
+            this.responseConverter = responseConverter;
+            this.bulkResponseConverter = bulkResponseConverter;
+            this.pageResponseConverter = pageResponseConverter;
         }
 
         /// <inheritdoc />
@@ -78,7 +65,7 @@ namespace GW2NET.V2.Worlds
         {
             var request = new WorldDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
-            var values = this.converterForIdentifiersResponse.Convert(response, null);
+            var values = this.identifiersResponseConverter.Convert(response, null);
             return values ?? new List<int>(0);
         }
 
@@ -106,8 +93,8 @@ namespace GW2NET.V2.Worlds
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<WorldDataContract>(request);
-            return this.converterForResponse.Convert(response, null);
+            var response = this.serviceClient.Send<WorldDTO>(request);
+            return this.responseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -118,8 +105,8 @@ namespace GW2NET.V2.Worlds
             {
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<ICollection<WorldDataContract>>(request);
-            var values = this.converterForBulkResponse.Convert(response, null);
+            var response = this.serviceClient.Send<ICollection<WorldDTO>>(request);
+            var values = this.bulkResponseConverter.Convert(response, null);
             return values ?? new DictionaryRange<int, World>(0);
         }
 
@@ -132,8 +119,8 @@ namespace GW2NET.V2.Worlds
                 Culture = self.Culture, 
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList()
             };
-            var response = this.serviceClient.Send<ICollection<WorldDataContract>>(request);
-            var values = this.converterForBulkResponse.Convert(response, null);
+            var response = this.serviceClient.Send<ICollection<WorldDTO>>(request);
+            var values = this.bulkResponseConverter.Convert(response, null);
             return values ?? new DictionaryRange<int, World>(0);
         }
 
@@ -152,7 +139,7 @@ namespace GW2NET.V2.Worlds
             {
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<WorldDTO>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, World>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -172,7 +159,7 @@ namespace GW2NET.V2.Worlds
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<WorldDTO>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, World>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -192,7 +179,7 @@ namespace GW2NET.V2.Worlds
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<WorldDataContract>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<WorldDTO>(request, cancellationToken);
             return responseTask.ContinueWith<World>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -205,8 +192,8 @@ namespace GW2NET.V2.Worlds
                 Page = pageIndex, 
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<ICollection<WorldDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response, pageIndex);
+            var response = this.serviceClient.Send<ICollection<WorldDTO>>(request);
+            var values = this.pageResponseConverter.Convert(response, pageIndex);
             return values ?? new CollectionPage<World>(0);
         }
 
@@ -220,8 +207,8 @@ namespace GW2NET.V2.Worlds
                 PageSize = pageSize, 
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<ICollection<WorldDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response, pageIndex);
+            var response = this.serviceClient.Send<ICollection<WorldDTO>>(request);
+            var values = this.pageResponseConverter.Convert(response, pageIndex);
             return values ?? new CollectionPage<World>(0);
         }
 
@@ -241,7 +228,7 @@ namespace GW2NET.V2.Worlds
                 Page = pageIndex, 
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<WorldDTO>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
@@ -262,14 +249,14 @@ namespace GW2NET.V2.Worlds
                 PageSize = pageSize, 
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken).ContinueWith<ICollectionPage<World>>(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
+            return this.serviceClient.SendAsync<ICollection<WorldDTO>>(request, cancellationToken).ContinueWith<ICollectionPage<World>>(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<int, World> ConvertAsyncResponse(Task<IResponse<ICollection<WorldDataContract>>> task)
+        private IDictionaryRange<int, World> ConvertAsyncResponse(Task<IResponse<ICollection<WorldDTO>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForBulkResponse.Convert(task.Result, null);
+            var values = this.bulkResponseConverter.Convert(task.Result, null);
             if (values == null)
             {
                 return new DictionaryRange<int, World>(0);
@@ -279,10 +266,10 @@ namespace GW2NET.V2.Worlds
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollectionPage<World> ConvertAsyncResponse(Task<IResponse<ICollection<WorldDataContract>>> task, int pageIndex)
+        private ICollectionPage<World> ConvertAsyncResponse(Task<IResponse<ICollection<WorldDTO>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForPageResponse.Convert(task.Result, pageIndex);
+            var values = this.pageResponseConverter.Convert(task.Result, pageIndex);
             return values ?? new CollectionPage<World>(0);
         }
 
@@ -290,7 +277,7 @@ namespace GW2NET.V2.Worlds
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            var ids = this.converterForIdentifiersResponse.Convert(task.Result, null);
+            var ids = this.identifiersResponseConverter.Convert(task.Result, null);
             if (ids == null)
             {
                 return new List<int>(0);
@@ -300,10 +287,10 @@ namespace GW2NET.V2.Worlds
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private World ConvertAsyncResponse(Task<IResponse<WorldDataContract>> task)
+        private World ConvertAsyncResponse(Task<IResponse<WorldDTO>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.converterForResponse.Convert(task.Result, null);
+            return this.responseConverter.Convert(task.Result, null);
         }
     }
 }

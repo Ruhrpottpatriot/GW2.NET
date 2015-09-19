@@ -13,7 +13,7 @@ namespace GW2NET.V1.Files
     using GW2NET.Common;
 
     /// <summary>Represents a request for commonly requested in-game assets. The returned information can be used with the render service to retrieve assets.</summary>
-    internal sealed class FileRequest : IRequest
+    public sealed class FileRequest : IRequest
     {
         /// <summary>Gets the resource path.</summary>
         public string Resource

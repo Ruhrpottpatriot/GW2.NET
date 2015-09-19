@@ -12,7 +12,7 @@ namespace GW2NET.Rendering
     using System.Globalization;
 
     /// <summary>Represents a request for an in-game asset.</summary>
-    internal sealed class RenderRequest : IRenderRequest
+    public sealed class RenderRequest : IRenderRequest
     {
         /// <summary>Gets or sets the file identifier.</summary>
         public int FileId { get; set; }

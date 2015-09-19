@@ -20,8 +20,8 @@
         [InlineData(100000, "Tue, 26 May 2015 18:46:01 GMT")]
         public void CanConvert(int buildId, DateTime date)
         {
-            var value = new BuildDataContract { BuildId = buildId };
-            var state = new Response<BuildDataContract>
+            var value = new BuildDTO { BuildId = buildId };
+            var state = new Response<BuildDTO>
                             {
                                 Content = value,
                                 Date = date

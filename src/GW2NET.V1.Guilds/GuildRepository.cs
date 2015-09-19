@@ -24,38 +24,30 @@ namespace GW2NET.V1.Guilds
     /// <summary>Represents a repository that retrieves data from the /v1/guild_details.json interface.</summary>
     public class GuildRepository : IGuildRepository
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<GuildDataContract, Guild> converterForGuild;
+        
+        private readonly IConverter<GuildDTO, Guild> guildConverter;
 
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="GuildRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
-        public GuildRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterForGuild())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="GuildRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="converterForGuild">The converter for <see cref="Guild"/>.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForGuild"/> is a null reference.</exception>
-        internal GuildRepository(IServiceClient serviceClient, IConverter<GuildDataContract, Guild> converterForGuild)
+        /// <param name="serviceClient"></param>
+        /// <param name="guildConverter"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public GuildRepository(IServiceClient serviceClient, IConverter<GuildDTO, Guild> guildConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
-            if (converterForGuild == null)
+            if (guildConverter == null)
             {
-                throw new ArgumentNullException("converterForGuild", "Precondition: converterForGuild != null");
+                throw new ArgumentNullException("guildConverter");
             }
 
             this.serviceClient = serviceClient;
-            this.converterForGuild = converterForGuild;
+            this.guildConverter = guildConverter;
         }
 
         /// <inheritdoc />
@@ -83,13 +75,13 @@ namespace GW2NET.V1.Guilds
             {
                 GuildId = identifier
             };
-            var response = this.serviceClient.Send<GuildDataContract>(request);
+            var response = this.serviceClient.Send<GuildDTO>(request);
             if (response.Content == null)
             {
                 return null;
             }
 
-            return this.converterForGuild.Convert(response.Content, null);
+            return this.guildConverter.Convert(response.Content, null);
         }
 
         /// <inheritdoc />
@@ -142,7 +134,7 @@ namespace GW2NET.V1.Guilds
             {
                 GuildId = identifier
             };
-            var responseTask = this.serviceClient.SendAsync<GuildDataContract>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<GuildDTO>(request, cancellationToken);
             return responseTask.ContinueWith<Guild>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -153,13 +145,13 @@ namespace GW2NET.V1.Guilds
             {
                 GuildName = name
             };
-            var response = this.serviceClient.Send<GuildDataContract>(request);
+            var response = this.serviceClient.Send<GuildDTO>(request);
             if (response.Content == null)
             {
                 return null;
             }
 
-            return this.converterForGuild.Convert(response.Content, null);
+            return this.guildConverter.Convert(response.Content, null);
         }
 
         /// <inheritdoc />
@@ -176,7 +168,7 @@ namespace GW2NET.V1.Guilds
             {
                 GuildName = name
             };
-            var responseTask = this.serviceClient.SendAsync<GuildDataContract>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<GuildDTO>(request, cancellationToken);
             return responseTask.ContinueWith<Guild>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -217,7 +209,7 @@ namespace GW2NET.V1.Guilds
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Guild ConvertAsyncResponse(Task<IResponse<GuildDataContract>> task)
+        private Guild ConvertAsyncResponse(Task<IResponse<GuildDTO>> task)
         {
             var response = task.Result;
             if (response.Content == null)
@@ -225,7 +217,7 @@ namespace GW2NET.V1.Guilds
                 return null;
             }
 
-            return this.converterForGuild.Convert(response.Content, null);
+            return this.guildConverter.Convert(response.Content, null);
         }
     }
 }

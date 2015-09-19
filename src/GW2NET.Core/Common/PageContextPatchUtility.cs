@@ -29,7 +29,7 @@ namespace GW2NET.Common
         {
             if (collection == null)
             {
-                throw new ArgumentNullException("collection", "Precondition: collection != null");
+                throw new ArgumentNullException("collection");
             }
 
             collection.PageIndex = pageIndex;

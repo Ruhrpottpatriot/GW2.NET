@@ -46,8 +46,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\ConverterForQuaggan.cs" />
-    <Compile Include="Json\QuagganDataContract.cs" />
+    <Compile Include="Converters\QuagganConverter.cs" />
+    <Compile Include="Json\QuagganDTO.cs" />
     <Compile Include="QuagganBulkRequest.cs" />
     <Compile Include="QuagganDetailsRequest.cs" />
     <Compile Include="QuagganDiscoveryRequest.cs" />

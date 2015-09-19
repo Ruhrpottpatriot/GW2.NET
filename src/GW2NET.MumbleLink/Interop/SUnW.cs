@@ -1,8 +1,10 @@
 ﻿namespace GW2NET.MumbleLink.Interop
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.InteropServices;
 
+    [CLSCompliant(false)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1307:AccessibleFieldsMustBeginWithUpperCaseLetter", 
         Justification = "Native types do not follow the same naming conventions.")]
@@ -15,8 +17,8 @@
     // ReSharper disable once InconsistentNaming
     public struct SUnW
     {
-        internal ushort s_w1;
+        public ushort s_w1;
 
-        internal ushort s_w2;
+        public ushort s_w2;
     }
 }

@@ -17,17 +17,17 @@ namespace GW2NET.Rendering
     /// <summary>Provides the default implementation of the render service.</summary>
     public class RenderService : IRenderService
     {
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="RenderService"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
+        /// <param name="serviceClient"></param>
         /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public RenderService(IServiceClient serviceClient)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
             this.serviceClient = serviceClient;

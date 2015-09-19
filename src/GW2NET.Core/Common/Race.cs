@@ -6,26 +6,30 @@
 //   Enumerates the known races.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2NET.Common
 {
     /// <summary>
-    /// Enumerates the known races.
+    ///     Enumerates the known races.
     /// </summary>
     public enum Race
     {
+        /// <summary>Indicates an unknown race.</summary>
+        Unknown = 0,
+
         /// <summary>The 'Asura' race.</summary>
-        Asura = 0,
+        Asura = 1 << 0,
 
         /// <summary>The 'Charr' race.</summary>
-        Charr = 1,
+        Charr = 1 << 1,
 
         /// <summary>The 'Human' race.</summary>
-        Human = 2,
+        Human = 1 << 2,
 
         /// <summary>The 'Norn' race.</summary>
-        Norn = 3,
+        Norn = 1 << 3,
 
         /// <summary>The 'Sylvari' race.</summary>
-        Sylvari = 4
+        Sylvari = 1 << 4
     }
 }

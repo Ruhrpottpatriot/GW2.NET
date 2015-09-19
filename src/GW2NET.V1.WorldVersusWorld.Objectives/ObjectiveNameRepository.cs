@@ -25,36 +25,29 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
     /// <summary>Represents a repository that retrieves data from the /v1/wvw/objective_names.json interface.</summary>
     public class ObjectiveNameRepository : IObjectiveNameRepository
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<ObjectiveNameDataContract, ObjectiveName> converterForObjectiveName;
+        
+        private readonly IConverter<ObjectiveNameDTO, ObjectiveName> objectiveNameConverter;
 
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="ObjectiveNameRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        public ObjectiveNameRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterForObjectiveName())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="ObjectiveNameRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="converterForObjectiveName">The converter <see cref="ObjectiveName"/>.</param>
-        internal ObjectiveNameRepository(IServiceClient serviceClient, IConverter<ObjectiveNameDataContract, ObjectiveName> converterForObjectiveName)
+        /// <param name="serviceClient"></param>
+        /// <param name="objectiveNameConverter">The converter <see cref="ObjectiveName"/>.</param>
+        public ObjectiveNameRepository(IServiceClient serviceClient, IConverter<ObjectiveNameDTO, ObjectiveName> objectiveNameConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
-            if (converterForObjectiveName == null)
+            if (objectiveNameConverter == null)
             {
-                throw new ArgumentNullException("converterForObjectiveName", "Precondition: converterForObjectiveName != null");
+                throw new ArgumentNullException("objectiveNameConverter");
             }
 
             this.serviceClient = serviceClient;
-            this.converterForObjectiveName = converterForObjectiveName;
+            this.objectiveNameConverter = objectiveNameConverter;
         }
 
         /// <inheritdoc />
@@ -92,13 +85,13 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
             {
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<ICollection<ObjectiveNameDataContract>>(request);
+            var response = this.serviceClient.Send<ICollection<ObjectiveNameDTO>>(request);
             if (response.Content == null)
             {
                 return new DictionaryRange<int, ObjectiveName>(0);
             }
 
-            var values = response.Content.Select(value => this.converterForObjectiveName.Convert(value, null)).ToList();
+            var values = response.Content.Select(value => this.objectiveNameConverter.Convert(value, null)).ToList();
             var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count)
             {
                 SubtotalCount = values.Count, 
@@ -135,7 +128,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
             {
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<ICollection<ObjectiveNameDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, ObjectiveName>>(task =>
+            return this.serviceClient.SendAsync<ICollection<ObjectiveNameDTO>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, ObjectiveName>>(task =>
             {
                 var response = task.Result;
                 if (response.Content == null)
@@ -143,7 +136,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
                     return new DictionaryRange<int, ObjectiveName>(0);
                 }
 
-                var values = response.Content.Select(value => this.converterForObjectiveName.Convert(value, null)).ToList();
+                var values = response.Content.Select(value => this.objectiveNameConverter.Convert(value, null)).ToList();
                 var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count)
                 {
                     SubtotalCount = values.Count, 

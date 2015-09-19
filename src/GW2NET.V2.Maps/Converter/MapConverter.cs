@@ -7,50 +7,55 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Maps
+namespace GW2NET.V2.Maps.Converter
 {
     using System;
 
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
     using GW2NET.Maps;
+    using GW2NET.V2.Maps.Json;
 
-    /// <summary>Converts objects of type <see cref="MapDataContract"/> to objects of type <see cref="Map"/>.</summary>
-    internal sealed class MapConverter : IConverter<MapDataContract, Map>
+    /// <summary>Converts objects of type <see cref="MapDTO"/> to objects of type <see cref="Map"/>.</summary>
+    public sealed class MapConverter : IConverter<MapDTO, Map>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<double[][], Rectangle> rectangleConverter;
 
         /// <summary>Initializes a new instance of the <see cref="MapConverter"/> class.</summary>
-        public MapConverter()
-            : this(new RectangleConverter())
+        /// <param name="rectangleConverter">The converter for <see cref="Rectangle"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="rectangleConverter"/> is a null reference.</exception>
+        public MapConverter(IConverter<double[][], Rectangle> rectangleConverter)
         {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="MapConverter"/> class.</summary>
-        /// <param name="converterForRectangle">The converter for <see cref="Rectangle"/>.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForRectangle"/> is a null reference.</exception>
-        public MapConverter(IConverter<double[][], Rectangle> converterForRectangle)
-        {
-            if (converterForRectangle == null)
+            if (rectangleConverter == null)
             {
-                throw new ArgumentNullException("converterForRectangle", "Precondition: converterForRectangle != null");
+                throw new ArgumentNullException("rectangleConverter");
             }
 
-            this.rectangleConverter = converterForRectangle;
+            this.rectangleConverter = rectangleConverter;
         }
 
         /// <inheritdoc />
-        public Map Convert(MapDataContract value, object state)
+        public Map Convert(MapDTO value, object state)
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value", "Precondition: value != null");
+                throw new ArgumentNullException("value");
+            }
+
+            if (state == null)
+            {
+                throw new ArgumentNullException("state", "Precondition: state is IResponse");
+            }
+
+            var response = state as IResponse;
+            if (response == null)
+            {
+                throw new ArgumentException("Precondition: state is IResponse", "state");
             }
 
             var map = new Map
             {
-                // ReSharper disable once PossibleNullReferenceException
+                Culture = response.Culture,
                 MapName = value.Name,
                 MinimumLevel = value.MinimumLevel,
                 MaximumLevel = value.MaximumLevel,
@@ -60,10 +65,9 @@ namespace GW2NET.V2.Maps
                 RegionName = value.RegionName,
                 ContinentId = value.ContinentId,
                 ContinentName = value.ContinentName,
-                MapId = value.Id
+                MapId = value.Id,
             };
 
-            // Set the dimensions
             var mapRectangle = value.MapRectangle;
             if (mapRectangle != null && mapRectangle.Length == 2)
             {
@@ -78,7 +82,6 @@ namespace GW2NET.V2.Maps
                 }
             }
 
-            // Set the dimensions of the continent
             var continentRectangle = value.ContinentRectangle;
             if (continentRectangle != null && continentRectangle.Length == 2)
             {
@@ -93,7 +96,6 @@ namespace GW2NET.V2.Maps
                 }
             }
 
-            // Return the map object
             return map;
         }
     }

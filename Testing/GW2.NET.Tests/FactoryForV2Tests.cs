@@ -13,7 +13,6 @@
             this.bootstrapper = new GW2Bootstrapper();
         }
 
-
         [Test]
         public void BuildTest()
         {

@@ -11,7 +11,7 @@ namespace GW2NET.V2.Quaggans
     using GW2NET.Common;
 
     /// <summary>Represents a details request that targets the /v2/quaggans interface.</summary>
-    internal sealed class QuagganDetailsRequest : DetailsRequest
+    public sealed class QuagganDetailsRequest : DetailsRequest
     {
         /// <summary>Gets or sets the resource identifier.</summary>
         public override string Identifier { get; set; }

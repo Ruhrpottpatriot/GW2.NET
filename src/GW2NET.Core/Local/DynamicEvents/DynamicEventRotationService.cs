@@ -52,7 +52,7 @@ namespace GW2NET.Local.DynamicEvents
             }
         }
 
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <summary>Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
         private static IDictionary<Guid, DynamicEventRotation> ConvertRotationCollectionContract(ICollection<RotationContract> content)
@@ -72,7 +72,7 @@ namespace GW2NET.Local.DynamicEvents
             return values;
         }
 
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <summary>Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
         private static DynamicEventRotation ConvertRotationContract(RotationContract content)
@@ -98,7 +98,7 @@ namespace GW2NET.Local.DynamicEvents
             return value;
         }
 
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <summary>Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
         private static ICollection<DateTimeOffset> ConvertShiftCollectionContract(ShiftCollectionContract content)

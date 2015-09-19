@@ -21,18 +21,18 @@ namespace GW2NET.V2.Commerce.Exchange
     {
         private readonly IServiceClient serviceClient;
 
-        private readonly IConverter<ExchangeDataContract, Exchange> exchangeConverter;
+        private readonly IConverter<ExchangeDTO, Exchange> exchangeConverter;
 
-        public CurrencyExchange(IServiceClient serviceClient, IConverter<ExchangeDataContract, Exchange> exchangeConverter)
+        public CurrencyExchange(IServiceClient serviceClient, IConverter<ExchangeDTO, Exchange> exchangeConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
             if (exchangeConverter == null)
             {
-                throw new ArgumentNullException("exchangeConverter", "Precondition: exchangeConverter != null");
+                throw new ArgumentNullException("exchangeConverter");
             }
 
             this.serviceClient = serviceClient;
@@ -46,7 +46,7 @@ namespace GW2NET.V2.Commerce.Exchange
                 Quantity = gems
             };
 
-            var response = this.serviceClient.Send<ExchangeDataContract>(request);
+            var response = this.serviceClient.Send<ExchangeDTO>(request);
             var exchange = this.exchangeConverter.Convert(response.Content, response);
 
             // Patch the quantity because it is not a property of the response object
@@ -66,7 +66,7 @@ namespace GW2NET.V2.Commerce.Exchange
                 Quantity = gems
             };
 
-            var response = await this.serviceClient.SendAsync<ExchangeDataContract>(request, cancellationToken).ConfigureAwait(false);
+            var response = await this.serviceClient.SendAsync<ExchangeDTO>(request, cancellationToken).ConfigureAwait(false);
             var exchange = this.exchangeConverter.Convert(response.Content, response);
 
             // Patch the quantity because it is not a property of the response object
@@ -82,7 +82,7 @@ namespace GW2NET.V2.Commerce.Exchange
                 Quantity = coins
             };
 
-            var response = this.serviceClient.Send<ExchangeDataContract>(request);
+            var response = this.serviceClient.Send<ExchangeDTO>(request);
             var exchange = this.exchangeConverter.Convert(response.Content, response);
 
             // Patch the quantity because it is not a property of the response object
@@ -102,7 +102,7 @@ namespace GW2NET.V2.Commerce.Exchange
             {
                 Quantity = coins
             };
-            var response = await this.serviceClient.SendAsync<ExchangeDataContract>(request, cancellationToken).ConfigureAwait(false);
+            var response = await this.serviceClient.SendAsync<ExchangeDTO>(request, cancellationToken).ConfigureAwait(false);
             var exchange = this.exchangeConverter.Convert(response.Content, response);
 
             // Patch the quantity because it is not a property of the response object

@@ -18,59 +18,64 @@ namespace GW2NET.V2.Accounts.Characters
     using GW2NET.Characters;
     using GW2NET.Common;
     using GW2NET.Common.Converters;
+    using GW2NET.V2.Accounts.Characters.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v2/characters interface.</summary>
     public sealed class CharacterRepository : ICharacterRepository
     {
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<IResponse<ICollection<string>>, ICollection<string>> identifiersResponseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<CharacterDataContract>, Character> responseConverter;
+        private readonly IConverter<IResponse<CharacterDTO>, Character> responseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<CharacterDataContract>>, IDictionaryRange<string, Character>> bulkResponseConverter;
+        private readonly IConverter<IResponse<ICollection<CharacterDTO>>, IDictionaryRange<string, Character>> bulkResponseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<CharacterDataContract>>, ICollectionPage<Character>> pageResponseConverter;
-
-        /// <summary> Initializes a new instance of the <see cref="CharacterRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        public CharacterRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterAdapter<ICollection<string>>(), new CharacterConverter())
-        {
-        }
+        private readonly IConverter<IResponse<ICollection<CharacterDTO>>, ICollectionPage<Character>> pageResponseConverter;
 
         /// <summary>Initializes a new instance of the <see cref="CharacterRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="identifierConverter">The identifier converter.</param>
-        /// <param name="characterConverter">The character converter.</param>
-        /// <exception cref="ArgumentNullException">Thrown when either of the arguments passed is null.</exception>
-        private CharacterRepository(IServiceClient serviceClient, IConverter<ICollection<string>, ICollection<string>> identifierConverter, IConverter<CharacterDataContract, Character> characterConverter)
+        /// <param name="serviceClient"></param>
+        /// <param name="identifiersResponseConverter"></param>
+        /// <param name="responseConverter"></param>
+        /// <param name="bulkResponseConverter"></param>
+        /// <param name="pageResponseConverter"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public CharacterRepository(IServiceClient serviceClient,
+            IConverter<IResponse<ICollection<string>>, ICollection<string>> identifiersResponseConverter,
+            IConverter<IResponse<CharacterDTO>, Character> responseConverter,
+            IConverter<IResponse<ICollection<CharacterDTO>>, IDictionaryRange<string, Character>> bulkResponseConverter,
+            IConverter<IResponse<ICollection<CharacterDTO>>, ICollectionPage<Character>> pageResponseConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
-            if (identifierConverter == null)
+            if (identifiersResponseConverter == null)
             {
-                throw new ArgumentNullException("identifierConverter", "Precondition: identifierConverter != null");
+                throw new ArgumentNullException("identifiersResponseConverter");
             }
 
-            if (characterConverter == null)
+            if (responseConverter == null)
             {
-                throw new ArgumentNullException("characterConverter", "Precondition: characterConverter != null");
+                throw new ArgumentNullException("responseConverter");
+            }
+
+            if (bulkResponseConverter == null)
+            {
+                throw new ArgumentNullException("bulkResponseConverter");
+            }
+
+            if (pageResponseConverter == null)
+            {
+                throw new ArgumentNullException("pageResponseConverter");
             }
 
             this.serviceClient = serviceClient;
-            this.identifiersResponseConverter = new ConverterForResponse<ICollection<string>, ICollection<string>>(identifierConverter);
-            this.responseConverter = new ConverterForResponse<CharacterDataContract, Character>(characterConverter);
-            this.bulkResponseConverter = new ConverterForDictionaryRangeResponse<CharacterDataContract, string, Character>(characterConverter, c => c.Name);
-            this.pageResponseConverter = new ConverterForCollectionPageResponse<CharacterDataContract, Character>(characterConverter);
+            this.identifiersResponseConverter = identifiersResponseConverter;
+            this.responseConverter = responseConverter;
+            this.bulkResponseConverter = bulkResponseConverter;
+            this.pageResponseConverter = pageResponseConverter;
         }
 
         /// <summary>Gets or sets the locale.</summary>
@@ -118,12 +123,12 @@ namespace GW2NET.V2.Accounts.Characters
         ICollectionPage<Character> IPaginator<Character>.FindPage(int pageIndex)
         {
             var reuqest = new CharacterPageRequest
-                          {
-                              Page = pageIndex,
-                              Culture = ((ICharacterRepository)this).Culture
-                          };
+            {
+                Page = pageIndex,
+                Culture = ((ICharacterRepository)this).Culture
+            };
 
-            var response = this.serviceClient.Send<ICollection<CharacterDataContract>>(reuqest);
+            var response = this.serviceClient.Send<ICollection<CharacterDTO>>(reuqest);
             return this.pageResponseConverter.Convert(response, pageIndex) ?? new CollectionPage<Character>(0);
         }
 
@@ -143,7 +148,7 @@ namespace GW2NET.V2.Accounts.Characters
                 Culture = ((ICharacterRepository)this).Culture
             };
 
-            var response = this.serviceClient.Send<ICollection<CharacterDataContract>>(reuqest);
+            var response = this.serviceClient.Send<ICollection<CharacterDTO>>(reuqest);
             return this.pageResponseConverter.Convert(response, pageIndex) ?? new CollectionPage<Character>(0);
         }
 
@@ -174,7 +179,7 @@ namespace GW2NET.V2.Accounts.Characters
                 Culture = ((ICharacterRepository)this).Culture
             };
 
-            var response = this.serviceClient.SendAsync<ICollection<CharacterDataContract>>(reuqest, cancellationToken);
+            var response = this.serviceClient.SendAsync<ICollection<CharacterDTO>>(reuqest, cancellationToken);
             return response.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
@@ -208,7 +213,7 @@ namespace GW2NET.V2.Accounts.Characters
                 Culture = ((ICharacterRepository)this).Culture
             };
 
-            var response = this.serviceClient.SendAsync<ICollection<CharacterDataContract>>(reuqest, cancellationToken);
+            var response = this.serviceClient.SendAsync<ICollection<CharacterDTO>>(reuqest, cancellationToken);
             return response.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
@@ -224,7 +229,7 @@ namespace GW2NET.V2.Accounts.Characters
                 Identifier = identifier,
                 Culture = ((ICharacterRepository)this).Culture
             };
-            var response = this.serviceClient.Send<CharacterDataContract>(request);
+            var response = this.serviceClient.Send<CharacterDTO>(request);
             return this.responseConverter.Convert(response, null);
         }
 
@@ -235,7 +240,7 @@ namespace GW2NET.V2.Accounts.Characters
         IDictionaryRange<string, Character> IRepository<string, Character>.FindAll()
         {
             var request = new CharacterBulkRequest { Culture = ((ICharacterRepository)this).Culture };
-            var response = this.serviceClient.Send<ICollection<CharacterDataContract>>(request);
+            var response = this.serviceClient.Send<ICollection<CharacterDTO>>(request);
             return this.bulkResponseConverter.Convert(response, null);
         }
 
@@ -249,11 +254,11 @@ namespace GW2NET.V2.Accounts.Characters
         IDictionaryRange<string, Character> IRepository<string, Character>.FindAll(ICollection<string> identifiers)
         {
             var request = new CharacterBulkRequest
-                          {
-                              Identifiers = identifiers,
-                              Culture = ((ICharacterRepository)this).Culture
-                          };
-            var response = this.serviceClient.Send<ICollection<CharacterDataContract>>(request);
+            {
+                Identifiers = identifiers,
+                Culture = ((ICharacterRepository)this).Culture
+            };
+            var response = this.serviceClient.Send<ICollection<CharacterDTO>>(request);
             return this.bulkResponseConverter.Convert(response, null);
         }
 
@@ -275,7 +280,7 @@ namespace GW2NET.V2.Accounts.Characters
         Task<IDictionaryRange<string, Character>> IRepository<string, Character>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new CharacterBulkRequest { Culture = ((ICharacterRepository)this).Culture };
-            var response = this.serviceClient.SendAsync<ICollection<CharacterDataContract>>(request, cancellationToken);
+            var response = this.serviceClient.SendAsync<ICollection<CharacterDTO>>(request, cancellationToken);
             return response.ContinueWith<IDictionaryRange<string, Character>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -303,11 +308,11 @@ namespace GW2NET.V2.Accounts.Characters
         Task<IDictionaryRange<string, Character>> IRepository<string, Character>.FindAllAsync(ICollection<string> identifiers, CancellationToken cancellationToken)
         {
             var request = new CharacterBulkRequest
-                          {
-                              Identifiers = identifiers,
-                              Culture = ((ICharacterRepository)this).Culture
-                          };
-            var response = this.serviceClient.SendAsync<ICollection<CharacterDataContract>>(request, cancellationToken);
+            {
+                Identifiers = identifiers,
+                Culture = ((ICharacterRepository)this).Culture
+            };
+            var response = this.serviceClient.SendAsync<ICollection<CharacterDTO>>(request, cancellationToken);
             return response.ContinueWith<IDictionaryRange<string, Character>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -331,11 +336,11 @@ namespace GW2NET.V2.Accounts.Characters
         Task<Character> IRepository<string, Character>.FindAsync(string identifier, CancellationToken cancellationToken)
         {
             var request = new CharacterDetailsRequest
-                          {
-                              Identifier = identifier,
-                              Culture = ((ICharacterRepository)this).Culture
-                          };
-            var response = this.serviceClient.SendAsync<CharacterDataContract>(request, cancellationToken);
+            {
+                Identifier = identifier,
+                Culture = ((ICharacterRepository)this).Culture
+            };
+            var response = this.serviceClient.SendAsync<CharacterDTO>(request, cancellationToken);
             return response.ContinueWith<Character>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -352,7 +357,7 @@ namespace GW2NET.V2.Accounts.Characters
         /// <param name="task">The task to convert.</param>
         /// <param name="pageIndex">The page index.</param>
         /// <returns>An <see cref="ICollectionPage{T}"/> of type <see cref="Character"/>.</returns>
-        private ICollectionPage<Character> ConvertAsyncResponse(Task<IResponse<ICollection<CharacterDataContract>>> task, int pageIndex)
+        private ICollectionPage<Character> ConvertAsyncResponse(Task<IResponse<ICollection<CharacterDTO>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
             return this.pageResponseConverter.Convert(task.Result, pageIndex) ?? new CollectionPage<Character>(0);
@@ -361,7 +366,7 @@ namespace GW2NET.V2.Accounts.Characters
         /// <summary>Converts the result of an asynchronous query into the appropriate return type.</summary>
         /// <param name="task">The task to convert.</param>
         /// <returns>A <see cref="IDictionaryRange{TKey, TValue}"/> with <see cref="string"/> as key and <see cref="Character"/> as value.</returns>
-        private IDictionaryRange<string, Character> ConvertAsyncResponse(Task<IResponse<ICollection<CharacterDataContract>>> task)
+        private IDictionaryRange<string, Character> ConvertAsyncResponse(Task<IResponse<ICollection<CharacterDTO>>> task)
         {
             Debug.Assert(task != null, "task != null");
             return this.bulkResponseConverter.Convert(task.Result, null) ?? new DictionaryRange<string, Character>(0);
@@ -370,7 +375,7 @@ namespace GW2NET.V2.Accounts.Characters
         /// <summary>Converts the result of an asynchronous query into the appropriate return type.</summary>
         /// <param name="task">The task to convert.</param>
         /// <returns>A <see cref="Character"/>.</returns>
-        private Character ConvertAsyncResponse(Task<IResponse<CharacterDataContract>> task)
+        private Character ConvertAsyncResponse(Task<IResponse<CharacterDTO>> task)
         {
             Debug.Assert(task != null, "task != null");
             return this.responseConverter.Convert(task.Result, null);

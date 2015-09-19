@@ -11,7 +11,7 @@ namespace GW2NET.V2.Recipes
     using GW2NET.Common;
 
     /// <summary>Represents a discovery request that targets the /v2/recipes interface.</summary>
-    internal sealed class RecipeDiscoveryRequest : DiscoveryRequest
+    public sealed class RecipeDiscoveryRequest : DiscoveryRequest
     {
         /// <summary>Gets the resource path.</summary>
         public override string Resource

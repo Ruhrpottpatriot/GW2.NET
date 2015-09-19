@@ -50,13 +50,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Requests\MapBulkRequest.cs" />
+    <Compile Include="MapBulkRequest.cs" />
     <Compile Include="Converter\MapConverter.cs" />
-    <Compile Include="DataContracts\MapDataContract.cs" />
-    <Compile Include="Requests\MapDetailsRequest.cs" />
-    <Compile Include="Requests\MapDiscoveryRequest.cs" />
-    <Compile Include="Requests\MapPageRequest.cs" />
-    <Compile Include="MapsRepositoryFactory.cs" />
+    <Compile Include="Json\MapDTO.cs" />
+    <Compile Include="MapDetailsRequest.cs" />
+    <Compile Include="MapDiscoveryRequest.cs" />
+    <Compile Include="MapPageRequest.cs" />
     <Compile Include="MapRepository.cs" />
     <Compile Include="Converter\RectangleConverter.cs" />
     <Compile Include="Converter\Vector2DConverter.cs" />

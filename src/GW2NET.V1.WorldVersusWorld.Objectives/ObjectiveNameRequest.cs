@@ -14,7 +14,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
     using GW2NET.Common;
 
     /// <summary>Represents a request for a list of objectives and their localized name.</summary>
-    internal sealed class ObjectiveNameRequest : IRequest, ILocalizable
+    public sealed class ObjectiveNameRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }

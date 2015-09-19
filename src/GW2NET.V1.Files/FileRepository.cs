@@ -24,38 +24,30 @@ namespace GW2NET.V1.Files
     /// <summary>Represents a repository that retrieves data from the /v1/files.json interface.</summary>
     public class FileRepository : IFileRepository
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<FileDataContract, Asset> converterForAsset;
+        
+        private readonly IConverter<FileDTO, Asset> assetConverter;
 
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="FileRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
-        public FileRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterForAsset())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="FileRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="converterForAsset">The converter for <see cref="Asset"/>.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForAsset"/> is a null reference.</exception>
-        internal FileRepository(IServiceClient serviceClient, IConverter<FileDataContract, Asset> converterForAsset)
+        /// <param name="serviceClient"></param>
+        /// <param name="assetConverter"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public FileRepository(IServiceClient serviceClient, IConverter<FileDTO, Asset> assetConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
-            if (converterForAsset == null)
+            if (assetConverter == null)
             {
-                throw new ArgumentNullException("converterForAsset", "Precondition: converterForAsset != null");
+                throw new ArgumentNullException("assetConverter");
             }
 
             this.serviceClient = serviceClient;
-            this.converterForAsset = converterForAsset;
+            this.assetConverter = assetConverter;
         }
 
         /// <inheritdoc />
@@ -86,7 +78,7 @@ namespace GW2NET.V1.Files
         IDictionaryRange<string, Asset> IRepository<string, Asset>.FindAll()
         {
             var request = new FileRequest();
-            var response = this.serviceClient.Send<IDictionary<string, FileDataContract>>(request);
+            var response = this.serviceClient.Send<IDictionary<string, FileDTO>>(request);
             var content = response.Content;
             if (content == null)
             {
@@ -100,7 +92,7 @@ namespace GW2NET.V1.Files
             };
             foreach (var kvp in content)
             {
-                var value = this.converterForAsset.Convert(kvp.Value, null);
+                var value = this.assetConverter.Convert(kvp.Value, null);
                 if (value == null)
                 {
                     continue;
@@ -130,7 +122,7 @@ namespace GW2NET.V1.Files
         Task<IDictionaryRange<string, Asset>> IRepository<string, Asset>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new FileRequest();
-            var responseTask = this.serviceClient.SendAsync<IDictionary<string, FileDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<IDictionary<string, FileDTO>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<string, Asset>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -195,7 +187,7 @@ namespace GW2NET.V1.Files
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<string, Asset> ConvertAsyncResponse(Task<IResponse<IDictionary<string, FileDataContract>>> task)
+        private IDictionaryRange<string, Asset> ConvertAsyncResponse(Task<IResponse<IDictionary<string, FileDTO>>> task)
         {
             var response = task.Result;
             var content = response.Content;
@@ -211,7 +203,7 @@ namespace GW2NET.V1.Files
             };
             foreach (var kvp in content)
             {
-                var value = this.converterForAsset.Convert(kvp.Value, null);
+                var value = this.assetConverter.Convert(kvp.Value, null);
                 if (value == null)
                 {
                     continue;

@@ -16,6 +16,8 @@ namespace GW2NET
     using GW2NET.Common.Serializers;
     using GW2NET.Compression;
     using GW2NET.Factories;
+    using GW2NET.Factories.V1;
+    using GW2NET.Factories.V2;
 
     /// <summary>Provides access to Guild Wars 2 data sources and services.</summary>
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Naming is intended.")]
@@ -78,7 +80,7 @@ namespace GW2NET
             }
         }
 
-        /// <summary>Infrastructure. Creates and configures an instance of the default service client.</summary>
+        /// <summary>Creates and configures an instance of the default service client.</summary>
         /// <returns>The <see cref="IServiceClient"/>.</returns>
         private IServiceClient CreateRenderingServiceClient()
         {
@@ -89,7 +91,7 @@ namespace GW2NET
             return new ServiceClient(baseUri, imageSerializerFactory, jsonSerializerFactory, gzipInflator);
         }
 
-        /// <summary>Infrastructure. Creates and configures an instance of the default service client.</summary>
+        /// <summary>Creates and configures an instance of the default service client.</summary>
         /// <returns>The <see cref="IServiceClient"/>.</returns>
         private IServiceClient CreateServiceClient()
         {
@@ -99,7 +101,7 @@ namespace GW2NET
             return new ServiceClient(baseUri, jsonSerializerFactory, jsonSerializerFactory, gzipInflator);
         }
 
-        /// <summary>Infrastructure. Creates and configures an instance of an authorized service client.</summary>
+        /// <summary>Creates and configures an instance of an authorized service client.</summary>
         /// <param name="apiKey">The api key grating access to the authorized area.</param>
         /// <returns>The <see cref="IServiceClient"/>.</returns>
         private IServiceClient CreateAuthorizedServiceClient(string apiKey)

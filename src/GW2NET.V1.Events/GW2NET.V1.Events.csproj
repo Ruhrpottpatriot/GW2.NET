@@ -46,36 +46,49 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\ConverterForCylinderLocation.cs" />
-    <Compile Include="Converters\ConverterForDynamicEvent.cs" />
-    <Compile Include="Converters\ConverterForDynamicEventCollection.cs" />
-    <Compile Include="Converters\ConverterForDynamicEventFlag.cs" />
-    <Compile Include="Converters\ConverterForDynamicEventFlagCollection.cs" />
-    <Compile Include="Converters\ConverterForDynamicEventName.cs" />
-    <Compile Include="Converters\ConverterForLocation.cs" />
-    <Compile Include="Converters\ConverterForPolygonLocation.cs" />
-    <Compile Include="Converters\ConverterForSphereLocation.cs" />
-    <Compile Include="Converters\ConverterForVector2D.cs" />
-    <Compile Include="Converters\ConverterForVector3D.cs" />
+    <Compile Include="Converters\CylinderLocationConverter.cs" />
+    <Compile Include="Converters\DynamicEventConverter.cs" />
+    <Compile Include="Converters\DynamicEventCollectionConverter.cs" />
+    <Compile Include="Converters\DynamicEventFlagConverter.cs" />
+    <Compile Include="Converters\DynamicEventFlagCollectionConverter.cs" />
+    <Compile Include="Converters\DynamicEventNameConverter.cs" />
+    <Compile Include="Converters\LocationConverter.cs" />
+    <Compile Include="Converters\PolygonLocationConverter.cs" />
+    <Compile Include="Converters\SphereLocationConverter.cs" />
+    <Compile Include="Converters\Vector2DConverter.cs" />
+    <Compile Include="Converters\Vector3DConverter.cs" />
+    <Compile Include="Converters\LocationConverters.cs">
+      <DependentUpon>LocationConverters.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="DynamicEventNameRequest.cs" />
     <Compile Include="EventNameRepository.cs" />
-    <Compile Include="EventNameRepositoryFactory.cs" />
     <Compile Include="EventRepository.cs" />
-    <Compile Include="EventRepositoryFactory.cs" />
     <Compile Include="Json\DynamicEventDetailsRequest.cs" />
-    <Compile Include="Json\EventCollectionDataContract.cs" />
-    <Compile Include="Json\EventDataContract.cs" />
-    <Compile Include="Json\EventNameDataContract.cs" />
-    <Compile Include="Json\EventStateCollectionDataContract.cs" />
-    <Compile Include="Json\EventStateDataContract.cs" />
-    <Compile Include="Json\LocationDataContract.cs" />
+    <Compile Include="Json\EventCollectionDTO.cs" />
+    <Compile Include="Json\EventDTO.cs" />
+    <Compile Include="Json\EventNameDTO.cs" />
+    <Compile Include="Json\EventStateCollectionDTO.cs" />
+    <Compile Include="Json\EventStateDTO.cs" />
+    <Compile Include="Json\LocationDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="$(SolutionDir)SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Converters\ConverterTemplate.t4" />
     <None Include="GW2NET.V1.Events.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Converters\LocationConverters.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LocationConverters.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

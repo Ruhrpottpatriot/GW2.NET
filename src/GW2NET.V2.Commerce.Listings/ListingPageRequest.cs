@@ -11,7 +11,7 @@ namespace GW2NET.V2.Commerce.Listings
     using GW2NET.Common;
 
     /// <summary>Represents a page request that targets the /v2/commerce/listings interface.</summary>
-    internal sealed class ListingPageRequest : PageRequest
+    public sealed class ListingPageRequest : PageRequest
     {
         /// <summary>Gets the resource path.</summary>
         public override string Resource

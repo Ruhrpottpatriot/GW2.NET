@@ -46,23 +46,29 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\ConverterForBlueBorderlands.cs" />
-    <Compile Include="Converters\ConverterForCompetitiveMap.cs" />
-    <Compile Include="Converters\ConverterForEternalBattlegrounds.cs" />
-    <Compile Include="Converters\ConverterForGreenBorderlands.cs" />
-    <Compile Include="Converters\ConverterForMapBonus.cs" />
-    <Compile Include="Converters\ConverterForMatch.cs" />
-    <Compile Include="Converters\ConverterForMatchup.cs" />
-    <Compile Include="Converters\ConverterForObjective.cs" />
-    <Compile Include="Converters\ConverterForRedBorderlands.cs" />
-    <Compile Include="Converters\ConverterForScoreboard.cs" />
-    <Compile Include="Converters\ConverterForTeamColor.cs" />
-    <Compile Include="Json\CompetitiveMapDataContract.cs" />
-    <Compile Include="Json\MapBonusDataContract.cs" />
-    <Compile Include="Json\MatchDataContract.cs" />
-    <Compile Include="Json\MatchupCollectionDataContract.cs" />
-    <Compile Include="Json\MatchupDataContract.cs" />
-    <Compile Include="Json\ObjectiveDataContract.cs" />
+    <Compile Include="Converters\CompetitiveMapConverter.cs" />
+    <Compile Include="Converters\MapBonusConverters.cs">
+      <DependentUpon>MapBonusConverters.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Converters\MapBonusConverter.cs" />
+    <Compile Include="Converters\MatchConverter.cs" />
+    <Compile Include="Converters\MatchupConverter.cs" />
+    <Compile Include="Converters\ObjectiveConverter.cs" />
+    <Compile Include="Converters\ScoreboardConverter.cs" />
+    <Compile Include="Converters\TeamColorConverter.cs" />
+    <Compile Include="Converters\CompetitiveMapConverters.cs">
+      <DependentUpon>CompetitiveMapConverters.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Json\CompetitiveMapDTO.cs" />
+    <Compile Include="Json\MapBonusDTO.cs" />
+    <Compile Include="Json\MatchDTO.cs" />
+    <Compile Include="Json\MatchupCollectionDTO.cs" />
+    <Compile Include="Json\MatchupDTO.cs" />
+    <Compile Include="Json\ObjectiveDTO.cs" />
     <Compile Include="MatchDetailsRequest.cs" />
     <Compile Include="MatchDiscoveryRequest.cs" />
     <Compile Include="MatchRepository.cs" />
@@ -72,7 +78,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Converters\ConverterTemplate.t4" />
     <None Include="GW2NET.V1.WorldVersusWorld.Matches.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Converters\MapBonusConverters.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MapBonusConverters.cs</LastGenOutput>
+    </Content>
+    <Content Include="Converters\CompetitiveMapConverters.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CompetitiveMapConverters.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

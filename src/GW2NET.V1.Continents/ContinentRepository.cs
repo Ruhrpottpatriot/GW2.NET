@@ -7,9 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.V1.Continents.Converters;
-using GW2NET.V1.Continents.Json;
-
 namespace GW2NET.V1.Continents
 {
     using System;
@@ -20,42 +17,35 @@ namespace GW2NET.V1.Continents
 
     using GW2NET.Common;
     using GW2NET.Maps;
+    using GW2NET.V1.Continents.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/continents.json interface.</summary>
     public class ContinentRepository : IContinentRepository
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<ContinentCollectionDataContract, ICollection<Continent>> converterForContinentCollection;
+        
+        private readonly IConverter<ContinentCollectionDTO, ICollection<Continent>> continentCollectionConverter;
 
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="ContinentRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
-        public ContinentRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterForContinentCollection())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="ContinentRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="converterForContinentCollection">The converter for <see cref="ICollection{Continent}"/>.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForContinentCollection"/> is a null reference.</exception>
-        internal ContinentRepository(IServiceClient serviceClient, IConverter<ContinentCollectionDataContract, ICollection<Continent>> converterForContinentCollection)
+        /// <param name="serviceClient"></param>
+        /// <param name="continentCollectionConverter"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public ContinentRepository(IServiceClient serviceClient, IConverter<ContinentCollectionDTO, ICollection<Continent>> continentCollectionConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
-            if (converterForContinentCollection == null)
+            if (continentCollectionConverter == null)
             {
-                throw new ArgumentNullException("converterForContinentCollection", "Precondition: converterForContinentCollection != null");
+                throw new ArgumentNullException("continentCollectionConverter");
             }
 
             this.serviceClient = serviceClient;
-            this.converterForContinentCollection = converterForContinentCollection;
+            this.continentCollectionConverter = continentCollectionConverter;
         }
 
         /// <inheritdoc />
@@ -93,13 +83,13 @@ namespace GW2NET.V1.Continents
             {
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<ContinentCollectionDataContract>(request);
+            var response = this.serviceClient.Send<ContinentCollectionDTO>(request);
             if (response.Content == null || response.Content.Continents == null)
             {
                 return new DictionaryRange<int, Continent>(0);
             }
 
-            var values = this.converterForContinentCollection.Convert(response.Content, null);
+            var values = this.continentCollectionConverter.Convert(response.Content, null);
             var continents = new DictionaryRange<int, Continent>(values.Count)
             {
                 SubtotalCount = values.Count,
@@ -135,7 +125,7 @@ namespace GW2NET.V1.Continents
             {
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<ContinentCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Continent>>(
+            return this.serviceClient.SendAsync<ContinentCollectionDTO>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Continent>>(
                 task =>
                 {
                     var response = task.Result;
@@ -144,7 +134,7 @@ namespace GW2NET.V1.Continents
                         return new DictionaryRange<int, Continent>(0);
                     }
 
-                    var values = this.converterForContinentCollection.Convert(response.Content, null);
+                    var values = this.continentCollectionConverter.Convert(response.Content, null);
                     var continents = new DictionaryRange<int, Continent>(values.Count)
                     {
                         SubtotalCount = values.Count,

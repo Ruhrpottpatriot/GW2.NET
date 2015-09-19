@@ -19,63 +19,61 @@ namespace GW2NET.V2.Continents
     using System.Threading.Tasks;
 
     using GW2NET.Common;
-    using GW2NET.Common.Converters;
     using GW2NET.Maps;
+    using GW2NET.V2.Continents.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v2/continents interface.</summary>
     public sealed class ContinentRepository : IContinentRepository
     {
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<ContinentDataContract>>, ICollectionPage<Continent>> pageResponseConverter;
+        private readonly IConverter<IResponse<ICollection<ContinentDTO>>, ICollectionPage<Continent>> pageResponseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ContinentDataContract>, Continent> responseConverter;
+        private readonly IConverter<IResponse<ContinentDTO>, Continent> responseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<ContinentDataContract>>, IDictionaryRange<int, Continent>> bulkResponseConverter;
+        private readonly IConverter<IResponse<ICollection<ContinentDTO>>, IDictionaryRange<int, Continent>> bulkResponseConverter;
 
         /// <summary>Initializes a new instance of the <see cref="ContinentRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
-        public ContinentRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterAdapter<ICollection<int>>(), new ContinentConverter())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="ContinentRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="identifiersConverter">The identifiers converter.</param>
-        /// <param name="continentConverter">The continent converter.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="identifiersConverter"/> or <paramref name="continentConverter"/> is a null reference.</exception>
-        internal ContinentRepository(IServiceClient serviceClient, IConverter<ICollection<int>, ICollection<int>> identifiersConverter, IConverter<ContinentDataContract, Continent> continentConverter)
+        /// <param name="serviceClient"></param>
+        /// <param name="identifiersConverter"></param>
+        /// <param name="responseConverter"></param>
+        /// <param name="bulkResponseConverter"></param>
+        /// <param name="pageResponseConverter"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public ContinentRepository(IServiceClient serviceClient, IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersConverter, IConverter<IResponse<ContinentDTO>, Continent> responseConverter, IConverter<IResponse<ICollection<ContinentDTO>>, IDictionaryRange<int, Continent>> bulkResponseConverter, IConverter<IResponse<ICollection<ContinentDTO>>, ICollectionPage<Continent>> pageResponseConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
             if (identifiersConverter == null)
             {
-                throw new ArgumentNullException("identifiersConverter", "Precondition: identifiersConverter != null");
+                throw new ArgumentNullException("identifiersConverter");
             }
 
-            if (continentConverter == null)
+            if (responseConverter == null)
             {
-                throw new ArgumentNullException("continentConverter", "Precondition: continentConverter != null");
+                throw new ArgumentNullException("responseConverter");
             }
-            
-            this.serviceClient = serviceClient;
 
-            this.identifiersConverter = new ConverterForResponse<ICollection<int>, ICollection<int>>(identifiersConverter);
-            this.responseConverter = new ConverterForResponse<ContinentDataContract, Continent>(continentConverter);
-            this.pageResponseConverter = new ConverterForCollectionPageResponse<ContinentDataContract, Continent>(continentConverter);
-            this.bulkResponseConverter = new ConverterForDictionaryRangeResponse<ContinentDataContract, int, Continent>(continentConverter, cont => cont.ContinentId);
+            if (bulkResponseConverter == null)
+            {
+                throw new ArgumentNullException("bulkResponseConverter");
+            }
+
+            if (pageResponseConverter == null)
+            {
+                throw new ArgumentNullException("pageResponseConverter");
+            }
+
+            this.serviceClient = serviceClient;
+            this.identifiersConverter = identifiersConverter;
+            this.responseConverter = responseConverter;
+            this.pageResponseConverter = pageResponseConverter;
+            this.bulkResponseConverter = bulkResponseConverter;
         }
 
         /// <summary>Gets or sets the locale.</summary>
@@ -111,7 +109,7 @@ namespace GW2NET.V2.Continents
                 Page = pageIndex,
                 Culture = ((ILocalizable)this).Culture
             };
-            var response = this.serviceClient.Send<ICollection<ContinentDataContract>>(request);
+            var response = this.serviceClient.Send<ICollection<ContinentDTO>>(request);
             var values = this.pageResponseConverter.Convert(response, pageIndex);
             return values ?? new CollectionPage<Continent>(0);
         }
@@ -125,7 +123,7 @@ namespace GW2NET.V2.Continents
                 PageSize = pageSize,
                 Culture = ((ILocalizable)this).Culture
             };
-            var response = this.serviceClient.Send<ICollection<ContinentDataContract>>(request);
+            var response = this.serviceClient.Send<ICollection<ContinentDTO>>(request);
             var values = this.pageResponseConverter.Convert(response, pageIndex);
             return values ?? new CollectionPage<Continent>(0);
         }
@@ -144,7 +142,7 @@ namespace GW2NET.V2.Continents
                 Page = pageIndex,
                 Culture = ((ILocalizable)this).Culture
             };
-            var response = this.serviceClient.SendAsync<ICollection<ContinentDataContract>>(request, cancellationToken);
+            var response = this.serviceClient.SendAsync<ICollection<ContinentDTO>>(request, cancellationToken);
             return response.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
@@ -163,7 +161,7 @@ namespace GW2NET.V2.Continents
                 PageSize = pageSize,
                 Culture = ((ILocalizable)this).Culture
             };
-            var response = this.serviceClient.SendAsync<ICollection<ContinentDataContract>>(request, cancellationToken);
+            var response = this.serviceClient.SendAsync<ICollection<ContinentDTO>>(request, cancellationToken);
             return response.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
@@ -175,7 +173,7 @@ namespace GW2NET.V2.Continents
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
                 Culture = ((ILocalizable)this).Culture
             };
-            var response = this.serviceClient.Send<ContinentDataContract>(request);
+            var response = this.serviceClient.Send<ContinentDTO>(request);
             return this.responseConverter.Convert(response, null);
         }
 
@@ -183,7 +181,7 @@ namespace GW2NET.V2.Continents
         IDictionaryRange<int, Continent> IRepository<int, Continent>.FindAll()
         {
             var request = new ContinentBulkRequest { Culture = ((ILocalizable)this).Culture };
-            var response = this.serviceClient.Send<ICollection<ContinentDataContract>>(request);
+            var response = this.serviceClient.Send<ICollection<ContinentDTO>>(request);
             return this.bulkResponseConverter.Convert(response, null);
         }
 
@@ -195,7 +193,7 @@ namespace GW2NET.V2.Continents
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
                 Culture = ((ILocalizable)this).Culture
             };
-            var response = this.serviceClient.Send<ICollection<ContinentDataContract>>(request);
+            var response = this.serviceClient.Send<ICollection<ContinentDTO>>(request);
             return this.bulkResponseConverter.Convert(response, null);
         }
 
@@ -212,7 +210,7 @@ namespace GW2NET.V2.Continents
             {
                 Culture = ((ILocalizable)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<ContinentDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<ContinentDTO>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, Continent>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -230,7 +228,7 @@ namespace GW2NET.V2.Continents
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
                 Culture = ((ILocalizable)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<ContinentDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<ContinentDTO>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, Continent>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -248,12 +246,12 @@ namespace GW2NET.V2.Continents
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
                 Culture = ((ILocalizable)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ContinentDataContract>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ContinentDTO>(request, cancellationToken);
             return responseTask.ContinueWith<Continent>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<int, Continent> ConvertAsyncResponse(Task<IResponse<ICollection<ContinentDataContract>>> task)
+        private IDictionaryRange<int, Continent> ConvertAsyncResponse(Task<IResponse<ICollection<ContinentDTO>>> task)
         {
             Debug.Assert(task != null, "task != null");
             var values = this.bulkResponseConverter.Convert(task.Result, null);
@@ -266,7 +264,7 @@ namespace GW2NET.V2.Continents
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollectionPage<Continent> ConvertAsyncResponse(Task<IResponse<ICollection<ContinentDataContract>>> task, int pageIndex)
+        private ICollectionPage<Continent> ConvertAsyncResponse(Task<IResponse<ICollection<ContinentDTO>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
             var values = this.pageResponseConverter.Convert(task.Result, pageIndex);
@@ -287,7 +285,7 @@ namespace GW2NET.V2.Continents
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Continent ConvertAsyncResponse(Task<IResponse<ContinentDataContract>> task)
+        private Continent ConvertAsyncResponse(Task<IResponse<ContinentDTO>> task)
         {
             Debug.Assert(task != null, "task != null");
             return this.responseConverter.Convert(task.Result, null);

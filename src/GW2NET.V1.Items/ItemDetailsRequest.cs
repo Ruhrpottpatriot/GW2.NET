@@ -14,7 +14,7 @@ namespace GW2NET.V1.Items
     using GW2NET.Common;
 
     /// <summary>Represents a request for details regarding a specific item.</summary>
-    internal sealed class ItemDetailsRequest : IRequest, ILocalizable
+    public sealed class ItemDetailsRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }

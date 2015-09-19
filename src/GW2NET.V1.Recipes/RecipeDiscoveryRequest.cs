@@ -13,7 +13,7 @@ namespace GW2NET.V1.Recipes
     using GW2NET.Common;
 
     /// <summary>Represents a request for a list of all discovered recipes.</summary>
-    internal sealed class RecipeDiscoveryRequest : IRequest
+    public sealed class RecipeDiscoveryRequest : IRequest
     {
         /// <summary>Gets the resource path.</summary>
         public string Resource

@@ -51,10 +51,10 @@
     <Compile Include="AggregateListingDiscoveryRequest.cs" />
     <Compile Include="AggregateListingPageRequest.cs" />
     <Compile Include="AggregateListingRepository.cs" />
-    <Compile Include="Converters\ConverterForAggregateListing.cs" />
-    <Compile Include="Converters\ConverterForAggregateOffer.cs" />
-    <Compile Include="Json\AggregateListingDataContract.cs" />
-    <Compile Include="Json\AggregateOfferDataContract.cs" />
+    <Compile Include="Converters\AggregateListingConverter.cs" />
+    <Compile Include="Converters\AggregateOfferConverter.cs" />
+    <Compile Include="Json\AggregateListingDTO.cs" />
+    <Compile Include="Json\AggregateOfferDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="$(SolutionDir)SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>

@@ -7,13 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.V1.Builds.Converters;
 using GW2NET.V1.Builds.Json;
 
 namespace GW2NET.V1.Builds
 {
     using System;
-    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading;
     using System.Threading.Tasks;
@@ -25,47 +23,44 @@ namespace GW2NET.V1.Builds
     /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
     public class BuildService : IBuildService
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<BuildDataContract, Build> converterForBuild;
+        
+        private readonly IConverter<BuildDTO, Build> buildConverter;
 
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="BuildService"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
-        public BuildService(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterForBuild())
+        /// <param name="serviceClient"></param>
+        /// <param name="buildConverter">An object that can convert <see cref="BuildDTO"/> to <see cref="Build"/>.</param>
+        /// <exception cref="ArgumentNullException">This constructor does not accept null as a valid argument.</exception>
+        public BuildService(IServiceClient serviceClient, IConverter<BuildDTO, Build> buildConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
-        }
 
-        /// <summary>Initializes a new instance of the <see cref="BuildService"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="converterForBuild">The converter for <see cref="Build"/>.</param>
-        internal BuildService(IServiceClient serviceClient, IConverter<BuildDataContract, Build> converterForBuild)
-        {
-            Debug.Assert(serviceClient != null, "serviceClient != null");
-            Debug.Assert(converterForBuild != null, "converterForBuild != null");
+            if (buildConverter == null)
+            {
+                throw new ArgumentNullException("buildConverter");
+            }
+
             this.serviceClient = serviceClient;
-            this.converterForBuild = converterForBuild;
+            this.buildConverter = buildConverter;
         }
 
         /// <inheritdoc />
         Build IBuildService.GetBuild()
         {
             var request = new BuildRequest();
-            var response = this.serviceClient.Send<BuildDataContract>(request);
-            var buildDataContract = response.Content;
-            if (buildDataContract == null)
+            var response = this.serviceClient.Send<BuildDTO>(request);
+            var buildDTO = response.Content;
+            if (buildDTO == null)
             {
                 return null;
             }
 
-            return this.converterForBuild.Convert(buildDataContract, response);
+            return this.buildConverter.Convert(buildDTO, response);
         }
 
         /// <inheritdoc />
@@ -79,21 +74,21 @@ namespace GW2NET.V1.Builds
         Task<Build> IBuildService.GetBuildAsync(CancellationToken cancellationToken)
         {
             var request = new BuildRequest();
-            var responseTask = this.serviceClient.SendAsync<BuildDataContract>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<BuildDTO>(request, cancellationToken);
             return responseTask.ContinueWith<Build>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Build ConvertAsyncResponse(Task<IResponse<BuildDataContract>> task)
+        private Build ConvertAsyncResponse(Task<IResponse<BuildDTO>> task)
         {
             var response = task.Result;
-            var buildDataContract = response.Content;
-            if (buildDataContract == null)
+            var buildDTO = response.Content;
+            if (buildDTO == null)
             {
                 return null;
             }
 
-            return this.converterForBuild.Convert(buildDataContract, response);
+            return this.buildConverter.Convert(buildDTO, response);
         }
     }
 }

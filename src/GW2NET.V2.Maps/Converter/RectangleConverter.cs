@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Maps
+namespace GW2NET.V2.Maps.Converter
 {
     using System;
 
@@ -15,16 +15,9 @@ namespace GW2NET.V2.Maps
     using GW2NET.Common.Drawing;
 
     /// <summary>Converts objects of type <see cref="T:double[][]"/> to objects of type <see cref="Rectangle"/>.</summary>
-    internal sealed class RectangleConverter : IConverter<double[][], Rectangle>
+    public sealed class RectangleConverter : IConverter<double[][], Rectangle>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<double[], Vector2D> vectorConverter;
-
-        /// <summary>Initializes a new instance of the <see cref="RectangleConverter"/> class.</summary>
-        public RectangleConverter()
-            : this(new Vector2DConverter())
-        {
-        }
 
         /// <summary>Initializes a new instance of the <see cref="RectangleConverter"/> class.</summary>
         /// <param name="vectorConverter">The vector converter.</param>
@@ -33,7 +26,7 @@ namespace GW2NET.V2.Maps
         {
             if (vectorConverter == null)
             {
-                throw new ArgumentNullException("vectorConverter", "Precondition: vectorConverter != null");
+                throw new ArgumentNullException("vectorConverter");
             }
 
             this.vectorConverter = vectorConverter;
@@ -44,7 +37,7 @@ namespace GW2NET.V2.Maps
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value", "Precondition: value != null");
+                throw new ArgumentNullException("value");
             }
 
             if (value.Length != 2)

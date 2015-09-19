@@ -14,7 +14,7 @@ namespace GW2NET.V1.Worlds
     using GW2NET.Common;
 
     /// <summary>Represents a request for a list of worlds and their localized name.</summary>
-    internal sealed class WorldNameRequest : IRequest, ILocalizable
+    public sealed class WorldNameRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }

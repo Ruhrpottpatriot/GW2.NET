@@ -11,7 +11,7 @@ namespace GW2NET.V2.Items
     using GW2NET.Common;
 
     /// <summary>Represents a discovery request that targets the /v2/items interface.</summary>
-    internal sealed class ItemDiscoveryRequest : DiscoveryRequest
+    public sealed class ItemDiscoveryRequest : DiscoveryRequest
     {
         /// <summary>Gets the resource path.</summary>
         public override string Resource

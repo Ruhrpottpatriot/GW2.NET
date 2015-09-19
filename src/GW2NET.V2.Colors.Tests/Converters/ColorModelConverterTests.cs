@@ -23,7 +23,7 @@
         [InlineData(5, 1.05469, 38, 0.101563, 1.36719, new[] { 96, 91, 83 })]
         public void CanConvert(int brightness, double contrast, int hue, double saturation, double lightness, int[] rgb)
         {
-            var value = new ColorModelDataContract
+            var value = new ColorModelDTO
             {
                 Brightness = brightness,
                 Contrast = contrast,

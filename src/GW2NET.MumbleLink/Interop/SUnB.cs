@@ -15,12 +15,12 @@ namespace GW2NET.MumbleLink.Interop
     // ReSharper disable once InconsistentNaming
     public struct SUnB
     {
-        internal byte s_b1;
+        public byte s_b1;
 
-        internal byte s_b2;
+        public byte s_b2;
 
-        internal byte s_b3;
+        public byte s_b3;
 
-        internal byte s_b4;
+        public byte s_b4;
     }
 }

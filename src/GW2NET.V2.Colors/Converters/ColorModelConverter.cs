@@ -15,30 +15,30 @@ namespace GW2NET.V2.Colors.Converters
     using GW2NET.Common;
     using GW2NET.V2.Colors.Json;
 
-    /// <summary>Converts objects of type <see cref="ColorModelDataContract"/> to objects of type <see cref="ColorModel"/>.</summary>
-    public sealed class ColorModelConverter : IConverter<ColorModelDataContract, ColorModel>
+    /// <summary>Converts objects of type <see cref="ColorModelDTO"/> to objects of type <see cref="ColorModel"/>.</summary>
+    public sealed class ColorModelConverter : IConverter<ColorModelDTO, ColorModel>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<int[], Color> converterForColor;
+        
+        private readonly IConverter<int[], Color> colorConverter;
 
         /// <summary>Initializes a new instance of the <see cref="ColorModelConverter"/> class.</summary>
-        /// <param name="converterForColor">The converter for <see cref="Color"/>.</param>
-        public ColorModelConverter(IConverter<int[], Color> converterForColor)
+        /// <param name="colorConverter">The converter for <see cref="Color"/>.</param>
+        public ColorModelConverter(IConverter<int[], Color> colorConverter)
         {
-            if (converterForColor == null)
+            if (colorConverter == null)
             {
-                throw new ArgumentNullException("converterForColor", "Precondition: converterForColor != null");
+                throw new ArgumentNullException("colorConverter");
             }
 
-            this.converterForColor = converterForColor;
+            this.colorConverter = colorConverter;
         }
 
         /// <inheritdoc />
-        public ColorModel Convert(ColorModelDataContract value, object state)
+        public ColorModel Convert(ColorModelDTO value, object state)
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value", "Precondition: value != null");
+                throw new ArgumentNullException("value");
             }
 
             var colorModel = new ColorModel
@@ -52,7 +52,7 @@ namespace GW2NET.V2.Colors.Converters
             var rgb = value.Rgb;
             if (rgb != null && rgb.Length == 3)
             {
-                colorModel.Rgb = this.converterForColor.Convert(rgb, state);
+                colorModel.Rgb = this.colorConverter.Convert(rgb, value);
             }
 
             return colorModel;

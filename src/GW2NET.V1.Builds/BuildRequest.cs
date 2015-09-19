@@ -13,7 +13,7 @@ namespace GW2NET.V1.Builds
     using GW2NET.Common;
 
     /// <summary>Represents a request for the current build identifier of the game.</summary>
-    internal sealed class BuildRequest : IRequest
+    public sealed class BuildRequest : IRequest
     {
         /// <summary>Gets the resource path.</summary>
         public string Resource

@@ -14,7 +14,7 @@ using GW2NET.Common;
 namespace GW2NET.V1.Events
 {
     /// <summary>Represents a request for a list of events and their localized name.</summary>
-    internal sealed class DynamicEventNameRequest : IRequest, ILocalizable
+    public sealed class DynamicEventNameRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }

@@ -11,7 +11,7 @@ namespace GW2NET.V2.Quaggans
     using GW2NET.Common;
 
     /// <summary>Represents a discovery request that targets the /v2/quaggans interface.</summary>
-    internal sealed class QuagganDiscoveryRequest : DiscoveryRequest
+    public sealed class QuagganDiscoveryRequest : DiscoveryRequest
     {
         /// <summary>Gets the resource path.</summary>
         public override string Resource

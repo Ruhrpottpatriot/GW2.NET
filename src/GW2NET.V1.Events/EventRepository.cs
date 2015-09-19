@@ -16,7 +16,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using GW2NET.Common;
 using GW2NET.DynamicEvents;
-using GW2NET.V1.Events.Converters;
 using GW2NET.V1.Events.Json;
 
 namespace GW2NET.V1.Events
@@ -26,37 +25,29 @@ namespace GW2NET.V1.Events
     /// <summary>Represents a repository that retrieves data from the /v1/event_details.json interface.</summary>
     public class EventRepository : IEventRepository
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<EventCollectionDataContract, ICollection<DynamicEvent>> converterForDynamicEventCollection;
+        
+        private readonly IConverter<EventCollectionDTO, ICollection<DynamicEvent>> dynamicEventCollectionConverter;
 
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="EventRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        public EventRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterForDynamicEventCollection())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="EventRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="converterForDynamicEventCollection">The converter for <see cref="T:ICollection{DynamicEvent}"/>.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForDynamicEventCollection"/> is a null reference.</exception>
-        internal EventRepository(IServiceClient serviceClient, IConverter<EventCollectionDataContract, ICollection<DynamicEvent>> converterForDynamicEventCollection)
+        /// <param name="serviceClient"></param>
+        /// <param name="dynamicEventCollectionConverter"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public EventRepository(IServiceClient serviceClient, IConverter<EventCollectionDTO, ICollection<DynamicEvent>> dynamicEventCollectionConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
-            if (converterForDynamicEventCollection == null)
+            if (dynamicEventCollectionConverter == null)
             {
-                throw new ArgumentNullException("converterForDynamicEventCollection", "Precondition: converterForDynamicEventCollection != null");
+                throw new ArgumentNullException("dynamicEventCollectionConverter");
             }
 
             this.serviceClient = serviceClient;
-            this.converterForDynamicEventCollection = converterForDynamicEventCollection;
+            this.dynamicEventCollectionConverter = dynamicEventCollectionConverter;
         }
 
         /// <inheritdoc />
@@ -89,20 +80,20 @@ namespace GW2NET.V1.Events
                 EventId = identifier, 
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<EventCollectionDataContract>(request);
-            var eventCollectionDataContract = response.Content;
-            if (eventCollectionDataContract == null)
+            var response = this.serviceClient.Send<EventCollectionDTO>(request);
+            var eventCollectionDTO = response.Content;
+            if (eventCollectionDTO == null)
             {
                 return null;
             }
 
-            var eventDataContracts = eventCollectionDataContract.Events;
-            if (eventDataContracts == null)
+            var eventDTOs = eventCollectionDTO.Events;
+            if (eventDTOs == null)
             {
                 return null;
             }
 
-            var dynamicEvents = this.converterForDynamicEventCollection.Convert(eventCollectionDataContract, null);
+            var dynamicEvents = this.dynamicEventCollectionConverter.Convert(eventCollectionDTO, null);
             if (dynamicEvents == null)
             {
                 return null;
@@ -127,20 +118,20 @@ namespace GW2NET.V1.Events
             {
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<EventCollectionDataContract>(request);
-            var eventCollectionDataContract = response.Content;
-            if (eventCollectionDataContract == null)
+            var response = this.serviceClient.Send<EventCollectionDTO>(request);
+            var eventCollectionDTO = response.Content;
+            if (eventCollectionDTO == null)
             {
                 return new DictionaryRange<Guid, DynamicEvent>(0);
             }
 
-            var eventDataContracts = eventCollectionDataContract.Events;
-            if (eventDataContracts == null)
+            var eventDTOs = eventCollectionDTO.Events;
+            if (eventDTOs == null)
             {
                 return new DictionaryRange<Guid, DynamicEvent>(0);
             }
 
-            var dynamicEvents = this.converterForDynamicEventCollection.Convert(eventCollectionDataContract, null);
+            var dynamicEvents = this.dynamicEventCollectionConverter.Convert(eventCollectionDTO, null);
             if (dynamicEvents == null)
             {
                 return new DictionaryRange<Guid, DynamicEvent>(0);
@@ -181,7 +172,7 @@ namespace GW2NET.V1.Events
             {
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<EventCollectionDataContract>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<EventCollectionDTO>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, request.Culture), cancellationToken);
         }
 
@@ -213,7 +204,7 @@ namespace GW2NET.V1.Events
                 EventId = identifier, 
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<EventCollectionDataContract>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<EventCollectionDTO>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertsAsyncResponse(task, request.Culture), cancellationToken);
         }
 
@@ -254,22 +245,22 @@ namespace GW2NET.V1.Events
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<Guid, DynamicEvent> ConvertAsyncResponse(Task<IResponse<EventCollectionDataContract>> task, CultureInfo culture)
+        private IDictionaryRange<Guid, DynamicEvent> ConvertAsyncResponse(Task<IResponse<EventCollectionDTO>> task, CultureInfo culture)
         {
             var response = task.Result;
-            var eventCollectionDataContract = response.Content;
-            if (eventCollectionDataContract == null)
+            var eventCollectionDTO = response.Content;
+            if (eventCollectionDTO == null)
             {
                 return new DictionaryRange<Guid, DynamicEvent>(0);
             }
 
-            var eventDataContracts = eventCollectionDataContract.Events;
-            if (eventDataContracts == null)
+            var eventDTOs = eventCollectionDTO.Events;
+            if (eventDTOs == null)
             {
                 return new DictionaryRange<Guid, DynamicEvent>(0);
             }
 
-            var dynamicEvents = this.converterForDynamicEventCollection.Convert(eventCollectionDataContract, null);
+            var dynamicEvents = this.dynamicEventCollectionConverter.Convert(eventCollectionDTO, null);
             if (dynamicEvents == null)
             {
                 return new DictionaryRange<Guid, DynamicEvent>(0);
@@ -290,23 +281,23 @@ namespace GW2NET.V1.Events
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private DynamicEvent ConvertsAsyncResponse(Task<IResponse<EventCollectionDataContract>> task, CultureInfo culture)
+        private DynamicEvent ConvertsAsyncResponse(Task<IResponse<EventCollectionDTO>> task, CultureInfo culture)
         {
             Debug.Assert(task != null, "task != null");
             var response = task.Result;
-            var eventCollectionDataContract = response.Content;
-            if (eventCollectionDataContract == null)
+            var eventCollectionDTO = response.Content;
+            if (eventCollectionDTO == null)
             {
                 return null;
             }
 
-            var eventDataContracts = eventCollectionDataContract.Events;
-            if (eventDataContracts == null)
+            var eventDTOs = eventCollectionDTO.Events;
+            if (eventDTOs == null)
             {
                 return null;
             }
 
-            var dynamicEvents = this.converterForDynamicEventCollection.Convert(eventCollectionDataContract, null);
+            var dynamicEvents = this.dynamicEventCollectionConverter.Convert(eventCollectionDTO, null);
             if (dynamicEvents == null)
             {
                 return null;

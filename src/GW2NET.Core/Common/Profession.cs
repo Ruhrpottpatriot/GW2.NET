@@ -14,30 +14,30 @@ namespace GW2NET.Common
     public enum Profession
     {
         /// <summary>Indicates an unknown profession.</summary>
-        Unknown = 0, 
+        Unknown = 0,
 
         /// <summary>The 'Guardian' profession.</summary>
-        Guardian = 1, 
+        Guardian = 1 << 0,
 
         /// <summary>The 'Warrior' profession.</summary>
-        Warrior = 2, 
+        Warrior = 1 << 1,
 
         /// <summary>The 'Engineer' profession.</summary>
-        Engineer = 3, 
+        Engineer = 1 << 2,
 
         /// <summary>The 'Ranger' profession.</summary>
-        Ranger = 4, 
+        Ranger = 1 << 3,
 
         /// <summary>The 'Thief' profession.</summary>
-        Thief = 5, 
+        Thief = 1 << 4,
 
         /// <summary>The 'Elementalist' profession.</summary>
-        Elementalist = 6, 
+        Elementalist = 1 << 5,
 
         /// <summary>The 'Mesmer' profession.</summary>
-        Mesmer = 7, 
+        Mesmer = 1 << 6,
 
         /// <summary>The 'Necromancer' profession.</summary>
-        Necromancer = 8
+        Necromancer = 1 << 7
     }
 }

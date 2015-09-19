@@ -50,12 +50,11 @@
     <Compile Include="ColorPalettePageRequest.cs" />
     <Compile Include="Converters\ColorConverter.cs" />
     <Compile Include="Converters\ColorModelConverter.cs" />
-    <Compile Include="Json\ColorPaletteDataContract.cs" />
+    <Compile Include="Json\ColorPaletteDTO.cs" />
     <Compile Include="ColorPaletteDetailRequest.cs" />
     <Compile Include="ColorDiscoveryRequest.cs" />
-    <Compile Include="Json\ColorModelDataContract.cs" />
+    <Compile Include="Json\ColorModelDTO.cs" />
     <Compile Include="ColorRepository.cs" />
-    <Compile Include="ColorRepositoryFactory.cs" />
     <Compile Include="ColorRequest.cs" />
     <Compile Include="Converters\ColorPaletteConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

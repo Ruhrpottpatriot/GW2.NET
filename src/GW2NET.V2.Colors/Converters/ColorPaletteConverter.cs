@@ -15,28 +15,28 @@ namespace GW2NET.V2.Colors.Converters
     using GW2NET.Common;
     using GW2NET.V2.Colors.Json;
 
-    /// <summary>Converts objects of type <see cref="ColorModelDataContract"/> to objects of type <see cref="ColorPalette"/>.</summary>
-    public sealed class ColorPaletteConverter : IConverter<ColorPaletteDataContract, ColorPalette>
+    /// <summary>Converts objects of type <see cref="ColorModelDTO"/> to objects of type <see cref="ColorPalette"/>.</summary>
+    public sealed class ColorPaletteConverter : IConverter<ColorPaletteDTO, ColorPalette>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
+        
         private readonly IConverter<int[], Color> colorConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<ColorModelDataContract, ColorModel> colorModelConverter;
+        
+        private readonly IConverter<ColorModelDTO, ColorModel> colorModelConverter;
 
         /// <summary>Initializes a new instance of the <see cref="ColorPaletteConverter"/> class.</summary>
         /// <param name="colorConverter">The converter for <see cref="Color"/>.</param>
         /// <param name="colorModelConverter">The converter for <see cref="ColorModel"/>.</param>
-        public ColorPaletteConverter(IConverter<int[], Color> colorConverter, IConverter<ColorModelDataContract, ColorModel> colorModelConverter)
+        public ColorPaletteConverter(IConverter<int[], Color> colorConverter, IConverter<ColorModelDTO, ColorModel> colorModelConverter)
         {
             if (colorConverter == null)
             {
-                throw new ArgumentNullException("colorConverter", "Precondition: colorConverter != null");
+                throw new ArgumentNullException("colorConverter");
             }
 
             if (colorModelConverter == null)
             {
-                throw new ArgumentNullException("colorModelConverter", "Precondition: colorModelConverter != null");
+                throw new ArgumentNullException("colorModelConverter");
             }
 
             this.colorConverter = colorConverter;
@@ -44,32 +44,32 @@ namespace GW2NET.V2.Colors.Converters
         }
 
         /// <inheritdoc />
-        public ColorPalette Convert(ColorPaletteDataContract value, object state)
+        public ColorPalette Convert(ColorPaletteDTO value, object state)
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value", "Precondition: value != null");
+                throw new ArgumentNullException("value");
             }
 
             if (state == null)
             {
-                throw new ArgumentNullException("state", "Precondition: state != null");
+                throw new ArgumentNullException("state");
             }
 
-            var response = state as IResponse<ColorPaletteDataContract>;
+            var response = state as IResponse;
             if (response == null)
             {
-                throw new ArgumentException("Precondition: state is IResponse<ColorPaletteDataContract>", "state");
+                throw new ArgumentException("Precondition: state is IResponse", "state");
             }
 
             return new ColorPalette
             {
                 ColorId = value.Id,
                 Name = value.Name,
-                BaseRgb = this.colorConverter.Convert(value.BaseRgb, state),
-                Cloth = this.colorModelConverter.Convert(value.Cloth, state),
-                Leather = this.colorModelConverter.Convert(value.Leather, state),
-                Metal = this.colorModelConverter.Convert(value.Metal, state),
+                BaseRgb = this.colorConverter.Convert(value.BaseRgb, value),
+                Cloth = this.colorModelConverter.Convert(value.Cloth, value),
+                Leather = this.colorModelConverter.Convert(value.Leather, value),
+                Metal = this.colorModelConverter.Convert(value.Metal, value),
                 Culture = response.Culture
             };
         }

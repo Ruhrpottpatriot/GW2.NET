@@ -46,9 +46,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileRepositoryFactory.cs" />
     <Compile Include="FileBulkRequest.cs" />
-    <Compile Include="Json\FileDataContract.cs" />
+    <Compile Include="Json\FileDTO.cs" />
     <Compile Include="Converters\AssetConverter.cs" />
     <Compile Include="FileDetailRequest.cs" />
     <Compile Include="FileDiscoveryRequest.cs" />

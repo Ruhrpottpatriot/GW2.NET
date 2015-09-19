@@ -19,8 +19,8 @@ namespace GW2NET.V2.Maps
     using System.Threading.Tasks;
 
     using GW2NET.Common;
-    using GW2NET.Common.Converters;
     using GW2NET.Maps;
+    using GW2NET.V2.Maps.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v2/items interface. See the remarks section for important limitations regarding this implementation.</summary>
     /// <remarks>
@@ -28,58 +28,64 @@ namespace GW2NET.V2.Maps
     /// </remarks>
     public sealed class MapRepository : IMapRepository
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<MapDataContract>>, IDictionaryRange<int, Map>> bulkResponseConverter;
+        
+        private readonly IConverter<IResponse<ICollection<MapDTO>>, IDictionaryRange<int, Map>> bulkResponseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
+        
         private readonly IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<MapDataContract>>, ICollectionPage<Map>> pageResponseConverter;
+        
+        private readonly IConverter<IResponse<ICollection<MapDTO>>, ICollectionPage<Map>> pageResponseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<MapDataContract>, Map> responseConverter;
+        
+        private readonly IConverter<IResponse<MapDTO>, Map> responseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="MapRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
-        public MapRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterAdapter<ICollection<int>>(), new MapConverter())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="MapRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="collectionConverter">The converter for <see cref="T:ICollection{int}"/>.</param>
-        /// <param name="mapConverter">The converter for <see cref="Map"/>.</param>
+        /// <param name="serviceClient"></param>
+        /// <param name="identifiersResponseConverter"></param>
+        /// <param name="responseConverter"></param>
+        /// <param name="bulkResponseConverter"></param>
+        /// <param name="pageResponseConverter"></param>
         /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="collectionConverter"/> or <paramref name="mapConverter"/> is a null reference.</exception>
-        internal MapRepository(IServiceClient serviceClient, IConverter<ICollection<int>
-            , ICollection<int>> collectionConverter
-            , IConverter<MapDataContract, Map> mapConverter)
+        public MapRepository(IServiceClient serviceClient,
+            IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter,
+            IConverter<IResponse<MapDTO>, Map> responseConverter, 
+            IConverter<IResponse<ICollection<MapDTO>>, IDictionaryRange<int, Map>> bulkResponseConverter,
+            IConverter<IResponse<ICollection<MapDTO>>, ICollectionPage<Map>> pageResponseConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
-            if (collectionConverter == null)
+            if (identifiersResponseConverter == null)
             {
-                throw new ArgumentNullException("collectionConverter", "Precondition: collectionConverter != null");
+                throw new ArgumentNullException("identifiersResponseConverter");
             }
 
-            if (mapConverter == null)
+            if (responseConverter == null)
             {
-                throw new ArgumentNullException("mapConverter", "Precondition: mapConverter != null");
+                throw new ArgumentNullException("responseConverter");
+            }
+
+            if (bulkResponseConverter == null)
+            {
+                throw new ArgumentNullException("bulkResponseConverter");
+            }
+
+            if (pageResponseConverter == null)
+            {
+                throw new ArgumentNullException("pageResponseConverter");
             }
 
             this.serviceClient = serviceClient;
-            this.identifiersResponseConverter = new ConverterForResponse<ICollection<int>, ICollection<int>>(collectionConverter);
-            this.responseConverter = new ConverterForResponse<MapDataContract, Map>(mapConverter);
-            this.bulkResponseConverter = new ConverterForDictionaryRangeResponse<MapDataContract, int, Map>(mapConverter, map => map.MapId);
-            this.pageResponseConverter = new ConverterForCollectionPageResponse<MapDataContract, Map>(mapConverter);
+            this.identifiersResponseConverter = identifiersResponseConverter;
+            this.responseConverter = responseConverter;
+            this.bulkResponseConverter = bulkResponseConverter;
+            this.pageResponseConverter = pageResponseConverter;
         }
 
         /// <inheritdoc />
@@ -115,7 +121,7 @@ namespace GW2NET.V2.Maps
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
                 Culture = ((IMapRepository)this).Culture
             };
-            var response = this.serviceClient.Send<MapDataContract>(request);
+            var response = this.serviceClient.Send<MapDTO>(request);
             return this.responseConverter.Convert(response, null);
         }
 
@@ -126,7 +132,7 @@ namespace GW2NET.V2.Maps
             {
                 Culture = ((IMapRepository)this).Culture
             };
-            var response = this.serviceClient.Send<ICollection<MapDataContract>>(request);
+            var response = this.serviceClient.Send<ICollection<MapDTO>>(request);
             return this.bulkResponseConverter.Convert(response, null);
         }
 
@@ -138,7 +144,7 @@ namespace GW2NET.V2.Maps
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
                 Culture = ((IMapRepository)this).Culture
             };
-            var response = this.serviceClient.Send<ICollection<MapDataContract>>(request);
+            var response = this.serviceClient.Send<ICollection<MapDTO>>(request);
             return this.bulkResponseConverter.Convert(response, null);
         }
 
@@ -155,7 +161,7 @@ namespace GW2NET.V2.Maps
             {
                 Culture = ((IMapRepository)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<MapDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<MapDTO>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, Map>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -173,7 +179,7 @@ namespace GW2NET.V2.Maps
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
                 Culture = ((IMapRepository)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<MapDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<MapDTO>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, Map>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -191,7 +197,7 @@ namespace GW2NET.V2.Maps
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
                 Culture = ((IMapRepository)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<MapDataContract>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<MapDTO>(request, cancellationToken);
             return responseTask.ContinueWith<Map>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -203,7 +209,7 @@ namespace GW2NET.V2.Maps
                 Page = pageIndex,
                 Culture = ((IMapRepository)this).Culture
             };
-            var response = this.serviceClient.Send<ICollection<MapDataContract>>(request);
+            var response = this.serviceClient.Send<ICollection<MapDTO>>(request);
             var values = this.pageResponseConverter.Convert(response, pageIndex);
             return values ?? new CollectionPage<Map>(0);
         }
@@ -217,7 +223,7 @@ namespace GW2NET.V2.Maps
                 PageSize = pageSize,
                 Culture = ((IMapRepository)this).Culture
             };
-            var response = this.serviceClient.Send<ICollection<MapDataContract>>(request);
+            var response = this.serviceClient.Send<ICollection<MapDTO>>(request);
             var values = this.pageResponseConverter.Convert(response, pageIndex);
             return values ?? new CollectionPage<Map>(0);
         }
@@ -236,7 +242,7 @@ namespace GW2NET.V2.Maps
                 Page = pageIndex,
                 Culture = ((IMapRepository)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<MapDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<MapDTO>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
@@ -255,12 +261,12 @@ namespace GW2NET.V2.Maps
                 PageSize = pageSize,
                 Culture = ((IMapRepository)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<MapDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<MapDTO>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<int, Map> ConvertAsyncResponse(Task<IResponse<ICollection<MapDataContract>>> task)
+        private IDictionaryRange<int, Map> ConvertAsyncResponse(Task<IResponse<ICollection<MapDTO>>> task)
         {
             Debug.Assert(task != null, "task != null");
             var values = this.bulkResponseConverter.Convert(task.Result, null);
@@ -268,7 +274,7 @@ namespace GW2NET.V2.Maps
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollectionPage<Map> ConvertAsyncResponse(Task<IResponse<ICollection<MapDataContract>>> task, int pageIndex)
+        private ICollectionPage<Map> ConvertAsyncResponse(Task<IResponse<ICollection<MapDTO>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
             var values = this.pageResponseConverter.Convert(task.Result, pageIndex);
@@ -284,7 +290,7 @@ namespace GW2NET.V2.Maps
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Map ConvertAsyncResponse(Task<IResponse<MapDataContract>> task)
+        private Map ConvertAsyncResponse(Task<IResponse<MapDTO>> task)
         {
             Debug.Assert(task != null, "task != null");
             return this.responseConverter.Convert(task.Result, null);

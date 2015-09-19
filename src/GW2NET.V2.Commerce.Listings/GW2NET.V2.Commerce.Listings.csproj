@@ -46,10 +46,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContracts\ListingConverter.cs" />
-    <Compile Include="DataContracts\OfferConverter.cs" />
-    <Compile Include="DataContracts\ListingDataContract.cs" />
-    <Compile Include="DataContracts\ListingOfferDataContract.cs" />
+    <Compile Include="Converters\ListingConverter.cs" />
+    <Compile Include="Converters\OfferConverter.cs" />
+    <Compile Include="Json\ListingDTO.cs" />
+    <Compile Include="Json\ListingOfferDTO.cs" />
     <Compile Include="ListingBulkRequest.cs" />
     <Compile Include="ListingDetailsRequest.cs" />
     <Compile Include="ListingDiscoveryRequest.cs" />

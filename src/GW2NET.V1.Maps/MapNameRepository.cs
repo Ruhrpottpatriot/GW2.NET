@@ -24,36 +24,29 @@ namespace GW2NET.V1.Maps
     /// <summary>Represents a repository that retrieves data from the /v1/map_names.json interface.</summary>
     public class MapNameRepository : IMapNameRepository
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<MapNameDataContract, MapName> converterForMapName;
+        
+        private readonly IConverter<MapNameDTO, MapName> mapNameConverter;
 
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="MapNameRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        public MapNameRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterForMapName())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="MapNameRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="converterForMapName">The converter for <see cref="MapName"/>.</param>
-        internal MapNameRepository(IServiceClient serviceClient, IConverter<MapNameDataContract, MapName> converterForMapName)
+        /// <param name="serviceClient"></param>
+        /// <param name="mapNameConverter">The converter for <see cref="MapName"/>.</param>
+        public MapNameRepository(IServiceClient serviceClient, IConverter<MapNameDTO, MapName> mapNameConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
-            if (converterForMapName == null)
+            if (mapNameConverter == null)
             {
-                throw new ArgumentNullException("converterForMapName", "Precondition: converterForMapName != null");
+                throw new ArgumentNullException("mapNameConverter");
             }
 
             this.serviceClient = serviceClient;
-            this.converterForMapName = converterForMapName;
+            this.mapNameConverter = mapNameConverter;
         }
 
         /// <inheritdoc />
@@ -91,13 +84,13 @@ namespace GW2NET.V1.Maps
             {
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<ICollection<MapNameDataContract>>(request);
+            var response = this.serviceClient.Send<ICollection<MapNameDTO>>(request);
             if (response.Content == null)
             {
                 return new DictionaryRange<int, MapName>(0);
             }
 
-            var values = response.Content.Select(value => this.converterForMapName.Convert(value, null)).ToList();
+            var values = response.Content.Select(value => this.mapNameConverter.Convert(value, null)).ToList();
             var mapNames = new DictionaryRange<int, MapName>(values.Count)
             {
                 SubtotalCount = values.Count,
@@ -134,7 +127,7 @@ namespace GW2NET.V1.Maps
             {
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<ICollection<MapNameDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, MapName>>(
+            return this.serviceClient.SendAsync<ICollection<MapNameDTO>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, MapName>>(
                 task =>
                 {
                     var response = task.Result;
@@ -143,7 +136,7 @@ namespace GW2NET.V1.Maps
                         return new DictionaryRange<int, MapName>(0);
                     }
 
-                    var values = response.Content.Select(value => this.converterForMapName.Convert(value, null)).ToList();
+                    var values = response.Content.Select(value => this.mapNameConverter.Convert(value, null)).ToList();
                     var mapNames = new DictionaryRange<int, MapName>(values.Count)
                     {
                         SubtotalCount = values.Count,
