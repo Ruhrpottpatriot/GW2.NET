@@ -1,0 +1,15 @@
+﻿{
+    "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
+    "settings": {
+        "documentationRules": {
+            "companyName": "GW2.NET Coding Team",
+            "copyrightText": "This product is licensed under the {licenseName}. See the {licenseFile} in the project root folder or the following page: {licenseLink}",
+            "xmlHeader": true,
+            "variables": {
+                "licenseName": "GNU General Public License version 2 (GPLv2)",
+                "licenseFile": "License",
+                "licenseLink": "http://www.gnu.org/licenses/gpl-2.0.html"
+            }
+        }
+    }
+}
