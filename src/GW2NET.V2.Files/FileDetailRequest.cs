@@ -12,7 +12,7 @@ namespace GW2NET.V2.Files
     using GW2NET.Common;
 
     /// <summary>Represents a details request that targets the /v2/files interface.</summary>
-    internal sealed class FileDetailRequest : DetailsRequest
+    public sealed class FileDetailRequest : DetailsRequest
     {
         /// <inheritdoc />
         public override string Resource

@@ -14,7 +14,7 @@ namespace GW2NET.V2.Recipes
     using GW2NET.Common;
 
     /// <summary>Represents a details request that targets the /v2/recipes interface.</summary>
-    internal sealed class RecipeDetailsRequest : DetailsRequest, ILocalizable
+    public sealed class RecipeDetailsRequest : DetailsRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }

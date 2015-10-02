@@ -14,7 +14,7 @@ namespace GW2NET.V2.Worlds
     using GW2NET.Common;
 
     /// <summary>Represents a details request that targets the /v2/worlds interface.</summary>
-    internal sealed class WorldDetailsRequest : DetailsRequest, ILocalizable
+    public sealed class WorldDetailsRequest : DetailsRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }

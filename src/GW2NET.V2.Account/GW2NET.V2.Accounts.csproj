@@ -46,10 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converter\AccountConverter.cs" />
-    <Compile Include="DataContracts\AccountDataContract.cs" />
+    <Compile Include="Json\AccountDTO.cs" />
     <Compile Include="AccountRepository.cs" />
-    <Compile Include="AccountRepositoryFactory.cs" />
-    <Compile Include="Requests\AccountRequest.cs" />
+    <Compile Include="AccountRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="$(SolutionDir)SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>

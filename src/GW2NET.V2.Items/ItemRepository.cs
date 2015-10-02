@@ -18,8 +18,8 @@ namespace GW2NET.V2.Items
     using System.Threading.Tasks;
 
     using GW2NET.Common;
-    using GW2NET.Common.Converters;
     using GW2NET.Items;
+    using GW2NET.V2.Items.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v2/items interface. See the remarks section for important limitations regarding this implementation.</summary>
     /// <remarks>
@@ -50,54 +50,58 @@ namespace GW2NET.V2.Items
     /// </remarks>
     public class ItemRepository : IItemRepository
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<ItemDataContract>>, IDictionaryRange<int, Item>> converterForBulkResponse;
-
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<int>>, ICollection<int>> converterForIdentifiersResponse;
-
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<ItemDataContract>>, ICollectionPage<Item>> converterForPageResponse;
-
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ItemDataContract>, Item> converterForResponse;
-
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IConverter<IResponse<ICollection<ItemDTO>>, IDictionaryRange<int, Item>> bulkResponseConverter;
+        
+        private readonly IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter;
+        
+        private readonly IConverter<IResponse<ICollection<ItemDTO>>, ICollectionPage<Item>> pageResponseConverter;
+        
+        private readonly IConverter<IResponse<ItemDTO>, Item> responseConverter;
+        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="ItemRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        public ItemRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterAdapter<ICollection<int>>(), new ConverterForItem())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="ItemRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="converterForItemCollection">The converter for <see cref="T:ICollection{int}"/>.</param>
-        /// <param name="converterForItem">The converter for <see cref="Item"/>.</param>
-        internal ItemRepository(IServiceClient serviceClient, IConverter<ICollection<int>, ICollection<int>> converterForItemCollection, IConverter<ItemDataContract, Item> converterForItem)
+        /// <param name="serviceClient"></param>
+        /// <param name="identifiersResponseConverter"></param>
+        /// <param name="responseConverter"></param>
+        /// <param name="bulkResponseConverter"></param>
+        /// <param name="pageResponseConverter"></param>
+        public ItemRepository(IServiceClient serviceClient,
+            IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter,
+            IConverter<IResponse<ItemDTO>, Item> responseConverter,
+            IConverter<IResponse<ICollection<ItemDTO>>, IDictionaryRange<int, Item>> bulkResponseConverter,
+            IConverter<IResponse<ICollection<ItemDTO>>, ICollectionPage<Item>> pageResponseConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
-            if (converterForItemCollection == null)
+            if (identifiersResponseConverter == null)
             {
-                throw new ArgumentNullException("converterForItemCollection", "Precondition: converterForItemCollection != null");
+                throw new ArgumentNullException("identifiersResponseConverter");
             }
 
-            if (converterForItem == null)
+            if (responseConverter == null)
             {
-                throw new ArgumentNullException("converterForItem", "Precondition: converterForItem != null");
+                throw new ArgumentNullException("responseConverter");
+            }
+
+            if (bulkResponseConverter == null)
+            {
+                throw new ArgumentNullException("bulkResponseConverter");
+            }
+
+            if (pageResponseConverter == null)
+            {
+                throw new ArgumentNullException("pageResponseConverter");
             }
 
             this.serviceClient = serviceClient;
-            this.converterForIdentifiersResponse = new ConverterForResponse<ICollection<int>, ICollection<int>>(converterForItemCollection);
-            this.converterForResponse = new ConverterForResponse<ItemDataContract, Item>(converterForItem);
-            this.converterForBulkResponse = new ConverterForDictionaryRangeResponse<ItemDataContract, int, Item>(converterForItem, item => item.ItemId);
-            this.converterForPageResponse = new ConverterForCollectionPageResponse<ItemDataContract, Item>(converterForItem);
+            this.identifiersResponseConverter = identifiersResponseConverter;
+            this.responseConverter = responseConverter;
+            this.bulkResponseConverter = bulkResponseConverter;
+            this.pageResponseConverter = pageResponseConverter;
         }
 
         /// <inheritdoc />
@@ -108,7 +112,7 @@ namespace GW2NET.V2.Items
         {
             var request = new ItemDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
-            return this.converterForIdentifiersResponse.Convert(response, null) ?? new List<int>(0);
+            return this.identifiersResponseConverter.Convert(response, null) ?? new List<int>(0);
         }
 
         /// <inheritdoc />
@@ -135,8 +139,8 @@ namespace GW2NET.V2.Items
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<ItemDataContract>(request);
-            return this.converterForResponse.Convert(response, null);
+            var response = this.serviceClient.Send<ItemDTO>(request);
+            return this.responseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -147,8 +151,8 @@ namespace GW2NET.V2.Items
             {
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
-            return this.converterForBulkResponse.Convert(response, null);
+            var response = this.serviceClient.Send<ICollection<ItemDTO>>(request);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -160,8 +164,8 @@ namespace GW2NET.V2.Items
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
-            return this.converterForBulkResponse.Convert(response, null);
+            var response = this.serviceClient.Send<ICollection<ItemDTO>>(request);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -179,7 +183,7 @@ namespace GW2NET.V2.Items
             {
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<ItemDTO>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, Item>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -199,7 +203,7 @@ namespace GW2NET.V2.Items
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<ItemDTO>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, Item>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -219,7 +223,7 @@ namespace GW2NET.V2.Items
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ItemDataContract>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ItemDTO>(request, cancellationToken);
             return responseTask.ContinueWith<Item>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -232,8 +236,8 @@ namespace GW2NET.V2.Items
                 Page = pageIndex,
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response, pageIndex);
+            var response = this.serviceClient.Send<ICollection<ItemDTO>>(request);
+            var values = this.pageResponseConverter.Convert(response, pageIndex);
             return values ?? new CollectionPage<Item>(0);
         }
 
@@ -247,8 +251,8 @@ namespace GW2NET.V2.Items
                 PageSize = pageSize,
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response, pageIndex);
+            var response = this.serviceClient.Send<ICollection<ItemDTO>>(request);
+            var values = this.pageResponseConverter.Convert(response, pageIndex);
             return values ?? new CollectionPage<Item>(0);
         }
 
@@ -268,7 +272,7 @@ namespace GW2NET.V2.Items
                 Page = pageIndex,
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<ItemDTO>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
@@ -289,15 +293,15 @@ namespace GW2NET.V2.Items
                 PageSize = pageSize,
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<ItemDTO>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<int, Item> ConvertAsyncResponse(Task<IResponse<ICollection<ItemDataContract>>> task)
+        private IDictionaryRange<int, Item> ConvertAsyncResponse(Task<IResponse<ICollection<ItemDTO>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForBulkResponse.Convert(task.Result, null);
+            var values = this.bulkResponseConverter.Convert(task.Result, null);
             if (values == null)
             {
                 return new DictionaryRange<int, Item>(0);
@@ -307,10 +311,10 @@ namespace GW2NET.V2.Items
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollectionPage<Item> ConvertAsyncResponse(Task<IResponse<ICollection<ItemDataContract>>> task, int pageIndex)
+        private ICollectionPage<Item> ConvertAsyncResponse(Task<IResponse<ICollection<ItemDTO>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForPageResponse.Convert(task.Result, pageIndex);
+            var values = this.pageResponseConverter.Convert(task.Result, pageIndex);
             return values ?? new CollectionPage<Item>(0);
         }
 
@@ -318,7 +322,7 @@ namespace GW2NET.V2.Items
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            var ids = this.converterForIdentifiersResponse.Convert(task.Result, null);
+            var ids = this.identifiersResponseConverter.Convert(task.Result, null);
             if (ids == null)
             {
                 return new List<int>(0);
@@ -328,10 +332,10 @@ namespace GW2NET.V2.Items
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Item ConvertAsyncResponse(Task<IResponse<ItemDataContract>> task)
+        private Item ConvertAsyncResponse(Task<IResponse<ItemDTO>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.converterForResponse.Convert(task.Result, null);
+            return this.responseConverter.Convert(task.Result, null);
         }
     }
 }

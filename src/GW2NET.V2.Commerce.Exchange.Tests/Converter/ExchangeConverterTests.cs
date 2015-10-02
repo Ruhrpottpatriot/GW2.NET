@@ -17,13 +17,13 @@
         [InlineData(1076, 107676780, "Thu, 28 May 2015 12:13:46 GMT")]
         public void CanConvert(int coinsPerGem, int quantity, DateTime date)
         {
-            var value = new ExchangeDataContract
+            var value = new ExchangeDTO
             {
                 CoinsPerGem = coinsPerGem,
                 Quantity = quantity
             };
 
-            var state = new Response<ExchangeDataContract>
+            var state = new Response<ExchangeDTO>
             {
                 Content = value,
                 Date = date

@@ -27,7 +27,7 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance", "Precondition: instance != null");
+                throw new ArgumentNullException("instance");
             }
 
             for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
@@ -48,9 +48,8 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance", "Precondition: instance != null");
+                throw new ArgumentNullException("instance");
             }
-
 
             for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
             {
@@ -69,7 +68,7 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance", "Precondition: instance != null");
+                throw new ArgumentNullException("instance");
             }
 
             return FindAllPagesAsync(instance, pageCount, CancellationToken.None);
@@ -85,7 +84,7 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance", "Precondition: instance != null");
+                throw new ArgumentNullException("instance");
             }
 
             for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
@@ -104,7 +103,7 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance", "Precondition: instance != null");
+                throw new ArgumentNullException("instance");
             }
 
             return FindAllPagesAsync(instance, pageSize, pageCount, CancellationToken.None);
@@ -121,7 +120,7 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance", "Precondition: instance != null");
+                throw new ArgumentNullException("instance");
             }
 
             for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)

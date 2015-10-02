@@ -19,7 +19,7 @@ namespace GW2NET.ChatLinks
         /// <inheritdoc />
         public override string ToString()
         {
-            var stream = new ConverterForRecipeChatLink().Convert(this, null);
+            var stream = new RecipeChatLinkConverter().Convert(this, null);
             var buffer = new byte[stream.Length];
             stream.Read(buffer, 0, buffer.Length);
             return string.Format("[&{0}]", Convert.ToBase64String(buffer));

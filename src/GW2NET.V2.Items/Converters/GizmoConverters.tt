@@ -1,0 +1,16 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Runtime" #>
+<#@ assembly name="$(ProjectDir)..\GW2NET.Core\bin\$(Configuration)\GW2NET.Core.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="GW2NET.Items" #>
+<#@ output extension=".cs" #>
+<#
+    // Parameters (make sure these are correct)
+    var targetBaseType = typeof(Gizmo);
+    var sourceType = "ItemDTO";
+    var discriminator = "{0}.Type";
+    var ns = "GW2NET.V2.Items.Converters";
+    string constructorVisibility = "public";
+#>
+<#@ include file="ConverterTemplate.t4" #>

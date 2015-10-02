@@ -13,7 +13,7 @@ namespace GW2NET.V1.Items
     using GW2NET.Common;
 
     /// <summary>Represents a request for a list of all discovered items.</summary>
-    internal sealed class ItemDiscoveryRequest : IRequest
+    public sealed class ItemDiscoveryRequest : IRequest
     {
         /// <summary>Gets the resource path.</summary>
         public string Resource

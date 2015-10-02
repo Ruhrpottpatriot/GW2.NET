@@ -24,60 +24,53 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
     /// <summary>Represents a repository that retrieves data from the /v1/wvw/matches.json and /v1/wvw/match_details.json interfaces.</summary>
     public class MatchRepository : IMatchRepository
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<MatchDataContract, Match> converterForMatch;
+        
+        private readonly IConverter<MatchDTO, Match> matchConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<MatchupDataContract, Matchup> converterForMatchup;
+        
+        private readonly IConverter<MatchupDTO, Matchup> matchupConverter;
 
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="MatchRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        public MatchRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterForMatchup(), new ConverterForMatch())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="MatchRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="converterForMatchup">The converter <see cref="Matchup"/>.</param>
-        /// <param name="converterForMatch">The converter <see cref="Match"/>.</param>
-        internal MatchRepository(IServiceClient serviceClient, IConverter<MatchupDataContract, Matchup> converterForMatchup, IConverter<MatchDataContract, Match> converterForMatch)
+        /// <param name="serviceClient"></param>
+        /// <param name="matchupConverter">The converter <see cref="Matchup"/>.</param>
+        /// <param name="matchConverter">The converter <see cref="Match"/>.</param>
+        public MatchRepository(IServiceClient serviceClient, IConverter<MatchupDTO, Matchup> matchupConverter, IConverter<MatchDTO, Match> matchConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
-            if (converterForMatchup == null)
+            if (matchupConverter == null)
             {
-                throw new ArgumentNullException("converterForMatchup", "Precondition: converterForMatchup != null");
+                throw new ArgumentNullException("matchupConverter");
             }
 
-            if (converterForMatch == null)
+            if (matchConverter == null)
             {
-                throw new ArgumentNullException("converterForMatch", "Precondition: converterForMatch != null");
+                throw new ArgumentNullException("matchConverter");
             }
 
             this.serviceClient = serviceClient;
-            this.converterForMatchup = converterForMatchup;
-            this.converterForMatch = converterForMatch;
+            this.matchupConverter = matchupConverter;
+            this.matchConverter = matchConverter;
         }
 
         /// <inheritdoc />
         ICollection<Matchup> IDiscoverable<Matchup>.Discover()
         {
             var request = new MatchDiscoveryRequest();
-            var response = this.serviceClient.Send<MatchupCollectionDataContract>(request);
+            var response = this.serviceClient.Send<MatchupCollectionDTO>(request);
             if (response.Content == null || response.Content.Matchups == null)
             {
                 return new Matchup[0];
             }
 
             var values = new List<Matchup>(response.Content.Matchups.Count);
-            values.AddRange(response.Content.Matchups.Select(value => this.converterForMatchup.Convert(value, null)));
+            values.AddRange(response.Content.Matchups.Select(value => this.matchupConverter.Convert(value, null)));
             return values;
         }
 
@@ -92,7 +85,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
         Task<ICollection<Matchup>> IDiscoverable<Matchup>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new MatchDiscoveryRequest();
-            return this.serviceClient.SendAsync<MatchupCollectionDataContract>(request, cancellationToken).ContinueWith<ICollection<Matchup>>(task =>
+            return this.serviceClient.SendAsync<MatchupCollectionDTO>(request, cancellationToken).ContinueWith<ICollection<Matchup>>(task =>
             {
                 var response = task.Result;
                 if (response.Content == null || response.Content.Matchups == null)
@@ -101,7 +94,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
                 }
 
                 var values = new List<Matchup>(response.Content.Matchups.Count);
-                values.AddRange(response.Content.Matchups.Select(value => this.converterForMatchup.Convert(value, null)));
+                values.AddRange(response.Content.Matchups.Select(value => this.matchupConverter.Convert(value, null)));
                 return values;
             }, cancellationToken);
         }
@@ -114,13 +107,13 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
             {
                 MatchId = matchId
             };
-            var response = this.serviceClient.Send<MatchDataContract>(request);
+            var response = this.serviceClient.Send<MatchDTO>(request);
             if (response.Content == null)
             {
                 return null;
             }
 
-            return this.converterForMatch.Convert(response.Content, null);
+            return this.matchConverter.Convert(response.Content, null);
         }
 
         /// <inheritdoc />
@@ -174,7 +167,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
             {
                 MatchId = matchId
             };
-            return this.serviceClient.SendAsync<MatchDataContract>(request, cancellationToken).ContinueWith(task =>
+            return this.serviceClient.SendAsync<MatchDTO>(request, cancellationToken).ContinueWith(task =>
             {
                 var response = task.Result;
                 if (response.Content == null)
@@ -182,7 +175,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
                     return null;
                 }
 
-                return this.converterForMatch.Convert(response.Content, null);
+                return this.matchConverter.Convert(response.Content, null);
             }, cancellationToken);
         }
 

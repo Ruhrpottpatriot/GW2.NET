@@ -14,7 +14,7 @@ namespace GW2NET.V1.Floors
     using GW2NET.Common;
 
     /// <summary>Represents a request for details regarding a map floor, used to populate a world map.</summary>
-    internal sealed class FloorRequest : IRequest, ILocalizable
+    public sealed class FloorRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the continent identifier.</summary>
         public int? ContinentId { get; set; }

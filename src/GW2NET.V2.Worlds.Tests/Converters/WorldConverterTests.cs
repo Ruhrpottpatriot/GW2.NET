@@ -3,6 +3,7 @@
     using System.Globalization;
 
     using GW2NET.Common;
+    using GW2NET.V2.Worlds.Json;
 
     using Xunit;
 
@@ -17,13 +18,13 @@
         [InlineData(1001, "Rocher de l'enclume", "fr")]
         public void CanConvert(int id, string name, string contentLanguage)
         {
-            var value = new WorldDataContract
+            var value = new WorldDTO
             {
                 Id = id,
                 Name = name
             };
 
-            var state = new Response<WorldDataContract>
+            var state = new Response<WorldDTO>
             {
                 Culture = new CultureInfo(contentLanguage),
                 Content = value

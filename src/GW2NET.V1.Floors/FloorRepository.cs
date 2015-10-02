@@ -26,44 +26,34 @@ namespace GW2NET.V1.Floors
     /// <summary>Represents a repository that retrieves data from the /v1/map_floor.json interface.</summary>
     public class FloorRepository : IFloorRepository
     {
-        /// <summary>The continent identifier.</summary>
         private readonly int continentId;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<FloorDataContract, Floor> converterForFloor;
+        
+        private readonly IConverter<FloorDTO, Floor> floorConverter;
 
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="FloorRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="continentId">The continent identifier.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
-        public FloorRepository(IServiceClient serviceClient, int continentId = 0)
-            : this(serviceClient, continentId, new ConverterForFloor())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="FloorRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="continentId">The continent identifier.</param>
-        /// <param name="converterForFloor">The converter for <see cref="Floor"/>.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForFloor"/> is a null reference.</exception>
-        internal FloorRepository(IServiceClient serviceClient, int continentId, IConverter<FloorDataContract, Floor> converterForFloor)
+        /// <param name="continentId"></param>
+        /// <param name="serviceClient"></param>
+        /// <param name="floorConverter"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public FloorRepository(int continentId, IServiceClient serviceClient, IConverter<FloorDTO, Floor> floorConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
-            if (converterForFloor == null)
+            if (floorConverter == null)
             {
-                throw new ArgumentNullException("converterForFloor", "Precondition: converterForFloor != null");
+                throw new ArgumentNullException("floorConverter");
             }
 
             this.serviceClient = serviceClient;
             this.continentId = continentId;
-            this.converterForFloor = converterForFloor;
+            this.floorConverter = floorConverter;
         }
 
         /// <inheritdoc />
@@ -106,13 +96,13 @@ namespace GW2NET.V1.Floors
                 Floor = identifier, 
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<FloorDataContract>(request);
+            var response = this.serviceClient.Send<FloorDTO>(request);
             if (response.Content == null)
             {
                 return null;
             }
 
-            var floor = this.converterForFloor.Convert(response.Content, null);
+            var floor = this.floorConverter.Convert(response.Content, null);
             if (floor == null)
             {
                 return null;
@@ -178,7 +168,7 @@ namespace GW2NET.V1.Floors
                 Floor = identifier, 
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<FloorDataContract>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<FloorDTO>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, this.continentId, identifier, request.Culture), cancellationToken);
         }
 
@@ -219,7 +209,7 @@ namespace GW2NET.V1.Floors
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Floor ConvertAsyncResponse(Task<IResponse<FloorDataContract>> task, int continentId, int floorId, CultureInfo culture)
+        private Floor ConvertAsyncResponse(Task<IResponse<FloorDTO>> task, int continentId, int floorId, CultureInfo culture)
         {
             Debug.Assert(task != null, "task != null");
             var response = task.Result;
@@ -228,7 +218,7 @@ namespace GW2NET.V1.Floors
                 return null;
             }
 
-            var floor = this.converterForFloor.Convert(response.Content, null);
+            var floor = this.floorConverter.Convert(response.Content, null);
             if (floor == null)
             {
                 return null;

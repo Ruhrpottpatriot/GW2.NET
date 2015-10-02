@@ -26,45 +26,38 @@ namespace GW2NET.V1.Skins
     /// <summary>Represents a repository that retrieves data from the /v1/skins.json and /v1/skin_details.json interfaces.</summary>
     public sealed class SkinRepository : ISkinRepository
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<SkinDataContract, Skin> converterForSkin;
+        
+        private readonly IConverter<SkinDTO, Skin> skinConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<SkinCollectionDataContract, ICollection<int>> converterForSkinCollection;
+        
+        private readonly IConverter<SkinCollectionDTO, ICollection<int>> skinCollectionConverter;
 
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="SkinRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        public SkinRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterForSkin(), new ConverterForSkinCollection())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="SkinRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="converterForSkin">The converter for <see cref="Skin"/>.</param>
-        /// <param name="converterForSkinCollection">The converter for <see cref="T:ICollection{int}"/>.</param>
-        internal SkinRepository(IServiceClient serviceClient, IConverter<SkinDataContract, Skin> converterForSkin, IConverter<SkinCollectionDataContract, ICollection<int>> converterForSkinCollection)
+        /// <param name="serviceClient"></param>
+        /// <param name="skinConverter">The converter for <see cref="Skin"/>.</param>
+        /// <param name="skinCollectionConverter">The converter for <see cref="T:ICollection{int}"/>.</param>
+        public SkinRepository(IServiceClient serviceClient, IConverter<SkinDTO, Skin> skinConverter, IConverter<SkinCollectionDTO, ICollection<int>> skinCollectionConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
-            if (converterForSkin == null)
+            if (skinConverter == null)
             {
-                throw new ArgumentNullException("converterForSkin", "Precondition: converterForSkin != null");
+                throw new ArgumentNullException("skinConverter");
             }
 
-            if (converterForSkinCollection == null)
+            if (skinCollectionConverter == null)
             {
-                throw new ArgumentNullException("converterForSkinCollection", "Precondition: converterForSkinCollection != null");
+                throw new ArgumentNullException("skinCollectionConverter");
             }
 
-            this.converterForSkin = converterForSkin;
-            this.converterForSkinCollection = converterForSkinCollection;
+            this.skinConverter = skinConverter;
+            this.skinCollectionConverter = skinCollectionConverter;
             this.serviceClient = serviceClient;
         }
 
@@ -75,13 +68,13 @@ namespace GW2NET.V1.Skins
         ICollection<int> IDiscoverable<int>.Discover()
         {
             var request = new SkinDiscoveryRequest();
-            var response = this.serviceClient.Send<SkinCollectionDataContract>(request);
+            var response = this.serviceClient.Send<SkinCollectionDTO>(request);
             if (response.Content == null)
             {
                 return new List<int>(0);
             }
 
-            return this.converterForSkinCollection.Convert(response.Content, null);
+            return this.skinCollectionConverter.Convert(response.Content, null);
         }
 
         /// <inheritdoc />
@@ -95,7 +88,7 @@ namespace GW2NET.V1.Skins
         Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new SkinDiscoveryRequest();
-            var responseTask = this.serviceClient.SendAsync<SkinCollectionDataContract>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<SkinCollectionDTO>(request, cancellationToken);
             return responseTask.ContinueWith<ICollection<int>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -108,13 +101,13 @@ namespace GW2NET.V1.Skins
                 SkinId = identifier, 
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<SkinDataContract>(request);
+            var response = this.serviceClient.Send<SkinDTO>(request);
             if (response.Content == null)
             {
                 return null;
             }
 
-            var skin = this.converterForSkin.Convert(response.Content, null);
+            var skin = this.skinConverter.Convert(response.Content, null);
             if (skin == null)
             {
                 return null;
@@ -177,7 +170,7 @@ namespace GW2NET.V1.Skins
                 SkinId = identifier, 
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<SkinDataContract>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<SkinDTO>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.OnAsyncResponse(task, request.Culture), cancellationToken);
         }
 
@@ -218,7 +211,7 @@ namespace GW2NET.V1.Skins
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollection<int> ConvertAsyncResponse(Task<IResponse<SkinCollectionDataContract>> task)
+        private ICollection<int> ConvertAsyncResponse(Task<IResponse<SkinCollectionDTO>> task)
         {
             Debug.Assert(task != null, "task != null");
             var response = task.Result;
@@ -227,11 +220,11 @@ namespace GW2NET.V1.Skins
                 return new List<int>(0);
             }
 
-            return this.converterForSkinCollection.Convert(response.Content, null);
+            return this.skinCollectionConverter.Convert(response.Content, null);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Skin OnAsyncResponse(Task<IResponse<SkinDataContract>> task, CultureInfo culture)
+        private Skin OnAsyncResponse(Task<IResponse<SkinDTO>> task, CultureInfo culture)
         {
             var response = task.Result;
             if (response.Content == null)
@@ -239,7 +232,7 @@ namespace GW2NET.V1.Skins
                 return null;
             }
 
-            var skin = this.converterForSkin.Convert(response.Content, null);
+            var skin = this.skinConverter.Convert(response.Content, null);
             if (skin == null)
             {
                 return null;

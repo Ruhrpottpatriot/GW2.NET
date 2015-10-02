@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts objects of type <see cref="BuildDataContract" /> to objects of type <see cref="Build" />.
+//   Converts objects of type <see cref="BuildDTO" /> to objects of type <see cref="Build" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -15,26 +15,26 @@ namespace GW2NET.V2.Builds.Converters
     using GW2NET.Common;
     using GW2NET.V2.Builds.Json;
 
-    /// <summary>Converts objects of type <see cref="BuildDataContract"/> to objects of type <see cref="Build"/>.</summary>
-    public sealed class BuildConverter : IConverter<BuildDataContract, Build>
+    /// <summary>Converts objects of type <see cref="BuildDTO"/> to objects of type <see cref="Build"/>.</summary>
+    public sealed class BuildConverter : IConverter<BuildDTO, Build>
     {
         /// <inheritdoc />
-        public Build Convert(BuildDataContract value, object state)
+        public Build Convert(BuildDTO value, object state)
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value", "Precondition: value != null");
+                throw new ArgumentNullException("value");
             }
 
             if (state == null)
             {
-                throw new ArgumentNullException("state", "Precondition: state is IResponse<BuildDataContract>");
+                throw new ArgumentNullException("state", "Precondition: state is IResponse<BuildDTO>");
             }
 
-            var response = state as IResponse<BuildDataContract>;
+            var response = state as IResponse;
             if (response == null)
             {
-                throw new ArgumentException("Precondition: state is IResponse<BuildDataContract>", "state");
+                throw new ArgumentException("Precondition: state is IResponse", "state");
             }
 
             return new Build

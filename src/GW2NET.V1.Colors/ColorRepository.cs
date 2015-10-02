@@ -7,9 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.V1.Colors.Converters;
-using GW2NET.V1.Colors.Json;
-
 namespace GW2NET.V1.Colors
 {
     using System;
@@ -20,40 +17,33 @@ namespace GW2NET.V1.Colors
 
     using GW2NET.Colors;
     using GW2NET.Common;
+    using GW2NET.V1.Colors.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/colors.json interface.</summary>
     public class ColorRepository : IColorRepository
     {
-        private readonly IConverter<ColorCollectionDataContract, ICollection<ColorPalette>> converterForColorPaletteCollection;
+        private readonly IConverter<ColorCollectionDTO, ICollection<ColorPalette>> colorPaletteCollectionConverter;
 
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="ColorRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
-        public ColorRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterForColorPaletteCollection())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="ColorRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="converterForColorPaletteCollection">The converter for <see cref="ICollection{ColorPalette}"/>.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForColorPaletteCollection"/> is a null reference.</exception>
-        internal ColorRepository(IServiceClient serviceClient, IConverter<ColorCollectionDataContract, ICollection<ColorPalette>> converterForColorPaletteCollection)
+        /// <param name="serviceClient"></param>
+        /// <param name="colorPaletteCollectionConverter"></param>
+        /// <exception cref="ArgumentNullException">This constructor does not accept null as a valid argument.</exception>
+        public ColorRepository(IServiceClient serviceClient, IConverter<ColorCollectionDTO, ICollection<ColorPalette>> colorPaletteCollectionConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
-            if (converterForColorPaletteCollection == null)
+            if (colorPaletteCollectionConverter == null)
             {
-                throw new ArgumentNullException("converterForColorPaletteCollection", "Precondition: converterForColorPaletteCollection != null");
+                throw new ArgumentNullException("colorPaletteCollectionConverter");
             }
 
             this.serviceClient = serviceClient;
-            this.converterForColorPaletteCollection = converterForColorPaletteCollection;
+            this.colorPaletteCollectionConverter = colorPaletteCollectionConverter;
         }
 
         /// <inheritdoc />
@@ -91,13 +81,13 @@ namespace GW2NET.V1.Colors
             {
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<ColorCollectionDataContract>(request);
+            var response = this.serviceClient.Send<ColorCollectionDTO>(request);
             if (response.Content == null || response.Content.Colors == null)
             {
                 return new DictionaryRange<int, ColorPalette>(0);
             }
 
-            var values = this.converterForColorPaletteCollection.Convert(response.Content, null);
+            var values = this.colorPaletteCollectionConverter.Convert(response.Content, null);
             var colorPalettes = new DictionaryRange<int, ColorPalette>(values.Count)
             {
                 SubtotalCount = values.Count,
@@ -133,7 +123,7 @@ namespace GW2NET.V1.Colors
             {
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<ColorCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, ColorPalette>>(
+            return this.serviceClient.SendAsync<ColorCollectionDTO>(request, cancellationToken).ContinueWith<IDictionaryRange<int, ColorPalette>>(
                 task =>
                 {
                     var response = task.Result;
@@ -142,7 +132,7 @@ namespace GW2NET.V1.Colors
                         return new DictionaryRange<int, ColorPalette>(0);
                     }
 
-                    var values = this.converterForColorPaletteCollection.Convert(response.Content, null);
+                    var values = this.colorPaletteCollectionConverter.Convert(response.Content, null);
                     var colorPalettes = new DictionaryRange<int, ColorPalette>(values.Count)
                     {
                         SubtotalCount = values.Count,

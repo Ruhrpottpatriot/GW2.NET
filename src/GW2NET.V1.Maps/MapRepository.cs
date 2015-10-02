@@ -25,36 +25,27 @@ namespace GW2NET.V1.Maps
     /// <summary>Represents a repository that retrieves data from the /v1/maps.json interface.</summary>
     public class MapRepository : IMapRepository
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<MapCollectionDataContract, ICollection<Map>> converterForMapCollection;
+        private readonly IConverter<MapCollectionDTO, ICollection<Map>> mapCollectionConverter;
 
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="MapRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        public MapRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterForMapCollection())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="MapRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="converterForMapCollection">The converter for <see cref="ICollection{Map}"/>.</param>
-        internal MapRepository(IServiceClient serviceClient, IConverter<MapCollectionDataContract, ICollection<Map>> converterForMapCollection)
+        /// <param name="serviceClient"></param>
+        /// <param name="mapCollectionConverter">The converter for <see cref="ICollection{Map}"/>.</param>
+        public MapRepository(IServiceClient serviceClient, IConverter<MapCollectionDTO, ICollection<Map>> mapCollectionConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
-            if (converterForMapCollection == null)
+            if (mapCollectionConverter == null)
             {
-                throw new ArgumentNullException("converterForMapCollection", "Precondition: converterForMapCollection != null");
+                throw new ArgumentNullException("mapCollectionConverter");
             }
 
             this.serviceClient = serviceClient;
-            this.converterForMapCollection = converterForMapCollection;
+            this.mapCollectionConverter = mapCollectionConverter;
         }
 
         /// <inheritdoc />
@@ -87,13 +78,13 @@ namespace GW2NET.V1.Maps
                 MapId = identifier,
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<MapCollectionDataContract>(request);
+            var response = this.serviceClient.Send<MapCollectionDTO>(request);
             if (response.Content == null || response.Content.Maps == null)
             {
                 return null;
             }
 
-            var values = this.converterForMapCollection.Convert(response.Content, null);
+            var values = this.mapCollectionConverter.Convert(response.Content, null);
             if (values == null)
             {
                 return null;
@@ -116,13 +107,13 @@ namespace GW2NET.V1.Maps
             {
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<MapCollectionDataContract>(request);
+            var response = this.serviceClient.Send<MapCollectionDTO>(request);
             if (response.Content == null || response.Content.Maps == null)
             {
                 return new DictionaryRange<int, Map>(0);
             }
 
-            var values = this.converterForMapCollection.Convert(response.Content, null);
+            var values = this.mapCollectionConverter.Convert(response.Content, null);
             var maps = new DictionaryRange<int, Map>(values.Count)
             {
                 SubtotalCount = values.Count,
@@ -159,7 +150,7 @@ namespace GW2NET.V1.Maps
             {
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<MapCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Map>>(
+            return this.serviceClient.SendAsync<MapCollectionDTO>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Map>>(
                 task =>
                 {
                     var response = task.Result;
@@ -168,7 +159,7 @@ namespace GW2NET.V1.Maps
                         return null;
                     }
 
-                    var values = this.converterForMapCollection.Convert(response.Content, null);
+                    var values = this.mapCollectionConverter.Convert(response.Content, null);
                     var maps = new DictionaryRange<int, Map>(values.Count)
                     {
                         SubtotalCount = values.Count,
@@ -214,7 +205,7 @@ namespace GW2NET.V1.Maps
                 MapId = identifier,
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<MapCollectionDataContract>(request, cancellationToken).ContinueWith<Map>(
+            return this.serviceClient.SendAsync<MapCollectionDTO>(request, cancellationToken).ContinueWith<Map>(
                 task =>
                 {
                     var response = task.Result;
@@ -223,7 +214,7 @@ namespace GW2NET.V1.Maps
                         return null;
                     }
 
-                    var map = this.converterForMapCollection.Convert(response.Content, null).SingleOrDefault();
+                    var map = this.mapCollectionConverter.Convert(response.Content, null).SingleOrDefault();
                     if (map != null)
                     {
                         map.Culture = request.Culture;

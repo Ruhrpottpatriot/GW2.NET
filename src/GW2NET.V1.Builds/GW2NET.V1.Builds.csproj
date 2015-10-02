@@ -48,8 +48,8 @@
   <ItemGroup>
     <Compile Include="BuildRequest.cs" />
     <Compile Include="BuildService.cs" />
-    <Compile Include="Converters\ConverterForBuild.cs" />
-    <Compile Include="Json\BuildDataContract.cs" />
+    <Compile Include="Converters\BuildConverter.cs" />
+    <Compile Include="Json\BuildDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="$(SolutionDir)SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>

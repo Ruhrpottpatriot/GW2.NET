@@ -21,6 +21,7 @@ namespace GW2NET.V2.Recipes
     using GW2NET.Common.Converters;
     using GW2NET.Items;
     using GW2NET.Recipes;
+    using GW2NET.V2.Recipes.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v2/recipes interface. See the remarks section for important limitations regarding this implementation.</summary>
     /// <remarks>
@@ -39,56 +40,64 @@ namespace GW2NET.V2.Recipes
     /// </remarks>
     public class RecipeRepository : IRecipeRepository
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<RecipeDataContract>>, IDictionaryRange<int, Recipe>> converterForBulkResponse;
+        
+        private readonly IConverter<IResponse<ICollection<RecipeDTO>>, IDictionaryRange<int, Recipe>> bulkResponseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<int>>, ICollection<int>> converterForIdentifiersResponse;
+        
+        private readonly IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<RecipeDataContract>>, ICollectionPage<Recipe>> converterForPageResponse;
+        
+        private readonly IConverter<IResponse<ICollection<RecipeDTO>>, ICollectionPage<Recipe>> pageResponseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<RecipeDataContract>, Recipe> converterForResponse;
+        
+        private readonly IConverter<IResponse<RecipeDTO>, Recipe> responseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="RecipeRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
-        public RecipeRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterAdapter<ICollection<int>>(), new ConverterForRecipe())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="RecipeRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="converterForRecipeCollection">The converter for <see cref="T:ICollection{int}"/>.</param>
-        /// <param name="converterForRecipe">The converter for <see cref="Item"/>.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForRecipeCollection"/> or <paramref name="converterForRecipe"/> is a null reference.</exception>
-        internal RecipeRepository(IServiceClient serviceClient, IConverter<ICollection<int>, ICollection<int>> converterForRecipeCollection, IConverter<RecipeDataContract, Recipe> converterForRecipe)
+        /// <param name="serviceClient"></param>
+        /// <param name="identifiersResponseConverter"></param>
+        /// <param name="responseConverter"></param>
+        /// <param name="bulkResponseConverter"></param>
+        /// <param name="pageResponseConverter"></param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="RecipeCollectionConverter"/> or <paramref name="RecipeConverter"/> is a null reference.</exception>
+        public RecipeRepository(IServiceClient serviceClient,
+            IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter,
+            IConverter<IResponse<RecipeDTO>, Recipe> responseConverter,
+            IConverter<IResponse<ICollection<RecipeDTO>>, IDictionaryRange<int, Recipe>> bulkResponseConverter,
+            IConverter<IResponse<ICollection<RecipeDTO>>, ICollectionPage<Recipe>> pageResponseConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
-            if (converterForRecipeCollection == null)
+            if (identifiersResponseConverter == null)
             {
-                throw new ArgumentNullException("converterForRecipeCollection", "Precondition: converterForRecipeCollection != null");
+                throw new ArgumentNullException("identifiersResponseConverter");
             }
 
-            if (converterForRecipe == null)
+            if (responseConverter == null)
             {
-                throw new ArgumentNullException("converterForRecipe", "Precondition: converterForRecipe != null");
+                throw new ArgumentNullException("responseConverter");
+            }
+
+            if (bulkResponseConverter == null)
+            {
+                throw new ArgumentNullException("bulkResponseConverter");
+            }
+
+            if (pageResponseConverter == null)
+            {
+                throw new ArgumentNullException("pageResponseConverter");
             }
 
             this.serviceClient = serviceClient;
-            this.converterForIdentifiersResponse = new ConverterForResponse<ICollection<int>, ICollection<int>>(converterForRecipeCollection);
-            this.converterForResponse = new ConverterForResponse<RecipeDataContract, Recipe>(converterForRecipe);
-            this.converterForBulkResponse = new ConverterForDictionaryRangeResponse<RecipeDataContract, int, Recipe>(converterForRecipe, recipe => recipe.RecipeId);
-            this.converterForPageResponse = new ConverterForCollectionPageResponse<RecipeDataContract, Recipe>(converterForRecipe);
+            this.identifiersResponseConverter = identifiersResponseConverter;
+            this.responseConverter = responseConverter;
+            this.bulkResponseConverter = bulkResponseConverter;
+            this.pageResponseConverter = pageResponseConverter;
         }
 
         /// <inheritdoc />
@@ -99,7 +108,7 @@ namespace GW2NET.V2.Recipes
         {
             var request = new RecipeDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
-            return this.converterForIdentifiersResponse.Convert(response, null) ?? new List<int>(0);
+            return this.identifiersResponseConverter.Convert(response, null) ?? new List<int>(0);
         }
 
         /// <inheritdoc />
@@ -125,7 +134,7 @@ namespace GW2NET.V2.Recipes
                 Input = identifier
             };
             var response = this.serviceClient.Send<ICollection<int>>(request);
-            return this.converterForIdentifiersResponse.Convert(response, null);
+            return this.identifiersResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -154,7 +163,7 @@ namespace GW2NET.V2.Recipes
                 Output = identifier
             };
             var response = this.serviceClient.Send<ICollection<int>>(request);
-            return this.converterForIdentifiersResponse.Convert(response, null);
+            return this.identifiersResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -184,8 +193,8 @@ namespace GW2NET.V2.Recipes
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<RecipeDataContract>(request);
-            return this.converterForResponse.Convert(response, null);
+            var response = this.serviceClient.Send<RecipeDTO>(request);
+            return this.responseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -196,8 +205,8 @@ namespace GW2NET.V2.Recipes
             {
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<ICollection<RecipeDataContract>>(request);
-            return this.converterForBulkResponse.Convert(response, null);
+            var response = this.serviceClient.Send<ICollection<RecipeDTO>>(request);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -209,8 +218,8 @@ namespace GW2NET.V2.Recipes
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<ICollection<RecipeDataContract>>(request);
-            return this.converterForBulkResponse.Convert(response, null);
+            var response = this.serviceClient.Send<ICollection<RecipeDTO>>(request);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -228,7 +237,7 @@ namespace GW2NET.V2.Recipes
             {
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<RecipeDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<RecipeDTO>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, Recipe>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -248,7 +257,7 @@ namespace GW2NET.V2.Recipes
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<RecipeDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<RecipeDTO>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, Recipe>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -268,7 +277,7 @@ namespace GW2NET.V2.Recipes
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<RecipeDataContract>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<RecipeDTO>(request, cancellationToken);
             return responseTask.ContinueWith<Recipe>(this.ConvertAsyncResponse, cancellationToken);
         }
 
@@ -281,8 +290,8 @@ namespace GW2NET.V2.Recipes
                 Page = pageIndex, 
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<ICollection<RecipeDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response, pageIndex);
+            var response = this.serviceClient.Send<ICollection<RecipeDTO>>(request);
+            var values = this.pageResponseConverter.Convert(response, pageIndex);
             return values ?? new CollectionPage<Recipe>(0);
         }
 
@@ -296,8 +305,8 @@ namespace GW2NET.V2.Recipes
                 PageSize = pageSize, 
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<ICollection<RecipeDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response, pageIndex);
+            var response = this.serviceClient.Send<ICollection<RecipeDTO>>(request);
+            var values = this.pageResponseConverter.Convert(response, pageIndex);
             return values ?? new CollectionPage<Recipe>(0);
         }
 
@@ -317,7 +326,7 @@ namespace GW2NET.V2.Recipes
                 Page = pageIndex, 
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<RecipeDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<RecipeDTO>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
@@ -338,15 +347,15 @@ namespace GW2NET.V2.Recipes
                 PageSize = pageSize, 
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<RecipeDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<RecipeDTO>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<int, Recipe> ConvertAsyncResponse(Task<IResponse<ICollection<RecipeDataContract>>> task)
+        private IDictionaryRange<int, Recipe> ConvertAsyncResponse(Task<IResponse<ICollection<RecipeDTO>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForBulkResponse.Convert(task.Result, null);
+            var values = this.bulkResponseConverter.Convert(task.Result, null);
             if (values == null)
             {
                 return new DictionaryRange<int, Recipe>(0);
@@ -356,10 +365,10 @@ namespace GW2NET.V2.Recipes
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollectionPage<Recipe> ConvertAsyncResponse(Task<IResponse<ICollection<RecipeDataContract>>> task, int pageIndex)
+        private ICollectionPage<Recipe> ConvertAsyncResponse(Task<IResponse<ICollection<RecipeDTO>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForPageResponse.Convert(task.Result, pageIndex);
+            var values = this.pageResponseConverter.Convert(task.Result, pageIndex);
             return values ?? new CollectionPage<Recipe>(0);
         }
 
@@ -367,7 +376,7 @@ namespace GW2NET.V2.Recipes
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            var ids = this.converterForIdentifiersResponse.Convert(task.Result, null);
+            var ids = this.identifiersResponseConverter.Convert(task.Result, null);
             if (ids == null)
             {
                 return new List<int>(0);
@@ -377,10 +386,10 @@ namespace GW2NET.V2.Recipes
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Recipe ConvertAsyncResponse(Task<IResponse<RecipeDataContract>> task)
+        private Recipe ConvertAsyncResponse(Task<IResponse<RecipeDTO>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.converterForResponse.Convert(task.Result, null);
+            return this.responseConverter.Convert(task.Result, null);
         }
 
     }

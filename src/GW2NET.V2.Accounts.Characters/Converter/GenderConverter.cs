@@ -7,26 +7,26 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Accounts.Characters
+namespace GW2NET.V2.Accounts.Characters.Converter
 {
     using System;
+
     using GW2NET.Characters;
     using GW2NET.Common;
 
-    /// <summary>Converts the string representation of a gender into the appropriate <see cref="Gender"/> enumeration.</summary>
-    internal sealed class GenderConverter : IConverter<string, Gender>
+    /// <summary>Converts the string representation of a gender into the appropriate <see cref="Gender" /> enumeration.</summary>
+    public sealed class GenderConverter : IConverter<string, Gender>
     {
         /// <inheritdoc />
         public Gender Convert(string value, object state)
         {
             Gender gender;
-
-            if (!Enum.TryParse(value, out gender))
+            if (Enum.TryParse(value, out gender))
             {
-                throw new ArgumentException("The passed value was not a valid gender.", "value");
+                return gender;
             }
 
-            return gender;
+            return Gender.Unknown;
         }
     }
 }

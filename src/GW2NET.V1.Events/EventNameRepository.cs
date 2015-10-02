@@ -14,9 +14,7 @@ using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using GW2NET.Common;
-using GW2NET.Common.Converters;
 using GW2NET.DynamicEvents;
-using GW2NET.V1.Events.Converters;
 using GW2NET.V1.Events.Json;
 
 namespace GW2NET.V1.Events
@@ -24,37 +22,30 @@ namespace GW2NET.V1.Events
     /// <summary>Represents a repository that retrieves data from the /v1/event_names.json interface.</summary>
     public class EventNameRepository : IEventNameRepository
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<ICollection<EventNameDataContract>, ICollection<DynamicEventName>> converterForDynamicEventNameCollection;
+        
+        private readonly IConverter<ICollection<EventNameDTO>, ICollection<DynamicEventName>> dynamicEventNameCollectionConverter;
 
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="EventNameRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        public EventNameRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterForCollection<EventNameDataContract, DynamicEventName>(new ConverterForDynamicEventName()))
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="EventNameRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="converterForDynamicEventNameCollection">The converter for <see cref="T:ICollection{DynamicEventName}"/>.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForDynamicEventNameCollection"/> is a null reference.</exception>
-        internal EventNameRepository(IServiceClient serviceClient, IConverter<ICollection<EventNameDataContract>, ICollection<DynamicEventName>> converterForDynamicEventNameCollection)
+        /// <param name="serviceClient"></param>
+        /// <param name="dynamicEventNameCollectionConverter"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public EventNameRepository(IServiceClient serviceClient, IConverter<ICollection<EventNameDTO>, ICollection<DynamicEventName>> dynamicEventNameCollectionConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
-            if (converterForDynamicEventNameCollection == null)
+            if (dynamicEventNameCollectionConverter == null)
             {
-                throw new ArgumentNullException("converterForDynamicEventNameCollection", "Precondition: converterForDynamicEventNameCollection != null");
+                throw new ArgumentNullException("dynamicEventNameCollectionConverter");
             }
 
             this.serviceClient = serviceClient;
-            this.converterForDynamicEventNameCollection = converterForDynamicEventNameCollection;
+            this.dynamicEventNameCollectionConverter = dynamicEventNameCollectionConverter;
         }
 
         /// <inheritdoc />
@@ -92,20 +83,20 @@ namespace GW2NET.V1.Events
             {
                 Culture = self.Culture
             };
-            var response = this.serviceClient.Send<ICollection<EventNameDataContract>>(request);
-            var eventNameDataContracts = response.Content;
-            if (eventNameDataContracts == null)
+            var response = this.serviceClient.Send<ICollection<EventNameDTO>>(request);
+            var eventNameDTOs = response.Content;
+            if (eventNameDTOs == null)
             {
                 return new DictionaryRange<Guid, DynamicEventName>(0);
             }
 
-            var dynamicEventNames = new DictionaryRange<Guid, DynamicEventName>(eventNameDataContracts.Count)
+            var dynamicEventNames = new DictionaryRange<Guid, DynamicEventName>(eventNameDTOs.Count)
             {
-                SubtotalCount = eventNameDataContracts.Count, 
-                TotalCount = eventNameDataContracts.Count
+                SubtotalCount = eventNameDTOs.Count, 
+                TotalCount = eventNameDTOs.Count
             };
 
-            foreach (var dynamicEventName in this.converterForDynamicEventNameCollection.Convert(eventNameDataContracts, null))
+            foreach (var dynamicEventName in this.dynamicEventNameCollectionConverter.Convert(eventNameDTOs, null))
             {
                 dynamicEventName.Culture = request.Culture;
                 dynamicEventNames.Add(dynamicEventName.EventId, dynamicEventName);
@@ -134,7 +125,7 @@ namespace GW2NET.V1.Events
             {
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<EventNameDataContract>>(request, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<EventNameDTO>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, request.Culture), cancellationToken);
         }
 
@@ -199,22 +190,22 @@ namespace GW2NET.V1.Events
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<Guid, DynamicEventName> ConvertAsyncResponse(Task<IResponse<ICollection<EventNameDataContract>>> task, CultureInfo culture)
+        private IDictionaryRange<Guid, DynamicEventName> ConvertAsyncResponse(Task<IResponse<ICollection<EventNameDTO>>> task, CultureInfo culture)
         {
             var response = task.Result;
-            var eventNameDataContracts = response.Content;
-            if (eventNameDataContracts == null)
+            var eventNameDTOs = response.Content;
+            if (eventNameDTOs == null)
             {
                 return new DictionaryRange<Guid, DynamicEventName>(0);
             }
 
-            var dynamicEventNames = new DictionaryRange<Guid, DynamicEventName>(eventNameDataContracts.Count)
+            var dynamicEventNames = new DictionaryRange<Guid, DynamicEventName>(eventNameDTOs.Count)
             {
-                SubtotalCount = eventNameDataContracts.Count, 
-                TotalCount = eventNameDataContracts.Count
+                SubtotalCount = eventNameDTOs.Count, 
+                TotalCount = eventNameDTOs.Count
             };
 
-            foreach (var dynamicEventName in this.converterForDynamicEventNameCollection.Convert(eventNameDataContracts, null))
+            foreach (var dynamicEventName in this.dynamicEventNameCollectionConverter.Convert(eventNameDTOs, null))
             {
                 dynamicEventName.Culture = culture;
                 dynamicEventNames.Add(dynamicEventName.EventId, dynamicEventName);

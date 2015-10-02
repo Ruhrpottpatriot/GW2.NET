@@ -39,7 +39,7 @@ namespace GW2NET.Items
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("value", "Precondition: value != null");
+                    throw new ArgumentNullException("value");
                 }
 
                 this.infixUpgrade = value;

@@ -14,7 +14,7 @@ namespace GW2NET.V2.Recipes
     using GW2NET.Common;
 
     /// <summary>Represents a search request that targets the /v2/recipes/search interface.</summary>
-    internal sealed class RecipeSearchRequest : IRequest
+    public sealed class RecipeSearchRequest : IRequest
     {
         /// <inheritdoc />
         string IRequest.Resource
@@ -26,10 +26,10 @@ namespace GW2NET.V2.Recipes
         }
 
         /// <summary>Gets or sets the input item identifier.</summary>
-        internal int? Input { get; set; }
+        public int? Input { get; set; }
 
         /// <summary>Gets or sets the output item identifier.</summary>
-        internal int? Output { get; set; }
+        public int? Output { get; set; }
 
         /// <inheritdoc />
         IEnumerable<KeyValuePair<string, string>> IRequest.GetParameters()

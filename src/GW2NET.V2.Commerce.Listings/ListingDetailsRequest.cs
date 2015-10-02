@@ -11,7 +11,7 @@ namespace GW2NET.V2.Commerce.Listings
     using GW2NET.Common;
 
     /// <summary>Represents a details request that targets the /v2/commerce/listings interface.</summary>
-    internal sealed class ListingDetailsRequest : DetailsRequest
+    public sealed class ListingDetailsRequest : DetailsRequest
     {
         /// <summary>Gets the resource path.</summary>
         public override string Resource

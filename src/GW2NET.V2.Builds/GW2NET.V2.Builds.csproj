@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\BuildConverter.cs" />
-    <Compile Include="Json\BuildDataContract.cs" />
+    <Compile Include="Json\BuildDTO.cs" />
     <Compile Include="BuildRequest.cs" />
     <Compile Include="BuildService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

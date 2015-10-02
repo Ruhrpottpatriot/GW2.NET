@@ -4,6 +4,7 @@
     using System.IO.MemoryMappedFiles;
 
     using GW2NET.Common;
+    using GW2NET.MumbleLink.Converters;
 
     using Xunit;
 
@@ -21,7 +22,7 @@
                     memoryMappedFile,
                     new AvatarConverter(
                         new AvatarContextConverter(new IPEndPointConverter()),
-                        new IdentityConverter(),
+                        new IdentityConverter(new ProfessionConverter(), new RaceConverter()),
                         new Vector3DConverter())))
             {
                 var avatar = mumbleLinkFile.Read();
@@ -47,7 +48,7 @@
                     memoryMappedFile1,
                     new AvatarConverter(
                         new AvatarContextConverter(new IPEndPointConverter()),
-                        new IdentityConverter(),
+                        new IdentityConverter(new ProfessionConverter(), new RaceConverter()),
                         new Vector3DConverter())))
             using (var memoryMappedFile2 = MemoryMappedFile.CreateFromFile(fileName2))
             using (
@@ -55,7 +56,7 @@
                     memoryMappedFile2,
                     new AvatarConverter(
                         new AvatarContextConverter(new IPEndPointConverter()),
-                        new IdentityConverter(),
+                        new IdentityConverter(new ProfessionConverter(), new RaceConverter()),
                         new Vector3DConverter())))
             {
                 var avatar1 = mumbleLinkFile1.Read();

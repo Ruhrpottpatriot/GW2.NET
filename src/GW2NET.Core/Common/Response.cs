@@ -40,7 +40,7 @@ namespace GW2NET.Common
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("value", "Precondition: value != null");
+                    throw new ArgumentNullException("value");
                 }
 
                 this.extensionData = value;

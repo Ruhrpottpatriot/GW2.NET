@@ -43,14 +43,13 @@
     <None Include="GW2NET.V2.Continents.nuspec" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Requests\ContinentBulkRequest.cs" />
+    <Compile Include="ContinentBulkRequest.cs" />
     <Compile Include="Converter\ContinentConverter.cs" />
-    <Compile Include="DataContracts\ContinentDataContract.cs" />
-    <Compile Include="Requests\ContinentDetailsRequest.cs" />
-    <Compile Include="Requests\ContinentDiscoveryRequest.cs" />
-    <Compile Include="Requests\ContinentPageRequest.cs" />
+    <Compile Include="Json\ContinentDTO.cs" />
+    <Compile Include="ContinentDetailsRequest.cs" />
+    <Compile Include="ContinentDiscoveryRequest.cs" />
+    <Compile Include="ContinentPageRequest.cs" />
     <Compile Include="ContinentRepository.cs" />
-    <Compile Include="ContinentRepositoryFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="$(SolutionDir)SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>

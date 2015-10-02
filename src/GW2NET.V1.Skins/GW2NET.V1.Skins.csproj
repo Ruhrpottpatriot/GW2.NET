@@ -46,32 +46,63 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\ConverterForArmorSkin.cs" />
-    <Compile Include="Converters\ConverterForBackpackSkin.cs" />
-    <Compile Include="Converters\ConverterForDamageType.cs" />
-    <Compile Include="Converters\ConverterForItemRestriction.cs" />
-    <Compile Include="Converters\ConverterForItemRestrictionCollection.cs" />
-    <Compile Include="Converters\ConverterForSkin.cs" />
-    <Compile Include="Converters\ConverterForSkinCollection.cs" />
-    <Compile Include="Converters\ConverterForSkinFlag.cs" />
-    <Compile Include="Converters\ConverterForSkinFlagCollection.cs" />
-    <Compile Include="Converters\ConverterForWeaponSkin.cs" />
-    <Compile Include="Converters\ConverterForWeightClass.cs" />
-    <Compile Include="Json\ArmorSkinDataContract.cs" />
-    <Compile Include="Json\SkinCollectionDataContract.cs" />
-    <Compile Include="Json\SkinDataContract.cs" />
-    <Compile Include="Json\WeaponSkinDataContract.cs" />
+    <Compile Include="Converters\ArmorSkinConverter.cs" />
+    <Compile Include="Converters\WeaponSkinConverters.cs">
+      <DependentUpon>WeaponSkinConverters.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Converters\DamageTypeConverter.cs" />
+    <Compile Include="Converters\ItemRestrictionConverter.cs" />
+    <Compile Include="Converters\ItemRestrictionCollectionConverter.cs" />
+    <Compile Include="Converters\ArmorSkinConverters.cs">
+      <DependentUpon>ArmorSkinConverters.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Converters\SkinConverters.cs">
+      <DependentUpon>SkinConverters.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Converters\SkinConverter.cs" />
+    <Compile Include="Converters\SkinCollectionConverter.cs" />
+    <Compile Include="Converters\SkinFlagConverter.cs" />
+    <Compile Include="Converters\SkinFlagCollectionConverter.cs" />
+    <Compile Include="Converters\WeaponSkinConverter.cs" />
+    <Compile Include="Converters\WeightClassConverter.cs" />
+    <Compile Include="Json\ArmorSkinDTO.cs" />
+    <Compile Include="Json\SkinCollectionDTO.cs" />
+    <Compile Include="Json\SkinDTO.cs" />
+    <Compile Include="Json\WeaponSkinDTO.cs" />
     <Compile Include="SkinDetailsRequest.cs" />
     <Compile Include="SkinDiscoveryRequest.cs" />
     <Compile Include="SkinRepository.cs" />
-    <Compile Include="SkinRepositoryFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="$(SolutionDir)SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Converters\ConverterTemplate.t4" />
     <None Include="GW2NET.V1.Skins.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Converters\WeaponSkinConverters.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>WeaponSkinConverters.cs</LastGenOutput>
+    </Content>
+    <Content Include="Converters\ArmorSkinConverters.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ArmorSkinConverters.cs</LastGenOutput>
+    </Content>
+    <Content Include="Converters\SkinConverters.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SkinConverters.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

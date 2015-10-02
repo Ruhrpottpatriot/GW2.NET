@@ -14,7 +14,7 @@ namespace GW2NET.V2.Worlds
     using GW2NET.Common;
 
     /// <summary>Represents a bulk request that targets the /v2/worlds interface.</summary>
-    internal sealed class WorldBulkRequest : BulkRequest, ILocalizable
+    public sealed class WorldBulkRequest : BulkRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }

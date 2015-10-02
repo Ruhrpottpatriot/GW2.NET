@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts objects of type <see cref="ExchangeDataContract" /> to objects of type <see cref="Exchange" />.
+//   Converts objects of type <see cref="ExchangeDTO" /> to objects of type <see cref="Exchange" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce.Exchange.Converters
@@ -14,26 +14,26 @@ namespace GW2NET.V2.Commerce.Exchange.Converters
     using GW2NET.Common;
     using GW2NET.V2.Commerce.Exchange.Json;
 
-    /// <summary>Converts objects of type <see cref="ExchangeDataContract"/> to objects of type <see cref="Exchange"/>.</summary>
-    public sealed class ExchangeConverter : IConverter<ExchangeDataContract, Exchange>
+    /// <summary>Converts objects of type <see cref="ExchangeDTO"/> to objects of type <see cref="Exchange"/>.</summary>
+    public sealed class ExchangeConverter : IConverter<ExchangeDTO, Exchange>
     {
         /// <inheritdoc />
-        public Exchange Convert(ExchangeDataContract value, object state)
+        public Exchange Convert(ExchangeDTO value, object state)
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value", "Precondition: value != null");
+                throw new ArgumentNullException("value");
             }
 
             if (state == null)
             {
-                throw new ArgumentNullException("state", "Precondition: state != null");
+                throw new ArgumentNullException("state", "Precondition: state is IResponse<ExchangeDTO>");
             }
 
-            var response = state as IResponse<ExchangeDataContract>;
+            var response = state as IResponse;
             if (response == null)
             {
-                throw new ArgumentException("Precondition: state is IResponse<ExchangeDataContract>", "state");
+                throw new ArgumentException("Precondition: state is IResponse", "state");
             }
 
             return new Exchange

@@ -22,7 +22,7 @@ namespace GW2NET.Compression
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value", "Precondition: value != null");
+                throw new ArgumentNullException("value");
             }
 
             return new GZipStream(value, CompressionMode.Decompress);

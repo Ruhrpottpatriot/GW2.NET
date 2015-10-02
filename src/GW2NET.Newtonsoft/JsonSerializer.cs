@@ -17,7 +17,7 @@ namespace GW2NET.Common.Serializers
     /// <typeparam name="T">The type that is being serialized.</typeparam>
     public class JsonSerializer<T> : ISerializer<T>
     {
-        /// <summary>Infrastructure. Holds a reference to the Json.NET serializer.</summary>
+        
         private readonly JsonSerializer jsonSerializer;
 
         /// <summary>Initializes a new instance of the <see cref="JsonSerializer{T}"/> class.</summary>
@@ -27,7 +27,7 @@ namespace GW2NET.Common.Serializers
         {
             if (jsonSerializer == null)
             {
-                throw new ArgumentNullException("jsonSerializer", "Precondition: jsonSerializer != null");
+                throw new ArgumentNullException("jsonSerializer");
             }
 
             this.jsonSerializer = jsonSerializer;

@@ -16,7 +16,7 @@ namespace GW2NET.Common.Serializers
     /// <typeparam name="T">The type of the data contract.</typeparam>
     public class DataContractSerializer<T> : ISerializer<T>
     {
-        /// <summary>Infrastructure. Holds a reference to the JSON.NET serializer.</summary>
+        
         private readonly XmlObjectSerializer serializer;
 
         /// <summary>Initializes a new instance of the <see cref="DataContractSerializer{T}"/> class.</summary>
@@ -26,7 +26,7 @@ namespace GW2NET.Common.Serializers
         {
             if (serializer == null)
             {
-                throw new ArgumentNullException("serializer", "Precondition: serializer != null");
+                throw new ArgumentNullException("serializer");
             }
 
             this.serializer = serializer;

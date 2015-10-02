@@ -15,7 +15,7 @@ using GW2NET.Common;
 namespace GW2NET.V1.Events.Json
 {
     /// <summary>Represents a request for static details about dynamic events.</summary>
-    internal sealed class DynamicEventDetailsRequest : IRequest, ILocalizable
+    public sealed class DynamicEventDetailsRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }

@@ -14,7 +14,7 @@ namespace GW2NET.V1.Maps
     using GW2NET.Common;
 
     /// <summary>Represents a request for a list of localized map names.</summary>
-    internal sealed class MapNameRequest : IRequest, ILocalizable
+    public sealed class MapNameRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }

@@ -12,10 +12,13 @@ namespace GW2NET.Characters
     /// <summary>Enumerates the possible genders of a character.</summary>
     public enum Gender
     {
-        /// <summary>Represents male characters.</summary>
-        Male = 0,
+        /// <summary>Indicates that the character's gender is unknown.</summary>
+        Unknown = 0,
 
-        /// <summary>Represents female characters.</summary>
-        Female = 1
+        /// <summary>Indicates that the character is a male.</summary>
+        Male = 1 << 0,
+
+        /// <summary>Indicates that the character is a female.</summary>
+        Female = 1 << 1
     }
 }

@@ -7,8 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.Common.Converters;
-
 namespace GW2NET.V2.Quaggans
 {
     using System;
@@ -21,59 +19,66 @@ namespace GW2NET.V2.Quaggans
 
     using GW2NET.Common;
     using GW2NET.Quaggans;
+    using GW2NET.V2.Quaggans.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v2/quaggans interface.</summary>
     public class QuagganRepository : IQuagganRepository
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<QuagganDataContract>>, IDictionaryRange<string, Quaggan>> converterForBulkResponse;
+        private readonly IConverter<IResponse<ICollection<QuagganDTO>>, IDictionaryRange<string, Quaggan>>
+            bulkResponseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<string>>, ICollection<string>> converterForIdentifiersResponse;
+        private readonly IConverter<IResponse<ICollection<string>>, ICollection<string>> identifiersResponseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<ICollection<QuagganDataContract>>, ICollectionPage<Quaggan>> converterForPageResponse;
+        private readonly IConverter<IResponse<ICollection<QuagganDTO>>, ICollectionPage<Quaggan>> pageResponseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<IResponse<QuagganDataContract>, Quaggan> converterForResponse;
+        private readonly IConverter<IResponse<QuagganDTO>, Quaggan> responseConverter;
 
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
-        /// <summary>Initializes a new instance of the <see cref="QuagganRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        public QuagganRepository(IServiceClient serviceClient)
-            : this(serviceClient, new ConverterAdapter<ICollection<string>>(), new ConverterForQuaggan())
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="QuagganRepository"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="converterForIdentifiers">The converter for <see cref="T:ICollection{string}"/>.</param>
-        /// <param name="converterForQuaggan">The converter for <see cref="Quaggan"/>.</param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForIdentifiers"/> or <paramref name="converterForQuaggan"/> is a null reference.</exception>
-        internal QuagganRepository(IServiceClient serviceClient, IConverter<ICollection<string>, ICollection<string>> converterForIdentifiers, IConverter<QuagganDataContract, Quaggan> converterForQuaggan)
+        /// <summary>Initializes a new instance of the <see cref="QuagganRepository" /> class.</summary>
+        /// <param name="serviceClient"></param>
+        /// <param name="identifiersResponseConverter"></param>
+        /// <param name="responseConverter"></param>
+        /// <param name="bulkResponseConverter"></param>
+        /// <param name="pageResponseConverter"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public QuagganRepository(
+            IServiceClient serviceClient,
+            IConverter<IResponse<ICollection<string>>, ICollection<string>> identifiersResponseConverter,
+            IConverter<IResponse<QuagganDTO>, Quaggan> responseConverter,
+            IConverter<IResponse<ICollection<QuagganDTO>>, IDictionaryRange<string, Quaggan>> bulkResponseConverter,
+            IConverter<IResponse<ICollection<QuagganDTO>>, ICollectionPage<Quaggan>> pageResponseConverter)
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+                throw new ArgumentNullException("serviceClient");
             }
 
-            if (converterForIdentifiers == null)
+            if (identifiersResponseConverter == null)
             {
-                throw new ArgumentNullException("converterForIdentifiers", "Precondition: converterForIdentifiers != null");
+                throw new ArgumentNullException("identifiersResponseConverter");
             }
 
-            if (converterForQuaggan == null)
+            if (responseConverter == null)
             {
-                throw new ArgumentNullException("converterForQuaggan", "Precondition: converterForQuaggan != null");
+                throw new ArgumentNullException("responseConverter");
+            }
+
+            if (bulkResponseConverter == null)
+            {
+                throw new ArgumentNullException("bulkResponseConverter");
+            }
+
+            if (pageResponseConverter == null)
+            {
+                throw new ArgumentNullException("pageResponseConverter");
             }
 
             this.serviceClient = serviceClient;
-            this.converterForIdentifiersResponse = new ConverterForResponse<ICollection<string>, ICollection<string>>(converterForIdentifiers);
-            this.converterForResponse = new ConverterForResponse<QuagganDataContract, Quaggan>(converterForQuaggan);
-            this.converterForBulkResponse = new ConverterForDictionaryRangeResponse<QuagganDataContract, string, Quaggan>(converterForQuaggan, quaggan => quaggan.Id);
-            this.converterForPageResponse = new ConverterForCollectionPageResponse<QuagganDataContract, Quaggan>(converterForQuaggan);
+            this.identifiersResponseConverter = identifiersResponseConverter;
+            this.responseConverter = responseConverter;
+            this.bulkResponseConverter = bulkResponseConverter;
+            this.pageResponseConverter = pageResponseConverter;
         }
 
         /// <inheritdoc />
@@ -81,7 +86,7 @@ namespace GW2NET.V2.Quaggans
         {
             var request = new QuagganDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<string>>(request);
-            return this.converterForIdentifiersResponse.Convert(response, null) ?? new List<string>(0);
+            return this.identifiersResponseConverter.Convert(response, null) ?? new List<string>(0);
         }
 
         /// <inheritdoc />
@@ -102,31 +107,25 @@ namespace GW2NET.V2.Quaggans
         /// <inheritdoc />
         Quaggan IRepository<string, Quaggan>.Find(string identifier)
         {
-            var request = new QuagganDetailsRequest
-            {
-                Identifier = identifier
-            };
-            var response = this.serviceClient.Send<QuagganDataContract>(request);
-            return this.converterForResponse.Convert(response, null);
+            var request = new QuagganDetailsRequest { Identifier = identifier };
+            var response = this.serviceClient.Send<QuagganDTO>(request);
+            return this.responseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
         IDictionaryRange<string, Quaggan> IRepository<string, Quaggan>.FindAll()
         {
             var request = new QuagganBulkRequest();
-            var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
-            return this.converterForBulkResponse.Convert(response, null) ?? new DictionaryRange<string, Quaggan>(0);
+            var response = this.serviceClient.Send<ICollection<QuagganDTO>>(request);
+            return this.bulkResponseConverter.Convert(response, null) ?? new DictionaryRange<string, Quaggan>(0);
         }
 
         /// <inheritdoc />
         IDictionaryRange<string, Quaggan> IRepository<string, Quaggan>.FindAll(ICollection<string> identifiers)
         {
-            var request = new QuagganBulkRequest
-            {
-                Identifiers = identifiers.ToList()
-            };
-            var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
-            return this.converterForBulkResponse.Convert(response, null) ?? new DictionaryRange<string, Quaggan>(0);
+            var request = new QuagganBulkRequest { Identifiers = identifiers.ToList() };
+            var response = this.serviceClient.Send<ICollection<QuagganDTO>>(request);
+            return this.bulkResponseConverter.Convert(response, null) ?? new DictionaryRange<string, Quaggan>(0);
         }
 
         /// <inheritdoc />
@@ -137,29 +136,34 @@ namespace GW2NET.V2.Quaggans
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<string, Quaggan>> IRepository<string, Quaggan>.FindAllAsync(CancellationToken cancellationToken)
+        Task<IDictionaryRange<string, Quaggan>> IRepository<string, Quaggan>.FindAllAsync(
+            CancellationToken cancellationToken)
         {
             var request = new QuagganBulkRequest();
-            var responseTask = this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<string, Quaggan>>(this.ConvertAsyncResponse, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<QuagganDTO>>(request, cancellationToken);
+            return responseTask.ContinueWith<IDictionaryRange<string, Quaggan>>(
+                this.ConvertAsyncResponse,
+                cancellationToken);
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<string, Quaggan>> IRepository<string, Quaggan>.FindAllAsync(ICollection<string> identifiers)
+        Task<IDictionaryRange<string, Quaggan>> IRepository<string, Quaggan>.FindAllAsync(
+            ICollection<string> identifiers)
         {
             IQuagganRepository self = this;
             return self.FindAllAsync(identifiers, CancellationToken.None);
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<string, Quaggan>> IRepository<string, Quaggan>.FindAllAsync(ICollection<string> identifiers, CancellationToken cancellationToken)
+        Task<IDictionaryRange<string, Quaggan>> IRepository<string, Quaggan>.FindAllAsync(
+            ICollection<string> identifiers,
+            CancellationToken cancellationToken)
         {
-            var request = new QuagganBulkRequest
-            {
-                Identifiers = identifiers.ToList()
-            };
-            var responseTask = this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<string, Quaggan>>(this.ConvertAsyncResponse, cancellationToken);
+            var request = new QuagganBulkRequest { Identifiers = identifiers.ToList() };
+            var responseTask = this.serviceClient.SendAsync<ICollection<QuagganDTO>>(request, cancellationToken);
+            return responseTask.ContinueWith<IDictionaryRange<string, Quaggan>>(
+                this.ConvertAsyncResponse,
+                cancellationToken);
         }
 
         /// <inheritdoc />
@@ -172,36 +176,26 @@ namespace GW2NET.V2.Quaggans
         /// <inheritdoc />
         Task<Quaggan> IRepository<string, Quaggan>.FindAsync(string identifier, CancellationToken cancellationToken)
         {
-            var request = new QuagganDetailsRequest
-            {
-                Identifier = identifier
-            };
-            var responseTask = this.serviceClient.SendAsync<QuagganDataContract>(request, cancellationToken);
+            var request = new QuagganDetailsRequest { Identifier = identifier };
+            var responseTask = this.serviceClient.SendAsync<QuagganDTO>(request, cancellationToken);
             return responseTask.ContinueWith<Quaggan>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         /// <inheritdoc />
         ICollectionPage<Quaggan> IPaginator<Quaggan>.FindPage(int pageIndex)
         {
-            var request = new QuagganPageRequest
-            {
-                Page = pageIndex
-            };
-            var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response, pageIndex);
+            var request = new QuagganPageRequest { Page = pageIndex };
+            var response = this.serviceClient.Send<ICollection<QuagganDTO>>(request);
+            var values = this.pageResponseConverter.Convert(response, pageIndex);
             return values ?? new CollectionPage<Quaggan>(0);
         }
 
         /// <inheritdoc />
         ICollectionPage<Quaggan> IPaginator<Quaggan>.FindPage(int pageIndex, int pageSize)
         {
-            var request = new QuagganPageRequest
-            {
-                Page = pageIndex,
-                PageSize = pageSize
-            };
-            var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
-            var values = this.converterForPageResponse.Convert(response, pageIndex);
+            var request = new QuagganPageRequest { Page = pageIndex, PageSize = pageSize };
+            var response = this.serviceClient.Send<ICollection<QuagganDTO>>(request);
+            var values = this.pageResponseConverter.Convert(response, pageIndex);
             return values ?? new CollectionPage<Quaggan>(0);
         }
 
@@ -213,13 +207,12 @@ namespace GW2NET.V2.Quaggans
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<Quaggan>> IPaginator<Quaggan>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        Task<ICollectionPage<Quaggan>> IPaginator<Quaggan>.FindPageAsync(
+            int pageIndex,
+            CancellationToken cancellationToken)
         {
-            var request = new QuagganPageRequest
-            {
-                Page = pageIndex
-            };
-            var responseTask = this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken);
+            var request = new QuagganPageRequest { Page = pageIndex };
+            var responseTask = this.serviceClient.SendAsync<ICollection<QuagganDTO>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
@@ -231,43 +224,48 @@ namespace GW2NET.V2.Quaggans
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<Quaggan>> IPaginator<Quaggan>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        Task<ICollectionPage<Quaggan>> IPaginator<Quaggan>.FindPageAsync(
+            int pageIndex,
+            int pageSize,
+            CancellationToken cancellationToken)
         {
-            var request = new QuagganPageRequest
-            {
-                Page = pageIndex,
-                PageSize = pageSize
-            };
-            var responseTask = this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken);
+            var request = new QuagganPageRequest { Page = pageIndex, PageSize = pageSize };
+            var responseTask = this.serviceClient.SendAsync<ICollection<QuagganDTO>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
+            Justification = "Not a public API.")]
         private ICollection<string> ConvertAsyncResponse(Task<IResponse<ICollection<string>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.converterForIdentifiersResponse.Convert(task.Result, null) ?? new List<string>(0);
+            return this.identifiersResponseConverter.Convert(task.Result, null) ?? new List<string>(0);
         }
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<string, Quaggan> ConvertAsyncResponse(Task<IResponse<ICollection<QuagganDataContract>>> task)
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
+            Justification = "Not a public API.")]
+        private IDictionaryRange<string, Quaggan> ConvertAsyncResponse(Task<IResponse<ICollection<QuagganDTO>>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.converterForBulkResponse.Convert(task.Result, null) ?? new DictionaryRange<string, Quaggan>(0);
+            return this.bulkResponseConverter.Convert(task.Result, null) ?? new DictionaryRange<string, Quaggan>(0);
         }
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Quaggan ConvertAsyncResponse(Task<IResponse<QuagganDataContract>> task)
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
+            Justification = "Not a public API.")]
+        private Quaggan ConvertAsyncResponse(Task<IResponse<QuagganDTO>> task)
         {
             Debug.Assert(task != null, "task != null");
-            return this.converterForResponse.Convert(task.Result, null);
+            return this.responseConverter.Convert(task.Result, null);
         }
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollectionPage<Quaggan> ConvertAsyncResponse(Task<IResponse<ICollection<QuagganDataContract>>> task, int pageIndex)
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
+            Justification = "Not a public API.")]
+        private ICollectionPage<Quaggan> ConvertAsyncResponse(
+            Task<IResponse<ICollection<QuagganDTO>>> task,
+            int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
-            var values = this.converterForPageResponse.Convert(task.Result, pageIndex);
+            var values = this.pageResponseConverter.Convert(task.Result, pageIndex);
             return values ?? new CollectionPage<Quaggan>(0);
         }
     }

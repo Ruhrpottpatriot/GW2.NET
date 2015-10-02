@@ -17,13 +17,8 @@ namespace GW2NET.Common.Serializers
         private readonly JsonSerializerSettings jsonSerializerSettings;
 
         /// <summary>Initializes a new instance of the <see cref="JsonSerializerFactory"/> class.</summary>
-        public JsonSerializerFactory()
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="JsonSerializerFactory"/> class.</summary>
         /// <param name="jsonSerializerSettings">The settings to be applied to the <see cref="JsonSerializer"/>.</param>
-        public JsonSerializerFactory(JsonSerializerSettings jsonSerializerSettings)
+        public JsonSerializerFactory(JsonSerializerSettings jsonSerializerSettings = null)
         {
             this.jsonSerializerSettings = jsonSerializerSettings;
         }

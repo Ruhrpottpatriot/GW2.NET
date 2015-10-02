@@ -4,11 +4,11 @@
     using GW2NET.Common;
     using GW2NET.V2.Colors.Json;
 
-    public class ColorModelConverterMock : IConverter<ColorModelDataContract, ColorModel>
+    public class ColorModelConverterMock : IConverter<ColorModelDTO, ColorModel>
     {
         public int ConvertCount { get; set; }
 
-        public ColorModel Convert(ColorModelDataContract value, object state)
+        public ColorModel Convert(ColorModelDTO value, object state)
         {
             this.ConvertCount += 1;
             return default(ColorModel);

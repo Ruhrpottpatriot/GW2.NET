@@ -14,7 +14,7 @@ namespace GW2NET.V1.Skins
     using GW2NET.Common;
 
     /// <summary>Represents a request for details regarding a specific skin.</summary>
-    internal sealed class SkinDetailsRequest : IRequest, ILocalizable
+    public sealed class SkinDetailsRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }

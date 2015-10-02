@@ -17,7 +17,7 @@ namespace GW2NET.Factories
     public class FactoryForRendering : FactoryBase
     {
         /// <summary>Initializes a new instance of the <see cref="FactoryForRendering"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
+        /// <param name="serviceClient"></param>
         /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public FactoryForRendering(IServiceClient serviceClient)
             : base(serviceClient)

@@ -40,7 +40,7 @@ namespace GW2NET.Common
             this.apiKey = apiKey;
         }
 
-        /// <summary>Infrastructure. Creates and configures a new instance of the <see cref="HttpWebRequest"/> class.</summary>
+        /// <summary>Creates and configures a new instance of the <see cref="HttpWebRequest"/> class.</summary>
         /// <param name="uri">The resource <see cref="Uri"/>.</param>
         /// <returns>The <see cref="HttpWebRequest"/>.</returns>
         protected override HttpWebRequest CreateHttpWebRequest(Uri uri)

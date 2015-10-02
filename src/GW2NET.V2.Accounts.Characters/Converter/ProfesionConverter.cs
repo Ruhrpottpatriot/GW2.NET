@@ -7,25 +7,25 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Accounts.Characters
+namespace GW2NET.V2.Accounts.Characters.Converter
 {
     using System;
+
     using GW2NET.Common;
 
-    /// <summary>Converts the string representation of a profession into the appropriate <see cref="Profession"/> enumeration.</summary>
-    internal sealed class ProfesionConverter : IConverter<string, Profession>
+    /// <summary>Converts the string representation of a profession into the appropriate <see cref="Profession" /> enumeration.</summary>
+    public sealed class ProfesionConverter : IConverter<string, Profession>
     {
         /// <inheritdoc />
         public Profession Convert(string value, object state)
         {
-            Profession gender;
-
-            if (!Enum.TryParse(value, out gender))
+            Profession profession;
+            if (Enum.TryParse(value, out profession))
             {
-                throw new ArgumentException("The passed value was not a valid profession.", "value");
+                return profession;
             }
 
-            return gender;
+            return Profession.Unknown;
         }
     }
 }

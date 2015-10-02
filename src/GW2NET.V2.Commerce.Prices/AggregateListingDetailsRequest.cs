@@ -11,7 +11,7 @@ namespace GW2NET.V2.Commerce.Prices
     using GW2NET.Common;
 
     /// <summary>Represents a details request that targets the /v2/commerce/prices interface.</summary>
-    internal sealed class AggregateListingDetailsRequest : DetailsRequest
+    public sealed class AggregateListingDetailsRequest : DetailsRequest
     {
         /// <summary>Gets the resource path.</summary>
         public override string Resource

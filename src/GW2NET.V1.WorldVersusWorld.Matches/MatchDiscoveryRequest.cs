@@ -13,7 +13,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
     using GW2NET.Common;
 
     /// <summary>Represents a request for a list of the currently running World versus World matches, with the participating worlds included in the result.</summary>
-    internal sealed class MatchDiscoveryRequest : IRequest
+    public sealed class MatchDiscoveryRequest : IRequest
     {
         /// <summary>Gets the resource path.</summary>
         public string Resource

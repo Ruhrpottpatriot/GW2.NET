@@ -7,25 +7,25 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Accounts.Characters
+namespace GW2NET.V2.Accounts.Characters.Converter
 {
     using System;
+
     using GW2NET.Common;
 
     /// <summary>Converts the string representation of a race into the appropriate <see cref="Race"/> enumeration.</summary>
-    internal sealed class RaceConverter : IConverter<string, Race>
+    public sealed class RaceConverter : IConverter<string, Race>
     {
         /// <inheritdoc />
         public Race Convert(string value, object state)
         {
             Race gender;
-
-            if (!Enum.TryParse(value, out gender))
+            if (Enum.TryParse(value, out gender))
             {
-                throw new ArgumentException("The passed value was not a valid profession.", "value");
+                return gender;
             }
 
-            return gender;
+            return Race.Unknown;
         }
     }
 }

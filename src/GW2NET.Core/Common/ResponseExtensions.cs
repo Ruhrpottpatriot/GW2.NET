@@ -25,7 +25,7 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance", "Precondition: instance != null");
+                throw new ArgumentNullException("instance");
             }
 
             string header;
@@ -52,7 +52,7 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance", "Precondition: instance != null");
+                throw new ArgumentNullException("instance");
             }
 
             string header;
@@ -79,7 +79,7 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance", "Precondition: instance != null");
+                throw new ArgumentNullException("instance");
             }
 
             string header;
@@ -106,7 +106,7 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance", "Precondition: instance != null");
+                throw new ArgumentNullException("instance");
             }
 
             string header;

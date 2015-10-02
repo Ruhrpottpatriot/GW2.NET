@@ -47,15 +47,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorRepository.cs" />
-    <Compile Include="ColorRepositoryFactory.cs" />
     <Compile Include="ColorRequest.cs" />
-    <Compile Include="Converters\ConverterForColor.cs" />
-    <Compile Include="Converters\ConverterForColorModel.cs" />
-    <Compile Include="Converters\ConverterForColorPalette.cs" />
-    <Compile Include="Converters\ConverterForColorPaletteCollection.cs" />
-    <Compile Include="Json\ColorCollectionDataContract.cs" />
-    <Compile Include="Json\ColorDataContract.cs" />
-    <Compile Include="Json\ColorModelDataContract.cs" />
+    <Compile Include="Converters\ColorConverter.cs" />
+    <Compile Include="Converters\ColorModelConverter.cs" />
+    <Compile Include="Converters\ColorPaletteConverter.cs" />
+    <Compile Include="Converters\ColorPaletteCollectionConverter.cs" />
+    <Compile Include="Json\ColorCollectionDTO.cs" />
+    <Compile Include="Json\ColorDTO.cs" />
+    <Compile Include="Json\ColorModelDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="$(SolutionDir)SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>

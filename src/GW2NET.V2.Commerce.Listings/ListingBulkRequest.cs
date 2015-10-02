@@ -11,7 +11,7 @@ namespace GW2NET.V2.Commerce.Listings
     using GW2NET.Common;
 
     /// <summary>Represents a bulk request that targets the /v2/commerce/listings interface.</summary>
-    internal sealed class ListingBulkRequest : BulkRequest
+    public sealed class ListingBulkRequest : BulkRequest
     {
         /// <summary>Gets the resource path.</summary>
         public override string Resource

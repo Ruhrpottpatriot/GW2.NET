@@ -7,22 +7,23 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Files
+namespace GW2NET.V2.Files.Converters
 {
     using System;
 
     using GW2NET.Common;
     using GW2NET.Files;
+    using GW2NET.V2.Files.Json;
 
-    /// <summary>Converts a <see cref="FileDataContract"/> to an <see cref="Asset"/>.</summary>
-    internal sealed class AssetConverter : IConverter<FileDataContract, Asset>
+    /// <summary>Converts a <see cref="FileDTO"/> to an <see cref="Asset"/>.</summary>
+    public sealed class AssetConverter : IConverter<FileDTO, Asset>
     {
         /// <inheritdoc />
-        public Asset Convert(FileDataContract value, object state)
+        public Asset Convert(FileDTO value, object state)
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value", "Precondition: value != null");
+                throw new ArgumentNullException("value");
             }
 
             var asset = new Asset

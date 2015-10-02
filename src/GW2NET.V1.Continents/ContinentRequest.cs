@@ -14,7 +14,7 @@ namespace GW2NET.V1.Continents
     using GW2NET.Common;
 
     /// <summary>Represents a request for static information about the continents.</summary>
-    internal sealed class ContinentRequest : IRequest, ILocalizable
+    public sealed class ContinentRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }

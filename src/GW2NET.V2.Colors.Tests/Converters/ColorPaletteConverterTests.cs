@@ -27,17 +27,17 @@
         [InlineData("fr", 1, "Dissolvant pour teinture", new[] { 128, 26, 26 })]
         public void CanConvert(string lang, int id, string name, int[] baseRgb)
         {
-            var value = new ColorPaletteDataContract
+            var value = new ColorPaletteDTO
             {
                 Id = id,
                 Name = name,
                 BaseRgb = baseRgb,
-                Cloth = new ColorModelDataContract(),
-                Leather = new ColorModelDataContract(),
-                Metal = new ColorModelDataContract()
+                Cloth = new ColorModelDTO(),
+                Leather = new ColorModelDTO(),
+                Metal = new ColorModelDTO()
             };
 
-            var state = new Response<ColorPaletteDataContract>
+            var state = new Response<ColorPaletteDTO>
             {
                 Content = value,
                 Culture = new CultureInfo(lang)

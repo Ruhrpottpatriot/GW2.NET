@@ -22,16 +22,16 @@ namespace GW2NET.Common
     /// <summary>Provides a default implementation for the <see cref="IServiceClient" /> interface.</summary>
     public class ServiceClient : IServiceClient
     {
-        /// <summary>Infrastructure. Holds a reference to the base URI.</summary>
+        
         private readonly Uri baseUri;
 
-        /// <summary>Infrastructure. Holds a reference to a serializer factory.</summary>
+        
         private readonly ISerializerFactory errorSerializerFactory;
 
-        /// <summary>Infrastructure. Holds a reference to a GZIP inflator.</summary>
+        
         private readonly IConverter<Stream, Stream> gzipInflator;
 
-        /// <summary>Infrastructure. Holds a reference to a serializer factory.</summary>
+        
         private readonly ISerializerFactory successSerializerFactory;
 
         /// <summary>Initializes a new instance of the <see cref="ServiceClient"/> class.</summary>
@@ -44,22 +44,22 @@ namespace GW2NET.Common
         {
             if (baseUri == null)
             {
-                throw new ArgumentNullException("baseUri", "Precondition: baseUri != null");
+                throw new ArgumentNullException("baseUri");
             }
 
             if (successSerializerFactory == null)
             {
-                throw new ArgumentNullException("successSerializerFactory", "Precondition: successSerializerFactory != null");
+                throw new ArgumentNullException("successSerializerFactory");
             }
 
             if (errorSerializerFactory == null)
             {
-                throw new ArgumentNullException("errorSerializerFactory", "Precondition: errorSerializerFactory != null");
+                throw new ArgumentNullException("errorSerializerFactory");
             }
 
             if (gzipInflator == null)
             {
-                throw new ArgumentNullException("gzipInflator", "Precondition: gzipInflator != null");
+                throw new ArgumentNullException("gzipInflator");
             }
 
             this.baseUri = baseUri;
@@ -182,7 +182,7 @@ namespace GW2NET.Common
             cancellationToken);
         }
 
-        /// <summary>Infrastructure. Creates and configures a new instance of the <see cref="UriBuilder"/> class.</summary>
+        /// <summary>Creates and configures a new instance of the <see cref="UriBuilder"/> class.</summary>
         /// <param name="baseUri">The base URI.</param>
         /// <param name="resource">The resource name.</param>
         /// <param name="formData">The form data.</param>
@@ -200,7 +200,7 @@ namespace GW2NET.Common
             return uriBuilder.Uri;
         }
 
-        /// <summary>Infrastructure. Creates and configures a new instance of the <see cref="HttpWebRequest"/> class.</summary>
+        /// <summary>Creates and configures a new instance of the <see cref="HttpWebRequest"/> class.</summary>
         /// <param name="uri">The resource <see cref="Uri"/>.</param>
         /// <returns>The <see cref="HttpWebRequest"/>.</returns>
         protected virtual HttpWebRequest CreateHttpWebRequest(Uri uri)
@@ -220,7 +220,7 @@ namespace GW2NET.Common
             return request;
         }
 
-        /// <summary>Infrastructure. Deserializes the response stream.</summary>
+        /// <summary>Deserializes the response stream.</summary>
         /// <param name="response">The response.</param>
         /// <param name="serializerFactory">The serializer factory.</param>
         /// <param name="gzipInflator">The GZIP inflator.</param>
@@ -268,7 +268,7 @@ namespace GW2NET.Common
             return serializer.Deserialize(stream);
         }
 
-        /// <summary>Infrastructure. Sends a web request and gets the response.</summary>
+        /// <summary>Sends a web request and gets the response.</summary>
         /// <param name="webRequest">The <see cref="HttpWebRequest"/>.</param>
         /// <returns>The <see cref="HttpWebResponse"/>.</returns>
         /// <exception cref="ServiceException">The exception that is thrown when an API error occurs.</exception>
@@ -286,7 +286,7 @@ namespace GW2NET.Common
             }
         }
 
-        /// <summary>Infrastructure. Sends a web request and gets the response.</summary>
+        /// <summary>Sends a web request and gets the response.</summary>
         /// <param name="webRequest">The <see cref="HttpWebRequest"/>.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The <see cref="HttpWebResponse"/>.</returns>
@@ -338,7 +338,7 @@ namespace GW2NET.Common
             return tcs.Task;
         }
 
-        /// <summary>Infrastructure. Throws an exception for error responses.</summary>
+        /// <summary>Throws an exception for error responses.</summary>
         /// <param name="response">The error response.</param>
         /// <param name="serializerFactory">The factory class that provides the serialization engine for the response.</param>
         /// <param name="gzipInflator">The GZIP inflator that decompresses the response.</param>
@@ -370,7 +370,7 @@ namespace GW2NET.Common
             throw new ServiceException(message);
         }
 
-        /// <summary>Infrastructure. Creates a response object for success responses.</summary>
+        /// <summary>Creates a response object for success responses.</summary>
         /// <param name="response">The success response.</param>
         /// <param name="serializerFactory">The factory class that provides the serialization engine for the response.</param>
         /// <param name="gzipInflator">The GZIP inflator that decompresses the response.</param>
@@ -422,7 +422,7 @@ namespace GW2NET.Common
             return value;
         }
 
-        /// <summary>Infrastructure. Handles a response.</summary>
+        /// <summary>Handles a response.</summary>
         /// <param name="response">The response to handle.</param>
         /// <typeparam name="TResult">The type of the response content</typeparam>
         /// <returns>The response as an instance of <see cref="IResponse{TResult}"/>.</returns>
@@ -432,12 +432,12 @@ namespace GW2NET.Common
             Debug.Assert(response != null, "response != null");
             try
             {
-                if (!response.StatusCode.IsSuccessStatusCode())
+                if (!(((int)response.StatusCode >= 200) && ((int)response.StatusCode < 300)))
                 {
-                    OnError(response, this.errorSerializerFactory, this.gzipInflator);
+                    this.OnError(response, this.errorSerializerFactory, this.gzipInflator);
                 }
 
-                return OnSuccess<TResult>(response, this.successSerializerFactory, this.gzipInflator);
+                return this.OnSuccess<TResult>(response, this.successSerializerFactory, this.gzipInflator);
             }
             catch (SerializationException serializationException)
             {
