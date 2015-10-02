@@ -22,7 +22,6 @@ namespace GW2NET.Factories.V2
     /// <summary>Provides methods for creating repository objects.</summary>
     public sealed class ItemRepositoryFactory : RepositoryFactoryBase<IItemRepository>
     {
-
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="ItemRepositoryFactory"/> class.</summary>
@@ -46,7 +45,7 @@ namespace GW2NET.Factories.V2
             var gameTypeCollectionConverter = new GameTypeCollectionConverter(new GameTypeConverter());
             var itemFlagCollectionConverter = new ItemFlagCollectionConverter(new ItemFlagConverter());
             var itemRestrictionCollectionConverter = new ItemRestrictionCollectionConverter(new ItemRestrictionConverter());
-            var itemConverter = new ItemConverter(itemConverterFactory, itemRarityConverter, gameTypeCollectionConverter, itemFlagCollectionConverter, itemRestrictionCollectionConverter );
+            var itemConverter = new ItemConverter(itemConverterFactory, itemRarityConverter, gameTypeCollectionConverter, itemFlagCollectionConverter, itemRestrictionCollectionConverter);
             var identifiersResponseConverter = new ResponseConverter<ICollection<int>, ICollection<int>>(new ConverterAdapter<ICollection<int>>());
             var responseConverter = new ResponseConverter<ItemDTO, Item>(itemConverter);
             var bulkResponseConverter = new DictionaryRangeResponseConverter<ItemDTO, int, Item>(itemConverter, item => item.ItemId);

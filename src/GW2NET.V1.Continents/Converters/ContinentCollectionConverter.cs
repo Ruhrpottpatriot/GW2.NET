@@ -7,14 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using GW2NET.Common;
-using GW2NET.Maps;
-using GW2NET.V1.Continents.Json;
-
 namespace GW2NET.V1.Continents.Converters
 {
     using System;
+    using System.Collections.Generic;
+    using GW2NET.Common;
+    using GW2NET.Maps;
+    using GW2NET.V1.Continents.Json;
 
     /// <summary>Converts objects of type <see cref="ContinentCollectionDTO"/> to objects of type <see cref="ICollection{T}"/>.</summary>
     public sealed class ContinentCollectionConverter : IConverter<ContinentCollectionDTO, ICollection<Continent>>

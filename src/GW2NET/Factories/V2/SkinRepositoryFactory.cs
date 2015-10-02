@@ -22,7 +22,6 @@ namespace GW2NET.Factories.V2
     /// <summary>Provides methods and properties for creating a skin repository.</summary>
     public class SkinRepositoryFactory : RepositoryFactoryBase<ISkinRepository>
     {
-
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="SkinRepositoryFactory"/> class.</summary>

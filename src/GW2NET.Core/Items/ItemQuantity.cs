@@ -27,6 +27,7 @@ namespace GW2NET.Items
                 Debug.Assert(this.count > 0, "this.count > 0");
                 return this.count;
             }
+
             set
             {
                 if (value < 1)

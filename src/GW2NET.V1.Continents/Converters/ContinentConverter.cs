@@ -7,14 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.Common;
-using GW2NET.Common.Drawing;
-using GW2NET.Maps;
-using GW2NET.V1.Continents.Json;
-
 namespace GW2NET.V1.Continents.Converters
 {
     using System;
+    using GW2NET.Common;
+    using GW2NET.Common.Drawing;
+    using GW2NET.Maps;
+    using GW2NET.V1.Continents.Json;
 
     /// <summary>Converts objects of type <see cref="ContinentDTO"/> to objects of type <see cref="Continent"/>.</summary>
     public sealed class ContinentConverter : IConverter<ContinentDTO, Continent>
@@ -44,9 +43,9 @@ namespace GW2NET.V1.Continents.Converters
 
             var continent = new Continent
             {
-                Name = value.Name, 
-                MinimumZoom = value.MinimumZoom, 
-                MaximumZoom = value.MaximumZoom, 
+                Name = value.Name,
+                MinimumZoom = value.MinimumZoom,
+                MaximumZoom = value.MaximumZoom,
                 FloorIds = value.Floors
             };
             var dimensions = value.ContinentDimensions;

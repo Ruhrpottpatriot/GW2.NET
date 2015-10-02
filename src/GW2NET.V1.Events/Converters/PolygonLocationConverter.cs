@@ -7,17 +7,16 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using GW2NET.Common;
-using GW2NET.Common.Drawing;
-using GW2NET.DynamicEvents;
-using GW2NET.V1.Events.Json;
-
 namespace GW2NET.V1.Events.Converters
 {
     using System;
+    using System.Collections.Generic;
+    using GW2NET.Common;
+    using GW2NET.Common.Drawing;
+    using GW2NET.DynamicEvents;
+    using GW2NET.V1.Events.Json;
 
-    public partial class PolygonLocationConverter 
+    public partial class PolygonLocationConverter
     {
         private readonly IConverter<double[], Vector2D> vector2DConverter;
 

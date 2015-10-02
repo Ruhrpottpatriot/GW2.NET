@@ -18,7 +18,6 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="T:ICollection{string}"/> to objects of type <see cref="GameTypes"/>.</summary>
     public sealed class GameTypeCollectionConverter : IConverter<ICollection<string>, GameTypes>
     {
-
         private readonly IConverter<string, GameTypes> gameTypeConverter;
 
         /// <summary>Initializes a new instance of the <see cref="GameTypeCollectionConverter"/> class.</summary>

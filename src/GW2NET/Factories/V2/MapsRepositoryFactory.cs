@@ -23,7 +23,6 @@ namespace GW2NET.Factories.V2
     /// <summary>Provides methods and properties for creating a map repository.</summary>
     public class MapsRepositoryFactory : RepositoryFactoryBase<IMapRepository>
     {
-
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="MapsRepositoryFactory"/> class.</summary>

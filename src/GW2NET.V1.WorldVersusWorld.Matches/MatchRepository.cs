@@ -7,9 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.V1.WorldVersusWorld.Matches.Converters;
-using GW2NET.V1.WorldVersusWorld.Matches.Json;
-
 namespace GW2NET.V1.WorldVersusWorld.Matches
 {
     using System;
@@ -17,20 +14,17 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-
     using GW2NET.Common;
+    using GW2NET.V1.WorldVersusWorld.Matches.Json;
     using GW2NET.WorldVersusWorld;
 
     /// <summary>Represents a repository that retrieves data from the /v1/wvw/matches.json and /v1/wvw/match_details.json interfaces.</summary>
     public class MatchRepository : IMatchRepository
     {
-        
         private readonly IConverter<MatchDTO, Match> matchConverter;
 
-        
         private readonly IConverter<MatchupDTO, Matchup> matchupConverter;
 
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="MatchRepository"/> class.</summary>

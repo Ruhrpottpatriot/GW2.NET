@@ -7,19 +7,17 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.Common;
-using GW2NET.Common.Drawing;
-using GW2NET.Maps;
-using GW2NET.V1.Floors.Json;
-
 namespace GW2NET.V1.Floors.Converters
 {
     using System;
+    using GW2NET.Common;
+    using GW2NET.Common.Drawing;
+    using GW2NET.Maps;
+    using GW2NET.V1.Floors.Json;
 
     /// <summary>Converts objects of type <see cref="RenownTaskDTO"/> to objects of type <see cref="RenownTask"/>.</summary>
     public sealed class RenownTaskConverter : IConverter<RenownTaskDTO, RenownTask>
     {
-        
         private readonly IConverter<double[], Vector2D> vector2DConverter;
 
         /// <summary>Initializes a new instance of the <see cref="RenownTaskConverter"/> class.</summary>
@@ -45,9 +43,9 @@ namespace GW2NET.V1.Floors.Converters
 
             var renownTask = new RenownTask
             {
-                TaskId = value.TaskId, 
-                Objective = value.Objective, 
-                Level = value.Level, 
+                TaskId = value.TaskId,
+                Objective = value.Objective,
+                Level = value.Level
             };
 
             var coordinates = value.Coordinates;

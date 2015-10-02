@@ -7,12 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.Colors;
-using GW2NET.Common;
-
 namespace GW2NET.V1.Colors.Converters
 {
     using System;
+    using GW2NET.Colors;
+    using GW2NET.Common;
 
     /// <summary>Converts objects of type <see cref="T:int[]"/> to objects of type <see cref="Color"/>.</summary>
     public sealed class ColorConverter : IConverter<int[], Color>

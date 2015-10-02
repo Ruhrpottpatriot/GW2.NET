@@ -20,10 +20,7 @@
             using (
                 var mumbleLinkFile = new MumbleLinkFile(
                     memoryMappedFile,
-                    new AvatarConverter(
-                        new AvatarContextConverter(new IPEndPointConverter()),
-                        new IdentityConverter(new ProfessionConverter(), new RaceConverter()),
-                        new Vector3DConverter())))
+                    new AvatarConverter(new AvatarContextConverter(new IPEndPointConverter()), new IdentityConverter(new ProfessionConverter(), new RaceConverter()), new Vector3DConverter())))
             {
                 var avatar = mumbleLinkFile.Read();
                 Assert.NotNull(avatar);
@@ -46,18 +43,12 @@
             using (
                 var mumbleLinkFile1 = new MumbleLinkFile(
                     memoryMappedFile1,
-                    new AvatarConverter(
-                        new AvatarContextConverter(new IPEndPointConverter()),
-                        new IdentityConverter(new ProfessionConverter(), new RaceConverter()),
-                        new Vector3DConverter())))
+                    new AvatarConverter(new AvatarContextConverter(new IPEndPointConverter()), new IdentityConverter(new ProfessionConverter(), new RaceConverter()), new Vector3DConverter())))
             using (var memoryMappedFile2 = MemoryMappedFile.CreateFromFile(fileName2))
             using (
                 var mumbleLinkFile2 = new MumbleLinkFile(
                     memoryMappedFile2,
-                    new AvatarConverter(
-                        new AvatarContextConverter(new IPEndPointConverter()),
-                        new IdentityConverter(new ProfessionConverter(), new RaceConverter()),
-                        new Vector3DConverter())))
+                    new AvatarConverter(new AvatarContextConverter(new IPEndPointConverter()), new IdentityConverter(new ProfessionConverter(), new RaceConverter()), new Vector3DConverter())))
             {
                 var avatar1 = mumbleLinkFile1.Read();
                 var avatar2 = mumbleLinkFile2.Read();

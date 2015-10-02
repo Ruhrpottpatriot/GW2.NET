@@ -7,14 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
-using GW2NET.Common;
-using GW2NET.V1.WorldVersusWorld.Matches.Json;
-using GW2NET.WorldVersusWorld;
-
 namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
+    using System;
+    using GW2NET.Common;
+    using GW2NET.V1.WorldVersusWorld.Matches.Json;
+    using GW2NET.WorldVersusWorld;
+
     /// <summary>Converts objects of type <see cref="ObjectiveDTO"/> to objects of type <see cref="Objective"/>.</summary>
     public sealed class ObjectiveConverter : IConverter<ObjectiveDTO, Objective>
     {

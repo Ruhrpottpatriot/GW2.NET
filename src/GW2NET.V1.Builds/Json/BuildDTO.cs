@@ -7,11 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.Serialization;
-
 namespace GW2NET.V1.Builds.Json
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.Serialization;
+
     [DataContract]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/build")]
     public sealed class BuildDTO

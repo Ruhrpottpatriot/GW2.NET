@@ -20,7 +20,6 @@ namespace GW2NET.V2.Accounts
     /// <summary>Represents a repository that retrieves data from the authorized /v2/account interface.</summary>
     public class AccountRepository : IAccountRepository
     {
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Infrastructure. Holds a reference to the response converter.

@@ -10,6 +10,8 @@
 
     public class ItemTests
     {
+        private static readonly Lazy<IEnumerable<object[]>> LazyIdentifiers = new Lazy<IEnumerable<object[]>>(() => GW2.V1.Items.ForDefaultCulture().Discover().Select(id => new object[] { id }));
+
         private static readonly GW2Bootstrapper GW2 = new GW2Bootstrapper();
 
         public ItemTests()
@@ -59,7 +61,6 @@
             Assert.StrictEqual(identifier, result.ItemId);
         }
 
-        private static readonly Lazy<IEnumerable<object[]>> LazyIdentifiers = new Lazy<IEnumerable<object[]>>(() => GW2.V1.Items.ForDefaultCulture().Discover().Select(id => new object[] { id })); 
         public static IEnumerable<object[]> GetIdentifiers()
         {
             return LazyIdentifiers.Value;

@@ -7,14 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using GW2NET.Common;
-using GW2NET.Guilds;
-using GW2NET.V1.Guilds.Json;
-
 namespace GW2NET.V1.Guilds.Converters
 {
     using System;
+    using System.Collections.Generic;
+    using GW2NET.Common;
+    using GW2NET.Guilds;
+    using GW2NET.V1.Guilds.Json;
 
     /// <summary>Converts objects of type <see cref="EmblemDTO"/> to objects of type <see cref="Emblem"/>.</summary>
     public sealed class EmblemConverter : IConverter<EmblemDTO, Emblem>
@@ -44,10 +43,10 @@ namespace GW2NET.V1.Guilds.Converters
 
             var emblem = new Emblem
             {
-                BackgroundId = value.BackgroundId, 
-                ForegroundId = value.ForegroundId, 
-                BackgroundColorId = value.BackgroundColorId, 
-                ForegroundPrimaryColorId = value.ForegroundPrimaryColorId, 
+                BackgroundId = value.BackgroundId,
+                ForegroundId = value.ForegroundId,
+                BackgroundColorId = value.BackgroundColorId,
+                ForegroundPrimaryColorId = value.ForegroundPrimaryColorId,
                 ForegroundSecondaryColorId = value.ForegroundSecondaryColorId
             };
             var flags = value.Flags;

@@ -92,7 +92,7 @@ namespace GW2NET.MumbleLink
             Justification = "The field is private, and no public API modifies it after it is already set.")]
         public override int GetHashCode()
         {
-            return (this.innerContext != null ? this.innerContext.GetHashCode() : 0);
+            return this.innerContext != null ? this.innerContext.GetHashCode() : 0;
         }
 
         /// <summary>Sets the object that is used to compare the current object to another object of the same type.</summary>

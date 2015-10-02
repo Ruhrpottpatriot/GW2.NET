@@ -19,7 +19,6 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="InfusionSlotDTO"/> to objects of type <see cref="InfusionSlot"/>.</summary>
     public sealed class InfusionSlotConverter : IConverter<InfusionSlotDTO, InfusionSlot>
     {
-        
         private readonly IConverter<ICollection<string>, InfusionSlotFlags> infusionSlotFlagCollectionConverter;
 
         /// <summary>Initializes a new instance of the <see cref="InfusionSlotConverter"/> class.</summary>

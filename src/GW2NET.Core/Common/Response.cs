@@ -36,6 +36,7 @@ namespace GW2NET.Common
                 Debug.Assert(this.extensionData != null);
                 return this.extensionData;
             }
+
             set
             {
                 if (value == null)

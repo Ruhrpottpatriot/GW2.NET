@@ -24,7 +24,6 @@ namespace GW2NET.V2.Colors
     /// <summary>Represents a repository that retrieves data from the /v2/colors interface.</summary>
     public class ColorRepository : IColorRepository
     {
-
         private readonly IServiceClient serviceClient;
 
         private readonly IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter;

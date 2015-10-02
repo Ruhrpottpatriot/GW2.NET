@@ -18,10 +18,8 @@ namespace GW2NET.V2.Builds
     /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:2/build">wiki</a> for more information.</remarks>
     public class BuildService : IBuildService
     {
-        
         private readonly IServiceClient serviceClient;
 
-        
         private readonly IConverter<BuildDTO, Build> buildConverter;
 
         /// <summary>Initializes a new instance of the <see cref="BuildService"/> class.</summary>

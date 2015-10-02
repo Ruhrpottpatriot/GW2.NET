@@ -7,13 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using GW2NET.Common;
-using GW2NET.Guilds;
-using GW2NET.V1.Guilds.Json;
-
 namespace GW2NET.V1.Guilds.Converters
 {
+    using System;
+    using GW2NET.Common;
+    using GW2NET.Guilds;
+    using GW2NET.V1.Guilds.Json;
+
     /// <summary>Converts objects of type <see cref="GuildDTO"/> to objects of type <see cref="Guild"/>.</summary>
     public sealed class GuildConverter : IConverter<GuildDTO, Guild>
     {
@@ -42,8 +42,8 @@ namespace GW2NET.V1.Guilds.Converters
 
             var guild = new Guild
             {
-                Name = value.Name, 
-                Tag = value.Tag, 
+                Name = value.Name,
+                Tag = value.Tag
             };
 
             Guid id;

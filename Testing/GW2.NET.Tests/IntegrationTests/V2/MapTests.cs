@@ -77,7 +77,7 @@
         }
 
         [Theory]
-        [InlineData(new[] { 15, 17, 18})]
+        [InlineData(new[] { 15, 17, 18 })]
         public void FindAll_WithIdList(int[] filter)
         {
             var repository = GW2.V2.Maps.ForDefaultCulture();
@@ -92,7 +92,7 @@
         }
 
         [Theory]
-        [InlineData(new[] { 15, 17, 18})]
+        [InlineData(new[] { 15, 17, 18 })]
         public async void FindAllAsync_WithIdList(int[] filter)
         {
             var repository = GW2.V2.Maps.ForDefaultCulture();

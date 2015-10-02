@@ -34,20 +34,15 @@ namespace GW2NET.V2.Commerce.Listings
     /// </list>
     /// </remarks>
     public class ListingRepository : IListingRepository
-    {
-        
+    { 
         private readonly IConverter<IResponse<ICollection<ListingDTO>>, IDictionaryRange<int, Listing>> bulkResponseConverter;
 
-        
         private readonly IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter;
 
-        
         private readonly IConverter<IResponse<ICollection<ListingDTO>>, ICollectionPage<Listing>> pageResponseConverter;
 
-        
         private readonly IConverter<IResponse<ListingDTO>, Listing> responseConverter;
 
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="ListingRepository"/> class.</summary>

@@ -57,7 +57,6 @@ namespace GW2NET.V1.Recipes.Converters
             this.itemQuantityCollectionConverter = itemQuantityCollectionConverter;
         }
 
-        /// <inheritdoc />
         partial void Merge(Recipe entity, RecipeDTO dto, object state)
         {
             int recipeId;

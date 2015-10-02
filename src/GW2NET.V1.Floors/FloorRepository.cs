@@ -7,9 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.V1.Floors.Converters;
-using GW2NET.V1.Floors.Json;
-
 namespace GW2NET.V1.Floors
 {
     using System;
@@ -19,19 +16,17 @@ namespace GW2NET.V1.Floors
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
-
     using GW2NET.Common;
     using GW2NET.Maps;
+    using GW2NET.V1.Floors.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/map_floor.json interface.</summary>
     public class FloorRepository : IFloorRepository
     {
         private readonly int continentId;
 
-        
         private readonly IConverter<FloorDTO, Floor> floorConverter;
 
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="FloorRepository"/> class.</summary>
@@ -92,8 +87,8 @@ namespace GW2NET.V1.Floors
             IFloorRepository self = this;
             var request = new FloorRequest
             {
-                ContinentId = self.ContinentId, 
-                Floor = identifier, 
+                ContinentId = self.ContinentId,
+                Floor = identifier,
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<FloorDTO>(request);
@@ -164,8 +159,8 @@ namespace GW2NET.V1.Floors
             IFloorRepository self = this;
             var request = new FloorRequest
             {
-                ContinentId = self.ContinentId, 
-                Floor = identifier, 
+                ContinentId = self.ContinentId,
+                Floor = identifier,
                 Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<FloorDTO>(request, cancellationToken);

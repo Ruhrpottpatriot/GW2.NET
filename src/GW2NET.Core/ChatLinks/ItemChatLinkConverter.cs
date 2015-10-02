@@ -39,8 +39,8 @@ namespace GW2NET.ChatLinks
 
                 var chatLink = new ItemChatLink
                 {
-                    ItemId = id, 
-                    Quantity = quantity, 
+                    ItemId = id,
+                    Quantity = quantity
                 };
 
                 if ((flags & 0x20) == 0x20)

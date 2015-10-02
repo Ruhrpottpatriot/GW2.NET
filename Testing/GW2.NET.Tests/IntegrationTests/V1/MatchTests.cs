@@ -61,7 +61,6 @@
         {
             var repository = GW2.V1.WorldVersusWorld.Matches;
             await Assert.ThrowsAsync<NotSupportedException>(() => repository.FindAllAsync());
-
         }
 
         public static IEnumerable<object[]> GetIdentifiers()
@@ -73,15 +72,16 @@
 
         public static IEnumerable<object[]> GetFilters()
         {
-            yield return new object[]
-            {
-                new[]
+            yield return
+                new object[]
                 {
-                    new Matchup {MatchId = "2-4"},
-                    new Matchup {MatchId = "2-2"},
-                    new Matchup {MatchId = "2-3"},
-                }
-            };
+                    new[]
+                    {
+                        new Matchup { MatchId = "2-4" },
+                        new Matchup { MatchId = "2-2" },
+                        new Matchup { MatchId = "2-3" },
+                    }
+                };
         }
 
         [Theory]

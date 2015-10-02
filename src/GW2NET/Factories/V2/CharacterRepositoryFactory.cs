@@ -23,7 +23,6 @@ namespace GW2NET.Factories.V2
     /// <summary>Provides methods and properties for creating a character repository.</summary>
     public sealed class CharacterRepositoryFactory : RepositoryFactoryBase<ICharacterRepository>
     {
-
         private readonly IServiceClient serviceClient;
 
         /// <summary>

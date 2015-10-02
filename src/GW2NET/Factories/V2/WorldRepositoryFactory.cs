@@ -21,7 +21,6 @@ namespace GW2NET.Factories.V2
     /// <summary>Provides methods for creating repository objects.</summary>
     public sealed class WorldRepositoryFactory : RepositoryFactoryBase<IWorldRepository>
     {
-
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="WorldRepositoryFactory"/> class.</summary>

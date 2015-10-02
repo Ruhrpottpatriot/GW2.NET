@@ -7,12 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using GW2NET.Common;
-using GW2NET.Guilds;
-
 namespace GW2NET.V1.Guilds.Converters
 {
+    using System;
+    using GW2NET.Common;
+    using GW2NET.Guilds;
+
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="EmblemTransformations"/>.</summary>
     public sealed class EmblemTransformationConverter : IConverter<string, EmblemTransformations>
     {

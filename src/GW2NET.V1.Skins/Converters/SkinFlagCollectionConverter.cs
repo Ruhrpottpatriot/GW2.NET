@@ -7,14 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-
-using GW2NET.Common;
-using GW2NET.Skins;
-
 namespace GW2NET.V1.Skins.Converters
 {
     using System;
+    using System.Collections.Generic;
+    using GW2NET.Common;
+    using GW2NET.Skins;
 
     /// <summary>Converts objects of type <see cref="T:ICollection{string}"/> to objects of type <see cref="SkinFlags"/>.</summary>
     public sealed class SkinFlagCollectionConverter : IConverter<ICollection<string>, SkinFlags>

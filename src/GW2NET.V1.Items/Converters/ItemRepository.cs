@@ -49,13 +49,10 @@ namespace GW2NET.V1.Items.Converters
     /// </remarks>
     public class ItemRepository : IItemRepository
     {
-        
         private readonly IConverter<ItemDTO, Item> itemConverter;
 
-        
         private readonly IConverter<ItemCollectionDTO, ICollection<int>> itemCollectionConverter;
 
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="ItemRepository"/> class.</summary>

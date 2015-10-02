@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GemQuotation.cs" company="GW2.NET Coding Team">
+// <copyright file="Exchange.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -29,6 +29,7 @@ namespace GW2NET.Commerce
         public DateTimeOffset Timestamp { get; set; }
 
         /// <summary>Gets a chat link for the value of <see cref="CoinsPerGem"/>.</summary>
+        /// <returns></returns>
         public CoinChatLink GetCoinChatLink()
         {
             return new CoinChatLink

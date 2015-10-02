@@ -36,7 +36,6 @@ namespace GW2NET.V2.Recipes.Converters
             IConverter<ICollection<IngredientDTO>, ICollection<ItemQuantity>> ingredientsCollectionConverter)
             : this(converterFactory)
         {
-
             if (craftingDisciplineCollectionConverter == null)
             {
                 throw new ArgumentNullException("craftingDisciplineCollectionConverter");

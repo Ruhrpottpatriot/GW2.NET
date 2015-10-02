@@ -7,9 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.V1.Skins.Converters;
-using GW2NET.V1.Skins.Json;
-
 namespace GW2NET.V1.Skins
 {
     using System;
@@ -19,20 +16,17 @@ namespace GW2NET.V1.Skins
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
-
     using GW2NET.Common;
     using GW2NET.Skins;
+    using GW2NET.V1.Skins.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/skins.json and /v1/skin_details.json interfaces.</summary>
     public sealed class SkinRepository : ISkinRepository
     {
-        
         private readonly IConverter<SkinDTO, Skin> skinConverter;
 
-        
         private readonly IConverter<SkinCollectionDTO, ICollection<int>> skinCollectionConverter;
 
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="SkinRepository"/> class.</summary>
@@ -98,7 +92,7 @@ namespace GW2NET.V1.Skins
             ISkinRepository self = this;
             var request = new SkinDetailsRequest
             {
-                SkinId = identifier, 
+                SkinId = identifier,
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<SkinDTO>(request);
@@ -167,7 +161,7 @@ namespace GW2NET.V1.Skins
             ISkinRepository self = this;
             var request = new SkinDetailsRequest
             {
-                SkinId = identifier, 
+                SkinId = identifier,
                 Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<SkinDTO>(request, cancellationToken);

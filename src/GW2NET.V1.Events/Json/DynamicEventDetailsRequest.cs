@@ -7,13 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using GW2NET.Common;
-
 namespace GW2NET.V1.Events.Json
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using GW2NET.Common;
+
     /// <summary>Represents a request for static details about dynamic events.</summary>
     public sealed class DynamicEventDetailsRequest : IRequest, ILocalizable
     {

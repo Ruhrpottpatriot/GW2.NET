@@ -4,7 +4,6 @@ namespace GW2NET.Factories.V2
     using GW2NET.Items;
     using GW2NET.V2.Items;
     using GW2NET.V2.Items.Converters;
-    using GW2NET.V2.Items.Converters;
     using GW2NET.V2.Items.Json;
 
     public class CombatAttributeConverterFactory : ITypeConverterFactory<AttributeDTO, CombatAttribute>

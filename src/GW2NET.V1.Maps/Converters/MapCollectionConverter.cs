@@ -7,15 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-
-using GW2NET.Common;
-using GW2NET.Maps;
-using GW2NET.V1.Maps.Json;
-
 namespace GW2NET.V1.Maps.Converters
 {
     using System;
+    using System.Collections.Generic;
+    using GW2NET.Common;
+    using GW2NET.Maps;
+    using GW2NET.V1.Maps.Json;
 
     /// <summary>Converts objects of type <see cref="MapCollectionDTO"/> to objects of type <see cref="ICollection{T}"/>.</summary>
     public sealed class MapCollectionConverter : IConverter<MapCollectionDTO, ICollection<Map>>

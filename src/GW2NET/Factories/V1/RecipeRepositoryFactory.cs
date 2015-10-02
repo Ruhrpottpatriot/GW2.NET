@@ -23,7 +23,6 @@ namespace GW2NET.Factories.V1
     /// <summary>Provides methods for creating repository objects.</summary>
     public sealed class RecipeRepositoryFactory
     {
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="RecipeRepositoryFactory"/> class.</summary>

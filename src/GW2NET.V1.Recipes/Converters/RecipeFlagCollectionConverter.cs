@@ -18,7 +18,6 @@ namespace GW2NET.V1.Recipes.Converters
     /// <summary>Converts objects of type <see cref="T:ICollection{string}"/> to objects of type <see cref="RecipeFlags"/>.</summary>
     public sealed class RecipeFlagCollectionConverter : IConverter<ICollection<string>, RecipeFlags>
     {
-        
         private readonly IConverter<string, RecipeFlags> recipeFlagConverter;
 
         /// <summary>Initializes a new instance of the <see cref="RecipeFlagCollectionConverter"/> class.</summary>

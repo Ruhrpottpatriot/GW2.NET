@@ -28,6 +28,7 @@ namespace GW2NET.ChatLinks
                 Debug.Assert(this.quantity < 256, "this.quantity < 256");
                 return this.quantity;
             }
+
             set
             {
                 if (value < 1)

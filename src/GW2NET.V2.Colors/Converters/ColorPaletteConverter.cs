@@ -18,10 +18,8 @@ namespace GW2NET.V2.Colors.Converters
     /// <summary>Converts objects of type <see cref="ColorModelDTO"/> to objects of type <see cref="ColorPalette"/>.</summary>
     public sealed class ColorPaletteConverter : IConverter<ColorPaletteDTO, ColorPalette>
     {
-        
         private readonly IConverter<int[], Color> colorConverter;
 
-        
         private readonly IConverter<ColorModelDTO, ColorModel> colorModelConverter;
 
         /// <summary>Initializes a new instance of the <see cref="ColorPaletteConverter"/> class.</summary>

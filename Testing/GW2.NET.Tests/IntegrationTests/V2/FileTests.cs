@@ -94,7 +94,6 @@
             yield return new object[] { new[] { "map_complete", "map_dungeon", "map_heart_empty" } };
         }
 
-
         [Theory]
         [MemberData("GetIdentifiers")]
         public void FindAll_WithIdList(string[] filter)
@@ -129,7 +128,7 @@
         public void FindAll_WithIdListTooLong_ServceException()
         {
             var repository = GW2.V2.Files.ForDefaultCulture();
-            var filter = Enumerable.Repeat("", 201).ToArray();
+            var filter = Enumerable.Repeat(string.Empty, 201).ToArray();
             var exception = Assert.Throws<ServiceException>(() => repository.FindAll(filter));
             this.logger.WriteLine(exception.Message);
         }
@@ -138,7 +137,7 @@
         public async void FindAllAsync_WithIdListTooLong_ServceException()
         {
             var repository = GW2.V2.Files.ForDefaultCulture();
-            var filter = Enumerable.Repeat("", 201).ToArray();
+            var filter = Enumerable.Repeat(string.Empty, 201).ToArray();
             var exception = await Assert.ThrowsAsync<ServiceException>(() => repository.FindAllAsync(filter));
             this.logger.WriteLine(exception.Message);
         }

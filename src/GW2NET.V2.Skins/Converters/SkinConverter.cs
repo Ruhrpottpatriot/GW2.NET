@@ -80,7 +80,6 @@ namespace GW2NET.V2.Skins.Converters
             // Question: Shouled we split the URI for user convenience or not??
             // TODO: yes we should split the URI. Not for convencience, but because 'Skin' implements 'IRenderable'
             entity.IconFileUrl = new Uri(dto.IconUrl, UriKind.Absolute);
-
         }
     }
 }

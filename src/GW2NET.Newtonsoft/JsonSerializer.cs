@@ -17,7 +17,6 @@ namespace GW2NET.Common.Serializers
     /// <typeparam name="T">The type that is being serialized.</typeparam>
     public class JsonSerializer<T> : ISerializer<T>
     {
-        
         private readonly JsonSerializer jsonSerializer;
 
         /// <summary>Initializes a new instance of the <see cref="JsonSerializer{T}"/> class.</summary>

@@ -96,9 +96,7 @@ namespace GW2NET.Colors
             return this.Equals((ColorPalette)obj);
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
+        /// <summary>Serves as a hash function for a particular type.</summary>
         /// <returns>
         /// A hash code for the current <see cref="T:System.Object"/>.
         /// </returns>

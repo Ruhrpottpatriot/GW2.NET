@@ -19,7 +19,6 @@ namespace GW2NET.Common.Converters
     /// <typeparam name="TValue">The type of the converted values.</typeparam>
     public sealed class CollectionPageResponseConverter<TDTO, TValue> : IConverter<IResponse<ICollection<TDTO>>, ICollectionPage<TValue>>
     {
-        
         private readonly IConverter<TDTO, TValue> dataContractConverter;
 
         /// <summary>Initializes a new instance of the <see cref="CollectionPageResponseConverter{TDTO,TValue}"/> class.</summary>

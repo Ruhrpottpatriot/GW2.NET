@@ -7,9 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.V1.WorldVersusWorld.Objectives.Converters;
-using GW2NET.V1.WorldVersusWorld.Objectives.Json;
-
 namespace GW2NET.V1.WorldVersusWorld.Objectives
 {
     using System;
@@ -18,17 +15,15 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-
     using GW2NET.Common;
+    using GW2NET.V1.WorldVersusWorld.Objectives.Json;
     using GW2NET.WorldVersusWorld;
 
     /// <summary>Represents a repository that retrieves data from the /v1/wvw/objective_names.json interface.</summary>
     public class ObjectiveNameRepository : IObjectiveNameRepository
     {
-        
         private readonly IConverter<ObjectiveNameDTO, ObjectiveName> objectiveNameConverter;
 
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="ObjectiveNameRepository"/> class.</summary>
@@ -94,7 +89,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
             var values = response.Content.Select(value => this.objectiveNameConverter.Convert(value, null)).ToList();
             var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count)
             {
-                SubtotalCount = values.Count, 
+                SubtotalCount = values.Count,
                 TotalCount = values.Count
             };
 
@@ -139,7 +134,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
                 var values = response.Content.Select(value => this.objectiveNameConverter.Convert(value, null)).ToList();
                 var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count)
                 {
-                    SubtotalCount = values.Count, 
+                    SubtotalCount = values.Count,
                     TotalCount = values.Count
                 };
 

@@ -15,7 +15,6 @@ namespace GW2NET.Common.Serializers
     /// <typeparam name="T">The type of the data contract.</typeparam>
     public class DataContractJsonSerializer<T> : ISerializer<T>
     {
-        
         private readonly DataContractJsonSerializer serializer;
 
         /// <summary>Initializes a new instance of the <see cref="DataContractJsonSerializer{T}"/> class.</summary>

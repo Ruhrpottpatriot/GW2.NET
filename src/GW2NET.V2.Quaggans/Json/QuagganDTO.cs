@@ -15,14 +15,10 @@ namespace GW2NET.V2.Quaggans.Json
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/quaggans")]
     public sealed class QuagganDTO
     {
-        #region Properties
-
         [DataMember(Name = "id", Order = 0)]
         public string Id { get; set; }
 
         [DataMember(Name = "url", Order = 1)]
         public string Url { get; set; }
-
-        #endregion
     }
 }

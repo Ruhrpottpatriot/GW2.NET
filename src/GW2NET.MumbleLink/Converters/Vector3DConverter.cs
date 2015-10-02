@@ -1,5 +1,4 @@
-﻿
-namespace GW2NET.MumbleLink.Converters
+﻿namespace GW2NET.MumbleLink.Converters
 {
     using System;
 

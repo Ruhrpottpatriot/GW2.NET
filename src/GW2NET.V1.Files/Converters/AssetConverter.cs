@@ -7,13 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.Common;
-using GW2NET.Files;
-using GW2NET.V1.Files.Json;
-
 namespace GW2NET.V1.Files.Converters
 {
     using System;
+    using GW2NET.Common;
+    using GW2NET.Files;
+    using GW2NET.V1.Files.Json;
 
     /// <summary>Converts objects of type <see cref="FileDTO"/> to objects of type <see cref="Asset"/>.</summary>
     public sealed class AssetConverter : IConverter<FileDTO, Asset>
@@ -30,7 +29,7 @@ namespace GW2NET.V1.Files.Converters
             var iconUrl = string.Format(IconUrlTemplate, value.Signature, value.FileId, "png");
             return new Asset
             {
-                FileId = value.FileId, 
+                FileId = value.FileId,
                 FileSignature = value.Signature,
                 IconFileUrl = new Uri(iconUrl, UriKind.Absolute)
             };

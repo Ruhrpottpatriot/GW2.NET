@@ -7,18 +7,16 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using GW2NET.Common;
-using GW2NET.Guilds;
-
 namespace GW2NET.V1.Guilds.Converters
 {
     using System;
+    using System.Collections.Generic;
+    using GW2NET.Common;
+    using GW2NET.Guilds;
 
     /// <summary>Converts objects of type <see cref="T:ICollection{string}"/> to objects of type <see cref="EmblemTransformations"/>.</summary>
     public sealed class EmblemTransformationCollectionConverter : IConverter<ICollection<string>, EmblemTransformations>
     {
-        
         private readonly IConverter<string, EmblemTransformations> emblemTransformationConverter;
 
         /// <summary>Initializes a new instance of the <see cref="EmblemTransformationCollectionConverter"/> class.</summary>

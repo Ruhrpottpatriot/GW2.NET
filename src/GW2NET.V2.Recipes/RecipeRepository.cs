@@ -40,19 +40,14 @@ namespace GW2NET.V2.Recipes
     /// </remarks>
     public class RecipeRepository : IRecipeRepository
     {
-        
         private readonly IConverter<IResponse<ICollection<RecipeDTO>>, IDictionaryRange<int, Recipe>> bulkResponseConverter;
 
-        
         private readonly IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter;
 
-        
         private readonly IConverter<IResponse<ICollection<RecipeDTO>>, ICollectionPage<Recipe>> pageResponseConverter;
 
-        
         private readonly IConverter<IResponse<RecipeDTO>, Recipe> responseConverter;
 
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="RecipeRepository"/> class.</summary>
@@ -61,7 +56,7 @@ namespace GW2NET.V2.Recipes
         /// <param name="responseConverter"></param>
         /// <param name="bulkResponseConverter"></param>
         /// <param name="pageResponseConverter"></param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="RecipeCollectionConverter"/> or <paramref name="RecipeConverter"/> is a null reference.</exception>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="bulkResponseConverter"/> or <paramref name="responseConverter"/> is a null reference.</exception>
         public RecipeRepository(IServiceClient serviceClient,
             IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter,
             IConverter<IResponse<RecipeDTO>, Recipe> responseConverter,
@@ -190,7 +185,7 @@ namespace GW2NET.V2.Recipes
             IRecipeRepository self = this;
             var request = new RecipeDetailsRequest
             {
-                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
+                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<RecipeDTO>(request);
@@ -215,7 +210,7 @@ namespace GW2NET.V2.Recipes
             IRecipeRepository self = this;
             var request = new RecipeBulkRequest
             {
-                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
+                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<RecipeDTO>>(request);
@@ -254,7 +249,7 @@ namespace GW2NET.V2.Recipes
             IRecipeRepository self = this;
             var request = new RecipeBulkRequest
             {
-                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
+                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
                 Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<RecipeDTO>>(request, cancellationToken);
@@ -274,7 +269,7 @@ namespace GW2NET.V2.Recipes
             IRecipeRepository self = this;
             var request = new RecipeDetailsRequest
             {
-                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
+                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
                 Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<RecipeDTO>(request, cancellationToken);
@@ -287,7 +282,7 @@ namespace GW2NET.V2.Recipes
             IRecipeRepository self = this;
             var request = new RecipePageRequest
             {
-                Page = pageIndex, 
+                Page = pageIndex,
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<RecipeDTO>>(request);
@@ -301,8 +296,8 @@ namespace GW2NET.V2.Recipes
             IRecipeRepository self = this;
             var request = new RecipePageRequest
             {
-                Page = pageIndex, 
-                PageSize = pageSize, 
+                Page = pageIndex,
+                PageSize = pageSize,
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<RecipeDTO>>(request);
@@ -323,7 +318,7 @@ namespace GW2NET.V2.Recipes
             IRecipeRepository self = this;
             var request = new RecipePageRequest
             {
-                Page = pageIndex, 
+                Page = pageIndex,
                 Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<RecipeDTO>>(request, cancellationToken);
@@ -343,8 +338,8 @@ namespace GW2NET.V2.Recipes
             IRecipeRepository self = this;
             var request = new RecipePageRequest
             {
-                Page = pageIndex, 
-                PageSize = pageSize, 
+                Page = pageIndex,
+                PageSize = pageSize,
                 Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<RecipeDTO>>(request, cancellationToken);
@@ -391,6 +386,5 @@ namespace GW2NET.V2.Recipes
             Debug.Assert(task != null, "task != null");
             return this.responseConverter.Convert(task.Result, null);
         }
-
     }
 }

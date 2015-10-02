@@ -36,7 +36,7 @@ namespace GW2NET.Common.Drawing
         public double Y { get; set; }
 
         /// <summary>Returns a string that represents the current object.</summary>
-        /// <returns>Returns a <see cref="System.String" />.</returns>
+        /// <returns>Returns a <see cref="string" />.</returns>
         public override string ToString()
         {
             return string.Format("X={0} Y={1} Width={2} Height={3}", this.X, this.Y, this.Width, this.Height);

@@ -33,7 +33,7 @@ namespace GW2NET.Common.Drawing
         public double Z { get; set; }
 
         /// <summary>Returns a string that represents the current object.</summary>
-        /// <returns>Returns a <see cref="System.String" />.</returns>
+        /// <returns>Returns a <see cref="string" />.</returns>
         public override string ToString()
         {
             return string.Format("X={0} Y={1} Z={2}", this.X, this.Y, this.Z);

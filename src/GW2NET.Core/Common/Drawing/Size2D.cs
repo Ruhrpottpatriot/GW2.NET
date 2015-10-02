@@ -28,7 +28,7 @@ namespace GW2NET.Common.Drawing
         public double Width { get; set; }
 
         /// <summary>Returns a string that represents the current object.</summary>
-        /// <returns>Returns a <see cref="System.String" />.</returns>
+        /// <returns>Returns a <see cref="string" />.</returns>
         public override string ToString()
         {
             return string.Format("Width={0} Height={1}", this.Width, this.Height);

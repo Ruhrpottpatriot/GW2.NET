@@ -18,7 +18,7 @@ namespace GW2NET.V2.Items.Converters
     public partial class ArmorConverter
     {
         private readonly IConverter<InfixUpgradeDTO, InfixUpgrade> infixUpgradeConverter;
-        
+
         private readonly IConverter<ICollection<InfusionSlotDTO>, ICollection<InfusionSlot>> infusionSlotCollectionConverter;
 
         private readonly IConverter<string, WeightClass> weightClassConverter;
@@ -32,7 +32,7 @@ namespace GW2NET.V2.Items.Converters
             ITypeConverterFactory<ItemDTO, Armor> converterFactory,
             IConverter<string, WeightClass> weightClassConverter,
             IConverter<ICollection<InfusionSlotDTO>, ICollection<InfusionSlot>> infusionSlotCollectionConverter, IConverter<InfixUpgradeDTO, InfixUpgrade> infixUpgradeConverter)
-            :this(converterFactory)
+            : this(converterFactory)
         {
             if (weightClassConverter == null)
             {

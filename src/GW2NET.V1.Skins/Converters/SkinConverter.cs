@@ -7,16 +7,15 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-using GW2NET.Common;
-using GW2NET.Items;
-using GW2NET.Skins;
-using GW2NET.V1.Skins.Json;
-
 namespace GW2NET.V1.Skins.Converters
 {
+    using System;
+    using System.Collections.Generic;
+    using GW2NET.Common;
+    using GW2NET.Items;
+    using GW2NET.Skins;
+    using GW2NET.V1.Skins.Json;
+
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="Skin"/>.</summary>
     public partial class SkinConverter
     {

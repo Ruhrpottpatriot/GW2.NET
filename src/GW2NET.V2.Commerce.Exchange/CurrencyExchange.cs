@@ -61,7 +61,8 @@ namespace GW2NET.V2.Commerce.Exchange
         }
 
         public async Task<Exchange> GetCoinsAsync(int gems, CancellationToken cancellationToken)
-        { var request = new GemsExchangeRequest
+        {
+            var request = new GemsExchangeRequest
             {
                 Quantity = gems
             };

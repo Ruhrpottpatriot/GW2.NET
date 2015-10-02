@@ -7,11 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-
 namespace GW2NET.Common
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>Provides extension methods for <see cref="IResponse{T}" /> types.</summary>
     public static class ResponseExtensions

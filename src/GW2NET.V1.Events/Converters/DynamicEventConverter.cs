@@ -7,14 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using GW2NET.Common;
-using GW2NET.DynamicEvents;
-using GW2NET.V1.Events.Json;
-
 namespace GW2NET.V1.Events.Converters
 {
     using System;
+    using System.Collections.Generic;
+    using GW2NET.Common;
+    using GW2NET.DynamicEvents;
+    using GW2NET.V1.Events.Json;
 
     /// <summary>Converts objects of type <see cref="EventDTO"/> to objects of type <see cref="DynamicEvent"/>.</summary>
     public sealed class DynamicEventConverter : IConverter<EventDTO, DynamicEvent>
@@ -53,8 +52,8 @@ namespace GW2NET.V1.Events.Converters
 
             var dynamicEvent = new DynamicEvent
             {
-                Name = value.Name, 
-                Level = value.Level, 
+                Name = value.Name,
+                Level = value.Level,
                 MapId = value.MapId
             };
 

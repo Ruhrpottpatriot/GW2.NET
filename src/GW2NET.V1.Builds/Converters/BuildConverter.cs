@@ -7,13 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.Builds;
-using GW2NET.Common;
-using GW2NET.V1.Builds.Json;
-
 namespace GW2NET.V1.Builds.Converters
 {
     using System;
+    using GW2NET.Builds;
+    using GW2NET.Common;
+    using GW2NET.V1.Builds.Json;
 
     /// <summary>Converts objects of type <see cref="BuildDTO"/> to objects of type <see cref="Build"/>.</summary>
     public sealed class BuildConverter : IConverter<BuildDTO, Build>

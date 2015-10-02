@@ -7,12 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.Common;
-using GW2NET.Common.Drawing;
-
 namespace GW2NET.V1.Floors.Converters
 {
     using System;
+    using GW2NET.Common;
+    using GW2NET.Common.Drawing;
 
     /// <summary>Converts objects of type <see cref="T:double[][]"/> to objects of type <see cref="Rectangle"/>.</summary>
     public sealed class RectangleConverter : IConverter<double[][], Rectangle>

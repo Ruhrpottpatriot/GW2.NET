@@ -15,8 +15,6 @@ namespace GW2NET.V2.Commerce.Prices.Json
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/commerce/prices")]
     public sealed class AggregateListingDTO
     {
-        #region Properties
-
         [DataMember(Name = "buys", Order = 1)]
         public AggregateOfferDTO BuyOffers { get; set; }
 
@@ -25,7 +23,5 @@ namespace GW2NET.V2.Commerce.Prices.Json
 
         [DataMember(Name = "sells", Order = 2)]
         public AggregateOfferDTO SellOffers { get; set; }
-
-        #endregion
     }
 }

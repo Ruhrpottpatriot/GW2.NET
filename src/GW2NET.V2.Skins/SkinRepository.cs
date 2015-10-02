@@ -29,19 +29,14 @@ namespace GW2NET.V2.Skins
     /// </remarks>
     public sealed class SkinRepository : ISkinRepository
     {
-        
         private readonly IConverter<IResponse<ICollection<SkinDTO>>, IDictionaryRange<int, Skin>> bulkResponseConverter;
 
-        
         private readonly IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter;
 
-        
         private readonly IConverter<IResponse<ICollection<SkinDTO>>, ICollectionPage<Skin>> pageResponseConverter;
 
-        
         private readonly IConverter<IResponse<SkinDTO>, Skin> responseConverter;
 
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="SkinRepository"/> class.</summary>
@@ -51,9 +46,9 @@ namespace GW2NET.V2.Skins
         /// <param name="bulkResponseConverter"></param>
         /// <param name="pageResponseConverter"></param>
         /// <exception cref="ArgumentNullException"></exception>
-        public SkinRepository(IServiceClient serviceClient, 
+        public SkinRepository(IServiceClient serviceClient,
             IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter,
-            IConverter<IResponse<SkinDTO>, Skin> responseConverter, 
+            IConverter<IResponse<SkinDTO>, Skin> responseConverter,
             IConverter<IResponse<ICollection<SkinDTO>>, IDictionaryRange<int, Skin>> bulkResponseConverter,
             IConverter<IResponse<ICollection<SkinDTO>>, ICollectionPage<Skin>> pageResponseConverter)
         {

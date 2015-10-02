@@ -7,33 +7,26 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using GW2NET.Common;
-using GW2NET.Common.Converters;
-using GW2NET.Common.Drawing;
-using GW2NET.Maps;
-using GW2NET.V1.Floors.Json;
-
 namespace GW2NET.V1.Floors.Converters
 {
     using System;
+    using System.Collections.Generic;
+    using GW2NET.Common;
+    using GW2NET.Common.Drawing;
+    using GW2NET.Maps;
+    using GW2NET.V1.Floors.Json;
 
     /// <summary>Converts objects of type <see cref="SubregionDTO"/> to objects of type <see cref="Subregion"/>.</summary>
     public sealed class SubregionConverter : IConverter<SubregionDTO, Subregion>
     {
-        
         private readonly IConverter<ICollection<PointOfInterestDTO>, ICollection<PointOfInterest>> pointOfInterestCollectionConverter;
 
-        
         private readonly IConverter<double[][], Rectangle> rectangleConverter;
 
-        
         private readonly IConverter<ICollection<RenownTaskDTO>, ICollection<RenownTask>> renownTaskCollectionConverter;
 
-        
         private readonly IConverter<ICollection<SectorDTO>, ICollection<Sector>> sectorCollectionConverter;
 
-        
         private readonly IConverter<ICollection<SkillChallengeDTO>, ICollection<SkillChallenge>> skillChallengeCollectionConverter;
 
         /// <summary>Initializes a new instance of the <see cref="SubregionConverter"/> class.</summary>
@@ -88,9 +81,9 @@ namespace GW2NET.V1.Floors.Converters
             // Create a new map object
             var subRegion = new Subregion
             {
-                Name = value.Name, 
-                MinimumLevel = value.MinimumLevel, 
-                MaximumLevel = value.MaximumLevel, 
+                Name = value.Name,
+                MinimumLevel = value.MinimumLevel,
+                MaximumLevel = value.MaximumLevel,
                 DefaultFloor = value.DefaultFloor
             };
 

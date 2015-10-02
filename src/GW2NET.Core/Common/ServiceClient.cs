@@ -22,16 +22,12 @@ namespace GW2NET.Common
     /// <summary>Provides a default implementation for the <see cref="IServiceClient" /> interface.</summary>
     public class ServiceClient : IServiceClient
     {
-        
         private readonly Uri baseUri;
 
-        
         private readonly ISerializerFactory errorSerializerFactory;
 
-        
         private readonly IConverter<Stream, Stream> gzipInflator;
 
-        
         private readonly ISerializerFactory successSerializerFactory;
 
         /// <summary>Initializes a new instance of the <see cref="ServiceClient"/> class.</summary>
@@ -278,7 +274,7 @@ namespace GW2NET.Common
 
             try
             {
-                return GetHttpWebResponseAsync(webRequest, CancellationToken.None).Result;
+                return this.GetHttpWebResponseAsync(webRequest, CancellationToken.None).Result;
             }
             catch (AggregateException ex)
             {
@@ -356,7 +352,7 @@ namespace GW2NET.Common
             if (contentType != null && contentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase))
             {
                 // Get the response content
-                var errorResult = DeserializeResponse<ErrorResult>(response, serializerFactory, gzipInflator);
+                var errorResult = this.DeserializeResponse<ErrorResult>(response, serializerFactory, gzipInflator);
 
                 // Get the error description, or null if none was returned
                 message = errorResult != null ? errorResult.Text : null;
@@ -387,13 +383,12 @@ namespace GW2NET.Common
             var value = new Response<T>();
 
             // Set the deserialized response content
-            value.Content = DeserializeResponse<T>(response, serializerFactory, gzipInflator);
+            value.Content = this.DeserializeResponse<T>(response, serializerFactory, gzipInflator);
 
             // Set the 'Date' header
             var date = response.Headers["Date"];
             if (date != null)
             {
-
                 value.Date = DateTimeOffset.Parse(date, DateTimeFormatInfo.InvariantInfo);
             }
 

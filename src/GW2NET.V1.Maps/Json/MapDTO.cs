@@ -7,12 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.Serialization;
-
 namespace GW2NET.V1.Maps.Json
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.Serialization;
+
     [DataContract]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/maps")]
     public sealed class MapDTO

@@ -15,14 +15,10 @@ namespace GW2NET.V2.Commerce.Prices.Json
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/commerce/prices")]
     public sealed class AggregateOfferDTO
     {
-        #region Properties
-
         [DataMember(Name = "quantity", Order = 2)]
         public int Quantity { get; set; }
 
         [DataMember(Name = "unit_price", Order = 1)]
         public int UnitPrice { get; set; }
-
-        #endregion
     }
 }

@@ -10,7 +10,6 @@
 namespace GW2NET.Common.Converters
 {
     using System;
-    using System.Diagnostics;
 
     /// <summary>Converts objects of type <see cref="IResponse{T}"/> to objects of type <see cref="TValue"/>.</summary>
     /// <typeparam name="TDTO">The type of data contracts in the response content.</typeparam>

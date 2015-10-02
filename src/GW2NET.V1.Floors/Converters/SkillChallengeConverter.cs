@@ -7,14 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.Common;
-using GW2NET.Common.Drawing;
-using GW2NET.Maps;
-using GW2NET.V1.Floors.Json;
-
 namespace GW2NET.V1.Floors.Converters
 {
     using System;
+    using GW2NET.Common;
+    using GW2NET.Common.Drawing;
+    using GW2NET.Maps;
+    using GW2NET.V1.Floors.Json;
 
     /// <summary>Converts objects of type <see cref="SkillChallengeDTO"/> to objects of type <see cref="SkillChallenge"/>.</summary>
     public sealed class SkillChallengeConverter : IConverter<SkillChallengeDTO, SkillChallenge>

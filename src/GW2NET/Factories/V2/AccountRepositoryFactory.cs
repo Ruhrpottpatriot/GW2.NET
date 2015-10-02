@@ -17,7 +17,6 @@ namespace GW2NET.Factories.V2
     /// <summary>Provides methods and properties for creating an account repository.</summary>
     public sealed class AccountRepositoryFactory : RepositoryFactoryBase<IAccountRepository>
     {
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="AccountRepositoryFactory"/> class.</summary>

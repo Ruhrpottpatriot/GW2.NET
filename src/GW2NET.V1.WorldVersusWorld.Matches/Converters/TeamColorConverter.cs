@@ -7,12 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using GW2NET.Common;
-using GW2NET.WorldVersusWorld;
-
 namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
+    using System;
+    using GW2NET.Common;
+    using GW2NET.WorldVersusWorld;
+
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="TeamColor"/>.</summary>
     public sealed class TeamColorConverter : IConverter<string, TeamColor>
     {

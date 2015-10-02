@@ -18,7 +18,6 @@ namespace GW2NET.V1.Recipes.Converters
     /// <summary>Converts objects of type <see cref="T:ICollection{string}"/> to objects of type <see cref="CraftingDisciplines"/>.</summary>
     public sealed class CraftingDisciplineCollectionConverter : IConverter<ICollection<string>, CraftingDisciplines>
     {
-        
         private readonly IConverter<string, CraftingDisciplines> craftingDisciplineConverter;
 
         /// <summary>Initializes a new instance of the <see cref="CraftingDisciplineCollectionConverter"/> class.</summary>

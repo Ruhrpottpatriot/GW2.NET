@@ -7,15 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using GW2NET.Common;
-using GW2NET.Maps;
-using GW2NET.V1.Floors.Json;
-
 namespace GW2NET.V1.Floors.Converters
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
+    using GW2NET.Common;
+    using GW2NET.Maps;
+    using GW2NET.V1.Floors.Json;
 
     /// <summary>Converts objects of type <see cref="T:KeyValuePair{string, RegionDTO}"/> to objects of type <see cref="T:KeyValuePair{int, Region}"/>.</summary>
     public sealed class RegionKeyValuePairConverter : IConverter<KeyValuePair<string, RegionDTO>, KeyValuePair<int, Region>>

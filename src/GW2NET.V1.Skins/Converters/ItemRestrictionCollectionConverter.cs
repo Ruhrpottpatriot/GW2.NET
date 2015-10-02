@@ -7,14 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-
-using GW2NET.Common;
-using GW2NET.Items;
-
 namespace GW2NET.V1.Skins.Converters
 {
     using System;
+    using System.Collections.Generic;
+    using GW2NET.Common;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="T:ICollection{string}"/> to objects of type <see cref="ItemRestrictions"/>.</summary>
     public sealed class ItemRestrictionCollectionConverter : IConverter<ICollection<string>, ItemRestrictions>

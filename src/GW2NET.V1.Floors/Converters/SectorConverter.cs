@@ -7,19 +7,17 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.Common;
-using GW2NET.Common.Drawing;
-using GW2NET.Maps;
-using GW2NET.V1.Floors.Json;
-
 namespace GW2NET.V1.Floors.Converters
 {
     using System;
+    using GW2NET.Common;
+    using GW2NET.Common.Drawing;
+    using GW2NET.Maps;
+    using GW2NET.V1.Floors.Json;
 
     /// <summary>Converts objects of type <see cref="SectorDTO"/> to objects of type <see cref="Sector"/>.</summary>
     public sealed class SectorConverter : IConverter<SectorDTO, Sector>
     {
-        
         private readonly IConverter<double[], Vector2D> vector2DConverter;
 
         /// <summary>Initializes a new instance of the <see cref="SectorConverter"/> class.</summary>
@@ -45,9 +43,9 @@ namespace GW2NET.V1.Floors.Converters
 
             var sector = new Sector
             {
-                SectorId = value.SectorId, 
-                Name = value.Name, 
-                Level = value.Level, 
+                SectorId = value.SectorId,
+                Name = value.Name,
+                Level = value.Level,
             };
             var coordinates = value.Coordinates;
             if (coordinates != null && coordinates.Length == 2)

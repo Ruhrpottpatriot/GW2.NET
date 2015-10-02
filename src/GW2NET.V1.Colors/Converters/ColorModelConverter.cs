@@ -7,13 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.Colors;
-using GW2NET.Common;
-using GW2NET.V1.Colors.Json;
-
 namespace GW2NET.V1.Colors.Converters
 {
     using System;
+    using GW2NET.Colors;
+    using GW2NET.Common;
+    using GW2NET.V1.Colors.Json;
 
     /// <summary>Converts objects of type <see cref="ColorModelDTO"/> to objects of type <see cref="ColorModel"/>.</summary>
     public sealed class ColorModelConverter : IConverter<ColorModelDTO, ColorModel>
@@ -43,10 +42,10 @@ namespace GW2NET.V1.Colors.Converters
 
             var colorModel = new ColorModel
             {
-                Brightness = value.Brightness, 
-                Contrast = value.Contrast, 
-                Hue = value.Hue, 
-                Saturation = value.Saturation, 
+                Brightness = value.Brightness,
+                Contrast = value.Contrast,
+                Hue = value.Hue,
+                Saturation = value.Saturation,
                 Lightness = value.Lightness
             };
             var rgb = value.Rgb;

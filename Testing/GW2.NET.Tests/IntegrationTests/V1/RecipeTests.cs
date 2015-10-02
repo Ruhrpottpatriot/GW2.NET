@@ -10,6 +10,8 @@
 
     public class RecipeTests
     {
+        private static readonly Lazy<IEnumerable<object[]>> LazyIdentifiers = new Lazy<IEnumerable<object[]>>(() => GW2.V1.Recipes.ForDefaultCulture().Discover().Select(id => new object[] { id }));
+
         private static readonly GW2Bootstrapper GW2 = new GW2Bootstrapper();
 
         public RecipeTests()
@@ -59,7 +61,6 @@
             Assert.StrictEqual(identifier, result.RecipeId);
         }
 
-        private static readonly Lazy<IEnumerable<object[]>> LazyIdentifiers = new Lazy<IEnumerable<object[]>>(() => GW2.V1.Recipes.ForDefaultCulture().Discover().Select(id => new object[] { id })); 
         public static IEnumerable<object[]> GetIdentifiers()
         {
             return LazyIdentifiers.Value;

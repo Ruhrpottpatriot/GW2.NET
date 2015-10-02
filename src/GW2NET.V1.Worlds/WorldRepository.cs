@@ -7,9 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.V1.Worlds.Converters;
-using GW2NET.V1.Worlds.Json;
-
 namespace GW2NET.V1.Worlds
 {
     using System;
@@ -19,18 +16,15 @@ namespace GW2NET.V1.Worlds
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
-
     using GW2NET.Common;
-    using GW2NET.Common.Converters;
+    using GW2NET.V1.Worlds.Json;
     using GW2NET.Worlds;
 
     /// <summary>Represents a repository that retrieves data from the /v1/world_names.json interface.</summary>
     public class WorldRepository : IWorldRepository
     {
-        
         private readonly IConverter<ICollection<WorldDTO>, ICollection<World>> worldCollectionConverter;
 
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="WorldRepository"/> class.</summary>
@@ -97,7 +91,7 @@ namespace GW2NET.V1.Worlds
 
             var worlds = new DictionaryRange<int, World>(dataContracts.Count)
             {
-                SubtotalCount = dataContracts.Count, 
+                SubtotalCount = dataContracts.Count,
                 TotalCount = dataContracts.Count
             };
 
@@ -208,7 +202,7 @@ namespace GW2NET.V1.Worlds
 
             var worlds = new DictionaryRange<int, World>(dataContracts.Count)
             {
-                SubtotalCount = dataContracts.Count, 
+                SubtotalCount = dataContracts.Count,
                 TotalCount = dataContracts.Count
             };
 

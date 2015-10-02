@@ -7,25 +7,23 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using GW2NET.Common;
-using GW2NET.DynamicEvents;
-using GW2NET.V1.Events.Json;
-
 namespace GW2NET.V1.Events
 {
+    using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using GW2NET.Common;
+    using GW2NET.DynamicEvents;
+    using GW2NET.V1.Events.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/event_details.json interface.</summary>
     public class EventRepository : IEventRepository
     {
-        
         private readonly IConverter<EventCollectionDTO, ICollection<DynamicEvent>> dynamicEventCollectionConverter;
 
         private readonly IServiceClient serviceClient;
@@ -77,7 +75,7 @@ namespace GW2NET.V1.Events
             IEventRepository self = this;
             var request = new DynamicEventDetailsRequest
             {
-                EventId = identifier, 
+                EventId = identifier,
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<EventCollectionDTO>(request);
@@ -139,7 +137,7 @@ namespace GW2NET.V1.Events
 
             var events = new DictionaryRange<Guid, DynamicEvent>(dynamicEvents.Count)
             {
-                SubtotalCount = dynamicEvents.Count, 
+                SubtotalCount = dynamicEvents.Count,
                 TotalCount = dynamicEvents.Count
             };
             foreach (var dynamicEvent in dynamicEvents)
@@ -201,7 +199,7 @@ namespace GW2NET.V1.Events
             IEventRepository self = this;
             var request = new DynamicEventDetailsRequest
             {
-                EventId = identifier, 
+                EventId = identifier,
                 Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<EventCollectionDTO>(request, cancellationToken);
@@ -268,7 +266,7 @@ namespace GW2NET.V1.Events
 
             var events = new DictionaryRange<Guid, DynamicEvent>(dynamicEvents.Count)
             {
-                SubtotalCount = dynamicEvents.Count, 
+                SubtotalCount = dynamicEvents.Count,
                 TotalCount = dynamicEvents.Count
             };
             foreach (var dynamicEvent in dynamicEvents)

@@ -102,7 +102,6 @@
             };
         }
 
-
         [Theory]
         [MemberData("GetFilters")]
         public void FindAll_WithIdList_NotSupported(Guid[] filter)

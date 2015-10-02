@@ -16,7 +16,6 @@ namespace GW2NET.Common.Serializers
     /// <typeparam name="T">The type of the data contract.</typeparam>
     public class DataContractSerializer<T> : ISerializer<T>
     {
-        
         private readonly XmlObjectSerializer serializer;
 
         /// <summary>Initializes a new instance of the <see cref="DataContractSerializer{T}"/> class.</summary>

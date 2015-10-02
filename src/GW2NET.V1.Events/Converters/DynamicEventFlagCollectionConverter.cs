@@ -7,13 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using GW2NET.Common;
-using GW2NET.DynamicEvents;
-
 namespace GW2NET.V1.Events.Converters
 {
     using System;
+    using System.Collections.Generic;
+    using GW2NET.Common;
+    using GW2NET.DynamicEvents;
 
     /// <summary>Converts objects of type <see cref="T:ICollection{string}"/> to objects of type <see cref="DynamicEventFlags"/>.</summary>
     public sealed class DynamicEventFlagCollectionConverter : IConverter<ICollection<string>, DynamicEventFlags>

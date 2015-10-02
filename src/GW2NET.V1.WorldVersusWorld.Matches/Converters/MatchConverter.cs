@@ -7,15 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Linq;
-using GW2NET.Common;
-using GW2NET.V1.WorldVersusWorld.Matches.Json;
-using GW2NET.WorldVersusWorld;
-
 namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using GW2NET.Common;
+    using GW2NET.V1.WorldVersusWorld.Matches.Json;
+    using GW2NET.WorldVersusWorld;
 
     /// <summary>Converts objects of type <see cref="MatchDTO"/> to objects of type <see cref="Match"/>.</summary>
     public sealed class MatchConverter : IConverter<MatchDTO, Match>

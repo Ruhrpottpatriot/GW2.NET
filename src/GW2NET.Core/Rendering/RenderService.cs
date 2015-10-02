@@ -17,7 +17,6 @@ namespace GW2NET.Rendering
     /// <summary>Provides the default implementation of the render service.</summary>
     public class RenderService : IRenderService
     {
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="RenderService"/> class.</summary>

@@ -28,19 +28,14 @@ namespace GW2NET.V2.Maps
     /// </remarks>
     public sealed class MapRepository : IMapRepository
     {
-        
         private readonly IConverter<IResponse<ICollection<MapDTO>>, IDictionaryRange<int, Map>> bulkResponseConverter;
 
-        
         private readonly IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter;
 
-        
         private readonly IConverter<IResponse<ICollection<MapDTO>>, ICollectionPage<Map>> pageResponseConverter;
 
-        
         private readonly IConverter<IResponse<MapDTO>, Map> responseConverter;
 
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="MapRepository"/> class.</summary>
@@ -49,10 +44,10 @@ namespace GW2NET.V2.Maps
         /// <param name="responseConverter"></param>
         /// <param name="bulkResponseConverter"></param>
         /// <param name="pageResponseConverter"></param>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="collectionConverter"/> or <paramref name="mapConverter"/> is a null reference.</exception>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="bulkResponseConverter"/> or <paramref name="responseConverter"/> is a null reference.</exception>
         public MapRepository(IServiceClient serviceClient,
             IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter,
-            IConverter<IResponse<MapDTO>, Map> responseConverter, 
+            IConverter<IResponse<MapDTO>, Map> responseConverter,
             IConverter<IResponse<ICollection<MapDTO>>, IDictionaryRange<int, Map>> bulkResponseConverter,
             IConverter<IResponse<ICollection<MapDTO>>, ICollectionPage<Map>> pageResponseConverter)
         {

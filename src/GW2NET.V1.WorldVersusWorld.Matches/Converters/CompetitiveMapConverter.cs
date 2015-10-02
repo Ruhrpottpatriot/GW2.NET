@@ -7,15 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Linq;
-using GW2NET.Common;
-using GW2NET.V1.WorldVersusWorld.Matches.Json;
-using GW2NET.WorldVersusWorld;
-
 namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using GW2NET.Common;
+    using GW2NET.V1.WorldVersusWorld.Matches.Json;
+    using GW2NET.WorldVersusWorld;
 
     public partial class CompetitiveMapConverter
     {

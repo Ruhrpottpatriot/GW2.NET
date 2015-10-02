@@ -22,7 +22,6 @@ namespace GW2NET.Factories.V1
     /// <summary>Provides methods for creating repository objects.</summary>
     public sealed class EventNameRepositoryFactory
     {
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="EventNameRepositoryFactory"/> class.</summary>

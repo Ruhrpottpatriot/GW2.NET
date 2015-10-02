@@ -23,7 +23,6 @@ namespace GW2NET.Factories.V2
     /// <summary>Provides methods and properties for creating a color repository.</summary>
     public sealed class ColorRepositoryFactory : RepositoryFactoryBase<IColorRepository>
     {
-
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="ColorRepositoryFactory"/> class.</summary>

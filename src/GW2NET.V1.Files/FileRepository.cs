@@ -7,9 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.V1.Files.Converters;
-using GW2NET.V1.Files.Json;
-
 namespace GW2NET.V1.Files
 {
     using System;
@@ -17,17 +14,15 @@ namespace GW2NET.V1.Files
     using System.Diagnostics.CodeAnalysis;
     using System.Threading;
     using System.Threading.Tasks;
-
     using GW2NET.Common;
     using GW2NET.Files;
+    using GW2NET.V1.Files.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/files.json interface.</summary>
     public class FileRepository : IFileRepository
     {
-        
         private readonly IConverter<FileDTO, Asset> assetConverter;
 
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="FileRepository"/> class.</summary>
@@ -87,7 +82,7 @@ namespace GW2NET.V1.Files
 
             var values = new DictionaryRange<string, Asset>(content.Count)
             {
-                SubtotalCount = content.Count, 
+                SubtotalCount = content.Count,
                 TotalCount = content.Count
             };
             foreach (var kvp in content)
@@ -198,7 +193,7 @@ namespace GW2NET.V1.Files
 
             var values = new DictionaryRange<string, Asset>(content.Count)
             {
-                SubtotalCount = content.Count, 
+                SubtotalCount = content.Count,
                 TotalCount = content.Count
             };
             foreach (var kvp in content)

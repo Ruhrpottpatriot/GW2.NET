@@ -7,19 +7,17 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2NET.Common;
-using GW2NET.Common.Drawing;
-using GW2NET.Maps;
-using GW2NET.V1.Maps.Json;
-
 namespace GW2NET.V1.Maps.Converters
 {
     using System;
+    using GW2NET.Common;
+    using GW2NET.Common.Drawing;
+    using GW2NET.Maps;
+    using GW2NET.V1.Maps.Json;
 
     /// <summary>Converts objects of type <see cref="MapDTO"/> to objects of type <see cref="Map"/>.</summary>
     public sealed class MapConverter : IConverter<MapDTO, Map>
     {
-        
         private readonly IConverter<double[][], Rectangle> rectangleConverter;
 
         /// <summary>Initializes a new instance of the <see cref="MapConverter"/> class.</summary>

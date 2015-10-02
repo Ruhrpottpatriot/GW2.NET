@@ -7,16 +7,16 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using GW2NET.Common;
-using GW2NET.DynamicEvents;
-using GW2NET.V1.Events.Json;
-
 namespace GW2NET.V1.Events.Converters
 {
+    using System;
+    using GW2NET.Common;
+    using GW2NET.DynamicEvents;
+    using GW2NET.V1.Events.Json;
+
     /// <summary>Converts objects of type <see cref="EventNameDTO"/> to objects of type <see cref="DynamicEventName"/>.</summary>
     public sealed class DynamicEventNameConverter : IConverter<EventNameDTO, DynamicEventName>
-    {       
+    {
         /// <inheritdoc />
         public DynamicEventName Convert(EventNameDTO value, object state)
         {

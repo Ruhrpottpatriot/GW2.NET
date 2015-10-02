@@ -24,7 +24,6 @@ namespace GW2NET.V2.Files
     /// <summary>Represents a repository that retrieves data from the /v2/files interface.</summary>
     public sealed class FileRepository : IFileRepository
     {
-
         private readonly IServiceClient serviceClient;
 
         private readonly IConverter<IResponse<ICollection<string>>, ICollection<string>> identifiersConverter;

@@ -7,7 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-
 namespace GW2NET.V1.Recipes.Converters
 {
     using System;
@@ -24,13 +23,10 @@ namespace GW2NET.V1.Recipes.Converters
     /// <summary>Represents a repository that retrieves data from the /v1/recipes.json and /v1/recipe_details.json interfaces.</summary>
     public class RecipeRepository : IRecipeRepository
     {
-        
         private readonly IConverter<RecipeDTO, Recipe> recipeConverter;
 
-        
         private readonly IConverter<RecipeCollectionDTO, ICollection<int>> recipeCollectionConverter;
 
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="RecipeRepository"/> class.</summary>

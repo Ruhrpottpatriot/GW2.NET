@@ -18,7 +18,6 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="T:ICollection{string}"/> to objects of type <see cref="ItemRestrictions"/>.</summary>
     public sealed class ItemRestrictionCollectionConverter : IConverter<ICollection<string>, ItemRestrictions>
     {
-        
         private readonly IConverter<string, ItemRestrictions> itemRestrictionConverter;
 
         /// <summary>Initializes a new instance of the <see cref="ItemRestrictionCollectionConverter"/> class.</summary>

@@ -22,7 +22,6 @@ namespace GW2NET.Factories.V2
     /// <summary>Provides methods for creating a file repository.</summary>
     public class FileRepositoryFactory : RepositoryFactoryBase<IFileRepository>
     {
-
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="FileRepositoryFactory"/> class.</summary>

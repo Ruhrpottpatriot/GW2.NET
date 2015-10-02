@@ -23,7 +23,6 @@ namespace GW2NET.Factories.V2
     /// <summary>Provides methods for creating a continent repository.</summary>
     public class ContinentRepositoryFactory : RepositoryFactoryBase<IContinentRepository>
     {
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="ContinentRepositoryFactory"/> class.</summary>

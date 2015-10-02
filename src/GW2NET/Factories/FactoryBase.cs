@@ -16,7 +16,6 @@ namespace GW2NET.Factories
     /// <summary>Provides access to the Guild Wars 2 service.</summary>
     public abstract class FactoryBase
     {
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="FactoryBase"/> class.</summary>

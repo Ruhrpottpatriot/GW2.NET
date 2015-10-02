@@ -24,10 +24,8 @@ namespace GW2NET.V1.Maps
     /// <summary>Represents a repository that retrieves data from the /v1/map_names.json interface.</summary>
     public class MapNameRepository : IMapNameRepository
     {
-        
         private readonly IConverter<MapNameDTO, MapName> mapNameConverter;
 
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="MapNameRepository"/> class.</summary>

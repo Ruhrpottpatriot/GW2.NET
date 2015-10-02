@@ -7,25 +7,23 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Threading;
-using System.Threading.Tasks;
-using GW2NET.Common;
-using GW2NET.DynamicEvents;
-using GW2NET.V1.Events.Json;
-
 namespace GW2NET.V1.Events
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using GW2NET.Common;
+    using GW2NET.DynamicEvents;
+    using GW2NET.V1.Events.Json;
+
     /// <summary>Represents a repository that retrieves data from the /v1/event_names.json interface.</summary>
     public class EventNameRepository : IEventNameRepository
     {
-        
         private readonly IConverter<ICollection<EventNameDTO>, ICollection<DynamicEventName>> dynamicEventNameCollectionConverter;
 
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="EventNameRepository"/> class.</summary>
@@ -92,7 +90,7 @@ namespace GW2NET.V1.Events
 
             var dynamicEventNames = new DictionaryRange<Guid, DynamicEventName>(eventNameDTOs.Count)
             {
-                SubtotalCount = eventNameDTOs.Count, 
+                SubtotalCount = eventNameDTOs.Count,
                 TotalCount = eventNameDTOs.Count
             };
 
@@ -201,7 +199,7 @@ namespace GW2NET.V1.Events
 
             var dynamicEventNames = new DictionaryRange<Guid, DynamicEventName>(eventNameDTOs.Count)
             {
-                SubtotalCount = eventNameDTOs.Count, 
+                SubtotalCount = eventNameDTOs.Count,
                 TotalCount = eventNameDTOs.Count
             };
 

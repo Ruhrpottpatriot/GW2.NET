@@ -25,23 +25,22 @@ namespace GW2NET.V2.Worlds
     /// <summary>Represents a repository that retrieves data from the /v2/worlds interface.</summary>
     public class WorldRepository : IWorldRepository
     {
-        
         private readonly IConverter<IResponse<ICollection<WorldDTO>>, IDictionaryRange<int, World>> bulkResponseConverter;
 
-        
         private readonly IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter;
 
-        
         private readonly IConverter<IResponse<ICollection<WorldDTO>>, ICollectionPage<World>> pageResponseConverter;
 
-        
         private readonly IConverter<IResponse<WorldDTO>, World> responseConverter;
 
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="WorldRepository"/> class.</summary>
         /// <param name="serviceClient"></param>
+        /// <param name="identifiersResponseConverter"></param>
+        /// <param name="responseConverter"></param>
+        /// <param name="bulkResponseConverter"></param>
+        /// <param name="pageResponseConverter"></param>
         /// <exception cref="ArgumentNullException"></exception>
         public WorldRepository(IServiceClient serviceClient, IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter, IConverter<IResponse<WorldDTO>, World> responseConverter, IConverter<IResponse<ICollection<WorldDTO>>, IDictionaryRange<int, World>> bulkResponseConverter, IConverter<IResponse<ICollection<WorldDTO>>, ICollectionPage<World>> pageResponseConverter)
         {
@@ -90,7 +89,7 @@ namespace GW2NET.V2.Worlds
             IWorldRepository self = this;
             var request = new WorldDetailsRequest
             {
-                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
+                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<WorldDTO>(request);
@@ -116,7 +115,7 @@ namespace GW2NET.V2.Worlds
             IWorldRepository self = this;
             var request = new WorldBulkRequest
             {
-                Culture = self.Culture, 
+                Culture = self.Culture,
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList()
             };
             var response = this.serviceClient.Send<ICollection<WorldDTO>>(request);
@@ -156,7 +155,7 @@ namespace GW2NET.V2.Worlds
             IWorldRepository self = this;
             var request = new WorldBulkRequest
             {
-                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
+                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
                 Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<WorldDTO>>(request, cancellationToken);
@@ -176,7 +175,7 @@ namespace GW2NET.V2.Worlds
             IWorldRepository self = this;
             var request = new WorldDetailsRequest
             {
-                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
+                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
                 Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<WorldDTO>(request, cancellationToken);
@@ -189,7 +188,7 @@ namespace GW2NET.V2.Worlds
             IWorldRepository self = this;
             var request = new WorldPageRequest
             {
-                Page = pageIndex, 
+                Page = pageIndex,
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<WorldDTO>>(request);
@@ -203,8 +202,8 @@ namespace GW2NET.V2.Worlds
             IWorldRepository self = this;
             var request = new WorldPageRequest
             {
-                Page = pageIndex, 
-                PageSize = pageSize, 
+                Page = pageIndex,
+                PageSize = pageSize,
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<WorldDTO>>(request);
@@ -225,7 +224,7 @@ namespace GW2NET.V2.Worlds
             IWorldRepository self = this;
             var request = new WorldPageRequest
             {
-                Page = pageIndex, 
+                Page = pageIndex,
                 Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<WorldDTO>>(request, cancellationToken);
@@ -245,8 +244,8 @@ namespace GW2NET.V2.Worlds
             IWorldRepository self = this;
             var request = new WorldPageRequest
             {
-                Page = pageIndex, 
-                PageSize = pageSize, 
+                Page = pageIndex,
+                PageSize = pageSize,
                 Culture = self.Culture
             };
             return this.serviceClient.SendAsync<ICollection<WorldDTO>>(request, cancellationToken).ContinueWith<ICollectionPage<World>>(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);

@@ -7,12 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Globalization;
-using GW2NET.Common;
-
 namespace GW2NET.V1.Events
 {
+    using System.Collections.Generic;
+    using System.Globalization;
+    using GW2NET.Common;
+
     /// <summary>Represents a request for a list of events and their localized name.</summary>
     public sealed class DynamicEventNameRequest : IRequest, ILocalizable
     {

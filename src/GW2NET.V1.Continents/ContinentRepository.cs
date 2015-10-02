@@ -22,10 +22,8 @@ namespace GW2NET.V1.Continents
     /// <summary>Represents a repository that retrieves data from the /v1/continents.json interface.</summary>
     public class ContinentRepository : IContinentRepository
     {
-        
         private readonly IConverter<ContinentCollectionDTO, ICollection<Continent>> continentCollectionConverter;
 
-        
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="ContinentRepository"/> class.</summary>

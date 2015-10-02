@@ -7,20 +7,18 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using GW2NET.Common;
-using GW2NET.Maps;
-using GW2NET.V1.Floors.Json;
-
 namespace GW2NET.V1.Floors.Converters
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
-    
+    using GW2NET.Common;
+    using GW2NET.Maps;
+    using GW2NET.V1.Floors.Json;
+
     /// <summary>Converts objects of type <see cref="T:KeyValuePair{string, SubregionDTO}"/> to objects of type <see cref="T:KeyValuePair{int, Subregion}"/>.</summary>
     public sealed class SubregionKeyValuePairConverter : IConverter<KeyValuePair<string, SubregionDTO>, KeyValuePair<int, Subregion>>
     {
-        
         private readonly IConverter<SubregionDTO, Subregion> subregionConverter;
 
         /// <summary>Initializes a new instance of the <see cref="SubregionKeyValuePairConverter"/> class.</summary>

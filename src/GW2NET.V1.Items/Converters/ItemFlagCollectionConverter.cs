@@ -18,7 +18,6 @@ namespace GW2NET.V1.Items.Converters
     /// <summary>Converts objects of type <see cref="T:ICollection{string}"/> to objects of type <see cref="ItemFlags"/>.</summary>
     public sealed class ItemFlagCollectionConverter : IConverter<ICollection<string>, ItemFlags>
     {
-        
         private readonly IConverter<string, ItemFlags> itemFlagConverter;
 
         /// <summary>Initializes a new instance of the <see cref="ItemFlagCollectionConverter"/> class.</summary>

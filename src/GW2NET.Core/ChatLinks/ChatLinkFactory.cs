@@ -38,7 +38,8 @@ namespace GW2NET.ChatLinks
         /// <typeparam name="T">The chat link type.</typeparam>
         /// <exception cref="ArgumentNullException">The value of <paramref name="input"/> is a null reference.</exception>
         /// <returns>A decoded <see cref="ChatLink"/> of the specified type.</returns>
-        public T Decode<T>(string input) where T : ChatLink
+        public T Decode<T>(string input)
+            where T : ChatLink
         {
             if (input == null)
             {

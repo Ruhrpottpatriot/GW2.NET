@@ -7,12 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using GW2NET.Common;
-using GW2NET.Items;
-
 namespace GW2NET.V1.Skins.Converters
 {
+    using System;
+    using GW2NET.Common;
+    using GW2NET.Items;
+
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="ItemRestrictions"/>.</summary>
     public sealed class ItemRestrictionConverter : IConverter<string, ItemRestrictions>
     {
