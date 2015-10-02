@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"/>
   <PropertyGroup>
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -175,86 +175,85 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Factories\BinarySerializerFactory.cs" />
-    <Compile Include="Factories\DataContractJsonSerializerFactory.cs" />
-    <Compile Include="Factories\FactoryBase.cs" />
-    <Compile Include="Factories\FactoryForLocal.cs" />
-    <Compile Include="Factories\FactoryForRendering.cs" />
-    <Compile Include="Factories\RepositoryFactoryBase.cs" />
-    <Compile Include="Factories\V1\ArmorConverterFactory.cs" />
-    <Compile Include="Factories\V1\ArmorSkinConverterFactory.cs" />
-    <Compile Include="Factories\V1\ColorRepositoryFactory.cs" />
-    <Compile Include="Factories\V1\CombatAttributeConverterFactory.cs" />
-    <Compile Include="Factories\V1\CompetitiveMapConverterFactory.cs" />
-    <Compile Include="Factories\V1\ConsumableConverterFactory.cs" />
-    <Compile Include="Factories\V1\ContainerConverterFactory.cs" />
-    <Compile Include="Factories\V1\ContinentRepositoryFactory.cs" />
-    <Compile Include="Factories\V1\EventNameRepositoryFactory.cs" />
-    <Compile Include="Factories\V1\EventRepositoryFactory.cs" />
-    <Compile Include="Factories\V1\FactoryForV1.cs" />
-    <Compile Include="Factories\V1\FactoryForV1WvW.cs" />
-    <Compile Include="Factories\V1\FloorRepositoryFactory.cs" />
-    <Compile Include="Factories\V1\GatheringToolConverterFactory.cs" />
-    <Compile Include="Factories\V1\GizmoConverterFactory.cs" />
-    <Compile Include="Factories\V1\ItemConverterFactory.cs" />
-    <Compile Include="Factories\V1\ItemRepositoryFactory.cs" />
-    <Compile Include="Factories\V1\LocationConverterFactory.cs" />
-    <Compile Include="Factories\V1\MapBonusConverter.cs" />
-    <Compile Include="Factories\V1\MapNameRepositoryFactory.cs" />
-    <Compile Include="Factories\V1\MapRepositoryFactory.cs" />
-    <Compile Include="Factories\V1\ObjectiveNameRepositoryFactory.cs" />
-    <Compile Include="Factories\V1\PointOfInterestConverterFactory.cs" />
-    <Compile Include="Factories\V1\RecipeConverterFactory.cs" />
-    <Compile Include="Factories\V1\RecipeRepositoryFactory.cs" />
-    <Compile Include="Factories\V1\SkinConverterFactory.cs" />
-    <Compile Include="Factories\V1\SkinRepositoryFactory.cs" />
-    <Compile Include="Factories\V1\ToolConverterFactory.cs" />
-    <Compile Include="Factories\V1\TrinketConverterFactory.cs" />
-    <Compile Include="Factories\V1\UnlockerConverterFactory.cs" />
-    <Compile Include="Factories\V1\UpgradeComponentConverterFactory.cs" />
-    <Compile Include="Factories\V1\WeaponConverterFactory.cs" />
-    <Compile Include="Factories\V1\WeaponSkinConverterFactory.cs" />
-    <Compile Include="Factories\V1\WorldRepositoryFactory.cs" />
-    <Compile Include="Factories\V2\AccountRepositoryFactory.cs" />
-    <Compile Include="Factories\V2\ArmorConverterFactory.cs" />
-    <Compile Include="Factories\V2\ArmorSkinConverterFactory.cs" />
-    <Compile Include="Factories\V2\CharacterRepositoryFactory.cs" />
-    <Compile Include="Factories\V2\ColorRepositoryFactory.cs" />
-    <Compile Include="Factories\V2\CombatAttributeConverterFactory.cs" />
-    <Compile Include="Factories\V2\ConsumableConverterFactory.cs" />
-    <Compile Include="Factories\V2\ContainerConverterFactory.cs" />
-    <Compile Include="Factories\V2\ContinentRepositoryFactory.cs" />
-    <Compile Include="Factories\V2\FactoryForV2.cs" />
-    <Compile Include="Factories\V2\FactoryForV2Authorized.cs" />
-    <Compile Include="Factories\V2\FactoryForV2Commerce.cs" />
-    <Compile Include="Factories\V2\FileRepositoryFactory.cs" />
-    <Compile Include="Factories\V2\GatheringToolConverterFactory.cs" />
-    <Compile Include="Factories\V2\GizmoConverterFactory.cs" />
-    <Compile Include="Factories\V2\ItemConverterFactory.cs" />
-    <Compile Include="Factories\V2\ItemRepositoryFactory.cs" />
-    <Compile Include="Factories\V2\MapsRepositoryFactory.cs" />
-    <Compile Include="Factories\V2\RecipeConverterFactory.cs" />
-    <Compile Include="Factories\V2\RecipeRepositoryFactory.cs" />
-    <Compile Include="Factories\V2\SkinConverterFactory.cs" />
-    <Compile Include="Factories\V2\SkinRepositoryFactory.cs" />
-    <Compile Include="Factories\V2\ToolConverterFactory.cs" />
-    <Compile Include="Factories\V2\TrinketConverterFactory.cs" />
-    <Compile Include="Factories\V2\UnlockerConverterFactory.cs" />
-    <Compile Include="Factories\V2\UpgradeComponentConverterFactory.cs" />
-    <Compile Include="Factories\V2\WeaponConverterFactory.cs" />
-    <Compile Include="Factories\V2\WeaponSkinConverterFactory.cs" />
-    <Compile Include="Factories\V2\WorldRepositoryFactory.cs" />
-    <Compile Include="GW2Bootstrapper.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Factories\BinarySerializerFactory.cs"/>
+        <Compile Include="Factories\DataContractJsonSerializerFactory.cs"/>
+        <Compile Include="Factories\FactoryBase.cs"/>
+        <Compile Include="Factories\FactoryForLocal.cs"/>
+        <Compile Include="Factories\FactoryForRendering.cs"/>
+        <Compile Include="Factories\RepositoryFactoryBase.cs"/>
+        <Compile Include="Factories\V1\ArmorConverterFactory.cs"/>
+        <Compile Include="Factories\V1\ArmorSkinConverterFactory.cs"/>
+        <Compile Include="Factories\V1\ColorRepositoryFactory.cs"/>
+        <Compile Include="Factories\V1\CombatAttributeConverterFactory.cs"/>
+        <Compile Include="Factories\V1\CompetitiveMapConverterFactory.cs"/>
+        <Compile Include="Factories\V1\ConsumableConverterFactory.cs"/>
+        <Compile Include="Factories\V1\ContainerConverterFactory.cs"/>
+        <Compile Include="Factories\V1\ContinentRepositoryFactory.cs"/>
+        <Compile Include="Factories\V1\EventNameRepositoryFactory.cs"/>
+        <Compile Include="Factories\V1\EventRepositoryFactory.cs"/>
+        <Compile Include="Factories\V1\FactoryForV1.cs"/>
+        <Compile Include="Factories\V1\FactoryForV1WvW.cs"/>
+        <Compile Include="Factories\V1\FloorRepositoryFactory.cs"/>
+        <Compile Include="Factories\V1\GatheringToolConverterFactory.cs"/>
+        <Compile Include="Factories\V1\GizmoConverterFactory.cs"/>
+        <Compile Include="Factories\V1\ItemConverterFactory.cs"/>
+        <Compile Include="Factories\V1\ItemRepositoryFactory.cs"/>
+        <Compile Include="Factories\V1\LocationConverterFactory.cs"/>
+        <Compile Include="Factories\V1\MapBonusConverter.cs"/>
+        <Compile Include="Factories\V1\MapNameRepositoryFactory.cs"/>
+        <Compile Include="Factories\V1\MapRepositoryFactory.cs"/>
+        <Compile Include="Factories\V1\ObjectiveNameRepositoryFactory.cs"/>
+        <Compile Include="Factories\V1\PointOfInterestConverterFactory.cs"/>
+        <Compile Include="Factories\V1\RecipeConverterFactory.cs"/>
+        <Compile Include="Factories\V1\RecipeRepositoryFactory.cs"/>
+        <Compile Include="Factories\V1\SkinConverterFactory.cs"/>
+        <Compile Include="Factories\V1\SkinRepositoryFactory.cs"/>
+        <Compile Include="Factories\V1\ToolConverterFactory.cs"/>
+        <Compile Include="Factories\V1\TrinketConverterFactory.cs"/>
+        <Compile Include="Factories\V1\UnlockerConverterFactory.cs"/>
+        <Compile Include="Factories\V1\UpgradeComponentConverterFactory.cs"/>
+        <Compile Include="Factories\V1\WeaponConverterFactory.cs"/>
+        <Compile Include="Factories\V1\WeaponSkinConverterFactory.cs"/>
+        <Compile Include="Factories\V1\WorldRepositoryFactory.cs"/>
+        <Compile Include="Factories\V2\AccountRepositoryFactory.cs"/>
+        <Compile Include="Factories\V2\ArmorConverterFactory.cs"/>
+        <Compile Include="Factories\V2\ArmorSkinConverterFactory.cs"/>
+        <Compile Include="Factories\V2\CharacterRepositoryFactory.cs"/>
+        <Compile Include="Factories\V2\ColorRepositoryFactory.cs"/>
+        <Compile Include="Factories\V2\CombatAttributeConverterFactory.cs"/>
+        <Compile Include="Factories\V2\ConsumableConverterFactory.cs"/>
+        <Compile Include="Factories\V2\ContainerConverterFactory.cs"/>
+        <Compile Include="Factories\V2\ContinentRepositoryFactory.cs"/>
+        <Compile Include="Factories\V2\FactoryForV2.cs"/>
+        <Compile Include="Factories\V2\FactoryForV2Authorized.cs"/>
+        <Compile Include="Factories\V2\FactoryForV2Commerce.cs"/>
+        <Compile Include="Factories\V2\FileRepositoryFactory.cs"/>
+        <Compile Include="Factories\V2\GatheringToolConverterFactory.cs"/>
+        <Compile Include="Factories\V2\GizmoConverterFactory.cs"/>
+        <Compile Include="Factories\V2\ItemConverterFactory.cs"/>
+        <Compile Include="Factories\V2\ItemRepositoryFactory.cs"/>
+        <Compile Include="Factories\V2\MapsRepositoryFactory.cs"/>
+        <Compile Include="Factories\V2\RecipeConverterFactory.cs"/>
+        <Compile Include="Factories\V2\RecipeRepositoryFactory.cs"/>
+        <Compile Include="Factories\V2\SkinConverterFactory.cs"/>
+        <Compile Include="Factories\V2\SkinRepositoryFactory.cs"/>
+        <Compile Include="Factories\V2\ToolConverterFactory.cs"/>
+        <Compile Include="Factories\V2\TrinketConverterFactory.cs"/>
+        <Compile Include="Factories\V2\UnlockerConverterFactory.cs"/>
+        <Compile Include="Factories\V2\UpgradeComponentConverterFactory.cs"/>
+        <Compile Include="Factories\V2\WeaponConverterFactory.cs"/>
+        <Compile Include="Factories\V2\WeaponSkinConverterFactory.cs"/>
+        <Compile Include="Factories\V2\WorldRepositoryFactory.cs"/>
+        <Compile Include="GW2Bootstrapper.cs"/>
+        <Compile Include="Properties\AssemblyInfo.cs"/>
     <Compile Include="$(SolutionDir)SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="GW2NET.nuspec" />
-    <None Include="packages.config">
-    </None>
-    <AdditionalFiles Include="..\..\stylecop.json" />
+        <None Include="GW2NET.nuspec"/>
+        <None Include="packages.config"/>
+        <AdditionalFiles Include="..\..\stylecop.json"/>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -263,10 +262,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0-beta013\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
-    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0-beta013\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+        <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0-beta013\analyzers\dotnet\cs\Newtonsoft.Json.dll"/>
+        <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0-beta013\analyzers\dotnet\cs\StyleCop.Analyzers.dll"/>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+    <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets"/>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
