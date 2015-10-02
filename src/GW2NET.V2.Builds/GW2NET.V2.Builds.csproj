@@ -28,7 +28,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  <CodeAnalysisRuleSet>..\..\GW2NET.ruleset</CodeAnalysisRuleSet>
+  <CodeAnalysisRuleSet>$(SolutionDir)GW2NET.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,14 +37,14 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  <CodeAnalysisRuleSet>..\..\GW2NET.ruleset</CodeAnalysisRuleSet>
+  <CodeAnalysisRuleSet>$(SolutionDir)GW2NET.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>bin\Release\GW2NET.V2.Builds.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
     <None Include="GW2NET.V2.Builds.nuspec" />
     <None Include="packages.config" />
-  <AdditionalFiles Include="..\..\stylecop.json" />
+  <AdditionalFiles Include="$(SolutionDir)stylecop.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\BuildConverter.cs" />

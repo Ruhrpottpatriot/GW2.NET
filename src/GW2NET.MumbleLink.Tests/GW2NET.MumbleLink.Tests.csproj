@@ -27,7 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  <CodeAnalysisRuleSet>..\..\GW2NET.ruleset</CodeAnalysisRuleSet>
+  <CodeAnalysisRuleSet>$(SolutionDir)GW2NET.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -36,7 +36,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  <CodeAnalysisRuleSet>..\..\GW2NET.ruleset</CodeAnalysisRuleSet>
+  <CodeAnalysisRuleSet>$(SolutionDir)GW2NET.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -75,7 +75,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-  <AdditionalFiles Include="..\..\stylecop.json" />
+  <AdditionalFiles Include="$(SolutionDir)stylecop.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GW2NET.Core\GW2NET.Core.csproj">

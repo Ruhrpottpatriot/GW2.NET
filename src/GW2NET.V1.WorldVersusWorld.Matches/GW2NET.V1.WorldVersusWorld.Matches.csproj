@@ -28,7 +28,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  <CodeAnalysisRuleSet>..\..\GW2NET.ruleset</CodeAnalysisRuleSet>
+  <CodeAnalysisRuleSet>$(SolutionDir)GW2NET.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,7 +37,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  <CodeAnalysisRuleSet>..\..\GW2NET.ruleset</CodeAnalysisRuleSet>
+  <CodeAnalysisRuleSet>$(SolutionDir)GW2NET.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>bin\Release\GW2NET.V1.WorldVersusWorld.Matches.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
@@ -83,7 +83,7 @@
     <None Include="Converters\ConverterTemplate.t4" />
     <None Include="GW2NET.V1.WorldVersusWorld.Matches.nuspec" />
     <None Include="packages.config" />
-  <AdditionalFiles Include="..\..\stylecop.json" />
+  <AdditionalFiles Include="$(SolutionDir)stylecop.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Converters\MapBonusConverters.tt">
