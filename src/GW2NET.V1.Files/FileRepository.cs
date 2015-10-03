@@ -127,11 +127,33 @@ namespace GW2NET.V1.Files
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<string, Asset>> IRepository<string, Asset>.FindAllAsync(CancellationToken cancellationToken)
+        async Task<IDictionaryRange<string, Asset>> IRepository<string, Asset>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new FileRequest();
-            var responseTask = this.serviceClient.SendAsync<IDictionary<string, FileDataContract>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<string, Asset>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<IDictionary<string, FileDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
+            {
+                return new DictionaryRange<string, Asset>(0);
+            }
+
+            var values = new DictionaryRange<string, Asset>(response.Content.Count)
+            {
+                SubtotalCount = response.Content.Count,
+                TotalCount = response.Content.Count
+            };
+            foreach (var kvp in response.Content)
+            {
+                var value = this.converterForAsset.Convert(kvp.Value);
+                if (value == null)
+                {
+                    continue;
+                }
+
+                value.Identifier = kvp.Key;
+                values.Add(value.Identifier, value);
+            }
+
+            return values;
         }
 
         /// <inheritdoc />
@@ -192,36 +214,6 @@ namespace GW2NET.V1.Files
         Task<ICollectionPage<Asset>> IPaginator<Asset>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<string, Asset> ConvertAsyncResponse(Task<IResponse<IDictionary<string, FileDataContract>>> task)
-        {
-            var response = task.Result;
-            var content = response.Content;
-            if (content == null)
-            {
-                return new DictionaryRange<string, Asset>(0);
-            }
-
-            var values = new DictionaryRange<string, Asset>(content.Count)
-            {
-                SubtotalCount = content.Count, 
-                TotalCount = content.Count
-            };
-            foreach (var kvp in content)
-            {
-                var value = this.converterForAsset.Convert(kvp.Value);
-                if (value == null)
-                {
-                    continue;
-                }
-
-                value.Identifier = kvp.Key;
-                values.Add(value.Identifier, value);
-            }
-
-            return values;
         }
     }
 }

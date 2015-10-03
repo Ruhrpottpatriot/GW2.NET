@@ -169,7 +169,7 @@ namespace GW2NET.V1.Floors
         }
 
         /// <inheritdoc />
-        Task<Floor> IRepository<int, Floor>.FindAsync(int identifier, CancellationToken cancellationToken)
+        async Task<Floor> IRepository<int, Floor>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             IFloorRepository self = this;
             var request = new FloorRequest
@@ -178,8 +178,23 @@ namespace GW2NET.V1.Floors
                 Floor = identifier, 
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<FloorDataContract>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, this.continentId, identifier, request.Culture), cancellationToken);
+            var response = await this.serviceClient.SendAsync<FloorDataContract>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
+            {
+                return null;
+            }
+
+            var floor = this.converterForFloor.Convert(response.Content);
+            if (floor == null)
+            {
+                return null;
+            }
+
+            floor.ContinentId = continentId;
+            floor.FloorId = identifier;
+            floor.Culture = response.Culture;
+
+            return floor;
         }
 
         /// <inheritdoc />
@@ -216,29 +231,6 @@ namespace GW2NET.V1.Floors
         Task<ICollectionPage<Floor>> IPaginator<Floor>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Floor ConvertAsyncResponse(Task<IResponse<FloorDataContract>> task, int continentId, int floorId, CultureInfo culture)
-        {
-            Debug.Assert(task != null, "task != null");
-            var response = task.Result;
-            if (response.Content == null)
-            {
-                return null;
-            }
-
-            var floor = this.converterForFloor.Convert(response.Content);
-            if (floor == null)
-            {
-                return null;
-            }
-
-            floor.ContinentId = continentId;
-            floor.FloorId = floorId;
-            floor.Culture = culture;
-
-            return floor;
         }
     }
 }

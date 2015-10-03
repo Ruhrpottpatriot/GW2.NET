@@ -100,11 +100,12 @@ namespace GW2NET.V2.Maps
         }
 
         /// <inheritdoc />
-        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
+        async Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new MapDiscoveryRequest();
-            var responseTask = this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken);
-            return responseTask.ContinueWith<ICollection<int>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken).ConfigureAwait(false);
+            var ids = this.identifiersResponseConverter.Convert(response);
+            return ids ?? new List<int>(0);
         }
 
         /// <inheritdoc />
@@ -149,14 +150,15 @@ namespace GW2NET.V2.Maps
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, Map>> IRepository<int, Map>.FindAllAsync(CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, Map>> IRepository<int, Map>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new MapBulkRequest
             {
                 Culture = ((IMapRepository)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<MapDataContract>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<int, Map>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<MapDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            var values = this.bulkResponseConverter.Convert(response);
+            return values ?? new DictionaryRange<int, Map>(0);
         }
 
         /// <inheritdoc />
@@ -166,15 +168,16 @@ namespace GW2NET.V2.Maps
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, Map>> IRepository<int, Map>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, Map>> IRepository<int, Map>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
             var request = new MapBulkRequest
             {
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
                 Culture = ((IMapRepository)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<MapDataContract>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<int, Map>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<MapDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            var values = this.bulkResponseConverter.Convert(response);
+            return values ?? new DictionaryRange<int, Map>(0);
         }
 
         /// <inheritdoc />
@@ -184,15 +187,15 @@ namespace GW2NET.V2.Maps
         }
 
         /// <inheritdoc />
-        Task<Map> IRepository<int, Map>.FindAsync(int identifier, CancellationToken cancellationToken)
+        async Task<Map> IRepository<int, Map>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             var request = new MapDetailsRequest
             {
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
                 Culture = ((IMapRepository)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<MapDataContract>(request, cancellationToken);
-            return responseTask.ContinueWith<Map>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<MapDataContract>(request, cancellationToken).ConfigureAwait(false);
+            return this.responseConverter.Convert(response);
         }
 
         /// <inheritdoc />
@@ -231,49 +234,15 @@ namespace GW2NET.V2.Maps
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<Map>> IPaginator<Map>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        async Task<ICollectionPage<Map>> IPaginator<Map>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             var request = new MapPageRequest
             {
                 Page = pageIndex,
                 Culture = ((IMapRepository)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<MapDataContract>>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
-        }
-
-        /// <inheritdoc />
-        Task<ICollectionPage<Map>> IPaginator<Map>.FindPageAsync(int pageIndex, int pageSize)
-        {
-            return ((IMapRepository)this).FindPageAsync(pageIndex, pageSize, CancellationToken.None);
-        }
-
-        /// <inheritdoc />
-        Task<ICollectionPage<Map>> IPaginator<Map>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
-        {
-            var request = new MapPageRequest
-            {
-                Page = pageIndex,
-                PageSize = pageSize,
-                Culture = ((IMapRepository)this).Culture
-            };
-            var responseTask = this.serviceClient.SendAsync<ICollection<MapDataContract>>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<int, Map> ConvertAsyncResponse(Task<IResponse<ICollection<MapDataContract>>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            var values = this.bulkResponseConverter.Convert(task.Result);
-            return values ?? new DictionaryRange<int, Map>(0);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollectionPage<Map> ConvertAsyncResponse(Task<IResponse<ICollection<MapDataContract>>> task, int pageIndex)
-        {
-            Debug.Assert(task != null, "task != null");
-            var values = this.pageResponseConverter.Convert(task.Result);
+            var response = await this.serviceClient.SendAsync<ICollection<MapDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            var values = this.pageResponseConverter.Convert(response);
             if (values == null)
             {
                 return new CollectionPage<Map>(0);
@@ -284,19 +253,31 @@ namespace GW2NET.V2.Maps
             return values;
         }
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
+        /// <inheritdoc />
+        Task<ICollectionPage<Map>> IPaginator<Map>.FindPageAsync(int pageIndex, int pageSize)
         {
-            Debug.Assert(task != null, "task != null");
-            var ids = this.identifiersResponseConverter.Convert(task.Result);
-            return ids ?? new List<int>(0);
+            return ((IMapRepository)this).FindPageAsync(pageIndex, pageSize, CancellationToken.None);
         }
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Map ConvertAsyncResponse(Task<IResponse<MapDataContract>> task)
+        /// <inheritdoc />
+        async Task<ICollectionPage<Map>> IPaginator<Map>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
-            Debug.Assert(task != null, "task != null");
-            return this.responseConverter.Convert(task.Result);
+            var request = new MapPageRequest
+            {
+                Page = pageIndex,
+                PageSize = pageSize,
+                Culture = ((IMapRepository)this).Culture
+            };
+            var response = await this.serviceClient.SendAsync<ICollection<MapDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            var values = this.pageResponseConverter.Convert(response);
+            if (values == null)
+            {
+                return new CollectionPage<Map>(0);
+            }
+
+            PageContextPatchUtility.Patch(values, pageIndex);
+
+            return values;
         }
     }
 }

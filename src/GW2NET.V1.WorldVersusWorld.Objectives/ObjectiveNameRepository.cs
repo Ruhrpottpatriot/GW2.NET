@@ -128,36 +128,33 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, ObjectiveName>> IRepository<int, ObjectiveName>.FindAllAsync(CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, ObjectiveName>> IRepository<int, ObjectiveName>.FindAllAsync(CancellationToken cancellationToken)
         {
             IObjectiveNameRepository self = this;
             var request = new ObjectiveNameRequest
             {
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<ICollection<ObjectiveNameDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, ObjectiveName>>(task =>
+            var response = await this.serviceClient.SendAsync<ICollection<ObjectiveNameDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
             {
-                var response = task.Result;
-                if (response.Content == null)
-                {
-                    return new DictionaryRange<int, ObjectiveName>(0);
-                }
+                return new DictionaryRange<int, ObjectiveName>(0);
+            }
 
-                var values = response.Content.Select(this.converterForObjectiveName.Convert).ToList();
-                var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count)
-                {
-                    SubtotalCount = values.Count, 
-                    TotalCount = values.Count
-                };
+            var values = response.Content.Select(this.converterForObjectiveName.Convert).ToList();
+            var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count)
+            {
+                SubtotalCount = values.Count,
+                TotalCount = values.Count
+            };
 
-                foreach (var objectiveName in values)
-                {
-                    objectiveName.Culture = request.Culture;
-                    objectiveNames.Add(objectiveName.ObjectiveId, objectiveName);
-                }
+            foreach (var objectiveName in values)
+            {
+                objectiveName.Culture = request.Culture;
+                objectiveNames.Add(objectiveName.ObjectiveId, objectiveName);
+            }
 
-                return objectiveNames;
-            }, cancellationToken);
+            return objectiveNames;
         }
 
         /// <inheritdoc />

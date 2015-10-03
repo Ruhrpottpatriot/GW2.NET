@@ -96,11 +96,17 @@ namespace GW2NET.V2.Colors
         }
 
         /// <inheritdoc />
-        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
+        async Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new ColorDiscoveryRequest();
-            var response = this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken);
-            return response.ContinueWith<ICollection<int>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken).ConfigureAwait(false);
+            var ids = this.converterForIdentifiersResponse.Convert(response);
+            if (ids == null)
+            {
+                return new List<int>(0);
+            }
+
+            return ids;
         }
 
         /// <inheritdoc />
@@ -143,7 +149,7 @@ namespace GW2NET.V2.Colors
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<ColorPalette>> IPaginator<ColorPalette>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        async Task<ICollectionPage<ColorPalette>> IPaginator<ColorPalette>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             IColorRepository self = this;
             var request = new ColorPalettePageRequest
@@ -151,8 +157,16 @@ namespace GW2NET.V2.Colors
                 Page = pageIndex,
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<ColorPaletteDataContract>>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<ColorPaletteDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            var values = this.converterForPageResponse.Convert(response);
+            if (values == null)
+            {
+                return new CollectionPage<ColorPalette>(0);
+            }
+
+            PageContextPatchUtility.Patch(values, pageIndex);
+
+            return values;
         }
 
         /// <inheritdoc />
@@ -163,7 +177,7 @@ namespace GW2NET.V2.Colors
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<ColorPalette>> IPaginator<ColorPalette>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        async Task<ICollectionPage<ColorPalette>> IPaginator<ColorPalette>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             IColorRepository self = this;
             var request = new ColorPalettePageRequest
@@ -172,8 +186,16 @@ namespace GW2NET.V2.Colors
                 PageSize = pageSize,
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<ColorPaletteDataContract>>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<ColorPaletteDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            var values = this.converterForPageResponse.Convert(response);
+            if (values == null)
+            {
+                return new CollectionPage<ColorPalette>(0);
+            }
+
+            PageContextPatchUtility.Patch(values, pageIndex);
+
+            return values;
         }
 
         /// <inheritdoc />
@@ -222,13 +244,18 @@ namespace GW2NET.V2.Colors
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, ColorPalette>> IRepository<int, ColorPalette>.FindAllAsync(CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, ColorPalette>> IRepository<int, ColorPalette>.FindAllAsync(CancellationToken cancellationToken)
         {
             IColorRepository self = this;
             var request = new ColorPaletteBulkRequest { Culture = self.Culture };
+            var response = await this.serviceClient.SendAsync<ICollection<ColorPaletteDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            var values = this.converterForBulkResponse.Convert(response);
+            if (values == null)
+            {
+                return new DictionaryRange<int, ColorPalette>(0);
+            }
 
-            var responseTask = this.serviceClient.SendAsync<ICollection<ColorPaletteDataContract>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<int, ColorPalette>>(this.ConvertAsyncResponse, cancellationToken);
+            return values;
         }
 
         /// <inheritdoc />
@@ -239,7 +266,7 @@ namespace GW2NET.V2.Colors
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, ColorPalette>> IRepository<int, ColorPalette>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, ColorPalette>> IRepository<int, ColorPalette>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
             IColorRepository self = this;
             var request = new ColorPaletteBulkRequest
@@ -248,8 +275,14 @@ namespace GW2NET.V2.Colors
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList()
             };
 
-            var responseTask = this.serviceClient.SendAsync<ICollection<ColorPaletteDataContract>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<int, ColorPalette>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<ColorPaletteDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            var values = this.converterForBulkResponse.Convert(response);
+            if (values == null)
+            {
+                return new DictionaryRange<int, ColorPalette>(0);
+            }
+
+            return values;
         }
 
         /// <inheritdoc />
@@ -259,7 +292,7 @@ namespace GW2NET.V2.Colors
         }
 
         /// <inheritdoc />
-        Task<ColorPalette> IRepository<int, ColorPalette>.FindAsync(int identifier, CancellationToken cancellationToken)
+        async Task<ColorPalette> IRepository<int, ColorPalette>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             IColorRepository self = this;
             var request = new ColorPaletteDetailRequest
@@ -268,52 +301,8 @@ namespace GW2NET.V2.Colors
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo)
             };
 
-            var responseTask = this.serviceClient.SendAsync<ColorPaletteDataContract>(request, cancellationToken);
-            return responseTask.ContinueWith<ColorPalette>(this.ConvertAsyncResponse, cancellationToken);
-        }
-
-        private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            var ids = this.converterForIdentifiersResponse.Convert(task.Result);
-            if (ids == null)
-            {
-                return new List<int>(0);
-            }
-
-            return ids;
-        }
-
-        private IDictionaryRange<int, ColorPalette> ConvertAsyncResponse(Task<IResponse<ICollection<ColorPaletteDataContract>>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            var values = this.converterForBulkResponse.Convert(task.Result);
-            if (values == null)
-            {
-                return new DictionaryRange<int, ColorPalette>(0);
-            }
-
-            return values;
-        }
-
-        private ColorPalette ConvertAsyncResponse(Task<IResponse<ColorPaletteDataContract>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.converterForResponse.Convert(task.Result);
-        }
-
-        private ICollectionPage<ColorPalette> ConvertAsyncResponse(Task<IResponse<ICollection<ColorPaletteDataContract>>> task, int pageIndex)
-        {
-            Debug.Assert(task != null, "task != null");
-            var values = this.converterForPageResponse.Convert(task.Result);
-            if (values == null)
-            {
-                return new CollectionPage<ColorPalette>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-
-            return values;
+            var response = await this.serviceClient.SendAsync<ColorPaletteDataContract>(request, cancellationToken).ConfigureAwait(false);
+            return this.converterForResponse.Convert(response);
         }
     }
 }

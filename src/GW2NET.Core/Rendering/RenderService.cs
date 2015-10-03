@@ -58,7 +58,7 @@ namespace GW2NET.Rendering
         }
 
         /// <inheritdoc />
-        public Task<byte[]> GetImageAsync(IRenderable file, string imageFormat, CancellationToken cancellationToken)
+        public async Task<byte[]> GetImageAsync(IRenderable file, string imageFormat, CancellationToken cancellationToken)
         {
             var request = new RenderRequest
             {
@@ -66,13 +66,8 @@ namespace GW2NET.Rendering
                 FileSignature = file.FileSignature,
                 ImageFormat = imageFormat
             };
-            return this.serviceClient.SendAsync<byte[]>(request, cancellationToken).ContinueWith(
-                task =>
-                {
-                    var response = task.Result;
-                    return response.Content;
-                },
-            cancellationToken);
+            var response = await this.serviceClient.SendAsync<byte[]>(request, cancellationToken).ConfigureAwait(false);
+            return response.Content;
         }
     }
 }

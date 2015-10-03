@@ -96,11 +96,17 @@ namespace GW2NET.V2.Continents
         }
 
         /// <inheritdoc />
-        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
+        async Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new ContinentDiscoveryRequest();
-            var response = this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken);
-            return response.ContinueWith<ICollection<int>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken).ConfigureAwait(false);
+            var ids = this.identifiersConverter.Convert(response);
+            if (ids == null)
+            {
+                return new List<int>(0);
+            }
+
+            return ids;
         }
 
         /// <inheritdoc />
@@ -153,15 +159,23 @@ namespace GW2NET.V2.Continents
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<Continent>> IPaginator<Continent>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        async Task<ICollectionPage<Continent>> IPaginator<Continent>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             var request = new ContinentPageRequest
             {
                 Page = pageIndex,
                 Culture = ((ILocalizable)this).Culture
             };
-            var response = this.serviceClient.SendAsync<ICollection<ContinentDataContract>>(request, cancellationToken);
-            return response.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<ContinentDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            var values = this.pageResponseConverter.Convert(response);
+            if (values == null)
+            {
+                return new CollectionPage<Continent>(0);
+            }
+
+            PageContextPatchUtility.Patch(values, pageIndex);
+
+            return values;
         }
 
         /// <inheritdoc />
@@ -171,7 +185,7 @@ namespace GW2NET.V2.Continents
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<Continent>> IPaginator<Continent>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        async Task<ICollectionPage<Continent>> IPaginator<Continent>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             var request = new ContinentPageRequest
             {
@@ -179,8 +193,16 @@ namespace GW2NET.V2.Continents
                 PageSize = pageSize,
                 Culture = ((ILocalizable)this).Culture
             };
-            var response = this.serviceClient.SendAsync<ICollection<ContinentDataContract>>(request, cancellationToken);
-            return response.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<ContinentDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            var values = this.pageResponseConverter.Convert(response);
+            if (values == null)
+            {
+                return new CollectionPage<Continent>(0);
+            }
+
+            PageContextPatchUtility.Patch(values, pageIndex);
+
+            return values;
         }
 
         /// <inheritdoc />
@@ -222,14 +244,20 @@ namespace GW2NET.V2.Continents
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, Continent>> IRepository<int, Continent>.FindAllAsync(CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, Continent>> IRepository<int, Continent>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new ContinentBulkRequest
             {
                 Culture = ((ILocalizable)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<ContinentDataContract>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<int, Continent>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<ContinentDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            var values = this.bulkResponseConverter.Convert(response);
+            if (values == null)
+            {
+                return new DictionaryRange<int, Continent>(0);
+            }
+
+            return values;
         }
 
         /// <inheritdoc />
@@ -239,15 +267,21 @@ namespace GW2NET.V2.Continents
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, Continent>> IRepository<int, Continent>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, Continent>> IRepository<int, Continent>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
             var request = new ContinentBulkRequest
             {
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
                 Culture = ((ILocalizable)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<ContinentDataContract>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<int, Continent>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<ContinentDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            var values = this.bulkResponseConverter.Convert(response);
+            if (values == null)
+            {
+                return new DictionaryRange<int, Continent>(0);
+            }
+
+            return values;
         }
 
         /// <inheritdoc />
@@ -257,63 +291,15 @@ namespace GW2NET.V2.Continents
         }
 
         /// <inheritdoc />
-        Task<Continent> IRepository<int, Continent>.FindAsync(int identifier, CancellationToken cancellationToken)
+        async Task<Continent> IRepository<int, Continent>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             var request = new ContinentDetailsRequest
             {
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
                 Culture = ((ILocalizable)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ContinentDataContract>(request, cancellationToken);
-            return responseTask.ContinueWith<Continent>(this.ConvertAsyncResponse, cancellationToken);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<int, Continent> ConvertAsyncResponse(Task<IResponse<ICollection<ContinentDataContract>>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            var values = this.bulkResponseConverter.Convert(task.Result);
-            if (values == null)
-            {
-                return new DictionaryRange<int, Continent>(0);
-            }
-
-            return values;
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollectionPage<Continent> ConvertAsyncResponse(Task<IResponse<ICollection<ContinentDataContract>>> task, int pageIndex)
-        {
-            Debug.Assert(task != null, "task != null");
-            var values = this.pageResponseConverter.Convert(task.Result);
-            if (values == null)
-            {
-                return new CollectionPage<Continent>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-
-            return values;
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            var ids = this.identifiersConverter.Convert(task.Result);
-            if (ids == null)
-            {
-                return new List<int>(0);
-            }
-
-            return ids;
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Continent ConvertAsyncResponse(Task<IResponse<ContinentDataContract>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.responseConverter.Convert(task.Result);
+            var response = await this.serviceClient.SendAsync<ContinentDataContract>(request, cancellationToken).ConfigureAwait(false);
+            return this.responseConverter.Convert(response);
         }
     }
 }

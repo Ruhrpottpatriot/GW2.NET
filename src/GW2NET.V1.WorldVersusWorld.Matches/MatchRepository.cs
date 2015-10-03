@@ -89,21 +89,18 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
         }
 
         /// <inheritdoc />
-        Task<ICollection<Matchup>> IDiscoverable<Matchup>.DiscoverAsync(CancellationToken cancellationToken)
+        async Task<ICollection<Matchup>> IDiscoverable<Matchup>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new MatchDiscoveryRequest();
-            return this.serviceClient.SendAsync<MatchupCollectionDataContract>(request, cancellationToken).ContinueWith<ICollection<Matchup>>(task =>
+            var response = await this.serviceClient.SendAsync<MatchupCollectionDataContract>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null || response.Content.Matchups == null)
             {
-                var response = task.Result;
-                if (response.Content == null || response.Content.Matchups == null)
-                {
-                    return new Matchup[0];
-                }
+                return new Matchup[0];
+            }
 
-                var values = new List<Matchup>(response.Content.Matchups.Count);
-                values.AddRange(response.Content.Matchups.Select(this.converterForMatchup.Convert));
-                return values;
-            }, cancellationToken);
+            var values = new List<Matchup>(response.Content.Matchups.Count);
+            values.AddRange(response.Content.Matchups.Select(this.converterForMatchup.Convert));
+            return values;
         }
 
         /// <inheritdoc />
@@ -167,23 +164,20 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
         }
 
         /// <inheritdoc />
-        Task<Match> IRepository<Matchup, Match>.FindAsync(Matchup identifier, CancellationToken cancellationToken)
+        async Task<Match> IRepository<Matchup, Match>.FindAsync(Matchup identifier, CancellationToken cancellationToken)
         {
             string matchId = identifier != null ? identifier.MatchId : null;
             var request = new MatchDetailsRequest
             {
                 MatchId = matchId
             };
-            return this.serviceClient.SendAsync<MatchDataContract>(request, cancellationToken).ContinueWith(task =>
+            var response = await this.serviceClient.SendAsync<MatchDataContract>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
             {
-                var response = task.Result;
-                if (response.Content == null)
-                {
-                    return null;
-                }
+                return null;
+            }
 
-                return this.converterForMatch.Convert(response.Content);
-            }, cancellationToken);
+            return this.converterForMatch.Convert(response.Content);
         }
 
         /// <inheritdoc />

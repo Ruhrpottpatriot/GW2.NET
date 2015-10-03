@@ -95,11 +95,11 @@ namespace GW2NET.V2.Commerce.Listings
         }
 
         /// <inheritdoc />
-        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
+        async Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new ListingDiscoveryRequest();
-            var responseTask = this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken);
-            return responseTask.ContinueWith<ICollection<int>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken).ConfigureAwait(false);
+            return this.converterForIdentifiersResponse.Convert(response) ?? new List<int>(0);
         }
 
         /// <inheritdoc />
@@ -140,11 +140,11 @@ namespace GW2NET.V2.Commerce.Listings
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, Listing>> IRepository<int, Listing>.FindAllAsync(CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, Listing>> IRepository<int, Listing>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new ListingBulkRequest();
-            var responseTask = this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<int, Listing>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            return this.converterForBulkResponse.Convert(response) ?? new DictionaryRange<int, Listing>(0);
         }
 
         /// <inheritdoc />
@@ -155,14 +155,14 @@ namespace GW2NET.V2.Commerce.Listings
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, Listing>> IRepository<int, Listing>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, Listing>> IRepository<int, Listing>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
             var request = new ListingBulkRequest
             {
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList()
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<int, Listing>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            return this.converterForBulkResponse.Convert(response) ?? new DictionaryRange<int, Listing>(0);
         }
 
         /// <inheritdoc />
@@ -173,14 +173,14 @@ namespace GW2NET.V2.Commerce.Listings
         }
 
         /// <inheritdoc />
-        Task<Listing> IRepository<int, Listing>.FindAsync(int identifier, CancellationToken cancellationToken)
+        async Task<Listing> IRepository<int, Listing>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             var request = new ListingDetailsRequest
             {
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo)
             };
-            var responseTask = this.serviceClient.SendAsync<ListingDataContract>(request, cancellationToken);
-            return responseTask.ContinueWith<Listing>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ListingDataContract>(request, cancellationToken).ConfigureAwait(false);
+            return this.converterForResponse.Convert(response);
         }
 
         /// <inheritdoc />
@@ -230,14 +230,22 @@ namespace GW2NET.V2.Commerce.Listings
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<Listing>> IPaginator<Listing>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        async Task<ICollectionPage<Listing>> IPaginator<Listing>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             var request = new ListingPageRequest
             {
                 Page = pageIndex
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            var values = this.converterForPageResponse.Convert(response);
+            if (values == null)
+            {
+                return new CollectionPage<Listing>(0);
+            }
+
+            PageContextPatchUtility.Patch(values, pageIndex);
+
+            return values;
         }
 
         /// <inheritdoc />
@@ -248,43 +256,15 @@ namespace GW2NET.V2.Commerce.Listings
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<Listing>> IPaginator<Listing>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        async Task<ICollectionPage<Listing>> IPaginator<Listing>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             var request = new ListingPageRequest
             {
                 Page = pageIndex,
                 PageSize = pageSize
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.converterForIdentifiersResponse.Convert(task.Result) ?? new List<int>(0);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<int, Listing> ConvertAsyncResponse(Task<IResponse<ICollection<ListingDataContract>>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.converterForBulkResponse.Convert(task.Result) ?? new DictionaryRange<int, Listing>(0);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Listing ConvertAsyncResponse(Task<IResponse<ListingDataContract>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.converterForResponse.Convert(task.Result);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollectionPage<Listing> ConvertAsyncResponse(Task<IResponse<ICollection<ListingDataContract>>> task, int pageIndex)
-        {
-            Debug.Assert(task != null, "task != null");
-            var values = this.converterForPageResponse.Convert(task.Result);
+            var response = await this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            var values = this.converterForPageResponse.Convert(response);
             if (values == null)
             {
                 return new CollectionPage<Listing>(0);

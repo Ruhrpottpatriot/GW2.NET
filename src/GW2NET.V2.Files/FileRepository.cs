@@ -85,11 +85,11 @@ namespace GW2NET.V2.Files
         }
 
         /// <inheritdoc />
-        Task<ICollection<string>> IDiscoverable<string>.DiscoverAsync(CancellationToken cancellationToken)
+        async Task<ICollection<string>> IDiscoverable<string>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new FileDiscoveryRequest();
-            var response = this.serviceClient.SendAsync<ICollection<string>>(request, cancellationToken);
-            return response.ContinueWith<ICollection<string>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<string>>(request, cancellationToken).ConfigureAwait(false);
+            return this.identifiersConverter.Convert(response) ?? new List<string>(0);
         }
 
         /// <inheritdoc />
@@ -133,11 +133,19 @@ namespace GW2NET.V2.Files
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<Asset>> IPaginator<Asset>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        async Task<ICollectionPage<Asset>> IPaginator<Asset>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             var request = new FilePageRequest { Page = pageIndex };
-            var response = this.serviceClient.SendAsync<ICollection<FileDataContract>>(request, cancellationToken);
-            return response.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<FileDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            var values = this.pageResponseConverter.Convert(response);
+            if (values == null)
+            {
+                return new CollectionPage<Asset>(0);
+            }
+
+            PageContextPatchUtility.Patch(values, pageIndex);
+
+            return values;
         }
 
         /// <inheritdoc />
@@ -147,15 +155,23 @@ namespace GW2NET.V2.Files
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<Asset>> IPaginator<Asset>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        async Task<ICollectionPage<Asset>> IPaginator<Asset>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             var request = new FilePageRequest
             {
                 Page = pageIndex,
                 PageSize = pageSize
             };
-            var response = this.serviceClient.SendAsync<ICollection<FileDataContract>>(request, cancellationToken);
-            return response.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);        
+            var response = await this.serviceClient.SendAsync<ICollection<FileDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            var values = this.pageResponseConverter.Convert(response);
+            if (values == null)
+            {
+                return new CollectionPage<Asset>(0);
+            }
+
+            PageContextPatchUtility.Patch(values, pageIndex);
+
+            return values;
         }
 
         /// <inheritdoc />
@@ -189,11 +205,11 @@ namespace GW2NET.V2.Files
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<string, Asset>> IRepository<string, Asset>.FindAllAsync(CancellationToken cancellationToken)
+        async Task<IDictionaryRange<string, Asset>> IRepository<string, Asset>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new FileBulkRequest();
-            var response = this.serviceClient.SendAsync<ICollection<FileDataContract>>(request, cancellationToken);
-            return response.ContinueWith<IDictionaryRange<string, Asset>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<FileDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            return this.bulkResponseConverter.Convert(response) ?? new DictionaryRange<string, Asset>(0);
         }
 
         /// <inheritdoc />
@@ -203,11 +219,12 @@ namespace GW2NET.V2.Files
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<string, Asset>> IRepository<string, Asset>.FindAllAsync(ICollection<string> identifiers, CancellationToken cancellationToken)
+        async Task<IDictionaryRange<string, Asset>> IRepository<string, Asset>.FindAllAsync(ICollection<string> identifiers, CancellationToken cancellationToken)
         {
             var request = new FileBulkRequest { Identifiers = identifiers };
-            var response = this.serviceClient.SendAsync<ICollection<FileDataContract>>(request, cancellationToken);
-            return response.ContinueWith<IDictionaryRange<string, Asset>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<FileDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            return this.bulkResponseConverter.Convert(response) ?? new DictionaryRange<string, Asset>(0);
+
         }
 
         /// <inheritdoc />
@@ -217,47 +234,11 @@ namespace GW2NET.V2.Files
         }
 
         /// <inheritdoc />
-        Task<Asset> IRepository<string, Asset>.FindAsync(string identifier, CancellationToken cancellationToken)
+        async Task<Asset> IRepository<string, Asset>.FindAsync(string identifier, CancellationToken cancellationToken)
         {
             var request = new FileDetailRequest { Identifier = identifier };
-            var response = this.serviceClient.SendAsync<FileDataContract>(request, cancellationToken);
-            return response.ContinueWith<Asset>(this.ConvertAsyncResponse, cancellationToken);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not part of the public API.")]
-        private Asset ConvertAsyncResponse(Task<IResponse<FileDataContract>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.responseConverter.Convert(task.Result);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not part of the public API.")]
-        private IDictionaryRange<string, Asset> ConvertAsyncResponse(Task<IResponse<ICollection<FileDataContract>>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.bulkResponseConverter.Convert(task.Result) ?? new DictionaryRange<string, Asset>(0);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not part of the public API.")]
-        private ICollectionPage<Asset> ConvertAsyncResponse(Task<IResponse<ICollection<FileDataContract>>> task, int pageIndex)
-        {
-            Debug.Assert(task != null, "task != null");
-            var values = this.pageResponseConverter.Convert(task.Result);
-            if (values == null)
-            {
-                return new CollectionPage<Asset>(0);
-            }
-
-            PageContextPatchUtility.Patch(values, pageIndex);
-
-            return values;
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not part of the public API.")]
-        private ICollection<string> ConvertAsyncResponse(Task<IResponse<ICollection<string>>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.identifiersConverter.Convert(task.Result) ?? new List<string>(0);
+            var response = await this.serviceClient.SendAsync<FileDataContract>(request, cancellationToken).ConfigureAwait(false);
+            return this.responseConverter.Convert(response);
         }
     }
 }

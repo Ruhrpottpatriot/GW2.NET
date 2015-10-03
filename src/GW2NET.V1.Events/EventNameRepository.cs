@@ -127,15 +127,32 @@ namespace GW2NET.V1.Events
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<Guid, DynamicEventName>> IRepository<Guid, DynamicEventName>.FindAllAsync(CancellationToken cancellationToken)
+        async Task<IDictionaryRange<Guid, DynamicEventName>> IRepository<Guid, DynamicEventName>.FindAllAsync(CancellationToken cancellationToken)
         {
             IEventNameRepository self = this;
             var request = new DynamicEventNameRequest
             {
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<EventNameDataContract>>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, request.Culture), cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<EventNameDataContract>>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
+            {
+                return new DictionaryRange<Guid, DynamicEventName>(0);
+            }
+
+            var dynamicEventNames = new DictionaryRange<Guid, DynamicEventName>(response.Content.Count)
+            {
+                SubtotalCount = response.Content.Count,
+                TotalCount = response.Content.Count
+            };
+
+            foreach (var dynamicEventName in this.converterForDynamicEventNameCollection.Convert(response.Content))
+            {
+                dynamicEventName.Culture = request.Culture;
+                dynamicEventNames.Add(dynamicEventName.EventId, dynamicEventName);
+            }
+
+            return dynamicEventNames;
         }
 
         /// <inheritdoc />
@@ -196,31 +213,6 @@ namespace GW2NET.V1.Events
         Task<ICollectionPage<DynamicEventName>> IPaginator<DynamicEventName>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<Guid, DynamicEventName> ConvertAsyncResponse(Task<IResponse<ICollection<EventNameDataContract>>> task, CultureInfo culture)
-        {
-            var response = task.Result;
-            var eventNameDataContracts = response.Content;
-            if (eventNameDataContracts == null)
-            {
-                return new DictionaryRange<Guid, DynamicEventName>(0);
-            }
-
-            var dynamicEventNames = new DictionaryRange<Guid, DynamicEventName>(eventNameDataContracts.Count)
-            {
-                SubtotalCount = eventNameDataContracts.Count, 
-                TotalCount = eventNameDataContracts.Count
-            };
-
-            foreach (var dynamicEventName in this.converterForDynamicEventNameCollection.Convert(eventNameDataContracts))
-            {
-                dynamicEventName.Culture = culture;
-                dynamicEventNames.Add(dynamicEventName.EventId, dynamicEventName);
-            }
-
-            return dynamicEventNames;
         }
     }
 }

@@ -14,6 +14,7 @@ namespace GW2NET.Common
     using System.IO;
     using System.Linq;
     using System.Net;
+    using System.Runtime.ExceptionServices;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -134,7 +135,7 @@ namespace GW2NET.Common
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <exception cref="ServiceException">The service responded with an error code.</exception>
         /// <returns>An instance of the specified type.</returns>
-        public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, CancellationToken cancellationToken)
+        public async Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, CancellationToken cancellationToken)
         {
             // Translate the request to form data
             var formData = new UrlEncodedForm();
@@ -162,26 +163,22 @@ namespace GW2NET.Common
 
             // Handle the request
             var httpWebRequest = CreateHttpWebRequest(uri);
-            return GetHttpWebResponseAsync(httpWebRequest, cancellationToken).ContinueWith(
-                task =>
+            var httpWebResponse = await GetHttpWebResponseAsync(httpWebRequest, cancellationToken).ConfigureAwait(false);
+            using (httpWebResponse)
+            {
+                try
                 {
-                    using (var response = task.Result)
-                    {
-                        try
-                        {
-                            return this.OnResponse<TResult>(response);
-                        }
-                        catch (ServiceException exception)
-                        {
-                            // Set the cause of this exception
-                            exception.Request = request;
+                    return this.OnResponse<TResult>(httpWebResponse);
+                }
+                catch (ServiceException exception)
+                {
+                    // Set the cause of this exception
+                    exception.Request = request;
 
-                            // Rethrow
-                            throw;
-                        }
-                    }
-                },
-            cancellationToken);
+                    // Rethrow
+                    throw;
+                }
+            }
         }
 
         /// <summary>Infrastructure. Creates and configures a new instance of the <see cref="UriBuilder"/> class.</summary>
@@ -277,15 +274,22 @@ namespace GW2NET.Common
         private static HttpWebResponse GetHttpWebResponse(HttpWebRequest webRequest)
         {
             Debug.Assert(webRequest != null, "webRequest != null");
-
+            HttpWebResponse httpWebResponse;
+            var task = GetHttpWebResponseAsync(webRequest, CancellationToken.None);
             try
             {
-                return GetHttpWebResponseAsync(webRequest, CancellationToken.None).Result;
+                task.Wait();
             }
             catch (AggregateException ex)
             {
-                throw ex.GetBaseException();
+                ExceptionDispatchInfo.Capture(ex.InnerException).Throw();
             }
+            finally
+            {
+                httpWebResponse = task.Result;
+            }
+
+            return httpWebResponse;
         }
 
         /// <summary>Infrastructure. Sends a web request and gets the response.</summary>

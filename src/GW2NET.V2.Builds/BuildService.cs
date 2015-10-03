@@ -57,14 +57,12 @@ namespace GW2NET.V2.Builds
         {
             var request = new BuildRequest();
             var response = this.serviceClient.Send<BuildDataContract>(request);
-            var dataContract = response.Content;
-
-            if (dataContract == null)
+            if (response.Content == null)
             {
                 return null;
             }
 
-            var value = this.converterForBuild.Convert(dataContract);
+            var value = this.converterForBuild.Convert(response.Content);
             if (value == null)
             {
                 return null;
@@ -82,26 +80,16 @@ namespace GW2NET.V2.Builds
         }
 
         /// <inheritdoc />
-        public Task<Build> GetBuildAsync(CancellationToken cancellationToken)
+        public async Task<Build> GetBuildAsync(CancellationToken cancellationToken)
         {
             var request = new BuildRequest();
-            var responseTask = this.serviceClient.SendAsync<BuildDataContract>(request, cancellationToken);
-            return responseTask.ContinueWith<Build>(this.ConvertAsyncResponse, cancellationToken);
-        }
-
-        /// <summary>Converts an asynchronous response for for further processing.</summary>
-        /// <param name="task">The task to convert.</param>
-        /// <returns>The <see cref="Build"/>.</returns>
-        private Build ConvertAsyncResponse(Task<IResponse<BuildDataContract>> task)
-        {
-            var response = task.Result;
-            var buildDataContract = response.Content;
-            if (buildDataContract == null)
+            var response = await this.serviceClient.SendAsync<BuildDataContract>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
             {
                 return null;
             }
 
-            var value = this.converterForBuild.Convert(buildDataContract);
+            var value = this.converterForBuild.Convert(response.Content);
             if (value == null)
             {
                 return null;

@@ -59,13 +59,12 @@ namespace GW2NET.V1.Builds
         {
             var request = new BuildRequest();
             var response = this.serviceClient.Send<BuildDataContract>(request);
-            var buildDataContract = response.Content;
-            if (buildDataContract == null)
+            if (response.Content == null)
             {
                 return null;
             }
 
-            var value = this.converterForBuild.Convert(buildDataContract);
+            var value = this.converterForBuild.Convert(response.Content);
             if (value == null)
             {
                 return null;
@@ -83,24 +82,16 @@ namespace GW2NET.V1.Builds
         }
 
         /// <inheritdoc />
-        Task<Build> IBuildService.GetBuildAsync(CancellationToken cancellationToken)
+        async Task<Build> IBuildService.GetBuildAsync(CancellationToken cancellationToken)
         {
             var request = new BuildRequest();
-            var responseTask = this.serviceClient.SendAsync<BuildDataContract>(request, cancellationToken);
-            return responseTask.ContinueWith<Build>(this.ConvertAsyncResponse, cancellationToken);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Build ConvertAsyncResponse(Task<IResponse<BuildDataContract>> task)
-        {
-            var response = task.Result;
-            var buildDataContract = response.Content;
-            if (buildDataContract == null)
+            var response = await this.serviceClient.SendAsync<BuildDataContract>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
             {
                 return null;
             }
 
-            var value = this.converterForBuild.Convert(buildDataContract);
+            var value = this.converterForBuild.Convert(response.Content);
             if (value == null)
             {
                 return null;

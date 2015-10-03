@@ -86,22 +86,15 @@ namespace GW2NET.V2.Commerce.Exchange
         }
 
         /// <inheritdoc />
-        Task<GemQuotation> IBroker<GemQuotation>.GetQuotationAsync(long quantity, CancellationToken cancellationToken)
+        async Task<GemQuotation> IBroker<GemQuotation>.GetQuotationAsync(long quantity, CancellationToken cancellationToken)
         {
             var request = new ExchangeDetailsRequest
             {
                 Identifier = this.identifier,
                 Quantity = quantity
             };
-            var responseTask = this.serviceClient.SendAsync<GemQuotationDataContract>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, quantity), cancellationToken);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private GemQuotation ConvertAsyncResponse(Task<IResponse<GemQuotationDataContract>> task, long quantity)
-        {
-            Debug.Assert(task != null, "task != null");
-            var value = this.converterForResponse.Convert(task.Result);
+            var response = await this.serviceClient.SendAsync<GemQuotationDataContract>(request, cancellationToken).ConfigureAwait(false);
+            var value = this.converterForResponse.Convert(response);
             if (value == null)
             {
                 return null;

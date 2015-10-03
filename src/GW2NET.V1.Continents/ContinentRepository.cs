@@ -128,38 +128,33 @@ namespace GW2NET.V1.Continents
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, Continent>> IRepository<int, Continent>.FindAllAsync(CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, Continent>> IRepository<int, Continent>.FindAllAsync(CancellationToken cancellationToken)
         {
             IContinentRepository self = this;
             var request = new ContinentRequest
             {
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<ContinentCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Continent>>(
-                task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null || response.Content.Continents == null)
-                    {
-                        return new DictionaryRange<int, Continent>(0);
-                    }
+            var response = await this.serviceClient.SendAsync<ContinentCollectionDataContract>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null || response.Content.Continents == null)
+            {
+                return new DictionaryRange<int, Continent>(0);
+            }
 
-                    var values = this.converterForContinentCollection.Convert(response.Content);
-                    var continents = new DictionaryRange<int, Continent>(values.Count)
-                    {
-                        SubtotalCount = values.Count,
-                        TotalCount = values.Count
-                    };
+            var values = this.converterForContinentCollection.Convert(response.Content);
+            var continents = new DictionaryRange<int, Continent>(values.Count)
+            {
+                SubtotalCount = values.Count,
+                TotalCount = values.Count
+            };
 
-                    foreach (var continent in values)
-                    {
-                        continent.Culture = request.Culture;
-                        continents.Add(continent.ContinentId, continent);
-                    }
+            foreach (var continent in values)
+            {
+                continent.Culture = request.Culture;
+                continents.Add(continent.ContinentId, continent);
+            }
 
-                    return continents;
-                },
-            cancellationToken);
+            return continents;
         }
 
         /// <inheritdoc />
