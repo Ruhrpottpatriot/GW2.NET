@@ -57,6 +57,7 @@
     <Compile Include="Interop\SUnB.cs" />
     <Compile Include="Interop\SUnW.cs" />
     <Compile Include="Converters\IPEndPointConverter.cs" />
+    <Compile Include="MumbleException.cs" />
     <Compile Include="MumbleLinkFile.cs" />
     <Compile Include="Converters\ProfessionConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
