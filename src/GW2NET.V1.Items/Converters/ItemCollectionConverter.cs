@@ -26,13 +26,7 @@ namespace GW2NET.V1.Items.Converters
                 throw new ArgumentNullException("value");
             }
 
-            var values = value.Items;
-            if (values == null)
-            {
-                return new List<int>(0);
-            }
-
-            return values;
+            return value.Items ?? new List<int>(0);
         }
     }
 }

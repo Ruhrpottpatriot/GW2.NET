@@ -11,7 +11,6 @@ namespace GW2NET.V1.Items.Converters
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -94,7 +93,7 @@ namespace GW2NET.V1.Items.Converters
                 return new List<int>(0);
             }
 
-            return this.itemCollectionConverter.Convert(response.Content, null);
+            return this.itemCollectionConverter.Convert(response.Content, response);
         }
 
         /// <inheritdoc />
@@ -105,11 +104,16 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
+        async Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new ItemDiscoveryRequest();
-            var responseTask = this.serviceClient.SendAsync<ItemCollectionDTO>(request, cancellationToken);
-            return responseTask.ContinueWith<ICollection<int>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ItemCollectionDTO>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
+            {
+                return new List<int>(0);
+            }
+
+            return this.itemCollectionConverter.Convert(response.Content, response);
         }
 
         /// <inheritdoc />
@@ -176,7 +180,7 @@ namespace GW2NET.V1.Items.Converters
         }
 
         /// <inheritdoc />
-        Task<Item> IRepository<int, Item>.FindAsync(int identifier, CancellationToken cancellationToken)
+        async Task<Item> IRepository<int, Item>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             IItemRepository self = this;
             var request = new ItemDetailsRequest
@@ -184,15 +188,20 @@ namespace GW2NET.V1.Items.Converters
                 ItemId = identifier,
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ItemDTO>(request, cancellationToken);
-            return responseTask.ContinueWith(
-                task =>
-                {
-                    var item = this.ConvertsAsyncResponse(task);
-                    item.Culture = request.Culture;
-                    return item;
-                },
-            cancellationToken);
+            var response = await this.serviceClient.SendAsync<ItemDTO>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
+            {
+                return null;
+            }
+
+            var item = this.itemConverter.Convert(response.Content, response);
+            if (item == null)
+            {
+                return null;
+            }
+
+            item.Culture = request.Culture;
+            return item;
         }
 
         /// <inheritdoc />
@@ -229,30 +238,6 @@ namespace GW2NET.V1.Items.Converters
         Task<ICollectionPage<Item>> IPaginator<Item>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollection<int> ConvertAsyncResponse(Task<IResponse<ItemCollectionDTO>> task)
-        {
-            var response = task.Result;
-            if (response.Content == null)
-            {
-                return new List<int>(0);
-            }
-
-            return this.itemCollectionConverter.Convert(response.Content, null);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Item ConvertsAsyncResponse(Task<IResponse<ItemDTO>> task)
-        {
-            var response = task.Result;
-            if (response.Content == null)
-            {
-                return null;
-            }
-
-            return this.itemConverter.Convert(response.Content, null);
         }
     }
 }

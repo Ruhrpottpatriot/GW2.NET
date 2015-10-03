@@ -10,8 +10,6 @@ namespace GW2NET.V2.Commerce.Prices
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -19,7 +17,6 @@ namespace GW2NET.V2.Commerce.Prices
 
     using GW2NET.Commerce;
     using GW2NET.Common;
-    using GW2NET.Common.Converters;
     using GW2NET.Items;
     using GW2NET.V2.Commerce.Prices.Json;
 
@@ -95,7 +92,7 @@ namespace GW2NET.V2.Commerce.Prices
         {
             var request = new AggregateListingDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
-            return this.identifiersResponseConverter.Convert(response, null) ?? new List<int>(0);
+            return this.identifiersResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -106,11 +103,11 @@ namespace GW2NET.V2.Commerce.Prices
         }
 
         /// <inheritdoc />
-        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
+        async Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new AggregateListingDiscoveryRequest();
-            var responseTask = this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken);
-            return responseTask.ContinueWith<ICollection<int>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken).ConfigureAwait(false);
+            return this.identifiersResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -129,7 +126,7 @@ namespace GW2NET.V2.Commerce.Prices
         {
             var request = new AggregateListingBulkRequest();
             var response = this.serviceClient.Send<ICollection<AggregateListingDTO>>(request);
-            return this.bulkResponseConverter.Convert(response, null) ?? new DictionaryRange<int, AggregateListing>(0);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -140,7 +137,7 @@ namespace GW2NET.V2.Commerce.Prices
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList()
             };
             var response = this.serviceClient.Send<ICollection<AggregateListingDTO>>(request);
-            return this.bulkResponseConverter.Convert(response, null) ?? new DictionaryRange<int, AggregateListing>(0);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -151,11 +148,11 @@ namespace GW2NET.V2.Commerce.Prices
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, AggregateListing>> IRepository<int, AggregateListing>.FindAllAsync(CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, AggregateListing>> IRepository<int, AggregateListing>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new AggregateListingBulkRequest();
-            var responseTask = this.serviceClient.SendAsync<ICollection<AggregateListingDTO>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<int, AggregateListing>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<AggregateListingDTO>>(request, cancellationToken).ConfigureAwait(false);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -166,14 +163,14 @@ namespace GW2NET.V2.Commerce.Prices
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, AggregateListing>> IRepository<int, AggregateListing>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, AggregateListing>> IRepository<int, AggregateListing>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
             var request = new AggregateListingBulkRequest
             {
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList()
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<AggregateListingDTO>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<int, AggregateListing>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<AggregateListingDTO>>(request, cancellationToken).ConfigureAwait(false);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -184,14 +181,14 @@ namespace GW2NET.V2.Commerce.Prices
         }
 
         /// <inheritdoc />
-        Task<AggregateListing> IRepository<int, AggregateListing>.FindAsync(int identifier, CancellationToken cancellationToken)
+        async Task<AggregateListing> IRepository<int, AggregateListing>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             var request = new AggregateListingDetailsRequest
             {
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo)
             };
-            var responseTask = this.serviceClient.SendAsync<AggregateListingDTO>(request, cancellationToken);
-            return responseTask.ContinueWith<AggregateListing>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<AggregateListingDTO>(request, cancellationToken).ConfigureAwait(false);
+            return this.responseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -202,8 +199,7 @@ namespace GW2NET.V2.Commerce.Prices
                 Page = pageIndex
             };
             var response = this.serviceClient.Send<ICollection<AggregateListingDTO>>(request);
-            var values = this.pageResponseConverter.Convert(response, pageIndex);
-            return values ?? new CollectionPage<AggregateListing>(0);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
 
         /// <inheritdoc />
@@ -215,8 +211,7 @@ namespace GW2NET.V2.Commerce.Prices
                 PageSize = pageSize
             };
             var response = this.serviceClient.Send<ICollection<AggregateListingDTO>>(request);
-            var values = this.pageResponseConverter.Convert(response, pageIndex);
-            return values ?? new CollectionPage<AggregateListing>(0);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
 
         /// <inheritdoc />
@@ -227,14 +222,14 @@ namespace GW2NET.V2.Commerce.Prices
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<AggregateListing>> IPaginator<AggregateListing>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        async Task<ICollectionPage<AggregateListing>> IPaginator<AggregateListing>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             var request = new AggregateListingPageRequest
             {
                 Page = pageIndex
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<AggregateListingDTO>>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<AggregateListingDTO>>(request, cancellationToken).ConfigureAwait(false);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
 
         /// <inheritdoc />
@@ -245,44 +240,15 @@ namespace GW2NET.V2.Commerce.Prices
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<AggregateListing>> IPaginator<AggregateListing>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        async Task<ICollectionPage<AggregateListing>> IPaginator<AggregateListing>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             var request = new AggregateListingPageRequest
             {
                 Page = pageIndex,
                 PageSize = pageSize
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<AggregateListingDTO>>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.identifiersResponseConverter.Convert(task.Result, null) ?? new List<int>(0);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<int, AggregateListing> ConvertAsyncResponse(Task<IResponse<ICollection<AggregateListingDTO>>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.bulkResponseConverter.Convert(task.Result, null) ?? new DictionaryRange<int, AggregateListing>(0);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private AggregateListing ConvertAsyncResponse(Task<IResponse<AggregateListingDTO>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.responseConverter.Convert(task.Result, null);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollectionPage<AggregateListing> ConvertAsyncResponse(Task<IResponse<ICollection<AggregateListingDTO>>> task, int pageIndex)
-        {
-            Debug.Assert(task != null, "task != null");
-            var values = this.pageResponseConverter.Convert(task.Result, pageIndex);
-            return values ?? new CollectionPage<AggregateListing>(0);
+            var response = await this.serviceClient.SendAsync<ICollection<AggregateListingDTO>>(request, cancellationToken).ConfigureAwait(false);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
     }
 }

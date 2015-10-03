@@ -49,7 +49,7 @@ namespace GW2NET.V2.Skins
         public SkinRepository(
             IServiceClient serviceClient,
             IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter,
-            IConverter<IResponse<SkinDTO>, Skin> responseConverter,
+            IConverter<IResponse<SkinDTO>, Skin> responseConverter, 
             IConverter<IResponse<ICollection<SkinDTO>>, IDictionaryRange<int, Skin>> bulkResponseConverter,
             IConverter<IResponse<ICollection<SkinDTO>>, ICollectionPage<Skin>> pageResponseConverter)
         {
@@ -97,7 +97,7 @@ namespace GW2NET.V2.Skins
         {
             var request = new SkinDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
-            return this.identifiersResponseConverter.Convert(response, null) ?? new List<int>(0);
+            return this.identifiersResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -107,11 +107,11 @@ namespace GW2NET.V2.Skins
         }
 
         /// <inheritdoc />
-        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
+        async Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new SkinDiscoveryRequest();
-            var responseTask = this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken);
-            return responseTask.ContinueWith<ICollection<int>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken).ConfigureAwait(false);
+            return this.identifiersResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -133,15 +133,15 @@ namespace GW2NET.V2.Skins
         }
 
         /// <inheritdoc />
-        Task<Skin> IRepository<int, Skin>.FindAsync(int identifier, CancellationToken cancellationToken)
+        async Task<Skin> IRepository<int, Skin>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             var request = new SkinDetailsRequest
             {
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
                 Culture = ((ILocalizable)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<SkinDTO>(request, cancellationToken);
-            return responseTask.ContinueWith<Skin>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<SkinDTO>(request, cancellationToken).ConfigureAwait(false);
+            return this.responseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -174,14 +174,14 @@ namespace GW2NET.V2.Skins
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, Skin>> IRepository<int, Skin>.FindAllAsync(CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, Skin>> IRepository<int, Skin>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new SkinBulkRequest
             {
                 Culture = ((ISkinRepository)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<SkinDTO>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<int, Skin>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<SkinDTO>>(request, cancellationToken).ConfigureAwait(false);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -191,15 +191,15 @@ namespace GW2NET.V2.Skins
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, Skin>> IRepository<int, Skin>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, Skin>> IRepository<int, Skin>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
             var request = new SkinBulkRequest
             {
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
                 Culture = ((ISkinRepository)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<SkinDTO>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<int, Skin>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<SkinDTO>>(request, cancellationToken).ConfigureAwait(false);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -211,8 +211,7 @@ namespace GW2NET.V2.Skins
                 Culture = ((ISkinRepository)this).Culture
             };
             var response = this.serviceClient.Send<ICollection<SkinDTO>>(request);
-            var values = this.pageResponseConverter.Convert(response, pageIndex);
-            return values ?? new CollectionPage<Skin>(0);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
 
         /// <inheritdoc />
@@ -225,8 +224,7 @@ namespace GW2NET.V2.Skins
                 Culture = ((ISkinRepository)this).Culture
             };
             var response = this.serviceClient.Send<ICollection<SkinDTO>>(request);
-            var values = this.pageResponseConverter.Convert(response, pageIndex);
-            return values ?? new CollectionPage<Skin>(0);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
 
         /// <inheritdoc />
@@ -236,15 +234,15 @@ namespace GW2NET.V2.Skins
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<Skin>> IPaginator<Skin>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        async Task<ICollectionPage<Skin>> IPaginator<Skin>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             var request = new SkinPageRequest
             {
                 Page = pageIndex,
                 Culture = ((ISkinRepository)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<SkinDTO>>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<SkinDTO>>(request, cancellationToken).ConfigureAwait(false);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
 
         /// <inheritdoc />
@@ -254,7 +252,7 @@ namespace GW2NET.V2.Skins
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<Skin>> IPaginator<Skin>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        async Task<ICollectionPage<Skin>> IPaginator<Skin>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             var request = new SkinPageRequest
             {
@@ -262,49 +260,8 @@ namespace GW2NET.V2.Skins
                 PageSize = pageSize,
                 Culture = ((ISkinRepository)this).Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<SkinDTO>>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<int, Skin> ConvertAsyncResponse(Task<IResponse<ICollection<SkinDTO>>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            var values = this.bulkResponseConverter.Convert(task.Result, null);
-            if (values == null)
-            {
-                return new DictionaryRange<int, Skin>(0);
-            }
-
-            return values;
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollectionPage<Skin> ConvertAsyncResponse(Task<IResponse<ICollection<SkinDTO>>> task, int pageIndex)
-        {
-            Debug.Assert(task != null, "task != null");
-            var values = this.pageResponseConverter.Convert(task.Result, pageIndex);
-            return values ?? new CollectionPage<Skin>(0);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            var ids = this.identifiersResponseConverter.Convert(task.Result, null);
-            if (ids == null)
-            {
-                return new List<int>(0);
-            }
-
-            return ids;
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Skin ConvertAsyncResponse(Task<IResponse<SkinDTO>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.responseConverter.Convert(task.Result, null);
+            var response = await this.serviceClient.SendAsync<ICollection<SkinDTO>>(request, cancellationToken).ConfigureAwait(false);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
     }
 }

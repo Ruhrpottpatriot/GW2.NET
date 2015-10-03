@@ -23,7 +23,7 @@
       - Windows Phone 8.1
       - Portable Class Libraries
     </description>
-    <releaseNotes>Fixing regressions in json converters for /v1/item_details.json</releaseNotes>
+    <releaseNotes><![CDATA[https://github.com/Ruhrpottpatriot/GW2.NET/releases/tag/v$version$]]></releaseNotes>
     <copyright>GNU General Public License version 2 (GPLv2)</copyright>
     <language>en, es, de, fr</language>
     <tags>GW2</tags>

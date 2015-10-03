@@ -18,7 +18,6 @@ namespace GW2NET.V1.Maps
 
     using GW2NET.Common;
     using GW2NET.Maps;
-    using GW2NET.V1.Maps.Converters;
     using GW2NET.V1.Maps.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/map_names.json interface.</summary>
@@ -118,38 +117,33 @@ namespace GW2NET.V1.Maps
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, MapName>> IRepository<int, MapName>.FindAllAsync(CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, MapName>> IRepository<int, MapName>.FindAllAsync(CancellationToken cancellationToken)
         {
             IMapNameRepository self = this;
             var request = new MapNameRequest
             {
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<ICollection<MapNameDTO>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, MapName>>(
-                task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null)
-                    {
-                        return new DictionaryRange<int, MapName>(0);
-                    }
+            var response = await this.serviceClient.SendAsync<ICollection<MapNameDTO>>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
+            {
+                return new DictionaryRange<int, MapName>(0);
+            }
 
-                    var values = response.Content.Select(value => this.mapNameConverter.Convert(value, null)).ToList();
-                    var mapNames = new DictionaryRange<int, MapName>(values.Count)
-                    {
-                        SubtotalCount = values.Count,
-                        TotalCount = values.Count
-                    };
+            var values = response.Content.Select(value => this.mapNameConverter.Convert(value, null)).ToList();
+            var mapNames = new DictionaryRange<int, MapName>(values.Count)
+            {
+                SubtotalCount = values.Count,
+                TotalCount = values.Count
+            };
 
-                    foreach (var mapName in values)
-                    {
-                        mapName.Culture = request.Culture;
-                        mapNames.Add(mapName.MapId, mapName);
-                    }
+            foreach (var mapName in values)
+            {
+                mapName.Culture = request.Culture;
+                mapNames.Add(mapName.MapId, mapName);
+            }
 
-                    return mapNames;
-                },
-            cancellationToken);
+            return mapNames;
         }
 
         /// <inheritdoc />

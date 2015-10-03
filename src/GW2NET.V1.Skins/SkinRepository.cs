@@ -11,8 +11,6 @@ namespace GW2NET.V1.Skins
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -79,11 +77,16 @@ namespace GW2NET.V1.Skins
         }
 
         /// <inheritdoc />
-        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
+        async Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new SkinDiscoveryRequest();
-            var responseTask = this.serviceClient.SendAsync<SkinCollectionDTO>(request, cancellationToken);
-            return responseTask.ContinueWith<ICollection<int>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<SkinCollectionDTO>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
+            {
+                return new List<int>(0);
+            }
+
+            return this.skinCollectionConverter.Convert(response.Content, response);
         }
 
         /// <inheritdoc />
@@ -102,13 +105,7 @@ namespace GW2NET.V1.Skins
             }
 
             var skin = this.skinConverter.Convert(response.Content, null);
-            if (skin == null)
-            {
-                return null;
-            }
-
             skin.Culture = request.Culture;
-
             return skin;
         }
 
@@ -156,7 +153,7 @@ namespace GW2NET.V1.Skins
         }
 
         /// <inheritdoc />
-        Task<Skin> IRepository<int, Skin>.FindAsync(int identifier, CancellationToken cancellationToken)
+        async Task<Skin> IRepository<int, Skin>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             ISkinRepository self = this;
             var request = new SkinDetailsRequest
@@ -164,8 +161,15 @@ namespace GW2NET.V1.Skins
                 SkinId = identifier,
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<SkinDTO>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.OnAsyncResponse(task, request.Culture), cancellationToken);
+            var response = await this.serviceClient.SendAsync<SkinDTO>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
+            {
+                return null;
+            }
+
+            var skin = this.skinConverter.Convert(response.Content, response);
+            skin.Culture = request.Culture;
+            return skin;
         }
 
         /// <inheritdoc />
@@ -202,39 +206,6 @@ namespace GW2NET.V1.Skins
         Task<ICollectionPage<Skin>> IPaginator<Skin>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollection<int> ConvertAsyncResponse(Task<IResponse<SkinCollectionDTO>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            var response = task.Result;
-            if (response.Content == null)
-            {
-                return new List<int>(0);
-            }
-
-            return this.skinCollectionConverter.Convert(response.Content, null);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Skin OnAsyncResponse(Task<IResponse<SkinDTO>> task, CultureInfo culture)
-        {
-            var response = task.Result;
-            if (response.Content == null)
-            {
-                return null;
-            }
-
-            var skin = this.skinConverter.Convert(response.Content, null);
-            if (skin == null)
-            {
-                return null;
-            }
-
-            skin.Culture = culture;
-
-            return skin;
         }
     }
 }

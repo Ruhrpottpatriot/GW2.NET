@@ -26,13 +26,7 @@ namespace GW2NET.V1.Recipes.Converters
                 throw new ArgumentNullException("value");
             }
 
-            var values = value.Recipes;
-            if (values == null)
-            {
-                return new List<int>(0);
-            }
-
-            return value.Recipes;
+            return value.Recipes ?? new List<int>(0);
         }
     }
 }

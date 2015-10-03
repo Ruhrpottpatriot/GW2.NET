@@ -47,14 +47,12 @@ namespace GW2NET.V2.Builds
         {
             var request = new BuildRequest();
             var response = this.serviceClient.Send<BuildDTO>(request);
-            var dataContract = response.Content;
-
-            if (dataContract == null)
+            if (response.Content == null)
             {
                 return null;
             }
 
-            return this.buildConverter.Convert(dataContract, response);
+            return this.buildConverter.Convert(response.Content, response);
         }
 
         /// <inheritdoc />
@@ -65,26 +63,16 @@ namespace GW2NET.V2.Builds
         }
 
         /// <inheritdoc />
-        public Task<Build> GetBuildAsync(CancellationToken cancellationToken)
+        public async Task<Build> GetBuildAsync(CancellationToken cancellationToken)
         {
             var request = new BuildRequest();
-            var responseTask = this.serviceClient.SendAsync<BuildDTO>(request, cancellationToken);
-            return responseTask.ContinueWith<Build>(this.ConvertAsyncResponse, cancellationToken);
-        }
-
-        /// <summary>Converts an asynchronous response for for further processing.</summary>
-        /// <param name="task">The task to convert.</param>
-        /// <returns>The <see cref="Build"/>.</returns>
-        private Build ConvertAsyncResponse(Task<IResponse<BuildDTO>> task)
-        {
-            var response = task.Result;
-            var buildDTO = response.Content;
-            if (buildDTO == null)
+            var response = await this.serviceClient.SendAsync<BuildDTO>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
             {
                 return null;
             }
 
-            return this.buildConverter.Convert(buildDTO, response);
+            return this.buildConverter.Convert(response.Content, response);
         }
     }
 }

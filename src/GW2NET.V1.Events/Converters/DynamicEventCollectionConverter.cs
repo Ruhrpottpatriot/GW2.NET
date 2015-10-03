@@ -9,11 +9,11 @@
 
 namespace GW2NET.V1.Events.Converters
 {
-    using System;
-    using System.Collections.Generic;
-    using GW2NET.Common;
-    using GW2NET.DynamicEvents;
-    using GW2NET.V1.Events.Json;
+using System;
+using System.Collections.Generic;
+using GW2NET.Common;
+using GW2NET.DynamicEvents;
+using GW2NET.V1.Events.Json;
 
     /// <summary>Converts objects of type <see cref="EventCollectionDTO"/> to objects of type <see cref="T:ICollection{DynamicEvent}"/>.</summary>
     public sealed class DynamicEventCollectionConverter : IConverter<EventCollectionDTO, ICollection<DynamicEvent>>
@@ -41,14 +41,13 @@ namespace GW2NET.V1.Events.Converters
                 throw new ArgumentNullException("value");
             }
 
-            var eventDTOs = value.Events;
-            if (eventDTOs == null)
+            if (value.Events == null)
             {
                 return new List<DynamicEvent>(0);
             }
 
-            var dynamicEvents = new List<DynamicEvent>(eventDTOs.Count);
-            foreach (var kvp in eventDTOs)
+            var dynamicEvents = new List<DynamicEvent>(value.Events.Count);
+            foreach (var kvp in value.Events)
             {
                 Guid eventId;
                 if (!Guid.TryParse(kvp.Key, out eventId))

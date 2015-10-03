@@ -11,13 +11,11 @@ namespace GW2NET.V2.Accounts.Characters
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
     using GW2NET.Characters;
     using GW2NET.Common;
-    using GW2NET.Common.Converters;
     using GW2NET.V2.Accounts.Characters.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v2/characters interface.</summary>
@@ -90,7 +88,7 @@ namespace GW2NET.V2.Accounts.Characters
         {
             var request = new CharacterDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<string>>(request);
-            return this.identifiersResponseConverter.Convert(response, null) ?? new List<string>(0);
+            return this.identifiersResponseConverter.Convert(response, null);
         }
 
         /// <summary>Discovers identifiers of objects in the data source.</summary>
@@ -108,11 +106,11 @@ namespace GW2NET.V2.Accounts.Characters
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
         /// <exception cref="TaskCanceledException">A task was canceled.</exception>
         /// <returns>A collection of object identifiers.</returns>
-        Task<ICollection<string>> IDiscoverable<string>.DiscoverAsync(CancellationToken cancellationToken)
+        async Task<ICollection<string>> IDiscoverable<string>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new CharacterDiscoveryRequest();
-            var response = this.serviceClient.SendAsync<ICollection<string>>(request, cancellationToken);
-            return response.ContinueWith<ICollection<string>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<string>>(request, cancellationToken).ConfigureAwait(false);
+            return this.identifiersResponseConverter.Convert(response, null);
         }
 
         /// <summary>Finds the page with the specified page index.</summary>
@@ -130,7 +128,7 @@ namespace GW2NET.V2.Accounts.Characters
             };
 
             var response = this.serviceClient.Send<ICollection<CharacterDTO>>(reuqest);
-            return this.pageResponseConverter.Convert(response, pageIndex) ?? new CollectionPage<Character>(0);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
 
         /// <summary>Finds the page with the specified page number and maximum size.</summary>
@@ -150,7 +148,7 @@ namespace GW2NET.V2.Accounts.Characters
             };
 
             var response = this.serviceClient.Send<ICollection<CharacterDTO>>(reuqest);
-            return this.pageResponseConverter.Convert(response, pageIndex) ?? new CollectionPage<Character>(0);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
 
         /// <summary>Finds the page with the specified page index.</summary>
@@ -172,7 +170,7 @@ namespace GW2NET.V2.Accounts.Characters
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
         /// <exception cref="TaskCanceledException">A task was canceled.</exception>
         /// <returns>The page.</returns>
-        Task<ICollectionPage<Character>> IPaginator<Character>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        async Task<ICollectionPage<Character>> IPaginator<Character>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             var reuqest = new CharacterPageRequest
             {
@@ -180,8 +178,8 @@ namespace GW2NET.V2.Accounts.Characters
                 Culture = ((ICharacterRepository)this).Culture
             };
 
-            var response = this.serviceClient.SendAsync<ICollection<CharacterDTO>>(reuqest, cancellationToken);
-            return response.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<CharacterDTO>>(reuqest, cancellationToken).ConfigureAwait(false);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
 
         /// <summary>Finds the page with the specified page index.</summary>
@@ -205,7 +203,7 @@ namespace GW2NET.V2.Accounts.Characters
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
         /// <exception cref="TaskCanceledException">A task was canceled.</exception>
         /// <returns>The page.</returns>
-        Task<ICollectionPage<Character>> IPaginator<Character>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        async Task<ICollectionPage<Character>> IPaginator<Character>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             var reuqest = new CharacterPageRequest
             {
@@ -214,8 +212,8 @@ namespace GW2NET.V2.Accounts.Characters
                 Culture = ((ICharacterRepository)this).Culture
             };
 
-            var response = this.serviceClient.SendAsync<ICollection<CharacterDTO>>(reuqest, cancellationToken);
-            return response.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<CharacterDTO>>(reuqest, cancellationToken).ConfigureAwait(false);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
 
         /// <summary>Finds the object with the given identifier.</summary>
@@ -278,11 +276,11 @@ namespace GW2NET.V2.Accounts.Characters
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
         /// <exception cref="TaskCanceledException">A task was canceled.</exception>
         /// <returns>A collection of objects.</returns>
-        Task<IDictionaryRange<string, Character>> IRepository<string, Character>.FindAllAsync(CancellationToken cancellationToken)
+        async Task<IDictionaryRange<string, Character>> IRepository<string, Character>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new CharacterBulkRequest { Culture = ((ICharacterRepository)this).Culture };
-            var response = this.serviceClient.SendAsync<ICollection<CharacterDTO>>(request, cancellationToken);
-            return response.ContinueWith<IDictionaryRange<string, Character>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<CharacterDTO>>(request, cancellationToken).ConfigureAwait(false);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <summary>Finds every object with one of the given identifiers.</summary>
@@ -306,15 +304,15 @@ namespace GW2NET.V2.Accounts.Characters
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
         /// <exception cref="TaskCanceledException">A task was canceled.</exception>
         /// <returns>A collection of objects with one of the given identifiers.</returns>
-        Task<IDictionaryRange<string, Character>> IRepository<string, Character>.FindAllAsync(ICollection<string> identifiers, CancellationToken cancellationToken)
+        async Task<IDictionaryRange<string, Character>> IRepository<string, Character>.FindAllAsync(ICollection<string> identifiers, CancellationToken cancellationToken)
         {
             var request = new CharacterBulkRequest
             {
                 Identifiers = identifiers,
                 Culture = ((ICharacterRepository)this).Culture
             };
-            var response = this.serviceClient.SendAsync<ICollection<CharacterDTO>>(request, cancellationToken);
-            return response.ContinueWith<IDictionaryRange<string, Character>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<CharacterDTO>>(request, cancellationToken).ConfigureAwait(false);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <summary>Finds the object with the given identifier.</summary>
@@ -334,52 +332,15 @@ namespace GW2NET.V2.Accounts.Characters
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
         /// <exception cref="TaskCanceledException">A task was canceled.</exception>
         /// <returns>The object with the given identifier, or a null reference.</returns>
-        Task<Character> IRepository<string, Character>.FindAsync(string identifier, CancellationToken cancellationToken)
+        async Task<Character> IRepository<string, Character>.FindAsync(string identifier, CancellationToken cancellationToken)
         {
             var request = new CharacterDetailsRequest
             {
                 Identifier = identifier,
                 Culture = ((ICharacterRepository)this).Culture
             };
-            var response = this.serviceClient.SendAsync<CharacterDTO>(request, cancellationToken);
-            return response.ContinueWith<Character>(this.ConvertAsyncResponse, cancellationToken);
-        }
-
-        /// <summary>Converts the result of an asynchronous query into the appropriate return type.</summary>
-        /// <param name="task">The task to convert.</param>
-        /// <returns>An <see cref="ICollection{T}"/> of <see cref="string"/>.</returns>
-        private ICollection<string> ConvertAsyncResponse(Task<IResponse<ICollection<string>>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.identifiersResponseConverter.Convert(task.Result, null) ?? new List<string>(0);
-        }
-
-        /// <summary>Converts the result of an asynchronous query into the appropriate return type.</summary>
-        /// <param name="task">The task to convert.</param>
-        /// <param name="pageIndex">The page index.</param>
-        /// <returns>An <see cref="ICollectionPage{T}"/> of type <see cref="Character"/>.</returns>
-        private ICollectionPage<Character> ConvertAsyncResponse(Task<IResponse<ICollection<CharacterDTO>>> task, int pageIndex)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.pageResponseConverter.Convert(task.Result, pageIndex) ?? new CollectionPage<Character>(0);
-        }
-
-        /// <summary>Converts the result of an asynchronous query into the appropriate return type.</summary>
-        /// <param name="task">The task to convert.</param>
-        /// <returns>A <see cref="IDictionaryRange{TKey, TValue}"/> with <see cref="string"/> as key and <see cref="Character"/> as value.</returns>
-        private IDictionaryRange<string, Character> ConvertAsyncResponse(Task<IResponse<ICollection<CharacterDTO>>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.bulkResponseConverter.Convert(task.Result, null) ?? new DictionaryRange<string, Character>(0);
-        }
-
-        /// <summary>Converts the result of an asynchronous query into the appropriate return type.</summary>
-        /// <param name="task">The task to convert.</param>
-        /// <returns>A <see cref="Character"/>.</returns>
-        private Character ConvertAsyncResponse(Task<IResponse<CharacterDTO>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.responseConverter.Convert(task.Result, null);
+            var response = await this.serviceClient.SendAsync<CharacterDTO>(request, cancellationToken).ConfigureAwait(false);
+            return this.responseConverter.Convert(response, null);
         }
     }
 }
