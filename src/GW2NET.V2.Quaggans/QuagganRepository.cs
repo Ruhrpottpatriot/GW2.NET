@@ -86,7 +86,7 @@ namespace GW2NET.V2.Quaggans
         {
             var request = new QuagganDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<string>>(request);
-            return this.identifiersResponseConverter.Convert(response, null) ?? new List<string>(0);
+            return this.identifiersResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -97,11 +97,11 @@ namespace GW2NET.V2.Quaggans
         }
 
         /// <inheritdoc />
-        Task<ICollection<string>> IDiscoverable<string>.DiscoverAsync(CancellationToken cancellationToken)
+        async Task<ICollection<string>> IDiscoverable<string>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new QuagganDiscoveryRequest();
-            var responseTask = this.serviceClient.SendAsync<ICollection<string>>(request, cancellationToken);
-            return responseTask.ContinueWith<ICollection<string>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<string>>(request, cancellationToken).ConfigureAwait(false);
+            return this.identifiersResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -117,7 +117,7 @@ namespace GW2NET.V2.Quaggans
         {
             var request = new QuagganBulkRequest();
             var response = this.serviceClient.Send<ICollection<QuagganDTO>>(request);
-            return this.bulkResponseConverter.Convert(response, null) ?? new DictionaryRange<string, Quaggan>(0);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -125,7 +125,7 @@ namespace GW2NET.V2.Quaggans
         {
             var request = new QuagganBulkRequest { Identifiers = identifiers.ToList() };
             var response = this.serviceClient.Send<ICollection<QuagganDTO>>(request);
-            return this.bulkResponseConverter.Convert(response, null) ?? new DictionaryRange<string, Quaggan>(0);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -136,14 +136,11 @@ namespace GW2NET.V2.Quaggans
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<string, Quaggan>> IRepository<string, Quaggan>.FindAllAsync(
-            CancellationToken cancellationToken)
+        async Task<IDictionaryRange<string, Quaggan>> IRepository<string, Quaggan>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new QuagganBulkRequest();
-            var responseTask = this.serviceClient.SendAsync<ICollection<QuagganDTO>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<string, Quaggan>>(
-                this.ConvertAsyncResponse,
-                cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<QuagganDTO>>(request, cancellationToken).ConfigureAwait(false);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -155,15 +152,14 @@ namespace GW2NET.V2.Quaggans
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<string, Quaggan>> IRepository<string, Quaggan>.FindAllAsync(
-            ICollection<string> identifiers,
-            CancellationToken cancellationToken)
+        async Task<IDictionaryRange<string, Quaggan>> IRepository<string, Quaggan>.FindAllAsync(ICollection<string> identifiers, CancellationToken cancellationToken)
         {
-            var request = new QuagganBulkRequest { Identifiers = identifiers.ToList() };
-            var responseTask = this.serviceClient.SendAsync<ICollection<QuagganDTO>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<string, Quaggan>>(
-                this.ConvertAsyncResponse,
-                cancellationToken);
+            var request = new QuagganBulkRequest
+            {
+                Identifiers = identifiers.ToList()
+            };
+            var response = await this.serviceClient.SendAsync<ICollection<QuagganDTO>>(request, cancellationToken).ConfigureAwait(false);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -174,11 +170,14 @@ namespace GW2NET.V2.Quaggans
         }
 
         /// <inheritdoc />
-        Task<Quaggan> IRepository<string, Quaggan>.FindAsync(string identifier, CancellationToken cancellationToken)
+        async Task<Quaggan> IRepository<string, Quaggan>.FindAsync(string identifier, CancellationToken cancellationToken)
         {
-            var request = new QuagganDetailsRequest { Identifier = identifier };
-            var responseTask = this.serviceClient.SendAsync<QuagganDTO>(request, cancellationToken);
-            return responseTask.ContinueWith<Quaggan>(this.ConvertAsyncResponse, cancellationToken);
+            var request = new QuagganDetailsRequest
+            {
+                Identifier = identifier
+            };
+            var response = await this.serviceClient.SendAsync<QuagganDTO>(request, cancellationToken).ConfigureAwait(false);
+            return this.responseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -186,8 +185,7 @@ namespace GW2NET.V2.Quaggans
         {
             var request = new QuagganPageRequest { Page = pageIndex };
             var response = this.serviceClient.Send<ICollection<QuagganDTO>>(request);
-            var values = this.pageResponseConverter.Convert(response, pageIndex);
-            return values ?? new CollectionPage<Quaggan>(0);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
 
         /// <inheritdoc />
@@ -195,8 +193,7 @@ namespace GW2NET.V2.Quaggans
         {
             var request = new QuagganPageRequest { Page = pageIndex, PageSize = pageSize };
             var response = this.serviceClient.Send<ICollection<QuagganDTO>>(request);
-            var values = this.pageResponseConverter.Convert(response, pageIndex);
-            return values ?? new CollectionPage<Quaggan>(0);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
 
         /// <inheritdoc />
@@ -207,13 +204,14 @@ namespace GW2NET.V2.Quaggans
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<Quaggan>> IPaginator<Quaggan>.FindPageAsync(
-            int pageIndex,
-            CancellationToken cancellationToken)
+        async Task<ICollectionPage<Quaggan>> IPaginator<Quaggan>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
-            var request = new QuagganPageRequest { Page = pageIndex };
-            var responseTask = this.serviceClient.SendAsync<ICollection<QuagganDTO>>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
+            var request = new QuagganPageRequest
+        {
+                Page = pageIndex
+            };
+            var response = await this.serviceClient.SendAsync<ICollection<QuagganDTO>>(request, cancellationToken).ConfigureAwait(false);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
 
         /// <inheritdoc />
@@ -224,40 +222,15 @@ namespace GW2NET.V2.Quaggans
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<Quaggan>> IPaginator<Quaggan>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        async Task<ICollectionPage<Quaggan>> IPaginator<Quaggan>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
-            var request = new QuagganPageRequest { Page = pageIndex, PageSize = pageSize };
-            var responseTask = this.serviceClient.SendAsync<ICollection<QuagganDTO>>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollection<string> ConvertAsyncResponse(Task<IResponse<ICollection<string>>> task)
+            var request = new QuagganPageRequest
         {
-            Debug.Assert(task != null, "task != null");
-            return this.identifiersResponseConverter.Convert(task.Result, null) ?? new List<string>(0);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<string, Quaggan> ConvertAsyncResponse(Task<IResponse<ICollection<QuagganDTO>>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.bulkResponseConverter.Convert(task.Result, null) ?? new DictionaryRange<string, Quaggan>(0);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Quaggan ConvertAsyncResponse(Task<IResponse<QuagganDTO>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.responseConverter.Convert(task.Result, null);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollectionPage<Quaggan> ConvertAsyncResponse(Task<IResponse<ICollection<QuagganDTO>>> task, int pageIndex)
-        {
-            Debug.Assert(task != null, "task != null");
-            var values = this.pageResponseConverter.Convert(task.Result, pageIndex);
-            return values ?? new CollectionPage<Quaggan>(0);
+                Page = pageIndex,
+                PageSize = pageSize
+            };
+            var response = await this.serviceClient.SendAsync<ICollection<QuagganDTO>>(request, cancellationToken).ConfigureAwait(false);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
     }
 }

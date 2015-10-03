@@ -11,8 +11,6 @@ namespace GW2NET.V1.Events
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -79,19 +77,17 @@ namespace GW2NET.V1.Events
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<EventCollectionDTO>(request);
-            var eventCollectionDTO = response.Content;
-            if (eventCollectionDTO == null)
+            if (response.Content == null)
             {
                 return null;
             }
 
-            var eventDTOs = eventCollectionDTO.Events;
-            if (eventDTOs == null)
+            if (response.Content.Events == null)
             {
                 return null;
             }
 
-            var dynamicEvents = this.dynamicEventCollectionConverter.Convert(eventCollectionDTO, null);
+            var dynamicEvents = this.dynamicEventCollectionConverter.Convert(response.Content, null);
             if (dynamicEvents == null)
             {
                 return null;
@@ -117,19 +113,17 @@ namespace GW2NET.V1.Events
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<EventCollectionDTO>(request);
-            var eventCollectionDTO = response.Content;
-            if (eventCollectionDTO == null)
+            if (response.Content == null)
             {
                 return new DictionaryRange<Guid, DynamicEvent>(0);
             }
 
-            var eventDTOs = eventCollectionDTO.Events;
-            if (eventDTOs == null)
+            if (response.Content.Events == null)
             {
                 return new DictionaryRange<Guid, DynamicEvent>(0);
             }
 
-            var dynamicEvents = this.dynamicEventCollectionConverter.Convert(eventCollectionDTO, null);
+            var dynamicEvents = this.dynamicEventCollectionConverter.Convert(response.Content, null);
             if (dynamicEvents == null)
             {
                 return new DictionaryRange<Guid, DynamicEvent>(0);
@@ -163,15 +157,42 @@ namespace GW2NET.V1.Events
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<Guid, DynamicEvent>> IRepository<Guid, DynamicEvent>.FindAllAsync(CancellationToken cancellationToken)
+        async Task<IDictionaryRange<Guid, DynamicEvent>> IRepository<Guid, DynamicEvent>.FindAllAsync(CancellationToken cancellationToken)
         {
             IEventRepository self = this;
             var request = new DynamicEventDetailsRequest
             {
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<EventCollectionDTO>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, request.Culture), cancellationToken);
+            var response = await this.serviceClient.SendAsync<EventCollectionDTO>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
+            {
+                return new DictionaryRange<Guid, DynamicEvent>(0);
+            }
+
+            if (response.Content.Events == null)
+            {
+                return new DictionaryRange<Guid, DynamicEvent>(0);
+            }
+
+            var dynamicEvents = this.dynamicEventCollectionConverter.Convert(response.Content, null);
+            if (dynamicEvents == null)
+            {
+                return new DictionaryRange<Guid, DynamicEvent>(0);
+            }
+
+            var events = new DictionaryRange<Guid, DynamicEvent>(dynamicEvents.Count)
+            {
+                SubtotalCount = dynamicEvents.Count,
+                TotalCount = dynamicEvents.Count
+            };
+            foreach (var dynamicEvent in dynamicEvents)
+            {
+                dynamicEvent.Culture = request.Culture;
+                events.Add(dynamicEvent.EventId, dynamicEvent);
+            }
+
+            return events;
         }
 
         /// <inheritdoc />
@@ -194,7 +215,7 @@ namespace GW2NET.V1.Events
         }
 
         /// <inheritdoc />
-        Task<DynamicEvent> IRepository<Guid, DynamicEvent>.FindAsync(Guid identifier, CancellationToken cancellationToken)
+        async Task<DynamicEvent> IRepository<Guid, DynamicEvent>.FindAsync(Guid identifier, CancellationToken cancellationToken)
         {
             IEventRepository self = this;
             var request = new DynamicEventDetailsRequest
@@ -202,8 +223,32 @@ namespace GW2NET.V1.Events
                 EventId = identifier,
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<EventCollectionDTO>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertsAsyncResponse(task, request.Culture), cancellationToken);
+            var response = await this.serviceClient.SendAsync<EventCollectionDTO>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
+            {
+                return null;
+            }
+
+            if (response.Content.Events == null)
+            {
+                return null;
+            }
+
+            var dynamicEvents = this.dynamicEventCollectionConverter.Convert(response.Content, null);
+            if (dynamicEvents == null)
+            {
+                return null;
+            }
+
+            var dynamicEvent = dynamicEvents.SingleOrDefault();
+            if (dynamicEvent == null)
+            {
+                return null;
+            }
+
+            dynamicEvent.Culture = request.Culture;
+
+            return dynamicEvent;
         }
 
         /// <inheritdoc />
@@ -240,76 +285,6 @@ namespace GW2NET.V1.Events
         Task<ICollectionPage<DynamicEvent>> IPaginator<DynamicEvent>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<Guid, DynamicEvent> ConvertAsyncResponse(Task<IResponse<EventCollectionDTO>> task, CultureInfo culture)
-        {
-            var response = task.Result;
-            var eventCollectionDTO = response.Content;
-            if (eventCollectionDTO == null)
-            {
-                return new DictionaryRange<Guid, DynamicEvent>(0);
-            }
-
-            var eventDTOs = eventCollectionDTO.Events;
-            if (eventDTOs == null)
-            {
-                return new DictionaryRange<Guid, DynamicEvent>(0);
-            }
-
-            var dynamicEvents = this.dynamicEventCollectionConverter.Convert(eventCollectionDTO, null);
-            if (dynamicEvents == null)
-            {
-                return new DictionaryRange<Guid, DynamicEvent>(0);
-            }
-
-            var events = new DictionaryRange<Guid, DynamicEvent>(dynamicEvents.Count)
-            {
-                SubtotalCount = dynamicEvents.Count,
-                TotalCount = dynamicEvents.Count
-            };
-            foreach (var dynamicEvent in dynamicEvents)
-            {
-                dynamicEvent.Culture = culture;
-                events.Add(dynamicEvent.EventId, dynamicEvent);
-            }
-
-            return events;
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private DynamicEvent ConvertsAsyncResponse(Task<IResponse<EventCollectionDTO>> task, CultureInfo culture)
-        {
-            Debug.Assert(task != null, "task != null");
-            var response = task.Result;
-            var eventCollectionDTO = response.Content;
-            if (eventCollectionDTO == null)
-            {
-                return null;
-            }
-
-            var eventDTOs = eventCollectionDTO.Events;
-            if (eventDTOs == null)
-            {
-                return null;
-            }
-
-            var dynamicEvents = this.dynamicEventCollectionConverter.Convert(eventCollectionDTO, null);
-            if (dynamicEvents == null)
-            {
-                return null;
-            }
-
-            var dynamicEvent = dynamicEvents.SingleOrDefault();
-            if (dynamicEvent == null)
-            {
-                return null;
-            }
-
-            dynamicEvent.Culture = culture;
-
-            return dynamicEvent;
         }
     }
 }

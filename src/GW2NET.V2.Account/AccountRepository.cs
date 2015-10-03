@@ -50,21 +50,11 @@ namespace GW2NET.V2.Accounts
         }
 
         /// <inheritdoc />
-        Task<Account> IAccountRepository.GetInformationAsync(CancellationToken cancellationToken)
+        async Task<Account> IAccountRepository.GetInformationAsync(CancellationToken cancellationToken)
         {
             var request = new AccountRequest();
-            var response = this.serviceClient.SendAsync<AccountDTO>(request, cancellationToken);
-            return response.ContinueWith<Account>(this.ConvertAsyncResponse, cancellationToken);
-        }
-
-        /// <summary>Converts an asynchronous response to the type requested.</summary>
-        /// <param name="task">The task to convert.</param>
-        /// <returns>An <see cref="Account"/>.</returns>
-        private Account ConvertAsyncResponse(Task<IResponse<AccountDTO>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-
-            return this.responseConverter.Convert(task.Result, null);
+            var response = await this.serviceClient.SendAsync<AccountDTO>(request, cancellationToken).ConfigureAwait(false);
+            return this.responseConverter.Convert(response, null);
         }
     }
 }

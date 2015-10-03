@@ -64,8 +64,7 @@ namespace GW2NET.V2.Worlds
         {
             var request = new WorldDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
-            var values = this.identifiersResponseConverter.Convert(response, null);
-            return values ?? new List<int>(0);
+            return this.identifiersResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -76,11 +75,11 @@ namespace GW2NET.V2.Worlds
         }
 
         /// <inheritdoc />
-        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
+        async Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new WorldDiscoveryRequest();
-            var responseTask = this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken);
-            return responseTask.ContinueWith<ICollection<int>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken).ConfigureAwait(false);
+            return this.identifiersResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -105,8 +104,7 @@ namespace GW2NET.V2.Worlds
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<WorldDTO>>(request);
-            var values = this.bulkResponseConverter.Convert(response, null);
-            return values ?? new DictionaryRange<int, World>(0);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -119,8 +117,7 @@ namespace GW2NET.V2.Worlds
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList()
             };
             var response = this.serviceClient.Send<ICollection<WorldDTO>>(request);
-            var values = this.bulkResponseConverter.Convert(response, null);
-            return values ?? new DictionaryRange<int, World>(0);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -131,15 +128,15 @@ namespace GW2NET.V2.Worlds
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, World>> IRepository<int, World>.FindAllAsync(CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, World>> IRepository<int, World>.FindAllAsync(CancellationToken cancellationToken)
         {
             IWorldRepository self = this;
             var request = new WorldBulkRequest
             {
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<WorldDTO>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<int, World>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<WorldDTO>>(request, cancellationToken).ConfigureAwait(false);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -150,7 +147,7 @@ namespace GW2NET.V2.Worlds
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, World>> IRepository<int, World>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, World>> IRepository<int, World>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
             IWorldRepository self = this;
             var request = new WorldBulkRequest
@@ -158,8 +155,8 @@ namespace GW2NET.V2.Worlds
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<WorldDTO>>(request, cancellationToken);
-            return responseTask.ContinueWith<IDictionaryRange<int, World>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<WorldDTO>>(request, cancellationToken).ConfigureAwait(false);
+            return this.bulkResponseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -170,7 +167,7 @@ namespace GW2NET.V2.Worlds
         }
 
         /// <inheritdoc />
-        Task<World> IRepository<int, World>.FindAsync(int identifier, CancellationToken cancellationToken)
+        async Task<World> IRepository<int, World>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             IWorldRepository self = this;
             var request = new WorldDetailsRequest
@@ -178,8 +175,8 @@ namespace GW2NET.V2.Worlds
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<WorldDTO>(request, cancellationToken);
-            return responseTask.ContinueWith<World>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<WorldDTO>(request, cancellationToken).ConfigureAwait(false);
+            return this.responseConverter.Convert(response, null);
         }
 
         /// <inheritdoc />
@@ -192,8 +189,7 @@ namespace GW2NET.V2.Worlds
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<WorldDTO>>(request);
-            var values = this.pageResponseConverter.Convert(response, pageIndex);
-            return values ?? new CollectionPage<World>(0);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
 
         /// <inheritdoc />
@@ -207,8 +203,7 @@ namespace GW2NET.V2.Worlds
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<WorldDTO>>(request);
-            var values = this.pageResponseConverter.Convert(response, pageIndex);
-            return values ?? new CollectionPage<World>(0);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
 
         /// <inheritdoc />
@@ -219,7 +214,7 @@ namespace GW2NET.V2.Worlds
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<World>> IPaginator<World>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        async Task<ICollectionPage<World>> IPaginator<World>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             IWorldRepository self = this;
             var request = new WorldPageRequest
@@ -227,8 +222,8 @@ namespace GW2NET.V2.Worlds
                 Page = pageIndex,
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<WorldDTO>>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<WorldDTO>>(request, cancellationToken).ConfigureAwait(false);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
 
         /// <inheritdoc />
@@ -239,7 +234,7 @@ namespace GW2NET.V2.Worlds
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<World>> IPaginator<World>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        async Task<ICollectionPage<World>> IPaginator<World>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             IWorldRepository self = this;
             var request = new WorldPageRequest
@@ -248,48 +243,8 @@ namespace GW2NET.V2.Worlds
                 PageSize = pageSize,
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<ICollection<WorldDTO>>(request, cancellationToken).ContinueWith<ICollectionPage<World>>(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<int, World> ConvertAsyncResponse(Task<IResponse<ICollection<WorldDTO>>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            var values = this.bulkResponseConverter.Convert(task.Result, null);
-            if (values == null)
-            {
-                return new DictionaryRange<int, World>(0);
-            }
-
-            return values;
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollectionPage<World> ConvertAsyncResponse(Task<IResponse<ICollection<WorldDTO>>> task, int pageIndex)
-        {
-            Debug.Assert(task != null, "task != null");
-            var values = this.pageResponseConverter.Convert(task.Result, pageIndex);
-            return values ?? new CollectionPage<World>(0);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            var ids = this.identifiersResponseConverter.Convert(task.Result, null);
-            if (ids == null)
-            {
-                return new List<int>(0);
-            }
-
-            return ids;
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private World ConvertAsyncResponse(Task<IResponse<WorldDTO>> task)
-        {
-            Debug.Assert(task != null, "task != null");
-            return this.responseConverter.Convert(task.Result, null);
+            var response = await this.serviceClient.SendAsync<ICollection<WorldDTO>>(request, cancellationToken).ConfigureAwait(false);
+            return this.pageResponseConverter.Convert(response, pageIndex);
         }
     }
 }

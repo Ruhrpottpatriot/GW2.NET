@@ -22,19 +22,7 @@
       - Windows Phone 8.1
       - Portable Class Libraries
     </description>
-    <releaseNotes>
-      - Made GetParameters and GetPathSegment in DiscoveryRequest virtual
-      - Changed constructor of abstract class FactoryBase to protected
-      - Stylecop fixes across the board
-      - Added support for v2/maps endpoint
-      - Added support for v2/skins endpoint
-      - Added support for v2/continents endpoint
-      - Added support for v2/files endpoint
-      - Renamed WvW property in Factoryfor V1 to WorldVersusWorld
-      - V2 Factories now implement RepositoryFactoryBase to reduce code repitition
-      - Added obsolete warnings for all currently available v2 endpoints
-      - Fixed some bugs in the request classes
-    </releaseNotes>
+    <releaseNotes><![CDATA[https://github.com/Ruhrpottpatriot/GW2.NET/releases/tag/v$version$]]></releaseNotes>
     <copyright>GNU General Public License version 2 (GPLv2)</copyright>
     <language>en, es, de, fr</language>
     <tags>GW2</tags>

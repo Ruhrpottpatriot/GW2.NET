@@ -34,13 +34,7 @@ namespace GW2NET.V1.Skins.Converters
                 throw new ArgumentNullException("value");
             }
 
-            var values = value.Skins;
-            if (values == null)
-            {
-                return new List<int>(0);
-            }
-
-            return values;
+            return value.Skins ?? new List<int>(0);
         }
     }
 }

@@ -9,15 +9,15 @@
 
 namespace GW2NET.V1.Events
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using GW2NET.Common;
-    using GW2NET.DynamicEvents;
-    using GW2NET.V1.Events.Json;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Threading;
+using System.Threading.Tasks;
+using GW2NET.Common;
+using GW2NET.DynamicEvents;
+using GW2NET.V1.Events.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/event_names.json interface.</summary>
     public class EventNameRepository : IEventNameRepository
@@ -82,19 +82,18 @@ namespace GW2NET.V1.Events
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<EventNameDTO>>(request);
-            var eventNameDTOs = response.Content;
-            if (eventNameDTOs == null)
+            if (response.Content == null)
             {
                 return new DictionaryRange<Guid, DynamicEventName>(0);
             }
 
-            var dynamicEventNames = new DictionaryRange<Guid, DynamicEventName>(eventNameDTOs.Count)
+            var dynamicEventNames = new DictionaryRange<Guid, DynamicEventName>(response.Content.Count)
             {
-                SubtotalCount = eventNameDTOs.Count,
-                TotalCount = eventNameDTOs.Count
+                SubtotalCount = response.Content.Count,
+                TotalCount = response.Content.Count
             };
 
-            foreach (var dynamicEventName in this.dynamicEventNameCollectionConverter.Convert(eventNameDTOs, null))
+            foreach (var dynamicEventName in this.dynamicEventNameCollectionConverter.Convert(response.Content, null))
             {
                 dynamicEventName.Culture = request.Culture;
                 dynamicEventNames.Add(dynamicEventName.EventId, dynamicEventName);
@@ -116,15 +115,32 @@ namespace GW2NET.V1.Events
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<Guid, DynamicEventName>> IRepository<Guid, DynamicEventName>.FindAllAsync(CancellationToken cancellationToken)
+        async Task<IDictionaryRange<Guid, DynamicEventName>> IRepository<Guid, DynamicEventName>.FindAllAsync(CancellationToken cancellationToken)
         {
             IEventNameRepository self = this;
             var request = new DynamicEventNameRequest
             {
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<EventNameDTO>>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, request.Culture), cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<EventNameDTO>>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
+            {
+                return new DictionaryRange<Guid, DynamicEventName>(0);
+            }
+
+            var dynamicEventNames = new DictionaryRange<Guid, DynamicEventName>(response.Content.Count)
+            {
+                SubtotalCount = response.Content.Count,
+                TotalCount = response.Content.Count
+            };
+
+            foreach (var dynamicEventName in this.dynamicEventNameCollectionConverter.Convert(response.Content, null))
+            {
+                dynamicEventName.Culture = request.Culture;
+                dynamicEventNames.Add(dynamicEventName.EventId, dynamicEventName);
+            }
+
+            return dynamicEventNames;
         }
 
         /// <inheritdoc />
@@ -185,31 +201,6 @@ namespace GW2NET.V1.Events
         Task<ICollectionPage<DynamicEventName>> IPaginator<DynamicEventName>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<Guid, DynamicEventName> ConvertAsyncResponse(Task<IResponse<ICollection<EventNameDTO>>> task, CultureInfo culture)
-        {
-            var response = task.Result;
-            var eventNameDTOs = response.Content;
-            if (eventNameDTOs == null)
-            {
-                return new DictionaryRange<Guid, DynamicEventName>(0);
-            }
-
-            var dynamicEventNames = new DictionaryRange<Guid, DynamicEventName>(eventNameDTOs.Count)
-            {
-                SubtotalCount = eventNameDTOs.Count,
-                TotalCount = eventNameDTOs.Count
-            };
-
-            foreach (var dynamicEventName in this.dynamicEventNameCollectionConverter.Convert(eventNameDTOs, null))
-            {
-                dynamicEventName.Culture = culture;
-                dynamicEventNames.Add(dynamicEventName.EventId, dynamicEventName);
-            }
-
-            return dynamicEventNames;
         }
     }
 }

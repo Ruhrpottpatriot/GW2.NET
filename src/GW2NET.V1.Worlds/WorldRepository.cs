@@ -11,8 +11,6 @@ namespace GW2NET.V1.Worlds
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -83,19 +81,18 @@ namespace GW2NET.V1.Worlds
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<WorldDTO>>(request);
-            var dataContracts = response.Content;
-            if (dataContracts == null)
+            if (response.Content == null)
             {
                 return new DictionaryRange<int, World>(0);
             }
 
-            var worlds = new DictionaryRange<int, World>(dataContracts.Count)
+            var worlds = new DictionaryRange<int, World>(response.Content.Count)
             {
-                SubtotalCount = dataContracts.Count,
-                TotalCount = dataContracts.Count
+                SubtotalCount = response.Content.Count,
+                TotalCount = response.Content.Count
             };
 
-            foreach (var world in this.worldCollectionConverter.Convert(dataContracts, null))
+            foreach (var world in this.worldCollectionConverter.Convert(response.Content, null))
             {
                 world.Culture = request.Culture;
                 worlds.Add(world.WorldId, world);
@@ -118,15 +115,32 @@ namespace GW2NET.V1.Worlds
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, World>> IRepository<int, World>.FindAllAsync(CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, World>> IRepository<int, World>.FindAllAsync(CancellationToken cancellationToken)
         {
             IWorldRepository self = this;
             var request = new WorldNameRequest
             {
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<WorldDTO>>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, request.Culture), cancellationToken);
+            var response = await this.serviceClient.SendAsync<ICollection<WorldDTO>>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
+            {
+                return new DictionaryRange<int, World>(0);
+            }
+
+            var worlds = new DictionaryRange<int, World>(response.Content.Count)
+            {
+                SubtotalCount = response.Content.Count,
+                TotalCount = response.Content.Count
+            };
+
+            foreach (var world in this.worldCollectionConverter.Convert(response.Content, response))
+            {
+                world.Culture = request.Culture;
+                worlds.Add(world.WorldId, world);
+            }
+
+            return worlds;
         }
 
         /// <inheritdoc />
@@ -187,32 +201,6 @@ namespace GW2NET.V1.Worlds
         Task<ICollectionPage<World>> IPaginator<World>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private IDictionaryRange<int, World> ConvertAsyncResponse(Task<IResponse<ICollection<WorldDTO>>> task, CultureInfo culture)
-        {
-            Debug.Assert(task != null, "task != null");
-            var response = task.Result;
-            var dataContracts = response.Content;
-            if (dataContracts == null)
-            {
-                return new DictionaryRange<int, World>(0);
-            }
-
-            var worlds = new DictionaryRange<int, World>(dataContracts.Count)
-            {
-                SubtotalCount = dataContracts.Count,
-                TotalCount = dataContracts.Count
-            };
-
-            foreach (var world in this.worldCollectionConverter.Convert(dataContracts, null))
-            {
-                world.Culture = culture;
-                worlds.Add(world.WorldId, world);
-            }
-
-            return worlds;
         }
     }
 }

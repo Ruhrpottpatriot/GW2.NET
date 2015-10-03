@@ -10,7 +10,6 @@
 namespace GW2NET.V1.Builds
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.Threading;
     using System.Threading.Tasks;
     using GW2NET.Builds;
@@ -50,13 +49,12 @@ namespace GW2NET.V1.Builds
         {
             var request = new BuildRequest();
             var response = this.serviceClient.Send<BuildDTO>(request);
-            var buildDTO = response.Content;
-            if (buildDTO == null)
+            if (response.Content == null)
             {
                 return null;
             }
 
-            return this.buildConverter.Convert(buildDTO, response);
+            return this.buildConverter.Convert(response.Content, response);
         }
 
         /// <inheritdoc />
@@ -67,24 +65,16 @@ namespace GW2NET.V1.Builds
         }
 
         /// <inheritdoc />
-        Task<Build> IBuildService.GetBuildAsync(CancellationToken cancellationToken)
+        async Task<Build> IBuildService.GetBuildAsync(CancellationToken cancellationToken)
         {
             var request = new BuildRequest();
-            var responseTask = this.serviceClient.SendAsync<BuildDTO>(request, cancellationToken);
-            return responseTask.ContinueWith<Build>(this.ConvertAsyncResponse, cancellationToken);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Build ConvertAsyncResponse(Task<IResponse<BuildDTO>> task)
-        {
-            var response = task.Result;
-            var buildDTO = response.Content;
-            if (buildDTO == null)
+            var response = await this.serviceClient.SendAsync<BuildDTO>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
             {
                 return null;
             }
 
-            return this.buildConverter.Convert(buildDTO, response);
+            return this.buildConverter.Convert(response.Content, response);
         }
     }
 }

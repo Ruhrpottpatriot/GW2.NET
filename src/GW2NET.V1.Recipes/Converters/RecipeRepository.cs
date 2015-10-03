@@ -11,7 +11,6 @@ namespace GW2NET.V1.Recipes.Converters
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -79,11 +78,16 @@ namespace GW2NET.V1.Recipes.Converters
         }
 
         /// <inheritdoc />
-        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
+        async Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new RecipeDiscoveryRequest();
-            var responseTask = this.serviceClient.SendAsync<RecipeCollectionDTO>(request, cancellationToken);
-            return responseTask.ContinueWith<ICollection<int>>(this.ConvertAsyncResponse, cancellationToken);
+            var response = await this.serviceClient.SendAsync<RecipeCollectionDTO>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
+            {
+                return new List<int>(0);
+            }
+
+            return this.recipeCollectionConverter.Convert(response.Content, response);
         }
 
         /// <inheritdoc />
@@ -186,7 +190,7 @@ namespace GW2NET.V1.Recipes.Converters
         }
 
         /// <inheritdoc />
-        Task<Recipe> IRepository<int, Recipe>.FindAsync(int identifier, CancellationToken cancellationToken)
+        async Task<Recipe> IRepository<int, Recipe>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             IRecipeRepository self = this;
             var request = new RecipeDetailsRequest
@@ -194,15 +198,15 @@ namespace GW2NET.V1.Recipes.Converters
                 RecipeId = identifier,
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<RecipeDTO>(request, cancellationToken);
-            return responseTask.ContinueWith(
-                task =>
-                {
-                    var recipe = this.ConvertsAsyncResponse(task);
-                    recipe.Culture = request.Culture;
-                    return recipe;
-                },
-            cancellationToken);
+            var response = await this.serviceClient.SendAsync<RecipeDTO>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null)
+            {
+                return null;
+            }
+
+            var recipe = this.recipeConverter.Convert(response.Content, response);
+            recipe.Culture = request.Culture;
+            return recipe;
         }
 
         /// <inheritdoc />
@@ -239,30 +243,6 @@ namespace GW2NET.V1.Recipes.Converters
         Task<ICollectionPage<Recipe>> IPaginator<Recipe>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private ICollection<int> ConvertAsyncResponse(Task<IResponse<RecipeCollectionDTO>> task)
-        {
-            var response = task.Result;
-            if (response.Content == null)
-            {
-                return new List<int>(0);
-            }
-
-            return this.recipeCollectionConverter.Convert(response.Content, null);
-        }
-
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private Recipe ConvertsAsyncResponse(Task<IResponse<RecipeDTO>> task)
-        {
-            var response = task.Result;
-            if (response.Content == null)
-            {
-                return null;
-            }
-
-            return this.recipeConverter.Convert(response.Content, null);
         }
     }
 }

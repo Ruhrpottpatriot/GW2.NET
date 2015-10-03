@@ -140,38 +140,33 @@ namespace GW2NET.V1.Maps
         }
 
         /// <inheritdoc />
-        Task<IDictionaryRange<int, Map>> IRepository<int, Map>.FindAllAsync(CancellationToken cancellationToken)
+        async Task<IDictionaryRange<int, Map>> IRepository<int, Map>.FindAllAsync(CancellationToken cancellationToken)
         {
             IMapRepository self = this;
             var request = new MapRequest
             {
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<MapCollectionDTO>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Map>>(
-                task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null || response.Content.Maps == null)
-                    {
-                        return null;
-                    }
+            var response = await this.serviceClient.SendAsync<MapCollectionDTO>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null || response.Content.Maps == null)
+            {
+                return null;
+            }
 
-                    var values = this.mapCollectionConverter.Convert(response.Content, null);
-                    var maps = new DictionaryRange<int, Map>(values.Count)
-                    {
-                        SubtotalCount = values.Count,
-                        TotalCount = values.Count
-                    };
+            var values = this.mapCollectionConverter.Convert(response.Content, null);
+            var maps = new DictionaryRange<int, Map>(values.Count)
+            {
+                SubtotalCount = values.Count,
+                TotalCount = values.Count
+            };
 
-                    foreach (var map in values)
-                    {
-                        map.Culture = request.Culture;
-                        maps.Add(map.MapId, map);
-                    }
+            foreach (var map in values)
+            {
+                map.Culture = request.Culture;
+                maps.Add(map.MapId, map);
+            }
 
-                    return maps;
-                },
-            cancellationToken);
+            return maps;
         }
 
         /// <inheritdoc />
@@ -194,7 +189,7 @@ namespace GW2NET.V1.Maps
         }
 
         /// <inheritdoc />
-        Task<Map> IRepository<int, Map>.FindAsync(int identifier, CancellationToken cancellationToken)
+        async Task<Map> IRepository<int, Map>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             IMapRepository self = this;
             var request = new MapRequest
@@ -202,24 +197,19 @@ namespace GW2NET.V1.Maps
                 MapId = identifier,
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<MapCollectionDTO>(request, cancellationToken).ContinueWith<Map>(
-                task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null || response.Content.Maps == null)
-                    {
-                        return null;
-                    }
+            var response = await this.serviceClient.SendAsync<MapCollectionDTO>(request, cancellationToken).ConfigureAwait(false);
+            if (response.Content == null || response.Content.Maps == null)
+            {
+                return null;
+            }
 
-                    var map = this.mapCollectionConverter.Convert(response.Content, null).SingleOrDefault();
-                    if (map != null)
-                    {
-                        map.Culture = request.Culture;
-                    }
+            var map = this.mapCollectionConverter.Convert(response.Content, null).SingleOrDefault();
+            if (map != null)
+            {
+                map.Culture = request.Culture;
+            }
 
-                    return map;
-                },
-            cancellationToken);
+            return map;
         }
 
         /// <inheritdoc />
