@@ -76,6 +76,7 @@ namespace GW2NET.V2.Skins
                             ? converter.Convert(value.Details)
                             : new UnknownSkin();
 
+            skin.SkinId = value.Id;
             skin.Name = value.Name;
 
             var flags = value.Flags;

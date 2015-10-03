@@ -39,22 +39,26 @@ namespace GW2NET.V2.Skins
         [DataMember(Name = "restrictions", Order = 3)]
         public string[] Restrictions { get; set; }
 
+        /// <summary>Gets or sets the id.</summary>
+        [DataMember(Name = "id", Order = 4)]
+        public int Id { get; set; }
+
         /// <summary>
         /// Gets or sets the icon url.
         /// </summary>
-        [DataMember(Name = "icon", Order = 4)]
+        [DataMember(Name = "icon", Order = 5)]
         public string IconUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
-        [DataMember(Name = "description", Order = 5)]
+        [DataMember(Name = "description", Order = 6)]
         public string Description { get; set; }
 
         /// <summary>
         /// Gets or sets the details.
         /// </summary>
-        [DataMember(Name = "details", Order = 6)]
+        [DataMember(Name = "details", Order = 7)]
         public DetailsDataContract Details { get; set; }
     }
 }
