@@ -7,6 +7,8 @@ namespace GW2NET
     using GW2NET.Common;
 
     /// <summary>Provides the interface for converter factories that create a type converter for a given type discriminator.</summary>
+    /// <typeparam name="TSource">The source type.</typeparam>
+    /// <typeparam name="TTarget">The type the source is going to be converted to.</typeparam>
     public interface ITypeConverterFactory<TSource, TTarget>
     {
         /// <summary>Creates an object that can convert the source type to the target type.</summary>

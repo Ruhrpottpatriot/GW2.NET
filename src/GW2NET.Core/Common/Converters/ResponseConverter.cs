@@ -11,7 +11,7 @@ namespace GW2NET.Common.Converters
 {
     using System;
 
-    /// <summary>Converts objects of type <see cref="IResponse{T}"/> to objects of type <see cref="TValue"/>.</summary>
+    /// <summary>Converts objects of type <see cref="IResponse{T}"/> to objects of a different type.</summary>
     /// <typeparam name="TDTO">The type of data contracts in the response content.</typeparam>
     /// <typeparam name="TValue">The type of the converted value.</typeparam>
     public sealed class ResponseConverter<TDTO, TValue> : IConverter<IResponse<TDTO>, TValue>
