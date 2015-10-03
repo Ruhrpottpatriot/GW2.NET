@@ -74,6 +74,7 @@
     <Rule Id="SA1131" Action="Warning" />
     <Rule Id="SA1600" Action="Info" />
     <Rule Id="SA1601" Action="Info" />
+    <Rule Id="SA1614" Action="Info" />
     <Rule Id="SA1627" Action="Warning" />
     <Rule Id="SA1629" Action="Warning" />
   </Rules>
