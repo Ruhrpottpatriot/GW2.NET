@@ -148,7 +148,6 @@ namespace GW2NET.V2.Recipes
             {
                 Input = identifier
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken);
             var response = await this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken).ConfigureAwait(false);
             var ids = this.converterForIdentifiersResponse.Convert(response);
             if (ids == null)

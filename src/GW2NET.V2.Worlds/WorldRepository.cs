@@ -158,7 +158,6 @@ namespace GW2NET.V2.Worlds
             {
                 Culture = self.Culture
             };
-            var responseTask = this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken);
             var response = await this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken).ConfigureAwait(false);
             var values = this.converterForBulkResponse.Convert(response);
             if (values == null)
