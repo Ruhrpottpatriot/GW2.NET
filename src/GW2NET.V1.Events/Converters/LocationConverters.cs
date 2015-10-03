@@ -11,7 +11,7 @@
 namespace GW2NET.V1.Events.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
     using GW2NET.DynamicEvents;
     using GW2NET.V1.Events;
@@ -67,12 +67,12 @@ namespace GW2NET.V1.Events.Converters
     {
 	    /// <inheritdoc />
         public CylinderLocation Convert(LocationDTO value, object state)
-        {    
+        {
     		var entity = new CylinderLocation();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'CylinderLocation' (if any)
     	partial void Merge(CylinderLocation entity, LocationDTO dto, object state);
 
@@ -95,12 +95,12 @@ namespace GW2NET.V1.Events.Converters
     {
 	    /// <inheritdoc />
         public PolygonLocation Convert(LocationDTO value, object state)
-        {    
+        {
     		var entity = new PolygonLocation();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'PolygonLocation' (if any)
     	partial void Merge(PolygonLocation entity, LocationDTO dto, object state);
 
@@ -123,12 +123,12 @@ namespace GW2NET.V1.Events.Converters
     {
 	    /// <inheritdoc />
         public SphereLocation Convert(LocationDTO value, object state)
-        {    
+        {
     		var entity = new SphereLocation();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'SphereLocation' (if any)
     	partial void Merge(SphereLocation entity, LocationDTO dto, object state);
 
@@ -151,12 +151,12 @@ namespace GW2NET.V1.Events.Converters
     {
 	    /// <inheritdoc />
         public UnknownLocation Convert(LocationDTO value, object state)
-        {    
+        {
     		var entity = new UnknownLocation();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownLocation' (if any)
     	partial void Merge(UnknownLocation entity, LocationDTO dto, object state);
 

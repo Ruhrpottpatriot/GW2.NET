@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="MatchRepository.cs" company="GW2.NET Coding Team">
-//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+//   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Represents a repository that retrieves data from the /v1/wvw/matches.json and /v1/wvw/match_details.json interfaces.
@@ -79,7 +79,8 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
         Task<ICollection<Matchup>> IDiscoverable<Matchup>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new MatchDiscoveryRequest();
-            return this.serviceClient.SendAsync<MatchupCollectionDTO>(request, cancellationToken).ContinueWith<ICollection<Matchup>>(task =>
+            return this.serviceClient.SendAsync<MatchupCollectionDTO>(request, cancellationToken).ContinueWith<ICollection<Matchup>>(
+                task =>
             {
                 var response = task.Result;
                 if (response.Content == null || response.Content.Matchups == null)
@@ -161,7 +162,8 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
             {
                 MatchId = matchId
             };
-            return this.serviceClient.SendAsync<MatchDTO>(request, cancellationToken).ContinueWith(task =>
+            return this.serviceClient.SendAsync<MatchDTO>(request, cancellationToken).ContinueWith(
+                task =>
             {
                 var response = task.Result;
                 if (response.Content == null)

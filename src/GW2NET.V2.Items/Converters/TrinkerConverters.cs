@@ -11,7 +11,7 @@
 namespace GW2NET.V2.Items.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
     using GW2NET.Items;
     using GW2NET.V2.Items;
@@ -67,12 +67,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public Accessory Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Accessory();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Accessory' (if any)
     	partial void Merge(Accessory entity, ItemDTO dto, object state);
 
@@ -95,12 +95,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public Amulet Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Amulet();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Amulet' (if any)
     	partial void Merge(Amulet entity, ItemDTO dto, object state);
 
@@ -123,12 +123,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public Ring Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Ring();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Ring' (if any)
     	partial void Merge(Ring entity, ItemDTO dto, object state);
 
@@ -151,12 +151,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public UnknownTrinket Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new UnknownTrinket();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownTrinket' (if any)
     	partial void Merge(UnknownTrinket entity, ItemDTO dto, object state);
 

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="QuagganRepository.cs" company="GW2.NET Coding Team">
-//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+//   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Represents a repository that retrieves data from the /v2/quaggans interface.
@@ -224,45 +224,36 @@ namespace GW2NET.V2.Quaggans
         }
 
         /// <inheritdoc />
-        Task<ICollectionPage<Quaggan>> IPaginator<Quaggan>.FindPageAsync(
-            int pageIndex,
-            int pageSize,
-            CancellationToken cancellationToken)
+        Task<ICollectionPage<Quaggan>> IPaginator<Quaggan>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             var request = new QuagganPageRequest { Page = pageIndex, PageSize = pageSize };
             var responseTask = this.serviceClient.SendAsync<ICollection<QuagganDTO>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-            Justification = "Not a public API.")]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollection<string> ConvertAsyncResponse(Task<IResponse<ICollection<string>>> task)
         {
             Debug.Assert(task != null, "task != null");
             return this.identifiersResponseConverter.Convert(task.Result, null) ?? new List<string>(0);
         }
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-            Justification = "Not a public API.")]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private IDictionaryRange<string, Quaggan> ConvertAsyncResponse(Task<IResponse<ICollection<QuagganDTO>>> task)
         {
             Debug.Assert(task != null, "task != null");
             return this.bulkResponseConverter.Convert(task.Result, null) ?? new DictionaryRange<string, Quaggan>(0);
         }
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-            Justification = "Not a public API.")]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private Quaggan ConvertAsyncResponse(Task<IResponse<QuagganDTO>> task)
         {
             Debug.Assert(task != null, "task != null");
             return this.responseConverter.Convert(task.Result, null);
         }
 
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-            Justification = "Not a public API.")]
-        private ICollectionPage<Quaggan> ConvertAsyncResponse(
-            Task<IResponse<ICollection<QuagganDTO>>> task,
-            int pageIndex)
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private ICollectionPage<Quaggan> ConvertAsyncResponse(Task<IResponse<ICollection<QuagganDTO>>> task, int pageIndex)
         {
             Debug.Assert(task != null, "task != null");
             var values = this.pageResponseConverter.Convert(task.Result, pageIndex);

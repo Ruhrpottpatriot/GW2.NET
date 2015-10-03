@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ItemRepository.cs" company="GW2.NET Coding Team">
-//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+//   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Represents a repository that retrieves data from the /v2/items interface. See the remarks section for important limitations regarding this implementation.
@@ -51,13 +51,13 @@ namespace GW2NET.V2.Items
     public class ItemRepository : IItemRepository
     {
         private readonly IConverter<IResponse<ICollection<ItemDTO>>, IDictionaryRange<int, Item>> bulkResponseConverter;
-        
+
         private readonly IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter;
-        
+
         private readonly IConverter<IResponse<ICollection<ItemDTO>>, ICollectionPage<Item>> pageResponseConverter;
-        
+
         private readonly IConverter<IResponse<ItemDTO>, Item> responseConverter;
-        
+
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="ItemRepository"/> class.</summary>
@@ -66,7 +66,8 @@ namespace GW2NET.V2.Items
         /// <param name="responseConverter"></param>
         /// <param name="bulkResponseConverter"></param>
         /// <param name="pageResponseConverter"></param>
-        public ItemRepository(IServiceClient serviceClient,
+        public ItemRepository(
+            IServiceClient serviceClient,
             IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter,
             IConverter<IResponse<ItemDTO>, Item> responseConverter,
             IConverter<IResponse<ICollection<ItemDTO>>, IDictionaryRange<int, Item>> bulkResponseConverter,

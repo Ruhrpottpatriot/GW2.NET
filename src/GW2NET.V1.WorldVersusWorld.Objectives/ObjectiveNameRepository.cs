@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ObjectiveNameRepository.cs" company="GW2.NET Coding Team">
-//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+//   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Represents a repository that retrieves data from the /v1/wvw/objective_names.json interface.
@@ -123,7 +123,8 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
             {
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<ICollection<ObjectiveNameDTO>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, ObjectiveName>>(task =>
+            return this.serviceClient.SendAsync<ICollection<ObjectiveNameDTO>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, ObjectiveName>>(
+                task =>
             {
                 var response = task.Result;
                 if (response.Content == null)

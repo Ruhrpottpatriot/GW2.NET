@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 // <copyright file="FileRepository.cs" company="GW2.NET Coding Team">
-//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+//   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Defines the FileRepository type.
@@ -41,7 +41,8 @@ namespace GW2NET.V2.Files
         /// <param name="bulkResponseConverter"></param>
         /// <param name="pageResponseConverter"></param>
         /// <exception cref="ArgumentNullException"></exception>
-        public FileRepository(IServiceClient serviceClient,
+        public FileRepository(
+            IServiceClient serviceClient,
             IConverter<IResponse<ICollection<string>>, ICollection<string>> identifiersConverter,
             IConverter<IResponse<FileDTO>, Asset> responseConverter,
             IConverter<IResponse<ICollection<FileDTO>>, IDictionaryRange<string, Asset>> bulkResponseConverter,

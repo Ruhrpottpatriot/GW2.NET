@@ -1,4 +1,8 @@
-﻿namespace GW2NET.IntegrationTests.V1
+﻿// <copyright file="FileTests.cs" company="GW2.NET Coding Team">
+// This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
+// </copyright>
+
+namespace GW2NET.IntegrationTests.V1
 {
     using System;
     using System.Collections.Generic;
@@ -8,6 +12,11 @@
     public class FileTests
     {
         private static readonly GW2Bootstrapper GW2 = new GW2Bootstrapper();
+
+        public static IEnumerable<object[]> GetFilters()
+        {
+            yield return new object[] { new[] { "map_complete", "map_dungeon", "map_heart_empty" } };
+        }
 
         [Fact]
         public void Discover_NotSupported()
@@ -77,11 +86,6 @@
         {
             var repository = GW2.V1.Files;
             Assert.Throws<NotSupportedException>(() => repository.FindAll(filter));
-        }
-
-        public static IEnumerable<object[]> GetFilters()
-        {
-            yield return new object[] { new[] { "map_complete", "map_dungeon", "map_heart_empty" } };
         }
 
         [Theory]

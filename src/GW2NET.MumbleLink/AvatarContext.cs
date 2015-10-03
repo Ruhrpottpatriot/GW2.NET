@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="AvatarContext.cs" company="GW2.NET Coding Team">
-//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+//   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Provides contextual data about a player's avatar. Check the <see cref="AvatarContext" /> of two different players for equality to determine if the players are in the same map instance.
@@ -88,8 +88,7 @@ namespace GW2NET.MumbleLink
             return this.Equals(obj as AvatarContext);
         }
 
-        [SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode",
-            Justification = "The field is private, and no public API modifies it after it is already set.")]
+        [SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode", Justification = "The field is private, and no public API modifies it after it is already set.")]
         public override int GetHashCode()
         {
             return this.innerContext != null ? this.innerContext.GetHashCode() : 0;

@@ -11,7 +11,7 @@
 namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
 	using GW2NET.V1.WorldVersusWorld.Matches.Json;
     using GW2NET.WorldVersusWorld;
@@ -66,12 +66,12 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     {
 	    /// <inheritdoc />
         public Bloodlust Convert(MapBonusDTO value, object state)
-        {    
+        {
     		var entity = new Bloodlust();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Bloodlust' (if any)
     	partial void Merge(Bloodlust entity, MapBonusDTO dto, object state);
 
@@ -94,12 +94,12 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     {
 	    /// <inheritdoc />
         public UnknownMapBonus Convert(MapBonusDTO value, object state)
-        {    
+        {
     		var entity = new UnknownMapBonus();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownMapBonus' (if any)
     	partial void Merge(UnknownMapBonus entity, MapBonusDTO dto, object state);
 

@@ -11,7 +11,7 @@
 namespace GW2NET.V1.Items.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
     using GW2NET.Items;
     using GW2NET.V1.Items;
@@ -67,12 +67,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public SalvageTool Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new SalvageTool();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'SalvageTool' (if any)
     	partial void Merge(SalvageTool entity, ItemDTO dto, object state);
 
@@ -95,12 +95,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public UnknownTool Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new UnknownTool();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownTool' (if any)
     	partial void Merge(UnknownTool entity, ItemDTO dto, object state);
 

@@ -11,7 +11,7 @@
 namespace GW2NET.V1.Items.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
     using GW2NET.Items;
     using GW2NET.V1.Items;
@@ -67,12 +67,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public ForagingTool Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new ForagingTool();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'ForagingTool' (if any)
     	partial void Merge(ForagingTool entity, ItemDTO dto, object state);
 
@@ -95,12 +95,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public LoggingTool Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new LoggingTool();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'LoggingTool' (if any)
     	partial void Merge(LoggingTool entity, ItemDTO dto, object state);
 
@@ -123,12 +123,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public MiningTool Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new MiningTool();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'MiningTool' (if any)
     	partial void Merge(MiningTool entity, ItemDTO dto, object state);
 
@@ -151,12 +151,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public UnknownGatheringTool Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new UnknownGatheringTool();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownGatheringTool' (if any)
     	partial void Merge(UnknownGatheringTool entity, ItemDTO dto, object state);
 

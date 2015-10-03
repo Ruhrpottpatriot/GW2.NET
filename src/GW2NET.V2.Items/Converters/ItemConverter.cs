@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ItemConverter.cs" company="GW2.NET Coding Team">
-//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+//   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Converts objects of type <see cref="ItemDTO" /> to objects of type <see cref="Item" />.
@@ -32,7 +32,8 @@ namespace GW2NET.V2.Items.Converters
         /// <param name="gameTypesConverter">The converter for <see cref="GameTypes"/>.</param>
         /// <param name="itemFlagsConverter">The converter for <see cref="ItemFlags"/>.</param>
         /// <param name="itemRestrictionsConverter">The converter for <see cref="ItemRestrictions"/>.</param>
-        public ItemConverter(ITypeConverterFactory<ItemDTO, Item> converterFactory,
+        public ItemConverter(
+            ITypeConverterFactory<ItemDTO, Item> converterFactory,
             IConverter<string, ItemRarity> itemRarityConverter,
             IConverter<ICollection<string>, GameTypes> gameTypesConverter,
             IConverter<ICollection<string>, ItemFlags> itemFlagsConverter,

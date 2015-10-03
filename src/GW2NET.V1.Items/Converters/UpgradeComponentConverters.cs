@@ -11,7 +11,7 @@
 namespace GW2NET.V1.Items.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
     using GW2NET.Items;
     using GW2NET.V1.Items;
@@ -67,12 +67,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public DefaultUpgradeComponent Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new DefaultUpgradeComponent();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'DefaultUpgradeComponent' (if any)
     	partial void Merge(DefaultUpgradeComponent entity, ItemDTO dto, object state);
 
@@ -95,12 +95,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public Gem Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Gem();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Gem' (if any)
     	partial void Merge(Gem entity, ItemDTO dto, object state);
 
@@ -123,12 +123,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public Rune Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Rune();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Rune' (if any)
     	partial void Merge(Rune entity, ItemDTO dto, object state);
 
@@ -151,12 +151,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public Sigil Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Sigil();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Sigil' (if any)
     	partial void Merge(Sigil entity, ItemDTO dto, object state);
 
@@ -179,12 +179,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public UnknownUpgradeComponent Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new UnknownUpgradeComponent();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownUpgradeComponent' (if any)
     	partial void Merge(UnknownUpgradeComponent entity, ItemDTO dto, object state);
 

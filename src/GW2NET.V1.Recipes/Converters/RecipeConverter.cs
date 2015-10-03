@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="RecipeConverter.cs" company="GW2.NET Coding Team">
-//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+//   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Converts objects of type <see cref="RecipeDTO" /> to objects of type <see cref="Recipe" />.
@@ -31,7 +31,8 @@ namespace GW2NET.V1.Recipes.Converters
         /// <param name="craftingDisciplineCollectionConverter">The converter for <see cref="CraftingDisciplines"/>.</param>
         /// <param name="recipeFlagCollectionConverter">The converter for <see cref="RecipeFlags"/>.</param>
         /// <param name="itemQuantityCollectionConverter">The converter for <see cref="T:ICollection{ItemQuantity}"/>.</param>
-        public RecipeConverter(ITypeConverterFactory<RecipeDTO, Recipe> converterFactory,
+        public RecipeConverter(
+            ITypeConverterFactory<RecipeDTO, Recipe> converterFactory,
             IConverter<ICollection<string>, CraftingDisciplines> craftingDisciplineCollectionConverter,
             IConverter<ICollection<string>, RecipeFlags> recipeFlagCollectionConverter,
             IConverter<ICollection<IngredientDTO>, ICollection<ItemQuantity>> itemQuantityCollectionConverter)

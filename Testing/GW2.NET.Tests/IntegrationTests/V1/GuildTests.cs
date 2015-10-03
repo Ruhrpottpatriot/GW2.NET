@@ -1,4 +1,8 @@
-﻿namespace GW2NET.IntegrationTests.V1
+﻿// <copyright file="GuildTests.cs" company="GW2.NET Coding Team">
+// This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
+// </copyright>
+
+namespace GW2NET.IntegrationTests.V1
 {
     using System;
     using System.Collections.Generic;
@@ -8,6 +12,25 @@
     public class GuildTests
     {
         private static readonly GW2Bootstrapper GW2 = new GW2Bootstrapper();
+
+        public static IEnumerable<object[]> GetIdentifiers()
+        {
+            yield return new object[]
+            {
+                Guid.Parse("75FD83CF-0C45-4834-BC4C-097F93A487AF"),
+            };
+        }
+
+        public static IEnumerable<object[]> GetFilters()
+        {
+            yield return new object[]
+            {
+                new[]
+                {
+                    Guid.Parse("75FD83CF-0C45-4834-BC4C-097F93A487AF"),
+                }
+            };
+        }
 
         [Fact]
         public void Discover_NotSupported()
@@ -75,25 +98,6 @@
         {
             var repository = GW2.V1.Guilds;
             await Assert.ThrowsAsync<NotSupportedException>(() => repository.FindAllAsync());
-        }
-
-        public static IEnumerable<object[]> GetIdentifiers()
-        {
-            yield return new object[]
-            {
-                Guid.Parse("75FD83CF-0C45-4834-BC4C-097F93A487AF"),
-            };
-        }
-
-        public static IEnumerable<object[]> GetFilters()
-        {
-            yield return new object[]
-            {
-                new[]
-                {
-                    Guid.Parse("75FD83CF-0C45-4834-BC4C-097F93A487AF"),
-                }
-            };
         }
 
         [Theory]

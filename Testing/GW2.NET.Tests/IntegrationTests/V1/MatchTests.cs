@@ -1,4 +1,8 @@
-﻿namespace GW2NET.IntegrationTests.V1
+﻿// <copyright file="MatchTests.cs" company="GW2.NET Coding Team">
+// This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
+// </copyright>
+
+namespace GW2NET.IntegrationTests.V1
 {
     using System;
     using System.Collections.Generic;
@@ -10,6 +14,27 @@
     public class MatchTests
     {
         private static readonly GW2Bootstrapper GW2 = new GW2Bootstrapper();
+
+        public static IEnumerable<object[]> GetIdentifiers()
+        {
+            yield return new object[] { new Matchup { MatchId = "2-4" } };
+            yield return new object[] { new Matchup { MatchId = "2-2" } };
+            yield return new object[] { new Matchup { MatchId = "2-3" } };
+        }
+
+        public static IEnumerable<object[]> GetFilters()
+        {
+            yield return
+                new object[]
+                {
+                    new[]
+                    {
+                        new Matchup { MatchId = "2-4" },
+                        new Matchup { MatchId = "2-2" },
+                        new Matchup { MatchId = "2-3" },
+                    }
+                };
+        }
 
         [Fact]
         public void Discover()
@@ -61,27 +86,6 @@
         {
             var repository = GW2.V1.WorldVersusWorld.Matches;
             await Assert.ThrowsAsync<NotSupportedException>(() => repository.FindAllAsync());
-        }
-
-        public static IEnumerable<object[]> GetIdentifiers()
-        {
-            yield return new object[] { new Matchup { MatchId = "2-4" } };
-            yield return new object[] { new Matchup { MatchId = "2-2" } };
-            yield return new object[] { new Matchup { MatchId = "2-3" } };
-        }
-
-        public static IEnumerable<object[]> GetFilters()
-        {
-            yield return
-                new object[]
-                {
-                    new[]
-                    {
-                        new Matchup { MatchId = "2-4" },
-                        new Matchup { MatchId = "2-2" },
-                        new Matchup { MatchId = "2-3" },
-                    }
-                };
         }
 
         [Theory]

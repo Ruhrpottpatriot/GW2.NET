@@ -11,7 +11,7 @@
 namespace GW2NET.V2.Items.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
     using GW2NET.Items;
     using GW2NET.V2.Items;
@@ -67,12 +67,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public Boots Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Boots();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Boots' (if any)
     	partial void Merge(Boots entity, ItemDTO dto, object state);
 
@@ -95,12 +95,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public Coat Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Coat();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Coat' (if any)
     	partial void Merge(Coat entity, ItemDTO dto, object state);
 
@@ -123,12 +123,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public Gloves Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Gloves();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Gloves' (if any)
     	partial void Merge(Gloves entity, ItemDTO dto, object state);
 
@@ -151,12 +151,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public Helm Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Helm();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Helm' (if any)
     	partial void Merge(Helm entity, ItemDTO dto, object state);
 
@@ -179,12 +179,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public HelmAquatic Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new HelmAquatic();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'HelmAquatic' (if any)
     	partial void Merge(HelmAquatic entity, ItemDTO dto, object state);
 
@@ -207,12 +207,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public Leggings Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Leggings();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Leggings' (if any)
     	partial void Merge(Leggings entity, ItemDTO dto, object state);
 
@@ -235,12 +235,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public Shoulders Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Shoulders();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Shoulders' (if any)
     	partial void Merge(Shoulders entity, ItemDTO dto, object state);
 
@@ -263,12 +263,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public UnknownArmor Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new UnknownArmor();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownArmor' (if any)
     	partial void Merge(UnknownArmor entity, ItemDTO dto, object state);
 

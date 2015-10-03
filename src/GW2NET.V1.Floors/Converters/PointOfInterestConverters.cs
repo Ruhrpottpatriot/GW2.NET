@@ -11,7 +11,7 @@
 namespace GW2NET.V1.Floors.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
     using GW2NET.Maps;
     using GW2NET.V1.Floors;
@@ -67,12 +67,12 @@ namespace GW2NET.V1.Floors.Converters
     {
 	    /// <inheritdoc />
         public Dungeon Convert(PointOfInterestDTO value, object state)
-        {    
+        {
     		var entity = new Dungeon();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Dungeon' (if any)
     	partial void Merge(Dungeon entity, PointOfInterestDTO dto, object state);
 
@@ -95,12 +95,12 @@ namespace GW2NET.V1.Floors.Converters
     {
 	    /// <inheritdoc />
         public Landmark Convert(PointOfInterestDTO value, object state)
-        {    
+        {
     		var entity = new Landmark();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Landmark' (if any)
     	partial void Merge(Landmark entity, PointOfInterestDTO dto, object state);
 
@@ -123,12 +123,12 @@ namespace GW2NET.V1.Floors.Converters
     {
 	    /// <inheritdoc />
         public UnknownPointOfInterest Convert(PointOfInterestDTO value, object state)
-        {    
+        {
     		var entity = new UnknownPointOfInterest();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownPointOfInterest' (if any)
     	partial void Merge(UnknownPointOfInterest entity, PointOfInterestDTO dto, object state);
 
@@ -151,12 +151,12 @@ namespace GW2NET.V1.Floors.Converters
     {
 	    /// <inheritdoc />
         public Vista Convert(PointOfInterestDTO value, object state)
-        {    
+        {
     		var entity = new Vista();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Vista' (if any)
     	partial void Merge(Vista entity, PointOfInterestDTO dto, object state);
 
@@ -179,12 +179,12 @@ namespace GW2NET.V1.Floors.Converters
     {
 	    /// <inheritdoc />
         public Waypoint Convert(PointOfInterestDTO value, object state)
-        {    
+        {
     		var entity = new Waypoint();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Waypoint' (if any)
     	partial void Merge(Waypoint entity, PointOfInterestDTO dto, object state);
 

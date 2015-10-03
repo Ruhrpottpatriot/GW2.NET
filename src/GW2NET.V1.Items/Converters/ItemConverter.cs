@@ -1,4 +1,8 @@
-﻿namespace GW2NET.V1.Items.Converters
+﻿// <copyright file="ItemConverter.cs" company="GW2.NET Coding Team">
+// This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
+// </copyright>
+
+namespace GW2NET.V1.Items.Converters
 {
     using System;
     using System.Collections.Generic;
@@ -17,7 +21,8 @@
 
         private readonly IConverter<ICollection<string>, ItemRestrictions> itemRestrictionsConverter;
 
-        public ItemConverter(ITypeConverterFactory<ItemDTO, Item> converterFactory,
+        public ItemConverter(
+            ITypeConverterFactory<ItemDTO, Item> converterFactory,
             IConverter<string, ItemRarity> itemRarityConverter,
             IConverter<ICollection<string>, GameTypes> gameTypesConverter,
             IConverter<ICollection<string>, ItemFlags> itemFlagsConverter,
@@ -48,7 +53,7 @@
             {
                 throw new ArgumentNullException("itemRestrictionsConverter");
             }
-            
+
             this.itemRarityConverter = itemRarityConverter;
             this.gameTypesConverter = gameTypesConverter;
             this.itemFlagsConverter = itemFlagsConverter;

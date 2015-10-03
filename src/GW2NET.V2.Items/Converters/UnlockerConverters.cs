@@ -11,7 +11,7 @@
 namespace GW2NET.V2.Items.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
     using GW2NET.Items;
     using GW2NET.V2.Items;
@@ -67,12 +67,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public BagSlotUnlocker Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new BagSlotUnlocker();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'BagSlotUnlocker' (if any)
     	partial void Merge(BagSlotUnlocker entity, ItemDTO dto, object state);
 
@@ -95,12 +95,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public BankTabUnlocker Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new BankTabUnlocker();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'BankTabUnlocker' (if any)
     	partial void Merge(BankTabUnlocker entity, ItemDTO dto, object state);
 
@@ -123,12 +123,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public CollectibleCapacityUnlocker Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new CollectibleCapacityUnlocker();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'CollectibleCapacityUnlocker' (if any)
     	partial void Merge(CollectibleCapacityUnlocker entity, ItemDTO dto, object state);
 
@@ -151,12 +151,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public ContentUnlocker Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new ContentUnlocker();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'ContentUnlocker' (if any)
     	partial void Merge(ContentUnlocker entity, ItemDTO dto, object state);
 
@@ -179,12 +179,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public CraftingRecipeUnlocker Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new CraftingRecipeUnlocker();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'CraftingRecipeUnlocker' (if any)
     	partial void Merge(CraftingRecipeUnlocker entity, ItemDTO dto, object state);
 
@@ -207,12 +207,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public DyeUnlocker Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new DyeUnlocker();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'DyeUnlocker' (if any)
     	partial void Merge(DyeUnlocker entity, ItemDTO dto, object state);
 
@@ -235,12 +235,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public UnknownUnlocker Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new UnknownUnlocker();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownUnlocker' (if any)
     	partial void Merge(UnknownUnlocker entity, ItemDTO dto, object state);
 

@@ -11,7 +11,7 @@
 namespace GW2NET.V1.Recipes.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
     using GW2NET.Recipes;
     using GW2NET.V1.Recipes.Json;
@@ -66,12 +66,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public AmuletRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new AmuletRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'AmuletRecipe' (if any)
     	partial void Merge(AmuletRecipe entity, RecipeDTO dto, object state);
 
@@ -94,12 +94,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public AxeRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new AxeRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'AxeRecipe' (if any)
     	partial void Merge(AxeRecipe entity, RecipeDTO dto, object state);
 
@@ -122,12 +122,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public BackpackRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new BackpackRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'BackpackRecipe' (if any)
     	partial void Merge(BackpackRecipe entity, RecipeDTO dto, object state);
 
@@ -150,12 +150,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public BagRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new BagRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'BagRecipe' (if any)
     	partial void Merge(BagRecipe entity, RecipeDTO dto, object state);
 
@@ -178,12 +178,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public BootsRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new BootsRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'BootsRecipe' (if any)
     	partial void Merge(BootsRecipe entity, RecipeDTO dto, object state);
 
@@ -206,12 +206,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public BulkRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new BulkRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'BulkRecipe' (if any)
     	partial void Merge(BulkRecipe entity, RecipeDTO dto, object state);
 
@@ -234,12 +234,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public CoatRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new CoatRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'CoatRecipe' (if any)
     	partial void Merge(CoatRecipe entity, RecipeDTO dto, object state);
 
@@ -262,12 +262,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public ComponentRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new ComponentRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'ComponentRecipe' (if any)
     	partial void Merge(ComponentRecipe entity, RecipeDTO dto, object state);
 
@@ -290,12 +290,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public ConsumableRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new ConsumableRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'ConsumableRecipe' (if any)
     	partial void Merge(ConsumableRecipe entity, RecipeDTO dto, object state);
 
@@ -318,12 +318,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public DaggerRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new DaggerRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'DaggerRecipe' (if any)
     	partial void Merge(DaggerRecipe entity, RecipeDTO dto, object state);
 
@@ -346,12 +346,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public DessertRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new DessertRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'DessertRecipe' (if any)
     	partial void Merge(DessertRecipe entity, RecipeDTO dto, object state);
 
@@ -374,12 +374,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public DyeRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new DyeRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'DyeRecipe' (if any)
     	partial void Merge(DyeRecipe entity, RecipeDTO dto, object state);
 
@@ -402,12 +402,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public EarringRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new EarringRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'EarringRecipe' (if any)
     	partial void Merge(EarringRecipe entity, RecipeDTO dto, object state);
 
@@ -430,12 +430,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public FeastRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new FeastRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'FeastRecipe' (if any)
     	partial void Merge(FeastRecipe entity, RecipeDTO dto, object state);
 
@@ -458,12 +458,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public FocusRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new FocusRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'FocusRecipe' (if any)
     	partial void Merge(FocusRecipe entity, RecipeDTO dto, object state);
 
@@ -486,12 +486,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public GlovesRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new GlovesRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'GlovesRecipe' (if any)
     	partial void Merge(GlovesRecipe entity, RecipeDTO dto, object state);
 
@@ -514,12 +514,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public GreatSwordRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new GreatSwordRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'GreatSwordRecipe' (if any)
     	partial void Merge(GreatSwordRecipe entity, RecipeDTO dto, object state);
 
@@ -542,12 +542,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public HammerRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new HammerRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'HammerRecipe' (if any)
     	partial void Merge(HammerRecipe entity, RecipeDTO dto, object state);
 
@@ -570,12 +570,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public HarpoonRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new HarpoonRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'HarpoonRecipe' (if any)
     	partial void Merge(HarpoonRecipe entity, RecipeDTO dto, object state);
 
@@ -598,12 +598,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public HelmRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new HelmRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'HelmRecipe' (if any)
     	partial void Merge(HelmRecipe entity, RecipeDTO dto, object state);
 
@@ -626,12 +626,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public IngredientCookingRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new IngredientCookingRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'IngredientCookingRecipe' (if any)
     	partial void Merge(IngredientCookingRecipe entity, RecipeDTO dto, object state);
 
@@ -654,12 +654,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public InscriptionRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new InscriptionRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'InscriptionRecipe' (if any)
     	partial void Merge(InscriptionRecipe entity, RecipeDTO dto, object state);
 
@@ -682,12 +682,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public InsigniaRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new InsigniaRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'InsigniaRecipe' (if any)
     	partial void Merge(InsigniaRecipe entity, RecipeDTO dto, object state);
 
@@ -710,12 +710,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public LeggingsRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new LeggingsRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'LeggingsRecipe' (if any)
     	partial void Merge(LeggingsRecipe entity, RecipeDTO dto, object state);
 
@@ -738,12 +738,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public LongBowRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new LongBowRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'LongBowRecipe' (if any)
     	partial void Merge(LongBowRecipe entity, RecipeDTO dto, object state);
 
@@ -766,12 +766,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public MaceRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new MaceRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'MaceRecipe' (if any)
     	partial void Merge(MaceRecipe entity, RecipeDTO dto, object state);
 
@@ -794,12 +794,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public MealRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new MealRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'MealRecipe' (if any)
     	partial void Merge(MealRecipe entity, RecipeDTO dto, object state);
 
@@ -822,12 +822,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public PistolRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new PistolRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'PistolRecipe' (if any)
     	partial void Merge(PistolRecipe entity, RecipeDTO dto, object state);
 
@@ -850,12 +850,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public PotionRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new PotionRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'PotionRecipe' (if any)
     	partial void Merge(PotionRecipe entity, RecipeDTO dto, object state);
 
@@ -878,12 +878,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public RefinementEctoplasmRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new RefinementEctoplasmRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'RefinementEctoplasmRecipe' (if any)
     	partial void Merge(RefinementEctoplasmRecipe entity, RecipeDTO dto, object state);
 
@@ -906,12 +906,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public RefinementObsidianRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new RefinementObsidianRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'RefinementObsidianRecipe' (if any)
     	partial void Merge(RefinementObsidianRecipe entity, RecipeDTO dto, object state);
 
@@ -934,12 +934,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public RefinementRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new RefinementRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'RefinementRecipe' (if any)
     	partial void Merge(RefinementRecipe entity, RecipeDTO dto, object state);
 
@@ -962,12 +962,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public RifleRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new RifleRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'RifleRecipe' (if any)
     	partial void Merge(RifleRecipe entity, RecipeDTO dto, object state);
 
@@ -990,12 +990,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public RingRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new RingRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'RingRecipe' (if any)
     	partial void Merge(RingRecipe entity, RecipeDTO dto, object state);
 
@@ -1018,12 +1018,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public ScepterRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new ScepterRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'ScepterRecipe' (if any)
     	partial void Merge(ScepterRecipe entity, RecipeDTO dto, object state);
 
@@ -1046,12 +1046,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public SeasoningRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new SeasoningRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'SeasoningRecipe' (if any)
     	partial void Merge(SeasoningRecipe entity, RecipeDTO dto, object state);
 
@@ -1074,12 +1074,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public ShieldRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new ShieldRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'ShieldRecipe' (if any)
     	partial void Merge(ShieldRecipe entity, RecipeDTO dto, object state);
 
@@ -1102,12 +1102,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public ShortBowRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new ShortBowRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'ShortBowRecipe' (if any)
     	partial void Merge(ShortBowRecipe entity, RecipeDTO dto, object state);
 
@@ -1130,12 +1130,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public ShouldersRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new ShouldersRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'ShouldersRecipe' (if any)
     	partial void Merge(ShouldersRecipe entity, RecipeDTO dto, object state);
 
@@ -1158,12 +1158,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public SnackRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new SnackRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'SnackRecipe' (if any)
     	partial void Merge(SnackRecipe entity, RecipeDTO dto, object state);
 
@@ -1186,12 +1186,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public SoupRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new SoupRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'SoupRecipe' (if any)
     	partial void Merge(SoupRecipe entity, RecipeDTO dto, object state);
 
@@ -1214,12 +1214,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public SpearGunRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new SpearGunRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'SpearGunRecipe' (if any)
     	partial void Merge(SpearGunRecipe entity, RecipeDTO dto, object state);
 
@@ -1242,12 +1242,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public StaffRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new StaffRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'StaffRecipe' (if any)
     	partial void Merge(StaffRecipe entity, RecipeDTO dto, object state);
 
@@ -1270,12 +1270,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public SwordRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new SwordRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'SwordRecipe' (if any)
     	partial void Merge(SwordRecipe entity, RecipeDTO dto, object state);
 
@@ -1298,12 +1298,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public TorchRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new TorchRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'TorchRecipe' (if any)
     	partial void Merge(TorchRecipe entity, RecipeDTO dto, object state);
 
@@ -1326,12 +1326,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public TridentRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new TridentRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'TridentRecipe' (if any)
     	partial void Merge(TridentRecipe entity, RecipeDTO dto, object state);
 
@@ -1354,12 +1354,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public UnknownRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new UnknownRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownRecipe' (if any)
     	partial void Merge(UnknownRecipe entity, RecipeDTO dto, object state);
 
@@ -1382,12 +1382,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public UpgradeComponentRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new UpgradeComponentRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UpgradeComponentRecipe' (if any)
     	partial void Merge(UpgradeComponentRecipe entity, RecipeDTO dto, object state);
 
@@ -1410,12 +1410,12 @@ namespace GW2NET.V1.Recipes.Converters
     {
 	    /// <inheritdoc />
         public WarHornRecipe Convert(RecipeDTO value, object state)
-        {    
+        {
     		var entity = new WarHornRecipe();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'WarHornRecipe' (if any)
     	partial void Merge(WarHornRecipe entity, RecipeDTO dto, object state);
 

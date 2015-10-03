@@ -11,7 +11,7 @@
 namespace <#= ns #>
 {
     using System;
-    
+
     using GW2NET.Common;
     using GW2NET.Recipes;
     using GW2NET.V2.Recipes;
@@ -72,12 +72,12 @@ namespace <#= ns #>
     {
 	    /// <inheritdoc />
         public <#= targetType.Name #> Convert(<#= sourceType #> value, object state)
-        {    
+        {
     		var entity = new <#= targetType.Name #>();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to '<#= targetType.Name #>' (if any)
     	partial void Merge(<#= targetType.Name #> entity, <#= sourceType #> dto, object state);
 

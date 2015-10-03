@@ -11,7 +11,7 @@
 namespace GW2NET.V2.Items.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
     using GW2NET.Items;
     using GW2NET.V2.Items;
@@ -67,12 +67,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public Backpack Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Backpack();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Backpack' (if any)
     	partial void Merge(Backpack entity, ItemDTO dto, object state);
 
@@ -95,12 +95,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public Bag Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Bag();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Bag' (if any)
     	partial void Merge(Bag entity, ItemDTO dto, object state);
 
@@ -123,12 +123,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public CraftingMaterial Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new CraftingMaterial();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'CraftingMaterial' (if any)
     	partial void Merge(CraftingMaterial entity, ItemDTO dto, object state);
 
@@ -151,12 +151,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public Miniature Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Miniature();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Miniature' (if any)
     	partial void Merge(Miniature entity, ItemDTO dto, object state);
 
@@ -179,12 +179,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public TraitGuide Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new TraitGuide();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'TraitGuide' (if any)
     	partial void Merge(TraitGuide entity, ItemDTO dto, object state);
 
@@ -207,12 +207,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public Trophy Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Trophy();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Trophy' (if any)
     	partial void Merge(Trophy entity, ItemDTO dto, object state);
 
@@ -235,12 +235,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public UnknownItem Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new UnknownItem();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownItem' (if any)
     	partial void Merge(UnknownItem entity, ItemDTO dto, object state);
 

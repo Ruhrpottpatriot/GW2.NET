@@ -1,4 +1,8 @@
-﻿namespace GW2NET.V2.Items.Json
+﻿// <copyright file="DetailsDTO.cs" company="GW2.NET Coding Team">
+// This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
+// </copyright>
+
+namespace GW2NET.V2.Items.Json
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -7,8 +11,7 @@
     /// <summary>Defines the <see cref="DetailsDTO" /> type.</summary>
     /// <content>Contains data contract properties for all items.</content>
     [DataContract]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-        Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     public sealed partial class DetailsDTO
     {
         /// <summary>Gets or sets the type.</summary>
@@ -18,8 +21,7 @@
 
     /// <summary>Defines the <see cref="DetailsDTO" /> type.</summary>
     /// <content>Contains data contract properties for upgradable items.</content>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-        Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     public sealed partial class DetailsDTO
     {
         [DataMember(Name = "defense", Order = 2)]
@@ -37,8 +39,7 @@
 
     /// <summary>Defines the <see cref="DetailsDTO" /> type.</summary>
     /// <content>Contains data contract properties for upgrade items.</content>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-        Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     public sealed partial class DetailsDTO
     {
         [DataMember(Name = "infix_upgrade", Order = 4)]
@@ -47,8 +48,7 @@
 
     /// <summary>Defines the <see cref="DetailsDTO" /> type.</summary>
     /// <content>Contains data contract properties for armor items.</content>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-        Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     public sealed partial class DetailsDTO
     {
         [DataMember(Name = "weight_class", Order = 1)]
@@ -57,8 +57,7 @@
 
     /// <summary>Defines the <see cref="DetailsDTO" /> type.</summary>
     /// <content>Contains data contract properties for bag items.</content>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-        Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     public sealed partial class DetailsDTO
     {
         [DataMember(Name = "no_sell_or_sort", Order = 0)]
@@ -70,8 +69,7 @@
 
     /// <summary>Defines the <see cref="DetailsDTO" /> type.</summary>
     /// <content>Contains data contract properties for consumable items.</content>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-        Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     public sealed partial class DetailsDTO
     {
         [DataMember(Name = "color_id", Order = 2)]
@@ -92,8 +90,7 @@
 
     /// <summary>Defines the <see cref="DetailsDTO" /> type.</summary>
     /// <content>Contains data contract properties for tool items.</content>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-        Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     public sealed partial class DetailsDTO
     {
         [DataMember(Name = "charges", Order = 1)]
@@ -102,8 +99,7 @@
 
     /// <summary>Defines the <see cref="DetailsDTO" /> type.</summary>
     /// <content>Contains data contract properties for upgrade component items.</content>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-        Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     public sealed partial class DetailsDTO
     {
         [DataMember(Name = "bonuses", Order = 3)]
@@ -121,8 +117,7 @@
 
     /// <summary>Defines the <see cref="DetailsDTO" /> type.</summary>
     /// <content>Contains data contract properties for weapon items.</content>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-        Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     public sealed partial class DetailsDTO
     {
         [DataMember(Name = "damage_type", Order = 1)]

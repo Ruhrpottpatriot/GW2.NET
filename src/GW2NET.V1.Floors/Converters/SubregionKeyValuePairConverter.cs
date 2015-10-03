@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="SubregionKeyValuePairConverter.cs" company="GW2.NET Coding Team">
-//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+//   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Converts objects of type <see cref="T:KeyValuePair{string, SubregionDTO}" /> to objects of type <see cref="T:KeyValuePair{int, Subregion}" />.
@@ -39,8 +39,8 @@ namespace GW2NET.V1.Floors.Converters
         {
             var key = value.Key;
             var dataContract = value.Value;
-            Debug.Assert(key != null);
-            Debug.Assert(dataContract != null);
+            Debug.Assert(key != null, "key != null");
+            Debug.Assert(dataContract != null, "dataContract != null");
             int id;
             if (!int.TryParse(key, out id))
             {

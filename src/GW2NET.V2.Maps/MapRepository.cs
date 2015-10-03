@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="MapRepository.cs" company="GW2.NET Coding Team">
-//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+//   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Defines the MapRepository type.
@@ -45,7 +45,8 @@ namespace GW2NET.V2.Maps
         /// <param name="bulkResponseConverter"></param>
         /// <param name="pageResponseConverter"></param>
         /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="bulkResponseConverter"/> or <paramref name="responseConverter"/> is a null reference.</exception>
-        public MapRepository(IServiceClient serviceClient,
+        public MapRepository(
+            IServiceClient serviceClient,
             IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter,
             IConverter<IResponse<MapDTO>, Map> responseConverter,
             IConverter<IResponse<ICollection<MapDTO>>, IDictionaryRange<int, Map>> bulkResponseConverter,

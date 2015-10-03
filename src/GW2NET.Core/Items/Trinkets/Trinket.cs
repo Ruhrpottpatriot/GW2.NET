@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Trinket.cs" company="GW2.NET Coding Team">
-//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+//   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Provides the base class for trinket types.
@@ -60,8 +60,8 @@ namespace GW2NET.Items
         {
             return new ItemChatLink
             {
-                ItemId = this.ItemId, 
-                SuffixItemId = this.SuffixItemId, 
+                ItemId = this.ItemId,
+                SuffixItemId = this.SuffixItemId,
                 SecondarySuffixItemId = this.SecondarySuffixItemId
             };
         }

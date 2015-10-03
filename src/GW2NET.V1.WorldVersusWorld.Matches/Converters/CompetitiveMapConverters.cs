@@ -11,7 +11,7 @@
 namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
 	using GW2NET.V1.WorldVersusWorld.Matches.Json;
     using GW2NET.WorldVersusWorld;
@@ -66,12 +66,12 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     {
 	    /// <inheritdoc />
         public BlueBorderlands Convert(CompetitiveMapDTO value, object state)
-        {    
+        {
     		var entity = new BlueBorderlands();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'BlueBorderlands' (if any)
     	partial void Merge(BlueBorderlands entity, CompetitiveMapDTO dto, object state);
 
@@ -94,12 +94,12 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     {
 	    /// <inheritdoc />
         public EternalBattlegrounds Convert(CompetitiveMapDTO value, object state)
-        {    
+        {
     		var entity = new EternalBattlegrounds();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'EternalBattlegrounds' (if any)
     	partial void Merge(EternalBattlegrounds entity, CompetitiveMapDTO dto, object state);
 
@@ -122,12 +122,12 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     {
 	    /// <inheritdoc />
         public GreenBorderlands Convert(CompetitiveMapDTO value, object state)
-        {    
+        {
     		var entity = new GreenBorderlands();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'GreenBorderlands' (if any)
     	partial void Merge(GreenBorderlands entity, CompetitiveMapDTO dto, object state);
 
@@ -150,12 +150,12 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     {
 	    /// <inheritdoc />
         public RedBorderlands Convert(CompetitiveMapDTO value, object state)
-        {    
+        {
     		var entity = new RedBorderlands();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'RedBorderlands' (if any)
     	partial void Merge(RedBorderlands entity, CompetitiveMapDTO dto, object state);
 
@@ -178,12 +178,12 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     {
 	    /// <inheritdoc />
         public UnknownCompetitiveMap Convert(CompetitiveMapDTO value, object state)
-        {    
+        {
     		var entity = new UnknownCompetitiveMap();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownCompetitiveMap' (if any)
     	partial void Merge(UnknownCompetitiveMap entity, CompetitiveMapDTO dto, object state);
 

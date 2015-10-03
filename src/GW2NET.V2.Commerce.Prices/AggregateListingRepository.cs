@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="AggregateListingRepository.cs" company="GW2.NET Coding Team">
-//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+//   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Represents a repository that retrieves data from the /v2/commerce/prices interface. See the remarks section for important limitations regarding this implementation.
@@ -36,13 +36,13 @@ namespace GW2NET.V2.Commerce.Prices
     public class AggregateListingRepository : IAggregateListingRepository
     {
         private readonly IConverter<IResponse<ICollection<AggregateListingDTO>>, IDictionaryRange<int, AggregateListing>> bulkResponseConverter;
-        
+
         private readonly IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter;
-        
+
         private readonly IConverter<IResponse<ICollection<AggregateListingDTO>>, ICollectionPage<AggregateListing>> pageResponseConverter;
-        
+
         private readonly IConverter<IResponse<AggregateListingDTO>, AggregateListing> responseConverter;
-        
+
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="AggregateListingRepository"/> class.</summary>
@@ -52,10 +52,10 @@ namespace GW2NET.V2.Commerce.Prices
         /// <param name="bulkResponseConverter"></param>
         /// <param name="pageResponseConverter"></param>
         public AggregateListingRepository(
-            IServiceClient serviceClient, 
+            IServiceClient serviceClient,
             IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter,
             IConverter<IResponse<AggregateListingDTO>, AggregateListing> responseConverter,
-            IConverter<IResponse<ICollection<AggregateListingDTO>>, IDictionaryRange<int, AggregateListing>> bulkResponseConverter, 
+            IConverter<IResponse<ICollection<AggregateListingDTO>>, IDictionaryRange<int, AggregateListing>> bulkResponseConverter,
             IConverter<IResponse<ICollection<AggregateListingDTO>>, ICollectionPage<AggregateListing>> pageResponseConverter)
         {
             if (serviceClient == null)

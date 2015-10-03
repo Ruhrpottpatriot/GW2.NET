@@ -11,7 +11,7 @@
 namespace GW2NET.V2.Items.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
     using GW2NET.Items;
     using GW2NET.V2.Items;
@@ -67,12 +67,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public DefaultContainer Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new DefaultContainer();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'DefaultContainer' (if any)
     	partial void Merge(DefaultContainer entity, ItemDTO dto, object state);
 
@@ -95,12 +95,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public GiftBox Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new GiftBox();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'GiftBox' (if any)
     	partial void Merge(GiftBox entity, ItemDTO dto, object state);
 
@@ -123,12 +123,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public OpenUiContainer Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new OpenUiContainer();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'OpenUiContainer' (if any)
     	partial void Merge(OpenUiContainer entity, ItemDTO dto, object state);
 
@@ -151,12 +151,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public UnknownContainer Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new UnknownContainer();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownContainer' (if any)
     	partial void Merge(UnknownContainer entity, ItemDTO dto, object state);
 

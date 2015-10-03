@@ -1,4 +1,8 @@
-﻿namespace GW2NET.MumbleLink.Converters
+﻿// <copyright file="AvatarConverter.cs" company="GW2.NET Coding Team">
+// This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
+// </copyright>
+
+namespace GW2NET.MumbleLink.Converters
 {
     using System;
     using System.IO;
@@ -14,16 +18,16 @@
     public sealed class AvatarConverter : IConverter<AvatarDTO, Avatar>
     {
         private static readonly DataContractJsonSerializer JsonSerializer = new DataContractJsonSerializer(typeof(IdentityDTO));
-       
+
         private readonly IConverter<MumbleContext, AvatarContext> avatarContextConverter;
 
         private readonly IConverter<IdentityDTO, Identity> identityConverter;
 
-        private readonly IConverter<float[], Vector3D> vector3DConverter; 
+        private readonly IConverter<float[], Vector3D> vector3DConverter;
 
         public AvatarConverter(
             IConverter<MumbleContext, AvatarContext> avatarContextConverter,
-            IConverter<IdentityDTO, Identity> identityConverter, 
+            IConverter<IdentityDTO, Identity> identityConverter,
             IConverter<float[], Vector3D> vector3DConverter)
         {
             if (avatarContextConverter == null)

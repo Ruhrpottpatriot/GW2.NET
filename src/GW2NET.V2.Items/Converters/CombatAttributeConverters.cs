@@ -11,7 +11,7 @@
 namespace GW2NET.V2.Items.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
     using GW2NET.Items;
     using GW2NET.V2.Items;
@@ -67,12 +67,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public ConditionDamageModifier Convert(AttributeDTO value, object state)
-        {    
+        {
     		var entity = new ConditionDamageModifier();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'ConditionDamageModifier' (if any)
     	partial void Merge(ConditionDamageModifier entity, AttributeDTO dto, object state);
 
@@ -95,12 +95,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public FerocityModifier Convert(AttributeDTO value, object state)
-        {    
+        {
     		var entity = new FerocityModifier();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'FerocityModifier' (if any)
     	partial void Merge(FerocityModifier entity, AttributeDTO dto, object state);
 
@@ -123,12 +123,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public HealingModifier Convert(AttributeDTO value, object state)
-        {    
+        {
     		var entity = new HealingModifier();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'HealingModifier' (if any)
     	partial void Merge(HealingModifier entity, AttributeDTO dto, object state);
 
@@ -151,12 +151,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public PowerModifier Convert(AttributeDTO value, object state)
-        {    
+        {
     		var entity = new PowerModifier();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'PowerModifier' (if any)
     	partial void Merge(PowerModifier entity, AttributeDTO dto, object state);
 
@@ -179,12 +179,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public PrecisionModifier Convert(AttributeDTO value, object state)
-        {    
+        {
     		var entity = new PrecisionModifier();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'PrecisionModifier' (if any)
     	partial void Merge(PrecisionModifier entity, AttributeDTO dto, object state);
 
@@ -207,12 +207,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public ToughnessModifier Convert(AttributeDTO value, object state)
-        {    
+        {
     		var entity = new ToughnessModifier();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'ToughnessModifier' (if any)
     	partial void Merge(ToughnessModifier entity, AttributeDTO dto, object state);
 
@@ -235,12 +235,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public UnknownModifier Convert(AttributeDTO value, object state)
-        {    
+        {
     		var entity = new UnknownModifier();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownModifier' (if any)
     	partial void Merge(UnknownModifier entity, AttributeDTO dto, object state);
 
@@ -263,12 +263,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public VitalityModifier Convert(AttributeDTO value, object state)
-        {    
+        {
     		var entity = new VitalityModifier();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'VitalityModifier' (if any)
     	partial void Merge(VitalityModifier entity, AttributeDTO dto, object state);
 

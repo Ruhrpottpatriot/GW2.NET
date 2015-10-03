@@ -11,7 +11,7 @@
 namespace GW2NET.V2.Items.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
     using GW2NET.Items;
     using GW2NET.V2.Items;
@@ -67,12 +67,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public ContainerKey Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new ContainerKey();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'ContainerKey' (if any)
     	partial void Merge(ContainerKey entity, ItemDTO dto, object state);
 
@@ -95,12 +95,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public DefaultGizmo Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new DefaultGizmo();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'DefaultGizmo' (if any)
     	partial void Merge(DefaultGizmo entity, ItemDTO dto, object state);
 
@@ -123,12 +123,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public RentableContractNpc Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new RentableContractNpc();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'RentableContractNpc' (if any)
     	partial void Merge(RentableContractNpc entity, ItemDTO dto, object state);
 
@@ -151,12 +151,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public UnknownGizmo Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new UnknownGizmo();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownGizmo' (if any)
     	partial void Merge(UnknownGizmo entity, ItemDTO dto, object state);
 
@@ -179,12 +179,12 @@ namespace GW2NET.V2.Items.Converters
     {
 	    /// <inheritdoc />
         public UnlimitedConsumable Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new UnlimitedConsumable();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnlimitedConsumable' (if any)
     	partial void Merge(UnlimitedConsumable entity, ItemDTO dto, object state);
 

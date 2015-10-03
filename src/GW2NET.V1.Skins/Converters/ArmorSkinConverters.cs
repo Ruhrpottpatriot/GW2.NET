@@ -11,7 +11,7 @@
 namespace GW2NET.V1.Skins.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
     using GW2NET.Skins;
     using GW2NET.V1.Skins.Json;
@@ -66,12 +66,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public BootsSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new BootsSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'BootsSkin' (if any)
     	partial void Merge(BootsSkin entity, SkinDTO dto, object state);
 
@@ -94,12 +94,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public CoatSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new CoatSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'CoatSkin' (if any)
     	partial void Merge(CoatSkin entity, SkinDTO dto, object state);
 
@@ -122,12 +122,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public GlovesSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new GlovesSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'GlovesSkin' (if any)
     	partial void Merge(GlovesSkin entity, SkinDTO dto, object state);
 
@@ -150,12 +150,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public HelmAquaticSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new HelmAquaticSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'HelmAquaticSkin' (if any)
     	partial void Merge(HelmAquaticSkin entity, SkinDTO dto, object state);
 
@@ -178,12 +178,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public HelmSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new HelmSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'HelmSkin' (if any)
     	partial void Merge(HelmSkin entity, SkinDTO dto, object state);
 
@@ -206,12 +206,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public LeggingsSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new LeggingsSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'LeggingsSkin' (if any)
     	partial void Merge(LeggingsSkin entity, SkinDTO dto, object state);
 
@@ -234,12 +234,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public ShouldersSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new ShouldersSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'ShouldersSkin' (if any)
     	partial void Merge(ShouldersSkin entity, SkinDTO dto, object state);
 
@@ -262,12 +262,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public UnknownArmorSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new UnknownArmorSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownArmorSkin' (if any)
     	partial void Merge(UnknownArmorSkin entity, SkinDTO dto, object state);
 

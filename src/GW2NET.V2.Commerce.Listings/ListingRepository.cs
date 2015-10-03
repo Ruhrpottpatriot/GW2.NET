@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ListingRepository.cs" company="GW2.NET Coding Team">
-//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+//   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Represents a repository that retrieves data from the /v2/commerce/listings interface. See the remarks section for important limitations regarding this implementation.
@@ -34,7 +34,7 @@ namespace GW2NET.V2.Commerce.Listings
     /// </list>
     /// </remarks>
     public class ListingRepository : IListingRepository
-    { 
+    {
         private readonly IConverter<IResponse<ICollection<ListingDTO>>, IDictionaryRange<int, Listing>> bulkResponseConverter;
 
         private readonly IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter;
@@ -53,10 +53,10 @@ namespace GW2NET.V2.Commerce.Listings
         /// <param name="pageResponseConverter"></param>
         /// <exception cref="ArgumentNullException"></exception>
         public ListingRepository(
-            IServiceClient serviceClient, 
+            IServiceClient serviceClient,
             IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter,
-            IConverter<IResponse<ListingDTO>, Listing> responseConverter, 
-            IConverter<IResponse<ICollection<ListingDTO>>, IDictionaryRange<int, Listing>> bulkResponseConverter, 
+            IConverter<IResponse<ListingDTO>, Listing> responseConverter,
+            IConverter<IResponse<ICollection<ListingDTO>>, IDictionaryRange<int, Listing>> bulkResponseConverter,
             IConverter<IResponse<ICollection<ListingDTO>>, ICollectionPage<Listing>> pageResponseConverter)
         {
             if (serviceClient == null)

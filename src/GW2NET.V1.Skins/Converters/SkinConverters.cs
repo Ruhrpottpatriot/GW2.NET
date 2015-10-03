@@ -11,7 +11,7 @@
 namespace GW2NET.V1.Skins.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
     using GW2NET.Skins;
     using GW2NET.V1.Skins.Json;
@@ -66,12 +66,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public BackpackSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new BackpackSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'BackpackSkin' (if any)
     	partial void Merge(BackpackSkin entity, SkinDTO dto, object state);
 
@@ -94,12 +94,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public UnknownSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new UnknownSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownSkin' (if any)
     	partial void Merge(UnknownSkin entity, SkinDTO dto, object state);
 

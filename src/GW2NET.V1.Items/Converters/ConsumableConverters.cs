@@ -11,7 +11,7 @@
 namespace GW2NET.V1.Items.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
     using GW2NET.Items;
     using GW2NET.V1.Items;
@@ -67,12 +67,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public Alcohol Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Alcohol();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Alcohol' (if any)
     	partial void Merge(Alcohol entity, ItemDTO dto, object state);
 
@@ -95,12 +95,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public AppearanceChanger Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new AppearanceChanger();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'AppearanceChanger' (if any)
     	partial void Merge(AppearanceChanger entity, ItemDTO dto, object state);
 
@@ -123,12 +123,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public ContractNpc Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new ContractNpc();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'ContractNpc' (if any)
     	partial void Merge(ContractNpc entity, ItemDTO dto, object state);
 
@@ -151,12 +151,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public Food Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Food();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Food' (if any)
     	partial void Merge(Food entity, ItemDTO dto, object state);
 
@@ -179,12 +179,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public GenericConsumable Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new GenericConsumable();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'GenericConsumable' (if any)
     	partial void Merge(GenericConsumable entity, ItemDTO dto, object state);
 
@@ -207,12 +207,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public HalloweenConsumable Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new HalloweenConsumable();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'HalloweenConsumable' (if any)
     	partial void Merge(HalloweenConsumable entity, ItemDTO dto, object state);
 
@@ -235,12 +235,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public ImmediateConsumable Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new ImmediateConsumable();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'ImmediateConsumable' (if any)
     	partial void Merge(ImmediateConsumable entity, ItemDTO dto, object state);
 
@@ -263,12 +263,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public Transmutation Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Transmutation();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Transmutation' (if any)
     	partial void Merge(Transmutation entity, ItemDTO dto, object state);
 
@@ -291,12 +291,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public UnknownConsumable Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new UnknownConsumable();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownConsumable' (if any)
     	partial void Merge(UnknownConsumable entity, ItemDTO dto, object state);
 
@@ -319,12 +319,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public UnTransmutation Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new UnTransmutation();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnTransmutation' (if any)
     	partial void Merge(UnTransmutation entity, ItemDTO dto, object state);
 
@@ -347,12 +347,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public UpgradeRemoval Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new UpgradeRemoval();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UpgradeRemoval' (if any)
     	partial void Merge(UpgradeRemoval entity, ItemDTO dto, object state);
 
@@ -375,12 +375,12 @@ namespace GW2NET.V1.Items.Converters
     {
 	    /// <inheritdoc />
         public Utility Convert(ItemDTO value, object state)
-        {    
+        {
     		var entity = new Utility();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'Utility' (if any)
     	partial void Merge(Utility entity, ItemDTO dto, object state);
 

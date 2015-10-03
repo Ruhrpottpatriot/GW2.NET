@@ -11,7 +11,7 @@
 namespace GW2NET.V1.Skins.Converters
 {
     using System;
-    
+
     using GW2NET.Common;
     using GW2NET.Skins;
     using GW2NET.V1.Skins.Json;
@@ -66,12 +66,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public AxeSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new AxeSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'AxeSkin' (if any)
     	partial void Merge(AxeSkin entity, SkinDTO dto, object state);
 
@@ -94,12 +94,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public DaggerSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new DaggerSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'DaggerSkin' (if any)
     	partial void Merge(DaggerSkin entity, SkinDTO dto, object state);
 
@@ -122,12 +122,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public FocusSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new FocusSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'FocusSkin' (if any)
     	partial void Merge(FocusSkin entity, SkinDTO dto, object state);
 
@@ -150,12 +150,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public GreatSwordSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new GreatSwordSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'GreatSwordSkin' (if any)
     	partial void Merge(GreatSwordSkin entity, SkinDTO dto, object state);
 
@@ -178,12 +178,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public HammerSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new HammerSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'HammerSkin' (if any)
     	partial void Merge(HammerSkin entity, SkinDTO dto, object state);
 
@@ -206,12 +206,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public HarpoonSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new HarpoonSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'HarpoonSkin' (if any)
     	partial void Merge(HarpoonSkin entity, SkinDTO dto, object state);
 
@@ -234,12 +234,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public LargeBundleSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new LargeBundleSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'LargeBundleSkin' (if any)
     	partial void Merge(LargeBundleSkin entity, SkinDTO dto, object state);
 
@@ -262,12 +262,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public LongBowSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new LongBowSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'LongBowSkin' (if any)
     	partial void Merge(LongBowSkin entity, SkinDTO dto, object state);
 
@@ -290,12 +290,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public MaceSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new MaceSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'MaceSkin' (if any)
     	partial void Merge(MaceSkin entity, SkinDTO dto, object state);
 
@@ -318,12 +318,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public PistolSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new PistolSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'PistolSkin' (if any)
     	partial void Merge(PistolSkin entity, SkinDTO dto, object state);
 
@@ -346,12 +346,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public RifleSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new RifleSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'RifleSkin' (if any)
     	partial void Merge(RifleSkin entity, SkinDTO dto, object state);
 
@@ -374,12 +374,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public ScepterSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new ScepterSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'ScepterSkin' (if any)
     	partial void Merge(ScepterSkin entity, SkinDTO dto, object state);
 
@@ -402,12 +402,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public ShieldSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new ShieldSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'ShieldSkin' (if any)
     	partial void Merge(ShieldSkin entity, SkinDTO dto, object state);
 
@@ -430,12 +430,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public ShortBowSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new ShortBowSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'ShortBowSkin' (if any)
     	partial void Merge(ShortBowSkin entity, SkinDTO dto, object state);
 
@@ -458,12 +458,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public SmallBundleSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new SmallBundleSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'SmallBundleSkin' (if any)
     	partial void Merge(SmallBundleSkin entity, SkinDTO dto, object state);
 
@@ -486,12 +486,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public SpearGunSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new SpearGunSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'SpearGunSkin' (if any)
     	partial void Merge(SpearGunSkin entity, SkinDTO dto, object state);
 
@@ -514,12 +514,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public StaffSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new StaffSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'StaffSkin' (if any)
     	partial void Merge(StaffSkin entity, SkinDTO dto, object state);
 
@@ -542,12 +542,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public SwordSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new SwordSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'SwordSkin' (if any)
     	partial void Merge(SwordSkin entity, SkinDTO dto, object state);
 
@@ -570,12 +570,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public TorchSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new TorchSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'TorchSkin' (if any)
     	partial void Merge(TorchSkin entity, SkinDTO dto, object state);
 
@@ -598,12 +598,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public ToySkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new ToySkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'ToySkin' (if any)
     	partial void Merge(ToySkin entity, SkinDTO dto, object state);
 
@@ -626,12 +626,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public TridentSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new TridentSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'TridentSkin' (if any)
     	partial void Merge(TridentSkin entity, SkinDTO dto, object state);
 
@@ -654,12 +654,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public TwoHandedToySkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new TwoHandedToySkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'TwoHandedToySkin' (if any)
     	partial void Merge(TwoHandedToySkin entity, SkinDTO dto, object state);
 
@@ -682,12 +682,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public UnknownWeaponSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new UnknownWeaponSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'UnknownWeaponSkin' (if any)
     	partial void Merge(UnknownWeaponSkin entity, SkinDTO dto, object state);
 
@@ -710,12 +710,12 @@ namespace GW2NET.V1.Skins.Converters
     {
 	    /// <inheritdoc />
         public WarHornSkin Convert(SkinDTO value, object state)
-        {    
+        {
     		var entity = new WarHornSkin();
             this.Merge(entity, value, state);
     		return entity;
         }
-    
+
     	// Implement this method in a buddy class to set properties that are specific to 'WarHornSkin' (if any)
     	partial void Merge(WarHornSkin entity, SkinDTO dto, object state);
 

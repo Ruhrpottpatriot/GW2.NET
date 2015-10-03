@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="TrinketConverter.cs" company="GW2.NET Coding Team">
-//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+//   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Converts objects of type <see cref="DetailsDTO" /> to objects of type <see cref="Trinket" />.
@@ -25,8 +25,9 @@ namespace GW2NET.V2.Items.Converters
         /// <param name="converterFactory"></param>
         /// <param name="infusionSlotCollectionConverter">The converter for <see cref="ICollection{InfusionSlot}"/>.</param>
         /// <param name="infixUpgradeConverter">The converter for <see cref="InfixUpgrade"/>.</param>
-        public TrinketConverter(ITypeConverterFactory<ItemDTO, Trinket> converterFactory,
-            IConverter<ICollection<InfusionSlotDTO>, ICollection<InfusionSlot>> infusionSlotCollectionConverter, 
+        public TrinketConverter(
+            ITypeConverterFactory<ItemDTO, Trinket> converterFactory,
+            IConverter<ICollection<InfusionSlotDTO>, ICollection<InfusionSlot>> infusionSlotCollectionConverter,
             IConverter<InfixUpgradeDTO, InfixUpgrade> infixUpgradeConverter)
             : this(converterFactory)
         {
@@ -51,6 +52,7 @@ namespace GW2NET.V2.Items.Converters
             {
                 return;
             }
+
             var infusionSlots = details.InfusionSlots;
             if (infusionSlots != null)
             {

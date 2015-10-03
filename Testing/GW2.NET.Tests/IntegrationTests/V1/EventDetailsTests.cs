@@ -1,4 +1,8 @@
-﻿namespace GW2NET.IntegrationTests.V1
+﻿// <copyright file="EventDetailsTests.cs" company="GW2.NET Coding Team">
+// This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
+// </copyright>
+
+namespace GW2NET.IntegrationTests.V1
 {
     using System;
     using System.Collections.Generic;
@@ -8,6 +12,37 @@
     public class EventDetailsTests
     {
         private static readonly GW2Bootstrapper GW2 = new GW2Bootstrapper();
+
+        public static IEnumerable<object[]> GetIdentifiers()
+        {
+            yield return new object[]
+            {
+                Guid.Parse("EED8A79F-B374-4AE6-BA6F-B7B98D9D7142"),
+            };
+
+            yield return new object[]
+            {
+                Guid.Parse("3A2B85C5-DE73-4402-BD84-8F53AA394A52"),
+            };
+
+            yield return new object[]
+            {
+                Guid.Parse("CEA84FBF-2368-467C-92EA-7FA60D527C7B")
+            };
+        }
+
+        public static IEnumerable<object[]> GetFilters()
+        {
+            yield return new object[]
+            {
+                new[]
+                {
+                    Guid.Parse("EED8A79F-B374-4AE6-BA6F-B7B98D9D7142"),
+                    Guid.Parse("3A2B85C5-DE73-4402-BD84-8F53AA394A52"),
+                    Guid.Parse("CEA84FBF-2368-467C-92EA-7FA60D527C7B")
+                }
+            };
+        }
 
         [Fact]
         public void Discover_NotSupported()
@@ -69,37 +104,6 @@
                 Assert.NotNull(kvp.Value);
                 Assert.StrictEqual(kvp.Key, kvp.Value.EventId);
             }
-        }
-
-        public static IEnumerable<object[]> GetIdentifiers()
-        {
-            yield return new object[]
-            {
-                Guid.Parse("EED8A79F-B374-4AE6-BA6F-B7B98D9D7142"),
-            };
-
-            yield return new object[]
-            {
-                Guid.Parse("3A2B85C5-DE73-4402-BD84-8F53AA394A52"),
-            };
-
-            yield return new object[]
-            {
-                Guid.Parse("CEA84FBF-2368-467C-92EA-7FA60D527C7B")
-            };
-        }
-
-        public static IEnumerable<object[]> GetFilters()
-        {
-            yield return new object[]
-            {
-                new[]
-                {
-                    Guid.Parse("EED8A79F-B374-4AE6-BA6F-B7B98D9D7142"),
-                    Guid.Parse("3A2B85C5-DE73-4402-BD84-8F53AA394A52"),
-                    Guid.Parse("CEA84FBF-2368-467C-92EA-7FA60D527C7B")
-                }
-            };
         }
 
         [Theory]
