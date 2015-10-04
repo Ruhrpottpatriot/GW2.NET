@@ -7,7 +7,6 @@ namespace GW2NET.IntegrationTests.V1
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Net;
 
     using Xunit;
 
@@ -16,11 +15,6 @@ namespace GW2NET.IntegrationTests.V1
         private static readonly GW2Bootstrapper GW2 = new GW2Bootstrapper();
 
         private static readonly Lazy<IEnumerable<object[]>> LazyIdentifiers = new Lazy<IEnumerable<object[]>>(() => GW2.V1.Skins.ForDefaultCulture().Discover().Select(id => new object[] { id }));
-
-        public SkinTests()
-        {
-            ServicePointManager.DefaultConnectionLimit = 30;
-        }
 
         public static IEnumerable<object[]> GetIdentifiers()
         {
