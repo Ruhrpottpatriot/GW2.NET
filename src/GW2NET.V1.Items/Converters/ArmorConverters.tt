@@ -9,6 +9,7 @@
     // Parameters (make sure these are correct)
     Type targetBaseType = typeof(Armor);
     string sourceType = "ItemDTO";
+    string sourceTypeFullName = "GW2NET.V1.Items.Json.ItemDTO";
     string discriminator = "{0}.Armor == null ? null : {0}.Armor.Type";
     string ns = "GW2NET.V1.Items.Converters";
     string constructorVisibility = "private";

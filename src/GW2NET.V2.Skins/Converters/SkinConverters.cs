@@ -14,8 +14,7 @@ namespace GW2NET.V2.Skins.Converters
 
     using GW2NET.Common;
     using GW2NET.Skins;
-    using GW2NET.V2.Skins;
-    using GW2NET.V2.Skins.Json;
+	using SkinDTO = GW2NET.V2.Skins.Json.SkinDTO;
 
     public sealed partial class SkinConverter : IConverter<SkinDTO, Skin>
 	{
@@ -63,10 +62,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region BackpackSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="BackpackSkin"/>.</summary>
-    public sealed partial class BackpackSkinConverter : IConverter<SkinDTO, BackpackSkin>
+    public sealed partial class BackpackSkinConverter : IConverter<SkinDTO, Skin>
     {
 	    /// <inheritdoc />
-        public BackpackSkin Convert(SkinDTO value, object state)
+        public Skin Convert(SkinDTO value, object state)
         {
     		var entity = new BackpackSkin();
             this.Merge(entity, value, state);
@@ -91,10 +90,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region UnknownSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="UnknownSkin"/>.</summary>
-    public sealed partial class UnknownSkinConverter : IConverter<SkinDTO, UnknownSkin>
+    public sealed partial class UnknownSkinConverter : IConverter<SkinDTO, Skin>
     {
 	    /// <inheritdoc />
-        public UnknownSkin Convert(SkinDTO value, object state)
+        public Skin Convert(SkinDTO value, object state)
         {
     		var entity = new UnknownSkin();
             this.Merge(entity, value, state);

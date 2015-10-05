@@ -14,8 +14,7 @@ namespace GW2NET.V1.Events.Converters
 
     using GW2NET.Common;
     using GW2NET.DynamicEvents;
-    using GW2NET.V1.Events;
-    using GW2NET.V1.Events.Json;
+	using LocationDTO = GW2NET.V1.Events.Json.LocationDTO;
 
     public sealed partial class LocationConverter : IConverter<LocationDTO, Location>
 	{
@@ -63,10 +62,10 @@ namespace GW2NET.V1.Events.Converters
 
 #region CylinderLocation
     /// <summary>Converts objects of type <see cref="LocationDTO"/> to objects of type <see cref="CylinderLocation"/>.</summary>
-    public sealed partial class CylinderLocationConverter : IConverter<LocationDTO, CylinderLocation>
+    public sealed partial class CylinderLocationConverter : IConverter<LocationDTO, Location>
     {
 	    /// <inheritdoc />
-        public CylinderLocation Convert(LocationDTO value, object state)
+        public Location Convert(LocationDTO value, object state)
         {
     		var entity = new CylinderLocation();
             this.Merge(entity, value, state);
@@ -91,10 +90,10 @@ namespace GW2NET.V1.Events.Converters
 
 #region PolygonLocation
     /// <summary>Converts objects of type <see cref="LocationDTO"/> to objects of type <see cref="PolygonLocation"/>.</summary>
-    public sealed partial class PolygonLocationConverter : IConverter<LocationDTO, PolygonLocation>
+    public sealed partial class PolygonLocationConverter : IConverter<LocationDTO, Location>
     {
 	    /// <inheritdoc />
-        public PolygonLocation Convert(LocationDTO value, object state)
+        public Location Convert(LocationDTO value, object state)
         {
     		var entity = new PolygonLocation();
             this.Merge(entity, value, state);
@@ -119,10 +118,10 @@ namespace GW2NET.V1.Events.Converters
 
 #region SphereLocation
     /// <summary>Converts objects of type <see cref="LocationDTO"/> to objects of type <see cref="SphereLocation"/>.</summary>
-    public sealed partial class SphereLocationConverter : IConverter<LocationDTO, SphereLocation>
+    public sealed partial class SphereLocationConverter : IConverter<LocationDTO, Location>
     {
 	    /// <inheritdoc />
-        public SphereLocation Convert(LocationDTO value, object state)
+        public Location Convert(LocationDTO value, object state)
         {
     		var entity = new SphereLocation();
             this.Merge(entity, value, state);
@@ -147,10 +146,10 @@ namespace GW2NET.V1.Events.Converters
 
 #region UnknownLocation
     /// <summary>Converts objects of type <see cref="LocationDTO"/> to objects of type <see cref="UnknownLocation"/>.</summary>
-    public sealed partial class UnknownLocationConverter : IConverter<LocationDTO, UnknownLocation>
+    public sealed partial class UnknownLocationConverter : IConverter<LocationDTO, Location>
     {
 	    /// <inheritdoc />
-        public UnknownLocation Convert(LocationDTO value, object state)
+        public Location Convert(LocationDTO value, object state)
         {
     		var entity = new UnknownLocation();
             this.Merge(entity, value, state);

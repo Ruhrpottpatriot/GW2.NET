@@ -9,6 +9,7 @@
     // Parameters (make sure these are correct)
     Type targetBaseType = typeof(Skin);
     string sourceType = "SkinDTO";
+    string sourceTypeFullName = "GW2NET.V1.Skins.Json.SkinDTO";
     string discriminator = "{0}.Type";
     string ns = "GW2NET.V1.Skins.Converters";
     string constructorVisibility = "private";

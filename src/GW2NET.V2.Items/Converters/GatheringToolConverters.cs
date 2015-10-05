@@ -14,8 +14,7 @@ namespace GW2NET.V2.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items;
-    using GW2NET.V2.Items;
-    using GW2NET.V2.Items.Json;
+	using ItemDTO = GW2NET.V2.Items.Json.ItemDTO;
 
     public sealed partial class GatheringToolConverter : IConverter<ItemDTO, GatheringTool>
 	{
@@ -63,10 +62,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region ForagingTool
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="ForagingTool"/>.</summary>
-    public sealed partial class ForagingToolConverter : IConverter<ItemDTO, ForagingTool>
+    public sealed partial class ForagingToolConverter : IConverter<ItemDTO, GatheringTool>
     {
 	    /// <inheritdoc />
-        public ForagingTool Convert(ItemDTO value, object state)
+        public GatheringTool Convert(ItemDTO value, object state)
         {
     		var entity = new ForagingTool();
             this.Merge(entity, value, state);
@@ -91,10 +90,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region LoggingTool
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="LoggingTool"/>.</summary>
-    public sealed partial class LoggingToolConverter : IConverter<ItemDTO, LoggingTool>
+    public sealed partial class LoggingToolConverter : IConverter<ItemDTO, GatheringTool>
     {
 	    /// <inheritdoc />
-        public LoggingTool Convert(ItemDTO value, object state)
+        public GatheringTool Convert(ItemDTO value, object state)
         {
     		var entity = new LoggingTool();
             this.Merge(entity, value, state);
@@ -119,10 +118,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region MiningTool
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="MiningTool"/>.</summary>
-    public sealed partial class MiningToolConverter : IConverter<ItemDTO, MiningTool>
+    public sealed partial class MiningToolConverter : IConverter<ItemDTO, GatheringTool>
     {
 	    /// <inheritdoc />
-        public MiningTool Convert(ItemDTO value, object state)
+        public GatheringTool Convert(ItemDTO value, object state)
         {
     		var entity = new MiningTool();
             this.Merge(entity, value, state);
@@ -147,10 +146,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region UnknownGatheringTool
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="UnknownGatheringTool"/>.</summary>
-    public sealed partial class UnknownGatheringToolConverter : IConverter<ItemDTO, UnknownGatheringTool>
+    public sealed partial class UnknownGatheringToolConverter : IConverter<ItemDTO, GatheringTool>
     {
 	    /// <inheritdoc />
-        public UnknownGatheringTool Convert(ItemDTO value, object state)
+        public GatheringTool Convert(ItemDTO value, object state)
         {
     		var entity = new UnknownGatheringTool();
             this.Merge(entity, value, state);

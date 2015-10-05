@@ -14,8 +14,7 @@ namespace GW2NET.V2.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items;
-    using GW2NET.V2.Items;
-    using GW2NET.V2.Items.Json;
+	using ItemDTO = GW2NET.V2.Items.Json.ItemDTO;
 
     public sealed partial class GizmoConverter : IConverter<ItemDTO, Gizmo>
 	{
@@ -63,10 +62,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region ContainerKey
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="ContainerKey"/>.</summary>
-    public sealed partial class ContainerKeyConverter : IConverter<ItemDTO, ContainerKey>
+    public sealed partial class ContainerKeyConverter : IConverter<ItemDTO, Gizmo>
     {
 	    /// <inheritdoc />
-        public ContainerKey Convert(ItemDTO value, object state)
+        public Gizmo Convert(ItemDTO value, object state)
         {
     		var entity = new ContainerKey();
             this.Merge(entity, value, state);
@@ -91,10 +90,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region DefaultGizmo
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="DefaultGizmo"/>.</summary>
-    public sealed partial class DefaultGizmoConverter : IConverter<ItemDTO, DefaultGizmo>
+    public sealed partial class DefaultGizmoConverter : IConverter<ItemDTO, Gizmo>
     {
 	    /// <inheritdoc />
-        public DefaultGizmo Convert(ItemDTO value, object state)
+        public Gizmo Convert(ItemDTO value, object state)
         {
     		var entity = new DefaultGizmo();
             this.Merge(entity, value, state);
@@ -119,10 +118,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region RentableContractNpc
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="RentableContractNpc"/>.</summary>
-    public sealed partial class RentableContractNpcConverter : IConverter<ItemDTO, RentableContractNpc>
+    public sealed partial class RentableContractNpcConverter : IConverter<ItemDTO, Gizmo>
     {
 	    /// <inheritdoc />
-        public RentableContractNpc Convert(ItemDTO value, object state)
+        public Gizmo Convert(ItemDTO value, object state)
         {
     		var entity = new RentableContractNpc();
             this.Merge(entity, value, state);
@@ -147,10 +146,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region UnknownGizmo
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="UnknownGizmo"/>.</summary>
-    public sealed partial class UnknownGizmoConverter : IConverter<ItemDTO, UnknownGizmo>
+    public sealed partial class UnknownGizmoConverter : IConverter<ItemDTO, Gizmo>
     {
 	    /// <inheritdoc />
-        public UnknownGizmo Convert(ItemDTO value, object state)
+        public Gizmo Convert(ItemDTO value, object state)
         {
     		var entity = new UnknownGizmo();
             this.Merge(entity, value, state);
@@ -175,10 +174,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region UnlimitedConsumable
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="UnlimitedConsumable"/>.</summary>
-    public sealed partial class UnlimitedConsumableConverter : IConverter<ItemDTO, UnlimitedConsumable>
+    public sealed partial class UnlimitedConsumableConverter : IConverter<ItemDTO, Gizmo>
     {
 	    /// <inheritdoc />
-        public UnlimitedConsumable Convert(ItemDTO value, object state)
+        public Gizmo Convert(ItemDTO value, object state)
         {
     		var entity = new UnlimitedConsumable();
             this.Merge(entity, value, state);

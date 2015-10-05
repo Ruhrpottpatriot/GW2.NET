@@ -14,8 +14,7 @@ namespace GW2NET.V1.Floors.Converters
 
     using GW2NET.Common;
     using GW2NET.Maps;
-    using GW2NET.V1.Floors;
-    using GW2NET.V1.Floors.Json;
+	using PointOfInterestDTO = GW2NET.V1.Floors.Json.PointOfInterestDTO;
 
     public sealed partial class PointOfInterestConverter : IConverter<PointOfInterestDTO, PointOfInterest>
 	{
@@ -63,10 +62,10 @@ namespace GW2NET.V1.Floors.Converters
 
 #region Dungeon
     /// <summary>Converts objects of type <see cref="PointOfInterestDTO"/> to objects of type <see cref="Dungeon"/>.</summary>
-    public sealed partial class DungeonConverter : IConverter<PointOfInterestDTO, Dungeon>
+    public sealed partial class DungeonConverter : IConverter<PointOfInterestDTO, PointOfInterest>
     {
 	    /// <inheritdoc />
-        public Dungeon Convert(PointOfInterestDTO value, object state)
+        public PointOfInterest Convert(PointOfInterestDTO value, object state)
         {
     		var entity = new Dungeon();
             this.Merge(entity, value, state);
@@ -91,10 +90,10 @@ namespace GW2NET.V1.Floors.Converters
 
 #region Landmark
     /// <summary>Converts objects of type <see cref="PointOfInterestDTO"/> to objects of type <see cref="Landmark"/>.</summary>
-    public sealed partial class LandmarkConverter : IConverter<PointOfInterestDTO, Landmark>
+    public sealed partial class LandmarkConverter : IConverter<PointOfInterestDTO, PointOfInterest>
     {
 	    /// <inheritdoc />
-        public Landmark Convert(PointOfInterestDTO value, object state)
+        public PointOfInterest Convert(PointOfInterestDTO value, object state)
         {
     		var entity = new Landmark();
             this.Merge(entity, value, state);
@@ -119,10 +118,10 @@ namespace GW2NET.V1.Floors.Converters
 
 #region UnknownPointOfInterest
     /// <summary>Converts objects of type <see cref="PointOfInterestDTO"/> to objects of type <see cref="UnknownPointOfInterest"/>.</summary>
-    public sealed partial class UnknownPointOfInterestConverter : IConverter<PointOfInterestDTO, UnknownPointOfInterest>
+    public sealed partial class UnknownPointOfInterestConverter : IConverter<PointOfInterestDTO, PointOfInterest>
     {
 	    /// <inheritdoc />
-        public UnknownPointOfInterest Convert(PointOfInterestDTO value, object state)
+        public PointOfInterest Convert(PointOfInterestDTO value, object state)
         {
     		var entity = new UnknownPointOfInterest();
             this.Merge(entity, value, state);
@@ -147,10 +146,10 @@ namespace GW2NET.V1.Floors.Converters
 
 #region Vista
     /// <summary>Converts objects of type <see cref="PointOfInterestDTO"/> to objects of type <see cref="Vista"/>.</summary>
-    public sealed partial class VistaConverter : IConverter<PointOfInterestDTO, Vista>
+    public sealed partial class VistaConverter : IConverter<PointOfInterestDTO, PointOfInterest>
     {
 	    /// <inheritdoc />
-        public Vista Convert(PointOfInterestDTO value, object state)
+        public PointOfInterest Convert(PointOfInterestDTO value, object state)
         {
     		var entity = new Vista();
             this.Merge(entity, value, state);
@@ -175,10 +174,10 @@ namespace GW2NET.V1.Floors.Converters
 
 #region Waypoint
     /// <summary>Converts objects of type <see cref="PointOfInterestDTO"/> to objects of type <see cref="Waypoint"/>.</summary>
-    public sealed partial class WaypointConverter : IConverter<PointOfInterestDTO, Waypoint>
+    public sealed partial class WaypointConverter : IConverter<PointOfInterestDTO, PointOfInterest>
     {
 	    /// <inheritdoc />
-        public Waypoint Convert(PointOfInterestDTO value, object state)
+        public PointOfInterest Convert(PointOfInterestDTO value, object state)
         {
     		var entity = new Waypoint();
             this.Merge(entity, value, state);

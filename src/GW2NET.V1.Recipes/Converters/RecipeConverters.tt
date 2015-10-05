@@ -9,6 +9,7 @@
     // Parameters (make sure these are correct)
     Type targetBaseType = typeof(Recipe);
     string sourceType = "RecipeDTO";
+    string sourceTypeFullName = "GW2NET.V1.Recipes.Json.RecipeDTO";
     string discriminator = "{0}.Type";
     string ns = "GW2NET.V1.Recipes.Converters";
     string constructorVisibility = "private";

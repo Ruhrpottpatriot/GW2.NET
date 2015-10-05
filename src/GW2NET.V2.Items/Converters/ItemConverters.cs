@@ -14,8 +14,7 @@ namespace GW2NET.V2.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items;
-    using GW2NET.V2.Items;
-    using GW2NET.V2.Items.Json;
+	using ItemDTO = GW2NET.V2.Items.Json.ItemDTO;
 
     public sealed partial class ItemConverter : IConverter<ItemDTO, Item>
 	{
@@ -63,10 +62,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region Backpack
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Backpack"/>.</summary>
-    public sealed partial class BackpackConverter : IConverter<ItemDTO, Backpack>
+    public sealed partial class BackpackConverter : IConverter<ItemDTO, Item>
     {
 	    /// <inheritdoc />
-        public Backpack Convert(ItemDTO value, object state)
+        public Item Convert(ItemDTO value, object state)
         {
     		var entity = new Backpack();
             this.Merge(entity, value, state);
@@ -91,10 +90,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region Bag
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Bag"/>.</summary>
-    public sealed partial class BagConverter : IConverter<ItemDTO, Bag>
+    public sealed partial class BagConverter : IConverter<ItemDTO, Item>
     {
 	    /// <inheritdoc />
-        public Bag Convert(ItemDTO value, object state)
+        public Item Convert(ItemDTO value, object state)
         {
     		var entity = new Bag();
             this.Merge(entity, value, state);
@@ -119,10 +118,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region CraftingMaterial
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="CraftingMaterial"/>.</summary>
-    public sealed partial class CraftingMaterialConverter : IConverter<ItemDTO, CraftingMaterial>
+    public sealed partial class CraftingMaterialConverter : IConverter<ItemDTO, Item>
     {
 	    /// <inheritdoc />
-        public CraftingMaterial Convert(ItemDTO value, object state)
+        public Item Convert(ItemDTO value, object state)
         {
     		var entity = new CraftingMaterial();
             this.Merge(entity, value, state);
@@ -147,10 +146,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region Miniature
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Miniature"/>.</summary>
-    public sealed partial class MiniatureConverter : IConverter<ItemDTO, Miniature>
+    public sealed partial class MiniatureConverter : IConverter<ItemDTO, Item>
     {
 	    /// <inheritdoc />
-        public Miniature Convert(ItemDTO value, object state)
+        public Item Convert(ItemDTO value, object state)
         {
     		var entity = new Miniature();
             this.Merge(entity, value, state);
@@ -175,10 +174,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region TraitGuide
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="TraitGuide"/>.</summary>
-    public sealed partial class TraitGuideConverter : IConverter<ItemDTO, TraitGuide>
+    public sealed partial class TraitGuideConverter : IConverter<ItemDTO, Item>
     {
 	    /// <inheritdoc />
-        public TraitGuide Convert(ItemDTO value, object state)
+        public Item Convert(ItemDTO value, object state)
         {
     		var entity = new TraitGuide();
             this.Merge(entity, value, state);
@@ -203,10 +202,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region Trophy
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Trophy"/>.</summary>
-    public sealed partial class TrophyConverter : IConverter<ItemDTO, Trophy>
+    public sealed partial class TrophyConverter : IConverter<ItemDTO, Item>
     {
 	    /// <inheritdoc />
-        public Trophy Convert(ItemDTO value, object state)
+        public Item Convert(ItemDTO value, object state)
         {
     		var entity = new Trophy();
             this.Merge(entity, value, state);
@@ -231,10 +230,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region UnknownItem
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="UnknownItem"/>.</summary>
-    public sealed partial class UnknownItemConverter : IConverter<ItemDTO, UnknownItem>
+    public sealed partial class UnknownItemConverter : IConverter<ItemDTO, Item>
     {
 	    /// <inheritdoc />
-        public UnknownItem Convert(ItemDTO value, object state)
+        public Item Convert(ItemDTO value, object state)
         {
     		var entity = new UnknownItem();
             this.Merge(entity, value, state);

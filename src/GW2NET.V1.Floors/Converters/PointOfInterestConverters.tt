@@ -9,6 +9,7 @@
     // Parameters (make sure these are correct)
     Type targetBaseType = typeof(PointOfInterest);
     string sourceType = "PointOfInterestDTO";
+    string sourceTypeFullName = "GW2NET.V1.Floors.Json.PointOfInterestDTO";
     string discriminator = "{0}.Type";
     string ns = "GW2NET.V1.Floors.Converters";
     string constructorVisibility = "private";

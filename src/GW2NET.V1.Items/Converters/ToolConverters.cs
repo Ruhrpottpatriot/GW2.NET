@@ -14,8 +14,7 @@ namespace GW2NET.V1.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items;
-    using GW2NET.V1.Items;
-    using GW2NET.V1.Items.Json;
+	using ItemDTO = GW2NET.V1.Items.Json.ItemDTO;
 
     public sealed partial class ToolConverter : IConverter<ItemDTO, Tool>
 	{
@@ -63,10 +62,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region SalvageTool
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="SalvageTool"/>.</summary>
-    public sealed partial class SalvageToolConverter : IConverter<ItemDTO, SalvageTool>
+    public sealed partial class SalvageToolConverter : IConverter<ItemDTO, Tool>
     {
 	    /// <inheritdoc />
-        public SalvageTool Convert(ItemDTO value, object state)
+        public Tool Convert(ItemDTO value, object state)
         {
     		var entity = new SalvageTool();
             this.Merge(entity, value, state);
@@ -91,10 +90,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region UnknownTool
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="UnknownTool"/>.</summary>
-    public sealed partial class UnknownToolConverter : IConverter<ItemDTO, UnknownTool>
+    public sealed partial class UnknownToolConverter : IConverter<ItemDTO, Tool>
     {
 	    /// <inheritdoc />
-        public UnknownTool Convert(ItemDTO value, object state)
+        public Tool Convert(ItemDTO value, object state)
         {
     		var entity = new UnknownTool();
             this.Merge(entity, value, state);
