@@ -52,6 +52,9 @@ namespace GW2NET.Recipes
         /// <summary>Gets or sets the time it takes to craft the recipe.</summary>
         public virtual TimeSpan TimeToCraft { get; set; }
 
+        /// <summary>Gets or sets a chat code that links to the current recipe in-game.</summary>
+        public virtual string ChatLink { get; set; }
+
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>

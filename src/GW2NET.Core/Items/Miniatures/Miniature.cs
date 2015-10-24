@@ -11,5 +11,6 @@ namespace GW2NET.Items
     /// <summary>Represents a miniature pet.</summary>
     public class Miniature : Item
     {
+        public int MiniatureId { get; set; }
     }
 }

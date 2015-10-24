@@ -169,4 +169,22 @@ namespace GW2NET.V2.Items
 
         #endregion
     }
+
+    /// <summary>Defines the <see cref="DetailsDataContract"/> type.</summary>
+    /// <content>Contains data contract properties for transmutation items.</content>
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
+    internal sealed partial class DetailsDataContract
+    {
+        [DataMember(Name = "skins", Order = 1)]
+        internal int[] Skins { get; set; }
+    }
+
+    /// <summary>Defines the <see cref="DetailsDataContract"/> type.</summary>
+    /// <content>Contains data contract properties for miniature items.</content>
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
+    internal sealed partial class DetailsDataContract
+    {
+        [DataMember(Name = "id", Order = 1)]
+        internal int Id { get; set; }
+    }
 }

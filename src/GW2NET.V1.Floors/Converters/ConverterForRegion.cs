@@ -74,7 +74,11 @@ namespace GW2NET.V1.Floors.Converters
 
             // Set the maps
             var subregionDataContracts = value.Maps;
-            if (subregionDataContracts != null)
+            if (subregionDataContracts == null)
+            {
+                region.Maps = new Dictionary<int, Subregion>(0);
+            }
+            else
             {
                 region.Maps = this.converterForSubregionKeyValuePair.Convert(subregionDataContracts);
             }

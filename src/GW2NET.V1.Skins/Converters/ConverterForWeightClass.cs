@@ -13,6 +13,8 @@ using GW2NET.Items;
 
 namespace GW2NET.V1.Skins.Converters
 {
+    using System.Diagnostics;
+
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="WeightClass"/>.</summary>
     internal sealed class ConverterForWeightClass : IConverter<string, WeightClass>
     {
@@ -32,6 +34,7 @@ namespace GW2NET.V1.Skins.Converters
                 return result;
             }
 
+            Debug.Assert(false, "Unknown WeightClass: " + value);
             return default(WeightClass);
         }
     }

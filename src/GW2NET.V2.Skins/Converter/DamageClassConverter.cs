@@ -10,6 +10,7 @@
 namespace GW2NET.V2.Skins
 {
     using System;
+    using System.Diagnostics;
 
     using GW2NET.Common;
     using GW2NET.Items;
@@ -21,7 +22,13 @@ namespace GW2NET.V2.Skins
         public DamageType Convert(string value)
         {
             DamageType result;
-            return Enum.TryParse(value, out result) ? result : default(DamageType);
+            if (Enum.TryParse(value, out result))
+            {
+                return result;
+            }
+
+            Debug.Assert(false, "Unknown DamageType: " + value);
+            return default(DamageType);
         }
     }
 }

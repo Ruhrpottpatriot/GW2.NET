@@ -13,6 +13,8 @@ using GW2NET.WorldVersusWorld;
 
 namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
+    using System.Diagnostics;
+
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="TeamColor"/>.</summary>
     internal sealed class ConverterForTeamColor : IConverter<string, TeamColor>
     {
@@ -27,12 +29,13 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
             }
 
             TeamColor teamColor;
-            if (!Enum.TryParse(value, true, out teamColor))
+            if (Enum.TryParse(value, true, out teamColor))
             {
-                return TeamColor.Unknown;
+                return teamColor;
             }
 
-            return teamColor;
+            Debug.Assert(false, "Unknown TeamColor: " + value);
+            return TeamColor.Unknown;
         }
     }
 }

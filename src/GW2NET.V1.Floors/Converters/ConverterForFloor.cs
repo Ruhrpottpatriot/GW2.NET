@@ -87,7 +87,11 @@ namespace GW2NET.V1.Floors.Converters
 
             // Set the regions
             var regionDataContracts = value.Regions;
-            if (regionDataContracts != null)
+            if (regionDataContracts == null)
+            {
+                floor.Regions = new Dictionary<int, Region>(0);
+            }
+            else
             {
                 floor.Regions = this.converterForRegionCollection.Convert(regionDataContracts);
             }

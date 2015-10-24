@@ -10,6 +10,7 @@
 namespace GW2NET.V2.Colors
 {
     using System;
+    using System.Collections.Generic;
 
     using GW2NET.Colors;
     using GW2NET.Common;
@@ -85,6 +86,18 @@ namespace GW2NET.V2.Colors
             if (metal != null)
             {
                 colorPalette.Metal = this.colorModelConverter.Convert(metal);
+            }
+
+            colorPalette.ItemId = value.ItemId;
+            if (value.Categories == null)
+            {
+                colorPalette.Categories = new List<string>(0);
+            }
+            else
+            {
+                var values = new List<string>(value.Categories.Length);
+                values.AddRange(value.Categories);
+                colorPalette.Categories = values;
             }
 
             // Return the color object

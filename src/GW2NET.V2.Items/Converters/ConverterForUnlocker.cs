@@ -68,7 +68,9 @@ namespace GW2NET.V2.Items
                 { "CollectibleCapacity", new ConverterForCollectibleCapacityUnlocker() }, 
                 { "Content", new ConverterForContentUnlocker() }, 
                 { "CraftingRecipe", new ConverterForCraftingRecipeUnlocker() }, 
-                { "Dye", new ConverterForDyeUnlocker() }
+                { "Dye", new ConverterForDyeUnlocker() },
+                { "GliderSkin", new ConverterForGliderSkinUnlocker() }, 
+                { "Outfit", new ConverterForOutfitUnlocker() }
             };
         }
     }

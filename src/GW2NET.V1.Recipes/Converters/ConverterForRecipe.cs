@@ -18,6 +18,8 @@ using GW2NET.V1.Recipes.Json;
 
 namespace GW2NET.V1.Recipes.Converters
 {
+    using GW2NET.ChatLinks;
+
     /// <summary>Converts objects of type <see cref="RecipeDataContract"/> to objects of type <see cref="Recipe"/>.</summary>
     internal sealed class ConverterForRecipe : IConverter<RecipeDataContract, Recipe>
     {
@@ -92,6 +94,7 @@ namespace GW2NET.V1.Recipes.Converters
             if (int.TryParse(value.RecipeId, out recipeId))
             {
                 recipe.RecipeId = recipeId;
+                recipe.ChatLink = new RecipeChatLink { RecipeId = recipeId }.ToString();
             }
 
             int outputItemId;
@@ -145,54 +148,54 @@ namespace GW2NET.V1.Recipes.Converters
         {
             return new Dictionary<string, IConverter<RecipeDataContract, Recipe>>
             {
-                { "Amulet", new ConverterForObject<AmuletRecipe>() }, 
-                { "Axe", new ConverterForObject<AxeRecipe>() }, 
-                { "Backpack", new ConverterForObject<BackpackRecipe>() }, 
-                { "Bag", new ConverterForObject<BagRecipe>() }, 
-                { "Boots", new ConverterForObject<BootsRecipe>() }, 
-                { "Bulk", new ConverterForObject<BulkRecipe>() }, 
-                { "Coat", new ConverterForObject<CoatRecipe>() }, 
-                { "Component", new ConverterForObject<ComponentRecipe>() }, 
-                { "Consumable", new ConverterForObject<ConsumableRecipe>() }, 
-                { "Dagger", new ConverterForObject<DaggerRecipe>() }, 
-                { "Dessert", new ConverterForObject<DessertRecipe>() }, 
-                { "Dye", new ConverterForObject<DyeRecipe>() }, 
-                { "Earring", new ConverterForObject<EarringRecipe>() }, 
-                { "Feast", new ConverterForObject<FeastRecipe>() }, 
-                { "Focus", new ConverterForObject<FocusRecipe>() }, 
-                { "Gloves", new ConverterForObject<GlovesRecipe>() }, 
-                { "Greatsword", new ConverterForObject<GreatSwordRecipe>() }, 
-                { "Hammer", new ConverterForObject<HammerRecipe>() }, 
-                { "Harpoon", new ConverterForObject<HarpoonRecipe>() }, 
-                { "Helm", new ConverterForObject<HelmRecipe>() }, 
-                { "IngredientCooking", new ConverterForObject<IngredientCookingRecipe>() }, 
-                { "Inscription", new ConverterForObject<InscriptionRecipe>() }, 
-                { "Insignia", new ConverterForObject<InsigniaRecipe>() }, 
-                { "Leggings", new ConverterForObject<LeggingsRecipe>() }, 
-                { "LongBow", new ConverterForObject<LongBowRecipe>() }, 
-                { "Mace", new ConverterForObject<MaceRecipe>() }, 
-                { "Meal", new ConverterForObject<MealRecipe>() }, 
-                { "Pistol", new ConverterForObject<PistolRecipe>() }, 
-                { "Potion", new ConverterForObject<PotionRecipe>() }, 
-                { "RefinementEctoplasm", new ConverterForObject<RefinementEctoplasmRecipe>() }, 
-                { "RefinementObsidian", new ConverterForObject<RefinementObsidianRecipe>() }, 
-                { "Refinement", new ConverterForObject<RefinementRecipe>() }, 
-                { "Rifle", new ConverterForObject<RifleRecipe>() }, 
-                { "Ring", new ConverterForObject<RingRecipe>() }, 
-                { "Scepter", new ConverterForObject<ScepterRecipe>() }, 
-                { "Seasoning", new ConverterForObject<SeasoningRecipe>() }, 
-                { "Shield", new ConverterForObject<ShieldRecipe>() }, 
-                { "ShortBow", new ConverterForObject<ShortBowRecipe>() }, 
-                { "Shoulders", new ConverterForObject<ShouldersRecipe>() }, 
-                { "Snack", new ConverterForObject<SnackRecipe>() }, 
-                { "Soup", new ConverterForObject<SoupRecipe>() }, 
-                { "Speargun", new ConverterForObject<SpearGunRecipe>() }, 
-                { "Staff", new ConverterForObject<StaffRecipe>() }, 
-                { "Sword", new ConverterForObject<SwordRecipe>() }, 
-                { "Torch", new ConverterForObject<TorchRecipe>() }, 
-                { "Trident", new ConverterForObject<TridentRecipe>() }, 
-                { "UpgradeComponent", new ConverterForObject<UpgradeComponentRecipe>() }, 
-                { "Warhorn", new ConverterForObject<WarHornRecipe>() }, 
+                { "Amulet", new ConverterForObject<AmuletRecipe>() },
+                { "Axe", new ConverterForObject<AxeRecipe>() },
+                { "Backpack", new ConverterForObject<BackpackRecipe>() },
+                { "Bag", new ConverterForObject<BagRecipe>() },
+                { "Boots", new ConverterForObject<BootsRecipe>() },
+                { "Bulk", new ConverterForObject<BulkRecipe>() },
+                { "Coat", new ConverterForObject<CoatRecipe>() },
+                { "Component", new ConverterForObject<ComponentRecipe>() },
+                { "Consumable", new ConverterForObject<ConsumableRecipe>() },
+                { "Dagger", new ConverterForObject<DaggerRecipe>() },
+                { "Dessert", new ConverterForObject<DessertRecipe>() },
+                { "Dye", new ConverterForObject<DyeRecipe>() },
+                { "Earring", new ConverterForObject<EarringRecipe>() },
+                { "Feast", new ConverterForObject<FeastRecipe>() },
+                { "Focus", new ConverterForObject<FocusRecipe>() },
+                { "Gloves", new ConverterForObject<GlovesRecipe>() },
+                { "Greatsword", new ConverterForObject<GreatSwordRecipe>() },
+                { "Hammer", new ConverterForObject<HammerRecipe>() },
+                { "Harpoon", new ConverterForObject<HarpoonRecipe>() },
+                { "Helm", new ConverterForObject<HelmRecipe>() },
+                { "IngredientCooking", new ConverterForObject<IngredientCookingRecipe>() },
+                { "Inscription", new ConverterForObject<InscriptionRecipe>() },
+                { "Insignia", new ConverterForObject<InsigniaRecipe>() },
+                { "Leggings", new ConverterForObject<LeggingsRecipe>() },
+                { "LongBow", new ConverterForObject<LongBowRecipe>() },
+                { "Mace", new ConverterForObject<MaceRecipe>() },
+                { "Meal", new ConverterForObject<MealRecipe>() },
+                { "Pistol", new ConverterForObject<PistolRecipe>() },
+                { "Potion", new ConverterForObject<PotionRecipe>() },
+                { "RefinementEctoplasm", new ConverterForObject<RefinementEctoplasmRecipe>() },
+                { "RefinementObsidian", new ConverterForObject<RefinementObsidianRecipe>() },
+                { "Refinement", new ConverterForObject<RefinementRecipe>() },
+                { "Rifle", new ConverterForObject<RifleRecipe>() },
+                { "Ring", new ConverterForObject<RingRecipe>() },
+                { "Scepter", new ConverterForObject<ScepterRecipe>() },
+                { "Seasoning", new ConverterForObject<SeasoningRecipe>() },
+                { "Shield", new ConverterForObject<ShieldRecipe>() },
+                { "ShortBow", new ConverterForObject<ShortBowRecipe>() },
+                { "Shoulders", new ConverterForObject<ShouldersRecipe>() },
+                { "Snack", new ConverterForObject<SnackRecipe>() },
+                { "Soup", new ConverterForObject<SoupRecipe>() },
+                { "Speargun", new ConverterForObject<SpearGunRecipe>() },
+                { "Staff", new ConverterForObject<StaffRecipe>() },
+                { "Sword", new ConverterForObject<SwordRecipe>() },
+                { "Torch", new ConverterForObject<TorchRecipe>() },
+                { "Trident", new ConverterForObject<TridentRecipe>() },
+                { "UpgradeComponent", new ConverterForObject<UpgradeComponentRecipe>() },
+                { "Warhorn", new ConverterForObject<WarHornRecipe>() },
             };
         }
     }

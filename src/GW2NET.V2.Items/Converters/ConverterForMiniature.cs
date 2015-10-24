@@ -21,8 +21,12 @@ namespace GW2NET.V2.Items
         /// <returns>The converted value.</returns>
         public Miniature Convert(DetailsDataContract value)
         {
-            // MEMO: value is always null here because miniatures never have details
-            return new Miniature();
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
+            return new Miniature { MiniatureId = value.Id };
         }
     }
 }

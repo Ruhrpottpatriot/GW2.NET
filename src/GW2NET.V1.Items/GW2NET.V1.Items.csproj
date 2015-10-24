@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\ConverterForAccessory.cs" />
+    <Compile Include="Converters\ConverterForTeleportToFriend.cs" />
     <Compile Include="Converters\ConverterForAlcohol.cs" />
     <Compile Include="Converters\ConverterForAmulet.cs" />
     <Compile Include="Converters\ConverterForAppearanceChanger.cs" />
@@ -74,6 +75,8 @@
     <Compile Include="Converters\ConverterForDefaultContainer.cs" />
     <Compile Include="Converters\ConverterForDefaultGizmo.cs" />
     <Compile Include="Converters\ConverterForDefaultUpgradeComponent.cs" />
+    <Compile Include="Converters\ConverterForGliderSkinUnlocker.cs" />
+    <Compile Include="Converters\ConverterForOutfitUnlocker.cs" />
     <Compile Include="Converters\ConverterForDyeUnlocker.cs" />
     <Compile Include="Converters\ConverterForFerocityModifier.cs" />
     <Compile Include="Converters\ConverterForFocus.cs" />
@@ -159,6 +162,7 @@
     <Compile Include="ItemRepositoryFactory.cs" />
     <Compile Include="Json\ArmorDataContract.cs" />
     <Compile Include="Json\AttributeDataContract.cs" />
+    <Compile Include="Json\MiniPetDataContract.cs" />
     <Compile Include="Json\BackpackDataContract.cs" />
     <Compile Include="Json\BagDataContract.cs" />
     <Compile Include="Json\CombatBuffDataContract.cs" />

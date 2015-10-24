@@ -19,6 +19,9 @@ namespace GW2NET.V1.Items.Json
         [DataMember(Name = "type", Order = 0)]
         internal string Type { get; set; }
 
+        [DataMember(Name = "skins", Order = 1)]
+        internal int[] Skins { get; set; }
+
         [DataMember(Name = "duration_ms", Order = 1)]
         internal string Duration { get; set; }
 

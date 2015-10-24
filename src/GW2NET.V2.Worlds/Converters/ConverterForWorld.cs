@@ -9,6 +9,7 @@
 namespace GW2NET.V2.Worlds
 {
     using System;
+    using System.Diagnostics;
 
     using GW2NET.Common;
     using GW2NET.Worlds;
@@ -24,11 +25,26 @@ namespace GW2NET.V2.Worlds
                 throw new ArgumentNullException("value", "Precondition: value != null");
             }
 
-            return new World
+            var world = new World
             {
-                WorldId = value.Id, 
+                WorldId = value.Id,
                 Name = value.Name
             };
+            if (value.Population != null)
+            {
+                Population population;
+                if (Enum.TryParse(value.Population, true, out population))
+                {
+                    world.Population = population;
+                }
+                else
+                {
+                    world.Population = Population.Unknown;
+                    Debug.Assert(false, "Unknown Population:" + value.Population);
+                }
+            }
+
+            return world;
         }
     }
 }

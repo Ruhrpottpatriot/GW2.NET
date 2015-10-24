@@ -26,6 +26,9 @@ namespace GW2NET.V2.Commerce.Prices
         [DataMember(Name = "sells", Order = 2)]
         internal AggregateOfferDataContract SellOffers { get; set; }
 
+        [DataMember(Name = "whitelisted", Order = 3)]
+        internal bool Whitelisted { get; set; }
+
         #endregion
     }
 }

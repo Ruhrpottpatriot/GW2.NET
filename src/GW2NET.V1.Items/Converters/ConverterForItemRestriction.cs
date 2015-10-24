@@ -13,6 +13,8 @@ using GW2NET.Items;
 
 namespace GW2NET.V1.Items.Converters
 {
+    using System.Diagnostics;
+
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="ItemRestrictions"/>.</summary>
     internal sealed class ConverterForItemRestriction : IConverter<string, ItemRestrictions>
     {
@@ -30,6 +32,7 @@ namespace GW2NET.V1.Items.Converters
                 return result;
             }
 
+            Debug.Assert(false, "Unknown ItemRestrictions: " + value);
             return default(ItemRestrictions);
         }
     }

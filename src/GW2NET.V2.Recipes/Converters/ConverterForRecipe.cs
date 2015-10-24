@@ -91,6 +91,7 @@ namespace GW2NET.V2.Recipes
             }
 
             recipe.RecipeId = value.Id;
+            recipe.ChatLink = value.ChatLink;
             recipe.OutputItemId = value.OutputItemId;
             recipe.OutputItemCount = value.OutputItemCount;
             recipe.MinimumRating = value.MinRating;

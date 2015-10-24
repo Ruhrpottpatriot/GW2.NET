@@ -10,6 +10,7 @@
 namespace GW2NET.V2.Skins
 {
     using System;
+    using System.Diagnostics;
 
     using GW2NET.Common;
     using GW2NET.Items;
@@ -21,7 +22,13 @@ namespace GW2NET.V2.Skins
         public WeightClass Convert(string value)
         {
             WeightClass result;
-            return Enum.TryParse(value, true, out result) ? result : default(WeightClass);
+            if (Enum.TryParse(value, true, out result))
+            {
+                return result;
+            }
+
+            Debug.Assert(false, "Unknown WeightClass: " + value);
+            return default(WeightClass);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace GW2NET.V1.Items.Converters
     using System;
     using System.Collections.Generic;
 
+    using GW2NET.ChatLinks;
     using GW2NET.Common;
     using GW2NET.Items;
     using GW2NET.V1.Items.Json;
@@ -89,10 +90,23 @@ namespace GW2NET.V1.Items.Converters
             }
 
             Item item;
+            ItemChatLink chatLink = new ItemChatLink { Quantity = 1 };
             IConverter<ItemDataContract, Item> converter;
             if (this.typeConverters.TryGetValue(value.Type, out converter))
             {
                 item = converter.Convert(value);
+                var skinItem = item as ISkinnable;
+                if (skinItem != null)
+                {
+                    chatLink.SkinId = skinItem.DefaultSkinId;
+                }
+
+                var upgradeItem = item as IUpgradable;
+                if (upgradeItem != null)
+                {
+                    chatLink.SuffixItemId = upgradeItem.SuffixItemId;
+                    chatLink.SecondarySuffixItemId = upgradeItem.SecondarySuffixItemId;
+                }
             }
             else
             {
@@ -103,8 +117,10 @@ namespace GW2NET.V1.Items.Converters
             if (int.TryParse(value.ItemId, out itemId))
             {
                 item.ItemId = itemId;
+                chatLink.ItemId = itemId;
             }
 
+            item.ChatLink = chatLink.ToString();
             item.Name = value.Name;
             item.Description = value.Description;
 
@@ -163,20 +179,20 @@ namespace GW2NET.V1.Items.Converters
         {
             return new Dictionary<string, IConverter<ItemDataContract, Item>>
             {
-                { "Armor", new ConverterForArmor() }, 
-                { "Back", new ConverterForBackpack() }, 
-                { "Bag", new ConverterForBag() }, 
-                { "Consumable", new ConverterForConsumable() }, 
-                { "Container", new ConverterForContainer() }, 
-                { "CraftingMaterial", new ConverterForCraftingMaterial() }, 
-                { "Gathering", new ConverterForGatheringTool() }, 
-                { "Gizmo", new ConverterForGizmo() }, 
-                { "MiniPet", new ConverterForMiniature() }, 
-                { "Tool", new ConverterForTool() }, 
-                { "Trait", new ConverterForTraitGuide() }, 
-                { "Trinket", new ConverterForTrinket() }, 
-                { "Trophy", new ConverterForTrophy() }, 
-                { "UpgradeComponent", new ConverterForUpgradeComponent() }, 
+                { "Armor", new ConverterForArmor() },
+                { "Back", new ConverterForBackpack() },
+                { "Bag", new ConverterForBag() },
+                { "Consumable", new ConverterForConsumable() },
+                { "Container", new ConverterForContainer() },
+                { "CraftingMaterial", new ConverterForCraftingMaterial() },
+                { "Gathering", new ConverterForGatheringTool() },
+                { "Gizmo", new ConverterForGizmo() },
+                { "MiniPet", new ConverterForMiniature() },
+                { "Tool", new ConverterForTool() },
+                { "Trait", new ConverterForTraitGuide() },
+                { "Trinket", new ConverterForTrinket() },
+                { "Trophy", new ConverterForTrophy() },
+                { "UpgradeComponent", new ConverterForUpgradeComponent() },
                 { "Weapon", new ConverterForWeapon() }
             };
         }

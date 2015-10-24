@@ -48,7 +48,8 @@ namespace GW2NET.V2.Commerce.Prices
 
             var aggregateListing = new AggregateListing
             {
-                ItemId = value.Id
+                ItemId = value.Id,
+                Whitelisted = value.Whitelisted
             };
             var buys = value.BuyOffers;
             if (buys != null)

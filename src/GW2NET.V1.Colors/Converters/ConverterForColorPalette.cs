@@ -14,6 +14,7 @@ using GW2NET.V1.Colors.Json;
 namespace GW2NET.V1.Colors.Converters
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>Converts objects of type <see cref="ColorDataContract"/> to objects of type <see cref="ColorPalette"/>.</summary>
     internal sealed class ConverterForColorPalette : IConverter<ColorDataContract, ColorPalette>
@@ -87,6 +88,18 @@ namespace GW2NET.V1.Colors.Converters
             if (metal != null)
             {
                 colorPalette.Metal = this.converterForColorModel.Convert(metal);
+            }
+
+            colorPalette.ItemId = value.ItemId;
+            if (value.Categories == null)
+            {
+                colorPalette.Categories = new List<string>(0);
+            }
+            else
+            {
+                var values = new List<string>(value.Categories.Length);
+                values.AddRange(value.Categories);
+                colorPalette.Categories = values;
             }
 
             // Return the color object

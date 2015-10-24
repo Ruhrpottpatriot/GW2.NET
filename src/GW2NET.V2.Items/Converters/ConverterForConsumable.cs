@@ -70,6 +70,7 @@ namespace GW2NET.V2.Items
                 { "Generic", new ConverterForGenericConsumable() }, 
                 { "Halloween", new ConverterForHalloweenConsumable() }, 
                 { "Immediate", new ConverterForImmediateConsumable() }, 
+                { "TeleportToFriend", new ConverterForTeleportToFriend() }, 
                 { "Transmutation", new ConverterForTransmutation() }, 
                 { "Unlock", new ConverterForUnlocker() }, 
                 { "UnTransmutation", new ConverterForUnTransmutation() }, 

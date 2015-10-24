@@ -10,6 +10,7 @@
 namespace GW2NET.V2.Skins
 {
     using System;
+    using System.Diagnostics;
 
     using GW2NET.Common;
     using GW2NET.Items;
@@ -21,7 +22,13 @@ namespace GW2NET.V2.Skins
         public ItemRestrictions Convert(string value)
         {
             ItemRestrictions result;
-            return Enum.TryParse(value, true, out result) ? result : default(ItemRestrictions);
+            if (Enum.TryParse(value, true, out result))
+            {
+                return result;
+            }
+
+            Debug.Assert(false, "Unknown ItemRestrictions: " + value);
+            return default(ItemRestrictions);
         }
     }
 }

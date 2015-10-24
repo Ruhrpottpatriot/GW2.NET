@@ -60,6 +60,10 @@ namespace GW2NET.Items
         /// <summary>Gets or sets the item's vendor value.</summary>
         public virtual int VendorValue { get; set; }
 
+
+        /// <summary>Gets or sets a chat code that links to the current item in-game.</summary>
+        public virtual string ChatLink { get; set; }
+
         /// <inheritdoc />
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         int IRenderable.FileId

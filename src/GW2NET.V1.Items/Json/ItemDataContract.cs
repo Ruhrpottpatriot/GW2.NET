@@ -59,34 +59,37 @@ namespace GW2NET.V1.Items.Json
         [DataMember(Name = "armor", Order = 13)]
         internal ArmorDataContract Armor { get; set; }
 
-        [DataMember(Name = "back", Order = 14)]
+        [DataMember(Name = "back", Order = 13)]
         internal BackpackDataContract Backpack { get; set; }
 
-        [DataMember(Name = "bag", Order = 15)]
+        [DataMember(Name = "bag", Order = 13)]
         internal BagDataContract Bag { get; set; }
 
-        [DataMember(Name = "consumable", Order = 16)]
+        [DataMember(Name = "consumable", Order = 13)]
         internal ConsumableDataContract Consumable { get; set; }
 
-        [DataMember(Name = "container", Order = 17)]
+        [DataMember(Name = "container", Order = 13)]
         internal ContainerDataContract Container { get; set; }
 
-        [DataMember(Name = "gathering", Order = 18)]
+        [DataMember(Name = "gathering", Order = 13)]
         internal GatheringToolDataContract GatheringTool { get; set; }
 
-        [DataMember(Name = "gizmo", Order = 19)]
+        [DataMember(Name = "gizmo", Order = 13)]
         internal GizmoDataContract Gizmo { get; set; }
 
-        [DataMember(Name = "tool", Order = 20)]
+        [DataMember(Name = "tool", Order = 13)]
         internal ToolDataContract Tool { get; set; }
 
-        [DataMember(Name = "trinket", Order = 21)]
+        [DataMember(Name = "trinket", Order = 13)]
         internal TrinketDataContract Trinket { get; set; }
 
-        [DataMember(Name = "upgrade_component", Order = 22)]
+        [DataMember(Name = "upgrade_component", Order = 13)]
         internal UpgradeComponentDataContract UpgradeComponent { get; set; }
 
-        [DataMember(Name = "weapon", Order = 23)]
+        [DataMember(Name = "weapon", Order = 13)]
         internal WeaponDataContract Weapon { get; set; }
+
+        [DataMember(Name = "minipet", Order = 13)]
+        internal MiniPetDataContract MiniPet { get; set; }
     }
 }

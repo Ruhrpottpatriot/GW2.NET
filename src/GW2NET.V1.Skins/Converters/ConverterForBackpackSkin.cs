@@ -23,11 +23,7 @@ namespace GW2NET.V1.Skins.Converters
         /// <returns>The converted value.</returns>
         public BackpackSkin Convert(SkinDataContract value)
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException("value", "Precondition: value != null");
-            }
-
+            // MEMO: value is always null
             return new BackpackSkin();
         }
     }

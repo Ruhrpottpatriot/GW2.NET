@@ -26,7 +26,13 @@ namespace GW2NET.V1.Items.Converters
                 throw new ArgumentNullException("value", "Precondition: value != null");
             }
 
-            return new Miniature();
+            var item = new Miniature();
+            if (value.MiniPet != null)
+            {
+                item.MiniatureId = value.MiniPet.Id;
+            }
+
+            return item;
         }
     }
 }

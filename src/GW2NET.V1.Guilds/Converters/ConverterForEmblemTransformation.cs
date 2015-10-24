@@ -13,6 +13,8 @@ using GW2NET.Guilds;
 
 namespace GW2NET.V1.Guilds.Converters
 {
+    using System.Diagnostics;
+
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="EmblemTransformations"/>.</summary>
     internal sealed class ConverterForEmblemTransformation : IConverter<string, EmblemTransformations>
     {
@@ -25,6 +27,7 @@ namespace GW2NET.V1.Guilds.Converters
                 return result;
             }
 
+            Debug.Assert(false, "Unknown EmblemTransformations: " + value);
             return default(EmblemTransformations);
         }
     }

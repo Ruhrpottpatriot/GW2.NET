@@ -9,6 +9,7 @@
 namespace GW2NET.V2.Items
 {
     using System;
+    using System.Collections.Generic;
 
     using GW2NET.Common;
     using GW2NET.Items;
@@ -26,7 +27,19 @@ namespace GW2NET.V2.Items
                 throw new ArgumentNullException("value", "Precondition: value != null");
             }
 
-            return new Transmutation();
+            var item = new Transmutation();
+            if (value.Skins == null)
+            {
+                item.SkinIds = new List<int>(0);
+            }
+            else
+            {
+                var values = new List<int>(value.Skins.Length);
+                values.AddRange(value.Skins);
+                item.SkinIds = values;
+            }
+
+            return item;
         }
     }
 }

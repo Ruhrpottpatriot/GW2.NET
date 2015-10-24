@@ -100,6 +100,7 @@ namespace GW2NET.V2.Items
             }
 
             item.ItemId = value.Id;
+            item.ChatLink = value.ChatLink;
             item.Name = value.Name;
             item.Description = value.Description;
             item.Level = value.Level;

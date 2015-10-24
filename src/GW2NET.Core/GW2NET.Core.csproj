@@ -191,6 +191,9 @@
     <Compile Include="Items\Common\ToughnessModifier.cs" />
     <Compile Include="Items\Common\UnknownModifier.cs" />
     <Compile Include="Items\Common\VitalityModifier.cs" />
+    <Compile Include="Items\Consumables\TeleportToFriend.cs" />
+    <Compile Include="Items\Consumables\GliderSkinUnlocker.cs" />
+    <Compile Include="Items\Consumables\OutfitUnlocker.cs" />
     <Compile Include="Items\Consumables\Alcohol.cs" />
     <Compile Include="Items\Consumables\AppearanceChanger.cs" />
     <Compile Include="Items\Consumables\BagSlotUnlocker.cs" />
@@ -403,6 +406,7 @@
     <Compile Include="Skins\WarHornSkin.cs" />
     <Compile Include="Skins\WeaponSkin.cs" />
     <Compile Include="Worlds\IWorldRepository.cs" />
+    <Compile Include="Worlds\Population.cs" />
     <Compile Include="Worlds\World.cs" />
     <Compile Include="WorldVersusWorld\Bloodlust.cs" />
     <Compile Include="WorldVersusWorld\BlueBorderlands.cs" />

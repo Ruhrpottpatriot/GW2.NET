@@ -47,7 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\ConverterForAccessory.cs" />
+    <Compile Include="Converters\ConverterForTeleportToFriend.cs" />
     <Compile Include="Converters\ConverterForAlcohol.cs" />
+    <Compile Include="Converters\ConverterForGliderSkinUnlocker.cs" />
+    <Compile Include="Converters\ConverterForOutfitUnlocker.cs" />
     <Compile Include="Converters\ConverterForAmulet.cs" />
     <Compile Include="Converters\ConverterForAppearanceChanger.cs" />
     <Compile Include="Converters\ConverterForArmor.cs" />

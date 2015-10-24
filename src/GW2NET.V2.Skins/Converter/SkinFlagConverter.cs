@@ -10,6 +10,7 @@
 namespace GW2NET.V2.Skins
 {
     using System;
+    using System.Diagnostics;
 
     using GW2NET.Common;
     using GW2NET.Skins;
@@ -26,7 +27,13 @@ namespace GW2NET.V2.Skins
             }
 
             SkinFlags result;
-            return Enum.TryParse(value, true, out result) ? result : default(SkinFlags);
+            if (Enum.TryParse(value, true, out result))
+            {
+                return result;
+            }
+
+            Debug.Assert(false, "Unknown SkinFlags: " + value);
+            return default(SkinFlags);
         }
     }
 }

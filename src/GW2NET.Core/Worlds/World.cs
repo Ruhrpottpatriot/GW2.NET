@@ -13,7 +13,7 @@ namespace GW2NET.Worlds
 
     using GW2NET.Common;
 
-    /// <summary>Represents a world and its localized name.</summary>
+    /// <summary>Represents a world and its localized name and demographics.</summary>
     public class World : IEquatable<World>, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
@@ -24,6 +24,9 @@ namespace GW2NET.Worlds
 
         /// <summary>Gets or sets the world identifier.</summary>
         public virtual int WorldId { get; set; }
+
+        /// <summary>Gets or sets an indication of the world's population.</summary>
+        public virtual Population Population { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

@@ -31,5 +31,11 @@ namespace GW2NET.V2.Colors
 
         [DataMember(Name = "metal", Order = 4)]
         internal ColorModelDataContract Metal { get; set; }
+
+        [DataMember(Name = "item", Order = 5)]
+        internal int ItemId { get; set; }
+
+        [DataMember(Name = "categories", Order = 6)]
+        internal string[] Categories { get; set; }
     }
 }

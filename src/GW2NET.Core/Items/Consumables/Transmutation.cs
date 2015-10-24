@@ -8,8 +8,15 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Items
 {
+    using System.Collections.Generic;
+
+    using GW2NET.Skins;
+
     /// <summary>Represents a transmutation item.</summary>
     public class Transmutation : Consumable
     {
+        public ICollection<int> SkinIds { get; set; }
+
+        public virtual ICollection<Skin> Skins { get; set; }
     }
 }
