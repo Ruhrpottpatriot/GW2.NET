@@ -19,6 +19,14 @@ namespace GW2NET.Common
     /// <summary>Provides static extension methods for types that implement the <see cref="IPaginator{T}"/> interface.</summary>
     public static class Paginator
     {
+        static Paginator()
+        {
+            MaxRetryCount = 3;
+        }
+
+        /// <summary>Gets or sets the maximum number of retry attempts per page. The default value is 3.</summary>
+        public static int MaxRetryCount { get; set; }
+
         /// <summary>Finds a collection of all pages.</summary>
         /// <param name="instance">The instance of <see cref="IPaginator{T}"/> that provides the pages.</param>
         /// <param name="pageCount">The number of pages to get.</param>
@@ -135,7 +143,7 @@ namespace GW2NET.Common
             Debug.Assert(instance != null, "instance != null");
             for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
             {
-                yield return instance.FindPageAsync(pageIndex, cancellationToken);
+                yield return RetryOnFault(() => instance.FindPageAsync(pageIndex, cancellationToken), MaxRetryCount);
             }
         }
 
@@ -148,8 +156,45 @@ namespace GW2NET.Common
             Debug.Assert(instance != null, "instance != null");
             for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
             {
-                yield return instance.FindPageAsync(pageIndex, pageSize, cancellationToken);
+                yield return RetryOnFault(() => instance.FindPageAsync(pageIndex, pageSize, cancellationToken), MaxRetryCount);
             }
+        }
+
+        private static async Task<T> RetryOnFault<T>(Func<Task<T>> function, int maxTries)
+        {
+            if (maxTries <= 0)
+            {
+                var task = function();
+                if (task == null)
+                {
+                    return default(T);
+                }
+
+                return await task.ConfigureAwait(false);
+            }
+
+            for (int i = 0; i < maxTries; i++)
+            {
+                var task = function();
+                if (task == null)
+                {
+                    continue;
+                }
+
+                try
+                {
+                    return await task.ConfigureAwait(false);
+                }
+                catch
+                {
+                    if (i == maxTries - 1)
+                    {
+                        throw;
+                    }
+                }
+            }
+
+            return default(T);
         }
 
         private static IEnumerable<Task<T>> Interleaved<T>(IEnumerable<Task<T>> tasks)
