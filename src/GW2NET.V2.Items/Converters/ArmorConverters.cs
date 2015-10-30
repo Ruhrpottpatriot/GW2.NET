@@ -14,8 +14,7 @@ namespace GW2NET.V2.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items;
-    using GW2NET.V2.Items;
-    using GW2NET.V2.Items.Json;
+	using ItemDTO = GW2NET.V2.Items.Json.ItemDTO;
 
     public sealed partial class ArmorConverter : IConverter<ItemDTO, Armor>
 	{
@@ -63,10 +62,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region Boots
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Boots"/>.</summary>
-    public sealed partial class BootsConverter : IConverter<ItemDTO, Boots>
+    public sealed partial class BootsConverter : IConverter<ItemDTO, Armor>
     {
 	    /// <inheritdoc />
-        public Boots Convert(ItemDTO value, object state)
+        public Armor Convert(ItemDTO value, object state)
         {
     		var entity = new Boots();
             this.Merge(entity, value, state);
@@ -91,10 +90,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region Coat
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Coat"/>.</summary>
-    public sealed partial class CoatConverter : IConverter<ItemDTO, Coat>
+    public sealed partial class CoatConverter : IConverter<ItemDTO, Armor>
     {
 	    /// <inheritdoc />
-        public Coat Convert(ItemDTO value, object state)
+        public Armor Convert(ItemDTO value, object state)
         {
     		var entity = new Coat();
             this.Merge(entity, value, state);
@@ -119,10 +118,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region Gloves
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Gloves"/>.</summary>
-    public sealed partial class GlovesConverter : IConverter<ItemDTO, Gloves>
+    public sealed partial class GlovesConverter : IConverter<ItemDTO, Armor>
     {
 	    /// <inheritdoc />
-        public Gloves Convert(ItemDTO value, object state)
+        public Armor Convert(ItemDTO value, object state)
         {
     		var entity = new Gloves();
             this.Merge(entity, value, state);
@@ -147,10 +146,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region Helm
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Helm"/>.</summary>
-    public sealed partial class HelmConverter : IConverter<ItemDTO, Helm>
+    public sealed partial class HelmConverter : IConverter<ItemDTO, Armor>
     {
 	    /// <inheritdoc />
-        public Helm Convert(ItemDTO value, object state)
+        public Armor Convert(ItemDTO value, object state)
         {
     		var entity = new Helm();
             this.Merge(entity, value, state);
@@ -175,10 +174,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region HelmAquatic
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="HelmAquatic"/>.</summary>
-    public sealed partial class HelmAquaticConverter : IConverter<ItemDTO, HelmAquatic>
+    public sealed partial class HelmAquaticConverter : IConverter<ItemDTO, Armor>
     {
 	    /// <inheritdoc />
-        public HelmAquatic Convert(ItemDTO value, object state)
+        public Armor Convert(ItemDTO value, object state)
         {
     		var entity = new HelmAquatic();
             this.Merge(entity, value, state);
@@ -203,10 +202,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region Leggings
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Leggings"/>.</summary>
-    public sealed partial class LeggingsConverter : IConverter<ItemDTO, Leggings>
+    public sealed partial class LeggingsConverter : IConverter<ItemDTO, Armor>
     {
 	    /// <inheritdoc />
-        public Leggings Convert(ItemDTO value, object state)
+        public Armor Convert(ItemDTO value, object state)
         {
     		var entity = new Leggings();
             this.Merge(entity, value, state);
@@ -231,10 +230,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region Shoulders
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Shoulders"/>.</summary>
-    public sealed partial class ShouldersConverter : IConverter<ItemDTO, Shoulders>
+    public sealed partial class ShouldersConverter : IConverter<ItemDTO, Armor>
     {
 	    /// <inheritdoc />
-        public Shoulders Convert(ItemDTO value, object state)
+        public Armor Convert(ItemDTO value, object state)
         {
     		var entity = new Shoulders();
             this.Merge(entity, value, state);
@@ -259,10 +258,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region UnknownArmor
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="UnknownArmor"/>.</summary>
-    public sealed partial class UnknownArmorConverter : IConverter<ItemDTO, UnknownArmor>
+    public sealed partial class UnknownArmorConverter : IConverter<ItemDTO, Armor>
     {
 	    /// <inheritdoc />
-        public UnknownArmor Convert(ItemDTO value, object state)
+        public Armor Convert(ItemDTO value, object state)
         {
     		var entity = new UnknownArmor();
             this.Merge(entity, value, state);

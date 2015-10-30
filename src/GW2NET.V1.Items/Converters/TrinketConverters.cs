@@ -14,8 +14,7 @@ namespace GW2NET.V1.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items;
-    using GW2NET.V1.Items;
-    using GW2NET.V1.Items.Json;
+	using ItemDTO = GW2NET.V1.Items.Json.ItemDTO;
 
     public sealed partial class TrinketConverter : IConverter<ItemDTO, Trinket>
 	{
@@ -63,10 +62,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region Accessory
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Accessory"/>.</summary>
-    public sealed partial class AccessoryConverter : IConverter<ItemDTO, Accessory>
+    public sealed partial class AccessoryConverter : IConverter<ItemDTO, Trinket>
     {
 	    /// <inheritdoc />
-        public Accessory Convert(ItemDTO value, object state)
+        public Trinket Convert(ItemDTO value, object state)
         {
     		var entity = new Accessory();
             this.Merge(entity, value, state);
@@ -91,10 +90,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region Amulet
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Amulet"/>.</summary>
-    public sealed partial class AmuletConverter : IConverter<ItemDTO, Amulet>
+    public sealed partial class AmuletConverter : IConverter<ItemDTO, Trinket>
     {
 	    /// <inheritdoc />
-        public Amulet Convert(ItemDTO value, object state)
+        public Trinket Convert(ItemDTO value, object state)
         {
     		var entity = new Amulet();
             this.Merge(entity, value, state);
@@ -119,10 +118,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region Ring
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Ring"/>.</summary>
-    public sealed partial class RingConverter : IConverter<ItemDTO, Ring>
+    public sealed partial class RingConverter : IConverter<ItemDTO, Trinket>
     {
 	    /// <inheritdoc />
-        public Ring Convert(ItemDTO value, object state)
+        public Trinket Convert(ItemDTO value, object state)
         {
     		var entity = new Ring();
             this.Merge(entity, value, state);
@@ -147,10 +146,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region UnknownTrinket
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="UnknownTrinket"/>.</summary>
-    public sealed partial class UnknownTrinketConverter : IConverter<ItemDTO, UnknownTrinket>
+    public sealed partial class UnknownTrinketConverter : IConverter<ItemDTO, Trinket>
     {
 	    /// <inheritdoc />
-        public UnknownTrinket Convert(ItemDTO value, object state)
+        public Trinket Convert(ItemDTO value, object state)
         {
     		var entity = new UnknownTrinket();
             this.Merge(entity, value, state);

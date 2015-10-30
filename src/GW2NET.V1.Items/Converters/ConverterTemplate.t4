@@ -13,9 +13,8 @@ namespace <#= ns #>
     using System;
 
     using GW2NET.Common;
-    using GW2NET.Items;
-    using GW2NET.V1.Items;
-    using GW2NET.V1.Items.Json;
+    using <#= targetBaseType.Namespace #>;
+	using <#= sourceType #> = <#= sourceTypeFullName #>;
 
     public sealed partial class <#= targetBaseType.Name #>Converter : IConverter<<#= sourceType #>, <#= targetBaseType.Name #>>
 	{
@@ -68,10 +67,10 @@ namespace <#= ns #>
 #>
 #region <#= targetType.Name #>
     /// <summary>Converts objects of type <see cref="<#= sourceType #>"/> to objects of type <see cref="<#= targetType.Name #>"/>.</summary>
-    public sealed partial class <#= targetType.Name #>Converter : IConverter<<#= sourceType #>, <#= targetType.Name #>>
+    public sealed partial class <#= targetType.Name #>Converter : IConverter<<#= sourceType #>, <#= targetBaseType.Name #>>
     {
 	    /// <inheritdoc />
-        public <#= targetType.Name #> Convert(<#= sourceType #> value, object state)
+        public <#= targetBaseType.Name #> Convert(<#= sourceType #> value, object state)
         {
     		var entity = new <#= targetType.Name #>();
             this.Merge(entity, value, state);

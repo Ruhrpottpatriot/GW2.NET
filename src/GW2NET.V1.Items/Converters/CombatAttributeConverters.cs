@@ -14,8 +14,7 @@ namespace GW2NET.V1.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items;
-    using GW2NET.V1.Items;
-    using GW2NET.V1.Items.Json;
+	using AttributeDTO = GW2NET.V1.Items.Json.AttributeDTO;
 
     public sealed partial class CombatAttributeConverter : IConverter<AttributeDTO, CombatAttribute>
 	{
@@ -63,10 +62,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region ConditionDamageModifier
     /// <summary>Converts objects of type <see cref="AttributeDTO"/> to objects of type <see cref="ConditionDamageModifier"/>.</summary>
-    public sealed partial class ConditionDamageModifierConverter : IConverter<AttributeDTO, ConditionDamageModifier>
+    public sealed partial class ConditionDamageModifierConverter : IConverter<AttributeDTO, CombatAttribute>
     {
 	    /// <inheritdoc />
-        public ConditionDamageModifier Convert(AttributeDTO value, object state)
+        public CombatAttribute Convert(AttributeDTO value, object state)
         {
     		var entity = new ConditionDamageModifier();
             this.Merge(entity, value, state);
@@ -91,10 +90,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region FerocityModifier
     /// <summary>Converts objects of type <see cref="AttributeDTO"/> to objects of type <see cref="FerocityModifier"/>.</summary>
-    public sealed partial class FerocityModifierConverter : IConverter<AttributeDTO, FerocityModifier>
+    public sealed partial class FerocityModifierConverter : IConverter<AttributeDTO, CombatAttribute>
     {
 	    /// <inheritdoc />
-        public FerocityModifier Convert(AttributeDTO value, object state)
+        public CombatAttribute Convert(AttributeDTO value, object state)
         {
     		var entity = new FerocityModifier();
             this.Merge(entity, value, state);
@@ -119,10 +118,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region HealingModifier
     /// <summary>Converts objects of type <see cref="AttributeDTO"/> to objects of type <see cref="HealingModifier"/>.</summary>
-    public sealed partial class HealingModifierConverter : IConverter<AttributeDTO, HealingModifier>
+    public sealed partial class HealingModifierConverter : IConverter<AttributeDTO, CombatAttribute>
     {
 	    /// <inheritdoc />
-        public HealingModifier Convert(AttributeDTO value, object state)
+        public CombatAttribute Convert(AttributeDTO value, object state)
         {
     		var entity = new HealingModifier();
             this.Merge(entity, value, state);
@@ -147,10 +146,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region PowerModifier
     /// <summary>Converts objects of type <see cref="AttributeDTO"/> to objects of type <see cref="PowerModifier"/>.</summary>
-    public sealed partial class PowerModifierConverter : IConverter<AttributeDTO, PowerModifier>
+    public sealed partial class PowerModifierConverter : IConverter<AttributeDTO, CombatAttribute>
     {
 	    /// <inheritdoc />
-        public PowerModifier Convert(AttributeDTO value, object state)
+        public CombatAttribute Convert(AttributeDTO value, object state)
         {
     		var entity = new PowerModifier();
             this.Merge(entity, value, state);
@@ -175,10 +174,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region PrecisionModifier
     /// <summary>Converts objects of type <see cref="AttributeDTO"/> to objects of type <see cref="PrecisionModifier"/>.</summary>
-    public sealed partial class PrecisionModifierConverter : IConverter<AttributeDTO, PrecisionModifier>
+    public sealed partial class PrecisionModifierConverter : IConverter<AttributeDTO, CombatAttribute>
     {
 	    /// <inheritdoc />
-        public PrecisionModifier Convert(AttributeDTO value, object state)
+        public CombatAttribute Convert(AttributeDTO value, object state)
         {
     		var entity = new PrecisionModifier();
             this.Merge(entity, value, state);
@@ -203,10 +202,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region ToughnessModifier
     /// <summary>Converts objects of type <see cref="AttributeDTO"/> to objects of type <see cref="ToughnessModifier"/>.</summary>
-    public sealed partial class ToughnessModifierConverter : IConverter<AttributeDTO, ToughnessModifier>
+    public sealed partial class ToughnessModifierConverter : IConverter<AttributeDTO, CombatAttribute>
     {
 	    /// <inheritdoc />
-        public ToughnessModifier Convert(AttributeDTO value, object state)
+        public CombatAttribute Convert(AttributeDTO value, object state)
         {
     		var entity = new ToughnessModifier();
             this.Merge(entity, value, state);
@@ -231,10 +230,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region UnknownModifier
     /// <summary>Converts objects of type <see cref="AttributeDTO"/> to objects of type <see cref="UnknownModifier"/>.</summary>
-    public sealed partial class UnknownModifierConverter : IConverter<AttributeDTO, UnknownModifier>
+    public sealed partial class UnknownModifierConverter : IConverter<AttributeDTO, CombatAttribute>
     {
 	    /// <inheritdoc />
-        public UnknownModifier Convert(AttributeDTO value, object state)
+        public CombatAttribute Convert(AttributeDTO value, object state)
         {
     		var entity = new UnknownModifier();
             this.Merge(entity, value, state);
@@ -259,10 +258,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region VitalityModifier
     /// <summary>Converts objects of type <see cref="AttributeDTO"/> to objects of type <see cref="VitalityModifier"/>.</summary>
-    public sealed partial class VitalityModifierConverter : IConverter<AttributeDTO, VitalityModifier>
+    public sealed partial class VitalityModifierConverter : IConverter<AttributeDTO, CombatAttribute>
     {
 	    /// <inheritdoc />
-        public VitalityModifier Convert(AttributeDTO value, object state)
+        public CombatAttribute Convert(AttributeDTO value, object state)
         {
     		var entity = new VitalityModifier();
             this.Merge(entity, value, state);

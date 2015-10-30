@@ -14,8 +14,7 @@ namespace GW2NET.V1.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items;
-    using GW2NET.V1.Items;
-    using GW2NET.V1.Items.Json;
+	using ItemDTO = GW2NET.V1.Items.Json.ItemDTO;
 
     public sealed partial class UpgradeComponentConverter : IConverter<ItemDTO, UpgradeComponent>
 	{
@@ -63,10 +62,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region DefaultUpgradeComponent
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="DefaultUpgradeComponent"/>.</summary>
-    public sealed partial class DefaultUpgradeComponentConverter : IConverter<ItemDTO, DefaultUpgradeComponent>
+    public sealed partial class DefaultUpgradeComponentConverter : IConverter<ItemDTO, UpgradeComponent>
     {
 	    /// <inheritdoc />
-        public DefaultUpgradeComponent Convert(ItemDTO value, object state)
+        public UpgradeComponent Convert(ItemDTO value, object state)
         {
     		var entity = new DefaultUpgradeComponent();
             this.Merge(entity, value, state);
@@ -91,10 +90,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region Gem
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Gem"/>.</summary>
-    public sealed partial class GemConverter : IConverter<ItemDTO, Gem>
+    public sealed partial class GemConverter : IConverter<ItemDTO, UpgradeComponent>
     {
 	    /// <inheritdoc />
-        public Gem Convert(ItemDTO value, object state)
+        public UpgradeComponent Convert(ItemDTO value, object state)
         {
     		var entity = new Gem();
             this.Merge(entity, value, state);
@@ -119,10 +118,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region Rune
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Rune"/>.</summary>
-    public sealed partial class RuneConverter : IConverter<ItemDTO, Rune>
+    public sealed partial class RuneConverter : IConverter<ItemDTO, UpgradeComponent>
     {
 	    /// <inheritdoc />
-        public Rune Convert(ItemDTO value, object state)
+        public UpgradeComponent Convert(ItemDTO value, object state)
         {
     		var entity = new Rune();
             this.Merge(entity, value, state);
@@ -147,10 +146,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region Sigil
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Sigil"/>.</summary>
-    public sealed partial class SigilConverter : IConverter<ItemDTO, Sigil>
+    public sealed partial class SigilConverter : IConverter<ItemDTO, UpgradeComponent>
     {
 	    /// <inheritdoc />
-        public Sigil Convert(ItemDTO value, object state)
+        public UpgradeComponent Convert(ItemDTO value, object state)
         {
     		var entity = new Sigil();
             this.Merge(entity, value, state);
@@ -175,10 +174,10 @@ namespace GW2NET.V1.Items.Converters
 
 #region UnknownUpgradeComponent
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="UnknownUpgradeComponent"/>.</summary>
-    public sealed partial class UnknownUpgradeComponentConverter : IConverter<ItemDTO, UnknownUpgradeComponent>
+    public sealed partial class UnknownUpgradeComponentConverter : IConverter<ItemDTO, UpgradeComponent>
     {
 	    /// <inheritdoc />
-        public UnknownUpgradeComponent Convert(ItemDTO value, object state)
+        public UpgradeComponent Convert(ItemDTO value, object state)
         {
     		var entity = new UnknownUpgradeComponent();
             this.Merge(entity, value, state);

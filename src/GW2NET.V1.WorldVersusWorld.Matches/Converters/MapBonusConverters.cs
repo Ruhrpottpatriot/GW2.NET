@@ -13,8 +13,8 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     using System;
 
     using GW2NET.Common;
-	using GW2NET.V1.WorldVersusWorld.Matches.Json;
     using GW2NET.WorldVersusWorld;
+	using MapBonusDTO = GW2NET.V1.WorldVersusWorld.Matches.Json.MapBonusDTO;
 
     public sealed partial class MapBonusConverter : IConverter<MapBonusDTO, MapBonus>
 	{
@@ -62,10 +62,10 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 
 #region Bloodlust
     /// <summary>Converts objects of type <see cref="MapBonusDTO"/> to objects of type <see cref="Bloodlust"/>.</summary>
-    public sealed partial class BloodlustConverter : IConverter<MapBonusDTO, Bloodlust>
+    public sealed partial class BloodlustConverter : IConverter<MapBonusDTO, MapBonus>
     {
 	    /// <inheritdoc />
-        public Bloodlust Convert(MapBonusDTO value, object state)
+        public MapBonus Convert(MapBonusDTO value, object state)
         {
     		var entity = new Bloodlust();
             this.Merge(entity, value, state);
@@ -90,10 +90,10 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 
 #region UnknownMapBonus
     /// <summary>Converts objects of type <see cref="MapBonusDTO"/> to objects of type <see cref="UnknownMapBonus"/>.</summary>
-    public sealed partial class UnknownMapBonusConverter : IConverter<MapBonusDTO, UnknownMapBonus>
+    public sealed partial class UnknownMapBonusConverter : IConverter<MapBonusDTO, MapBonus>
     {
 	    /// <inheritdoc />
-        public UnknownMapBonus Convert(MapBonusDTO value, object state)
+        public MapBonus Convert(MapBonusDTO value, object state)
         {
     		var entity = new UnknownMapBonus();
             this.Merge(entity, value, state);

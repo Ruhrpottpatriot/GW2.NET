@@ -14,8 +14,7 @@ namespace GW2NET.V2.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items;
-    using GW2NET.V2.Items;
-    using GW2NET.V2.Items.Json;
+	using ItemDTO = GW2NET.V2.Items.Json.ItemDTO;
 
     public sealed partial class ConsumableConverter : IConverter<ItemDTO, Consumable>
 	{
@@ -63,10 +62,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region Alcohol
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Alcohol"/>.</summary>
-    public sealed partial class AlcoholConverter : IConverter<ItemDTO, Alcohol>
+    public sealed partial class AlcoholConverter : IConverter<ItemDTO, Consumable>
     {
 	    /// <inheritdoc />
-        public Alcohol Convert(ItemDTO value, object state)
+        public Consumable Convert(ItemDTO value, object state)
         {
     		var entity = new Alcohol();
             this.Merge(entity, value, state);
@@ -91,10 +90,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region AppearanceChanger
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="AppearanceChanger"/>.</summary>
-    public sealed partial class AppearanceChangerConverter : IConverter<ItemDTO, AppearanceChanger>
+    public sealed partial class AppearanceChangerConverter : IConverter<ItemDTO, Consumable>
     {
 	    /// <inheritdoc />
-        public AppearanceChanger Convert(ItemDTO value, object state)
+        public Consumable Convert(ItemDTO value, object state)
         {
     		var entity = new AppearanceChanger();
             this.Merge(entity, value, state);
@@ -119,10 +118,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region ContractNpc
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="ContractNpc"/>.</summary>
-    public sealed partial class ContractNpcConverter : IConverter<ItemDTO, ContractNpc>
+    public sealed partial class ContractNpcConverter : IConverter<ItemDTO, Consumable>
     {
 	    /// <inheritdoc />
-        public ContractNpc Convert(ItemDTO value, object state)
+        public Consumable Convert(ItemDTO value, object state)
         {
     		var entity = new ContractNpc();
             this.Merge(entity, value, state);
@@ -147,10 +146,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region Food
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Food"/>.</summary>
-    public sealed partial class FoodConverter : IConverter<ItemDTO, Food>
+    public sealed partial class FoodConverter : IConverter<ItemDTO, Consumable>
     {
 	    /// <inheritdoc />
-        public Food Convert(ItemDTO value, object state)
+        public Consumable Convert(ItemDTO value, object state)
         {
     		var entity = new Food();
             this.Merge(entity, value, state);
@@ -175,10 +174,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region GenericConsumable
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="GenericConsumable"/>.</summary>
-    public sealed partial class GenericConsumableConverter : IConverter<ItemDTO, GenericConsumable>
+    public sealed partial class GenericConsumableConverter : IConverter<ItemDTO, Consumable>
     {
 	    /// <inheritdoc />
-        public GenericConsumable Convert(ItemDTO value, object state)
+        public Consumable Convert(ItemDTO value, object state)
         {
     		var entity = new GenericConsumable();
             this.Merge(entity, value, state);
@@ -203,10 +202,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region HalloweenConsumable
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="HalloweenConsumable"/>.</summary>
-    public sealed partial class HalloweenConsumableConverter : IConverter<ItemDTO, HalloweenConsumable>
+    public sealed partial class HalloweenConsumableConverter : IConverter<ItemDTO, Consumable>
     {
 	    /// <inheritdoc />
-        public HalloweenConsumable Convert(ItemDTO value, object state)
+        public Consumable Convert(ItemDTO value, object state)
         {
     		var entity = new HalloweenConsumable();
             this.Merge(entity, value, state);
@@ -231,10 +230,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region ImmediateConsumable
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="ImmediateConsumable"/>.</summary>
-    public sealed partial class ImmediateConsumableConverter : IConverter<ItemDTO, ImmediateConsumable>
+    public sealed partial class ImmediateConsumableConverter : IConverter<ItemDTO, Consumable>
     {
 	    /// <inheritdoc />
-        public ImmediateConsumable Convert(ItemDTO value, object state)
+        public Consumable Convert(ItemDTO value, object state)
         {
     		var entity = new ImmediateConsumable();
             this.Merge(entity, value, state);
@@ -259,10 +258,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region Transmutation
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Transmutation"/>.</summary>
-    public sealed partial class TransmutationConverter : IConverter<ItemDTO, Transmutation>
+    public sealed partial class TransmutationConverter : IConverter<ItemDTO, Consumable>
     {
 	    /// <inheritdoc />
-        public Transmutation Convert(ItemDTO value, object state)
+        public Consumable Convert(ItemDTO value, object state)
         {
     		var entity = new Transmutation();
             this.Merge(entity, value, state);
@@ -287,10 +286,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region UnknownConsumable
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="UnknownConsumable"/>.</summary>
-    public sealed partial class UnknownConsumableConverter : IConverter<ItemDTO, UnknownConsumable>
+    public sealed partial class UnknownConsumableConverter : IConverter<ItemDTO, Consumable>
     {
 	    /// <inheritdoc />
-        public UnknownConsumable Convert(ItemDTO value, object state)
+        public Consumable Convert(ItemDTO value, object state)
         {
     		var entity = new UnknownConsumable();
             this.Merge(entity, value, state);
@@ -315,10 +314,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region UnTransmutation
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="UnTransmutation"/>.</summary>
-    public sealed partial class UnTransmutationConverter : IConverter<ItemDTO, UnTransmutation>
+    public sealed partial class UnTransmutationConverter : IConverter<ItemDTO, Consumable>
     {
 	    /// <inheritdoc />
-        public UnTransmutation Convert(ItemDTO value, object state)
+        public Consumable Convert(ItemDTO value, object state)
         {
     		var entity = new UnTransmutation();
             this.Merge(entity, value, state);
@@ -343,10 +342,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region UpgradeRemoval
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="UpgradeRemoval"/>.</summary>
-    public sealed partial class UpgradeRemovalConverter : IConverter<ItemDTO, UpgradeRemoval>
+    public sealed partial class UpgradeRemovalConverter : IConverter<ItemDTO, Consumable>
     {
 	    /// <inheritdoc />
-        public UpgradeRemoval Convert(ItemDTO value, object state)
+        public Consumable Convert(ItemDTO value, object state)
         {
     		var entity = new UpgradeRemoval();
             this.Merge(entity, value, state);
@@ -371,10 +370,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region Utility
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Utility"/>.</summary>
-    public sealed partial class UtilityConverter : IConverter<ItemDTO, Utility>
+    public sealed partial class UtilityConverter : IConverter<ItemDTO, Consumable>
     {
 	    /// <inheritdoc />
-        public Utility Convert(ItemDTO value, object state)
+        public Consumable Convert(ItemDTO value, object state)
         {
     		var entity = new Utility();
             this.Merge(entity, value, state);

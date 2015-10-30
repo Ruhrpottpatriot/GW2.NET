@@ -14,8 +14,7 @@ namespace GW2NET.V2.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items;
-    using GW2NET.V2.Items;
-    using GW2NET.V2.Items.Json;
+	using ItemDTO = GW2NET.V2.Items.Json.ItemDTO;
 
     public sealed partial class UnlockerConverter : IConverter<ItemDTO, Unlocker>
 	{
@@ -63,10 +62,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region BagSlotUnlocker
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="BagSlotUnlocker"/>.</summary>
-    public sealed partial class BagSlotUnlockerConverter : IConverter<ItemDTO, BagSlotUnlocker>
+    public sealed partial class BagSlotUnlockerConverter : IConverter<ItemDTO, Unlocker>
     {
 	    /// <inheritdoc />
-        public BagSlotUnlocker Convert(ItemDTO value, object state)
+        public Unlocker Convert(ItemDTO value, object state)
         {
     		var entity = new BagSlotUnlocker();
             this.Merge(entity, value, state);
@@ -91,10 +90,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region BankTabUnlocker
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="BankTabUnlocker"/>.</summary>
-    public sealed partial class BankTabUnlockerConverter : IConverter<ItemDTO, BankTabUnlocker>
+    public sealed partial class BankTabUnlockerConverter : IConverter<ItemDTO, Unlocker>
     {
 	    /// <inheritdoc />
-        public BankTabUnlocker Convert(ItemDTO value, object state)
+        public Unlocker Convert(ItemDTO value, object state)
         {
     		var entity = new BankTabUnlocker();
             this.Merge(entity, value, state);
@@ -119,10 +118,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region CollectibleCapacityUnlocker
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="CollectibleCapacityUnlocker"/>.</summary>
-    public sealed partial class CollectibleCapacityUnlockerConverter : IConverter<ItemDTO, CollectibleCapacityUnlocker>
+    public sealed partial class CollectibleCapacityUnlockerConverter : IConverter<ItemDTO, Unlocker>
     {
 	    /// <inheritdoc />
-        public CollectibleCapacityUnlocker Convert(ItemDTO value, object state)
+        public Unlocker Convert(ItemDTO value, object state)
         {
     		var entity = new CollectibleCapacityUnlocker();
             this.Merge(entity, value, state);
@@ -147,10 +146,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region ContentUnlocker
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="ContentUnlocker"/>.</summary>
-    public sealed partial class ContentUnlockerConverter : IConverter<ItemDTO, ContentUnlocker>
+    public sealed partial class ContentUnlockerConverter : IConverter<ItemDTO, Unlocker>
     {
 	    /// <inheritdoc />
-        public ContentUnlocker Convert(ItemDTO value, object state)
+        public Unlocker Convert(ItemDTO value, object state)
         {
     		var entity = new ContentUnlocker();
             this.Merge(entity, value, state);
@@ -175,10 +174,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region CraftingRecipeUnlocker
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="CraftingRecipeUnlocker"/>.</summary>
-    public sealed partial class CraftingRecipeUnlockerConverter : IConverter<ItemDTO, CraftingRecipeUnlocker>
+    public sealed partial class CraftingRecipeUnlockerConverter : IConverter<ItemDTO, Unlocker>
     {
 	    /// <inheritdoc />
-        public CraftingRecipeUnlocker Convert(ItemDTO value, object state)
+        public Unlocker Convert(ItemDTO value, object state)
         {
     		var entity = new CraftingRecipeUnlocker();
             this.Merge(entity, value, state);
@@ -203,10 +202,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region DyeUnlocker
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="DyeUnlocker"/>.</summary>
-    public sealed partial class DyeUnlockerConverter : IConverter<ItemDTO, DyeUnlocker>
+    public sealed partial class DyeUnlockerConverter : IConverter<ItemDTO, Unlocker>
     {
 	    /// <inheritdoc />
-        public DyeUnlocker Convert(ItemDTO value, object state)
+        public Unlocker Convert(ItemDTO value, object state)
         {
     		var entity = new DyeUnlocker();
             this.Merge(entity, value, state);
@@ -231,10 +230,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region UnknownUnlocker
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="UnknownUnlocker"/>.</summary>
-    public sealed partial class UnknownUnlockerConverter : IConverter<ItemDTO, UnknownUnlocker>
+    public sealed partial class UnknownUnlockerConverter : IConverter<ItemDTO, Unlocker>
     {
 	    /// <inheritdoc />
-        public UnknownUnlocker Convert(ItemDTO value, object state)
+        public Unlocker Convert(ItemDTO value, object state)
         {
     		var entity = new UnknownUnlocker();
             this.Merge(entity, value, state);

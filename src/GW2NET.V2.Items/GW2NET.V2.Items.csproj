@@ -198,6 +198,7 @@
     </Content>
     <Content Include="Converters\ConsumableConverters.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ConsumableConverters.cs</LastGenOutput>
     </Content>
     <Content Include="Converters\ItemConverters.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

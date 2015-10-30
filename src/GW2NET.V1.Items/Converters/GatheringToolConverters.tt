@@ -9,6 +9,7 @@
     // Parameters (make sure these are correct)
     Type targetBaseType = typeof(GatheringTool);
     string sourceType = "ItemDTO";
+    string sourceTypeFullName = "GW2NET.V1.Items.Json.ItemDTO";
     string discriminator = "{0}.GatheringTool == null ? null : {0}.GatheringTool.Type";
     string ns = "GW2NET.V1.Items.Converters";
     string constructorVisibility = "public";

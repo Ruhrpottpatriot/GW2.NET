@@ -9,6 +9,7 @@
     // Parameters (make sure these are correct)
     Type targetBaseType = typeof(CompetitiveMap);
     string sourceType = "CompetitiveMapDTO";
+    string sourceTypeFullName = "GW2NET.V1.WorldVersusWorld.Matches.Json.CompetitiveMapDTO";
     string discriminator = "{0}.Type";
     string ns = "GW2NET.V1.WorldVersusWorld.Matches.Converters";
     string constructorVisibility = "private";

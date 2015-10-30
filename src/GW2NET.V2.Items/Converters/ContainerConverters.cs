@@ -14,8 +14,7 @@ namespace GW2NET.V2.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items;
-    using GW2NET.V2.Items;
-    using GW2NET.V2.Items.Json;
+	using ItemDTO = GW2NET.V2.Items.Json.ItemDTO;
 
     public sealed partial class ContainerConverter : IConverter<ItemDTO, Container>
 	{
@@ -63,10 +62,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region DefaultContainer
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="DefaultContainer"/>.</summary>
-    public sealed partial class DefaultContainerConverter : IConverter<ItemDTO, DefaultContainer>
+    public sealed partial class DefaultContainerConverter : IConverter<ItemDTO, Container>
     {
 	    /// <inheritdoc />
-        public DefaultContainer Convert(ItemDTO value, object state)
+        public Container Convert(ItemDTO value, object state)
         {
     		var entity = new DefaultContainer();
             this.Merge(entity, value, state);
@@ -91,10 +90,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region GiftBox
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="GiftBox"/>.</summary>
-    public sealed partial class GiftBoxConverter : IConverter<ItemDTO, GiftBox>
+    public sealed partial class GiftBoxConverter : IConverter<ItemDTO, Container>
     {
 	    /// <inheritdoc />
-        public GiftBox Convert(ItemDTO value, object state)
+        public Container Convert(ItemDTO value, object state)
         {
     		var entity = new GiftBox();
             this.Merge(entity, value, state);
@@ -119,10 +118,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region OpenUiContainer
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="OpenUiContainer"/>.</summary>
-    public sealed partial class OpenUiContainerConverter : IConverter<ItemDTO, OpenUiContainer>
+    public sealed partial class OpenUiContainerConverter : IConverter<ItemDTO, Container>
     {
 	    /// <inheritdoc />
-        public OpenUiContainer Convert(ItemDTO value, object state)
+        public Container Convert(ItemDTO value, object state)
         {
     		var entity = new OpenUiContainer();
             this.Merge(entity, value, state);
@@ -147,10 +146,10 @@ namespace GW2NET.V2.Items.Converters
 
 #region UnknownContainer
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="UnknownContainer"/>.</summary>
-    public sealed partial class UnknownContainerConverter : IConverter<ItemDTO, UnknownContainer>
+    public sealed partial class UnknownContainerConverter : IConverter<ItemDTO, Container>
     {
 	    /// <inheritdoc />
-        public UnknownContainer Convert(ItemDTO value, object state)
+        public Container Convert(ItemDTO value, object state)
         {
     		var entity = new UnknownContainer();
             this.Merge(entity, value, state);

@@ -13,8 +13,8 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     using System;
 
     using GW2NET.Common;
-	using GW2NET.V1.WorldVersusWorld.Matches.Json;
     using GW2NET.WorldVersusWorld;
+	using CompetitiveMapDTO = GW2NET.V1.WorldVersusWorld.Matches.Json.CompetitiveMapDTO;
 
     public sealed partial class CompetitiveMapConverter : IConverter<CompetitiveMapDTO, CompetitiveMap>
 	{
@@ -62,10 +62,10 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 
 #region BlueBorderlands
     /// <summary>Converts objects of type <see cref="CompetitiveMapDTO"/> to objects of type <see cref="BlueBorderlands"/>.</summary>
-    public sealed partial class BlueBorderlandsConverter : IConverter<CompetitiveMapDTO, BlueBorderlands>
+    public sealed partial class BlueBorderlandsConverter : IConverter<CompetitiveMapDTO, CompetitiveMap>
     {
 	    /// <inheritdoc />
-        public BlueBorderlands Convert(CompetitiveMapDTO value, object state)
+        public CompetitiveMap Convert(CompetitiveMapDTO value, object state)
         {
     		var entity = new BlueBorderlands();
             this.Merge(entity, value, state);
@@ -90,10 +90,10 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 
 #region EternalBattlegrounds
     /// <summary>Converts objects of type <see cref="CompetitiveMapDTO"/> to objects of type <see cref="EternalBattlegrounds"/>.</summary>
-    public sealed partial class EternalBattlegroundsConverter : IConverter<CompetitiveMapDTO, EternalBattlegrounds>
+    public sealed partial class EternalBattlegroundsConverter : IConverter<CompetitiveMapDTO, CompetitiveMap>
     {
 	    /// <inheritdoc />
-        public EternalBattlegrounds Convert(CompetitiveMapDTO value, object state)
+        public CompetitiveMap Convert(CompetitiveMapDTO value, object state)
         {
     		var entity = new EternalBattlegrounds();
             this.Merge(entity, value, state);
@@ -118,10 +118,10 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 
 #region GreenBorderlands
     /// <summary>Converts objects of type <see cref="CompetitiveMapDTO"/> to objects of type <see cref="GreenBorderlands"/>.</summary>
-    public sealed partial class GreenBorderlandsConverter : IConverter<CompetitiveMapDTO, GreenBorderlands>
+    public sealed partial class GreenBorderlandsConverter : IConverter<CompetitiveMapDTO, CompetitiveMap>
     {
 	    /// <inheritdoc />
-        public GreenBorderlands Convert(CompetitiveMapDTO value, object state)
+        public CompetitiveMap Convert(CompetitiveMapDTO value, object state)
         {
     		var entity = new GreenBorderlands();
             this.Merge(entity, value, state);
@@ -146,10 +146,10 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 
 #region RedBorderlands
     /// <summary>Converts objects of type <see cref="CompetitiveMapDTO"/> to objects of type <see cref="RedBorderlands"/>.</summary>
-    public sealed partial class RedBorderlandsConverter : IConverter<CompetitiveMapDTO, RedBorderlands>
+    public sealed partial class RedBorderlandsConverter : IConverter<CompetitiveMapDTO, CompetitiveMap>
     {
 	    /// <inheritdoc />
-        public RedBorderlands Convert(CompetitiveMapDTO value, object state)
+        public CompetitiveMap Convert(CompetitiveMapDTO value, object state)
         {
     		var entity = new RedBorderlands();
             this.Merge(entity, value, state);
@@ -174,10 +174,10 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 
 #region UnknownCompetitiveMap
     /// <summary>Converts objects of type <see cref="CompetitiveMapDTO"/> to objects of type <see cref="UnknownCompetitiveMap"/>.</summary>
-    public sealed partial class UnknownCompetitiveMapConverter : IConverter<CompetitiveMapDTO, UnknownCompetitiveMap>
+    public sealed partial class UnknownCompetitiveMapConverter : IConverter<CompetitiveMapDTO, CompetitiveMap>
     {
 	    /// <inheritdoc />
-        public UnknownCompetitiveMap Convert(CompetitiveMapDTO value, object state)
+        public CompetitiveMap Convert(CompetitiveMapDTO value, object state)
         {
     		var entity = new UnknownCompetitiveMap();
             this.Merge(entity, value, state);

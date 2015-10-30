@@ -14,8 +14,7 @@ namespace GW2NET.V2.Recipes.Converters
 
     using GW2NET.Common;
     using GW2NET.Recipes;
-    using GW2NET.V2.Recipes;
-    using GW2NET.V2.Recipes.Json;
+	using RecipeDTO = GW2NET.V2.Recipes.Json.RecipeDTO;
 
     public sealed partial class RecipeConverter : IConverter<RecipeDTO, Recipe>
 	{
@@ -63,10 +62,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region AmuletRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="AmuletRecipe"/>.</summary>
-    public sealed partial class AmuletRecipeConverter : IConverter<RecipeDTO, AmuletRecipe>
+    public sealed partial class AmuletRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public AmuletRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new AmuletRecipe();
             this.Merge(entity, value, state);
@@ -91,10 +90,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region AxeRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="AxeRecipe"/>.</summary>
-    public sealed partial class AxeRecipeConverter : IConverter<RecipeDTO, AxeRecipe>
+    public sealed partial class AxeRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public AxeRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new AxeRecipe();
             this.Merge(entity, value, state);
@@ -119,10 +118,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region BackpackRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="BackpackRecipe"/>.</summary>
-    public sealed partial class BackpackRecipeConverter : IConverter<RecipeDTO, BackpackRecipe>
+    public sealed partial class BackpackRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public BackpackRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new BackpackRecipe();
             this.Merge(entity, value, state);
@@ -147,10 +146,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region BagRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="BagRecipe"/>.</summary>
-    public sealed partial class BagRecipeConverter : IConverter<RecipeDTO, BagRecipe>
+    public sealed partial class BagRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public BagRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new BagRecipe();
             this.Merge(entity, value, state);
@@ -175,10 +174,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region BootsRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="BootsRecipe"/>.</summary>
-    public sealed partial class BootsRecipeConverter : IConverter<RecipeDTO, BootsRecipe>
+    public sealed partial class BootsRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public BootsRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new BootsRecipe();
             this.Merge(entity, value, state);
@@ -203,10 +202,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region BulkRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="BulkRecipe"/>.</summary>
-    public sealed partial class BulkRecipeConverter : IConverter<RecipeDTO, BulkRecipe>
+    public sealed partial class BulkRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public BulkRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new BulkRecipe();
             this.Merge(entity, value, state);
@@ -231,10 +230,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region CoatRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="CoatRecipe"/>.</summary>
-    public sealed partial class CoatRecipeConverter : IConverter<RecipeDTO, CoatRecipe>
+    public sealed partial class CoatRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public CoatRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new CoatRecipe();
             this.Merge(entity, value, state);
@@ -259,10 +258,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region ComponentRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="ComponentRecipe"/>.</summary>
-    public sealed partial class ComponentRecipeConverter : IConverter<RecipeDTO, ComponentRecipe>
+    public sealed partial class ComponentRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public ComponentRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new ComponentRecipe();
             this.Merge(entity, value, state);
@@ -287,10 +286,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region ConsumableRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="ConsumableRecipe"/>.</summary>
-    public sealed partial class ConsumableRecipeConverter : IConverter<RecipeDTO, ConsumableRecipe>
+    public sealed partial class ConsumableRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public ConsumableRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new ConsumableRecipe();
             this.Merge(entity, value, state);
@@ -315,10 +314,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region DaggerRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="DaggerRecipe"/>.</summary>
-    public sealed partial class DaggerRecipeConverter : IConverter<RecipeDTO, DaggerRecipe>
+    public sealed partial class DaggerRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public DaggerRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new DaggerRecipe();
             this.Merge(entity, value, state);
@@ -343,10 +342,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region DessertRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="DessertRecipe"/>.</summary>
-    public sealed partial class DessertRecipeConverter : IConverter<RecipeDTO, DessertRecipe>
+    public sealed partial class DessertRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public DessertRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new DessertRecipe();
             this.Merge(entity, value, state);
@@ -371,10 +370,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region DyeRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="DyeRecipe"/>.</summary>
-    public sealed partial class DyeRecipeConverter : IConverter<RecipeDTO, DyeRecipe>
+    public sealed partial class DyeRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public DyeRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new DyeRecipe();
             this.Merge(entity, value, state);
@@ -399,10 +398,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region EarringRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="EarringRecipe"/>.</summary>
-    public sealed partial class EarringRecipeConverter : IConverter<RecipeDTO, EarringRecipe>
+    public sealed partial class EarringRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public EarringRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new EarringRecipe();
             this.Merge(entity, value, state);
@@ -427,10 +426,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region FeastRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="FeastRecipe"/>.</summary>
-    public sealed partial class FeastRecipeConverter : IConverter<RecipeDTO, FeastRecipe>
+    public sealed partial class FeastRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public FeastRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new FeastRecipe();
             this.Merge(entity, value, state);
@@ -455,10 +454,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region FocusRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="FocusRecipe"/>.</summary>
-    public sealed partial class FocusRecipeConverter : IConverter<RecipeDTO, FocusRecipe>
+    public sealed partial class FocusRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public FocusRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new FocusRecipe();
             this.Merge(entity, value, state);
@@ -483,10 +482,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region GlovesRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="GlovesRecipe"/>.</summary>
-    public sealed partial class GlovesRecipeConverter : IConverter<RecipeDTO, GlovesRecipe>
+    public sealed partial class GlovesRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public GlovesRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new GlovesRecipe();
             this.Merge(entity, value, state);
@@ -511,10 +510,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region GreatSwordRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="GreatSwordRecipe"/>.</summary>
-    public sealed partial class GreatSwordRecipeConverter : IConverter<RecipeDTO, GreatSwordRecipe>
+    public sealed partial class GreatSwordRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public GreatSwordRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new GreatSwordRecipe();
             this.Merge(entity, value, state);
@@ -539,10 +538,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region HammerRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="HammerRecipe"/>.</summary>
-    public sealed partial class HammerRecipeConverter : IConverter<RecipeDTO, HammerRecipe>
+    public sealed partial class HammerRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public HammerRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new HammerRecipe();
             this.Merge(entity, value, state);
@@ -567,10 +566,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region HarpoonRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="HarpoonRecipe"/>.</summary>
-    public sealed partial class HarpoonRecipeConverter : IConverter<RecipeDTO, HarpoonRecipe>
+    public sealed partial class HarpoonRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public HarpoonRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new HarpoonRecipe();
             this.Merge(entity, value, state);
@@ -595,10 +594,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region HelmRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="HelmRecipe"/>.</summary>
-    public sealed partial class HelmRecipeConverter : IConverter<RecipeDTO, HelmRecipe>
+    public sealed partial class HelmRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public HelmRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new HelmRecipe();
             this.Merge(entity, value, state);
@@ -623,10 +622,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region IngredientCookingRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="IngredientCookingRecipe"/>.</summary>
-    public sealed partial class IngredientCookingRecipeConverter : IConverter<RecipeDTO, IngredientCookingRecipe>
+    public sealed partial class IngredientCookingRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public IngredientCookingRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new IngredientCookingRecipe();
             this.Merge(entity, value, state);
@@ -651,10 +650,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region InscriptionRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="InscriptionRecipe"/>.</summary>
-    public sealed partial class InscriptionRecipeConverter : IConverter<RecipeDTO, InscriptionRecipe>
+    public sealed partial class InscriptionRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public InscriptionRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new InscriptionRecipe();
             this.Merge(entity, value, state);
@@ -679,10 +678,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region InsigniaRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="InsigniaRecipe"/>.</summary>
-    public sealed partial class InsigniaRecipeConverter : IConverter<RecipeDTO, InsigniaRecipe>
+    public sealed partial class InsigniaRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public InsigniaRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new InsigniaRecipe();
             this.Merge(entity, value, state);
@@ -707,10 +706,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region LeggingsRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="LeggingsRecipe"/>.</summary>
-    public sealed partial class LeggingsRecipeConverter : IConverter<RecipeDTO, LeggingsRecipe>
+    public sealed partial class LeggingsRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public LeggingsRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new LeggingsRecipe();
             this.Merge(entity, value, state);
@@ -735,10 +734,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region LongBowRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="LongBowRecipe"/>.</summary>
-    public sealed partial class LongBowRecipeConverter : IConverter<RecipeDTO, LongBowRecipe>
+    public sealed partial class LongBowRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public LongBowRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new LongBowRecipe();
             this.Merge(entity, value, state);
@@ -763,10 +762,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region MaceRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="MaceRecipe"/>.</summary>
-    public sealed partial class MaceRecipeConverter : IConverter<RecipeDTO, MaceRecipe>
+    public sealed partial class MaceRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public MaceRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new MaceRecipe();
             this.Merge(entity, value, state);
@@ -791,10 +790,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region MealRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="MealRecipe"/>.</summary>
-    public sealed partial class MealRecipeConverter : IConverter<RecipeDTO, MealRecipe>
+    public sealed partial class MealRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public MealRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new MealRecipe();
             this.Merge(entity, value, state);
@@ -819,10 +818,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region PistolRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="PistolRecipe"/>.</summary>
-    public sealed partial class PistolRecipeConverter : IConverter<RecipeDTO, PistolRecipe>
+    public sealed partial class PistolRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public PistolRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new PistolRecipe();
             this.Merge(entity, value, state);
@@ -847,10 +846,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region PotionRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="PotionRecipe"/>.</summary>
-    public sealed partial class PotionRecipeConverter : IConverter<RecipeDTO, PotionRecipe>
+    public sealed partial class PotionRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public PotionRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new PotionRecipe();
             this.Merge(entity, value, state);
@@ -875,10 +874,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region RefinementEctoplasmRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="RefinementEctoplasmRecipe"/>.</summary>
-    public sealed partial class RefinementEctoplasmRecipeConverter : IConverter<RecipeDTO, RefinementEctoplasmRecipe>
+    public sealed partial class RefinementEctoplasmRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public RefinementEctoplasmRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new RefinementEctoplasmRecipe();
             this.Merge(entity, value, state);
@@ -903,10 +902,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region RefinementObsidianRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="RefinementObsidianRecipe"/>.</summary>
-    public sealed partial class RefinementObsidianRecipeConverter : IConverter<RecipeDTO, RefinementObsidianRecipe>
+    public sealed partial class RefinementObsidianRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public RefinementObsidianRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new RefinementObsidianRecipe();
             this.Merge(entity, value, state);
@@ -931,10 +930,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region RefinementRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="RefinementRecipe"/>.</summary>
-    public sealed partial class RefinementRecipeConverter : IConverter<RecipeDTO, RefinementRecipe>
+    public sealed partial class RefinementRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public RefinementRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new RefinementRecipe();
             this.Merge(entity, value, state);
@@ -959,10 +958,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region RifleRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="RifleRecipe"/>.</summary>
-    public sealed partial class RifleRecipeConverter : IConverter<RecipeDTO, RifleRecipe>
+    public sealed partial class RifleRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public RifleRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new RifleRecipe();
             this.Merge(entity, value, state);
@@ -987,10 +986,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region RingRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="RingRecipe"/>.</summary>
-    public sealed partial class RingRecipeConverter : IConverter<RecipeDTO, RingRecipe>
+    public sealed partial class RingRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public RingRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new RingRecipe();
             this.Merge(entity, value, state);
@@ -1015,10 +1014,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region ScepterRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="ScepterRecipe"/>.</summary>
-    public sealed partial class ScepterRecipeConverter : IConverter<RecipeDTO, ScepterRecipe>
+    public sealed partial class ScepterRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public ScepterRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new ScepterRecipe();
             this.Merge(entity, value, state);
@@ -1043,10 +1042,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region SeasoningRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="SeasoningRecipe"/>.</summary>
-    public sealed partial class SeasoningRecipeConverter : IConverter<RecipeDTO, SeasoningRecipe>
+    public sealed partial class SeasoningRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public SeasoningRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new SeasoningRecipe();
             this.Merge(entity, value, state);
@@ -1071,10 +1070,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region ShieldRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="ShieldRecipe"/>.</summary>
-    public sealed partial class ShieldRecipeConverter : IConverter<RecipeDTO, ShieldRecipe>
+    public sealed partial class ShieldRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public ShieldRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new ShieldRecipe();
             this.Merge(entity, value, state);
@@ -1099,10 +1098,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region ShortBowRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="ShortBowRecipe"/>.</summary>
-    public sealed partial class ShortBowRecipeConverter : IConverter<RecipeDTO, ShortBowRecipe>
+    public sealed partial class ShortBowRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public ShortBowRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new ShortBowRecipe();
             this.Merge(entity, value, state);
@@ -1127,10 +1126,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region ShouldersRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="ShouldersRecipe"/>.</summary>
-    public sealed partial class ShouldersRecipeConverter : IConverter<RecipeDTO, ShouldersRecipe>
+    public sealed partial class ShouldersRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public ShouldersRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new ShouldersRecipe();
             this.Merge(entity, value, state);
@@ -1155,10 +1154,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region SnackRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="SnackRecipe"/>.</summary>
-    public sealed partial class SnackRecipeConverter : IConverter<RecipeDTO, SnackRecipe>
+    public sealed partial class SnackRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public SnackRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new SnackRecipe();
             this.Merge(entity, value, state);
@@ -1183,10 +1182,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region SoupRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="SoupRecipe"/>.</summary>
-    public sealed partial class SoupRecipeConverter : IConverter<RecipeDTO, SoupRecipe>
+    public sealed partial class SoupRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public SoupRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new SoupRecipe();
             this.Merge(entity, value, state);
@@ -1211,10 +1210,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region SpearGunRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="SpearGunRecipe"/>.</summary>
-    public sealed partial class SpearGunRecipeConverter : IConverter<RecipeDTO, SpearGunRecipe>
+    public sealed partial class SpearGunRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public SpearGunRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new SpearGunRecipe();
             this.Merge(entity, value, state);
@@ -1239,10 +1238,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region StaffRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="StaffRecipe"/>.</summary>
-    public sealed partial class StaffRecipeConverter : IConverter<RecipeDTO, StaffRecipe>
+    public sealed partial class StaffRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public StaffRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new StaffRecipe();
             this.Merge(entity, value, state);
@@ -1267,10 +1266,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region SwordRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="SwordRecipe"/>.</summary>
-    public sealed partial class SwordRecipeConverter : IConverter<RecipeDTO, SwordRecipe>
+    public sealed partial class SwordRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public SwordRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new SwordRecipe();
             this.Merge(entity, value, state);
@@ -1295,10 +1294,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region TorchRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="TorchRecipe"/>.</summary>
-    public sealed partial class TorchRecipeConverter : IConverter<RecipeDTO, TorchRecipe>
+    public sealed partial class TorchRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public TorchRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new TorchRecipe();
             this.Merge(entity, value, state);
@@ -1323,10 +1322,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region TridentRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="TridentRecipe"/>.</summary>
-    public sealed partial class TridentRecipeConverter : IConverter<RecipeDTO, TridentRecipe>
+    public sealed partial class TridentRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public TridentRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new TridentRecipe();
             this.Merge(entity, value, state);
@@ -1351,10 +1350,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region UnknownRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="UnknownRecipe"/>.</summary>
-    public sealed partial class UnknownRecipeConverter : IConverter<RecipeDTO, UnknownRecipe>
+    public sealed partial class UnknownRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public UnknownRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new UnknownRecipe();
             this.Merge(entity, value, state);
@@ -1379,10 +1378,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region UpgradeComponentRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="UpgradeComponentRecipe"/>.</summary>
-    public sealed partial class UpgradeComponentRecipeConverter : IConverter<RecipeDTO, UpgradeComponentRecipe>
+    public sealed partial class UpgradeComponentRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public UpgradeComponentRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new UpgradeComponentRecipe();
             this.Merge(entity, value, state);
@@ -1407,10 +1406,10 @@ namespace GW2NET.V2.Recipes.Converters
 
 #region WarHornRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="WarHornRecipe"/>.</summary>
-    public sealed partial class WarHornRecipeConverter : IConverter<RecipeDTO, WarHornRecipe>
+    public sealed partial class WarHornRecipeConverter : IConverter<RecipeDTO, Recipe>
     {
 	    /// <inheritdoc />
-        public WarHornRecipe Convert(RecipeDTO value, object state)
+        public Recipe Convert(RecipeDTO value, object state)
         {
     		var entity = new WarHornRecipe();
             this.Merge(entity, value, state);

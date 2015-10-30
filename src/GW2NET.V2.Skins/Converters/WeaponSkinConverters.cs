@@ -14,8 +14,7 @@ namespace GW2NET.V2.Skins.Converters
 
     using GW2NET.Common;
     using GW2NET.Skins;
-    using GW2NET.V2.Skins;
-    using GW2NET.V2.Skins.Json;
+	using SkinDTO = GW2NET.V2.Skins.Json.SkinDTO;
 
     public sealed partial class WeaponSkinConverter : IConverter<SkinDTO, WeaponSkin>
 	{
@@ -63,10 +62,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region AxeSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="AxeSkin"/>.</summary>
-    public sealed partial class AxeSkinConverter : IConverter<SkinDTO, AxeSkin>
+    public sealed partial class AxeSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public AxeSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new AxeSkin();
             this.Merge(entity, value, state);
@@ -91,10 +90,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region DaggerSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="DaggerSkin"/>.</summary>
-    public sealed partial class DaggerSkinConverter : IConverter<SkinDTO, DaggerSkin>
+    public sealed partial class DaggerSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public DaggerSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new DaggerSkin();
             this.Merge(entity, value, state);
@@ -119,10 +118,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region FocusSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="FocusSkin"/>.</summary>
-    public sealed partial class FocusSkinConverter : IConverter<SkinDTO, FocusSkin>
+    public sealed partial class FocusSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public FocusSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new FocusSkin();
             this.Merge(entity, value, state);
@@ -147,10 +146,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region GreatSwordSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="GreatSwordSkin"/>.</summary>
-    public sealed partial class GreatSwordSkinConverter : IConverter<SkinDTO, GreatSwordSkin>
+    public sealed partial class GreatSwordSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public GreatSwordSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new GreatSwordSkin();
             this.Merge(entity, value, state);
@@ -175,10 +174,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region HammerSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="HammerSkin"/>.</summary>
-    public sealed partial class HammerSkinConverter : IConverter<SkinDTO, HammerSkin>
+    public sealed partial class HammerSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public HammerSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new HammerSkin();
             this.Merge(entity, value, state);
@@ -203,10 +202,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region HarpoonSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="HarpoonSkin"/>.</summary>
-    public sealed partial class HarpoonSkinConverter : IConverter<SkinDTO, HarpoonSkin>
+    public sealed partial class HarpoonSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public HarpoonSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new HarpoonSkin();
             this.Merge(entity, value, state);
@@ -231,10 +230,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region LargeBundleSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="LargeBundleSkin"/>.</summary>
-    public sealed partial class LargeBundleSkinConverter : IConverter<SkinDTO, LargeBundleSkin>
+    public sealed partial class LargeBundleSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public LargeBundleSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new LargeBundleSkin();
             this.Merge(entity, value, state);
@@ -259,10 +258,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region LongBowSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="LongBowSkin"/>.</summary>
-    public sealed partial class LongBowSkinConverter : IConverter<SkinDTO, LongBowSkin>
+    public sealed partial class LongBowSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public LongBowSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new LongBowSkin();
             this.Merge(entity, value, state);
@@ -287,10 +286,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region MaceSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="MaceSkin"/>.</summary>
-    public sealed partial class MaceSkinConverter : IConverter<SkinDTO, MaceSkin>
+    public sealed partial class MaceSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public MaceSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new MaceSkin();
             this.Merge(entity, value, state);
@@ -315,10 +314,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region PistolSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="PistolSkin"/>.</summary>
-    public sealed partial class PistolSkinConverter : IConverter<SkinDTO, PistolSkin>
+    public sealed partial class PistolSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public PistolSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new PistolSkin();
             this.Merge(entity, value, state);
@@ -343,10 +342,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region RifleSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="RifleSkin"/>.</summary>
-    public sealed partial class RifleSkinConverter : IConverter<SkinDTO, RifleSkin>
+    public sealed partial class RifleSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public RifleSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new RifleSkin();
             this.Merge(entity, value, state);
@@ -371,10 +370,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region ScepterSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="ScepterSkin"/>.</summary>
-    public sealed partial class ScepterSkinConverter : IConverter<SkinDTO, ScepterSkin>
+    public sealed partial class ScepterSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public ScepterSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new ScepterSkin();
             this.Merge(entity, value, state);
@@ -399,10 +398,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region ShieldSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="ShieldSkin"/>.</summary>
-    public sealed partial class ShieldSkinConverter : IConverter<SkinDTO, ShieldSkin>
+    public sealed partial class ShieldSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public ShieldSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new ShieldSkin();
             this.Merge(entity, value, state);
@@ -427,10 +426,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region ShortBowSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="ShortBowSkin"/>.</summary>
-    public sealed partial class ShortBowSkinConverter : IConverter<SkinDTO, ShortBowSkin>
+    public sealed partial class ShortBowSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public ShortBowSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new ShortBowSkin();
             this.Merge(entity, value, state);
@@ -455,10 +454,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region SmallBundleSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="SmallBundleSkin"/>.</summary>
-    public sealed partial class SmallBundleSkinConverter : IConverter<SkinDTO, SmallBundleSkin>
+    public sealed partial class SmallBundleSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public SmallBundleSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new SmallBundleSkin();
             this.Merge(entity, value, state);
@@ -483,10 +482,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region SpearGunSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="SpearGunSkin"/>.</summary>
-    public sealed partial class SpearGunSkinConverter : IConverter<SkinDTO, SpearGunSkin>
+    public sealed partial class SpearGunSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public SpearGunSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new SpearGunSkin();
             this.Merge(entity, value, state);
@@ -511,10 +510,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region StaffSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="StaffSkin"/>.</summary>
-    public sealed partial class StaffSkinConverter : IConverter<SkinDTO, StaffSkin>
+    public sealed partial class StaffSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public StaffSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new StaffSkin();
             this.Merge(entity, value, state);
@@ -539,10 +538,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region SwordSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="SwordSkin"/>.</summary>
-    public sealed partial class SwordSkinConverter : IConverter<SkinDTO, SwordSkin>
+    public sealed partial class SwordSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public SwordSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new SwordSkin();
             this.Merge(entity, value, state);
@@ -567,10 +566,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region TorchSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="TorchSkin"/>.</summary>
-    public sealed partial class TorchSkinConverter : IConverter<SkinDTO, TorchSkin>
+    public sealed partial class TorchSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public TorchSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new TorchSkin();
             this.Merge(entity, value, state);
@@ -595,10 +594,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region ToySkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="ToySkin"/>.</summary>
-    public sealed partial class ToySkinConverter : IConverter<SkinDTO, ToySkin>
+    public sealed partial class ToySkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public ToySkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new ToySkin();
             this.Merge(entity, value, state);
@@ -623,10 +622,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region TridentSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="TridentSkin"/>.</summary>
-    public sealed partial class TridentSkinConverter : IConverter<SkinDTO, TridentSkin>
+    public sealed partial class TridentSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public TridentSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new TridentSkin();
             this.Merge(entity, value, state);
@@ -651,10 +650,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region TwoHandedToySkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="TwoHandedToySkin"/>.</summary>
-    public sealed partial class TwoHandedToySkinConverter : IConverter<SkinDTO, TwoHandedToySkin>
+    public sealed partial class TwoHandedToySkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public TwoHandedToySkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new TwoHandedToySkin();
             this.Merge(entity, value, state);
@@ -679,10 +678,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region UnknownWeaponSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="UnknownWeaponSkin"/>.</summary>
-    public sealed partial class UnknownWeaponSkinConverter : IConverter<SkinDTO, UnknownWeaponSkin>
+    public sealed partial class UnknownWeaponSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public UnknownWeaponSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new UnknownWeaponSkin();
             this.Merge(entity, value, state);
@@ -707,10 +706,10 @@ namespace GW2NET.V2.Skins.Converters
 
 #region WarHornSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="WarHornSkin"/>.</summary>
-    public sealed partial class WarHornSkinConverter : IConverter<SkinDTO, WarHornSkin>
+    public sealed partial class WarHornSkinConverter : IConverter<SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
-        public WarHornSkin Convert(SkinDTO value, object state)
+        public WeaponSkin Convert(SkinDTO value, object state)
         {
     		var entity = new WarHornSkin();
             this.Merge(entity, value, state);

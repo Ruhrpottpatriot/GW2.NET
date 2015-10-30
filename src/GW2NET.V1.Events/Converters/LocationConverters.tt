@@ -9,6 +9,7 @@
     // Parameters (make sure these are correct)
     Type targetBaseType = typeof(Location);
     string sourceType = "LocationDTO";
+    string sourceTypeFullName = "GW2NET.V1.Events.Json.LocationDTO";
     string discriminator = "{0}.Type";
     string ns = "GW2NET.V1.Events.Converters";
     string constructorVisibility = "private";

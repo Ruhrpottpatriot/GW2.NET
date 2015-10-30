@@ -9,6 +9,7 @@
     // Parameters (make sure these are correct)
     var targetBaseType = typeof(CombatAttribute);
     var sourceType = "AttributeDTO";
+    var sourceTypeFullName = "GW2NET.V2.Items.Json.AttributeDTO";
     var discriminator = "{0}.Attribute";
     var ns = "GW2NET.V2.Items.Converters";
     string constructorVisibility = "public";

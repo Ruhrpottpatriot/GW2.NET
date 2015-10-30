@@ -9,6 +9,7 @@
     // Parameters (make sure these are correct)
     var targetBaseType = typeof(UpgradeComponent);
     var sourceType = "ItemDTO";
+    var sourceTypeFullName = "GW2NET.V2.Items.Json.ItemDTO";
     var discriminator = "{0}.Type";
     var ns = "GW2NET.V2.Items.Converters";
     string constructorVisibility = "private";
