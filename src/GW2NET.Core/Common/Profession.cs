@@ -38,6 +38,9 @@ namespace GW2NET.Common
         Mesmer = 7, 
 
         /// <summary>The 'Necromancer' profession.</summary>
-        Necromancer = 8
+        Necromancer = 8,
+
+        /// <summary>The 'Revenant' profession.</summary>
+        Revenant = 9
     }
 }
