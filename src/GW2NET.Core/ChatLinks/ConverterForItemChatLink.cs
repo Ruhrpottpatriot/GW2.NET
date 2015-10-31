@@ -32,15 +32,33 @@ namespace GW2NET.ChatLinks
                 reader.BaseStream.Seek(-1, SeekOrigin.Current);
                 var flags = reader.ReadByte();
                 var modifiers = new Stack<int>();
-                while (reader.PeekChar() != -1)
+                if (value.CanSeek)
                 {
-                    modifiers.Push(reader.ReadInt32());
+                    while (reader.BaseStream.Position != reader.BaseStream.Length)
+                    {
+                        modifiers.Push(reader.ReadInt32());
+                    }
+                }
+                else
+                {
+                    // Safely read 0..3 modifiers (skin, suffix item, secondary suffix item)
+                    try
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            modifiers.Push(reader.ReadInt32());
+                        }
+                    }
+                    catch (EndOfStreamException)
+                    {
+                        // Expected exception
+                    }
                 }
 
                 var chatLink = new ItemChatLink
                 {
-                    ItemId = id, 
-                    Quantity = quantity, 
+                    ItemId = id,
+                    Quantity = quantity,
                 };
 
                 if ((flags & 0x20) == 0x20)
