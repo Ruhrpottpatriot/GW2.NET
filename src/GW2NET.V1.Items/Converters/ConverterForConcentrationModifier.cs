@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConverterForConditionDurationModifier.cs" company="GW2.NET Coding Team">
+// <copyright file="ConverterForConcentrationModifier.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts objects of type <see cref="AttributeDataContract" /> to objects of type <see cref="ConditionDurationModifier" />.
+//   Converts objects of type <see cref="AttributeDataContract" /> to objects of type <see cref="BoonDurationModifier" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -15,18 +15,18 @@ namespace GW2NET.V1.Items.Converters
 {
     using System;
 
-    /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="ConditionDurationModifier"/>.</summary>
-    internal sealed class ConverterForConditionDurationModifier : IConverter<AttributeDataContract, ConditionDurationModifier>
+    /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="ConcentrationModifier"/>.</summary>
+    internal sealed class ConverterForConcentrationModifier : IConverter<AttributeDataContract, ConcentrationModifier>
     {
         /// <inheritdoc />
-        public ConditionDurationModifier Convert(AttributeDataContract value)
+        public ConcentrationModifier Convert(AttributeDataContract value)
         {
             if (value == null)
             {
                 throw new ArgumentNullException("value", "Precondition: value != null");
             }
 
-            var attribute = new ConditionDurationModifier();
+            var attribute = new ConcentrationModifier();
             int modifier;
             if (int.TryParse(value.Modifier, out modifier))
             {

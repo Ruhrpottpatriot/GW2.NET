@@ -13,20 +13,20 @@ namespace GW2NET.V2.Items
     using GW2NET.Common;
     using GW2NET.Items;
 
-    /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="ConditionDurationModifier"/>.</summary>
-    internal sealed class ConverterForConditionDurationModifier : IConverter<AttributeDataContract, ConditionDurationModifier>
+    /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="ExpertiseModifier"/>.</summary>
+    internal sealed class ConverterForConditionDurationModifier : IConverter<AttributeDataContract, ExpertiseModifier>
     {
-        /// <summary>Converts the given object of type <see cref="AttributeDataContract"/> to an object of type <see cref="ConditionDurationModifier"/>.</summary>
+        /// <summary>Converts the given object of type <see cref="AttributeDataContract"/> to an object of type <see cref="ExpertiseModifier"/>.</summary>
         /// <param name="value">The value to convert.</param>
         /// <returns>The converted value.</returns>
-        public ConditionDurationModifier Convert(AttributeDataContract value)
+        public ExpertiseModifier Convert(AttributeDataContract value)
         {
             if (value == null)
             {
                 throw new ArgumentNullException("value", "Precondition: value != null");
             }
 
-            return new ConditionDurationModifier
+            return new ExpertiseModifier
             {
                 Modifier = value.Modifier
             };

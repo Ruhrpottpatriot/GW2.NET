@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts objects of type <see cref="AttributeDataContract" /> to objects of type <see cref="BoonDurationModifier" />.
+//   Converts objects of type <see cref="AttributeDataContract" /> to objects of type <see cref="ConcentrationModifier" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Items
@@ -13,20 +13,20 @@ namespace GW2NET.V2.Items
     using GW2NET.Common;
     using GW2NET.Items;
 
-    /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="BoonDurationModifier"/>.</summary>
-    internal sealed class ConverterForBoonDurationModifier : IConverter<AttributeDataContract, BoonDurationModifier>
+    /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="ConcentrationModifier"/>.</summary>
+    internal sealed class ConverterForBoonDurationModifier : IConverter<AttributeDataContract, ConcentrationModifier>
     {
-        /// <summary>Converts the given object of type <see cref="AttributeDataContract"/> to an object of type <see cref="BoonDurationModifier"/>.</summary>
+        /// <summary>Converts the given object of type <see cref="AttributeDataContract"/> to an object of type <see cref="ConcentrationModifier"/>.</summary>
         /// <param name="value">The value to convert.</param>
         /// <returns>The converted value.</returns>
-        public BoonDurationModifier Convert(AttributeDataContract value)
+        public ConcentrationModifier Convert(AttributeDataContract value)
         {
             if (value == null)
             {
                 throw new ArgumentNullException("value", "Precondition: value != null");
             }
 
-            return new BoonDurationModifier
+            return new ConcentrationModifier
             {
                 Modifier = value.Modifier
             };

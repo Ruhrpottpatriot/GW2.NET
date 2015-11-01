@@ -43,9 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\ConverterForAccessory.cs" />
-    <Compile Include="Converters\ConverterForConditionDurationModifier.cs" />
+    <Compile Include="Converters\ConverterForExpertiseModifier.cs" />
     <Compile Include="Converters\ConverterForChampionUnlocker.cs" />
-    <Compile Include="Converters\ConverterForBoonDurationModifier.cs" />
+    <Compile Include="Converters\ConverterForConcentrationModifier.cs" />
     <Compile Include="Converters\ConverterForTeleportToFriend.cs" />
     <Compile Include="Converters\ConverterForAlcohol.cs" />
     <Compile Include="Converters\ConverterForAmulet.cs" />

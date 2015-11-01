@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConverterForBoonDurationModifier.cs" company="GW2.NET Coding Team">
+// <copyright file="ConverterForExpertiseModifier.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts objects of type <see cref="AttributeDataContract" /> to objects of type <see cref="BoonDurationModifier" />.
+//   Converts objects of type <see cref="AttributeDataContract" /> to objects of type <see cref="ExpertiseModifier" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -15,18 +15,18 @@ namespace GW2NET.V1.Items.Converters
 {
     using System;
 
-    /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="BoonDurationModifier"/>.</summary>
-    internal sealed class ConverterForBoonDurationModifier : IConverter<AttributeDataContract, BoonDurationModifier>
+    /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="ExpertiseModifier"/>.</summary>
+    internal sealed class ConverterForExpertiseModifier : IConverter<AttributeDataContract, ExpertiseModifier>
     {
         /// <inheritdoc />
-        public BoonDurationModifier Convert(AttributeDataContract value)
+        public ExpertiseModifier Convert(AttributeDataContract value)
         {
             if (value == null)
             {
                 throw new ArgumentNullException("value", "Precondition: value != null");
             }
 
-            var attribute = new BoonDurationModifier();
+            var attribute = new ExpertiseModifier();
             int modifier;
             if (int.TryParse(value.Modifier, out modifier))
             {
