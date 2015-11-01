@@ -63,6 +63,7 @@ namespace GW2NET.V2.Items
         {
             return new Dictionary<string, IConverter<AttributeDataContract, CombatAttribute>>
             {
+                { "BoonDuration", new ConverterForBoonDurationModifier() }, 
                 { "ConditionDamage", new ConverterForConditionDamageModifier() }, 
                 { "CritDamage", new ConverterForFerocityModifier() }, 
                 { "Healing", new ConverterForHealingModifier() }, 

@@ -184,6 +184,7 @@
     <Compile Include="Items\Common\IUpgrade.cs" />
     <Compile Include="Items\Common\PowerModifier.cs" />
     <Compile Include="Items\Common\PrecisionModifier.cs" />
+    <Compile Include="Items\Common\BoonDurationModifier.cs" />
     <Compile Include="Items\Common\ToughnessModifier.cs" />
     <Compile Include="Items\Common\UnknownModifier.cs" />
     <Compile Include="Items\Common\VitalityModifier.cs" />
