@@ -65,6 +65,7 @@ namespace GW2NET.V2.Items
             {
                 { "BagSlot", new ConverterForBagSlotUnlocker() }, 
                 { "BankTab", new ConverterForBankTabUnlocker() }, 
+                { "Champion", new ConverterForChampionUnlocker() }, 
                 { "CollectibleCapacity", new ConverterForCollectibleCapacityUnlocker() }, 
                 { "Content", new ConverterForContentUnlocker() }, 
                 { "CraftingRecipe", new ConverterForCraftingRecipeUnlocker() }, 

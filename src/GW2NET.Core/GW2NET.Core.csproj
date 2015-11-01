@@ -187,6 +187,7 @@
     <Compile Include="Items\Common\ToughnessModifier.cs" />
     <Compile Include="Items\Common\UnknownModifier.cs" />
     <Compile Include="Items\Common\VitalityModifier.cs" />
+    <Compile Include="Items\Consumables\ChampionUnlocker.cs" />
     <Compile Include="Items\Consumables\TeleportToFriend.cs" />
     <Compile Include="Items\Consumables\GliderSkinUnlocker.cs" />
     <Compile Include="Items\Consumables\OutfitUnlocker.cs" />
