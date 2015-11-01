@@ -19,6 +19,10 @@ namespace GW2NET.Items
     {
         private InfixUpgrade infixUpgrade = new InfixUpgrade();
 
+        private static readonly InfusionSlot[] EmptyInfusionSlots = new InfusionSlot[0];
+
+        private ICollection<InfusionSlot> infusionSlots = EmptyInfusionSlots;
+
         /// <inheritdoc />
         public virtual InfixUpgrade InfixUpgrade
         {
@@ -40,7 +44,18 @@ namespace GW2NET.Items
         }
 
         /// <summary>Gets or sets the item's infusion slots.</summary>
-        public virtual ICollection<InfusionSlot> InfusionSlots { get; set; }
+        public virtual ICollection<InfusionSlot> InfusionSlots
+        {
+            get
+            {
+                Debug.Assert(this.infusionSlots != null, "this.infusionSlots != null");
+                return this.infusionSlots;
+            }
+            set
+            {
+                this.infusionSlots = value ?? EmptyInfusionSlots;
+            }
+        }
 
         /// <summary>Gets or sets the item's secondary suffix item. This is a navigation property. Use the value of <see cref="SecondarySuffixItemId"/> to obtain a reference.</summary>
         public virtual Item SecondarySuffixItem { get; set; }

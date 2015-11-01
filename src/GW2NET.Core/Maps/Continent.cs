@@ -10,6 +10,7 @@ namespace GW2NET.Maps
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Globalization;
 
     using GW2NET.Common;
@@ -18,6 +19,14 @@ namespace GW2NET.Maps
     /// <summary>Represents a continent.</summary>
     public class Continent : IEquatable<Continent>, ILocalizable
     {
+        private static readonly int[] EmptyFloorIds = new int[0];
+
+        private ICollection<int> floorIds = EmptyFloorIds;
+
+        private static readonly Floor[] EmptyFloors = new Floor[0];
+
+        private ICollection<Floor> floors = EmptyFloors;
+
         /// <summary>Gets or sets the dimensions of the continent.</summary>
         public virtual Size2D ContinentDimensions { get; set; }
 
@@ -28,10 +37,32 @@ namespace GW2NET.Maps
         public virtual CultureInfo Culture { get; set; }
 
         /// <summary>Gets or sets a collection of floor identifiers.</summary>
-        public virtual ICollection<int> FloorIds { get; set; }
+        public virtual ICollection<int> FloorIds
+        {
+            get
+            {
+                Debug.Assert(this.floorIds != null, "this.floorIds != null");
+                return this.floorIds;
+            }
+            set
+            {
+                this.floorIds = value ?? EmptyFloorIds;
+            }
+        }
 
         /// <summary>Gets or sets a collection of floors. This is a navigation property. Use the value of <see cref="FloorIds"/> to obtain references.</summary>
-        public virtual ICollection<Floor> Floors { get; set; }
+        public virtual ICollection<Floor> Floors
+        {
+            get
+            {
+                Debug.Assert(this.floors != null, "this.floors != null");
+                return this.floors;
+            }
+            set
+            {
+                this.floors = value ?? EmptyFloors;
+            }
+        }
 
         /// <summary>Gets or sets the maximum zoom level for use with the map tile service.</summary>
         public virtual int MaximumZoom { get; set; }

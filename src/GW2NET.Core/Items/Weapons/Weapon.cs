@@ -20,6 +20,10 @@ namespace GW2NET.Items
     {
         private InfixUpgrade infixUpgrade = new InfixUpgrade();
 
+        private static readonly InfusionSlot[] EmptyInfusionSlots = new InfusionSlot[0];
+
+        private ICollection<InfusionSlot> infusionSlots = EmptyInfusionSlots;
+
         /// <summary>Gets or sets the weapon's damage type.</summary>
         public virtual DamageType DamageType { get; set; }
 
@@ -53,7 +57,18 @@ namespace GW2NET.Items
         }
 
         /// <summary>Gets or sets the item's infusion slots.</summary>
-        public virtual ICollection<InfusionSlot> InfusionSlots { get; set; }
+        public virtual ICollection<InfusionSlot> InfusionSlots
+        {
+            get
+            {
+                Debug.Assert(this.infusionSlots != null, "this.infusionSlots != null");
+                return this.infusionSlots;
+            }
+            set
+            {
+                this.infusionSlots = value ?? EmptyInfusionSlots;
+            }
+        }
 
         /// <summary>Gets or sets the weapon's maximum power.</summary>
         public virtual int MaximumPower { get; set; }

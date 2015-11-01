@@ -10,6 +10,7 @@ namespace GW2NET.Recipes
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Globalization;
 
     using GW2NET.ChatLinks;
@@ -19,6 +20,10 @@ namespace GW2NET.Recipes
     /// <summary>Provides the base class for types that represent a crafting recipe.</summary>
     public abstract class Recipe : IEquatable<Recipe>, ILocalizable
     {
+        private static readonly ItemStack[] EmptyIngredients = new ItemStack[0];
+
+        private ICollection<ItemStack> ingredients = EmptyIngredients;
+
         /// <summary>Gets or sets the recipe's build number. Default: 0. Assign a build number for change tracking.</summary>
         public virtual int BuildId { get; set; }
 
@@ -32,7 +37,18 @@ namespace GW2NET.Recipes
         public virtual RecipeFlags Flags { get; set; }
 
         /// <summary>Gets or sets a collection of the required ingredients.</summary>
-        public virtual ICollection<ItemStack> Ingredients { get; set; }
+        public virtual ICollection<ItemStack> Ingredients
+        {
+            get
+            {
+                Debug.Assert(this.ingredients != null, "this.ingredients != null");
+                return this.ingredients;
+            }
+            set
+            {
+                this.ingredients = value ?? EmptyIngredients;
+            }
+        }
 
         /// <summary>Gets or sets the recipe's minimum rating.</summary>
         public virtual int MinimumRating { get; set; }

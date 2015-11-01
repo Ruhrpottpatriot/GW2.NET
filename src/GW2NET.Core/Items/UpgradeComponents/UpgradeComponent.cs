@@ -9,15 +9,31 @@
 namespace GW2NET.Items
 {
     using System.Collections.Generic;
+    using System.Diagnostics;
 
     /// <summary>Provides the base class for upgrade component types.</summary>
     public abstract class UpgradeComponent : Item, IUpgrade
     {
         /// <summary>Backing field for <see cref="InfixUpgrade"/>.</summary>
         private InfixUpgrade infixUpgrade = new InfixUpgrade();
+       
+        private static readonly string[] EmptyBonuses = new string[0];
+
+        private ICollection<string> bonuses = EmptyBonuses;
 
         /// <summary>Gets or sets the upgrade component's bonuses.</summary>
-        public virtual ICollection<string> Bonuses { get; set; }
+        public virtual ICollection<string> Bonuses
+        {
+            get
+            {
+                Debug.Assert(this.bonuses != null, "this.bonuses != null");
+                return this.bonuses;
+            }
+            set
+            {
+                this.bonuses = value ?? EmptyBonuses;
+            }
+        }
 
         /// <summary>Gets or sets the item's infixed combat upgrades.</summary>
         public virtual InfixUpgrade InfixUpgrade
