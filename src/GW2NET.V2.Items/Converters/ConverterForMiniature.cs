@@ -26,7 +26,7 @@ namespace GW2NET.V2.Items
                 throw new ArgumentNullException("value", "Precondition: value != null");
             }
 
-            return new Miniature { MiniatureId = value.Id };
+            return new Miniature { MiniatureId = value.MiniPetId };
         }
     }
 }

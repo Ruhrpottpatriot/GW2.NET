@@ -16,7 +16,7 @@ namespace GW2NET.V1.Items.Json
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/item_details")]
     internal sealed class MiniPetDataContract
     {
-        [DataMember(Name = "id", Order = 0)]
-        internal int Id { get; set; }
+        [DataMember(Name = "minipet_id", Order = 0)]
+        internal int MiniPetId { get; set; }
     }
 }

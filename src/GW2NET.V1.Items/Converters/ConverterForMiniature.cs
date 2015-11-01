@@ -29,7 +29,7 @@ namespace GW2NET.V1.Items.Converters
             var item = new Miniature();
             if (value.MiniPet != null)
             {
-                item.MiniatureId = value.MiniPet.Id;
+                item.MiniatureId = value.MiniPet.MiniPetId;
             }
 
             return item;

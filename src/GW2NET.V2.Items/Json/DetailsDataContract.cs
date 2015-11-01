@@ -184,7 +184,7 @@ namespace GW2NET.V2.Items
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     internal sealed partial class DetailsDataContract
     {
-        [DataMember(Name = "id", Order = 1)]
-        internal int Id { get; set; }
+        [DataMember(Name = "minipet_id", Order = 1)]
+        internal int MiniPetId { get; set; }
     }
 }
