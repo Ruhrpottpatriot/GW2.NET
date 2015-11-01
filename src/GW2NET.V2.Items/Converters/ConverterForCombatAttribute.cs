@@ -65,6 +65,7 @@ namespace GW2NET.V2.Items
             {
                 { "BoonDuration", new ConverterForBoonDurationModifier() }, 
                 { "ConditionDamage", new ConverterForConditionDamageModifier() }, 
+                { "ConditionDuration", new ConverterForConditionDurationModifier() }, 
                 { "CritDamage", new ConverterForFerocityModifier() }, 
                 { "Healing", new ConverterForHealingModifier() }, 
                 { "Power", new ConverterForPowerModifier() }, 
