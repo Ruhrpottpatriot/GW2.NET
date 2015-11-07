@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.ChatLinks
 {
-    using System;
+    using GW2NET.ChatLinks.Interop;
 
     /// <summary>Represents a chat link that links to an outfit.</summary>
     public class OutfitChatLink : ChatLink
@@ -16,13 +16,11 @@ namespace GW2NET.ChatLinks
         /// <summary>Gets or sets the outfit identifier.</summary>
         public int OutfitId { get; set; }
 
-        /// <inheritdoc />
-        public override string ToString()
+        protected override void CopyTo(ChatLinkStruct value, out int length)
         {
-            var stream = new ConverterForOutfitChatLink().Convert(this);
-            var buffer = new byte[stream.Length];
-            stream.Read(buffer, 0, buffer.Length);
-            return string.Format("[&{0}]", Convert.ToBase64String(buffer));
+            value.header = Header.Outfit;
+            value.outfit.outfitId = this.OutfitId;
+            length = 5;
         }
     }
 }
