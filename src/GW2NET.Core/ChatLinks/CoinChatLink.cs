@@ -16,11 +16,11 @@ namespace GW2NET.ChatLinks
         /// <summary>Gets or sets the quantity.</summary>
         public int Quantity { get; set; }
 
-        protected override void CopyTo(ChatLinkStruct value, out int length)
+        protected override int CopyTo(ChatLinkStruct value)
         {
             value.header = Header.Coin;
             value.coin.count = this.Quantity;
-            length = 5;
+            return 5;
         }
     }
 }

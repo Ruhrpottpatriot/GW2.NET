@@ -32,8 +32,7 @@ namespace GW2NET.ChatLinks
         public sealed override string ToString()
         {
             var value = new ChatLinkStruct();
-            int length;
-            this.CopyTo(value, out length);
+            var length = this.CopyTo(value);
             var bytes = new byte[Size];
             var ptr = Marshal.AllocHGlobal(Size);
             try
@@ -49,6 +48,9 @@ namespace GW2NET.ChatLinks
             return string.Format("[&{0}]", Convert.ToBase64String(bytes, 0, length));
         }
 
-        protected abstract void CopyTo(ChatLinkStruct value, out int length);
+        /// <summary>Copies the current instance to a data structure for serialization. A return value indicates the number of bytes copied.</summary>
+        /// <param name="value">An object to copy values to.</param>
+        /// <returns>The number of significant bytes in the data structure after copying.</returns>
+        protected abstract int CopyTo(ChatLinkStruct value);
     }
 }

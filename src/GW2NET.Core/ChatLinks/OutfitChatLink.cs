@@ -16,11 +16,11 @@ namespace GW2NET.ChatLinks
         /// <summary>Gets or sets the outfit identifier.</summary>
         public int OutfitId { get; set; }
 
-        protected override void CopyTo(ChatLinkStruct value, out int length)
+        protected override int CopyTo(ChatLinkStruct value)
         {
             value.header = Header.Outfit;
             value.outfit.outfitId = this.OutfitId;
-            length = 5;
+            return 5;
         }
     }
 }

@@ -16,11 +16,11 @@ namespace GW2NET.ChatLinks
         /// <summary>Gets or sets the point of interest identifier.</summary>
         public int PointOfInterestId { get; set; }
 
-        protected override void CopyTo(ChatLinkStruct value, out int length)
+        protected override int CopyTo(ChatLinkStruct value)
         {
             value.header = Header.Map;
             value.map.pointOfInterestId = this.PointOfInterestId;
-            length = 5;
+            return 5;
         }
     }
 }

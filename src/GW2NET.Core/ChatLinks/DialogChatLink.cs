@@ -16,11 +16,11 @@ namespace GW2NET.ChatLinks
         /// <summary>Gets or sets the dialog identifier.</summary>
         public int DialogId { get; set; }
 
-        protected override void CopyTo(ChatLinkStruct value, out int length)
+        protected override int CopyTo(ChatLinkStruct value)
         {
             value.header = Header.Text;
             value.text.dialogId = this.DialogId;
-            length = 5;
+            return 5;
         }
     }
 }

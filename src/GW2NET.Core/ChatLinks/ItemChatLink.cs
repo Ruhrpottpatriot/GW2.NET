@@ -56,7 +56,7 @@ namespace GW2NET.ChatLinks
         /// <summary>Gets or sets the upgrade identifier.</summary>
         public int? SuffixItemId { get; set; }
 
-        protected override void CopyTo(ChatLinkStruct value, out int length)
+        protected override int CopyTo(ChatLinkStruct value)
         {
             value.header = Header.Item;
             value.item.count = (byte)this.Quantity;
@@ -80,28 +80,25 @@ namespace GW2NET.ChatLinks
                 value.item.Modifiers |= ItemModifiers.SecondarySuffixItem;
             }
 
-            length = 6;
             if (modifiers.Count == 0)
             {
-                return;
+                return 6;
             }
 
-            length += 4;
             value.item.modifier1 = modifiers.Dequeue();
             if (modifiers.Count == 0)
             {
-                return;
+                return 10;
             }
 
-            length += 4;
             value.item.modifier2 = modifiers.Dequeue();
             if (modifiers.Count == 0)
             {
-                return;
+                return 14;
             }
 
-            length += 4;
             value.item.modifier3 = modifiers.Dequeue();
+            return 18;
         }
     }
 }

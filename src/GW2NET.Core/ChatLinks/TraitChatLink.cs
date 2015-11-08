@@ -16,11 +16,11 @@ namespace GW2NET.ChatLinks
         /// <summary>Gets or sets the trait identifier.</summary>
         public int TraitId { get; set; }
 
-        protected override void CopyTo(ChatLinkStruct value, out int length)
+        protected override int CopyTo(ChatLinkStruct value)
         {
             value.header = Header.Trait;
             value.trait.traitId = this.TraitId;
-            length = 5;
+            return 5;
         }
     }
 }
