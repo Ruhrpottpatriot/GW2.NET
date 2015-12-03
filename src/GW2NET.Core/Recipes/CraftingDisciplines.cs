@@ -36,9 +36,12 @@ namespace GW2NET.Recipes
         Leatherworker = 1 << 5, 
 
         /// <summary>The 'Tailor' crafting discipline.</summary>
-        Tailor = 1 << 6, 
+        Tailor = 1 << 6,
 
         /// <summary>The 'Weapon smith' crafting discipline.</summary>
-        Weaponsmith = 1 << 7
+        Weaponsmith = 1 << 7,
+
+        /// <summary>The 'Scribe' crafting discipline.</summary>
+        Scribe = 1 << 8
     }
 }
