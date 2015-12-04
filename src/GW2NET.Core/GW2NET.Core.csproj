@@ -326,6 +326,7 @@
     <Compile Include="Recipes\DyeRecipe.cs" />
     <Compile Include="Recipes\EarringRecipe.cs" />
     <Compile Include="Recipes\FeastRecipe.cs" />
+    <Compile Include="Recipes\GuildConsumableWvw.cs" />
     <Compile Include="Recipes\FocusRecipe.cs" />
     <Compile Include="Recipes\GlovesRecipe.cs" />
     <Compile Include="Recipes\LegendaryComponent.cs" />

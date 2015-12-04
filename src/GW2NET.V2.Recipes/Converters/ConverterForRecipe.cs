@@ -141,6 +141,7 @@ namespace GW2NET.V2.Recipes
                 { "Focus", new ConverterForObject<FocusRecipe>() }, 
                 { "Gloves", new ConverterForObject<GlovesRecipe>() }, 
                 { "Greatsword", new ConverterForObject<GreatSwordRecipe>() }, 
+                { "GuildConsumableWvw", new ConverterForObject<GuildConsumableWvw>() },
                 { "Hammer", new ConverterForObject<HammerRecipe>() }, 
                 { "Harpoon", new ConverterForObject<HarpoonRecipe>() }, 
                 { "Helm", new ConverterForObject<HelmRecipe>() }, 
