@@ -171,6 +171,7 @@ namespace GW2NET.V1.Recipes.Converters
                 { "IngredientCooking", new ConverterForObject<IngredientCookingRecipe>() },
                 { "Inscription", new ConverterForObject<InscriptionRecipe>() },
                 { "Insignia", new ConverterForObject<InsigniaRecipe>() },
+                { "LegendaryComponent", new ConverterForObject<LegendaryComponent>() },
                 { "Leggings", new ConverterForObject<LeggingsRecipe>() },
                 { "LongBow", new ConverterForObject<LongBowRecipe>() },
                 { "Mace", new ConverterForObject<MaceRecipe>() },

@@ -328,6 +328,7 @@
     <Compile Include="Recipes\FeastRecipe.cs" />
     <Compile Include="Recipes\FocusRecipe.cs" />
     <Compile Include="Recipes\GlovesRecipe.cs" />
+    <Compile Include="Recipes\LegendaryComponent.cs" />
     <Compile Include="Recipes\GreatSwordRecipe.cs" />
     <Compile Include="Recipes\HammerRecipe.cs" />
     <Compile Include="Recipes\HarpoonRecipe.cs" />
