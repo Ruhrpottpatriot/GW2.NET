@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace GW2NET.V1.Items.Converters
 {
     using System;
@@ -59,6 +61,7 @@ namespace GW2NET.V1.Items.Converters
                 return converter.Convert(gizmoDataContract);
             }
 
+            Debug.Assert(false, "Unknown type discriminator: " + gizmoDataContract.Type);
             return new UnknownGizmo();
         }
 

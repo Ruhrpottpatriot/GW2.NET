@@ -6,6 +6,9 @@
 //   Converts objects of type <see cref="DetailsDataContract" /> to objects of type <see cref="Weapon" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
+using System.Diagnostics;
+
 namespace GW2NET.V2.Items
 {
     using System;
@@ -87,6 +90,7 @@ namespace GW2NET.V2.Items
             }
             else
             {
+                Debug.Assert(false, "Unknown type discriminator: " + value.Type);
                 weapon = new UnknownWeapon();
             }
 

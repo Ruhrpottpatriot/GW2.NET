@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-
+using System.Diagnostics;
 using GW2NET.Common;
 using GW2NET.V1.WorldVersusWorld.Matches.Json;
 using GW2NET.WorldVersusWorld;
@@ -56,6 +56,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
             }
             else
             {
+                Debug.Assert(false, "Unknown type discriminator: " + value.Type);
                 mapBonus = new UnknownMapBonus();
             }
 

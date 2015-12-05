@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace GW2NET.V1.Items.Converters
 {
     using System;
@@ -87,6 +89,7 @@ namespace GW2NET.V1.Items.Converters
             }
             else
             {
+                Debug.Assert(false, "Unknown type discriminator: " + upgradeComponentDataContract.Type);
                 upgradeComponent = new UnknownUpgradeComponent();
             }
 
@@ -121,9 +124,9 @@ namespace GW2NET.V1.Items.Converters
         {
             return new Dictionary<string, IConverter<UpgradeComponentDataContract, UpgradeComponent>>
             {
-                { "Default", new ConverterForDefaultUpgradeComponent() }, 
-                { "Gem", new ConverterForGem() }, 
-                { "Sigil", new ConverterForSigil() }, 
+                { "Default", new ConverterForDefaultUpgradeComponent() },
+                { "Gem", new ConverterForGem() },
+                { "Sigil", new ConverterForSigil() },
                 { "Rune", new ConverterForRune() }
             };
         }

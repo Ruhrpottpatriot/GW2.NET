@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace GW2NET.V2.Skins
 {
     using System;
@@ -60,11 +62,16 @@ namespace GW2NET.V2.Skins
             }
 
             IConverter<DetailsDataContract, ArmorSkin> converter;
-
-            // ReSharper disable once PossibleNullReferenceException
-            ArmorSkin skin = this.typeConverters.TryGetValue(value.Type, out converter)
-                                 ? converter.Convert(value)
-                                 : new UnknownArmorSkin();
+            ArmorSkin skin;
+            if (this.typeConverters.TryGetValue(value.Type, out converter))
+            {
+                skin = converter.Convert(value);
+            }
+            else
+            {
+                Debug.Assert(false, "Unknown type discriminator: " + value.Type);
+                skin = new UnknownArmorSkin();
+            }
 
             if (skin == null)
             {

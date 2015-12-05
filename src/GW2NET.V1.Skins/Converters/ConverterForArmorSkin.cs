@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-
+using System.Diagnostics;
 using GW2NET.Common;
 using GW2NET.Common.Converters;
 using GW2NET.Items;
@@ -65,19 +65,20 @@ namespace GW2NET.V1.Skins.Converters
 
             ArmorSkin armorSkin;
             var armorSkinDataContract = value.Armor;
+            if (armorSkinDataContract == null)
+            {
+                return new UnknownArmorSkin();
+            }
+
             IConverter<ArmorSkinDataContract, ArmorSkin> converter;
-            if (armorSkinDataContract != null && this.typeConverters.TryGetValue(armorSkinDataContract.Type, out converter))
+            if (this.typeConverters.TryGetValue(armorSkinDataContract.Type, out converter))
             {
                 armorSkin = converter.Convert(armorSkinDataContract);
             }
             else
             {
+                Debug.Assert(false, "Unknown type discriminator: " + armorSkinDataContract.Type);
                 armorSkin = new UnknownArmorSkin();
-            }
-
-            if (armorSkinDataContract == null)
-            {
-                return armorSkin;
             }
 
             var weightClass = armorSkinDataContract.WeightClass;

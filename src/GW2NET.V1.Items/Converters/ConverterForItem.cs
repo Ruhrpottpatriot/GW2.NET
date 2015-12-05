@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace GW2NET.V1.Items.Converters
 {
     using System;
@@ -110,6 +112,7 @@ namespace GW2NET.V1.Items.Converters
             }
             else
             {
+                Debug.Assert(false, "Unknown type discriminator: " + value.Type);
                 item = new UnknownItem();
             }
 

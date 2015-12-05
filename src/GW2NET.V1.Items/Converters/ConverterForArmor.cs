@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Diagnostics;
 using GW2NET.Common;
 using GW2NET.Common.Converters;
 using GW2NET.Items;
@@ -76,16 +77,24 @@ namespace GW2NET.V1.Items.Converters
 
             Armor armor;
             var armorDataContract = value.Armor;
-            IConverter<ArmorDataContract, Armor> converter;
-            if (armorDataContract != null && this.typeConverters.TryGetValue(armorDataContract.Type, out converter))
-            {
-                armor = converter.Convert(armorDataContract);
-            }
-            else
+            if (armorDataContract == null)
             {
                 armor = new UnknownArmor();
             }
-
+            else
+            {
+                IConverter<ArmorDataContract, Armor> converter;
+                if (this.typeConverters.TryGetValue(armorDataContract.Type, out converter))
+                {
+                    armor = converter.Convert(armorDataContract);
+                }
+                else
+                {
+                    Debug.Assert(false, "Unknown type discriminator: " + armorDataContract.Type);
+                    armor = new UnknownArmor();
+                }
+            }
+            
             int defaultSkinId;
             if (int.TryParse(value.DefaultSkin, out defaultSkinId))
             {
@@ -137,13 +146,13 @@ namespace GW2NET.V1.Items.Converters
         {
             return new Dictionary<string, IConverter<ArmorDataContract, Armor>>
             {
-                { "Boots", new ConverterForBoots() }, 
-                { "Coat", new ConverterForCoat() }, 
-                { "Helm", new ConverterForHelm() }, 
-                { "Shoulders", new ConverterForShoulders() }, 
-                { "Gloves", new ConverterForGloves() }, 
-                { "Leggings", new ConverterForLeggings() }, 
-                { "HelmAquatic", new ConverterForHelmAquatic() }, 
+                { "Boots", new ConverterForBoots() },
+                { "Coat", new ConverterForCoat() },
+                { "Helm", new ConverterForHelm() },
+                { "Shoulders", new ConverterForShoulders() },
+                { "Gloves", new ConverterForGloves() },
+                { "Leggings", new ConverterForLeggings() },
+                { "HelmAquatic", new ConverterForHelmAquatic() },
             };
         }
     }

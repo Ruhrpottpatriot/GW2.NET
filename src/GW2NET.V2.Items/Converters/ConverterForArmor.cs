@@ -6,6 +6,9 @@
 //   Converts objects of type <see cref="DetailsDataContract" /> to objects of type <see cref="Armor" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
+using System.Diagnostics;
+
 namespace GW2NET.V2.Items
 {
     using System;
@@ -78,7 +81,17 @@ namespace GW2NET.V2.Items
             }
 
             IConverter<DetailsDataContract, Armor> converter;
-            var armor = this.typeConverters.TryGetValue(value.Type, out converter) ? converter.Convert(value) : new UnknownArmor();
+            Armor armor;
+            if (this.typeConverters.TryGetValue(value.Type, out converter))
+            {
+                armor = converter.Convert(value);
+            }
+            else
+            {
+                Debug.Assert(false, "Unknown type discriminator: " + value.Type);
+                armor = new UnknownArmor();
+            }
+
             armor.WeightClass = this.converterForWeightClass.Convert(value.WeightClass);
             armor.Defense = value.Defense.GetValueOrDefault();
             var infusionSlotDataContracts = value.InfusionSlots;

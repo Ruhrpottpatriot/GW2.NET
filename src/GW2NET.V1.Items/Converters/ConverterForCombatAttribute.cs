@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Diagnostics;
 using GW2NET.Common;
 using GW2NET.Items;
 using GW2NET.V1.Items.Json;
@@ -54,6 +55,7 @@ namespace GW2NET.V1.Items.Converters
                 return converter.Convert(value);
             }
 
+            Debug.Assert(false, "Unknown type discriminator: " + value.Attribute);
             return new UnknownModifier();
         }
 

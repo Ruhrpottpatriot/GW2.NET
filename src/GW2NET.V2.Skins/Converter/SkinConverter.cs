@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace GW2NET.V2.Skins
 {
     using System;
@@ -70,11 +72,16 @@ namespace GW2NET.V2.Skins
             }
 
             IConverter<DetailsDataContract, Skin> converter;
-
-            // ReSharper disable once PossibleNullReferenceException
-            Skin skin = this.typeConverters.TryGetValue(value.Type, out converter)
-                            ? converter.Convert(value.Details)
-                            : new UnknownSkin();
+            Skin skin;
+            if (this.typeConverters.TryGetValue(value.Type, out converter))
+            {
+                skin = converter.Convert(value.Details);
+            }
+            else
+            {
+                Debug.Assert(false, "Unknown type discriminator: " + value.Type);
+                skin = new UnknownSkin();
+            }
 
             skin.SkinId = value.Id;
             skin.Name = value.Name;

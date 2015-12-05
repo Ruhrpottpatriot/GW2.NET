@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace GW2NET.V1.Items.Converters
 {
     using System;
@@ -60,6 +62,7 @@ namespace GW2NET.V1.Items.Converters
                 return converterForTool.Convert(toolDataContract);
             }
 
+            Debug.Assert(false, "Unknown type discriminator: " + toolDataContract.Type);
             return new UnknownTool();
         }
 

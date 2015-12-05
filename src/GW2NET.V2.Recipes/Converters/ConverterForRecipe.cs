@@ -6,6 +6,9 @@
 //   Converts objects of type <see cref="RecipeDataContract" /> to objects of type <see cref="Recipe" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
+using System.Diagnostics;
+
 namespace GW2NET.V2.Recipes
 {
     using System;
@@ -87,6 +90,7 @@ namespace GW2NET.V2.Recipes
             }
             else
             {
+                Debug.Assert(false, "Unknown type discriminator: " + value.Type);
                 recipe = new UnknownRecipe();
             }
 

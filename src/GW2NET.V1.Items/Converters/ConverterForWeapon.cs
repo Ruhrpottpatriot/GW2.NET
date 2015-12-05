@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace GW2NET.V1.Items.Converters
 {
     using System;
@@ -48,7 +50,7 @@ namespace GW2NET.V1.Items.Converters
             if (typeConverters == null)
             {
                 throw new ArgumentNullException("typeConverters", "Precondition: typeConverters != null");
-	}
+            }
             if (converterForDamageType == null)
             {
                 throw new ArgumentNullException("converterForDamageType", "Precondition: converterForDamageType != null");
@@ -77,15 +79,22 @@ namespace GW2NET.V1.Items.Converters
 
             Weapon weapon;
             var weaponDataContract = value.Weapon;
-
-            IConverter<WeaponDataContract, Weapon> converter;
-            if (weaponDataContract != null && this.typeConverters.TryGetValue(weaponDataContract.Type, out converter))
+            if (weaponDataContract == null)
             {
-                weapon = converter.Convert(weaponDataContract);
+                weapon = new UnknownWeapon();
             }
             else
             {
-                weapon = new UnknownWeapon();
+                IConverter<WeaponDataContract, Weapon> converter;
+                if (this.typeConverters.TryGetValue(weaponDataContract.Type, out converter))
+                {
+                    weapon = converter.Convert(weaponDataContract);
+                }
+                else
+                {
+                    Debug.Assert(false, "Unknown type discriminator: " + weaponDataContract.Type);
+                    weapon = new UnknownWeapon();
+                }
             }
 
             int defaultSkinId;
@@ -152,29 +161,29 @@ namespace GW2NET.V1.Items.Converters
         {
             return new Dictionary<string, IConverter<WeaponDataContract, Weapon>>
             {
-                { "Axe", new ConverterForAxe() }, 
-                { "Dagger", new ConverterForDagger() }, 
-                { "Focus", new ConverterForFocus() }, 
-                { "Greatsword", new ConverterForGreatSword() }, 
-                { "Hammer", new ConverterForHammer() }, 
-                { "Harpoon", new ConverterForHarpoon() }, 
-                { "LongBow", new ConverterForLongBow() }, 
-                { "Mace", new ConverterForMace() }, 
-                { "Pistol", new ConverterForPistol() }, 
-                { "Rifle", new ConverterForRifle() }, 
-                { "Scepter", new ConverterForScepter() }, 
-                { "Shield", new ConverterForShield() }, 
-                { "ShortBow", new ConverterForShortBow() }, 
-                { "Speargun", new ConverterForSpearGun() }, 
-                { "Sword", new ConverterForSword() }, 
-                { "Staff", new ConverterForStaff() }, 
-                { "Torch", new ConverterForTorch() }, 
-                { "Trident", new ConverterForTrident() }, 
-                { "Warhorn", new ConverterForWarHorn() }, 
-                { "Toy", new ConverterForToy() }, 
-                { "TwoHandedToy", new ConverterForTwoHandedToy() }, 
-                { "SmallBundle", new ConverterForSmallBundle() }, 
-                { "LargeBundle", new ConverterForLargeBundle() }, 
+                { "Axe", new ConverterForAxe() },
+                { "Dagger", new ConverterForDagger() },
+                { "Focus", new ConverterForFocus() },
+                { "Greatsword", new ConverterForGreatSword() },
+                { "Hammer", new ConverterForHammer() },
+                { "Harpoon", new ConverterForHarpoon() },
+                { "LongBow", new ConverterForLongBow() },
+                { "Mace", new ConverterForMace() },
+                { "Pistol", new ConverterForPistol() },
+                { "Rifle", new ConverterForRifle() },
+                { "Scepter", new ConverterForScepter() },
+                { "Shield", new ConverterForShield() },
+                { "ShortBow", new ConverterForShortBow() },
+                { "Speargun", new ConverterForSpearGun() },
+                { "Sword", new ConverterForSword() },
+                { "Staff", new ConverterForStaff() },
+                { "Torch", new ConverterForTorch() },
+                { "Trident", new ConverterForTrident() },
+                { "Warhorn", new ConverterForWarHorn() },
+                { "Toy", new ConverterForToy() },
+                { "TwoHandedToy", new ConverterForTwoHandedToy() },
+                { "SmallBundle", new ConverterForSmallBundle() },
+                { "LargeBundle", new ConverterForLargeBundle() },
             };
         }
     }

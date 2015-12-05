@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-
+using System.Diagnostics;
 using GW2NET.Common;
 using GW2NET.Common.Converters;
 using GW2NET.Items;
@@ -65,19 +65,20 @@ namespace GW2NET.V1.Skins.Converters
 
             WeaponSkin weaponSkin;
             var weaponSkinDataContract = value.Weapon;
+            if (weaponSkinDataContract == null)
+            {
+                return new UnknownWeaponSkin();
+            }
+
             IConverter<WeaponSkinDataContract, WeaponSkin> converter;
-            if (weaponSkinDataContract != null && this.typeConverters.TryGetValue(weaponSkinDataContract.Type, out converter))
+            if (this.typeConverters.TryGetValue(weaponSkinDataContract.Type, out converter))
             {
                 weaponSkin = converter.Convert(weaponSkinDataContract);
             }
             else
             {
+                Debug.Assert(false, "Unknown type discriminator: " + weaponSkinDataContract.Type);
                 weaponSkin = new UnknownWeaponSkin();
-            }
-
-            if (weaponSkinDataContract == null)
-            {
-                return weaponSkin;
             }
 
             var damageType = weaponSkinDataContract.DamageType;

@@ -6,6 +6,9 @@
 //   Converts objects of type <see cref="AttributeDataContract" /> to objects of type <see cref="CombatAttribute" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
+using System.Diagnostics;
+
 namespace GW2NET.V2.Items
 {
     using System;
@@ -54,6 +57,7 @@ namespace GW2NET.V2.Items
                 return converter.Convert(value);
             }
 
+            Debug.Assert(false, "Unknown type discriminator: " + value.Attribute);
             return new UnknownModifier();
         }
 

@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace GW2NET.V1.Items.Converters
 {
     using System;
@@ -60,6 +62,7 @@ namespace GW2NET.V1.Items.Converters
                 return converter.Convert(consumableDataContract);
             }
 
+            Debug.Assert(false, "Unknown type discriminator: " + consumableDataContract.Type);
             return new UnknownConsumable();
         }
 

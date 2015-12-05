@@ -6,6 +6,9 @@
 //   Converts objects of type <see cref="ItemDataContract" /> to objects of type <see cref="Item" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
+using System.Diagnostics;
+
 namespace GW2NET.V2.Items
 {
     using System;
@@ -96,6 +99,7 @@ namespace GW2NET.V2.Items
             }
             else
             {
+                Debug.Assert(false, "Unknown type discriminator: " + value.Type);
                 item = new UnknownItem();
             }
 

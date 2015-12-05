@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace GW2NET.V1.Items.Converters
 {
     using System;
@@ -78,6 +80,7 @@ namespace GW2NET.V1.Items.Converters
             }
             else
             {
+                Debug.Assert(false, "Unknown type discriminator: " + trinketDataContract.Type);
                 trinket = new UnknownTrinket();
             }
 
@@ -114,9 +117,9 @@ namespace GW2NET.V1.Items.Converters
         {
             return new Dictionary<string, IConverter<TrinketDataContract, Trinket>>
             {
-                { "Amulet", new ConverterForAmulet() }, 
-                { "Accessory", new ConverterForAccessory() }, 
-                { "Ring", new ConverterForRing() }, 
+                { "Amulet", new ConverterForAmulet() },
+                { "Accessory", new ConverterForAccessory() },
+                { "Ring", new ConverterForRing() },
             };
         }
     }

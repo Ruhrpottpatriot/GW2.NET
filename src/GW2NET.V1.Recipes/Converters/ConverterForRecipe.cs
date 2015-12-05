@@ -9,7 +9,7 @@
 
 using System;
 using System.Collections.Generic;
-
+using System.Diagnostics;
 using GW2NET.Common;
 using GW2NET.Common.Converters;
 using GW2NET.Items;
@@ -87,6 +87,7 @@ namespace GW2NET.V1.Recipes.Converters
             }
             else
             {
+                Debug.Assert(false, "Unknown type discriminator: " + value.Type);
                 recipe = new UnknownRecipe();
             }
 

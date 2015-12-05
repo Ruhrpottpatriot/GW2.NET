@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using GW2NET.Common;
 using GW2NET.V1.WorldVersusWorld.Matches.Json;
@@ -90,6 +91,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
             }
             else
             {
+                Debug.Assert(false, "Unknown type discriminator: " + value.Type);
                 competitiveMap = new UnknownCompetitiveMap();
             }
 

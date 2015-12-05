@@ -6,6 +6,9 @@
 //   Converts objects of type <see cref="DetailsDataContract" /> to objects of type <see cref="UpgradeComponent" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
+using System.Diagnostics;
+
 namespace GW2NET.V2.Items
 {
     using System;
@@ -81,6 +84,7 @@ namespace GW2NET.V2.Items
             }
             else
             {
+                Debug.Assert(false, "Unknown type discriminator: " + value.Type);
                 upgradeComponent = new UnknownUpgradeComponent();
             }
 

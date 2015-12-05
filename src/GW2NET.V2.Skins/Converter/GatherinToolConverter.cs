@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace GW2NET.V2.Skins
 {
     using System;
@@ -52,13 +54,15 @@ namespace GW2NET.V2.Skins
 
             IConverter<DetailsDataContract, GatheringToolSkin> converter;
 
-            var skin = this.typeConverters.TryGetValue(value.Type, out converter)
-                           ? converter.Convert(value)
-                           : new UnknownGatheringToolSkin();
-
-            if (skin == null)
+            GatheringToolSkin skin;
+            if (this.typeConverters.TryGetValue(value.Type, out converter))
             {
-                return null;
+                skin = converter.Convert(value);
+            }
+            else
+            {
+                Debug.Assert(false, "Unknown type discriminator: " + value.Type);
+                skin = new UnknownGatheringToolSkin();
             }
 
             return skin;

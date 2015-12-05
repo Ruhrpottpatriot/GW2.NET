@@ -9,7 +9,7 @@
 
 using System;
 using System.Collections.Generic;
-
+using System.Diagnostics;
 using GW2NET.Common;
 using GW2NET.Items;
 using GW2NET.Skins;
@@ -79,6 +79,7 @@ namespace GW2NET.V1.Skins.Converters
             }
             else
             {
+                Debug.Assert(false, "Unknown type discriminator: " + value.Type);
                 skin = new UnknownSkin();
             }
 

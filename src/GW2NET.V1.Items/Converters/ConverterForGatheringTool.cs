@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace GW2NET.V1.Items.Converters
 {
     using System;
@@ -50,15 +52,22 @@ namespace GW2NET.V1.Items.Converters
 
             GatheringTool gatheringTool;
             var gatheringToolDataContract = value.GatheringTool;
-
-            IConverter<GatheringToolDataContract, GatheringTool> converter;
-            if (this.typeConverters.TryGetValue(gatheringToolDataContract.Type, out converter))
+            if (gatheringToolDataContract == null)
             {
-                gatheringTool = converter.Convert(gatheringToolDataContract);
+                gatheringTool = new UnknownGatheringTool();
             }
             else
             {
-                gatheringTool = new UnknownGatheringTool();
+                IConverter<GatheringToolDataContract, GatheringTool> converter;
+                if (this.typeConverters.TryGetValue(gatheringToolDataContract.Type, out converter))
+                {
+                    gatheringTool = converter.Convert(gatheringToolDataContract);
+                }
+                else
+                {
+                    Debug.Assert(false, "Unknown type discriminator: " + gatheringToolDataContract.Type);
+                    gatheringTool = new UnknownGatheringTool();
+                }
             }
 
             int defaultSkinId;
@@ -76,9 +85,9 @@ namespace GW2NET.V1.Items.Converters
         {
             return new Dictionary<string, IConverter<GatheringToolDataContract, GatheringTool>>
             {
-                { "Foraging", new ConverterForForagingTool() }, 
-                { "Logging", new ConverterForLoggingTool() }, 
-                { "Mining", new ConverterForMiningTool() }, 
+                { "Foraging", new ConverterForForagingTool() },
+                { "Logging", new ConverterForLoggingTool() },
+                { "Mining", new ConverterForMiningTool() },
             };
         }
     }

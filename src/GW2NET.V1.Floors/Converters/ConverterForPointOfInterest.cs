@@ -7,6 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
 using GW2NET.Common;
 using GW2NET.Common.Drawing;
 using GW2NET.Maps;
@@ -64,6 +65,7 @@ namespace GW2NET.V1.Floors.Converters
                     pointOfInterest = new Waypoint();
                     break;
                 default:
+                    Debug.Assert(false, "Unknown type discriminator: " + value.Type);
                     pointOfInterest = new UnknownPointOfInterest();
                     break;
             }

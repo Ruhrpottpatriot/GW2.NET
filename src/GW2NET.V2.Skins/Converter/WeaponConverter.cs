@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace GW2NET.V2.Skins
 {
     using System;
@@ -64,9 +66,16 @@ namespace GW2NET.V2.Skins
 
             IConverter<DetailsDataContract, WeaponSkin> converter;
 
-            var skin = this.typeConverters.TryGetValue(value.Type, out converter)
-                           ? converter.Convert(value)
-                           : new UnknownWeaponSkin();
+            WeaponSkin skin;
+            if (this.typeConverters.TryGetValue(value.Type, out converter))
+            {
+                skin = converter.Convert(value);
+            }
+            else
+            {
+                Debug.Assert(false, "Unknown type discriminator: " + value.Type);
+                skin = new UnknownWeaponSkin();
+            }
 
             if (skin == null)
             {

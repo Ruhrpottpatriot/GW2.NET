@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Diagnostics;
 using GW2NET.Common;
 using GW2NET.Common.Drawing;
 using GW2NET.DynamicEvents;
@@ -66,6 +67,7 @@ namespace GW2NET.V1.Events.Converters
             }
             else
             {
+                Debug.Assert(false, "Unknown type discriminator: " + value.Type);
                 location = new UnknownLocation();
             }
 
@@ -84,8 +86,8 @@ namespace GW2NET.V1.Events.Converters
         {
             return new Dictionary<string, IConverter<LocationDataContract, Location>>
             {
-                { "sphere", new ConverterForSphereLocation() }, 
-                { "cylinder", new ConverterForCylinderLocation() }, 
+                { "sphere", new ConverterForSphereLocation() },
+                { "cylinder", new ConverterForCylinderLocation() },
                 { "poly", new ConverterForPolygonLocation() }
             };
         }
