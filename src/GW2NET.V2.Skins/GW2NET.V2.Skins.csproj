@@ -48,6 +48,7 @@
     <Compile Include="Converter\ItemRestrictionConverter.cs" />
     <Compile Include="Converter\SkinFlagCollectionConverter.cs" />
     <Compile Include="Converter\SkinFlagConverter.cs" />
+    <Compile Include="Converter\GatherinToolConverter.cs" />
     <Compile Include="Converter\WeightClassConverter.cs" />
     <Compile Include="Converter\DamageClassConverter.cs" />
     <Compile Include="DataContracts\DetailsDataContract.cs" />

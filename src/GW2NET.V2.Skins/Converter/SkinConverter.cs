@@ -107,6 +107,7 @@ namespace GW2NET.V2.Skins
             {
                 { "Armor", new ArmorConverter() },
                 { "Back", new BackpackConverter() }, 
+                { "Gathering", new GatherinToolConverter() },
                 { "Weapon", new WeaponConverter() }
             };
         }

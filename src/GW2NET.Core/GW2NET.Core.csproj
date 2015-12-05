@@ -371,6 +371,8 @@
     <Compile Include="Rendering\RenderService.cs" />
     <Compile Include="Skins\ArmorSkin.cs" />
     <Compile Include="Skins\AxeSkin.cs" />
+    <Compile Include="Skins\ForagingToolSkin.cs" />
+    <Compile Include="Skins\GatheringToolSkin.cs" />
     <Compile Include="Skins\BackpackSkin.cs" />
     <Compile Include="Skins\BootsSkin.cs" />
     <Compile Include="Skins\CoatSkin.cs" />
@@ -385,8 +387,10 @@
     <Compile Include="Skins\ISkinRepository.cs" />
     <Compile Include="Skins\LargeBundleSkin.cs" />
     <Compile Include="Skins\LeggingsSkin.cs" />
+    <Compile Include="Skins\LoggingToolSkin.cs" />
     <Compile Include="Skins\LongBowSkin.cs" />
     <Compile Include="Skins\MaceSkin.cs" />
+    <Compile Include="Skins\MiningToolSkin.cs" />
     <Compile Include="Skins\PistolSkin.cs" />
     <Compile Include="Skins\RifleSkin.cs" />
     <Compile Include="Skins\ScepterSkin.cs" />
@@ -404,6 +408,7 @@
     <Compile Include="Skins\TridentSkin.cs" />
     <Compile Include="Skins\TwoHandedToySkin.cs" />
     <Compile Include="Skins\UnknownArmorSkin.cs" />
+    <Compile Include="Skins\UnknownGatheringToolSkin.cs" />
     <Compile Include="Skins\UnknownSkin.cs" />
     <Compile Include="Skins\UnknownWeaponSkin.cs" />
     <Compile Include="Skins\WarHornSkin.cs" />
