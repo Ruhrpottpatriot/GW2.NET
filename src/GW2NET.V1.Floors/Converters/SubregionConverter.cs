@@ -106,19 +106,31 @@ namespace GW2NET.V1.Floors.Converters
             }
 
             var renownTasks = value.Tasks;
-            if (renownTasks != null)
+            if (renownTasks == null)
+            {
+                subRegion.Tasks = new List<RenownTask>(0);
+            }
+            else
             {
                 subRegion.Tasks = this.renownTaskCollectionConverter.Convert(renownTasks, state);
             }
 
             var skillChallenges = value.SkillChallenges;
-            if (skillChallenges != null)
+            if (skillChallenges == null)
+            {
+                subRegion.SkillChallenges = new List<SkillChallenge>(0);
+            }
+            else
             {
                 subRegion.SkillChallenges = this.skillChallengeCollectionConverter.Convert(skillChallenges, state);
             }
 
             var sectors = value.Sectors;
-            if (sectors != null)
+            if (sectors == null)
+            {
+                subRegion.Sectors = new List<Sector>(0);
+            }
+            else
             {
                 subRegion.Sectors = this.sectorCollectionConverter.Convert(sectors, state);
             }

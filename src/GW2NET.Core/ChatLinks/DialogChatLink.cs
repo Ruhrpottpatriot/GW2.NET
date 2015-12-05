@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.ChatLinks
 {
-    using System;
+    using GW2NET.ChatLinks.Interop;
 
     /// <summary>Represents a chat link that links to a dialog.</summary>
     public class DialogChatLink : ChatLink
@@ -16,13 +16,11 @@ namespace GW2NET.ChatLinks
         /// <summary>Gets or sets the dialog identifier.</summary>
         public int DialogId { get; set; }
 
-        /// <inheritdoc />
-        public override string ToString()
+        protected override int CopyTo(ChatLinkStruct value)
         {
-            var stream = new DialogChatLinkConverter().Convert(this, null);
-            var buffer = new byte[stream.Length];
-            stream.Read(buffer, 0, buffer.Length);
-            return string.Format("[&{0}]", Convert.ToBase64String(buffer));
+            value.header = Header.Text;
+            value.text.dialogId = this.DialogId;
+            return 5;
         }
     }
 }

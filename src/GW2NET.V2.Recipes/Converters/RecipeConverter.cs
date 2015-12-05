@@ -71,6 +71,7 @@ namespace GW2NET.V2.Recipes.Converters
 
             entity.Culture = response.Culture;
             entity.RecipeId = dto.Id;
+            entity.ChatLink = dto.ChatLink;
             entity.OutputItemId = dto.OutputItemId;
             entity.OutputItemCount = dto.OutputItemCount;
             entity.MinimumRating = dto.MinRating;

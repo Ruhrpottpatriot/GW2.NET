@@ -10,7 +10,7 @@
 namespace GW2NET.V1.Recipes.Converters
 {
     using System;
-
+    using System.Diagnostics;
     using GW2NET.Common;
     using GW2NET.Recipes;
 
@@ -31,6 +31,7 @@ namespace GW2NET.V1.Recipes.Converters
                 return result;
             }
 
+            Debug.Assert(false, "Unknown RecipeFlags: " + value);
             return default(RecipeFlags);
         }
     }

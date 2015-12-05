@@ -4,6 +4,7 @@
 
 namespace GW2NET.Factories.V1
 {
+    using System.Diagnostics;
     using GW2NET.Common;
     using GW2NET.Maps;
     using GW2NET.V1.Floors.Converters;
@@ -24,6 +25,7 @@ namespace GW2NET.Factories.V1
                 case "waypoint":
                     return new WaypointConverter();
                 default:
+                    Debug.Assert(false, "Unknown type discriminator: " + discriminator);
                     return new UnknownPointOfInterestConverter();
             }
         }

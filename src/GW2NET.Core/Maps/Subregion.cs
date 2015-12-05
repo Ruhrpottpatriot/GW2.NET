@@ -10,6 +10,7 @@ namespace GW2NET.Maps
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Globalization;
 
     using GW2NET.Common.Drawing;
@@ -17,6 +18,22 @@ namespace GW2NET.Maps
     /// <summary>Represents a map and its details.</summary>
     public class Subregion : IEquatable<Subregion>
     {
+        private static readonly PointOfInterest[] EmptyPointsOfInterest = new PointOfInterest[0];
+
+        private static readonly Sector[] EmptySectors = new Sector[0];
+
+        private static readonly SkillChallenge[] EmptySkillChallenges = new SkillChallenge[0];
+
+        private static readonly RenownTask[] EmptyRenownTasks = new RenownTask[0];
+
+        private ICollection<PointOfInterest> pointsOfInterest = EmptyPointsOfInterest;
+
+        private ICollection<Sector> sectors = EmptySectors;
+
+        private ICollection<SkillChallenge> skillChallenges = EmptySkillChallenges;
+
+        private ICollection<RenownTask> tasks = EmptyRenownTasks;
+
         /// <summary>Gets or sets the dimensions of the map within the continent coordinate system.</summary>
         public virtual Rectangle ContinentRectangle { get; set; }
 
@@ -42,16 +59,60 @@ namespace GW2NET.Maps
         public string Name { get; set; }
 
         /// <summary>Gets or sets a collection of Points of Interest locations.</summary>
-        public virtual ICollection<PointOfInterest> PointsOfInterest { get; set; }
+        public virtual ICollection<PointOfInterest> PointsOfInterest
+        {
+            get
+            {
+                Debug.Assert(this.pointsOfInterest != null, "this.pointsOfInterest != null");
+                return this.pointsOfInterest;
+            }
+            set
+            {
+                this.pointsOfInterest = value ?? EmptyPointsOfInterest;
+            }
+        }
 
         /// <summary>Gets or sets a collection of areas within the map.</summary>
-        public virtual ICollection<Sector> Sectors { get; set; }
+        public virtual ICollection<Sector> Sectors
+        {
+            get
+            {
+                Debug.Assert(this.sectors != null   , "this.sectors != null");
+                return this.sectors;
+            }
+            set
+            {
+                this.sectors = value ?? EmptySectors;
+            }
+        }
 
         /// <summary>Gets or sets a collection of skill challenge locations.</summary>
-        public virtual ICollection<SkillChallenge> SkillChallenges { get; set; }
+        public virtual ICollection<SkillChallenge> SkillChallenges
+        {
+            get
+            {
+                Debug.Assert(this.skillChallenges != null, "this.skillChallenges != null");
+                return this.skillChallenges;
+            }
+            set
+            {
+                this.skillChallenges = value ?? EmptySkillChallenges;
+            }
+        }
 
         /// <summary>Gets or sets a collection of renown heart locations.</summary>
-        public virtual ICollection<RenownTask> Tasks { get; set; }
+        public virtual ICollection<RenownTask> Tasks
+        {
+            get
+            {
+                Debug.Assert(this.tasks != null, "this.tasks != null");
+                return this.tasks;
+            }
+            set
+            {
+                this.tasks = value ?? EmptyRenownTasks;
+            }
+        }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

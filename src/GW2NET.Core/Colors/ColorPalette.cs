@@ -9,9 +9,11 @@
 namespace GW2NET.Colors
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
 
     using GW2NET.Common;
+    using GW2NET.Items;
 
     /// <summary>Represents a named color and its color component information for cloth, leather and metal materials.</summary>
     public class ColorPalette : IEquatable<ColorPalette>, ILocalizable
@@ -36,6 +38,14 @@ namespace GW2NET.Colors
 
         /// <summary>Gets or sets the name of the color.</summary>
         public virtual string Name { get; set; }
+
+        /// <summary>Gets or sets the item identifier of the item that unlocks this color.</summary>
+        public virtual int ItemId { get; set; }
+
+        /// <summary>Gets or sets the item that unlocks this color.</summary>
+        public virtual Item item { get; set; }
+
+        public virtual IList<string> Categories  { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

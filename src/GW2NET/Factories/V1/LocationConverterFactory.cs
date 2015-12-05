@@ -5,7 +5,7 @@
 namespace GW2NET.Factories.V1
 {
     using System;
-
+    using System.Diagnostics;
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
     using GW2NET.DynamicEvents;
@@ -37,6 +37,7 @@ namespace GW2NET.Factories.V1
                 case "poly":
                     return new PolygonLocationConverter(this.vector2DConverter);
                 default:
+                    Debug.Assert(false, "Unknown type discriminator: " + discriminator);
                     return new UnknownLocationConverter();
             }
         }

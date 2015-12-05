@@ -30,5 +30,11 @@ namespace GW2NET.V1.Colors.Json
 
         [DataMember(Name = "metal", Order = 4)]
         public ColorModelDTO Metal { get; set; }
+
+        [DataMember(Name = "item", Order = 5)]
+        public int ItemId { get; set; }
+
+        [DataMember(Name = "categories", Order = 6)]
+        public string[] Categories { get; set; }
     }
 }

@@ -10,12 +10,28 @@ namespace GW2NET.WorldVersusWorld
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
 
     /// <summary>Represents a World versus World match.</summary>
     public class Match : IEquatable<Match>
     {
+        private static readonly CompetitiveMap[] EmptyMaps = new CompetitiveMap[0];
+
+        private ICollection<CompetitiveMap> maps = EmptyMaps;
+
         /// <summary>Gets or sets the list of maps.</summary>
-        public virtual ICollection<CompetitiveMap> Maps { get; set; }
+        public virtual ICollection<CompetitiveMap> Maps
+        {
+            get
+            {
+                Debug.Assert(this.maps != null, "this.maps != null");
+                return this.maps;
+            }
+            set
+            {
+                this.maps = value ?? EmptyMaps;
+            }
+        }
 
         /// <summary>Gets or sets the match identifier.</summary>
         public virtual string MatchId { get; set; }

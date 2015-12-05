@@ -10,7 +10,7 @@
     Type targetBaseType = typeof(WeaponSkin);
     string sourceType = "SkinDTO";
     string sourceTypeFullName = "GW2NET.V1.Skins.Json.SkinDTO";
-    string discriminator = "{0}.Type";
+    string discriminator = "{0}.Weapon == null ? null : {0}.Weapon.Type";
     string ns = "GW2NET.V1.Skins.Converters";
     string constructorVisibility = "private";
 #>

@@ -4,6 +4,7 @@
 
 namespace GW2NET.Factories.V2
 {
+    using System.Diagnostics;
     using GW2NET.Common;
     using GW2NET.Skins;
     using GW2NET.V2.Skins.Converters;
@@ -62,6 +63,7 @@ namespace GW2NET.Factories.V2
                 case "LargeBundle":
                     return new LargeBundleSkinConverter();
                 default:
+                    Debug.Assert(false, "Unknown type discriminator: " + discriminator);
                     return new UnknownWeaponSkinConverter();
             }
         }

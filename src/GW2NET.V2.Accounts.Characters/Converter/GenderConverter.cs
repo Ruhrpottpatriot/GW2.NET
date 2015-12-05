@@ -10,7 +10,7 @@
 namespace GW2NET.V2.Accounts.Characters.Converter
 {
     using System;
-
+    using System.Diagnostics;
     using GW2NET.Characters;
     using GW2NET.Common;
 
@@ -26,6 +26,7 @@ namespace GW2NET.V2.Accounts.Characters.Converter
                 return gender;
             }
 
+            Debug.Assert(false, "Unknown Gender: " + value);
             return Gender.Unknown;
         }
     }

@@ -38,7 +38,7 @@ namespace GW2NET.V2.Skins.Converters
     		    throw new ArgumentNullException("value");
     		}
 
-			string discriminator = value.Type;
+			string discriminator = value.Details.Type;
 			var converter = this.converterFactory.Create(discriminator);
 			var entity = converter.Convert(value, value);
 			this.Merge(entity, value, state);

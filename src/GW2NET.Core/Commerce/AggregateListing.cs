@@ -26,6 +26,9 @@ namespace GW2NET.Commerce
         /// <summary>Gets or sets the item identifier.</summary>
         public int ItemId { get; set; }
 
+        /// <summary>Gets or sets a value indicating whether this item can be acquired in the free version of the game.</summary>
+        public bool Whitelisted { get; set; }
+
         /// <summary>Gets or sets the sell offers.</summary>
         public AggregateOffer SellOffers { get; set; }
 

@@ -10,7 +10,7 @@
 namespace GW2NET.V1.Events.Converters
 {
     using System;
-
+    using System.Diagnostics;
     using GW2NET.Common;
     using GW2NET.DynamicEvents;
 
@@ -33,6 +33,7 @@ namespace GW2NET.V1.Events.Converters
                 case @"map_wide":
                     return DynamicEventFlags.MapWide;
                 default:
+                    Debug.Assert(false, "Unknown DynamicEventFlags: " + value);
                     return default(DynamicEventFlags);
             }
         }

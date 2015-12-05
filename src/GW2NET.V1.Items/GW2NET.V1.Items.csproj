@@ -56,6 +56,7 @@
       <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Converters\GatheringToolConverter.cs" />
+    <Compile Include="Converters\MiniatureConverter.cs" />
     <Compile Include="Converters\SalvageToolConverter.cs" />
     <Compile Include="Converters\ToolConverters.cs">
       <DependentUpon>ToolConverters.tt</DependentUpon>
@@ -86,6 +87,7 @@
     <Compile Include="Converters\ItemRarityConverter.cs" />
     <Compile Include="Converters\ItemRestrictionCollectionConverter.cs" />
     <Compile Include="Converters\ItemRestrictionConverter.cs" />
+    <Compile Include="Converters\TransmutationConverter.cs" />
     <Compile Include="Converters\TrinketConverter.cs" />
     <Compile Include="Converters\UpgradeComponentConverter.cs" />
     <Compile Include="Converters\UpgradeComponentConverters.cs">
@@ -151,6 +153,7 @@
     <Compile Include="Json\InfusionSlotDTO.cs" />
     <Compile Include="Json\ItemCollectionDTO.cs" />
     <Compile Include="Json\ItemDTO.cs" />
+    <Compile Include="Json\MiniPetDTO.cs" />
     <Compile Include="Json\ToolDTO.cs" />
     <Compile Include="Json\TrinketDTO.cs" />
     <Compile Include="Json\UpgradeComponentDTO.cs" />

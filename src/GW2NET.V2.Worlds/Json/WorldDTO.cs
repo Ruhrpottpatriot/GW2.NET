@@ -21,5 +21,8 @@ namespace GW2NET.V2.Worlds.Json
 
         [DataMember(Order = 1, Name = "name")]
         public string Name { get; set; }
+
+        [DataMember(Order = 2, Name = "population")]
+        public string Population { get; set; }
     }
 }

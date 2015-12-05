@@ -43,5 +43,8 @@ namespace GW2NET.V2.Recipes.Json
 
         [DataMember(Order = 0, Name = "type")]
         public string Type { get; set; }
+
+        [DataMember(Order = 9, Name = "chat_link")]
+        public string ChatLink { get; set; }
     }
 }

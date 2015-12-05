@@ -10,7 +10,7 @@
 namespace GW2NET.V1.Items.Converters
 {
     using System;
-
+    using System.Diagnostics;
     using GW2NET.Common;
     using GW2NET.Items;
 
@@ -31,6 +31,7 @@ namespace GW2NET.V1.Items.Converters
                 return result;
             }
 
+            Debug.Assert(false, "Unknown GameTypes: " + value);
             return default(GameTypes);
         }
     }

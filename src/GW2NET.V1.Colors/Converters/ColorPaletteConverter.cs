@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace GW2NET.V1.Colors.Converters
 {
     using System;
@@ -81,6 +83,18 @@ namespace GW2NET.V1.Colors.Converters
             if (metal != null)
             {
                 colorPalette.Metal = this.colorModelConverter.Convert(metal, state);
+            }
+
+            colorPalette.ItemId = value.ItemId;
+            if (value.Categories == null)
+            {
+                colorPalette.Categories = new List<string>(0);
+            }
+            else
+            {
+                var values = new List<string>(value.Categories.Length);
+                values.AddRange(value.Categories);
+                colorPalette.Categories = values;
             }
 
             // Return the color object

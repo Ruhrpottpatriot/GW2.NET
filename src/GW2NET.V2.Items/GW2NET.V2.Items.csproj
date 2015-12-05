@@ -69,6 +69,7 @@
     <Compile Include="Converters\GenericConsumableConverter.cs" />
     <Compile Include="Converters\ImmediateConsumableConverter.cs" />
     <Compile Include="Converters\ItemConverter.cs" />
+    <Compile Include="Converters\MiniatureConverter.cs" />
     <Compile Include="Converters\SalvageToolConverter.cs" />
     <Compile Include="Converters\ToolConverters.cs">
       <DependentUpon>ToolConverters.tt</DependentUpon>
@@ -86,6 +87,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Converters\TransmutationConverter.cs" />
     <Compile Include="Converters\UpgradeComponentConverter.cs" />
     <Compile Include="Converters\UpgradeComponentConverters.cs">
       <DependentUpon>UpgradeComponentConverters.tt</DependentUpon>

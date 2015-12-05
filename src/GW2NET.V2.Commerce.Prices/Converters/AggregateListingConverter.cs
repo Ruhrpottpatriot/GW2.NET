@@ -54,7 +54,8 @@ namespace GW2NET.V2.Commerce.Prices.Converters
             var aggregateListing = new AggregateListing
             {
                 ItemId = value.Id,
-                Timestamp = response.Date
+                Timestamp = response.Date,
+                Whitelisted = value.Whitelisted
             };
             if (value.BuyOffers != null)
             {

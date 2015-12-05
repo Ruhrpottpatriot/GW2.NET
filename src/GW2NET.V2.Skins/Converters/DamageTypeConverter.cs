@@ -5,7 +5,7 @@
 namespace GW2NET.V2.Skins.Converters
 {
     using System;
-
+    using System.Diagnostics;
     using GW2NET.Common;
     using GW2NET.Items;
 
@@ -29,6 +29,7 @@ namespace GW2NET.V2.Skins.Converters
                 return result;
             }
 
+            Debug.Assert(false, "Unknown DamageType: " + value);
             return default(DamageType);
         }
     }

@@ -5,7 +5,7 @@
 namespace GW2NET.Factories.V1
 {
     using System;
-
+    using System.Diagnostics;
     using GW2NET.Common;
     using GW2NET.Items;
     using GW2NET.V1.Items;
@@ -54,7 +54,10 @@ namespace GW2NET.Factories.V1
                     return new UpgradeRemovalConverter();
                 case "Utility":
                     return new UtilityConverter();
+                case "TeleportToFriend":
+                    return new TeleportToFriendConverter();
                 default:
+                    Debug.Assert(false, "Unknown type discriminator: " + discriminator);
                     return new UnknownConsumableConverter();
             }
         }

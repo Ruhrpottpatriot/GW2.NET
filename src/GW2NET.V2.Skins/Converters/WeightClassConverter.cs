@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace GW2NET.V2.Skins.Converters
 {
     using System;
@@ -21,7 +23,13 @@ namespace GW2NET.V2.Skins.Converters
         public WeightClass Convert(string value, object state)
         {
             WeightClass result;
-            return Enum.TryParse(value, true, out result) ? result : default(WeightClass);
+            if (Enum.TryParse(value, true, out result))
+            {
+                return result;
+            }
+
+            Debug.Assert(false, "Unknown WeightClass: " + value);
+            return default(WeightClass);
         }
     }
 }

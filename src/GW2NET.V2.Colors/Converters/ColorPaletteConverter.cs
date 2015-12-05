@@ -7,7 +7,7 @@
 namespace GW2NET.V2.Colors.Converters
 {
     using System;
-
+    using System.Collections.Generic;
     using GW2NET.Colors;
     using GW2NET.Common;
     using GW2NET.V2.Colors.Json;
@@ -57,7 +57,7 @@ namespace GW2NET.V2.Colors.Converters
                 throw new ArgumentException("Precondition: state is IResponse", "state");
             }
 
-            return new ColorPalette
+            var entity = new ColorPalette
             {
                 ColorId = value.Id,
                 Name = value.Name,
@@ -67,6 +67,19 @@ namespace GW2NET.V2.Colors.Converters
                 Metal = this.colorModelConverter.Convert(value.Metal, value),
                 Culture = response.Culture
             };
+
+            if (value.Categories == null)
+            {
+                entity.Categories = new List<string>(0);
+            }
+            else
+            {
+                var values = new List<string>(value.Categories.Length);
+                values.AddRange(value.Categories);
+                entity.Categories = values;
+            }
+
+            return entity;
         }
     }
 }

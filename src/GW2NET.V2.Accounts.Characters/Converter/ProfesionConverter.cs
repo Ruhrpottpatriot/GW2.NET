@@ -10,7 +10,7 @@
 namespace GW2NET.V2.Accounts.Characters.Converter
 {
     using System;
-
+    using System.Diagnostics;
     using GW2NET.Common;
 
     /// <summary>Converts the string representation of a profession into the appropriate <see cref="Profession" /> enumeration.</summary>
@@ -25,6 +25,7 @@ namespace GW2NET.V2.Accounts.Characters.Converter
                 return profession;
             }
 
+            Debug.Assert(false, "Unknown Profession: " + value);
             return Profession.Unknown;
         }
     }

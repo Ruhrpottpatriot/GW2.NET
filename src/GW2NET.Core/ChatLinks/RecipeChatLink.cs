@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.ChatLinks
 {
-    using System;
+    using GW2NET.ChatLinks.Interop;
 
     /// <summary>Represents a chat link that links to a recipe.</summary>
     public class RecipeChatLink : ChatLink
@@ -16,13 +16,11 @@ namespace GW2NET.ChatLinks
         /// <summary>Gets or sets the recipe identifier.</summary>
         public int RecipeId { get; set; }
 
-        /// <inheritdoc />
-        public override string ToString()
+        protected override int CopyTo(ChatLinkStruct value)
         {
-            var stream = new RecipeChatLinkConverter().Convert(this, null);
-            var buffer = new byte[stream.Length];
-            stream.Read(buffer, 0, buffer.Length);
-            return string.Format("[&{0}]", Convert.ToBase64String(buffer));
+            value.header = Header.Recipe;
+            value.recipe.recipeId = this.RecipeId;
+            return 5;
         }
     }
 }

@@ -58,35 +58,37 @@ namespace GW2NET.V1.Items.Json
 
         [DataMember(Name = "armor", Order = 13)]
         public ArmorDTO Armor { get; set; }
-
-        [DataMember(Name = "back", Order = 14)]
+        [DataMember(Name = "back", Order = 13)]
         public BackpackDTO Backpack { get; set; }
 
-        [DataMember(Name = "bag", Order = 15)]
+        [DataMember(Name = "bag", Order = 13)]
         public BagDTO Bag { get; set; }
 
-        [DataMember(Name = "consumable", Order = 16)]
+        [DataMember(Name = "consumable", Order = 13)]
         public ConsumableDTO Consumable { get; set; }
 
-        [DataMember(Name = "container", Order = 17)]
+        [DataMember(Name = "container", Order = 13)]
         public ContainerDTO Container { get; set; }
 
-        [DataMember(Name = "gathering", Order = 18)]
+        [DataMember(Name = "gathering", Order = 13)]
         public GatheringToolDTO GatheringTool { get; set; }
 
-        [DataMember(Name = "gizmo", Order = 19)]
+        [DataMember(Name = "gizmo", Order = 13)]
         public GizmoDTO Gizmo { get; set; }
 
-        [DataMember(Name = "tool", Order = 20)]
+        [DataMember(Name = "tool", Order = 13)]
         public ToolDTO Tool { get; set; }
 
-        [DataMember(Name = "trinket", Order = 21)]
+        [DataMember(Name = "trinket", Order = 13)]
         public TrinketDTO Trinket { get; set; }
 
-        [DataMember(Name = "upgrade_component", Order = 22)]
+        [DataMember(Name = "upgrade_component", Order = 13)]
         public UpgradeComponentDTO UpgradeComponent { get; set; }
 
-        [DataMember(Name = "weapon", Order = 23)]
+        [DataMember(Name = "weapon", Order = 13)]
         public WeaponDTO Weapon { get; set; }
+
+        [DataMember(Name = "minipet", Order = 13)]
+        public MiniPetDTO MiniPet { get; set; }
     }
 }

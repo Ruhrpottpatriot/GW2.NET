@@ -10,7 +10,7 @@
     var targetBaseType = typeof(Weapon);
     var sourceType = "ItemDTO";
     var sourceTypeFullName = "GW2NET.V2.Items.Json.ItemDTO";
-    var discriminator = "{0}.Type";
+    var discriminator = "{0}.Details.Type";
     var ns = "GW2NET.V2.Items.Converters";
     string constructorVisibility = "private";
 #>

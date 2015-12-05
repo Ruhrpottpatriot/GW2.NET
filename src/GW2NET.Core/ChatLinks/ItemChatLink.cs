@@ -9,7 +9,10 @@
 namespace GW2NET.ChatLinks
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
+
+    using GW2NET.ChatLinks.Interop;
 
     /// <summary>Represents a chat link that links to an item.</summary>
     public class ItemChatLink : ChatLink
@@ -54,13 +57,49 @@ namespace GW2NET.ChatLinks
         /// <summary>Gets or sets the upgrade identifier.</summary>
         public int? SuffixItemId { get; set; }
 
-        /// <inheritdoc />
-        public override string ToString()
+        protected override int CopyTo(ChatLinkStruct value)
         {
-            var stream = new ItemChatLinkConverter().Convert(this, null);
-            var buffer = new byte[stream.Length];
-            stream.Read(buffer, 0, buffer.Length);
-            return string.Format("[&{0}]", Convert.ToBase64String(buffer));
+            value.header = Header.Item;
+            value.item.count = (byte)this.Quantity;
+            value.item.itemId = new UInt24((uint)this.ItemId);
+            var modifiers = new Queue<int>(3);
+            if (this.SkinId.HasValue)
+            {
+                modifiers.Enqueue(this.SkinId.Value);
+                value.item.Modifiers |= ItemModifiers.Skin;
+            }
+
+            if (this.SuffixItemId.HasValue)
+            {
+                modifiers.Enqueue(this.SuffixItemId.Value);
+                value.item.Modifiers |= ItemModifiers.SuffixItem;
+            }
+
+            if (this.SecondarySuffixItemId.HasValue)
+            {
+                modifiers.Enqueue(this.SecondarySuffixItemId.Value);
+                value.item.Modifiers |= ItemModifiers.SecondarySuffixItem;
+            }
+
+            if (modifiers.Count == 0)
+            {
+                return 6;
+            }
+
+            value.item.modifier1 = modifiers.Dequeue();
+            if (modifiers.Count == 0)
+            {
+                return 10;
+            }
+
+            value.item.modifier2 = modifiers.Dequeue();
+            if (modifiers.Count == 0)
+        {
+                return 14;
+            }
+
+            value.item.modifier3 = modifiers.Dequeue();
+            return 18;
         }
     }
 }

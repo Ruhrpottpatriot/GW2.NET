@@ -10,7 +10,7 @@
 namespace GW2NET.V1.Skins.Converters
 {
     using System;
-
+    using System.Diagnostics;
     using GW2NET.Common;
     using GW2NET.Skins;
 
@@ -34,6 +34,7 @@ namespace GW2NET.V1.Skins.Converters
                 return result;
             }
 
+            Debug.Assert(false, "Unknown SkinFlags: " + value);
             return default(SkinFlags);
         }
     }

@@ -10,6 +10,7 @@ namespace GW2NET.Maps
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Globalization;
 
     using GW2NET.Common;
@@ -18,6 +19,10 @@ namespace GW2NET.Maps
     /// <summary>Represents a map and its details, including details about floor and translation data on how to translate between world coordinates and map coordinates.</summary>
     public class Map : IEquatable<Map>, ILocalizable
     {
+        private static readonly int[] EmptyFloors = new int[0];
+
+        private ICollection<int> floors = EmptyFloors;
+
         /// <summary>Gets or sets the continent that this map belongs to. This is a navigation property. Use the value of <see cref="ContinentId"/> to obtain a reference.</summary>
         public virtual Continent Continent { get; set; }
 
@@ -37,7 +42,18 @@ namespace GW2NET.Maps
         public virtual int DefaultFloor { get; set; }
 
         /// <summary>Gets or sets a collection of floor identifiers.</summary>
-        public virtual ICollection<int> Floors { get; set; }
+        public virtual ICollection<int> Floors
+        {
+            get
+            {
+                Debug.Assert(this.floors != null, "this.floors != null");
+                return this.floors;
+            }
+            set
+            {
+                this.floors = value ?? EmptyFloors;
+            }
+        }
 
         /// <summary>Gets or sets the map identifier.</summary>
         public virtual int MapId { get; set; }

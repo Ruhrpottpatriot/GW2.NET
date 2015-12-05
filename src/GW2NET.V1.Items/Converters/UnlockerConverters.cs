@@ -60,6 +60,90 @@ namespace GW2NET.V1.Items.Converters
 		*/
 	}
 
+#region ChampionUnlocker
+    /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="ChampionUnlocker"/>.</summary>
+    public sealed partial class ChampionUnlockerConverter : IConverter<ItemDTO, Unlocker>
+    {
+	    /// <inheritdoc />
+        public Unlocker Convert(ItemDTO value, object state)
+        {
+    		var entity = new ChampionUnlocker();
+            this.Merge(entity, value, state);
+    		return entity;
+        }
+
+    	// Implement this method in a buddy class to set properties that are specific to 'ChampionUnlocker' (if any)
+    	partial void Merge(ChampionUnlocker entity, ItemDTO dto, object state);
+
+		/*
+		// Use this template
+		public partial class ChampionUnlockerConverter
+		{
+		    partial void Merge(ChampionUnlocker entity, ItemDTO dto, object state)
+			{
+			    throw new NotImplementedException();
+			}
+		}
+		*/
+    }
+#endregion
+
+#region GliderSkinUnlocker
+    /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="GliderSkinUnlocker"/>.</summary>
+    public sealed partial class GliderSkinUnlockerConverter : IConverter<ItemDTO, Unlocker>
+    {
+	    /// <inheritdoc />
+        public Unlocker Convert(ItemDTO value, object state)
+        {
+    		var entity = new GliderSkinUnlocker();
+            this.Merge(entity, value, state);
+    		return entity;
+        }
+
+    	// Implement this method in a buddy class to set properties that are specific to 'GliderSkinUnlocker' (if any)
+    	partial void Merge(GliderSkinUnlocker entity, ItemDTO dto, object state);
+
+		/*
+		// Use this template
+		public partial class GliderSkinUnlockerConverter
+		{
+		    partial void Merge(GliderSkinUnlocker entity, ItemDTO dto, object state)
+			{
+			    throw new NotImplementedException();
+			}
+		}
+		*/
+    }
+#endregion
+
+#region OutfitUnlocker
+    /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="OutfitUnlocker"/>.</summary>
+    public sealed partial class OutfitUnlockerConverter : IConverter<ItemDTO, Unlocker>
+    {
+	    /// <inheritdoc />
+        public Unlocker Convert(ItemDTO value, object state)
+        {
+    		var entity = new OutfitUnlocker();
+            this.Merge(entity, value, state);
+    		return entity;
+        }
+
+    	// Implement this method in a buddy class to set properties that are specific to 'OutfitUnlocker' (if any)
+    	partial void Merge(OutfitUnlocker entity, ItemDTO dto, object state);
+
+		/*
+		// Use this template
+		public partial class OutfitUnlockerConverter
+		{
+		    partial void Merge(OutfitUnlocker entity, ItemDTO dto, object state)
+			{
+			    throw new NotImplementedException();
+			}
+		}
+		*/
+    }
+#endregion
+
 #region BagSlotUnlocker
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="BagSlotUnlocker"/>.</summary>
     public sealed partial class BagSlotUnlockerConverter : IConverter<ItemDTO, Unlocker>

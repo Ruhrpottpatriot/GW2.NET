@@ -60,6 +60,34 @@ namespace GW2NET.V1.Items.Converters
 		*/
 	}
 
+#region ExpertiseModifier
+    /// <summary>Converts objects of type <see cref="AttributeDTO"/> to objects of type <see cref="ExpertiseModifier"/>.</summary>
+    public sealed partial class ExpertiseModifierConverter : IConverter<AttributeDTO, CombatAttribute>
+    {
+	    /// <inheritdoc />
+        public CombatAttribute Convert(AttributeDTO value, object state)
+        {
+    		var entity = new ExpertiseModifier();
+            this.Merge(entity, value, state);
+    		return entity;
+        }
+
+    	// Implement this method in a buddy class to set properties that are specific to 'ExpertiseModifier' (if any)
+    	partial void Merge(ExpertiseModifier entity, AttributeDTO dto, object state);
+
+		/*
+		// Use this template
+		public partial class ExpertiseModifierConverter
+		{
+		    partial void Merge(ExpertiseModifier entity, AttributeDTO dto, object state)
+			{
+			    throw new NotImplementedException();
+			}
+		}
+		*/
+    }
+#endregion
+
 #region ConditionDamageModifier
     /// <summary>Converts objects of type <see cref="AttributeDTO"/> to objects of type <see cref="ConditionDamageModifier"/>.</summary>
     public sealed partial class ConditionDamageModifierConverter : IConverter<AttributeDTO, CombatAttribute>
@@ -192,6 +220,34 @@ namespace GW2NET.V1.Items.Converters
 		public partial class PrecisionModifierConverter
 		{
 		    partial void Merge(PrecisionModifier entity, AttributeDTO dto, object state)
+			{
+			    throw new NotImplementedException();
+			}
+		}
+		*/
+    }
+#endregion
+
+#region ConcentrationModifier
+    /// <summary>Converts objects of type <see cref="AttributeDTO"/> to objects of type <see cref="ConcentrationModifier"/>.</summary>
+    public sealed partial class ConcentrationModifierConverter : IConverter<AttributeDTO, CombatAttribute>
+    {
+	    /// <inheritdoc />
+        public CombatAttribute Convert(AttributeDTO value, object state)
+        {
+    		var entity = new ConcentrationModifier();
+            this.Merge(entity, value, state);
+    		return entity;
+        }
+
+    	// Implement this method in a buddy class to set properties that are specific to 'ConcentrationModifier' (if any)
+    	partial void Merge(ConcentrationModifier entity, AttributeDTO dto, object state);
+
+		/*
+		// Use this template
+		public partial class ConcentrationModifierConverter
+		{
+		    partial void Merge(ConcentrationModifier entity, AttributeDTO dto, object state)
 			{
 			    throw new NotImplementedException();
 			}

@@ -14,7 +14,7 @@ namespace GW2NET.Common
     public enum Profession
     {
         /// <summary>Indicates an unknown profession.</summary>
-        Unknown = 0,
+        Unknown = 0, 
 
         /// <summary>The 'Guardian' profession.</summary>
         Guardian = 1 << 0,
@@ -38,6 +38,9 @@ namespace GW2NET.Common
         Mesmer = 1 << 6,
 
         /// <summary>The 'Necromancer' profession.</summary>
-        Necromancer = 1 << 7
+        Necromancer = 1 << 7,
+
+        /// <summary>The 'Revenant' profession.</summary>
+        Revenant = 1 << 8
     }
 }

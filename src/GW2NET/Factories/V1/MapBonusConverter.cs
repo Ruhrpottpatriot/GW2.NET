@@ -4,6 +4,7 @@
 
 namespace GW2NET.Factories.V1
 {
+    using System.Diagnostics;
     using GW2NET.Common;
     using GW2NET.V1.WorldVersusWorld.Matches.Converters;
     using GW2NET.V1.WorldVersusWorld.Matches.Json;
@@ -18,6 +19,7 @@ namespace GW2NET.Factories.V1
                 case "bloodlust":
                     return new BloodlustConverter();
                 default:
+                    Debug.Assert(false, "Unknown type discriminator: " + discriminator);
                     return new UnknownMapBonusConverter();
             }
         }

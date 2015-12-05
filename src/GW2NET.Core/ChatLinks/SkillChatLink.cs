@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.ChatLinks
 {
-    using System;
+    using GW2NET.ChatLinks.Interop;
 
     /// <summary>Represents a chat link that links to a skill.</summary>
     public class SkillChatLink : ChatLink
@@ -16,13 +16,11 @@ namespace GW2NET.ChatLinks
         /// <summary>Gets or sets the skill identifier.</summary>
         public int SkillId { get; set; }
 
-        /// <inheritdoc />
-        public override string ToString()
+        protected override int CopyTo(ChatLinkStruct value)
         {
-            var stream = new SkillChatLinkConverter().Convert(this, null);
-            var buffer = new byte[stream.Length];
-            stream.Read(buffer, 0, buffer.Length);
-            return string.Format("[&{0}]", Convert.ToBase64String(buffer));
+            value.header = Header.Skill;
+            value.skill.skillId = this.SkillId;
+            return 5;
         }
     }
 }

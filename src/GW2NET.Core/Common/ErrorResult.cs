@@ -19,6 +19,10 @@ namespace GW2NET.Common
         [DataMember(Name = "error", Order = 0)]
         public int? Error { get; set; }
 
+        /// <summary>Gets or sets a number that indicates the error code.</summary>
+        [DataMember(Name = "code", Order = 0)]
+        public int? Code { get; set; }
+
         /// <summary>Gets or sets the line number on which the error occurred.</summary>
         [DataMember(Name = "line", Order = 3)]
         public int? Line { get; set; }

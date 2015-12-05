@@ -1,272 +1,273 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"/>
-    <PropertyGroup>
+  <Import Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
+  <PropertyGroup>
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{48C94F34-B6BD-4BDD-A0D5-36403A86FB78}</ProjectGuid>
-        <OutputType>Library</OutputType>
-        <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>GW2NET</RootNamespace>
-        <AssemblyName>GW2NET</AssemblyName>
-        <DefaultLanguage>en-US</DefaultLanguage>
-        <FileAlignment>512</FileAlignment>
-        <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{48C94F34-B6BD-4BDD-A0D5-36403A86FB78}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GW2NET</RootNamespace>
+    <AssemblyName>GW2NET</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkProfile>Profile151</TargetFrameworkProfile>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-        <SccProjectName>SAK</SccProjectName>
-        <SccLocalPath>SAK</SccLocalPath>
-        <SccAuxPath>SAK</SccAuxPath>
-        <SccProvider>SAK</SccProvider>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-        <CodeAnalysisRuleSet>$(SolutionDir)GW2NET.ruleset</CodeAnalysisRuleSet>
-        <DocumentationFile>bin\Debug\GW2NET.XML</DocumentationFile>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <DebugType>pdbonly</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-        <DocumentationFile>bin\Release\GW2NET.XML</DocumentationFile>
-        <CodeAnalysisRuleSet>$(SolutionDir)GW2NET.ruleset</CodeAnalysisRuleSet>
-    </PropertyGroup>
-    <ItemGroup>
-        <!-- A reference to the entire .NET Framework is automatically included -->
-        <ProjectReference Include="..\GW2NET.Compression\GW2NET.Compression.csproj">
-            <Project>{08d936e1-c097-4196-8128-c2493f8d7e47}</Project>
-            <Name>GW2NET.Compression</Name>
-            <Private>True</Private>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.Core\GW2NET.Core.csproj">
-            <Project>{05f3d999-0470-4123-8c80-af4ac2385e7c}</Project>
-            <Name>GW2NET.Core</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.Newtonsoft\GW2NET.Newtonsoft.csproj">
-            <Project>{11bb8977-33fe-4789-bd5b-d977b0bf5ecf}</Project>
-            <Name>GW2NET.Newtonsoft</Name>
-            <Private>True</Private>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V1.Builds\GW2NET.V1.Builds.csproj">
-            <Project>{ca0da927-b8f4-4097-a7cd-a0014e0b233a}</Project>
-            <Name>GW2NET.V1.Builds</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V1.Colors\GW2NET.V1.Colors.csproj">
-            <Project>{B6A516FF-684D-4E5D-9C9E-851718332A39}</Project>
-            <Name>GW2NET.V1.Colors</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V1.Continents\GW2NET.V1.Continents.csproj">
-            <Project>{489aaa0e-7ef9-4423-843a-fa3a11bee156}</Project>
-            <Name>GW2NET.V1.Continents</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V1.Events\GW2NET.V1.Events.csproj">
-            <Project>{c7624cd0-f810-469f-b5cf-11715afc41d2}</Project>
-            <Name>GW2NET.V1.Events</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V1.Files\GW2NET.V1.Files.csproj">
-            <Project>{25e6a850-d86e-4f4d-b824-4ab8338a0af9}</Project>
-            <Name>GW2NET.V1.Files</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V1.Floors\GW2NET.V1.Floors.csproj">
-            <Project>{a5ad09eb-690c-4adc-8af0-f0acfaae2f8f}</Project>
-            <Name>GW2NET.V1.Floors</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V1.Guilds\GW2NET.V1.Guilds.csproj">
-            <Project>{48dbec9e-c97b-412e-ad3a-03658f76cdfc}</Project>
-            <Name>GW2NET.V1.Guilds</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V1.Items\GW2NET.V1.Items.csproj">
-            <Project>{d408e5b0-40f7-4262-8d8a-b30bb2de1e93}</Project>
-            <Name>GW2NET.V1.Items</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V1.Maps\GW2NET.V1.Maps.csproj">
-            <Project>{19481b9a-67f2-4bec-824e-731c7238d7e4}</Project>
-            <Name>GW2NET.V1.Maps</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V1.Recipes\GW2NET.V1.Recipes.csproj">
-            <Project>{b476c1ef-2fb8-4590-a5e3-cca93d079b21}</Project>
-            <Name>GW2NET.V1.Recipes</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V1.Skins\GW2NET.V1.Skins.csproj">
-            <Project>{0ac8e33c-64b8-496b-a202-924375af0d39}</Project>
-            <Name>GW2NET.V1.Skins</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V1.Worlds\GW2NET.V1.Worlds.csproj">
-            <Project>{f3e6f8e8-2767-4a99-bad4-20b7d0edcd96}</Project>
-            <Name>GW2NET.V1.Worlds</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V1.WorldVersusWorld.Matches\GW2NET.V1.WorldVersusWorld.Matches.csproj">
-            <Project>{d53ae2ca-1a84-4707-8099-b6003ffac46e}</Project>
-            <Name>GW2NET.V1.WorldVersusWorld.Matches</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V1.WorldVersusWorld.Objectives\GW2NET.V1.WorldVersusWorld.Objectives.csproj">
-            <Project>{926e82ec-49d0-43f2-8214-e06408619676}</Project>
-            <Name>GW2NET.V1.WorldVersusWorld.Objectives</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V2.Accounts.Characters\GW2NET.V2.Accounts.Characters.csproj">
-            <Project>{9d582bc4-d182-4373-a8d5-04607f4094b1}</Project>
-            <Name>GW2NET.V2.Accounts.Characters</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V2.Account\GW2NET.V2.Accounts.csproj">
-            <Project>{2C83D314-3C3F-470B-A4CC-B6E3E1F48EA2}</Project>
-            <Name>GW2NET.V2.Accounts</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V2.Builds\GW2NET.V2.Builds.csproj">
-            <Project>{5f2c2514-10b0-4b5b-b227-edd406377396}</Project>
-            <Name>GW2NET.V2.Builds</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V2.Colors\GW2NET.V2.Colors.csproj">
-            <Project>{d5fd21bd-9d1f-4129-b3dd-fcdc0afd0830}</Project>
-            <Name>GW2NET.V2.Colors</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V2.Commerce.Exchange\GW2NET.V2.Commerce.Exchange.csproj">
-            <Project>{40a8f55c-97bc-4652-a60e-9f4ea5d49fda}</Project>
-            <Name>GW2NET.V2.Commerce.Exchange</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V2.Commerce.Listings\GW2NET.V2.Commerce.Listings.csproj">
-            <Project>{ca6d86a9-f12e-45d4-a878-57f2714a0a51}</Project>
-            <Name>GW2NET.V2.Commerce.Listings</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V2.Commerce.Prices\GW2NET.V2.Commerce.Prices.csproj">
-            <Project>{0f72000c-a997-471f-a353-5988828a5255}</Project>
-            <Name>GW2NET.V2.Commerce.Prices</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V2.Continents\GW2NET.V2.Continents.csproj">
-            <Project>{8991E557-F908-4FF4-9A3E-299869076887}</Project>
-            <Name>GW2NET.V2.Continents</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V2.Files\GW2NET.V2.Files.csproj">
-            <Project>{7376BF02-3192-479B-82E8-EC0B15DA55C1}</Project>
-            <Name>GW2NET.V2.Files</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V2.Items\GW2NET.V2.Items.csproj">
-            <Project>{965994be-f908-4d34-af07-f8a6b527ffb7}</Project>
-            <Name>GW2NET.V2.Items</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V2.Maps\GW2NET.V2.Maps.csproj">
-            <Project>{E0048487-3E7F-4036-BC50-508AF4C321E2}</Project>
-            <Name>GW2NET.V2.Maps</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V2.Quaggans\GW2NET.V2.Quaggans.csproj">
-            <Project>{1de9b06c-24a1-497d-bfa9-65eb9e361c71}</Project>
-            <Name>GW2NET.V2.Quaggans</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V2.Recipes\GW2NET.V2.Recipes.csproj">
-            <Project>{55897753-f4b5-48d1-8a01-20d54afde7dd}</Project>
-            <Name>GW2NET.V2.Recipes</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V2.Skins\GW2NET.V2.Skins.csproj">
-            <Project>{9937ADF8-CEB8-48F2-9E12-C259CD454C17}</Project>
-            <Name>GW2NET.V2.Skins</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\GW2NET.V2.Worlds\GW2NET.V2.Worlds.csproj">
-            <Project>{1d9eee65-d035-4acb-9f08-883a59331a6a}</Project>
-            <Name>GW2NET.V2.Worlds</Name>
-        </ProjectReference>
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Factories\BinarySerializerFactory.cs"/>
-        <Compile Include="Factories\DataContractJsonSerializerFactory.cs"/>
-        <Compile Include="Factories\FactoryBase.cs"/>
-        <Compile Include="Factories\FactoryForLocal.cs"/>
-        <Compile Include="Factories\FactoryForRendering.cs"/>
-        <Compile Include="Factories\RepositoryFactoryBase.cs"/>
-        <Compile Include="Factories\V1\ArmorConverterFactory.cs"/>
-        <Compile Include="Factories\V1\ArmorSkinConverterFactory.cs"/>
-        <Compile Include="Factories\V1\ColorRepositoryFactory.cs"/>
-        <Compile Include="Factories\V1\CombatAttributeConverterFactory.cs"/>
-        <Compile Include="Factories\V1\CompetitiveMapConverterFactory.cs"/>
-        <Compile Include="Factories\V1\ConsumableConverterFactory.cs"/>
-        <Compile Include="Factories\V1\ContainerConverterFactory.cs"/>
-        <Compile Include="Factories\V1\ContinentRepositoryFactory.cs"/>
-        <Compile Include="Factories\V1\EventNameRepositoryFactory.cs"/>
-        <Compile Include="Factories\V1\EventRepositoryFactory.cs"/>
-        <Compile Include="Factories\V1\FactoryForV1.cs"/>
-        <Compile Include="Factories\V1\FactoryForV1WvW.cs"/>
-        <Compile Include="Factories\V1\FloorRepositoryFactory.cs"/>
-        <Compile Include="Factories\V1\GatheringToolConverterFactory.cs"/>
-        <Compile Include="Factories\V1\GizmoConverterFactory.cs"/>
-        <Compile Include="Factories\V1\ItemConverterFactory.cs"/>
-        <Compile Include="Factories\V1\ItemRepositoryFactory.cs"/>
-        <Compile Include="Factories\V1\LocationConverterFactory.cs"/>
-        <Compile Include="Factories\V1\MapBonusConverter.cs"/>
-        <Compile Include="Factories\V1\MapNameRepositoryFactory.cs"/>
-        <Compile Include="Factories\V1\MapRepositoryFactory.cs"/>
-        <Compile Include="Factories\V1\ObjectiveNameRepositoryFactory.cs"/>
-        <Compile Include="Factories\V1\PointOfInterestConverterFactory.cs"/>
-        <Compile Include="Factories\V1\RecipeConverterFactory.cs"/>
-        <Compile Include="Factories\V1\RecipeRepositoryFactory.cs"/>
-        <Compile Include="Factories\V1\SkinConverterFactory.cs"/>
-        <Compile Include="Factories\V1\SkinRepositoryFactory.cs"/>
-        <Compile Include="Factories\V1\ToolConverterFactory.cs"/>
-        <Compile Include="Factories\V1\TrinketConverterFactory.cs"/>
-        <Compile Include="Factories\V1\UnlockerConverterFactory.cs"/>
-        <Compile Include="Factories\V1\UpgradeComponentConverterFactory.cs"/>
-        <Compile Include="Factories\V1\WeaponConverterFactory.cs"/>
-        <Compile Include="Factories\V1\WeaponSkinConverterFactory.cs"/>
-        <Compile Include="Factories\V1\WorldRepositoryFactory.cs"/>
-        <Compile Include="Factories\V2\AccountRepositoryFactory.cs"/>
-        <Compile Include="Factories\V2\ArmorConverterFactory.cs"/>
-        <Compile Include="Factories\V2\ArmorSkinConverterFactory.cs"/>
-        <Compile Include="Factories\V2\CharacterRepositoryFactory.cs"/>
-        <Compile Include="Factories\V2\ColorRepositoryFactory.cs"/>
-        <Compile Include="Factories\V2\CombatAttributeConverterFactory.cs"/>
-        <Compile Include="Factories\V2\ConsumableConverterFactory.cs"/>
-        <Compile Include="Factories\V2\ContainerConverterFactory.cs"/>
-        <Compile Include="Factories\V2\ContinentRepositoryFactory.cs"/>
-        <Compile Include="Factories\V2\FactoryForV2.cs"/>
-        <Compile Include="Factories\V2\FactoryForV2Authorized.cs"/>
-        <Compile Include="Factories\V2\FactoryForV2Commerce.cs"/>
-        <Compile Include="Factories\V2\FileRepositoryFactory.cs"/>
-        <Compile Include="Factories\V2\GatheringToolConverterFactory.cs"/>
-        <Compile Include="Factories\V2\GizmoConverterFactory.cs"/>
-        <Compile Include="Factories\V2\ItemConverterFactory.cs"/>
-        <Compile Include="Factories\V2\ItemRepositoryFactory.cs"/>
-        <Compile Include="Factories\V2\MapsRepositoryFactory.cs"/>
-        <Compile Include="Factories\V2\RecipeConverterFactory.cs"/>
-        <Compile Include="Factories\V2\RecipeRepositoryFactory.cs"/>
-        <Compile Include="Factories\V2\SkinConverterFactory.cs"/>
-        <Compile Include="Factories\V2\SkinRepositoryFactory.cs"/>
-        <Compile Include="Factories\V2\ToolConverterFactory.cs"/>
-        <Compile Include="Factories\V2\TrinketConverterFactory.cs"/>
-        <Compile Include="Factories\V2\UnlockerConverterFactory.cs"/>
-        <Compile Include="Factories\V2\UpgradeComponentConverterFactory.cs"/>
-        <Compile Include="Factories\V2\WeaponConverterFactory.cs"/>
-        <Compile Include="Factories\V2\WeaponSkinConverterFactory.cs"/>
-        <Compile Include="Factories\V2\WorldRepositoryFactory.cs"/>
-        <Compile Include="GW2Bootstrapper.cs"/>
-        <Compile Include="Properties\AssemblyInfo.cs"/>
-        <Compile Include="$(SolutionDir)SharedAssemblyInfo.cs">
-            <Link>Properties\SharedAssemblyInfo.cs</Link>
-        </Compile>
-    </ItemGroup>
-    <ItemGroup>
-        <None Include="GW2NET.nuspec"/>
-        <None Include="packages.config"/>
-        <AdditionalFiles Include="..\..\stylecop.json"/>
-    </ItemGroup>
-    <ItemGroup>
-        <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>$(SolutionDir)GW2NET.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Debug\GW2NET.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\GW2NET.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>$(SolutionDir)GW2NET.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\GW2NET.Compression\GW2NET.Compression.csproj">
+      <Project>{08d936e1-c097-4196-8128-c2493f8d7e47}</Project>
+      <Name>GW2NET.Compression</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.Core\GW2NET.Core.csproj">
+      <Project>{05f3d999-0470-4123-8c80-af4ac2385e7c}</Project>
+      <Name>GW2NET.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.Newtonsoft\GW2NET.Newtonsoft.csproj">
+      <Project>{11bb8977-33fe-4789-bd5b-d977b0bf5ecf}</Project>
+      <Name>GW2NET.Newtonsoft</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Builds\GW2NET.V1.Builds.csproj">
+      <Project>{ca0da927-b8f4-4097-a7cd-a0014e0b233a}</Project>
+      <Name>GW2NET.V1.Builds</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Colors\GW2NET.V1.Colors.csproj">
+      <Project>{B6A516FF-684D-4E5D-9C9E-851718332A39}</Project>
+      <Name>GW2NET.V1.Colors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Continents\GW2NET.V1.Continents.csproj">
+      <Project>{489aaa0e-7ef9-4423-843a-fa3a11bee156}</Project>
+      <Name>GW2NET.V1.Continents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Events\GW2NET.V1.Events.csproj">
+      <Project>{c7624cd0-f810-469f-b5cf-11715afc41d2}</Project>
+      <Name>GW2NET.V1.Events</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Files\GW2NET.V1.Files.csproj">
+      <Project>{25e6a850-d86e-4f4d-b824-4ab8338a0af9}</Project>
+      <Name>GW2NET.V1.Files</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Floors\GW2NET.V1.Floors.csproj">
+      <Project>{a5ad09eb-690c-4adc-8af0-f0acfaae2f8f}</Project>
+      <Name>GW2NET.V1.Floors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Guilds\GW2NET.V1.Guilds.csproj">
+      <Project>{48dbec9e-c97b-412e-ad3a-03658f76cdfc}</Project>
+      <Name>GW2NET.V1.Guilds</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Items\GW2NET.V1.Items.csproj">
+      <Project>{d408e5b0-40f7-4262-8d8a-b30bb2de1e93}</Project>
+      <Name>GW2NET.V1.Items</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Maps\GW2NET.V1.Maps.csproj">
+      <Project>{19481b9a-67f2-4bec-824e-731c7238d7e4}</Project>
+      <Name>GW2NET.V1.Maps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Recipes\GW2NET.V1.Recipes.csproj">
+      <Project>{b476c1ef-2fb8-4590-a5e3-cca93d079b21}</Project>
+      <Name>GW2NET.V1.Recipes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Skins\GW2NET.V1.Skins.csproj">
+      <Project>{0ac8e33c-64b8-496b-a202-924375af0d39}</Project>
+      <Name>GW2NET.V1.Skins</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Worlds\GW2NET.V1.Worlds.csproj">
+      <Project>{f3e6f8e8-2767-4a99-bad4-20b7d0edcd96}</Project>
+      <Name>GW2NET.V1.Worlds</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.WorldVersusWorld.Matches\GW2NET.V1.WorldVersusWorld.Matches.csproj">
+      <Project>{d53ae2ca-1a84-4707-8099-b6003ffac46e}</Project>
+      <Name>GW2NET.V1.WorldVersusWorld.Matches</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.WorldVersusWorld.Objectives\GW2NET.V1.WorldVersusWorld.Objectives.csproj">
+      <Project>{926e82ec-49d0-43f2-8214-e06408619676}</Project>
+      <Name>GW2NET.V1.WorldVersusWorld.Objectives</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Accounts.Characters\GW2NET.V2.Accounts.Characters.csproj">
+      <Project>{9d582bc4-d182-4373-a8d5-04607f4094b1}</Project>
+      <Name>GW2NET.V2.Accounts.Characters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Account\GW2NET.V2.Accounts.csproj">
+      <Project>{2C83D314-3C3F-470B-A4CC-B6E3E1F48EA2}</Project>
+      <Name>GW2NET.V2.Accounts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Builds\GW2NET.V2.Builds.csproj">
+      <Project>{5f2c2514-10b0-4b5b-b227-edd406377396}</Project>
+      <Name>GW2NET.V2.Builds</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Colors\GW2NET.V2.Colors.csproj">
+      <Project>{d5fd21bd-9d1f-4129-b3dd-fcdc0afd0830}</Project>
+      <Name>GW2NET.V2.Colors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Commerce.Exchange\GW2NET.V2.Commerce.Exchange.csproj">
+      <Project>{40a8f55c-97bc-4652-a60e-9f4ea5d49fda}</Project>
+      <Name>GW2NET.V2.Commerce.Exchange</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Commerce.Listings\GW2NET.V2.Commerce.Listings.csproj">
+      <Project>{ca6d86a9-f12e-45d4-a878-57f2714a0a51}</Project>
+      <Name>GW2NET.V2.Commerce.Listings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Commerce.Prices\GW2NET.V2.Commerce.Prices.csproj">
+      <Project>{0f72000c-a997-471f-a353-5988828a5255}</Project>
+      <Name>GW2NET.V2.Commerce.Prices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Continents\GW2NET.V2.Continents.csproj">
+      <Project>{8991E557-F908-4FF4-9A3E-299869076887}</Project>
+      <Name>GW2NET.V2.Continents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Files\GW2NET.V2.Files.csproj">
+      <Project>{7376BF02-3192-479B-82E8-EC0B15DA55C1}</Project>
+      <Name>GW2NET.V2.Files</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Items\GW2NET.V2.Items.csproj">
+      <Project>{965994be-f908-4d34-af07-f8a6b527ffb7}</Project>
+      <Name>GW2NET.V2.Items</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Maps\GW2NET.V2.Maps.csproj">
+      <Project>{E0048487-3E7F-4036-BC50-508AF4C321E2}</Project>
+      <Name>GW2NET.V2.Maps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Quaggans\GW2NET.V2.Quaggans.csproj">
+      <Project>{1de9b06c-24a1-497d-bfa9-65eb9e361c71}</Project>
+      <Name>GW2NET.V2.Quaggans</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Recipes\GW2NET.V2.Recipes.csproj">
+      <Project>{55897753-f4b5-48d1-8a01-20d54afde7dd}</Project>
+      <Name>GW2NET.V2.Recipes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Skins\GW2NET.V2.Skins.csproj">
+      <Project>{9937ADF8-CEB8-48F2-9E12-C259CD454C17}</Project>
+      <Name>GW2NET.V2.Skins</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Worlds\GW2NET.V2.Worlds.csproj">
+      <Project>{1d9eee65-d035-4acb-9f08-883a59331a6a}</Project>
+      <Name>GW2NET.V2.Worlds</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Factories\BinarySerializerFactory.cs" />
+    <Compile Include="Factories\DataContractJsonSerializerFactory.cs" />
+    <Compile Include="Factories\FactoryBase.cs" />
+    <Compile Include="Factories\FactoryForLocal.cs" />
+    <Compile Include="Factories\FactoryForRendering.cs" />
+    <Compile Include="Factories\RepositoryFactoryBase.cs" />
+    <Compile Include="Factories\V1\ArmorConverterFactory.cs" />
+    <Compile Include="Factories\V1\ArmorSkinConverterFactory.cs" />
+    <Compile Include="Factories\V1\ColorRepositoryFactory.cs" />
+    <Compile Include="Factories\V1\CombatAttributeConverterFactory.cs" />
+    <Compile Include="Factories\V1\CompetitiveMapConverterFactory.cs" />
+    <Compile Include="Factories\V1\ConsumableConverterFactory.cs" />
+    <Compile Include="Factories\V1\ContainerConverterFactory.cs" />
+    <Compile Include="Factories\V1\ContinentRepositoryFactory.cs" />
+    <Compile Include="Factories\V1\EventNameRepositoryFactory.cs" />
+    <Compile Include="Factories\V1\EventRepositoryFactory.cs" />
+    <Compile Include="Factories\V1\FactoryForV1.cs" />
+    <Compile Include="Factories\V1\FactoryForV1WvW.cs" />
+    <Compile Include="Factories\V1\FloorRepositoryFactory.cs" />
+    <Compile Include="Factories\V1\GatheringToolConverterFactory.cs" />
+    <Compile Include="Factories\V1\GizmoConverterFactory.cs" />
+    <Compile Include="Factories\V1\ItemConverterFactory.cs" />
+    <Compile Include="Factories\V1\ItemRepositoryFactory.cs" />
+    <Compile Include="Factories\V1\LocationConverterFactory.cs" />
+    <Compile Include="Factories\V1\MapBonusConverter.cs" />
+    <Compile Include="Factories\V1\MapNameRepositoryFactory.cs" />
+    <Compile Include="Factories\V1\MapRepositoryFactory.cs" />
+    <Compile Include="Factories\V1\ObjectiveNameRepositoryFactory.cs" />
+    <Compile Include="Factories\V1\PointOfInterestConverterFactory.cs" />
+    <Compile Include="Factories\V1\RecipeConverterFactory.cs" />
+    <Compile Include="Factories\V1\RecipeRepositoryFactory.cs" />
+    <Compile Include="Factories\V1\SkinConverterFactory.cs" />
+    <Compile Include="Factories\V1\SkinRepositoryFactory.cs" />
+    <Compile Include="Factories\V1\ToolConverterFactory.cs" />
+    <Compile Include="Factories\V1\TrinketConverterFactory.cs" />
+    <Compile Include="Factories\V1\UnlockerConverterFactory.cs" />
+    <Compile Include="Factories\V1\UpgradeComponentConverterFactory.cs" />
+    <Compile Include="Factories\V1\WeaponConverterFactory.cs" />
+    <Compile Include="Factories\V1\WeaponSkinConverterFactory.cs" />
+    <Compile Include="Factories\V1\WorldRepositoryFactory.cs" />
+    <Compile Include="Factories\V2\AccountRepositoryFactory.cs" />
+    <Compile Include="Factories\V2\ArmorConverterFactory.cs" />
+    <Compile Include="Factories\V2\ArmorSkinConverterFactory.cs" />
+    <Compile Include="Factories\V2\CharacterRepositoryFactory.cs" />
+    <Compile Include="Factories\V2\ColorRepositoryFactory.cs" />
+    <Compile Include="Factories\V2\CombatAttributeConverterFactory.cs" />
+    <Compile Include="Factories\V2\ConsumableConverterFactory.cs" />
+    <Compile Include="Factories\V2\ContainerConverterFactory.cs" />
+    <Compile Include="Factories\V2\ContinentRepositoryFactory.cs" />
+    <Compile Include="Factories\V2\FactoryForV2.cs" />
+    <Compile Include="Factories\V2\FactoryForV2Authorized.cs" />
+    <Compile Include="Factories\V2\FactoryForV2Commerce.cs" />
+    <Compile Include="Factories\V2\FileRepositoryFactory.cs" />
+    <Compile Include="Factories\V2\GatheringToolConverterFactory.cs" />
+    <Compile Include="Factories\V2\GatheringToolSkinConverterFactory.cs" />
+    <Compile Include="Factories\V2\GizmoConverterFactory.cs" />
+    <Compile Include="Factories\V2\ItemConverterFactory.cs" />
+    <Compile Include="Factories\V2\ItemRepositoryFactory.cs" />
+    <Compile Include="Factories\V2\MapsRepositoryFactory.cs" />
+    <Compile Include="Factories\V2\RecipeConverterFactory.cs" />
+    <Compile Include="Factories\V2\RecipeRepositoryFactory.cs" />
+    <Compile Include="Factories\V2\SkinConverterFactory.cs" />
+    <Compile Include="Factories\V2\SkinRepositoryFactory.cs" />
+    <Compile Include="Factories\V2\ToolConverterFactory.cs" />
+    <Compile Include="Factories\V2\TrinketConverterFactory.cs" />
+    <Compile Include="Factories\V2\UnlockerConverterFactory.cs" />
+    <Compile Include="Factories\V2\UpgradeComponentConverterFactory.cs" />
+    <Compile Include="Factories\V2\WeaponConverterFactory.cs" />
+    <Compile Include="Factories\V2\WeaponSkinConverterFactory.cs" />
+    <Compile Include="Factories\V2\WorldRepositoryFactory.cs" />
+    <Compile Include="GW2Bootstrapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="$(SolutionDir)SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GW2NET.nuspec" />
+    <None Include="packages.config" />
+    <AdditionalFiles Include="..\..\stylecop.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.6\lib\portable-net45+wp80+win8+wpa81+aspnetcore50\Newtonsoft.Json.dll</HintPath>
-            <Private>True</Private>
-        </Reference>
-    </ItemGroup>
-    <ItemGroup>
-        <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0-beta013\analyzers\dotnet\cs\Newtonsoft.Json.dll"/>
-        <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0-beta013\analyzers\dotnet\cs\StyleCop.Analyzers.dll"/>
-    </ItemGroup>
-    <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets"/>
-    <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0-beta013\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0-beta013\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

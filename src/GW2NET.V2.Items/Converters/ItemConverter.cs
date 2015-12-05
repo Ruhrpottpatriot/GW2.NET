@@ -81,6 +81,7 @@ namespace GW2NET.V2.Items.Converters
 
             entity.Culture = response.Culture;
             entity.ItemId = dto.Id;
+            entity.ChatLink = dto.ChatLink;
             entity.Name = dto.Name;
             entity.Description = dto.Description;
             entity.Level = dto.Level;

@@ -9,7 +9,7 @@
 namespace GW2NET.V2.Worlds.Converters
 {
     using System;
-
+    using System.Diagnostics;
     using GW2NET.Common;
     using GW2NET.V2.Worlds.Json;
     using GW2NET.Worlds;
@@ -36,12 +36,28 @@ namespace GW2NET.V2.Worlds.Converters
                 throw new ArgumentException("Precondition: state is IResponse", "state");
             }
 
-            return new World
+            var world = new World
             {
                 WorldId = value.Id,
                 Name = value.Name,
                 Culture = response.Culture
             };
+
+            if (value.Population != null)
+            {
+                Population population;
+                if (Enum.TryParse(value.Population, true, out population))
+                {
+                    world.Population = population;
+                }
+                else
+                {
+                    Debug.Assert(false, "Unknown Population:" + value.Population);
+                    world.Population = Population.Unknown;
+                }
+            }
+
+            return world;
         }
     }
 }

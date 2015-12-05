@@ -6,7 +6,7 @@ namespace GW2NET.V1.Items.Converters
 {
     using System;
     using System.Collections.Generic;
-
+    using ChatLinks;
     using GW2NET.Common;
     using GW2NET.Items;
     using GW2NET.V1.Items.Json;
@@ -62,6 +62,7 @@ namespace GW2NET.V1.Items.Converters
 
         partial void Merge(Item entity, ItemDTO dto, object state)
         {
+            ItemChatLink chatLink = new ItemChatLink { Quantity = 1 };
             int itemId;
             if (int.TryParse(dto.ItemId, out itemId))
             {
@@ -124,8 +125,18 @@ namespace GW2NET.V1.Items.Converters
                 if (int.TryParse(dto.DefaultSkin, out defaultSkinId))
                 {
                     skinnable.DefaultSkinId = defaultSkinId;
+                    chatLink.SkinId = defaultSkinId;
                 }
             }
+
+            var upgrade = entity as IUpgradable;
+            if (upgrade != null)
+            {
+                chatLink.SuffixItemId = upgrade.SuffixItemId;
+                chatLink.SecondarySuffixItemId = upgrade.SecondarySuffixItemId;
+            }
+
+            entity.ChatLink = chatLink.ToString();
         }
     }
 }

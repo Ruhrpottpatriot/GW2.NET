@@ -38,7 +38,7 @@ namespace GW2NET.V2.Items.Converters
     		    throw new ArgumentNullException("value");
     		}
 
-			string discriminator = value.Type;
+			string discriminator = value.Details.Type;
 			var converter = this.converterFactory.Create(discriminator);
 			var entity = converter.Convert(value, value);
 			this.Merge(entity, value, state);
@@ -59,6 +59,34 @@ namespace GW2NET.V2.Items.Converters
 		}
 		*/
 	}
+
+#region TeleportToFriend
+    /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="TeleportToFriend"/>.</summary>
+    public sealed partial class TeleportToFriendConverter : IConverter<ItemDTO, Consumable>
+    {
+	    /// <inheritdoc />
+        public Consumable Convert(ItemDTO value, object state)
+        {
+    		var entity = new TeleportToFriend();
+            this.Merge(entity, value, state);
+    		return entity;
+        }
+
+    	// Implement this method in a buddy class to set properties that are specific to 'TeleportToFriend' (if any)
+    	partial void Merge(TeleportToFriend entity, ItemDTO dto, object state);
+
+		/*
+		// Use this template
+		public partial class TeleportToFriendConverter
+		{
+		    partial void Merge(TeleportToFriend entity, ItemDTO dto, object state)
+			{
+			    throw new NotImplementedException();
+			}
+		}
+		*/
+    }
+#endregion
 
 #region Alcohol
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="Alcohol"/>.</summary>

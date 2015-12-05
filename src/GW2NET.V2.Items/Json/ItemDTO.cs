@@ -23,7 +23,7 @@ namespace GW2NET.V2.Items.Json
         [DataMember(Order = 1, Name = "description")]
         public string Description { get; set; }
 
-        [DataMember(Order = 12, Name = "details")]
+        [DataMember(Order = 13, Name = "details")]
         public DetailsDTO Details { get; set; }
 
         [DataMember(Order = 8, Name = "flags")]
@@ -32,11 +32,14 @@ namespace GW2NET.V2.Items.Json
         [DataMember(Order = 7, Name = "game_types")]
         public ICollection<string> GameTypes { get; set; }
 
-        [DataMember(Order = 11, Name = "icon")]
+        [DataMember(Order = 12, Name = "icon")]
         public string Icon { get; set; }
 
         [DataMember(Order = 10, Name = "id")]
         public int Id { get; set; }
+
+        [DataMember(Order = 11, Name = "chat_link")]
+        public string ChatLink { get; set; }
 
         [DataMember(Order = 3, Name = "level")]
         public int Level { get; set; }

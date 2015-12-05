@@ -4,6 +4,7 @@
 
 namespace GW2NET.Factories.V2
 {
+    using System.Diagnostics;
     using GW2NET.Common;
     using GW2NET.Items;
     using GW2NET.V2.Items.Converters;
@@ -27,7 +28,14 @@ namespace GW2NET.Factories.V2
                     return new CraftingRecipeUnlockerConverter();
                 case "Dye":
                     return new DyeUnlockerConverter();
+                case "Outfit":
+                    return new OutfitUnlockerConverter();
+                case "GliderSkin":
+                    return new GliderSkinUnlockerConverter();
+                case "Champion":
+                    return new ChampionUnlockerConverter();
                 default:
+                    Debug.Assert(false, "Unknown type discriminator: " + discriminator);
                     return new UnknownUnlockerConverter();
             }
         }

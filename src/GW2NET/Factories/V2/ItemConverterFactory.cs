@@ -4,6 +4,7 @@
 
 namespace GW2NET.Factories.V2
 {
+    using System.Diagnostics;
     using GW2NET.Common;
     using GW2NET.Common.Converters;
     using GW2NET.Items;
@@ -51,6 +52,7 @@ namespace GW2NET.Factories.V2
                 case "Weapon":
                     return new WeaponConverter(new WeaponConverterFactory(), new DamageTypeConverter(), infusionSlotCollectionConverter, infixUpgradeConverter);
                 default:
+                    Debug.Assert(false, "Unknown type discriminator: " + discriminator);
                     return new UnknownItemConverter();
             }
         }

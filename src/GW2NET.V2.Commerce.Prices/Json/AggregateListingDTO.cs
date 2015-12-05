@@ -23,5 +23,8 @@ namespace GW2NET.V2.Commerce.Prices.Json
 
         [DataMember(Name = "sells", Order = 2)]
         public AggregateOfferDTO SellOffers { get; set; }
+
+        [DataMember(Name = "whitelisted", Order = 3)]
+        public bool Whitelisted { get; set; }
     }
 }

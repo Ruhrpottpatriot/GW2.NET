@@ -10,10 +10,14 @@ namespace GW2NET.DynamicEvents
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
 
     /// <summary>Represents a dynamic event and its rotation.</summary>
     public class DynamicEventRotation : IEquatable<DynamicEventRotation>
     {
+        private static readonly DateTimeOffset[] EmptyShifts = new DateTimeOffset[0];
+        private ICollection<DateTimeOffset> shifts = EmptyShifts;
+
         /// <summary>Gets or sets the event. This is a navigation property. Use the value of <see cref="EventId"/> to obtain a reference.</summary>
         public virtual DynamicEvent Event { get; set; }
 
@@ -21,7 +25,18 @@ namespace GW2NET.DynamicEvents
         public virtual Guid EventId { get; set; }
 
         /// <summary>Gets or sets the event shifts.</summary>
-        public virtual ICollection<DateTimeOffset> Shifts { get; set; }
+        public virtual ICollection<DateTimeOffset> Shifts
+        {
+            get
+            {
+                Debug.Assert(this.shifts != null, "this.shifts != null");
+                return this.shifts;
+            }
+            set
+            {
+                this.shifts = value ?? EmptyShifts;
+            }
+        }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

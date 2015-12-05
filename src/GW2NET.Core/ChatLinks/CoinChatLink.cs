@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.ChatLinks
 {
-    using System;
+    using GW2NET.ChatLinks.Interop;
 
     /// <summary>Represents a chat link that links to an amount of coins.</summary>
     public class CoinChatLink : ChatLink
@@ -16,13 +16,11 @@ namespace GW2NET.ChatLinks
         /// <summary>Gets or sets the quantity.</summary>
         public int Quantity { get; set; }
 
-        /// <inheritdoc />
-        public override string ToString()
+        protected override int CopyTo(ChatLinkStruct value)
         {
-            var stream = new CoinChatLinkConverter().Convert(this, null);
-            var buffer = new byte[stream.Length];
-            stream.Read(buffer, 0, buffer.Length);
-            return string.Format("[&{0}]", Convert.ToBase64String(buffer));
+            value.header = Header.Coin;
+            value.coin.count = this.Quantity;
+            return 5;
         }
     }
 }

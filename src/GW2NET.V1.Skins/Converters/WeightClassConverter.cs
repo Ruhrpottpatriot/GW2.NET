@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace GW2NET.V1.Skins.Converters
 {
     using System;
@@ -33,6 +35,7 @@ namespace GW2NET.V1.Skins.Converters
                 return result;
             }
 
+            Debug.Assert(false, "Unknown WeightClass: " + value);
             return default(WeightClass);
         }
     }

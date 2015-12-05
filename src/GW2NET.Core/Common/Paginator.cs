@@ -11,12 +11,22 @@ namespace GW2NET.Common
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>Provides static extension methods for types that implement the <see cref="IPaginator{T}"/> interface.</summary>
     public static class Paginator
     {
+        static Paginator()
+        {
+            MaxRetryCount = 3;
+        }
+
+        /// <summary>Gets or sets the maximum number of retry attempts per page. The default value is 3.</summary>
+        public static int MaxRetryCount { get; set; }
+
         /// <summary>Finds a collection of all pages.</summary>
         /// <param name="instance">The instance of <see cref="IPaginator{T}"/> that provides the pages.</param>
         /// <param name="pageCount">The number of pages to get.</param>
@@ -71,7 +81,7 @@ namespace GW2NET.Common
                 throw new ArgumentNullException("instance");
             }
 
-            return FindAllPagesAsync(instance, pageCount, CancellationToken.None);
+            return Interleaved(FindAllPagesAsyncImpl(instance, pageCount, CancellationToken.None));
         }
 
         /// <summary>Finds a collection of all pages.</summary>
@@ -87,10 +97,7 @@ namespace GW2NET.Common
                 throw new ArgumentNullException("instance");
             }
 
-            for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
-            {
-                yield return instance.FindPageAsync(pageIndex, cancellationToken);
-            }
+            return Interleaved(FindAllPagesAsyncImpl(instance, pageCount, cancellationToken));
         }
 
         /// <summary>Finds a collection of all pages.</summary>
@@ -106,7 +113,7 @@ namespace GW2NET.Common
                 throw new ArgumentNullException("instance");
             }
 
-            return FindAllPagesAsync(instance, pageSize, pageCount, CancellationToken.None);
+            return Interleaved(FindAllPagesAsyncImpl(instance, pageSize, pageCount, CancellationToken.None));
         }
 
         /// <summary>Finds a collection of all pages.</summary>
@@ -123,10 +130,95 @@ namespace GW2NET.Common
                 throw new ArgumentNullException("instance");
             }
 
+            return Interleaved(FindAllPagesAsyncImpl(instance, pageSize, pageCount, cancellationToken));
+        }
+
+
+        private static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsyncImpl<T>(
+            IPaginator<T> instance,
+            int pageCount,
+            CancellationToken cancellationToken)
+        {
+            Debug.Assert(instance != null, "instance != null");
             for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
             {
-                yield return instance.FindPageAsync(pageIndex, pageSize, cancellationToken);
+                yield return RetryOnFault(() => instance.FindPageAsync(pageIndex, cancellationToken), MaxRetryCount);
             }
+        }
+
+        private static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsyncImpl<T>(
+            IPaginator<T> instance,
+            int pageSize,
+            int pageCount,
+            CancellationToken cancellationToken)
+        {
+            Debug.Assert(instance != null, "instance != null");
+            for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
+            {
+                yield return RetryOnFault(() => instance.FindPageAsync(pageIndex, pageSize, cancellationToken), MaxRetryCount);
+            }
+        }
+
+        private static async Task<T> RetryOnFault<T>(Func<Task<T>> function, int maxTries)
+        {
+            if (maxTries <= 0)
+            {
+                var task = function();
+                if (task == null)
+                {
+                    return default(T);
+                }
+
+                return await task.ConfigureAwait(false);
+            }
+
+            for (int i = 0; i < maxTries; i++)
+            {
+                var task = function();
+                if (task == null)
+                {
+                    continue;
+                }
+
+                try
+                {
+                    return await task.ConfigureAwait(false);
+                }
+                catch
+                {
+                    if (i == maxTries - 1)
+                    {
+                        throw;
+                    }
+                }
+            }
+
+            return default(T);
+        }
+
+        private static IEnumerable<Task<T>> Interleaved<T>(IEnumerable<Task<T>> tasks)
+        {
+            var inputTasks = tasks.ToList();
+            var sources = (from _ in Enumerable.Range(0, inputTasks.Count)
+                           select new TaskCompletionSource<T>()).ToList();
+            int nextTaskIndex = -1;
+            foreach (var inputTask in inputTasks)
+            {
+                inputTask.ContinueWith(completed =>
+                {
+                    var source = sources[Interlocked.Increment(ref nextTaskIndex)];
+                    if (completed.IsFaulted)
+                        source.TrySetException(completed.Exception.InnerExceptions);
+                    else if (completed.IsCanceled)
+                        source.TrySetCanceled();
+                    else
+                        source.TrySetResult(completed.Result);
+                }, CancellationToken.None,
+                   TaskContinuationOptions.ExecuteSynchronously,
+                   TaskScheduler.Default);
+            }
+            return from source in sources
+                   select source.Task;
         }
     }
 }

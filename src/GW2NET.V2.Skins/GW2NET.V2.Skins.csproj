@@ -50,6 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\ArmorSkinConverter.cs" />
+    <Compile Include="Converters\GatheringToolSkinConverters.cs">
+      <DependentUpon>GatheringToolSkinConverters.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Converters\WeaponSkinConverters.cs">
       <DependentUpon>WeaponSkinConverters.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -92,6 +97,10 @@
     <AdditionalFiles Include="$(SolutionDir)stylecop.json" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Converters\GatheringToolSkinConverters.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GatheringToolSkinConverters.cs</LastGenOutput>
+    </Content>
     <Content Include="Converters\WeaponSkinConverters.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>WeaponSkinConverters.cs</LastGenOutput>

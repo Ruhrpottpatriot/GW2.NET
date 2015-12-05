@@ -4,6 +4,7 @@
 
 namespace GW2NET.Factories.V2
 {
+    using System.Diagnostics;
     using GW2NET.Common;
     using GW2NET.Items;
     using GW2NET.V2.Items;
@@ -30,7 +31,12 @@ namespace GW2NET.Factories.V2
                     return new ToughnessModifierConverter();
                 case "Vitality":
                     return new VitalityModifierConverter();
+                case "BoonDuration":
+                    return new ConcentrationModifierConverter();
+                case "ConditionDuration":
+                    return new ExpertiseModifierConverter();
                 default:
+                    Debug.Assert(false, "Unknown type discriminator: " + discriminator);
                     return new UnknownModifierConverter();
             }
         }

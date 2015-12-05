@@ -452,6 +452,34 @@ namespace GW2NET.V2.Recipes.Converters
     }
 #endregion
 
+#region GuildConsumableWvw
+    /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="GuildConsumableWvw"/>.</summary>
+    public sealed partial class GuildConsumableWvwConverter : IConverter<RecipeDTO, Recipe>
+    {
+	    /// <inheritdoc />
+        public Recipe Convert(RecipeDTO value, object state)
+        {
+    		var entity = new GuildConsumableWvw();
+            this.Merge(entity, value, state);
+    		return entity;
+        }
+
+    	// Implement this method in a buddy class to set properties that are specific to 'GuildConsumableWvw' (if any)
+    	partial void Merge(GuildConsumableWvw entity, RecipeDTO dto, object state);
+
+		/*
+		// Use this template
+		public partial class GuildConsumableWvwConverter
+		{
+		    partial void Merge(GuildConsumableWvw entity, RecipeDTO dto, object state)
+			{
+			    throw new NotImplementedException();
+			}
+		}
+		*/
+    }
+#endregion
+
 #region FocusRecipe
     /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="FocusRecipe"/>.</summary>
     public sealed partial class FocusRecipeConverter : IConverter<RecipeDTO, Recipe>
@@ -500,6 +528,34 @@ namespace GW2NET.V2.Recipes.Converters
 		public partial class GlovesRecipeConverter
 		{
 		    partial void Merge(GlovesRecipe entity, RecipeDTO dto, object state)
+			{
+			    throw new NotImplementedException();
+			}
+		}
+		*/
+    }
+#endregion
+
+#region LegendaryComponent
+    /// <summary>Converts objects of type <see cref="RecipeDTO"/> to objects of type <see cref="LegendaryComponent"/>.</summary>
+    public sealed partial class LegendaryComponentConverter : IConverter<RecipeDTO, Recipe>
+    {
+	    /// <inheritdoc />
+        public Recipe Convert(RecipeDTO value, object state)
+        {
+    		var entity = new LegendaryComponent();
+            this.Merge(entity, value, state);
+    		return entity;
+        }
+
+    	// Implement this method in a buddy class to set properties that are specific to 'LegendaryComponent' (if any)
+    	partial void Merge(LegendaryComponent entity, RecipeDTO dto, object state);
+
+		/*
+		// Use this template
+		public partial class LegendaryComponentConverter
+		{
+		    partial void Merge(LegendaryComponent entity, RecipeDTO dto, object state)
 			{
 			    throw new NotImplementedException();
 			}

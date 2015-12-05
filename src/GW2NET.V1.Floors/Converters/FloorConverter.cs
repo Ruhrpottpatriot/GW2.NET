@@ -78,10 +78,14 @@ namespace GW2NET.V1.Floors.Converters
             }
 
             // Set the regions
-            var regionDTOs = value.Regions;
-            if (regionDTOs != null)
+            var regions = value.Regions;
+            if (regions == null)
             {
-                floor.Regions = this.regionCollectionConverter.Convert(regionDTOs, value);
+                floor.Regions = new Dictionary<int, Region>(0);
+            }
+            else
+            {
+                floor.Regions = this.regionCollectionConverter.Convert(regions, value);
             }
 
             // Return the floor object

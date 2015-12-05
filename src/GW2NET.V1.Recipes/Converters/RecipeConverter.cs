@@ -11,7 +11,7 @@ namespace GW2NET.V1.Recipes.Converters
 {
     using System;
     using System.Collections.Generic;
-
+    using ChatLinks;
     using GW2NET.Common;
     using GW2NET.Items;
     using GW2NET.Recipes;
@@ -64,6 +64,7 @@ namespace GW2NET.V1.Recipes.Converters
             if (int.TryParse(dto.RecipeId, out recipeId))
             {
                 entity.RecipeId = recipeId;
+                entity.ChatLink = new RecipeChatLink { RecipeId = recipeId }.ToString();
             }
 
             int outputItemId;

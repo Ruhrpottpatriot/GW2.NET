@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace GW2NET.V1.Guilds.Converters
 {
     using System;
@@ -25,6 +27,7 @@ namespace GW2NET.V1.Guilds.Converters
                 return result;
             }
 
+            Debug.Assert(false, "Unknown EmblemTransformations: " + value);
             return default(EmblemTransformations);
         }
     }

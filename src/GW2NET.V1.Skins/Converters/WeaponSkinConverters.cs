@@ -38,7 +38,7 @@ namespace GW2NET.V1.Skins.Converters
     		    throw new ArgumentNullException("value");
     		}
 
-			string discriminator = value.Type;
+			string discriminator = value.Weapon == null ? null : value.Weapon.Type;
 			var converter = this.converterFactory.Create(discriminator);
 			var entity = converter.Convert(value, value);
 			this.Merge(entity, value, state);

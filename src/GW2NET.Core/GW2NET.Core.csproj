@@ -15,10 +15,6 @@
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkProfile>Profile151</TargetFrameworkProfile>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,7 +25,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>$(SolutionDir)GW2NET.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\Debug\GW2NET.Core.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -52,18 +47,6 @@
     <Compile Include="ChatLinks\ChatLink.cs" />
     <Compile Include="ChatLinks\ChatLinkFactory.cs" />
     <Compile Include="ChatLinks\CoinChatLink.cs" />
-    <Compile Include="ChatLinks\ChatLinkConverter.cs" />
-    <Compile Include="ChatLinks\CoinChatLinkConverter.cs" />
-    <Compile Include="ChatLinks\DialogChatLinkConverter.cs" />
-    <Compile Include="ChatLinks\UnknownChatLinkConverter.cs" />
-    <Compile Include="ChatLinks\UnknownChatLink.cs" />
-    <Compile Include="ChatLinks\ItemChatLinkConverter.cs" />
-    <Compile Include="ChatLinks\OutfitChatLinkConverter.cs" />
-    <Compile Include="ChatLinks\PointOfInterestChatLinkConverter.cs" />
-    <Compile Include="ChatLinks\RecipeChatLinkConverter.cs" />
-    <Compile Include="ChatLinks\SkillChatLinkConverter.cs" />
-    <Compile Include="ChatLinks\SkinChatLinkConverter.cs" />
-    <Compile Include="ChatLinks\TraitChatLinkConverter.cs" />
     <Compile Include="ChatLinks\DialogChatLink.cs" />
     <Compile Include="ChatLinks\ItemChatLink.cs" />
     <Compile Include="ChatLinks\OutfitChatLink.cs" />
@@ -157,6 +140,19 @@
     <Compile Include="Guilds\EmblemTransformations.cs" />
     <Compile Include="Guilds\Guild.cs" />
     <Compile Include="Guilds\IGuildRepository.cs" />
+    <Compile Include="ChatLinks\Interop\ChatLinkStruct.cs" />
+    <Compile Include="ChatLinks\Interop\Header.cs" />
+    <Compile Include="ChatLinks\Interop\Coin.cs" />
+    <Compile Include="ChatLinks\Interop\Item.cs" />
+    <Compile Include="ChatLinks\Interop\ItemModifiers.cs" />
+    <Compile Include="ChatLinks\Interop\MapChatLink.cs" />
+    <Compile Include="ChatLinks\Interop\OutfitChatLink.cs" />
+    <Compile Include="ChatLinks\Interop\RecipeChatLink.cs" />
+    <Compile Include="ChatLinks\Interop\SkillChatLink.cs" />
+    <Compile Include="ChatLinks\Interop\SkinChatLink.cs" />
+    <Compile Include="ChatLinks\Interop\TextChatLink.cs" />
+    <Compile Include="ChatLinks\Interop\TraitChatLink.cs" />
+    <Compile Include="ChatLinks\Interop\UInt24.cs" />
     <Compile Include="ITypeConverterFactory.cs" />
     <Compile Include="Items\Armors\Armor.cs" />
     <Compile Include="Items\Armors\Boots.cs" />
@@ -170,6 +166,7 @@
     <Compile Include="Items\Armors\WeightClass.cs" />
     <Compile Include="Items\Backpacks\Backpack.cs" />
     <Compile Include="Items\Bags\Bag.cs" />
+    <Compile Include="Items\Common\ExpertiseModifier.cs" />
     <Compile Include="Items\Common\CombatAttribute.cs" />
     <Compile Include="Items\Common\CombatBuff.cs" />
     <Compile Include="Items\Common\ConditionDamageModifier.cs" />
@@ -183,9 +180,14 @@
     <Compile Include="Items\Common\IUpgrade.cs" />
     <Compile Include="Items\Common\PowerModifier.cs" />
     <Compile Include="Items\Common\PrecisionModifier.cs" />
+    <Compile Include="Items\Common\ConcentrationModifier.cs" />
     <Compile Include="Items\Common\ToughnessModifier.cs" />
     <Compile Include="Items\Common\UnknownModifier.cs" />
     <Compile Include="Items\Common\VitalityModifier.cs" />
+    <Compile Include="Items\Consumables\ChampionUnlocker.cs" />
+    <Compile Include="Items\Consumables\TeleportToFriend.cs" />
+    <Compile Include="Items\Consumables\GliderSkinUnlocker.cs" />
+    <Compile Include="Items\Consumables\OutfitUnlocker.cs" />
     <Compile Include="Items\Consumables\Alcohol.cs" />
     <Compile Include="Items\Consumables\AppearanceChanger.cs" />
     <Compile Include="Items\Consumables\BagSlotUnlocker.cs" />
@@ -317,8 +319,10 @@
     <Compile Include="Recipes\DyeRecipe.cs" />
     <Compile Include="Recipes\EarringRecipe.cs" />
     <Compile Include="Recipes\FeastRecipe.cs" />
+    <Compile Include="Recipes\GuildConsumableWvw.cs" />
     <Compile Include="Recipes\FocusRecipe.cs" />
     <Compile Include="Recipes\GlovesRecipe.cs" />
+    <Compile Include="Recipes\LegendaryComponent.cs" />
     <Compile Include="Recipes\GreatSwordRecipe.cs" />
     <Compile Include="Recipes\HammerRecipe.cs" />
     <Compile Include="Recipes\HarpoonRecipe.cs" />
@@ -361,6 +365,8 @@
     <Compile Include="Rendering\RenderService.cs" />
     <Compile Include="Skins\ArmorSkin.cs" />
     <Compile Include="Skins\AxeSkin.cs" />
+    <Compile Include="Skins\ForagingToolSkin.cs" />
+    <Compile Include="Skins\GatheringToolSkin.cs" />
     <Compile Include="Skins\BackpackSkin.cs" />
     <Compile Include="Skins\BootsSkin.cs" />
     <Compile Include="Skins\CoatSkin.cs" />
@@ -375,8 +381,10 @@
     <Compile Include="Skins\ISkinRepository.cs" />
     <Compile Include="Skins\LargeBundleSkin.cs" />
     <Compile Include="Skins\LeggingsSkin.cs" />
+    <Compile Include="Skins\LoggingToolSkin.cs" />
     <Compile Include="Skins\LongBowSkin.cs" />
     <Compile Include="Skins\MaceSkin.cs" />
+    <Compile Include="Skins\MiningToolSkin.cs" />
     <Compile Include="Skins\PistolSkin.cs" />
     <Compile Include="Skins\RifleSkin.cs" />
     <Compile Include="Skins\ScepterSkin.cs" />
@@ -394,11 +402,13 @@
     <Compile Include="Skins\TridentSkin.cs" />
     <Compile Include="Skins\TwoHandedToySkin.cs" />
     <Compile Include="Skins\UnknownArmorSkin.cs" />
+    <Compile Include="Skins\UnknownGatheringToolSkin.cs" />
     <Compile Include="Skins\UnknownSkin.cs" />
     <Compile Include="Skins\UnknownWeaponSkin.cs" />
     <Compile Include="Skins\WarHornSkin.cs" />
     <Compile Include="Skins\WeaponSkin.cs" />
     <Compile Include="Worlds\IWorldRepository.cs" />
+    <Compile Include="Worlds\Population.cs" />
     <Compile Include="Worlds\World.cs" />
     <Compile Include="WorldVersusWorld\Bloodlust.cs" />
     <Compile Include="WorldVersusWorld\BlueBorderlands.cs" />

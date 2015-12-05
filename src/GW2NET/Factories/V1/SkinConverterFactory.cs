@@ -4,6 +4,7 @@
 
 namespace GW2NET.Factories.V1
 {
+    using System.Diagnostics;
     using GW2NET.Common;
     using GW2NET.Skins;
     using GW2NET.V1.Skins.Converters;
@@ -22,6 +23,7 @@ namespace GW2NET.Factories.V1
                 case "Weapon":
                     return new WeaponSkinConverter(new WeaponSkinConverterFactory(), new DamageTypeConverter());
                 default:
+                    Debug.Assert(false, "Unknown type discriminator: " + discriminator);
                     return new UnknownSkinConverter();
             }
         }

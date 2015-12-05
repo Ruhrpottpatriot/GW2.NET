@@ -4,6 +4,7 @@
 
 namespace GW2NET.MumbleLink.Converters
 {
+    using System.Diagnostics;
     using GW2NET.Common;
 
     public class ProfessionConverter : IConverter<int, Profession>
@@ -28,7 +29,10 @@ namespace GW2NET.MumbleLink.Converters
                     return Profession.Mesmer;
                 case 8:
                     return Profession.Necromancer;
+                case 9:
+                    return Profession.Revenant;
                 default:
+                    Debug.Assert(false, "Unknown profession identifier: " + value);
                     return Profession.Unknown;
             }
         }

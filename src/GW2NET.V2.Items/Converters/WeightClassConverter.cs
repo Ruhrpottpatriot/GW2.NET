@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace GW2NET.V2.Items.Converters
 {
     using System;
@@ -34,6 +36,7 @@ namespace GW2NET.V2.Items.Converters
                 return result;
             }
 
+            Debug.Assert(false, "Unknown WeightClass: " + value);
             return default(WeightClass);
         }
     }

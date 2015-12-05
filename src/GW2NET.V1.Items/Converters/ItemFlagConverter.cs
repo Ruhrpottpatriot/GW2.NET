@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics;
+
 namespace GW2NET.V1.Items.Converters
 {
     using System;
@@ -31,6 +33,7 @@ namespace GW2NET.V1.Items.Converters
                 return result;
             }
 
+            Debug.Assert(false, "Unknown ItemFlags: " + value);
             return default(ItemFlags);
         }
     }

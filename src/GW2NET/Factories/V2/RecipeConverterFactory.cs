@@ -4,6 +4,7 @@
 
 namespace GW2NET.Factories.V2
 {
+    using System.Diagnostics;
     using GW2NET.Common;
     using GW2NET.Recipes;
     using GW2NET.V2.Recipes.Converters;
@@ -111,7 +112,12 @@ namespace GW2NET.Factories.V2
                     return new UpgradeComponentRecipeConverter();
                 case "Warhorn":
                     return new WarHornRecipeConverter();
+                case "LegendaryComponent":
+                    return new LegendaryComponentConverter();
+                case "GuildConsumableWvw":
+                    return new GuildConsumableWvwConverter();
                 default:
+                    Debug.Assert(false, "Unknown type discriminator: " + discriminator);
                     return new UnknownRecipeConverter();
             }
         }

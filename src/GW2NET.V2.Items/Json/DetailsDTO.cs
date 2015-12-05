@@ -129,4 +129,22 @@ namespace GW2NET.V2.Items.Json
         [DataMember(Name = "min_power", Order = 2)]
         public int? MinimumPower { get; set; }
     }
+
+    /// <summary>Defines the <see cref="DetailsDTO"/> type.</summary>
+    /// <content>Contains data contract properties for transmutation items.</content>
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
+    public sealed partial class DetailsDTO
+    {
+        [DataMember(Name = "skins", Order = 1)]
+        public int[] Skins { get; set; }
+    }
+
+    /// <summary>Defines the <see cref="DetailsDTO"/> type.</summary>
+    /// <content>Contains data contract properties for miniature items.</content>
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
+    public sealed partial class DetailsDTO
+    {
+        [DataMember(Name = "minipet_id", Order = 1)]
+        public int MiniPetId { get; set; }
+    }
 }

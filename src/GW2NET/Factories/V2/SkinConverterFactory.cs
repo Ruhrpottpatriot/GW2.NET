@@ -4,6 +4,7 @@
 
 namespace GW2NET.Factories.V2
 {
+    using System.Diagnostics;
     using GW2NET.Common;
     using GW2NET.Skins;
     using GW2NET.V2.Skins.Converters;
@@ -19,9 +20,12 @@ namespace GW2NET.Factories.V2
                     return new ArmorSkinConverter(new ArmorSkinConverterFactory(), new WeightClassConverter());
                 case "Back":
                     return new BackpackSkinConverter();
+                case "Gathering":
+                    return new GatheringToolSkinConverter(new GatheringToolSkinConverterFactory());
                 case "Weapon":
                     return new WeaponSkinConverter(new WeaponSkinConverterFactory(), new DamageTypeConverter());
                 default:
+                    Debug.Assert(false, "Unknown type discriminator: " + discriminator);
                     return new UnknownSkinConverter();
             }
         }
