@@ -42,22 +42,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorPaletteBulkRequest.cs" />
-    <Compile Include="ColorPalettePageRequest.cs" />
-    <Compile Include="Converter\ColorConverter.cs" />
-    <Compile Include="Converter\ColorModelConverter.cs" />
-    <Compile Include="Json\ColorPaletteDataContract.cs" />
-    <Compile Include="ColorPaletteDetailRequest.cs" />
-    <Compile Include="ColorDiscoveryRequest.cs" />
-    <Compile Include="Json\ColorModelDataContract.cs" />
-    <Compile Include="ColorRepository.cs" />
-    <Compile Include="ColorRepositoryFactory.cs" />
-    <Compile Include="ColorRequest.cs" />
-    <Compile Include="Converter\ColorPaletteConverter.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), SharedAssemblyInfo.cs))\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ColorDiscoveryRequest.cs" />
+    <Compile Include="ColorPaletteBulkRequest.cs" />
+    <Compile Include="ColorPaletteDetailRequest.cs" />
+    <Compile Include="ColorPalettePageRequest.cs" />
+    <Compile Include="ColorRepository.cs" />
+    <Compile Include="ColorRepositoryFactory.cs" />
+    <Compile Include="ColorRequest.cs" />
+    <Compile Include="Converter\ColorConverter.cs" />
+    <Compile Include="Converter\ColorModelConverter.cs" />
+    <Compile Include="Converter\ColorPaletteConverter.cs" />
+    <Compile Include="Json\ColorModelDataContract.cs" />
+    <Compile Include="Json\ColorPaletteDataContract.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GW2NET.V2.Colors.nuspec" />

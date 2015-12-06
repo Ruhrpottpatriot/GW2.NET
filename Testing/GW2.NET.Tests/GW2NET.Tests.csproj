@@ -82,8 +82,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="FactoryForV2Tests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PaginatorTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\GW2NET.Core\GW2NET.Core.csproj">

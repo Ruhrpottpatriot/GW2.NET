@@ -42,6 +42,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), SharedAssemblyInfo.cs))\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Converters\ConverterForArmorSkin.cs" />
     <Compile Include="Converters\ConverterForBackpackSkin.cs" />
     <Compile Include="Converters\ConverterForDamageType.cs" />
@@ -57,14 +60,11 @@
     <Compile Include="Json\SkinCollectionDataContract.cs" />
     <Compile Include="Json\SkinDataContract.cs" />
     <Compile Include="Json\WeaponSkinDataContract.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SkinDetailsRequest.cs" />
     <Compile Include="SkinDiscoveryRequest.cs" />
     <Compile Include="SkinRepository.cs" />
     <Compile Include="SkinRepositoryFactory.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), SharedAssemblyInfo.cs))\SharedAssemblyInfo.cs">
-      <Link>Properties\SharedAssemblyInfo.cs</Link>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="GW2NET.V1.Skins.nuspec" />

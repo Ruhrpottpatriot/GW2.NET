@@ -42,17 +42,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), SharedAssemblyInfo.cs))\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Converters\ConverterForQuaggan.cs" />
     <Compile Include="Json\QuagganDataContract.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuagganBulkRequest.cs" />
     <Compile Include="QuagganDetailsRequest.cs" />
     <Compile Include="QuagganDiscoveryRequest.cs" />
     <Compile Include="QuagganPageRequest.cs" />
     <Compile Include="QuagganRepository.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), SharedAssemblyInfo.cs))\SharedAssemblyInfo.cs">
-      <Link>Properties\SharedAssemblyInfo.cs</Link>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="GW2NET.V2.Quaggans.nuspec" />

@@ -42,6 +42,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), SharedAssemblyInfo.cs))\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Converters\ConverterForEmblem.cs" />
     <Compile Include="Converters\ConverterForEmblemTransformation.cs" />
     <Compile Include="Converters\ConverterForEmblemTransformations.cs" />
@@ -51,9 +54,6 @@
     <Compile Include="Json\EmblemDataContract.cs" />
     <Compile Include="Json\GuildDataContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), SharedAssemblyInfo.cs))\SharedAssemblyInfo.cs">
-      <Link>Properties\SharedAssemblyInfo.cs</Link>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="GW2NET.V1.Guilds.nuspec" />

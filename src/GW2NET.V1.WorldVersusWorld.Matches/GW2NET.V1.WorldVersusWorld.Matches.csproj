@@ -42,6 +42,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), SharedAssemblyInfo.cs))\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Converters\ConverterForBlueBorderlands.cs" />
     <Compile Include="Converters\ConverterForCompetitiveMap.cs" />
     <Compile Include="Converters\ConverterForEternalBattlegrounds.cs" />
@@ -63,9 +66,6 @@
     <Compile Include="MatchDiscoveryRequest.cs" />
     <Compile Include="MatchRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), SharedAssemblyInfo.cs))\SharedAssemblyInfo.cs">
-      <Link>Properties\SharedAssemblyInfo.cs</Link>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="GW2NET.V1.WorldVersusWorld.Matches.nuspec" />

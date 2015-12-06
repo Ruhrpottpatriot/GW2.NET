@@ -42,14 +42,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), SharedAssemblyInfo.cs))\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Converters\ConverterForAccessory.cs" />
-    <Compile Include="Converters\ConverterForConditionDurationModifier.cs" />
-    <Compile Include="Converters\ConverterForChampionUnlocker.cs" />
-    <Compile Include="Converters\ConverterForBoonDurationModifier.cs" />
-    <Compile Include="Converters\ConverterForTeleportToFriend.cs" />
     <Compile Include="Converters\ConverterForAlcohol.cs" />
-    <Compile Include="Converters\ConverterForGliderSkinUnlocker.cs" />
-    <Compile Include="Converters\ConverterForOutfitUnlocker.cs" />
     <Compile Include="Converters\ConverterForAmulet.cs" />
     <Compile Include="Converters\ConverterForAppearanceChanger.cs" />
     <Compile Include="Converters\ConverterForArmor.cs" />
@@ -58,12 +55,15 @@
     <Compile Include="Converters\ConverterForBag.cs" />
     <Compile Include="Converters\ConverterForBagSlotUnlocker.cs" />
     <Compile Include="Converters\ConverterForBankTabUnlocker.cs" />
+    <Compile Include="Converters\ConverterForBoonDurationModifier.cs" />
     <Compile Include="Converters\ConverterForBoots.cs" />
+    <Compile Include="Converters\ConverterForChampionUnlocker.cs" />
     <Compile Include="Converters\ConverterForCoat.cs" />
     <Compile Include="Converters\ConverterForCollectibleCapacityUnlocker.cs" />
     <Compile Include="Converters\ConverterForCombatAttribute.cs" />
     <Compile Include="Converters\ConverterForCombatBuff.cs" />
     <Compile Include="Converters\ConverterForConditionDamageModifier.cs" />
+    <Compile Include="Converters\ConverterForConditionDurationModifier.cs" />
     <Compile Include="Converters\ConverterForConsumable.cs" />
     <Compile Include="Converters\ConverterForContainer.cs" />
     <Compile Include="Converters\ConverterForContainerKey.cs" />
@@ -88,6 +88,7 @@
     <Compile Include="Converters\ConverterForGenericConsumable.cs" />
     <Compile Include="Converters\ConverterForGiftBox.cs" />
     <Compile Include="Converters\ConverterForGizmo.cs" />
+    <Compile Include="Converters\ConverterForGliderSkinUnlocker.cs" />
     <Compile Include="Converters\ConverterForGloves.cs" />
     <Compile Include="Converters\ConverterForGreatSword.cs" />
     <Compile Include="Converters\ConverterForHalloweenConsumable.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Converters\ConverterForMiniature.cs" />
     <Compile Include="Converters\ConverterForMiningTool.cs" />
     <Compile Include="Converters\ConverterForOpenUiContainer.cs" />
+    <Compile Include="Converters\ConverterForOutfitUnlocker.cs" />
     <Compile Include="Converters\ConverterForPistol.cs" />
     <Compile Include="Converters\ConverterForPowerModifier.cs" />
     <Compile Include="Converters\ConverterForPrecisionModifier.cs" />
@@ -132,6 +134,7 @@
     <Compile Include="Converters\ConverterForSpearGun.cs" />
     <Compile Include="Converters\ConverterForStaff.cs" />
     <Compile Include="Converters\ConverterForSword.cs" />
+    <Compile Include="Converters\ConverterForTeleportToFriend.cs" />
     <Compile Include="Converters\ConverterForTool.cs" />
     <Compile Include="Converters\ConverterForTorch.cs" />
     <Compile Include="Converters\ConverterForToughnessModifier.cs" />
@@ -167,9 +170,6 @@
     <Compile Include="Json\InfusionSlotDataContract.cs" />
     <Compile Include="Json\ItemDataContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), SharedAssemblyInfo.cs))\SharedAssemblyInfo.cs">
-      <Link>Properties\SharedAssemblyInfo.cs</Link>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="GW2NET.V2.Items.nuspec" />
