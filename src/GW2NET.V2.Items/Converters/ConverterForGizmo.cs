@@ -67,10 +67,10 @@ namespace GW2NET.V2.Items
         {
             return new Dictionary<string, IConverter<DetailsDataContract, Gizmo>>
             {
-                { "Default", new ConverterForDefaultGizmo() }, 
-                { "ContainerKey", new ConverterForContainerKey() }, 
-                { "RentableContractNpc", new ConverterForRentableContractNpc() }, 
-                { "UnlimitedConsumable", new ConverterForUnlimitedConsumable() }, 
+                { "Default", new ConverterForDefaultGizmo() },
+                { "ContainerKey", new ConverterForContainerKey() },
+                { "RentableContractNpc", new ConverterForRentableContractNpc() },
+                { "UnlimitedConsumable", new ConverterForUnlimitedConsumable() },
             };
         }
     }

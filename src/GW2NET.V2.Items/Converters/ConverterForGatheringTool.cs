@@ -67,9 +67,9 @@ namespace GW2NET.V2.Items
         {
             return new Dictionary<string, IConverter<DetailsDataContract, GatheringTool>>
             {
-                { "Foraging", new ConverterForForagingTool() }, 
-                { "Logging", new ConverterForLoggingTool() }, 
-                { "Mining", new ConverterForMiningTool() }, 
+                { "Foraging", new ConverterForForagingTool() },
+                { "Logging", new ConverterForLoggingTool() },
+                { "Mining", new ConverterForMiningTool() },
             };
         }
     }

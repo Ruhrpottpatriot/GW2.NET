@@ -49,10 +49,10 @@ namespace GW2NET.V1.Colors.Converters
 
             var colorModel = new ColorModel
             {
-                Brightness = value.Brightness, 
-                Contrast = value.Contrast, 
-                Hue = value.Hue, 
-                Saturation = value.Saturation, 
+                Brightness = value.Brightness,
+                Contrast = value.Contrast,
+                Hue = value.Hue,
+                Saturation = value.Saturation,
                 Lightness = value.Lightness
             };
             var rgb = value.Rgb;

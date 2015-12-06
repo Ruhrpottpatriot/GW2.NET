@@ -15,25 +15,25 @@ namespace GW2NET.Recipes
     public enum CraftingDisciplines
     {
         /// <summary>Indicates no crafting disciplines.</summary>
-        None = 0, 
+        None = 0,
 
         /// <summary>The 'Armor smith' crafting discipline.</summary>
-        Armorsmith = 1 << 0, 
+        Armorsmith = 1 << 0,
 
         /// <summary>The 'Artificer' crafting discipline.</summary>
-        Artificer = 1 << 1, 
+        Artificer = 1 << 1,
 
         /// <summary>The 'Chef' crafting discipline.</summary>
-        Chef = 1 << 2, 
+        Chef = 1 << 2,
 
         /// <summary>The 'Huntsman' crafting discipline.</summary>
-        Huntsman = 1 << 3, 
+        Huntsman = 1 << 3,
 
         /// <summary>The 'Jeweler' crafting discipline.</summary>
-        Jeweler = 1 << 4, 
+        Jeweler = 1 << 4,
 
         /// <summary>The 'Leatherworker' crafting discipline.</summary>
-        Leatherworker = 1 << 5, 
+        Leatherworker = 1 << 5,
 
         /// <summary>The 'Tailor' crafting discipline.</summary>
         Tailor = 1 << 6,

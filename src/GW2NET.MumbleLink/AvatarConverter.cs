@@ -15,7 +15,7 @@
 
         private readonly IConverter<IdentityDataContract, Identity> identityConverter;
 
-        private readonly IConverter<float[], Vector3D> vector3DConverter; 
+        private readonly IConverter<float[], Vector3D> vector3DConverter;
 
         public AvatarConverter(IConverter<MumbleContext, AvatarContext> avatarContextConverter, IConverter<IdentityDataContract, Identity> identityConverter, IConverter<float[], Vector3D> vector3DConverter)
         {

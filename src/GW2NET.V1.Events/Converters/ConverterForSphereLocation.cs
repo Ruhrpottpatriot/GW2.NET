@@ -28,7 +28,7 @@ namespace GW2NET.V1.Events.Converters
 
             return new SphereLocation
             {
-                Radius = value.Radius, 
+                Radius = value.Radius,
                 Rotation = value.Rotation
             };
         }

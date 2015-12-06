@@ -1,4 +1,4 @@
-// --------------------------------------------------------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="WeaponConverter.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
@@ -97,28 +97,28 @@ namespace GW2NET.V2.Skins
         {
             return new Dictionary<string, IConverter<DetailsDataContract, WeaponSkin>>
                        {
-                           { "Axe", new ConverterForObject<AxeSkin>() }, 
-                           { "Dagger", new ConverterForObject<DaggerSkin>() }, 
-                           { "Focus", new ConverterForObject<FocusSkin>() }, 
-                           { "Greatsword", new ConverterForObject<GreatSwordSkin>() }, 
-                           { "Hammer", new ConverterForObject<HammerSkin>() }, 
-                           { "Harpoon", new ConverterForObject<HarpoonSkin>() }, 
-                           { "LongBow", new ConverterForObject<LongBowSkin>() }, 
-                           { "Mace", new ConverterForObject<MaceSkin>() }, 
-                           { "Pistol", new ConverterForObject<PistolSkin>() }, 
-                           { "Rifle", new ConverterForObject<RifleSkin>() }, 
-                           { "Scepter", new ConverterForObject<ScepterSkin>() }, 
-                           { "Shield", new ConverterForObject<ShieldSkin>() }, 
-                           { "ShortBow", new ConverterForObject<ShortBowSkin>() }, 
-                           { "Speargun", new ConverterForObject<SpearGunSkin>() }, 
-                           { "Sword", new ConverterForObject<SwordSkin>() }, 
-                           { "Staff", new ConverterForObject<StaffSkin>() }, 
-                           { "Torch", new ConverterForObject<TorchSkin>() }, 
-                           { "Trident", new ConverterForObject<TridentSkin>() }, 
-                           { "Warhorn", new ConverterForObject<WarHornSkin>() }, 
-                           { "Toy", new ConverterForObject<ToySkin>() }, 
-                           { "TwoHandedToy", new ConverterForObject<TwoHandedToySkin>() }, 
-                           { "SmallBundle", new ConverterForObject<SmallBundleSkin>() }, 
+                           { "Axe", new ConverterForObject<AxeSkin>() },
+                           { "Dagger", new ConverterForObject<DaggerSkin>() },
+                           { "Focus", new ConverterForObject<FocusSkin>() },
+                           { "Greatsword", new ConverterForObject<GreatSwordSkin>() },
+                           { "Hammer", new ConverterForObject<HammerSkin>() },
+                           { "Harpoon", new ConverterForObject<HarpoonSkin>() },
+                           { "LongBow", new ConverterForObject<LongBowSkin>() },
+                           { "Mace", new ConverterForObject<MaceSkin>() },
+                           { "Pistol", new ConverterForObject<PistolSkin>() },
+                           { "Rifle", new ConverterForObject<RifleSkin>() },
+                           { "Scepter", new ConverterForObject<ScepterSkin>() },
+                           { "Shield", new ConverterForObject<ShieldSkin>() },
+                           { "ShortBow", new ConverterForObject<ShortBowSkin>() },
+                           { "Speargun", new ConverterForObject<SpearGunSkin>() },
+                           { "Sword", new ConverterForObject<SwordSkin>() },
+                           { "Staff", new ConverterForObject<StaffSkin>() },
+                           { "Torch", new ConverterForObject<TorchSkin>() },
+                           { "Trident", new ConverterForObject<TridentSkin>() },
+                           { "Warhorn", new ConverterForObject<WarHornSkin>() },
+                           { "Toy", new ConverterForObject<ToySkin>() },
+                           { "TwoHandedToy", new ConverterForObject<TwoHandedToySkin>() },
+                           { "SmallBundle", new ConverterForObject<SmallBundleSkin>() },
                            { "LargeBundle", new ConverterForObject<LargeBundleSkin>() }
                        };
         }

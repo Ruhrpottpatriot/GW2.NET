@@ -59,8 +59,8 @@ namespace GW2NET.V1.Events.Converters
 
             var dynamicEvent = new DynamicEvent
             {
-                Name = value.Name, 
-                Level = value.Level, 
+                Name = value.Name,
+                Level = value.Level,
                 MapId = value.MapId
             };
 

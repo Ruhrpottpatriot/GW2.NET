@@ -12,19 +12,19 @@ namespace GW2NET.Items
     public enum DamageType
     {
         /// <summary>The 'Unknown' damage type.</summary>
-        Unknown = 0, 
+        Unknown = 0,
 
         /// <summary>The 'Fire' damage type.</summary>
-        Fire = 1 << 0, 
+        Fire = 1 << 0,
 
         /// <summary>The 'Ice' damage type.</summary>
-        Ice = 1 << 1, 
+        Ice = 1 << 1,
 
         /// <summary>The 'Lightning' damage type.</summary>
-        Lightning = 1 << 2, 
+        Lightning = 1 << 2,
 
         /// <summary>The 'Physical' damage type.</summary>
-        Physical = 1 << 3, 
+        Physical = 1 << 3,
 
         /// <summary>The 'Choking' damage type.</summary>
         Choking = 1 << 4

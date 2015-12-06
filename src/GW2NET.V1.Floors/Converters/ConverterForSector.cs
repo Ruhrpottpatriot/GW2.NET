@@ -51,9 +51,9 @@ namespace GW2NET.V1.Floors.Converters
 
             var sector = new Sector
             {
-                SectorId = value.SectorId, 
-                Name = value.Name, 
-                Level = value.Level, 
+                SectorId = value.SectorId,
+                Name = value.Name,
+                Level = value.Level,
             };
             var coordinates = value.Coordinates;
             if (coordinates != null && coordinates.Length == 2)

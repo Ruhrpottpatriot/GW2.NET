@@ -119,9 +119,9 @@ namespace GW2NET.V2.Items
         {
             return new Dictionary<string, IConverter<DetailsDataContract, UpgradeComponent>>
             {
-                { "Default", new ConverterForDefaultUpgradeComponent() }, 
-                { "Gem", new ConverterForGem() }, 
-                { "Sigil", new ConverterForSigil() }, 
+                { "Default", new ConverterForDefaultUpgradeComponent() },
+                { "Gem", new ConverterForGem() },
+                { "Sigil", new ConverterForSigil() },
                 { "Rune", new ConverterForRune() }
             };
         }

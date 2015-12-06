@@ -31,9 +31,9 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
             // Create a new matchup object
             var matchup = new Matchup
             {
-                MatchId = value.MatchId, 
-                RedWorldId = value.RedWorldId, 
-                BlueWorldId = value.BlueWorldId, 
+                MatchId = value.MatchId,
+                RedWorldId = value.RedWorldId,
+                BlueWorldId = value.BlueWorldId,
                 GreenWorldId = value.GreenWorldId
             };
 

@@ -15,10 +15,10 @@ namespace GW2NET.Recipes
     public enum RecipeFlags
     {
         /// <summary>Indicates no recipe flags.</summary>
-        None = 0, 
+        None = 0,
 
         /// <summary>The 'Auto Learned' recipe flag.</summary>
-        AutoLearned = 1 << 0, 
+        AutoLearned = 1 << 0,
 
         /// <summary>The 'Learned From Item' recipe flag.</summary>
         LearnedFromItem = 1 << 1

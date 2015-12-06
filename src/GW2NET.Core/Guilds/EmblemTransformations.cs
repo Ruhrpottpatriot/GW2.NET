@@ -15,16 +15,16 @@ namespace GW2NET.Guilds
     public enum EmblemTransformations
     {
         /// <summary>Indicates no transformations.</summary>
-        None = 0, 
+        None = 0,
 
         /// <summary>Flip the background image horizontally.</summary>
-        FlipBackgroundHorizontal = 1 << 0, 
+        FlipBackgroundHorizontal = 1 << 0,
 
         /// <summary>Flip the background image vertically.</summary>
-        FlipBackgroundVertical = 1 << 1, 
+        FlipBackgroundVertical = 1 << 1,
 
         /// <summary>Flip the foreground image horizontally.</summary>
-        FlipForegroundHorizontal = 1 << 2, 
+        FlipForegroundHorizontal = 1 << 2,
 
         /// <summary>Flip the foreground image vertically.</summary>
         FlipForegroundVertical = 1 << 3

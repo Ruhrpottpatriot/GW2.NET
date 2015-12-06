@@ -16,7 +16,7 @@ namespace GW2NET.Common
     /// <typeparam name="TValue">The type of the values in the subset.</typeparam>
     public sealed class DictionaryRange<TKey, TValue> : Dictionary<TKey, TValue>, IDictionaryRange<TKey, TValue>
     {
-        /// <summary>Initializes a new instance of the <see cref="DictionaryRange{TKey,TValue}"/> class. 
+        /// <summary>Initializes a new instance of the <see cref="DictionaryRange{TKey,TValue}"/> class.
         /// Initializes a new instance of the <see cref="DictionaryRange{TKey,TValue}"/> class that is empty, has the default initial capacity, and uses the default equality comparer for the key type.</summary>
         public DictionaryRange()
         {

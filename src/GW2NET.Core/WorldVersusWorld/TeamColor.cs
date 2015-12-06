@@ -12,16 +12,16 @@ namespace GW2NET.WorldVersusWorld
     public enum TeamColor
     {
         /// <summary>An unknown team color.</summary>
-        Unknown = 0, 
+        Unknown = 0,
 
         /// <summary>The blue team color.</summary>
-        Blue = 1 << 0, 
+        Blue = 1 << 0,
 
         /// <summary>The green team color.</summary>
-        Green = 1 << 1, 
+        Green = 1 << 1,
 
         /// <summary>The red team color.</summary>
-        Red = 1 << 2, 
+        Red = 1 << 2,
 
         /// <summary>The neutral color.</summary>
         Neutral = 1 << 3

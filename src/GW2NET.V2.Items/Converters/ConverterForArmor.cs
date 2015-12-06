@@ -123,13 +123,13 @@ namespace GW2NET.V2.Items
         {
             return new Dictionary<string, IConverter<DetailsDataContract, Armor>>
             {
-                { "Boots", new ConverterForBoots() }, 
-                { "Coat", new ConverterForCoat() }, 
-                { "Helm", new ConverterForHelm() }, 
-                { "Shoulders", new ConverterForShoulders() }, 
-                { "Gloves", new ConverterForGloves() }, 
-                { "Leggings", new ConverterForLeggings() }, 
-                { "HelmAquatic", new ConverterForHelmAquatic() }, 
+                { "Boots", new ConverterForBoots() },
+                { "Coat", new ConverterForCoat() },
+                { "Helm", new ConverterForHelm() },
+                { "Shoulders", new ConverterForShoulders() },
+                { "Gloves", new ConverterForGloves() },
+                { "Leggings", new ConverterForLeggings() },
+                { "HelmAquatic", new ConverterForHelmAquatic() },
             };
         }
     }

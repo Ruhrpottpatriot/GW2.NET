@@ -26,7 +26,7 @@ namespace GW2NET.V2.Recipes
 
             return new ItemStack
             {
-                ItemId = value.ItemId, 
+                ItemId = value.ItemId,
                 Count = value.Count
             };
         }

@@ -15,13 +15,13 @@ namespace GW2NET.Items
     public enum InfusionSlotFlags
     {
         /// <summary>The 'Agony' infusion slot type.</summary>
-        Agony = 0, 
+        Agony = 0,
 
         /// <summary>The 'Defense' infusion slot type.</summary>
-        Defense = 1 << 0, 
+        Defense = 1 << 0,
 
         /// <summary>The 'Offense' infusion slot type.</summary>
-        Offense = 1 << 1, 
+        Offense = 1 << 1,
 
         /// <summary>The 'Utility' infusion slot type.</summary>
         Utility = 1 << 2

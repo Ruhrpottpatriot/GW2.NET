@@ -26,7 +26,7 @@ namespace GW2NET.V2.Quaggans
 
             return new Quaggan
             {
-                Id = value.Id, 
+                Id = value.Id,
                 Url = new Uri(value.Url, UriKind.Absolute)
             };
         }

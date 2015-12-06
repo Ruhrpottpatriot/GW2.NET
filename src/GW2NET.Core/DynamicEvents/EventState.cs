@@ -12,22 +12,22 @@ namespace GW2NET.DynamicEvents
     public enum EventState
     {
         /// <summary>The event state is unknown.</summary>
-        Unknown = 0, 
+        Unknown = 0,
 
         /// <summary>The event is not running.</summary>
-        Inactive = 1 << 0, 
+        Inactive = 1 << 0,
 
         /// <summary>The event is running now. </summary>
-        Active = 1 << 1, 
+        Active = 1 << 1,
 
         /// <summary>The event has succeeded. </summary>
-        Success = 1 << 2, 
+        Success = 1 << 2,
 
         /// <summary>The event has failed. </summary>
-        Fail = 1 << 3, 
+        Fail = 1 << 3,
 
         /// <summary>The event is inactive and waiting for certain criteria to be met before  becoming Active.</summary>
-        Warmup = 1 << 4, 
+        Warmup = 1 << 4,
 
         /// <summary>The criteria for the event to start have been met, but certain activities (such as an NPC dialogue) have not completed yet. After the activities have been completed, the event will become Active.</summary>
         Preparation = 1 << 5

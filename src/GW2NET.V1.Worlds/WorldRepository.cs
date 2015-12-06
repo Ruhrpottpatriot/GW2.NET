@@ -104,7 +104,7 @@ namespace GW2NET.V1.Worlds
 
             var worlds = new DictionaryRange<int, World>(dataContracts.Count)
             {
-                SubtotalCount = dataContracts.Count, 
+                SubtotalCount = dataContracts.Count,
                 TotalCount = dataContracts.Count
             };
 

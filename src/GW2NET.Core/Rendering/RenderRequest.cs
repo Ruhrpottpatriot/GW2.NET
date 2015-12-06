@@ -45,8 +45,8 @@ namespace GW2NET.Rendering
         {
             return new List<string>
             {
-                this.FileSignature, 
-                this.FileId.ToString(NumberFormatInfo.InvariantInfo), 
+                this.FileSignature,
+                this.FileId.ToString(NumberFormatInfo.InvariantInfo),
                 this.ImageFormat
             };
         }

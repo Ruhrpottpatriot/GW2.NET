@@ -28,8 +28,8 @@ namespace GW2NET.V1.Events.Converters
 
             return new CylinderLocation
             {
-                Height = value.Height, 
-                Radius = value.Radius, 
+                Height = value.Height,
+                Radius = value.Radius,
                 Rotation = value.Rotation
             };
         }

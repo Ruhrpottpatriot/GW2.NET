@@ -67,19 +67,19 @@ namespace GW2NET.V2.Items
         {
             return new Dictionary<string, IConverter<DetailsDataContract, Consumable>>
             {
-                { "AppearanceChange", new ConverterForAppearanceChanger() }, 
-                { "Booze", new ConverterForAlcohol() }, 
-                { "ContractNpc", new ConverterForContractNpc() }, 
-                { "Food", new ConverterForFood() }, 
-                { "Generic", new ConverterForGenericConsumable() }, 
-                { "Halloween", new ConverterForHalloweenConsumable() }, 
-                { "Immediate", new ConverterForImmediateConsumable() }, 
-                { "TeleportToFriend", new ConverterForTeleportToFriend() }, 
-                { "Transmutation", new ConverterForTransmutation() }, 
-                { "Unlock", new ConverterForUnlocker() }, 
-                { "UnTransmutation", new ConverterForUnTransmutation() }, 
-                { "UpgradeRemoval", new ConverterForUpgradeRemoval() }, 
-                { "Utility", new ConverterForUtility() }, 
+                { "AppearanceChange", new ConverterForAppearanceChanger() },
+                { "Booze", new ConverterForAlcohol() },
+                { "ContractNpc", new ConverterForContractNpc() },
+                { "Food", new ConverterForFood() },
+                { "Generic", new ConverterForGenericConsumable() },
+                { "Halloween", new ConverterForHalloweenConsumable() },
+                { "Immediate", new ConverterForImmediateConsumable() },
+                { "TeleportToFriend", new ConverterForTeleportToFriend() },
+                { "Transmutation", new ConverterForTransmutation() },
+                { "Unlock", new ConverterForUnlocker() },
+                { "UnTransmutation", new ConverterForUnTransmutation() },
+                { "UpgradeRemoval", new ConverterForUpgradeRemoval() },
+                { "Utility", new ConverterForUtility() },
             };
         }
     }

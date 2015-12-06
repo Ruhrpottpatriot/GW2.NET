@@ -63,7 +63,6 @@ namespace GW2NET.V2.Commerce.Listings
 
             Debug.Assert(buys != null, "buys != null");
 
-
             var sells = value.SellOffers;
             if (sells != null)
             {

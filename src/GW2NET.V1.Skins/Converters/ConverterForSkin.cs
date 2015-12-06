@@ -120,8 +120,8 @@ namespace GW2NET.V1.Skins.Converters
         {
             return new Dictionary<string, IConverter<SkinDataContract, Skin>>
             {
-                { "Armor", new ConverterForArmorSkin() }, 
-                { "Back", new ConverterForBackpackSkin() }, 
+                { "Armor", new ConverterForArmorSkin() },
+                { "Back", new ConverterForBackpackSkin() },
                 { "Weapon", new ConverterForWeaponSkin() }
             };
         }

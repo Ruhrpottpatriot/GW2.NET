@@ -51,10 +51,10 @@ namespace GW2NET.V1.Guilds.Converters
 
             var emblem = new Emblem
             {
-                BackgroundId = value.BackgroundId, 
-                ForegroundId = value.ForegroundId, 
-                BackgroundColorId = value.BackgroundColorId, 
-                ForegroundPrimaryColorId = value.ForegroundPrimaryColorId, 
+                BackgroundId = value.BackgroundId,
+                ForegroundId = value.ForegroundId,
+                BackgroundColorId = value.BackgroundColorId,
+                ForegroundPrimaryColorId = value.ForegroundPrimaryColorId,
                 ForegroundSecondaryColorId = value.ForegroundSecondaryColorId
             };
             var flags = value.Flags;

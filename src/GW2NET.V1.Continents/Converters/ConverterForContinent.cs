@@ -50,9 +50,9 @@ namespace GW2NET.V1.Continents.Converters
 
             var continent = new Continent
             {
-                Name = value.Name, 
-                MinimumZoom = value.MinimumZoom, 
-                MaximumZoom = value.MaximumZoom, 
+                Name = value.Name,
+                MinimumZoom = value.MinimumZoom,
+                MaximumZoom = value.MaximumZoom,
                 FloorIds = value.Floors
             };
             var dimensions = value.ContinentDimensions;

@@ -37,7 +37,7 @@ namespace GW2NET.V1.Items.Converters
             if (typeConverters == null)
             {
                 throw new ArgumentNullException("typeConverters", "Precondition: typeConverters != null");
-	}
+    }
             this.typeConverters = typeConverters;
         }
 
@@ -71,10 +71,10 @@ namespace GW2NET.V1.Items.Converters
         {
             return new Dictionary<string, IConverter<GizmoDataContract, Gizmo>>
             {
-                { "Default", new ConverterForDefaultGizmo() }, 
-                { "ContainerKey", new ConverterForContainerKey() }, 
-                { "RentableContractNpc", new ConverterForRentableContractNpc() }, 
-                { "UnlimitedConsumable", new ConverterForUnlimitedConsumable() }, 
+                { "Default", new ConverterForDefaultGizmo() },
+                { "ContainerKey", new ConverterForContainerKey() },
+                { "RentableContractNpc", new ConverterForRentableContractNpc() },
+                { "UnlimitedConsumable", new ConverterForUnlimitedConsumable() },
             };
         }
     }

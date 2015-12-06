@@ -1,4 +1,4 @@
-// --------------------------------------------------------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="GatherinToolConverter.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
@@ -74,9 +74,9 @@ namespace GW2NET.V2.Skins
         {
             return new Dictionary<string, IConverter<DetailsDataContract, GatheringToolSkin>>
                        {
-                           { "Foraging", new ConverterForObject<ForagingToolSkin>() }, 
-                           { "Mining", new ConverterForObject<MiningToolSkin>() }, 
-                           { "Logging", new ConverterForObject<LoggingToolSkin>() }, 
+                           { "Foraging", new ConverterForObject<ForagingToolSkin>() },
+                           { "Mining", new ConverterForObject<MiningToolSkin>() },
+                           { "Logging", new ConverterForObject<LoggingToolSkin>() },
                        };
         }
     }

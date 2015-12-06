@@ -62,7 +62,7 @@ namespace GW2NET.V1.Events.Converters
         {
             return new Dictionary<string, DynamicEventFlags>
             {
-                { "group_event", DynamicEventFlags.GroupEvent }, 
+                { "group_event", DynamicEventFlags.GroupEvent },
                 { "map_wide", DynamicEventFlags.MapWide }
             };
         }

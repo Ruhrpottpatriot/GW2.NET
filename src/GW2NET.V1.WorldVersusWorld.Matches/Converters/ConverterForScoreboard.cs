@@ -26,7 +26,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
             {
                 throw new ArgumentNullException("value", "Precondition: value != null");
             }
-            
+
             if (value.Length != 3)
             {
                 throw new ArgumentException("Precondition: value.Length == 3", "value");

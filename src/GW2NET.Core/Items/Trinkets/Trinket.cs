@@ -75,8 +75,8 @@ namespace GW2NET.Items
         {
             return new ItemChatLink
             {
-                ItemId = this.ItemId, 
-                SuffixItemId = this.SuffixItemId, 
+                ItemId = this.ItemId,
+                SuffixItemId = this.SuffixItemId,
                 SecondarySuffixItemId = this.SecondarySuffixItemId
             };
         }

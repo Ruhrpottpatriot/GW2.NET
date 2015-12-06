@@ -102,8 +102,8 @@ namespace GW2NET.V1.Floors
             IFloorRepository self = this;
             var request = new FloorRequest
             {
-                ContinentId = self.ContinentId, 
-                Floor = identifier, 
+                ContinentId = self.ContinentId,
+                Floor = identifier,
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<FloorDataContract>(request);
@@ -174,8 +174,8 @@ namespace GW2NET.V1.Floors
             IFloorRepository self = this;
             var request = new FloorRequest
             {
-                ContinentId = self.ContinentId, 
-                Floor = identifier, 
+                ContinentId = self.ContinentId,
+                Floor = identifier,
                 Culture = self.Culture
             };
             var response = await this.serviceClient.SendAsync<FloorDataContract>(request, cancellationToken).ConfigureAwait(false);

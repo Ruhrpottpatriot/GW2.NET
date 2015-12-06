@@ -94,7 +94,7 @@ namespace GW2NET.V1.Items.Converters
                     armor = new UnknownArmor();
                 }
             }
-            
+
             int defaultSkinId;
             if (int.TryParse(value.DefaultSkin, out defaultSkinId))
             {

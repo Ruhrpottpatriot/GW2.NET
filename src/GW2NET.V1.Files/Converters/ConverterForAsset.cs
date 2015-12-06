@@ -29,7 +29,7 @@ namespace GW2NET.V1.Files.Converters
             var iconUrl = string.Format(IconUrlTemplate, value.Signature, value.FileId, "png");
             return new Asset
             {
-                FileId = value.FileId, 
+                FileId = value.FileId,
                 FileSignature = value.Signature,
                 IconFileUrl = new Uri(iconUrl, UriKind.Absolute)
             };

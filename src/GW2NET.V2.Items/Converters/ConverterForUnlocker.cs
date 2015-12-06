@@ -67,14 +67,14 @@ namespace GW2NET.V2.Items
         {
             return new Dictionary<string, IConverter<DetailsDataContract, Unlocker>>
             {
-                { "BagSlot", new ConverterForBagSlotUnlocker() }, 
-                { "BankTab", new ConverterForBankTabUnlocker() }, 
-                { "Champion", new ConverterForChampionUnlocker() }, 
-                { "CollectibleCapacity", new ConverterForCollectibleCapacityUnlocker() }, 
-                { "Content", new ConverterForContentUnlocker() }, 
-                { "CraftingRecipe", new ConverterForCraftingRecipeUnlocker() }, 
+                { "BagSlot", new ConverterForBagSlotUnlocker() },
+                { "BankTab", new ConverterForBankTabUnlocker() },
+                { "Champion", new ConverterForChampionUnlocker() },
+                { "CollectibleCapacity", new ConverterForCollectibleCapacityUnlocker() },
+                { "Content", new ConverterForContentUnlocker() },
+                { "CraftingRecipe", new ConverterForCraftingRecipeUnlocker() },
                 { "Dye", new ConverterForDyeUnlocker() },
-                { "GliderSkin", new ConverterForGliderSkinUnlocker() }, 
+                { "GliderSkin", new ConverterForGliderSkinUnlocker() },
                 { "Outfit", new ConverterForOutfitUnlocker() }
             };
         }

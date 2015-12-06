@@ -95,7 +95,7 @@ namespace GW2NET.V1.Files
 
             var values = new DictionaryRange<string, Asset>(content.Count)
             {
-                SubtotalCount = content.Count, 
+                SubtotalCount = content.Count,
                 TotalCount = content.Count
             };
             foreach (var kvp in content)

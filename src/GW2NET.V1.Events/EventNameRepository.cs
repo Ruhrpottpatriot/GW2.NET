@@ -101,7 +101,7 @@ namespace GW2NET.V1.Events
 
             var dynamicEventNames = new DictionaryRange<Guid, DynamicEventName>(eventNameDataContracts.Count)
             {
-                SubtotalCount = eventNameDataContracts.Count, 
+                SubtotalCount = eventNameDataContracts.Count,
                 TotalCount = eventNameDataContracts.Count
             };
 

@@ -15,10 +15,10 @@ namespace GW2NET.DynamicEvents
     public enum DynamicEventFlags
     {
         /// <summary>Indicates no additional flags.</summary>
-        None = 0, 
+        None = 0,
 
         /// <summary>The 'group event' flag.</summary>
-        GroupEvent = 1 << 0, 
+        GroupEvent = 1 << 0,
 
         /// <summary>The 'map-wide' event flag.</summary>
         MapWide = 1 << 1

@@ -72,9 +72,9 @@ namespace GW2NET.V1.Items.Converters
         {
             return new Dictionary<string, IConverter<ContainerDataContract, Container>>
             {
-                { "Default", new ConverterForDefaultContainer() }, 
-                { "GiftBox", new ConverterForGiftBox() }, 
-                { "OpenUI", new ConverterForOpenUiContainer() }, 
+                { "Default", new ConverterForDefaultContainer() },
+                { "GiftBox", new ConverterForGiftBox() },
+                { "OpenUI", new ConverterForOpenUiContainer() },
             };
         }
     }

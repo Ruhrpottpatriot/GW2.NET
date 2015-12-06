@@ -51,9 +51,9 @@ namespace GW2NET.V1.Floors.Converters
 
             var renownTask = new RenownTask
             {
-                TaskId = value.TaskId, 
-                Objective = value.Objective, 
-                Level = value.Level, 
+                TaskId = value.TaskId,
+                Objective = value.Objective,
+                Level = value.Level,
             };
 
             var coordinates = value.Coordinates;

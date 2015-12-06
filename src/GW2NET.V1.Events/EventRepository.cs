@@ -86,7 +86,7 @@ namespace GW2NET.V1.Events
             IEventRepository self = this;
             var request = new DynamicEventDetailsRequest
             {
-                EventId = identifier, 
+                EventId = identifier,
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<EventCollectionDataContract>(request);
@@ -148,7 +148,7 @@ namespace GW2NET.V1.Events
 
             var events = new DictionaryRange<Guid, DynamicEvent>(dynamicEvents.Count)
             {
-                SubtotalCount = dynamicEvents.Count, 
+                SubtotalCount = dynamicEvents.Count,
                 TotalCount = dynamicEvents.Count
             };
             foreach (var dynamicEvent in dynamicEvents)
@@ -239,7 +239,7 @@ namespace GW2NET.V1.Events
             IEventRepository self = this;
             var request = new DynamicEventDetailsRequest
             {
-                EventId = identifier, 
+                EventId = identifier,
                 Culture = self.Culture
             };
             var response = await this.serviceClient.SendAsync<EventCollectionDataContract>(request, cancellationToken).ConfigureAwait(false);

@@ -94,9 +94,9 @@ namespace GW2NET.V1.Floors.Converters
             // Create a new map object
             var subRegion = new Subregion
             {
-                Name = value.Name, 
-                MinimumLevel = value.MinimumLevel, 
-                MaximumLevel = value.MaximumLevel, 
+                Name = value.Name,
+                MinimumLevel = value.MinimumLevel,
+                MaximumLevel = value.MaximumLevel,
                 DefaultFloor = value.DefaultFloor
             };
 

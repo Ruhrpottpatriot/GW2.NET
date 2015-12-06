@@ -1,4 +1,4 @@
-// --------------------------------------------------------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ContinentRepository.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
@@ -69,7 +69,7 @@ namespace GW2NET.V2.Continents
             {
                 throw new ArgumentNullException("continentConverter", "Precondition: continentConverter != null");
             }
-            
+
             this.serviceClient = serviceClient;
 
             this.identifiersConverter = new ConverterForResponse<ICollection<int>, ICollection<int>>(identifiersConverter);

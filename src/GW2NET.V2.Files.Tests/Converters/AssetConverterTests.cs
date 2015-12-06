@@ -21,7 +21,7 @@
             Assert.NotNull(result.IconFileUrl);
             Assert.Equal(fileId, result.FileId);
             Assert.Equal(fileSignature, result.FileSignature);
-            Assert.Equal(icon, result.IconFileUrl.ToString());   
+            Assert.Equal(icon, result.IconFileUrl.ToString());
         }
     }
 }

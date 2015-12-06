@@ -49,8 +49,8 @@ namespace GW2NET.V1.Guilds.Converters
 
             var guild = new Guild
             {
-                Name = value.Name, 
-                Tag = value.Tag, 
+                Name = value.Name,
+                Tag = value.Tag,
             };
 
             Guid id;

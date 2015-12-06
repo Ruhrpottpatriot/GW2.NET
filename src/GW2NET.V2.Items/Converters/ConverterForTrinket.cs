@@ -108,9 +108,9 @@ namespace GW2NET.V2.Items
         {
             return new Dictionary<string, IConverter<DetailsDataContract, Trinket>>
             {
-                { "Amulet", new ConverterForAmulet() }, 
-                { "Accessory", new ConverterForAccessory() }, 
-                { "Ring", new ConverterForRing() }, 
+                { "Amulet", new ConverterForAmulet() },
+                { "Accessory", new ConverterForAccessory() },
+                { "Ring", new ConverterForRing() },
             };
         }
     }

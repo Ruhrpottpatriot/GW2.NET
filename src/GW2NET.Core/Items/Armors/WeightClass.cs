@@ -12,16 +12,16 @@ namespace GW2NET.Items
     public enum WeightClass
     {
         /// <summary>The 'Unknown' weight class.</summary>
-        Unknown = 0, 
+        Unknown = 0,
 
         /// <summary>The 'Clothing' weight class.</summary>
-        Clothing = 1 << 0, 
+        Clothing = 1 << 0,
 
         /// <summary>The 'Light' weight class.</summary>
-        Light = 1 << 1, 
+        Light = 1 << 1,
 
         /// <summary>The 'Medium' weight class.</summary>
-        Medium = 1 << 2, 
+        Medium = 1 << 2,
 
         /// <summary>The 'Heavy' weight class.</summary>
         Heavy = 1 << 3

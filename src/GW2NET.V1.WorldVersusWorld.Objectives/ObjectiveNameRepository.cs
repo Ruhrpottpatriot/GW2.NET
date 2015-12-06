@@ -101,7 +101,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
             var values = response.Content.Select(this.converterForObjectiveName.Convert).ToList();
             var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count)
             {
-                SubtotalCount = values.Count, 
+                SubtotalCount = values.Count,
                 TotalCount = values.Count
             };
 

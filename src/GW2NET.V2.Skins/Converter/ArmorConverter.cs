@@ -1,4 +1,4 @@
-// --------------------------------------------------------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ArmorConverter.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
@@ -93,13 +93,13 @@ namespace GW2NET.V2.Skins
         {
             return new Dictionary<string, IConverter<DetailsDataContract, ArmorSkin>>
                        {
-                           { "Boots", new ConverterForObject<BootsSkin>() }, 
-                           { "Coat", new ConverterForObject<CoatSkin>() }, 
-                           { "Helm", new ConverterForObject<HelmSkin>() }, 
-                           { "Shoulders", new ConverterForObject<ShouldersSkin>() }, 
-                           { "Gloves", new ConverterForObject<GlovesSkin>() }, 
-                           { "Leggings", new ConverterForObject<LeggingsSkin>() }, 
-                           { "HelmAquatic", new ConverterForObject<HelmAquaticSkin>() }, 
+                           { "Boots", new ConverterForObject<BootsSkin>() },
+                           { "Coat", new ConverterForObject<CoatSkin>() },
+                           { "Helm", new ConverterForObject<HelmSkin>() },
+                           { "Shoulders", new ConverterForObject<ShouldersSkin>() },
+                           { "Gloves", new ConverterForObject<GlovesSkin>() },
+                           { "Leggings", new ConverterForObject<LeggingsSkin>() },
+                           { "HelmAquatic", new ConverterForObject<HelmAquaticSkin>() },
                        };
         }
     }

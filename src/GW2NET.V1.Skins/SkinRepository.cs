@@ -110,7 +110,7 @@ namespace GW2NET.V1.Skins
             ISkinRepository self = this;
             var request = new SkinDetailsRequest
             {
-                SkinId = identifier, 
+                SkinId = identifier,
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<SkinDataContract>(request);
@@ -179,7 +179,7 @@ namespace GW2NET.V1.Skins
             ISkinRepository self = this;
             var request = new SkinDetailsRequest
             {
-                SkinId = identifier, 
+                SkinId = identifier,
                 Culture = self.Culture
             };
             var response = await this.serviceClient.SendAsync<SkinDataContract>(request, cancellationToken).ConfigureAwait(false);

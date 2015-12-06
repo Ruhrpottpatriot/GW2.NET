@@ -51,7 +51,7 @@ namespace GW2NET.V2.Builds
             this.serviceClient = serviceClient;
             this.converterForBuild = converterForBuild;
         }
-        
+
         /// <inheritdoc />
         public Build GetBuild()
         {

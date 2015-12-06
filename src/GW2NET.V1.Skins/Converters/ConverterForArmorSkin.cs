@@ -96,13 +96,13 @@ namespace GW2NET.V1.Skins.Converters
         {
             return new Dictionary<string, IConverter<ArmorSkinDataContract, ArmorSkin>>
             {
-                { "Boots", new ConverterForObject<BootsSkin>() }, 
-                { "Coat", new ConverterForObject<CoatSkin>() }, 
-                { "Helm", new ConverterForObject<HelmSkin>() }, 
-                { "Shoulders", new ConverterForObject<ShouldersSkin>() }, 
-                { "Gloves", new ConverterForObject<GlovesSkin>() }, 
-                { "Leggings", new ConverterForObject<LeggingsSkin>() }, 
-                { "HelmAquatic", new ConverterForObject<HelmAquaticSkin>() }, 
+                { "Boots", new ConverterForObject<BootsSkin>() },
+                { "Coat", new ConverterForObject<CoatSkin>() },
+                { "Helm", new ConverterForObject<HelmSkin>() },
+                { "Shoulders", new ConverterForObject<ShouldersSkin>() },
+                { "Gloves", new ConverterForObject<GlovesSkin>() },
+                { "Leggings", new ConverterForObject<LeggingsSkin>() },
+                { "HelmAquatic", new ConverterForObject<HelmAquaticSkin>() },
             };
         }
     }
