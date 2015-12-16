@@ -139,8 +139,10 @@ namespace GW2NET.Common
             CancellationToken cancellationToken)
         {
             Debug.Assert(instance != null, "instance != null");
-            for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
+            for (int i = 0; i < pageCount; i++)
             {
+                // The current index is assigned to a block-scoped variable to prevent a race condition (access to a modified closure)
+                var pageIndex = i;
                 yield return RetryOnFault(() => instance.FindPageAsync(pageIndex, cancellationToken), MaxRetryCount);
             }
         }
@@ -152,8 +154,10 @@ namespace GW2NET.Common
             CancellationToken cancellationToken)
         {
             Debug.Assert(instance != null, "instance != null");
-            for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
+            for (int i = 0; i < pageCount; i++)
             {
+                // The current index is assigned to a block-scoped variable to prevent a race condition (access to a modified closure)
+                var pageIndex = i;
                 yield return RetryOnFault(() => instance.FindPageAsync(pageIndex, pageSize, cancellationToken), MaxRetryCount);
             }
         }
