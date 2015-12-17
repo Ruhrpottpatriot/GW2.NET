@@ -33,6 +33,11 @@ namespace GW2NET.V1.Items.Converters
                 craftingRecipeUnlocker.RecipeId = recipeId;
             }
 
+            if (value.ExtraRecipeIds != null)
+            {
+                craftingRecipeUnlocker.ExtraRecipeIds = value.ExtraRecipeIds;
+            }
+
             return craftingRecipeUnlocker;
         }
     }

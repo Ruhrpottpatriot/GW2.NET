@@ -113,6 +113,9 @@ namespace GW2NET.V2.Items
         [DataMember(Name = "unlock_type", Order = 1)]
         internal string UnlockType { get; set; }
 
+        [DataMember(Name = "extra_recipe_ids", Order = 3)]
+        internal int[] ExtraRecipeIds { get; set; }
+
         #endregion
     }
 

@@ -13,10 +13,27 @@ namespace GW2NET.Items
     /// <summary>Represents a crafting recipe.</summary>
     public class CraftingRecipeUnlocker : Unlocker
     {
+        private static readonly int[] EmptyExtraRecipeIds = new int[0];
+
+        private int[] extraRecipeIds = EmptyExtraRecipeIds;
+
         /// <summary>Gets or sets the recipe. This is a navigation property. Use the value of <see cref="RecipeId"/> to obtain a reference.</summary>
         public virtual Recipe Recipe { get; set; }
 
-        /// <summary>Gets or sets the recipe identifier.</summary>
+        /// <summary>Gets or sets the identifier of the recipe that is unlocked by the current item.</summary>
         public virtual int RecipeId { get; set; }
+
+        /// <summary>Gets or sets the identifiers of additional recipes that are unlocked by the current item.</summary>
+        public virtual int[] ExtraRecipeIds
+        {
+            get
+            {
+                return extraRecipeIds;
+            }
+            set
+            {
+                extraRecipeIds = value ?? EmptyExtraRecipeIds;
+            }
+        }
     }
 }

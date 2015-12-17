@@ -26,10 +26,18 @@ namespace GW2NET.V2.Items
                 throw new ArgumentNullException("value", "Precondition: value != null");
             }
 
-            return new CraftingRecipeUnlocker
+            var craftingRecipeUnlocker = new CraftingRecipeUnlocker();
+            if (value.RecipeId.HasValue)
             {
-                RecipeId = value.RecipeId.GetValueOrDefault()
-            };
+                craftingRecipeUnlocker.RecipeId = value.RecipeId.Value;
+            }
+
+            if (value.ExtraRecipeIds != null)
+            {
+                craftingRecipeUnlocker.ExtraRecipeIds = value.ExtraRecipeIds;
+            }
+
+            return craftingRecipeUnlocker;
         }
     }
 }

@@ -36,5 +36,8 @@ namespace GW2NET.V1.Items.Json
 
         [DataMember(Name = "color_id", Order = 5)]
         internal string ColorId { get; set; }
+
+        [DataMember(Name = "extra_recipe_ids", Order = 6)]
+        internal int[] ExtraRecipeIds { get; set; }
     }
 }
