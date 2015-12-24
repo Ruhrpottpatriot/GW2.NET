@@ -26,7 +26,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0")]
 
 // MEMO: [AssemblyFileVersion] is used for display
-[assembly: AssemblyFileVersion("1.3")]
+[assembly: AssemblyFileVersion("1.4")]
 
 // MEMO: [AssemblyInformationalVersion] is the NuGet package version.
 // The informational version uses different versioning rules, based on semantic versioning (SemVer).
@@ -35,4 +35,4 @@ using System.Runtime.InteropServices;
 // Note: version '1.0.0' is considered greater than '1.0.0-beta'.
 // Note: version '1.0.0-beta1' is considered greater than '1.0.0-beta12' ---> lexical sort instead of numeric sort.
 // More information: http://semver.org/
-[assembly: AssemblyInformationalVersion("1.3.0")]
+[assembly: AssemblyInformationalVersion("1.4.0")]
