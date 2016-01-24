@@ -4,26 +4,24 @@
     {
         Unknown = 0,
 
-        Coin = 1,
+        Coin = 0x01,
 
-        Item = 2,
+        Item = 0x02,
 
-        Text = 3,
+        Text = 0x03,
 
-        Map = 4,
+        Map = 0x04,
 
-        PvP = 5,
+        PvP = 0x05,
 
-        Skill = 7,
+        Skill = 0x06,
 
-        Trait = 8,
+        Trait = 0x07,
 
-        Player = 9,
+        Recipe = 0x09,
 
-        Recipe = 10,
+        Skin = 0x0A,
 
-        Skin = 11,
-
-        Outfit = 12
+        Outfit = 0x0B
     }
 }
