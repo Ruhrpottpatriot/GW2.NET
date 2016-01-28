@@ -1,7 +1,7 @@
 version: 1.4.1.{build}
 configuration:
-- Release
-- Debug
+  - Release
+  - Debug
 platform: Any CPU
 pull_requests:
   do_not_increment_build_number: true
@@ -31,7 +31,7 @@ deploy:
    api_key:
      secure: V1Eie9yECoTRMNzKOu3mAjLrILfnVvgVUn2/tZFHBQn36Gto3dsnKuUmfwkKyOVv
    skip_symbols: false
-   symbol_server: https://www.myget.org/F/semanticversion/api/v2/package
+   symbol_server: https://www.myget.org/F/gw2net/api/v2/package
    on:
      configuration: Debug
  - provider: NuGet
