@@ -12,6 +12,8 @@ before_build:
 - nuget restore
 build:
   verbosity: minimal
+artifacts:
+  - path: artifacts\bin\gw2net\**\*.nupkg
 notifications:
   - provider: Webhook
     url: https://webhooks.gitter.im/e/7f66502fe0bc27f98a3d
