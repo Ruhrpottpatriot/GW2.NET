@@ -1,4 +1,8 @@
-version: 1.0.1.{build}
+version: 1.4.1.{build}
+configuration:
+- Debug
+- Release
+platform: Any CPU
 pull_requests:
   do_not_increment_build_number: true
 shallow_clone: true
@@ -19,5 +23,19 @@ notifications:
     on_build_success: true
     on_build_failure: true
     on_build_status_changed: true
-configuration: Release
-platform: Any CPU
+deploy:
+ - provider: NuGet
+   server: https://www.myget.org/F/gw2net/api/v2/package
+   api_key:
+     secure: V1Eie9yECoTRMNzKOu3mAjLrILfnVvgVUn2/tZFHBQn36Gto3dsnKuUmfwkKyOVv
+   skip_symbols: false
+   symbol_server: https://www.myget.org/F/semanticversion/api/v2/package
+   on:
+     configuration: Debug
+ - provider: NuGet
+   server: https://www.myget.org/F/gw2net/api/v2/package
+   api_key:
+     secure: V1Eie9yECoTRMNzKOu3mAjLrILfnVvgVUn2/tZFHBQn36Gto3dsnKuUmfwkKyOVv
+   skip_symbols: true
+   on:
+     configuration: Release
