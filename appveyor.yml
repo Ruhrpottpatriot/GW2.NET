@@ -1,7 +1,7 @@
 version: 1.4.1.{build}
 configuration:
-- Debug
 - Release
+- Debug
 platform: Any CPU
 pull_requests:
   do_not_increment_build_number: true
