@@ -12,8 +12,8 @@ before_build:
 - nuget restore
 build:
   verbosity: minimal
-artifacts:
-  - path: artifacts\bin\gw2net\**\*.nupkg
+  publish_nuget: true             # package projects with .nuspec files and push to artifacts
+  publish_nuget_symbols: true     # generate and publish NuGet symbol packages
 notifications:
   - provider: Webhook
     url: https://webhooks.gitter.im/e/7f66502fe0bc27f98a3d
