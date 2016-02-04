@@ -9,7 +9,7 @@
 
 namespace GW2NET.V2.WorldVersusWorld.Objectives
 {
-    public class ObjectiveNamRepository
+    public class ObjectiveNameRepository
     {
     }
 }

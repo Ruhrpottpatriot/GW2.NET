@@ -44,7 +44,7 @@
     <Compile Include="Converters\ObjectiveNameConverter.cs" />
     <Compile Include="Json\ObjectiveNameDTO.cs" />
     <Compile Include="ObjectiveNameRequest.cs" />
-    <Compile Include="ObjectiveNamRepository.cs" />
+    <Compile Include="ObjectiveNameRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
