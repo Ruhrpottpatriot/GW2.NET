@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Tests", "Testing\GW2.NET.Tests\GW2NET.Tests.csproj", "{D138871F-94ED-4BB0-999A-2ACD3732DF30}"
 EndProject
@@ -132,6 +132,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Accounts", "src\GW2NET.V2.Account\GW2NET.V2.Accounts.csproj", "{2C83D314-3C3F-470B-A4CC-B6E3E1F48EA2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "V1", "V1", "{F8934603-FA55-43C7-AFE5-A2B2FD2E6C20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.WorldVersusWorld.Objectives", "src\GW2NET.V2.WorldVersusWorld.Objectives\GW2NET.V2.WorldVersusWorld.Objectives.csproj", "{8BD6A4E8-8E34-40E3-A828-7EF6C8A00FF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -644,6 +646,14 @@ Global
 		{2C83D314-3C3F-470B-A4CC-B6E3E1F48EA2}.DebugCC|Any CPU.Build.0 = Debug|Any CPU
 		{2C83D314-3C3F-470B-A4CC-B6E3E1F48EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C83D314-3C3F-470B-A4CC-B6E3E1F48EA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BD6A4E8-8E34-40E3-A828-7EF6C8A00FF2}.Benchmark|Any CPU.ActiveCfg = Release|Any CPU
+		{8BD6A4E8-8E34-40E3-A828-7EF6C8A00FF2}.Benchmark|Any CPU.Build.0 = Release|Any CPU
+		{8BD6A4E8-8E34-40E3-A828-7EF6C8A00FF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BD6A4E8-8E34-40E3-A828-7EF6C8A00FF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BD6A4E8-8E34-40E3-A828-7EF6C8A00FF2}.DebugCC|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BD6A4E8-8E34-40E3-A828-7EF6C8A00FF2}.DebugCC|Any CPU.Build.0 = Debug|Any CPU
+		{8BD6A4E8-8E34-40E3-A828-7EF6C8A00FF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BD6A4E8-8E34-40E3-A828-7EF6C8A00FF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -705,5 +715,6 @@ Global
 		{6E237424-818F-4D25-BE7D-6C61691B9B56} = {F8934603-FA55-43C7-AFE5-A2B2FD2E6C20}
 		{9D582BC4-D182-4373-A8D5-04607F4094B1} = {5F6DDEF7-43FC-4A0C-8471-C61F2FAF00CF}
 		{2C83D314-3C3F-470B-A4CC-B6E3E1F48EA2} = {5F6DDEF7-43FC-4A0C-8471-C61F2FAF00CF}
+		{8BD6A4E8-8E34-40E3-A828-7EF6C8A00FF2} = {5F6DDEF7-43FC-4A0C-8471-C61F2FAF00CF}
 	EndGlobalSection
 EndGlobal
