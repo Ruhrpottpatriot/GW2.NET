@@ -135,5 +135,14 @@ namespace GW2NET.Factories.V2
                 return new WorldRepositoryFactory(this.ServiceClient);
             }
         }
+
+        /// <summary>Gets access to world versus world data sources.</summary>
+        public FactoryForV2WvW WorldVersusWorld
+        {
+            get
+            {
+                return new FactoryForV2WvW(this.ServiceClient);
+            }
+        }
     }
 }

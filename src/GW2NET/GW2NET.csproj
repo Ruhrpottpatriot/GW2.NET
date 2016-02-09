@@ -173,6 +173,10 @@
       <Project>{1d9eee65-d035-4acb-9f08-883a59331a6a}</Project>
       <Name>GW2NET.V2.Worlds</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.WorldVersusWorld.Matches\GW2NET.V2.WorldVersusWorld.Matches.csproj">
+      <Project>{b42a3b69-96f0-4091-a9b2-58fe5319e51a}</Project>
+      <Name>GW2NET.V2.WorldVersusWorld.Matches</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GW2NET.V2.WorldVersusWorld.Objectives\GW2NET.V2.WorldVersusWorld.Objectives.csproj">
       <Project>{8bd6a4e8-8e34-40e3-a828-7ef6c8a00ff2}</Project>
       <Name>GW2NET.V2.WorldVersusWorld.Objectives</Name>
@@ -225,18 +229,21 @@
     <Compile Include="Factories\V2\CharacterRepositoryFactory.cs" />
     <Compile Include="Factories\V2\ColorRepositoryFactory.cs" />
     <Compile Include="Factories\V2\CombatAttributeConverterFactory.cs" />
+    <Compile Include="Factories\V2\CompetitiveMapConverterFactory.cs" />
     <Compile Include="Factories\V2\ConsumableConverterFactory.cs" />
     <Compile Include="Factories\V2\ContainerConverterFactory.cs" />
     <Compile Include="Factories\V2\ContinentRepositoryFactory.cs" />
     <Compile Include="Factories\V2\FactoryForV2.cs" />
     <Compile Include="Factories\V2\FactoryForV2Authorized.cs" />
     <Compile Include="Factories\V2\FactoryForV2Commerce.cs" />
+    <Compile Include="Factories\V2\FactoryForV2WvW.cs" />
     <Compile Include="Factories\V2\FileRepositoryFactory.cs" />
     <Compile Include="Factories\V2\GatheringToolConverterFactory.cs" />
     <Compile Include="Factories\V2\GatheringToolSkinConverterFactory.cs" />
     <Compile Include="Factories\V2\GizmoConverterFactory.cs" />
     <Compile Include="Factories\V2\ItemConverterFactory.cs" />
     <Compile Include="Factories\V2\ItemRepositoryFactory.cs" />
+    <Compile Include="Factories\V2\MapBonusConverter.cs" />
     <Compile Include="Factories\V2\MapsRepositoryFactory.cs" />
     <Compile Include="Factories\V2\ObjectiveNameRepositoryFactory.cs" />
     <Compile Include="Factories\V2\RecipeConverterFactory.cs" />
