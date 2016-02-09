@@ -6,15 +6,19 @@
 //   Defines the ObjectiveNameDTO type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace GW2NET.V2.WorldVersusWorld.Objectives.Json
 {
-    class ObjectiveNameDTO
+    using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.Serialization;
+
+    [DataContract]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names")]
+    public sealed class ObjectiveNameDTO
     {
+        [DataMember(Name = "id", Order = 0)]
+        public string Id { get; set; }
+
+        [DataMember(Name = "name", Order = 1)]
+        public string Name { get; set; }
     }
 }

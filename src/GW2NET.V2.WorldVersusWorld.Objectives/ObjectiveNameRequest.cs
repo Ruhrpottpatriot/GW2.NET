@@ -6,10 +6,35 @@
 //   Represents a request for a list of objectives and their localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+using System.Collections.Generic;
+using System.Globalization;
+using GW2NET.Common;
 
 namespace GW2NET.V2.WorldVersusWorld.Objectives
 {
-    class ObjectiveNameRequest
+    public sealed class ObjectiveNameRequest : IRequest, ILocalizable
     {
+        /// <summary>Gets or sets the locale.</summary>
+        public CultureInfo Culture { get; set; }
+
+        /// <summary>Gets the resource path.</summary>
+        public string Resource
+        {
+            get
+            {
+                return "v2/wvw/objectives";
+            }
+        }
+
+        /// <summary>Gets the request parameters.</summary>
+        /// <returns>A collection of parameters.</returns>
+        public IEnumerable<KeyValuePair<string, string>> GetParameters()
+        {
+            // Get the 'lang' parameter
+            if (this.Culture != null)
+            {
+                yield return new KeyValuePair<string, string>("lang", this.Culture.TwoLetterISOLanguageName);
+            }
+        }
     }
 }
