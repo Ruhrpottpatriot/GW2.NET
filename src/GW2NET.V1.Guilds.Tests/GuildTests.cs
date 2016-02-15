@@ -35,14 +35,14 @@ namespace GW2NET.IntegrationTests.V1
         [Fact]
         public void Discover_NotSupported()
         {
-            var repository = GW2.V1.Guilds;
+            var repository = GW2.Services.Guilds;
             Assert.Throws<NotSupportedException>(() => repository.Discover());
         }
 
         [Fact]
         public async void DiscoverAsync_NotSupported()
         {
-            var repository = GW2.V1.Guilds;
+            var repository = GW2.Services.Guilds;
             await Assert.ThrowsAsync<NotSupportedException>(() => repository.DiscoverAsync());
         }
 
@@ -50,7 +50,7 @@ namespace GW2NET.IntegrationTests.V1
         [MemberData("GetIdentifiers")]
         public void Find(Guid identifier)
         {
-            var repository = GW2.V1.Guilds;
+            var repository = GW2.Services.Guilds;
             var result = repository.Find(identifier);
             Assert.NotNull(result);
             Assert.StrictEqual(identifier, result.GuildId);
@@ -60,7 +60,7 @@ namespace GW2NET.IntegrationTests.V1
         [MemberData("GetIdentifiers")]
         public async void FindAsync(Guid identifier)
         {
-            var repository = GW2.V1.Guilds;
+            var repository = GW2.Services.Guilds;
             var result = await repository.FindAsync(identifier);
             Assert.NotNull(result);
             Assert.StrictEqual(identifier, result.GuildId);
@@ -70,7 +70,7 @@ namespace GW2NET.IntegrationTests.V1
         [InlineData("Veterans Of Lions Arch")]
         public void FindByName(string name)
         {
-            var repository = GW2.V1.Guilds;
+            var repository = GW2.Services.Guilds;
             var result = repository.FindByName(name);
             Assert.NotNull(result);
             Assert.StrictEqual(name, result.Name);
@@ -80,7 +80,7 @@ namespace GW2NET.IntegrationTests.V1
         [InlineData("Veterans Of Lions Arch")]
         public async void FindByNameAsync(string name)
         {
-            var repository = GW2.V1.Guilds;
+            var repository = GW2.Services.Guilds;
             var result = await repository.FindByNameAsync(name);
             Assert.NotNull(result);
             Assert.StrictEqual(name, result.Name);
@@ -89,14 +89,14 @@ namespace GW2NET.IntegrationTests.V1
         [Fact]
         public void FindAll_NotSupported()
         {
-            var repository = GW2.V1.Guilds;
+            var repository = GW2.Services.Guilds;
             Assert.Throws<NotSupportedException>(() => repository.FindAll());
         }
 
         [Fact]
         public async void FindAllAsync_NotSupported()
         {
-            var repository = GW2.V1.Guilds;
+            var repository = GW2.Services.Guilds;
             await Assert.ThrowsAsync<NotSupportedException>(() => repository.FindAllAsync());
         }
 
@@ -104,7 +104,7 @@ namespace GW2NET.IntegrationTests.V1
         [MemberData("GetFilters")]
         public void FindAll_WithIdList_NotSupported(Guid[] filter)
         {
-            var repository = GW2.V1.Guilds;
+            var repository = GW2.Services.Guilds;
             Assert.Throws<NotSupportedException>(() => repository.FindAll(filter));
         }
 
@@ -112,7 +112,7 @@ namespace GW2NET.IntegrationTests.V1
         [MemberData("GetFilters")]
         public async void FindAllAsync_WithIdList_NotSupported(Guid[] filter)
         {
-            var repository = GW2.V1.Guilds;
+            var repository = GW2.Services.Guilds;
             await Assert.ThrowsAsync<NotSupportedException>(() => repository.FindAllAsync(filter));
         }
 
@@ -123,7 +123,7 @@ namespace GW2NET.IntegrationTests.V1
         [InlineData(3)]
         public void FindPage_NotSupported(int pageIndex)
         {
-            var repository = GW2.V1.Guilds;
+            var repository = GW2.Services.Guilds;
             Assert.Throws<NotSupportedException>(() => repository.FindPage(pageIndex));
         }
 
@@ -134,7 +134,7 @@ namespace GW2NET.IntegrationTests.V1
         [InlineData(3)]
         public async void FindPageAsync_NotSupported(int pageIndex)
         {
-            var repository = GW2.V1.Guilds;
+            var repository = GW2.Services.Guilds;
             await Assert.ThrowsAsync<NotSupportedException>(() => repository.FindPageAsync(pageIndex));
         }
 
@@ -145,7 +145,7 @@ namespace GW2NET.IntegrationTests.V1
         [InlineData(0, 200)]
         public void FindPage_WithPageSize_NotSupported(int pageIndex, int pageSize)
         {
-            var repository = GW2.V1.Guilds;
+            var repository = GW2.Services.Guilds;
             Assert.Throws<NotSupportedException>(() => repository.FindPage(pageIndex, pageSize));
         }
 
@@ -156,7 +156,7 @@ namespace GW2NET.IntegrationTests.V1
         [InlineData(0, 200)]
         public async void FindPageAsync_WithPageSize_NotSupported(int pageIndex, int pageSize)
         {
-            var repository = GW2.V1.Guilds;
+            var repository = GW2.Services.Guilds;
             await Assert.ThrowsAsync<NotSupportedException>(() => repository.FindPageAsync(pageIndex, pageSize));
         }
     }
