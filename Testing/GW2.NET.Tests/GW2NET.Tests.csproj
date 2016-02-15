@@ -113,22 +113,6 @@
   <ItemGroup>
     <Compile Include="FactoryForV2Tests.cs" />
     <Compile Include="Foo.cs" />
-    <Compile Include="IntegrationTests\V1\FloorTests.cs" />
-    <Compile Include="IntegrationTests\V1\ObjectiveNameTests.cs" />
-    <Compile Include="IntegrationTests\V1\MatchTests.cs" />
-    <Compile Include="IntegrationTests\V1\WorldNameTests.cs" />
-    <Compile Include="IntegrationTests\V1\SkinTests.cs" />
-    <Compile Include="IntegrationTests\V1\RecipeTests.cs" />
-    <Compile Include="IntegrationTests\V1\MapNameTests.cs" />
-    <Compile Include="IntegrationTests\V1\MapTests.cs" />
-    <Compile Include="IntegrationTests\V1\ItemTests.cs" />
-    <Compile Include="IntegrationTests\V1\GuildTests.cs" />
-    <Compile Include="IntegrationTests\V1\FileTests.cs" />
-    <Compile Include="IntegrationTests\V1\EventNameTests.cs" />
-    <Compile Include="IntegrationTests\V1\EventDetailsTests.cs" />
-    <Compile Include="IntegrationTests\V1\ContinentTests.cs" />
-    <Compile Include="IntegrationTests\V1\ColorTests.cs" />
-    <Compile Include="IntegrationTests\V1\BuildTests.cs" />
     <Compile Include="IntegrationTests\V2\MapTests.cs" />
     <Compile Include="IntegrationTests\V2\WorldTests.cs" />
     <Compile Include="IntegrationTests\V2\ExchangeTests.cs" />
@@ -207,4 +191,3 @@
   </Target>
   -->
 </Project>
-
