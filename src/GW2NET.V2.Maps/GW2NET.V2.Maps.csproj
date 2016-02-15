@@ -47,10 +47,6 @@
       <Project>{05F3D999-0470-4123-8C80-AF4AC2385E7C}</Project>
       <Name>GW2NET.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GW2NET.V1.Maps\GW2NET.V1.Maps.csproj">
-      <Project>{19481B9A-67F2-4BEC-824E-731C7238D7E4}</Project>
-      <Name>GW2NET.V1.Maps</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MapBulkRequest.cs" />
