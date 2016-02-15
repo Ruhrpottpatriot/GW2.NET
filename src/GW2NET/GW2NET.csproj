@@ -125,7 +125,7 @@
   <ItemGroup>
     <Compile Include="Factories\BinarySerializerFactory.cs" />
     <Compile Include="Factories\DataContractJsonSerializerFactory.cs" />
-    <Compile Include="Factories\FactoryBase.cs" />
+    <Compile Include="Factories\ServiceFactoryBase.cs" />
     <Compile Include="Factories\FactoryForLocal.cs" />
     <Compile Include="Factories\FactoryForRendering.cs" />
     <Compile Include="Factories\RepositoryFactoryBase.cs" />
@@ -139,8 +139,8 @@
     <Compile Include="Factories\V2\ConsumableConverterFactory.cs" />
     <Compile Include="Factories\V2\ContainerConverterFactory.cs" />
     <Compile Include="Factories\V2\ContinentRepositoryFactory.cs" />
-    <Compile Include="Factories\V2\FactoryForV2.cs" />
-    <Compile Include="Factories\V2\FactoryForV2Authorized.cs" />
+    <Compile Include="Factories\V2\Services.cs" />
+    <Compile Include="Factories\V2\AuthorizedServices.cs" />
     <Compile Include="Factories\V2\FactoryForV2Commerce.cs" />
     <Compile Include="Factories\V2\FileRepositoryFactory.cs" />
     <Compile Include="Factories\V2\GatheringToolConverterFactory.cs" />

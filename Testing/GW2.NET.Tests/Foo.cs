@@ -12,7 +12,7 @@ namespace GW2NET
         [Test]
         public void Bar()
         {
-            var account = new GW2Bootstrapper("4BC5675A-F5B4-EF4A-A385-9480885E43DE4FACE73C-8A61-4AA1-8A40-6B9EDE7D6FDA ").V2Authorized.Accounts.ForDefaultCulture().GetInformation();
+            var account = new GW2Bootstrapper("4BC5675A-F5B4-EF4A-A385-9480885E43DE4FACE73C-8A61-4AA1-8A40-6B9EDE7D6FDA ").AuthorizedServices.Accounts.ForDefaultCulture().GetInformation();
 
             Assert.IsNotNull(account);
         }

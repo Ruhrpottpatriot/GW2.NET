@@ -14,7 +14,7 @@ namespace GW2NET.Factories
     using GW2NET.Rendering;
 
     /// <summary>Provides access to the rendering service.</summary>
-    public class FactoryForRendering : FactoryBase
+    public class FactoryForRendering : ServiceFactoryBase
     {
         /// <summary>Initializes a new instance of the <see cref="FactoryForRendering"/> class.</summary>
         /// <param name="serviceClient"></param>

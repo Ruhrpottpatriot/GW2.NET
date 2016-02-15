@@ -14,14 +14,14 @@ namespace GW2NET.Factories
     using GW2NET.Common;
 
     /// <summary>Provides access to the Guild Wars 2 service.</summary>
-    public abstract class FactoryBase
+    public abstract class ServiceFactoryBase
     {
         private readonly IServiceClient serviceClient;
 
-        /// <summary>Initializes a new instance of the <see cref="FactoryBase"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ServiceFactoryBase"/> class.</summary>
         /// <param name="serviceClient"></param>
         /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
-        protected FactoryBase(IServiceClient serviceClient)
+        protected ServiceFactoryBase(IServiceClient serviceClient)
         {
             if (serviceClient == null)
             {

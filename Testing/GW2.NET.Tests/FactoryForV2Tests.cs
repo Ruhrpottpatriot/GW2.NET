@@ -20,7 +20,7 @@ namespace GW2NET
         [Test]
         public void BuildTest()
         {
-            var build = this.bootstrapper.V2.Builds.GetBuild();
+            var build = this.bootstrapper.Services.Builds.GetBuild();
 
             Assert.IsNotNull(build);
             Assert.That(build.BuildId, Is.GreaterThan(0));
@@ -29,7 +29,7 @@ namespace GW2NET
         [Test]
         public void ColorIdTest()
         {
-            var ids = this.bootstrapper.V2.Colors.ForDefaultCulture().Discover();
+            var ids = this.bootstrapper.Services.Colors.ForDefaultCulture().Discover();
 
             Assert.IsNotNull(ids);
 
@@ -40,7 +40,7 @@ namespace GW2NET
         [Test]
         public void ColorDetailsTest()
         {
-            var color = this.bootstrapper.V2.Colors.ForDefaultCulture().Find(5);
+            var color = this.bootstrapper.Services.Colors.ForDefaultCulture().Find(5);
 
             Assert.NotNull(color);
         }
@@ -48,7 +48,7 @@ namespace GW2NET
         [Test]
         public void GemsExchangeTest()
         {
-            var exchange = this.bootstrapper.V2.Commerce.Exchange.GetCoins(gems: 100);
+            var exchange = this.bootstrapper.Services.Commerce.Exchange.GetCoins(gems: 100);
 
             Assert.NotNull(exchange);
             Assert.AreEqual(exchange.Send, 100);
@@ -57,7 +57,7 @@ namespace GW2NET
         [Test]
         public void CoinsExchangeTest()
         {
-            var exchange = this.bootstrapper.V2.Commerce.Exchange.GetGems(coins: 100000);
+            var exchange = this.bootstrapper.Services.Commerce.Exchange.GetGems(coins: 100000);
 
             Assert.NotNull(exchange);
             Assert.AreEqual(exchange.Send, 100000);

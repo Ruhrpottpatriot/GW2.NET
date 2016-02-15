@@ -15,7 +15,7 @@ namespace GW2NET.IntegrationTests.V2
         [Fact]
         public void GetBuild()
         {
-            var result = GW2.V2.Builds.GetBuild();
+            var result = GW2.Services.Builds.GetBuild();
             Assert.NotNull(result);
             Assert.NotInRange(result.BuildId, int.MinValue, 0);
             Assert.NotStrictEqual(default(DateTimeOffset), result.Timestamp);
@@ -24,7 +24,7 @@ namespace GW2NET.IntegrationTests.V2
         [Fact]
         public async void GetBuildAsync()
         {
-            var result = await GW2.V2.Builds.GetBuildAsync();
+            var result = await GW2.Services.Builds.GetBuildAsync();
             Assert.NotNull(result);
             Assert.NotInRange(result.BuildId, int.MinValue, 0);
             Assert.NotStrictEqual(default(DateTimeOffset), result.Timestamp);

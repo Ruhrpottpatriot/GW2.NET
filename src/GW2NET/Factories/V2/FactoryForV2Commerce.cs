@@ -23,9 +23,9 @@ namespace GW2NET.Factories.V2
     using GW2NET.V2.Commerce.Prices.Json;
 
     /// <summary>Provides access to commerce data sources based on the /v2/ api.</summary>
-    public class FactoryForV2Commerce : FactoryBase
+    public class FactoryForV2Commerce : ServiceFactoryBase
     {
-        /// <summary>Initializes a new instance of the <see cref="FactoryForV2Commerce"/> class. Initializes a new instance of the <see cref="FactoryBase"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="FactoryForV2Commerce"/> class. Initializes a new instance of the <see cref="ServiceFactoryBase"/> class.</summary>
         /// <param name="serviceClient"></param>
         /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public FactoryForV2Commerce(IServiceClient serviceClient)

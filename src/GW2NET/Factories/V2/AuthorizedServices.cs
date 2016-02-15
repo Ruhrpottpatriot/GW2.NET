@@ -14,12 +14,12 @@ namespace GW2NET.Factories.V2
     using GW2NET.Common;
 
     /// <summary>Provides access to the authorized part of the version 2 API.</summary>
-    public class FactoryForV2Authorized : FactoryBase
+    public class AuthorizedServices : ServiceFactoryBase
     {
-        /// <summary>Initializes a new instance of the <see cref="FactoryForV2Authorized"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="AuthorizedServices"/> class.</summary>
         /// <param name="serviceClient"></param>
         /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
-        public FactoryForV2Authorized(IServiceClient serviceClient)
+        public AuthorizedServices(IServiceClient serviceClient)
             : base(serviceClient)
         {
         }

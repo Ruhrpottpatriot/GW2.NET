@@ -14,7 +14,10 @@ namespace GW2NET.Factories.V2
     using GW2NET.Builds;
     using GW2NET.Common;
     using GW2NET.Common.Converters;
+    using GW2NET.Guilds;
     using GW2NET.Quaggans;
+    using GW2NET.V1.Guilds;
+    using GW2NET.V1.Guilds.Converters;
     using GW2NET.V2.Builds;
     using GW2NET.V2.Builds.Converters;
     using GW2NET.V2.Quaggans;
@@ -22,12 +25,12 @@ namespace GW2NET.Factories.V2
     using GW2NET.V2.Quaggans.Json;
 
     /// <summary>Provides access to version 2 of the public API.</summary>
-    public class FactoryForV2 : FactoryBase
+    public class Services : ServiceFactoryBase
     {
-        /// <summary>Initializes a new instance of the <see cref="FactoryForV2"/> class. Initializes a new instance of the <see cref="FactoryBase"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="Services"/> class. Initializes a new instance of the <see cref="ServiceFactoryBase"/> class.</summary>
         /// <param name="serviceClient"></param>
         /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
-        public FactoryForV2(IServiceClient serviceClient)
+        public Services(IServiceClient serviceClient)
             : base(serviceClient)
         {
         }
@@ -42,11 +45,11 @@ namespace GW2NET.Factories.V2
         }
 
         /// <summary>Gets access to the colors data source.</summary>
-        public V2.ColorRepositoryFactory Colors
+        public ColorRepositoryFactory Colors
         {
             get
             {
-                return new V2.ColorRepositoryFactory(this.ServiceClient);
+                return new ColorRepositoryFactory(this.ServiceClient);
             }
         }
 
