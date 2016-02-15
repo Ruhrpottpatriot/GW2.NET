@@ -16,7 +16,6 @@ namespace GW2NET
     using GW2NET.Common.Serializers;
     using GW2NET.Compression;
     using GW2NET.Factories;
-    using GW2NET.Factories.V1;
     using GW2NET.Factories.V2;
 
     /// <summary>Provides access to Guild Wars 2 data sources and services.</summary>
@@ -38,7 +37,6 @@ namespace GW2NET
             IServiceClient renderingServiceClient = this.CreateRenderingServiceClient();
 
             // Pupulate the repository properties
-            this.V1 = new FactoryForV1(serviceClient);
             this.Services = new Services(serviceClient);
             this.Rendering = new FactoryForRendering(renderingServiceClient);
             this.Local = new FactoryForLocal();
@@ -56,9 +54,6 @@ namespace GW2NET
 
         /// <summary>Gets access to the rendering service.</summary>
         public FactoryForRendering Rendering { get; private set; }
-
-        /// <summary>Gets access to version 1 of the public API.</summary>
-        public FactoryForV1 V1 { get; private set; }
 
         /// <summary>Gets access to the public area of the version 2 of the Guild Wars 2 API.</summary>
         public Services Services { get; private set; }

@@ -80,6 +80,18 @@ namespace GW2NET.Factories.V2
             }
         }
 
+        /// <summary>Gets access to the guilds data source.</summary>
+        public IGuildRepository Guilds
+        {
+            get
+            {
+                var emblemTransformationConverter = new EmblemTransformationConverter();
+                var emblemTransformationsConverter = new EmblemTransformationCollectionConverter(emblemTransformationConverter);
+                var emblemConverter = new EmblemConverter(emblemTransformationsConverter);
+                return new GuildRepository(this.ServiceClient, new GuildConverter(emblemConverter));
+            }
+        }
+
         /// <summary>Gets access to the items data source.</summary>
         public ItemRepositoryFactory Items
         {

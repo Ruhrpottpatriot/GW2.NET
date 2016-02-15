@@ -129,7 +129,6 @@
     <Compile Include="Factories\FactoryForLocal.cs" />
     <Compile Include="Factories\FactoryForRendering.cs" />
     <Compile Include="Factories\RepositoryFactoryBase.cs" />
-    <Compile Include="Factories\V1\FactoryForV1.cs" />
     <Compile Include="Factories\V2\AccountRepositoryFactory.cs" />
     <Compile Include="Factories\V2\ArmorConverterFactory.cs" />
     <Compile Include="Factories\V2\ArmorSkinConverterFactory.cs" />
