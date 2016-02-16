@@ -7,10 +7,10 @@ namespace GW2NET
     using NUnit.Framework;
 
     [TestFixture]
-    public class Foo
+    public class AuthorisationTests
     {
         [Test]
-        public void Bar()
+        public void Authorisation()
         {
             var account = new GW2Bootstrapper("4BC5675A-F5B4-EF4A-A385-9480885E43DE4FACE73C-8A61-4AA1-8A40-6B9EDE7D6FDA ").AuthorizedServices.Accounts.ForDefaultCulture().GetInformation();
 

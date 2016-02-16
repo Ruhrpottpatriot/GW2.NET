@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Converters\OfferConverterTests.cs" />
+    <Compile Include="ListingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,4 +106,3 @@
   </Target>
   -->
 </Project>
-

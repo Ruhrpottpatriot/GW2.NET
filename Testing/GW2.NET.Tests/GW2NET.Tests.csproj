@@ -112,20 +112,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="FactoryForV2Tests.cs" />
-    <Compile Include="Foo.cs" />
-    <Compile Include="IntegrationTests\V2\MapTests.cs" />
-    <Compile Include="IntegrationTests\V2\WorldTests.cs" />
-    <Compile Include="IntegrationTests\V2\ExchangeTests.cs" />
-    <Compile Include="IntegrationTests\V2\SkinTests.cs" />
-    <Compile Include="IntegrationTests\V2\QuagganTests.cs" />
-    <Compile Include="IntegrationTests\V2\FileTests.cs" />
-    <Compile Include="IntegrationTests\V2\ContinentTests.cs" />
-    <Compile Include="IntegrationTests\V2\RecipeTests.cs" />
-    <Compile Include="IntegrationTests\V2\ItemTests.cs" />
-    <Compile Include="IntegrationTests\V2\BuildTests.cs" />
-    <Compile Include="IntegrationTests\V2\AggregateListingTests.cs" />
-    <Compile Include="IntegrationTests\V2\ListingTests.cs" />
-    <Compile Include="IntegrationTests\V2\ColorTests.cs" />
+    <Compile Include="AuthorisationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
