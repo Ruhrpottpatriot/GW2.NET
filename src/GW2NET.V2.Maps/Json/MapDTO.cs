@@ -40,6 +40,12 @@ namespace GW2NET.V2.Maps.Json
         public int MaximumLevel { get; set; }
 
         /// <summary>
+        /// Gets or sets the map type.
+        /// </summary>
+        [DataMember(Name = "type", Order = 5)]
+        public string TypeName { get; set; }
+
+        /// <summary>
         /// Gets or sets the default floor.
         /// </summary>
         [DataMember(Name = "default_floor", Order = 4)]
@@ -48,43 +54,43 @@ namespace GW2NET.V2.Maps.Json
         /// <summary>
         /// Gets or sets the floors.
         /// </summary>
-        [DataMember(Name = "floors", Order = 5)]
+        [DataMember(Name = "floors", Order = 6)]
         public int[] Floors { get; set; }
 
         /// <summary>
         /// Gets or sets the region id.
         /// </summary>
-        [DataMember(Name = "region_id", Order = 6)]
+        [DataMember(Name = "region_id", Order = 7)]
         public int RegionId { get; set; }
 
         /// <summary>
         /// Gets or sets the region name.
         /// </summary>
-        [DataMember(Name = "region_name", Order = 7)]
+        [DataMember(Name = "region_name", Order = 8)]
         public string RegionName { get; set; }
 
         /// <summary>
         /// Gets or sets the continent id.
         /// </summary>
-        [DataMember(Name = "continent_id", Order = 8)]
+        [DataMember(Name = "continent_id", Order = 9)]
         public int ContinentId { get; set; }
 
         /// <summary>
         /// Gets or sets the continent name.
         /// </summary>
-        [DataMember(Name = "continent_name", Order = 9)]
+        [DataMember(Name = "continent_name", Order = 10)]
         public string ContinentName { get; set; }
 
         /// <summary>
         /// Gets or sets the map rectangle.
         /// </summary>
-        [DataMember(Name = "map_rect", Order = 10)]
+        [DataMember(Name = "map_rect", Order = 11)]
         public double[][] MapRectangle { get; set; }
 
         /// <summary>
         /// Gets or sets the continent rectangle.
         /// </summary>
-        [DataMember(Name = "continent_rect", Order = 11)]
+        [DataMember(Name = "continent_rect", Order = 12)]
         public double[][] ContinentRectangle { get; set; }
     }
 }
