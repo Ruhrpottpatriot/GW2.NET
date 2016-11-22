@@ -52,5 +52,11 @@ namespace GW2NET.WorldVersusWorld
 
         /// <summary>Gets or sets the map's scoreboard.</summary>
         public virtual Scoreboard Scores { get; set; }
+
+        /// <summary>Gets or sets the map's kills.</summary>
+        public virtual Scoreboard Kills { get; set; }
+
+        /// <summary>Gets or sets the map's deaths.</summary>
+        public virtual Scoreboard Deaths { get; set; }
     }
 }

@@ -27,6 +27,7 @@ namespace GW2NET.WorldVersusWorld
                 Debug.Assert(this.maps != null, "this.maps != null");
                 return this.maps;
             }
+
             set
             {
                 this.maps = value ?? EmptyMaps;
@@ -38,6 +39,15 @@ namespace GW2NET.WorldVersusWorld
 
         /// <summary>Gets or sets the total scores.</summary>
         public virtual Scoreboard Scores { get; set; }
+
+        /// <summary>Gets or sets the world ids.</summary>
+        public virtual Scoreboard Worlds { get; set; }
+
+        /// <summary>Gets or sets the total kills.</summary>
+        public virtual Scoreboard Kills { get; set; }
+
+        /// <summary>Gets or sets the total deaths.</summary>
+        public virtual Scoreboard Deaths { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
