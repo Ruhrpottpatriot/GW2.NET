@@ -14,6 +14,12 @@ namespace GW2NET.WorldVersusWorld
     /// <summary>Provides the base class for World versus World maps.</summary>
     public abstract class CompetitiveMap
     {
+        /// <summary>Gets or sets the map's id.</summary>
+        public virtual int Id { get; set; }
+
+        /// <summary>Gets or sets the map's type.</summary>
+        public virtual string Type { get; set; }
+
         private static readonly MapBonus[] EmptyBonuses = new MapBonus[0];
 
         private ICollection<MapBonus> bonuses = EmptyBonuses;

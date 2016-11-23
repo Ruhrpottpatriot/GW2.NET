@@ -18,7 +18,7 @@ namespace GW2NET.V2.Maps.Tests
             var map = repository.Find(id);
             Assert.Equal(map.MapId, 95);
             Assert.Equal(map.MapName, " Alpine Borderlands");
-            Assert.Equal(map.TypeName, "GreenHome");
+            Assert.Equal(map.Type, "GreenHome");
             Assert.Equal(map.RegionName, "World vs. World");
         }
     }

@@ -58,6 +58,9 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Converters
 
         partial void Merge(CompetitiveMap entity, CompetitiveMapDTO dto, object state)
         {
+            entity.Id = dto.Id;
+            entity.Type = dto.Type;
+
             var scores = dto.Scores;
             if (scores != null)
             {

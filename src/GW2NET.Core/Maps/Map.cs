@@ -39,7 +39,7 @@ namespace GW2NET.Maps
         public CultureInfo Culture { get; set; }
 
         /// <summary>Gets or sets the map type.</summary>
-        public virtual string TypeName { get; set; }
+        public virtual string Type { get; set; }
 
         /// <summary>Gets or sets the default floor.</summary>
         public virtual int DefaultFloor { get; set; }

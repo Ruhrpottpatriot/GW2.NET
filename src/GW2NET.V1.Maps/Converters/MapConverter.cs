@@ -46,7 +46,7 @@ namespace GW2NET.V1.Maps.Converters
                 MapName = value.MapName,
                 MinimumLevel = value.MinimumLevel,
                 MaximumLevel = value.MaximumLevel,
-                TypeName = value.TypeName,
+                Type = value.TypeName,
                 DefaultFloor = value.DefaultFloor,
                 Floors = value.Floors,
                 RegionId = value.RegionId,
