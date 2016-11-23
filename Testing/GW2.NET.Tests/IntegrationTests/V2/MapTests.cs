@@ -201,18 +201,5 @@ namespace GW2NET.IntegrationTests.V2
             var exception = await Assert.ThrowsAsync<ServiceException>(() => repository.FindPageAsync(0, 201));
             this.logger.WriteLine(exception.Message);
         }
-
-        [Theory]
-        [InlineData(95)]
-        public void ConversionIncludesTypeName(int id)
-        {
-            var repository = GW2.V2.Maps.ForDefaultCulture();
-            var map = repository.Find(id);
-            Assert.Equal(map.MapId, 95);
-            Assert.Equal(map.MapName, " Alpine Borderlands");
-            Assert.Equal(map.TypeName, "GreenHome");
-            Assert.Equal(map.RegionName, "World vs. World");
-        }
-
     }
 }

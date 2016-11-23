@@ -9,6 +9,7 @@
 namespace GW2NET.Worlds
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
 
     using GW2NET.Common;
@@ -106,5 +107,73 @@ namespace GW2NET.Worlds
 
             return this.WorldId.ToString(NumberFormatInfo.InvariantInfo);
         }
+
+        public string AbbreviatedName
+        {
+            get
+            {
+                string name;
+                if (AbbreviatedNames.TryGetValue(this.WorldId, out name))
+                {
+                    return name;
+                }
+                return this.Name;
+            }
+        }
+
+        private static readonly Dictionary<int, string> AbbreviatedNames = new System.Collections.Generic.Dictionary<int, string>(64)
+        {
+            { 1001, "AR" },
+            { 1002, "BP" },
+            { 1003, "YB" },
+            { 1004, "HOD" },
+            { 1005, "MAG" },
+            { 1006, "SF" },
+            { 1007, "GOM" },
+            { 1008, "JQ" },
+            { 1009, "FA" },
+            { 1010, "EB" },
+            { 1011, "SBI" },
+            { 1012, "DH" },
+            { 1013, "SOR" },
+            { 1014, "CD" },
+            { 1015, "IOJ" },
+            { 1016, "SOS" },
+            { 1017, "TC" },
+            { 1018, "NSP" },
+            { 1019, "BG" },
+            { 1020, "FC" },
+            { 1021, "DB" },
+            { 1022, "KAIN" },
+            { 1023, "DR" },
+            { 1024, "ET" },
+            { 2001, "FOW" },
+            { 2002, "DESO" },
+            { 2003, "GAND" },
+            { 2004, "BT" },
+            { 2005, "ROF" },
+            { 2006, "UW" },
+            { 2007, "FSP" },
+            { 2008, "WR" },
+            { 2009, "ROS" },
+            { 2010, "SR" },
+            { 2011, "VB" },
+            { 2012, "PS" },
+            { 2013, "AG" },
+            { 2014, "GH" },
+            { 2101, "JS" },
+            { 2102, "FR" },
+            { 2103, "AGR" },
+            { 2104, "VS" },
+            { 2105, "AS" },
+            { 2201, "KOD" },
+            { 2202, "RIV" },
+            { 2203, "ER" },
+            { 2204, "AM" },
+            { 2205, "DL" },
+            { 2206, "MS" },
+            { 2207, "DZ" },
+            { 2301, "BB" }
+        };
     }
 }

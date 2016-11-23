@@ -26,7 +26,7 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Json
 
         /// <summary>Gets or sets the scores per team.</summary>
         [DataMember(Name = "scores", Order = 2)]
-        public int[] Scores { get; set; }
+        public TeamStatDTO Scores { get; set; }
 
         /// <summary>Gets or sets the map bonus details.</summary>
         [DataMember(Name = "bonuses", Order = 3)]
@@ -38,10 +38,10 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Json
 
         /// <summary>Gets or sets the deaths per team.</summary>
         [DataMember(Name = "deaths", Order = 5)]
-        public int[] Deaths { get; set; }
+        public TeamStatDTO Deaths { get; set; }
 
         /// <summary>Gets or sets the kills per team.</summary>
         [DataMember(Name = "kills", Order = 6)]
-        public int[] Kills { get; set; }
+        public TeamStatDTO Kills { get; set; }
     }
 }

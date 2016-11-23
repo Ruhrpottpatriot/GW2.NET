@@ -47,7 +47,6 @@
     <Compile Include="ObjectiveNameRequest.cs" />
     <Compile Include="ObjectiveNameRepository.cs" />
     <Compile Include="ObjectiveDetailsRequest.cs" />
-    <Compile Include="ObjectiveRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

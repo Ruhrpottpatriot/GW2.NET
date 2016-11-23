@@ -415,8 +415,10 @@
     <Compile Include="WorldVersusWorld\CompetitiveMap.cs" />
     <Compile Include="WorldVersusWorld\EternalBattlegrounds.cs" />
     <Compile Include="WorldVersusWorld\GreenBorderlands.cs" />
+    <Compile Include="WorldVersusWorld\IMatchWorldRespository.cs" />
     <Compile Include="WorldVersusWorld\IMatchRepository.cs" />
     <Compile Include="WorldVersusWorld\IObjectiveNameRepository.cs" />
+    <Compile Include="WorldVersusWorld\IMatchIdRespository.cs" />
     <Compile Include="WorldVersusWorld\MapBonus.cs" />
     <Compile Include="WorldVersusWorld\Match.cs" />
     <Compile Include="WorldVersusWorld\Matchup.cs" />

@@ -22,7 +22,7 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Converters
 
         private readonly IConverter<ObjectiveDTO, Objective> objectiveConverter;
 
-        private readonly IConverter<int[], Scoreboard> scoreboardConverter;
+        private readonly IConverter<TeamStatDTO, Scoreboard> scoreboardConverter;
 
         /// <summary>Initializes a new instance of the <see cref="CompetitiveMapConverter"/> class.</summary>
         /// <param name="converterFactory"></param>
@@ -31,7 +31,7 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Converters
         /// <param name="mapBonusConverter">The converter for <see cref="MapBonus"/>.</param>
         public CompetitiveMapConverter(
             ITypeConverterFactory<CompetitiveMapDTO, CompetitiveMap> converterFactory,
-            IConverter<int[], Scoreboard> scoreboardConverter,
+            IConverter<TeamStatDTO, Scoreboard> scoreboardConverter,
             IConverter<ObjectiveDTO, Objective> objectiveConverter,
             IConverter<MapBonusDTO, MapBonus> mapBonusConverter)
             : this(converterFactory)
@@ -59,9 +59,21 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Converters
         partial void Merge(CompetitiveMap entity, CompetitiveMapDTO dto, object state)
         {
             var scores = dto.Scores;
-            if (scores != null && scores.Length == 3)
+            if (scores != null)
             {
                 entity.Scores = this.scoreboardConverter.Convert(scores, dto);
+            }
+
+            var deaths = dto.Deaths;
+            if (deaths != null)
+            {
+                entity.Deaths = this.scoreboardConverter.Convert(deaths, dto);
+            }
+
+            var kills = dto.Kills;
+            if (kills != null)
+            {
+                entity.Kills = this.scoreboardConverter.Convert(kills, dto);
             }
 
             var objectives = dto.Objectives;

@@ -45,6 +45,7 @@
     <DocumentationFile>bin\Release\GW2NET.V2.Maps.Tests.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="MapsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +59,10 @@
     <ProjectReference Include="..\GW2NET.V2.Maps\GW2NET.V2.Maps.csproj">
       <Project>{e0048487-3e7f-4036-bc50-508af4c321e2}</Project>
       <Name>GW2NET.V2.Maps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET\GW2NET.csproj">
+      <Project>{48c94f34-b6bd-4bdd-a0d5-36403a86fb78}</Project>
+      <Name>GW2NET</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +91,9 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0-rc1\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0-rc1\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -101,4 +109,3 @@
   </Target>
   -->
 </Project>
-

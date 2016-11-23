@@ -21,12 +21,12 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Converters
     {
         private readonly IConverter<CompetitiveMapDTO, CompetitiveMap> competitiveMapConverter;
 
-        private readonly IConverter<int[], Scoreboard> scoreboardConverter;
+        private readonly IConverter<TeamStatDTO, Scoreboard> scoreboardConverter;
 
         /// <summary>Initializes a new instance of the <see cref="MatchConverter"/> class.</summary>
         /// <param name="scoreboardConverter">The scoreboard converter.</param>
         /// <param name="competitiveMapConverter">The competitive map data contract converter.</param>
-        public MatchConverter(IConverter<int[], Scoreboard> scoreboardConverter, IConverter<CompetitiveMapDTO, CompetitiveMap> competitiveMapConverter)
+        public MatchConverter(IConverter<TeamStatDTO, Scoreboard> scoreboardConverter, IConverter<CompetitiveMapDTO, CompetitiveMap> competitiveMapConverter)
         {
             if (scoreboardConverter == null)
             {
@@ -59,9 +59,27 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Converters
             };
 
             var scores = value.Scores;
-            if (scores != null && scores.Length == 3)
+            if (scores != null)
             {
                 match.Scores = this.scoreboardConverter.Convert(scores, value);
+            }
+
+            var worlds = value.Worlds;
+            if (worlds != null)
+            {
+                match.Worlds = this.scoreboardConverter.Convert(worlds, value);
+            }
+
+            var deaths = value.Deaths;
+            if (deaths != null)
+            {
+                match.Deaths = this.scoreboardConverter.Convert(deaths, value);
+            }
+
+            var kills = value.Deaths;
+            if (kills != null)
+            {
+                match.Kills = this.scoreboardConverter.Convert(kills, value);
             }
 
             var maps = value.Maps;

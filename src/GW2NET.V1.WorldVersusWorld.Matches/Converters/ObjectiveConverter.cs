@@ -44,7 +44,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 
             var objective = new Objective
             {
-                ObjectiveId = value.Id
+                ObjectiveId = value.Id.ToString()
             };
 
             var owner = value.Owner;

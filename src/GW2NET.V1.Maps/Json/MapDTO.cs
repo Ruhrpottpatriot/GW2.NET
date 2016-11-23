@@ -29,7 +29,7 @@ namespace GW2NET.V1.Maps.Json
         [DataMember(Name = "default_floor", Order = 3)]
         public int DefaultFloor { get; set; }
 
-        [DataMember(Name = "default_floor", Order = 4)]
+        [DataMember(Name = "type", Order = 4)]
         public string TypeName { get; set; }
 
         [DataMember(Name = "floors", Order = 5)]

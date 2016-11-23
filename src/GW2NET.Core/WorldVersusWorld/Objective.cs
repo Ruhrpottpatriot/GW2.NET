@@ -16,11 +16,14 @@ namespace GW2NET.WorldVersusWorld
     /// <summary>Represents one of a World versus World map's objectives.</summary>
     public class Objective : IEquatable<Objective>
     {
+        /// <summary>Gets or sets the type of the objective.</summary>
+        public virtual string Type { get; set; }
+
         /// <summary>Gets or sets the name of the objective. This is a navigation property. Use the value of <see cref="ObjectiveId"/> to obtain a reference.</summary>
         public virtual ObjectiveName Name { get; set; }
 
         /// <summary>Gets or sets the objective identifier.</summary>
-        public virtual int ObjectiveId { get; set; }
+        public virtual string ObjectiveId { get; set; }
 
         /// <summary>Gets or sets the current owner.</summary>
         public virtual TeamColor Owner { get; set; }
@@ -30,6 +33,12 @@ namespace GW2NET.WorldVersusWorld
 
         /// <summary>Gets or sets the identifier of the guild currently claiming the objective.</summary>
         public virtual Guid? OwnerGuildId { get; set; }
+
+        /// <summary>Gets of sets timestamp when objective was claimed by a guild.</summary>
+        public virtual string ClaimedAt { get; set; }
+
+        /// <summary>Gets of sets timestamp of last flip of the objective.</summary>
+        public virtual string LastFlipped { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
@@ -94,7 +103,7 @@ namespace GW2NET.WorldVersusWorld
         /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
-            return this.ObjectiveId;
+            return this.ObjectiveId.GetHashCode();
         }
 
         /// <summary>Returns a string that represents the current object.</summary>
@@ -107,7 +116,7 @@ namespace GW2NET.WorldVersusWorld
                 return name.ToString();
             }
 
-            return this.ObjectiveId.ToString(NumberFormatInfo.InvariantInfo);
+            return this.ObjectiveId;
         }
     }
 }

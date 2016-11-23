@@ -13,12 +13,13 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Json
     using System.Runtime.Serialization;
 
     [DataContract]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/wvw/match_details")]
     public sealed class MapBonusDTO
     {
+        /// <summary>Map bonus type</summary>
         [DataMember(Name = "type", Order = 0)]
         public string Type { get; set; }
 
+        /// <summary>Map bonus owner</summary>
         [DataMember(Name = "owner", Order = 1)]
         public string Owner { get; set; }
     }

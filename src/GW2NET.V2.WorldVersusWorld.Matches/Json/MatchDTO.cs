@@ -17,7 +17,7 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Json
     public sealed class MatchDTO
     {
         /// <summary>Gets or sets the match id.</summary>
-        [DataMember(Name = "match_id", Order = 0)]
+        [DataMember(Name = "id", Order = 0)]
         public string MatchId { get; set; }
 
         /// <summary>Gets or sets the start time.</summary>
@@ -30,19 +30,19 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Json
 
         /// <summary>Gets or sets the scores per team.</summary>
         [DataMember(Name = "scores", Order = 3)]
-        public int[] Scores { get; set; }
+        public TeamStatDTO Scores { get; set; }
 
         /// <summary>Gets or sets the teams' world ids.</summary>
         [DataMember(Name = "worlds", Order = 4)]
-        public int[] Worlds { get; set; }
+        public TeamStatDTO Worlds { get; set; }
 
         /// <summary>Gets or sets the deaths per team.</summary>
         [DataMember(Name = "deaths", Order = 5)]
-        public int[] Deaths { get; set; }
+        public TeamStatDTO Deaths { get; set; }
 
         /// <summary>Gets or sets the kills per team.</summary>
         [DataMember(Name = "kills", Order = 6)]
-        public int[] Kills { get; set; }
+        public TeamStatDTO Kills { get; set; }
 
         /// <summary>Gets or sets the details per map.</summary>
         [DataMember(Name = "maps", Order = 7)]

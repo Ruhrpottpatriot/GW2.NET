@@ -13,31 +13,27 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Converters
 
     using GW2NET.Common;
     using GW2NET.WorldVersusWorld;
+    using GW2NET.V2.WorldVersusWorld.Matches.Json;
 
     /// <summary>Converts objects of type <see cref="T:int[]"/> to objects of type <see cref="Scoreboard"/>.</summary>
-    public sealed class ScoreboardConverter : IConverter<int[], Scoreboard>
+    public sealed class TeamStatConverter : IConverter<TeamStatDTO, Scoreboard>
     {
         /// <summary>Converts the given object of type <see cref="T:int[]"/> to an object of type <see cref="Scoreboard"/>.</summary>
         /// <param name="value">The value to convert.</param>
         /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public Scoreboard Convert(int[] value, object state)
+        public Scoreboard Convert(TeamStatDTO value, object state)
         {
             if (value == null)
             {
                 throw new ArgumentNullException("value");
             }
 
-            if (value.Length != 3)
-            {
-                throw new ArgumentException("Precondition: value.Length == 3", "value");
-            }
-
             return new Scoreboard
             {
-                Red = value[0],
-                Blue = value[1],
-                Green = value[2]
+                Red = value.Red,
+                Blue = value.Blue,
+                Green = value.Green
             };
         }
     }

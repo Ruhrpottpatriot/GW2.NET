@@ -44,7 +44,9 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Converters
 
             var objective = new Objective
             {
-                ObjectiveId = value.Id
+                ObjectiveId = value.Id,
+                Type = value.Type,
+                LastFlipped = value.LastFlipped
             };
 
             var owner = value.Owner;
@@ -53,10 +55,11 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Converters
                 objective.Owner = this.teamColorConverter.Convert(owner, value);
             }
 
-            var ownerGuild = value.OwnerGuild;
+            var ownerGuild = value.ClaimedBy;
             if (ownerGuild != null)
             {
                 objective.OwnerGuildId = Guid.Parse(ownerGuild);
+                objective.ClaimedAt = value.ClaimedAt;
             }
 
             return objective;

@@ -32,6 +32,8 @@ namespace GW2NET.V1.Events.Converters
                     return DynamicEventFlags.GroupEvent;
                 case @"map_wide":
                     return DynamicEventFlags.MapWide;
+                case @"meta_event":
+                    return DynamicEventFlags.MetaEvent;
                 default:
                     Debug.Assert(false, "Unknown DynamicEventFlags: " + value);
                     return default(DynamicEventFlags);

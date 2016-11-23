@@ -13,16 +13,30 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Json
     using System.Runtime.Serialization;
 
     [DataContract]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/wvw/match_details")]
     public sealed class ObjectiveDTO
     {
+        /// <summary>Objective id</summary>
         [DataMember(Name = "id", Order = 0)]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
-        [DataMember(Name = "owner", Order = 1)]
+        /// <summary>Type of objective</summary>
+        [DataMember(Name = "type", Order = 1)]
+        public string Type { get; set; }
+
+        /// <summary>Team color that owns the objective.</summary>
+        [DataMember(Name = "owner", Order = 2)]
         public string Owner { get; set; }
 
-        [DataMember(Name = "owner_guild", Order = 2)]
-        public string OwnerGuild { get; set; }
+        /// <summary>Timestamp of last flip of the objective.</summary>
+        [DataMember(Name = "last_flipped", Order = 3)]
+        public string LastFlipped { get; set; }
+
+        /// <summary>Guild Id which has claimed the objective.</summary>
+        [DataMember(Name = "claimed_by", Order = 4)]
+        public string ClaimedBy { get; set; }
+
+        /// <summary>Timestamp when objective was claimed.</summary>
+        [DataMember(Name = "claimed_at", Order = 5)]
+        public string ClaimedAt { get; set; }
     }
 }
