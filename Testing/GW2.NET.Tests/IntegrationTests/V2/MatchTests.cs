@@ -145,5 +145,33 @@ namespace GW2NET.IntegrationTests.V2
             var repository = GW2.V2.WorldVersusWorld.Matches;
             await Assert.ThrowsAsync<NotSupportedException>(() => repository.FindPageAsync(pageIndex, pageSize));
         }
+
+        [Theory]
+        [InlineData(1008)]
+        public void FindByWorld(int identifier)
+        {
+            var repository = GW2.V2.WorldVersusWorld.MatchesByWorld;
+            var match = repository.Find(identifier);
+            Assert.NotNull(match);
+            Assert.True(
+                identifier == match.Worlds.Red
+                || identifier == match.Worlds.Blue
+                || identifier == match.Worlds.Green
+            );
+        }
+
+        [Theory]
+        [InlineData(1008)]
+        public async void FindByWorldAsync(int identifier)
+        {
+            var repository = GW2.V2.WorldVersusWorld.MatchesByWorld;
+            var match = await repository.FindAsync(identifier);
+            Assert.NotNull(match);
+            Assert.True(
+                identifier == match.Worlds.Red
+                || identifier == match.Worlds.Blue
+                || identifier == match.Worlds.Green
+            );
+        }
     }
 }
