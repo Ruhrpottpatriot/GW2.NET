@@ -76,7 +76,7 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Converters
                 match.Deaths = this.scoreboardConverter.Convert(deaths, value);
             }
 
-            var kills = value.Deaths;
+            var kills = value.Kills;
             if (kills != null)
             {
                 match.Kills = this.scoreboardConverter.Convert(kills, value);
