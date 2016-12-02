@@ -10,22 +10,28 @@ namespace GW2NET.WorldVersusWorld
 {
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Runtime.Serialization;
 
     /// <summary>Provides the base class for World versus World maps.</summary>
+    [DataContract]
     public abstract class CompetitiveMap
     {
         /// <summary>Gets or sets the map's id.</summary>
+        [DataMember]
         public virtual int Id { get; set; }
 
         /// <summary>Gets or sets the map's type.</summary>
+        [DataMember]
         public virtual string Type { get; set; }
 
         private static readonly MapBonus[] EmptyBonuses = new MapBonus[0];
 
+        [DataMember]
         private ICollection<MapBonus> bonuses = EmptyBonuses;
 
         private static readonly Objective[] EmptyObjectives = new Objective[0];
 
+        [DataMember]
         private ICollection<Objective> objectives;
 
         /// <summary>Gets or sets the map's bonuses.</summary>
@@ -57,12 +63,15 @@ namespace GW2NET.WorldVersusWorld
         }
 
         /// <summary>Gets or sets the map's scoreboard.</summary>
+        [DataMember]
         public virtual Scoreboard Scores { get; set; }
 
         /// <summary>Gets or sets the map's kills.</summary>
+        [DataMember]
         public virtual Scoreboard Kills { get; set; }
 
         /// <summary>Gets or sets the map's deaths.</summary>
+        [DataMember]
         public virtual Scoreboard Deaths { get; set; }
     }
 }

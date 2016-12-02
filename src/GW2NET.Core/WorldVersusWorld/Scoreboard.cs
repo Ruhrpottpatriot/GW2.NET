@@ -8,16 +8,22 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.WorldVersusWorld
 {
+    using System.Runtime.Serialization;
+
     /// <summary>Represents a World versus World scoreboard.</summary>
+    [DataContract]
     public class Scoreboard
     {
         /// <summary>Gets or sets the blue team's score.</summary>
+        [DataMember]
         public virtual int Blue { get; set; }
 
         /// <summary>Gets or sets the green team's score.</summary>
+        [DataMember]
         public virtual int Green { get; set; }
 
         /// <summary>Gets or sets the red team's score.</summary>
+        [DataMember]
         public virtual int Red { get; set; }
 
         /// <summary>Returns a string that represents the current object.</summary>
