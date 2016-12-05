@@ -11,10 +11,8 @@ namespace GW2NET.WorldVersusWorld
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-    using System.Runtime.Serialization;
 
     /// <summary>Represents a World versus World match.</summary>
-    [DataContract]
     public class Match : IEquatable<Match>
     {
         private static readonly CompetitiveMap[] EmptyMaps = new CompetitiveMap[0];
@@ -22,7 +20,6 @@ namespace GW2NET.WorldVersusWorld
         private ICollection<CompetitiveMap> maps = EmptyMaps;
 
         /// <summary>Gets or sets the list of maps.</summary>
-        [DataMember]
         public virtual ICollection<CompetitiveMap> Maps
         {
             get
@@ -38,23 +35,18 @@ namespace GW2NET.WorldVersusWorld
         }
 
         /// <summary>Gets or sets the match identifier.</summary>
-        [DataMember]
         public virtual string MatchId { get; set; }
 
         /// <summary>Gets or sets the total scores.</summary>
-        [DataMember]
         public virtual Scoreboard Scores { get; set; }
 
         /// <summary>Gets or sets the world ids.</summary>
-        [DataMember]
         public virtual Scoreboard Worlds { get; set; }
 
         /// <summary>Gets or sets the total kills.</summary>
-        [DataMember]
         public virtual Scoreboard Kills { get; set; }
 
         /// <summary>Gets or sets the total deaths.</summary>
-        [DataMember]
         public virtual Scoreboard Deaths { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
