@@ -57,11 +57,6 @@ namespace GW2NET.V2.WorldVersusWorld.Objectives.Converters
                 throw new ArgumentNullException("value");
             }
 
-            if (value.Length != 2)
-            {
-                throw new ArgumentException("Precondition: value.Length == 2", "value");
-            }
-
             return new Vector2D(value[0], value[1]);
         }
 
