@@ -54,7 +54,7 @@ namespace GW2NET.V2.WorldVersusWorld.Objectives.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                return new Vector2D(0, 0);
             }
 
             return new Vector2D(value[0], value[1]);
