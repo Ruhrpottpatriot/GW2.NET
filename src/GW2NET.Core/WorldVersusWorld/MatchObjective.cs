@@ -22,9 +22,6 @@ namespace GW2NET.WorldVersusWorld
         /// <summary>Gets or sets the locale.</summary>
         public virtual CultureInfo Culture { get; set; }
 
-        /// <summary>Gets or sets the name of the objective. This is a navigation property. Use the value of <see cref="ObjectiveId"/> to obtain a reference.</summary>
-        public virtual ObjectiveName Name { get; set; }
-
         /// <summary>Gets or sets the objective identifier.</summary>
         public virtual string ObjectiveId { get; set; }
 
@@ -37,10 +34,10 @@ namespace GW2NET.WorldVersusWorld
         /// <summary>Gets or sets the identifier of the guild currently claiming the objective.</summary>
         public virtual Guid? OwnerGuildId { get; set; }
 
-        /// <summary>Gets of sets timestamp when objective was claimed by a guild.</summary>
+        /// <summary>Gets or sets timestamp when objective was claimed by a guild.</summary>
         public virtual string ClaimedAt { get; set; }
 
-        /// <summary>Gets of sets timestamp of last flip of the objective.</summary>
+        /// <summary>Gets or sets timestamp of last flip of the objective.</summary>
         public virtual string LastFlipped { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
@@ -113,12 +110,6 @@ namespace GW2NET.WorldVersusWorld
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
-            var name = this.Name;
-            if (name != null)
-            {
-                return name.ToString();
-            }
-
             return this.ObjectiveId;
         }
     }
