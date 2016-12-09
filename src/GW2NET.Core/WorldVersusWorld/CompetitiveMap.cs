@@ -24,9 +24,9 @@ namespace GW2NET.WorldVersusWorld
 
         private ICollection<MapBonus> bonuses = EmptyBonuses;
 
-        private static readonly Objective[] EmptyObjectives = new Objective[0];
+        private static readonly MatchObjective[] EmptyObjectives = new MatchObjective[0];
 
-        private ICollection<Objective> objectives;
+        private ICollection<MatchObjective> objectives;
 
         /// <summary>Gets or sets the map's bonuses.</summary>
         public virtual ICollection<MapBonus> Bonuses
@@ -43,7 +43,7 @@ namespace GW2NET.WorldVersusWorld
         }
 
         /// <summary>Gets or sets the map's objectives.</summary>
-        public virtual ICollection<Objective> Objectives
+        public virtual ICollection<MatchObjective> Objectives
         {
             get
             {

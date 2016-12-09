@@ -9,11 +9,10 @@
 
 namespace GW2NET.V2.WorldVersusWorld.Matches.Json
 {
-    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
     [DataContract]
-    public sealed class ObjectiveDTO
+    public sealed class MatchObjectiveDTO
     {
         /// <summary>Objective id</summary>
         [DataMember(Name = "id", Order = 0)]

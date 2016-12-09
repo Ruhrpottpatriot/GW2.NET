@@ -32,7 +32,7 @@ namespace GW2NET.V2.WorldVersusWorld.Objectives.Json
         public string MapType { get; set; }
 
         [DataMember(Name = "map_id", Order = 5)]
-        public string MapId { get; set; }
+        public int MapId { get; set; }
 
         [DataMember(Name = "coord", Order = 6)]
         public double[] Coord { get; set; }

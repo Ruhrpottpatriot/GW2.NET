@@ -245,7 +245,7 @@
     <Compile Include="Factories\V2\ItemRepositoryFactory.cs" />
     <Compile Include="Factories\V2\MapBonusConverterFactory.cs" />
     <Compile Include="Factories\V2\MapsRepositoryFactory.cs" />
-    <Compile Include="Factories\V2\ObjectiveNameRepositoryFactory.cs" />
+    <Compile Include="Factories\V2\ObjectiveRepositoryFactory.cs" />
     <Compile Include="Factories\V2\RecipeConverterFactory.cs" />
     <Compile Include="Factories\V2\RecipeRepositoryFactory.cs" />
     <Compile Include="Factories\V2\SkinConverterFactory.cs" />

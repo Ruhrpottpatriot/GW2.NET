@@ -58,14 +58,14 @@
       <DependentUpon>MapBonusConverters.tt</DependentUpon>
     </Compile>
     <Compile Include="Converters\MatchConverter.cs" />
-    <Compile Include="Converters\ObjectiveConverter.cs" />
+    <Compile Include="Converters\MatchObjectiveConverter.cs" />
     <Compile Include="Converters\TeamStatConverter.cs" />
     <Compile Include="Converters\TeamColorConverter.cs" />
     <Compile Include="Json\CompetitiveMapDTO.cs" />
     <Compile Include="Json\MapBonusDTO.cs" />
     <Compile Include="Json\TeamStatDTO.cs" />
     <Compile Include="Json\MatchDTO.cs" />
-    <Compile Include="Json\ObjectiveDTO.cs" />
+    <Compile Include="Json\MatchObjectiveDTO.cs" />
     <Compile Include="MatchDetailsRequest.cs" />
     <Compile Include="MatchDiscoveryRequest.cs" />
     <Compile Include="MatchRepository.cs" />

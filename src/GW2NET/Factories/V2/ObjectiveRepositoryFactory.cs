@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ObjectiveNameRepositoryFactory.cs" company="GW2.NET Coding Team">
+// <copyright file="ObjectiveRepositoryFactory.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -17,13 +17,13 @@ namespace GW2NET.Factories.V2
     using GW2NET.WorldVersusWorld;
 
     /// <summary>Provides methods for creating repository objects.</summary>
-    public sealed class ObjectiveNameRepositoryFactory
+    public sealed class ObjectiveRepositoryFactory
     {
         private readonly IServiceClient serviceClient;
 
-        /// <summary>Initializes a new instance of the <see cref="ObjectiveNameRepositoryFactory"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ObjectiveRepositoryFactory"/> class.</summary>
         /// <param name="serviceClient"></param>
-        public ObjectiveNameRepositoryFactory(IServiceClient serviceClient)
+        public ObjectiveRepositoryFactory(IServiceClient serviceClient)
         {
             if (serviceClient == null)
             {
@@ -36,7 +36,7 @@ namespace GW2NET.Factories.V2
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="language">The two-letter language code.</param>
         /// <returns>A repository.</returns>
-        public IObjectiveNameRepository this[string language]
+        public IObjectiveRepository this[string language]
         {
             get
             {
@@ -52,7 +52,7 @@ namespace GW2NET.Factories.V2
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="culture">The culture.</param>
         /// <returns>A repository.</returns>
-        public IObjectiveNameRepository this[CultureInfo culture]
+        public IObjectiveRepository this[CultureInfo culture]
         {
             get
             {
@@ -67,36 +67,36 @@ namespace GW2NET.Factories.V2
 
         /// <summary>Creates an instance for the default language.</summary>
         /// <returns>A repository.</returns>
-        public IObjectiveNameRepository ForDefaultCulture()
+        public IObjectiveRepository ForDefaultCulture()
         {
-            return new ObjectiveNameRepository(this.serviceClient, new ObjectiveNameConverter());
+            return new ObjectiveRepository(this.serviceClient, new ObjectiveConverter());
         }
 
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="culture">The culture.</param>
         /// <returns>A repository.</returns>
-        public IObjectiveNameRepository ForCulture(CultureInfo culture)
+        public IObjectiveRepository ForCulture(CultureInfo culture)
         {
             if (culture == null)
             {
                 throw new ArgumentNullException("culture");
             }
 
-            IObjectiveNameRepository repository = new ObjectiveNameRepository(this.serviceClient, new ObjectiveNameConverter());
+            IObjectiveRepository repository = new ObjectiveRepository(this.serviceClient, new ObjectiveConverter());
             repository.Culture = culture;
             return repository;
         }
 
         /// <summary>Creates an instance for the current system language.</summary>
         /// <returns>A repository.</returns>
-        public IObjectiveNameRepository ForCurrentCulture()
+        public IObjectiveRepository ForCurrentCulture()
         {
             return this.ForCulture(CultureInfo.CurrentCulture);
         }
 
         /// <summary>Creates an instance for the current UI language.</summary>
         /// <returns>A repository.</returns>
-        public IObjectiveNameRepository ForCurrentUICulture()
+        public IObjectiveRepository ForCurrentUICulture()
         {
             return this.ForCulture(CultureInfo.CurrentUICulture);
         }

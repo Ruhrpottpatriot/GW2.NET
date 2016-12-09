@@ -34,7 +34,7 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Json
 
         /// <summary>Gets or sets the details per objective.</summary>
         [DataMember(Name = "objectives", Order = 4)]
-        public ICollection<ObjectiveDTO> Objectives { get; set; }
+        public ICollection<MatchObjectiveDTO> Objectives { get; set; }
 
         /// <summary>Gets or sets the deaths per team.</summary>
         [DataMember(Name = "deaths", Order = 5)]

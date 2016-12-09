@@ -11,7 +11,7 @@ namespace GW2NET.WorldVersusWorld
     using System;
     using System.Globalization;
 
-    using GW2NET.Guilds;
+    using GW2NET.Common.Drawing;
 
     /// <summary>Represents one of a World versus World map's objectives.</summary>
     public class Objective : IEquatable<Objective>
@@ -19,26 +19,29 @@ namespace GW2NET.WorldVersusWorld
         /// <summary>Gets or sets the type of the objective.</summary>
         public virtual string Type { get; set; }
 
+        /// <summary>Gets or sets the locale.</summary>
+        public virtual CultureInfo Culture { get; set; }
+
         /// <summary>Gets or sets the name of the objective. This is a navigation property. Use the value of <see cref="ObjectiveId"/> to obtain a reference.</summary>
-        public virtual ObjectiveName Name { get; set; }
+        public virtual string Name { get; set; }
 
         /// <summary>Gets or sets the objective identifier.</summary>
         public virtual string ObjectiveId { get; set; }
 
-        /// <summary>Gets or sets the current owner.</summary>
-        public virtual TeamColor Owner { get; set; }
+        /// <summary>Gets or sets the sector id of the objective.</summary>
+        public virtual string SectorId { get; set; }
 
-        /// <summary>Gets or sets the guild currently claiming the objective. This is a navigation property. Use the value of <see cref="OwnerGuildId"/> to obtain a reference.</summary>
-        public virtual Guild OwnerGuild { get; set; }
+        /// <summary>Gets or sets the id of the map containing the objective.</summary>
+        public virtual int MapId { get; set; }
 
-        /// <summary>Gets or sets the identifier of the guild currently claiming the objective.</summary>
-        public virtual Guid? OwnerGuildId { get; set; }
+        /// <summary>Gets or sets the type of the map containing the objective.</summary>
+        public virtual string MapType { get; set; }
 
-        /// <summary>Gets of sets timestamp when objective was claimed by a guild.</summary>
-        public virtual string ClaimedAt { get; set; }
+        /// <summary>Gets or sets the coordinates of this objective within the map.</summary>
+        public virtual Vector2D MapCoordinates { get; set; }
 
-        /// <summary>Gets of sets timestamp of last flip of the objective.</summary>
-        public virtual string LastFlipped { get; set; }
+        /// <summary>Gets or sets the coordinates of this objective's label on the map.</summary>
+        public virtual Vector2D LabelCoordinates { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

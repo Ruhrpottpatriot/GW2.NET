@@ -34,7 +34,7 @@ namespace GW2NET.Factories.V2
                 var scoreboardConverter = new TeamStatConverter();
                 var competitiveMapConverterFactory = new CompetitiveMapConverterFactory();
                 var teamColorConverter = new TeamColorConverter();
-                var objectiveConverter = new ObjectiveConverter(teamColorConverter);
+                var objectiveConverter = new MatchObjectiveConverter(teamColorConverter);
                 var mapBonusConverterFactory = new MapBonusConverterFactory();
                 var mapBonusConverter = new MapBonusConverter(mapBonusConverterFactory, teamColorConverter);
                 var competitiveMapConverter = new CompetitiveMapConverter(competitiveMapConverterFactory, scoreboardConverter, objectiveConverter, mapBonusConverter);
@@ -52,11 +52,11 @@ namespace GW2NET.Factories.V2
         }
 
         /// <summary>Gets access to the objective names data source.</summary>
-        public ObjectiveNameRepositoryFactory Objectives
+        public ObjectiveRepositoryFactory Objectives
         {
             get
             {
-                return new ObjectiveNameRepositoryFactory(this.ServiceClient);
+                return new ObjectiveRepositoryFactory(this.ServiceClient);
             }
         }
     }
