@@ -20,19 +20,19 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     {
         private readonly IConverter<MapBonusDTO, MapBonus> mapBonusConverter;
 
-        private readonly IConverter<ObjectiveDTO, Objective> objectiveConverter;
+        private readonly IConverter<ObjectiveDTO, MatchObjective> objectiveConverter;
 
         private readonly IConverter<int[], Scoreboard> scoreboardConverter;
 
         /// <summary>Initializes a new instance of the <see cref="CompetitiveMapConverter"/> class.</summary>
         /// <param name="converterFactory"></param>
         /// <param name="scoreboardConverter">The converter for <see cref="Scoreboard"/>.</param>
-        /// <param name="objectiveConverter">The converter for <see cref="Objective"/>.</param>
+        /// <param name="objectiveConverter">The converter for <see cref="MatchObjective"/>.</param>
         /// <param name="mapBonusConverter">The converter for <see cref="MapBonus"/>.</param>
         public CompetitiveMapConverter(
             ITypeConverterFactory<CompetitiveMapDTO, CompetitiveMap> converterFactory,
             IConverter<int[], Scoreboard> scoreboardConverter,
-            IConverter<ObjectiveDTO, Objective> objectiveConverter,
+            IConverter<ObjectiveDTO, MatchObjective> objectiveConverter,
             IConverter<MapBonusDTO, MapBonus> mapBonusConverter)
             : this(converterFactory)
         {
@@ -67,7 +67,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
             var objectives = dto.Objectives;
             if (objectives != null)
             {
-                var values = new List<Objective>(objectives.Count);
+                var values = new List<MatchObjective>(objectives.Count);
                 values.AddRange(objectives.Select(objective => this.objectiveConverter.Convert(objective, dto)));
                 entity.Objectives = values;
             }

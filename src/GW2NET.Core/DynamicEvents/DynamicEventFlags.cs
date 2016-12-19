@@ -21,6 +21,9 @@ namespace GW2NET.DynamicEvents
         GroupEvent = 1 << 0,
 
         /// <summary>The 'map-wide' event flag.</summary>
-        MapWide = 1 << 1
+        MapWide = 1 << 1,
+
+        /// <summary>The 'meta event' event flag.</summary>
+        MetaEvent = 1 << 2
     }
 }

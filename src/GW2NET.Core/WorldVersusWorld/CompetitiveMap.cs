@@ -14,13 +14,19 @@ namespace GW2NET.WorldVersusWorld
     /// <summary>Provides the base class for World versus World maps.</summary>
     public abstract class CompetitiveMap
     {
+        /// <summary>Gets or sets the map's id.</summary>
+        public virtual int Id { get; set; }
+
+        /// <summary>Gets or sets the map's type.</summary>
+        public virtual string Type { get; set; }
+
         private static readonly MapBonus[] EmptyBonuses = new MapBonus[0];
 
         private ICollection<MapBonus> bonuses = EmptyBonuses;
 
-        private static readonly Objective[] EmptyObjectives = new Objective[0];
+        private static readonly MatchObjective[] EmptyObjectives = new MatchObjective[0];
 
-        private ICollection<Objective> objectives;
+        private ICollection<MatchObjective> objectives = EmptyObjectives;
 
         /// <summary>Gets or sets the map's bonuses.</summary>
         public virtual ICollection<MapBonus> Bonuses
@@ -37,7 +43,7 @@ namespace GW2NET.WorldVersusWorld
         }
 
         /// <summary>Gets or sets the map's objectives.</summary>
-        public virtual ICollection<Objective> Objectives
+        public virtual ICollection<MatchObjective> Objectives
         {
             get
             {
@@ -52,5 +58,11 @@ namespace GW2NET.WorldVersusWorld
 
         /// <summary>Gets or sets the map's scoreboard.</summary>
         public virtual Scoreboard Scores { get; set; }
+
+        /// <summary>Gets or sets the map's kills.</summary>
+        public virtual Scoreboard Kills { get; set; }
+
+        /// <summary>Gets or sets the map's deaths.</summary>
+        public virtual Scoreboard Deaths { get; set; }
     }
 }

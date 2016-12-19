@@ -14,8 +14,8 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     using GW2NET.V1.WorldVersusWorld.Matches.Json;
     using GW2NET.WorldVersusWorld;
 
-    /// <summary>Converts objects of type <see cref="ObjectiveDTO"/> to objects of type <see cref="Objective"/>.</summary>
-    public sealed class ObjectiveConverter : IConverter<ObjectiveDTO, Objective>
+    /// <summary>Converts objects of type <see cref="ObjectiveDTO"/> to objects of type <see cref="MatchObjective"/>.</summary>
+    public sealed class ObjectiveConverter : IConverter<ObjectiveDTO, MatchObjective>
     {
         private readonly IConverter<string, TeamColor> teamColorConverter;
 
@@ -31,20 +31,20 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
             this.teamColorConverter = teamColorConverter;
         }
 
-        /// <summary>Converts the given object of type <see cref="ObjectiveDTO"/> to an object of type <see cref="Objective"/>.</summary>
+        /// <summary>Converts the given object of type <see cref="ObjectiveDTO"/> to an object of type <see cref="MatchObjective"/>.</summary>
         /// <param name="value">The value to convert.</param>
         /// <param name="state"></param>
         /// <returns>The converted value.</returns>
-        public Objective Convert(ObjectiveDTO value, object state)
+        public MatchObjective Convert(ObjectiveDTO value, object state)
         {
             if (value == null)
             {
                 throw new ArgumentNullException("value");
             }
 
-            var objective = new Objective
+            var objective = new MatchObjective
             {
-                ObjectiveId = value.Id
+                ObjectiveId = value.Id.ToString()
             };
 
             var owner = value.Owner;

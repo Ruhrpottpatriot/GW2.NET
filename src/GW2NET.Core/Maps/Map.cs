@@ -38,6 +38,9 @@ namespace GW2NET.Maps
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }
 
+        /// <summary>Gets or sets the map type.</summary>
+        public virtual string Type { get; set; }
+
         /// <summary>Gets or sets the default floor.</summary>
         public virtual int DefaultFloor { get; set; }
 

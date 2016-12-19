@@ -130,6 +130,7 @@
     <Compile Include="IntegrationTests\V1\ColorTests.cs" />
     <Compile Include="IntegrationTests\V1\BuildTests.cs" />
     <Compile Include="IntegrationTests\V2\MapTests.cs" />
+    <Compile Include="IntegrationTests\V2\MatchTests.cs" />
     <Compile Include="IntegrationTests\V2\WorldTests.cs" />
     <Compile Include="IntegrationTests\V2\ExchangeTests.cs" />
     <Compile Include="IntegrationTests\V2\SkinTests.cs" />
@@ -207,4 +208,3 @@
   </Target>
   -->
 </Project>
-

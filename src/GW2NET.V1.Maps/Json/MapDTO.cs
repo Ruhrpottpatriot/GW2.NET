@@ -29,25 +29,28 @@ namespace GW2NET.V1.Maps.Json
         [DataMember(Name = "default_floor", Order = 3)]
         public int DefaultFloor { get; set; }
 
-        [DataMember(Name = "floors", Order = 4)]
+        [DataMember(Name = "type", Order = 4)]
+        public string TypeName { get; set; }
+
+        [DataMember(Name = "floors", Order = 5)]
         public ICollection<int> Floors { get; set; }
 
-        [DataMember(Name = "region_id", Order = 5)]
+        [DataMember(Name = "region_id", Order = 6)]
         public int RegionId { get; set; }
 
-        [DataMember(Name = "region_name", Order = 6)]
+        [DataMember(Name = "region_name", Order = 7)]
         public string RegionName { get; set; }
 
-        [DataMember(Name = "continent_id", Order = 7)]
+        [DataMember(Name = "continent_id", Order = 8)]
         public int ContinentId { get; set; }
 
-        [DataMember(Name = "continent_name", Order = 8)]
+        [DataMember(Name = "continent_name", Order = 9)]
         public string ContinentName { get; set; }
 
-        [DataMember(Name = "map_rect", Order = 9)]
+        [DataMember(Name = "map_rect", Order = 10)]
         public double[][] MapRectangle { get; set; }
 
-        [DataMember(Name = "continent_rect", Order = 10)]
+        [DataMember(Name = "continent_rect", Order = 11)]
         public double[][] ContinentRectangle { get; set; }
     }
 }
