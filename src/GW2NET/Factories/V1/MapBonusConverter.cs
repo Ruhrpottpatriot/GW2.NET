@@ -16,7 +16,7 @@ namespace GW2NET.Factories.V1
         {
             switch (discriminator)
             {
-                case "bloodlust":
+                case "Bloodlust":
                     return new BloodlustConverter();
                 default:
                     Debug.Assert(false, "Unknown type discriminator: " + discriminator);
