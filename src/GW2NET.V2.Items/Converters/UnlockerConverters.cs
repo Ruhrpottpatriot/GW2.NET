@@ -60,6 +60,34 @@ namespace GW2NET.V2.Items.Converters
 		*/
 	}
 
+#region SharedSlotUnlocker
+    /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="SharedSlotUnlocker"/>.</summary>
+    public sealed partial class SharedSlotUnlockerConverter : IConverter<ItemDTO, Unlocker>
+    {
+	    /// <inheritdoc />
+        public Unlocker Convert(ItemDTO value, object state)
+        {
+    		var entity = new SharedSlotUnlocker();
+            this.Merge(entity, value, state);
+    		return entity;
+        }
+
+    	// Implement this method in a buddy class to set properties that are specific to 'SharedSlotUnlocker' (if any)
+    	partial void Merge(SharedSlotUnlocker entity, ItemDTO dto, object state);
+
+		/*
+		// Use this template
+		public partial class SharedSlotUnlockerConverter
+		{
+		    partial void Merge(SharedSlotUnlocker entity, ItemDTO dto, object state)
+			{
+			    throw new NotImplementedException();
+			}
+		}
+		*/
+    }
+#endregion
+
 #region ChampionUnlocker
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="ChampionUnlocker"/>.</summary>
     public sealed partial class ChampionUnlockerConverter : IConverter<ItemDTO, Unlocker>
