@@ -153,6 +153,7 @@
     <Compile Include="ChatLinks\Interop\TextChatLink.cs" />
     <Compile Include="ChatLinks\Interop\TraitChatLink.cs" />
     <Compile Include="ChatLinks\Interop\UInt24.cs" />
+    <Compile Include="Items\Common\AgonyResistanceModifier.cs" />
     <Compile Include="ITypeConverterFactory.cs" />
     <Compile Include="Items\Armors\Armor.cs" />
     <Compile Include="Items\Armors\Boots.cs" />
