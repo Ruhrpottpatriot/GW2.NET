@@ -54,6 +54,9 @@ namespace GW2NET.Items
         MonsterOnly = 1 << 11,
 
         /// <summary>The 'Delete Warning' item flag.</summary>
-        DeleteWarning = 1 << 12
+        DeleteWarning = 1 << 12,
+
+        /// <summary>The 'Tonic' item flag.</summary>
+        Tonic = 1 << 13
     }
 }
