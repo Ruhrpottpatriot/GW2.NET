@@ -88,6 +88,34 @@ namespace GW2NET.V2.Items.Converters
     }
 #endregion
 
+#region MinipetUnlocker
+    /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="MinipetUnlocker"/>.</summary>
+    public sealed partial class MinipetUnlockerConverter : IConverter<ItemDTO, Unlocker>
+    {
+	    /// <inheritdoc />
+        public Unlocker Convert(ItemDTO value, object state)
+        {
+    		var entity = new MinipetUnlocker();
+            this.Merge(entity, value, state);
+    		return entity;
+        }
+
+    	// Implement this method in a buddy class to set properties that are specific to 'MinipetUnlocker' (if any)
+    	partial void Merge(MinipetUnlocker entity, ItemDTO dto, object state);
+
+		/*
+		// Use this template
+		public partial class MinipetUnlockerConverter
+		{
+		    partial void Merge(MinipetUnlocker entity, ItemDTO dto, object state)
+			{
+			    throw new NotImplementedException();
+			}
+		}
+		*/
+    }
+#endregion
+
 #region ChampionUnlocker
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="ChampionUnlocker"/>.</summary>
     public sealed partial class ChampionUnlockerConverter : IConverter<ItemDTO, Unlocker>

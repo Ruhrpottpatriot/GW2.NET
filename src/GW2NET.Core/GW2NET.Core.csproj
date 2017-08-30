@@ -156,6 +156,7 @@
     <Compile Include="Items\Common\AgonyResistanceModifier.cs" />
     <Compile Include="Items\Consumables\SharedSlotUnlocker.cs" />
     <Compile Include="Items\Consumables\RandomUnlock.cs" />
+    <Compile Include="Items\Consumables\MinipetUnlocker.cs" />
     <Compile Include="ITypeConverterFactory.cs" />
     <Compile Include="Items\Armors\Armor.cs" />
     <Compile Include="Items\Armors\Boots.cs" />
