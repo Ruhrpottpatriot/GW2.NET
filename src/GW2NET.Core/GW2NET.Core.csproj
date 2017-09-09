@@ -157,6 +157,7 @@
     <Compile Include="Items\Consumables\SharedSlotUnlocker.cs" />
     <Compile Include="Items\Consumables\RandomUnlock.cs" />
     <Compile Include="Items\Consumables\MinipetUnlocker.cs" />
+    <Compile Include="Items\Containers\ImmediateContainer.cs" />
     <Compile Include="ITypeConverterFactory.cs" />
     <Compile Include="Items\Armors\Armor.cs" />
     <Compile Include="Items\Armors\Boots.cs" />
