@@ -60,6 +60,34 @@ namespace GW2NET.V1.Items.Converters
 		*/
 	}
 
+#region AgonyResistanceModifier
+    /// <summary>Converts objects of type <see cref="AttributeDTO"/> to objects of type <see cref="AgonyResistanceModifier"/>.</summary>
+    public sealed partial class AgonyResistanceModifierConverter : IConverter<AttributeDTO, CombatAttribute>
+    {
+	    /// <inheritdoc />
+        public CombatAttribute Convert(AttributeDTO value, object state)
+        {
+    		var entity = new AgonyResistanceModifier();
+            this.Merge(entity, value, state);
+    		return entity;
+        }
+
+    	// Implement this method in a buddy class to set properties that are specific to 'AgonyResistanceModifier' (if any)
+    	partial void Merge(AgonyResistanceModifier entity, AttributeDTO dto, object state);
+
+		/*
+		// Use this template
+		public partial class AgonyResistanceModifierConverter
+		{
+		    partial void Merge(AgonyResistanceModifier entity, AttributeDTO dto, object state)
+			{
+			    throw new NotImplementedException();
+			}
+		}
+		*/
+    }
+#endregion
+
 #region ExpertiseModifier
     /// <summary>Converts objects of type <see cref="AttributeDTO"/> to objects of type <see cref="ExpertiseModifier"/>.</summary>
     public sealed partial class ExpertiseModifierConverter : IConverter<AttributeDTO, CombatAttribute>

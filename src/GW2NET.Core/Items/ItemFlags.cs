@@ -51,6 +51,21 @@ namespace GW2NET.Items
         AccountBindOnUse = 1 << 10,
 
         /// <summary>The 'Monster Only' item flag.</summary>
-        MonsterOnly = 1 << 11
+        MonsterOnly = 1 << 11,
+
+        /// <summary>The 'Delete Warning' item flag.</summary>
+        DeleteWarning = 1 << 12,
+
+        /// <summary>The 'Tonic' item flag.</summary>
+        Tonic = 1 << 13,
+
+        /// <summary>The 'Bulk Consume' item flag.</summary>
+        BulkConsume = 1 << 14,
+
+        /// <summary>The 'Infused' item flag.</summary>
+        Infused = 1 << 15,
+
+        /// <summary>The 'Attuned' item flag.</summary>
+        Attuned = 1 << 16
     }
 }

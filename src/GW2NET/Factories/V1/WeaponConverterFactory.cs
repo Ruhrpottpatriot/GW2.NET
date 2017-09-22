@@ -56,6 +56,7 @@ namespace GW2NET.Factories.V1
                     return new WarHornConverter();
                 case "Toy":
                     return new ToyConverter();
+                case "ToyTwoHanded":
                 case "TwoHandedToy":
                     return new TwoHandedToyConverter();
                 case "SmallBundle":

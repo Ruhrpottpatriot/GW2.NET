@@ -55,6 +55,8 @@ namespace GW2NET.Factories.V2
                     return new UtilityConverter();
                 case "TeleportToFriend":
                     return new TeleportToFriendConverter();
+                case "RandomUnlock":
+                    return new RandomUnlockConverter();
                 default:
                     Debug.Assert(false, "Unknown type discriminator: " + discriminator);
                     return new UnknownConsumableConverter();

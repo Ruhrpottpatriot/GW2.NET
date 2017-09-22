@@ -17,6 +17,8 @@ namespace GW2NET.Factories.V2
         {
             switch (discriminator)
             {
+                case "AgonyResistance":
+                    return new AgonyResistanceModifierConverter();
                 case "ConditionDamage":
                     return new ConditionDamageModifierConverter();
                 case "CritDamage":
