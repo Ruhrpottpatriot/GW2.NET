@@ -10,8 +10,6 @@ namespace GW2NET.Factories.V1
     using GW2NET.V1.Items;
     using GW2NET.V1.Items.Converters;
     using GW2NET.V1.Items.Json;
-    using GW2NET.V2.Items.Converters;
-    using GW2NET.V2.Items.Json;
 
     public class CombatAttributeConverterFactory : ITypeConverterFactory<AttributeDTO, CombatAttribute>
     {
