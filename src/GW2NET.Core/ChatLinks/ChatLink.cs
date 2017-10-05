@@ -29,7 +29,7 @@ namespace GW2NET.ChatLinks
         /// </summary>
         public static ChatLinkFactory Factory { get; private set; }
 
-        public sealed override string ToString()
+        public override string ToString()
         {
             var value = new ChatLinkStruct();
             var length = this.CopyTo(value);

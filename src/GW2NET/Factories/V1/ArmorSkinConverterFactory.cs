@@ -9,6 +9,7 @@ namespace GW2NET.Factories.V1
     using GW2NET.Skins;
     using GW2NET.V1.Skins.Converters;
     using GW2NET.V1.Skins.Json;
+    using GW2NET.V2.Skins.Json;
 
     public class ArmorSkinConverterFactory : ITypeConverterFactory<SkinDTO, ArmorSkin>
     {

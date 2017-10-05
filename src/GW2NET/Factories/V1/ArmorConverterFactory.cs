@@ -9,6 +9,8 @@ namespace GW2NET.Factories.V1
     using GW2NET.Items;
     using GW2NET.V1.Items.Converters;
     using GW2NET.V1.Items.Json;
+    using GW2NET.V2.Items.Converters;
+    using GW2NET.V2.Items.Json;
 
     public class ArmorConverterFactory : ITypeConverterFactory<ItemDTO, Armor>
     {

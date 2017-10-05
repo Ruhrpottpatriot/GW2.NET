@@ -5,6 +5,7 @@
 namespace GW2NET.ChatLinks
 {
     using System;
+    using Interop;
 
     /// <summary>Represents an unknown chat link type.</summary>
     public class UnknownChatLink : ChatLink
@@ -29,13 +30,18 @@ namespace GW2NET.ChatLinks
             }
         }
 
+        // /// <inheritdoc />
+        // public override string ToString()
+        // {
+        //     var stream = new UnknownChatLinkConverter().Convert(this, null);
+        //     var buffer = new byte[stream.Length];
+        //     stream.Read(buffer, 0, buffer.Length);
+        //     return string.Format("[&{0}]", Convert.ToBase64String(buffer));
+        // }
         /// <inheritdoc />
-        public override string ToString()
+        protected override int CopyTo(ChatLinkStruct value)
         {
-            var stream = new UnknownChatLinkConverter().Convert(this, null);
-            var buffer = new byte[stream.Length];
-            stream.Read(buffer, 0, buffer.Length);
-            return string.Format("[&{0}]", Convert.ToBase64String(buffer));
+            throw new NotImplementedException();
         }
     }
 }
