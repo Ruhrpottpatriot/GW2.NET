@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <RootNamespace>GW2NET</RootNamespace>
+    <RootNamespace>GW2NET.V2.Colors</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="stylecop.json" />
