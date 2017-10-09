@@ -34,10 +34,6 @@ namespace GW2NET.Factories.V1
                     return new GliderSkinUnlockerConverter();
                 case "Champion":
                     return new ChampionUnlockerConverter();
-                case "SharedSlot":
-                    return new SharedSlotUnlockerConverter();
-                case "Minipet":
-                    return new MinipetUnlockerConverter();
                 default:
                     Debug.Assert(false, "Unknown type discriminator: " + discriminator);
                     return new UnknownUnlockerConverter();

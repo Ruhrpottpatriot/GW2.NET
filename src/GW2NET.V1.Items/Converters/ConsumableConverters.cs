@@ -60,34 +60,6 @@ namespace GW2NET.V1.Items.Converters
 		*/
 	}
 
-#region RandomUnlock
-    /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="RandomUnlock"/>.</summary>
-    public sealed partial class RandomUnlockConverter : IConverter<ItemDTO, Consumable>
-    {
-	    /// <inheritdoc />
-        public Consumable Convert(ItemDTO value, object state)
-        {
-    		var entity = new RandomUnlock();
-            this.Merge(entity, value, state);
-    		return entity;
-        }
-
-    	// Implement this method in a buddy class to set properties that are specific to 'RandomUnlock' (if any)
-    	partial void Merge(RandomUnlock entity, ItemDTO dto, object state);
-
-		/*
-		// Use this template
-		public partial class RandomUnlockConverter
-		{
-		    partial void Merge(RandomUnlock entity, ItemDTO dto, object state)
-			{
-			    throw new NotImplementedException();
-			}
-		}
-		*/
-    }
-#endregion
-
 #region TeleportToFriend
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="TeleportToFriend"/>.</summary>
     public sealed partial class TeleportToFriendConverter : IConverter<ItemDTO, Consumable>
