@@ -60,34 +60,6 @@ namespace GW2NET.V2.Items.Converters
 		*/
 	}
 
-#region ImmediateContainer
-    /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="ImmediateContainer"/>.</summary>
-    public sealed partial class ImmediateContainerConverter : IConverter<ItemDTO, Container>
-    {
-	    /// <inheritdoc />
-        public Container Convert(ItemDTO value, object state)
-        {
-    		var entity = new ImmediateContainer();
-            this.Merge(entity, value, state);
-    		return entity;
-        }
-
-    	// Implement this method in a buddy class to set properties that are specific to 'ImmediateContainer' (if any)
-    	partial void Merge(ImmediateContainer entity, ItemDTO dto, object state);
-
-		/*
-		// Use this template
-		public partial class ImmediateContainerConverter
-		{
-		    partial void Merge(ImmediateContainer entity, ItemDTO dto, object state)
-			{
-			    throw new NotImplementedException();
-			}
-		}
-		*/
-    }
-#endregion
-
 #region DefaultContainer
     /// <summary>Converts objects of type <see cref="ItemDTO"/> to objects of type <see cref="DefaultContainer"/>.</summary>
     public sealed partial class DefaultContainerConverter : IConverter<ItemDTO, Container>

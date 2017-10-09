@@ -22,8 +22,6 @@ namespace GW2NET.Factories.V2
                     return new GiftBoxConverter();
                 case "OpenUI":
                     return new OpenUiContainerConverter();
-                case "Immediate":
-                    return new ImmediateContainerConverter();
                 default:
                     Debug.Assert(false, "Unknown type discriminator: " + discriminator);
                     return new UnknownContainerConverter();
