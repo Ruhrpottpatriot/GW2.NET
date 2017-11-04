@@ -226,6 +226,7 @@
     <Compile Include="Items\Containers\Container.cs" />
     <Compile Include="Items\Containers\DefaultContainer.cs" />
     <Compile Include="Items\Containers\GiftBox.cs" />
+    <Compile Include="Items\Containers\ImmediateContainer.cs" />
     <Compile Include="Items\Containers\OpenUIContainer.cs" />
     <Compile Include="Items\Containers\UnknownContainer.cs" />
     <Compile Include="Items\CraftingMaterials\CraftingMaterial.cs" />

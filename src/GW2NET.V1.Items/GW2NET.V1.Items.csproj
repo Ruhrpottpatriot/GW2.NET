@@ -98,6 +98,7 @@
     <Compile Include="Converters\ConverterForHelm.cs" />
     <Compile Include="Converters\ConverterForHelmAquatic.cs" />
     <Compile Include="Converters\ConverterForImmediateConsumable.cs" />
+    <Compile Include="Converters\ConverterForImmediateContainer.cs" />
     <Compile Include="Converters\ConverterForInfixUpgrade.cs" />
     <Compile Include="Converters\ConverterForInfusionSlot.cs" />
     <Compile Include="Converters\ConverterForInfusionSlotFlag.cs" />
