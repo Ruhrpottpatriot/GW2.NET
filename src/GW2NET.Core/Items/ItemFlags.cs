@@ -63,6 +63,9 @@ namespace GW2NET.Items
         BulkConsume = 1 << 14,
 
         /// <summary>The 'Infused' item flag.</summary>
-        Infused = 1 << 15
+        Infused = 1 << 15,
+
+        /// <summary>The 'Attuned' item flag.</summary>
+        Attuned = 1 << 16
     }
 }
