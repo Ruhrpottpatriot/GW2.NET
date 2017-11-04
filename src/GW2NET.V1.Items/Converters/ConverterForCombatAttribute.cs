@@ -65,6 +65,7 @@ namespace GW2NET.V1.Items.Converters
         {
             return new Dictionary<string, IConverter<AttributeDataContract, CombatAttribute>>
             {
+                { "AgonyResistance", new ConverterForAgonyResistanceModifier() },
                 { "BoonDuration", new ConverterForConcentrationModifier() },
                 { "ConditionDamage", new ConverterForConditionDamageModifier() },
                 { "ConditionDuration", new ConverterForExpertiseModifier() },

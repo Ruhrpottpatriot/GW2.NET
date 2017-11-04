@@ -176,6 +176,7 @@
     <Compile Include="Items\Armors\WeightClass.cs" />
     <Compile Include="Items\Backpacks\Backpack.cs" />
     <Compile Include="Items\Bags\Bag.cs" />
+    <Compile Include="Items\Common\AgonyResistanceModifier.cs" />
     <Compile Include="Items\Common\CombatAttribute.cs" />
     <Compile Include="Items\Common\CombatBuff.cs" />
     <Compile Include="Items\Common\ConcentrationModifier.cs" />

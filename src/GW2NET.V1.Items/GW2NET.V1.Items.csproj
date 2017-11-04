@@ -138,6 +138,7 @@
     <Compile Include="Converters\ConverterForTeleportToFriend.cs" />
     <Compile Include="Converters\ConverterForTool.cs" />
     <Compile Include="Converters\ConverterForTorch.cs" />
+    <Compile Include="Converters\ConverterForAgonyResistanceModifier.cs" />
     <Compile Include="Converters\ConverterForToughnessModifier.cs" />
     <Compile Include="Converters\ConverterForToy.cs" />
     <Compile Include="Converters\ConverterForTraitGuide.cs" />
