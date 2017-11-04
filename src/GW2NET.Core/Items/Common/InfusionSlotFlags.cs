@@ -27,6 +27,9 @@ namespace GW2NET.Items
         Utility = 1 << 2,
 
         /// <summary>The 'Infusion' infusion slot type.</summary>
-        Infusion = 1 << 3
+        Infusion = 1 << 3,
+
+        /// <summary>The 'Enrichment' infusion slot type.</summary>
+        Enrichment = 1 << 4
     }
 }

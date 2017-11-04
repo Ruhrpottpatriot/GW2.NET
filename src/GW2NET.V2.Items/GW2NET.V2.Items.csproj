@@ -46,6 +46,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Converters\ConverterForAccessory.cs" />
+    <Compile Include="Converters\ConverterForAgonyResistanceModifier.cs" />
     <Compile Include="Converters\ConverterForAlcohol.cs" />
     <Compile Include="Converters\ConverterForAmulet.cs" />
     <Compile Include="Converters\ConverterForAppearanceChanger.cs" />
