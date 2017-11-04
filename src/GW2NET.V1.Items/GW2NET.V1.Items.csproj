@@ -127,6 +127,7 @@
     <Compile Include="Converters\ConverterForRune.cs" />
     <Compile Include="Converters\ConverterForSalvageTool.cs" />
     <Compile Include="Converters\ConverterForScepter.cs" />
+    <Compile Include="Converters\ConverterForSharedSlotUnlocker.cs" />
     <Compile Include="Converters\ConverterForShield.cs" />
     <Compile Include="Converters\ConverterForShortBow.cs" />
     <Compile Include="Converters\ConverterForShoulders.cs" />
