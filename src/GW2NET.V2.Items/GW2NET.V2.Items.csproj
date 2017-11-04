@@ -121,6 +121,7 @@
     <Compile Include="Converters\ConverterForPistol.cs" />
     <Compile Include="Converters\ConverterForPowerModifier.cs" />
     <Compile Include="Converters\ConverterForPrecisionModifier.cs" />
+    <Compile Include="Converters\ConverterForRandomUnlock.cs" />
     <Compile Include="Converters\ConverterForRentableContractNpc.cs" />
     <Compile Include="Converters\ConverterForRifle.cs" />
     <Compile Include="Converters\ConverterForRing.cs" />

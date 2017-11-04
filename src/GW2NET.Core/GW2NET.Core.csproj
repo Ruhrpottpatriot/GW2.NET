@@ -212,6 +212,7 @@
     <Compile Include="Items\Consumables\HalloweenConsumable.cs" />
     <Compile Include="Items\Consumables\ImmediateConsumable.cs" />
     <Compile Include="Items\Consumables\OutfitUnlocker.cs" />
+    <Compile Include="Items\Consumables\RandomUnlock.cs" />
     <Compile Include="Items\Consumables\SharedSlotUnlocker.cs" />
     <Compile Include="Items\Consumables\TeleportToFriend.cs" />
     <Compile Include="Items\Consumables\Transmutation.cs" />

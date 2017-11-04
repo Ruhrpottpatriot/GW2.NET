@@ -80,6 +80,7 @@ namespace GW2NET.V2.Items
                 { "UnTransmutation", new ConverterForUnTransmutation() },
                 { "UpgradeRemoval", new ConverterForUpgradeRemoval() },
                 { "Utility", new ConverterForUtility() },
+                { "RandomUnlock", new ConverterForRandomUnlock() }
             };
         }
     }
