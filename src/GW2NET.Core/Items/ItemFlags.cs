@@ -57,6 +57,9 @@ namespace GW2NET.Items
         DeleteWarning = 1 << 12,
 
         /// <summary>The 'Tonic' item flag.</summary>
-        Tonic = 1 << 13
+        Tonic = 1 << 13,
+
+        /// <summary>The 'Bulk Consume' item flag.</summary>
+        BulkConsume = 1 << 14
     }
 }
