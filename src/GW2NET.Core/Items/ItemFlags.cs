@@ -60,6 +60,9 @@ namespace GW2NET.Items
         Tonic = 1 << 13,
 
         /// <summary>The 'Bulk Consume' item flag.</summary>
-        BulkConsume = 1 << 14
+        BulkConsume = 1 << 14,
+
+        /// <summary>The 'Infused' item flag.</summary>
+        Infused = 1 << 15
     }
 }
