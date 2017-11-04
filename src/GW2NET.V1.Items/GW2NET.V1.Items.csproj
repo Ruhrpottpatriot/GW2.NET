@@ -116,6 +116,7 @@
     <Compile Include="Converters\ConverterForMace.cs" />
     <Compile Include="Converters\ConverterForMiniature.cs" />
     <Compile Include="Converters\ConverterForMiningTool.cs" />
+    <Compile Include="Converters\ConverterForMinipetUnlocker.cs" />
     <Compile Include="Converters\ConverterForOpenUiContainer.cs" />
     <Compile Include="Converters\ConverterForOutfitUnlocker.cs" />
     <Compile Include="Converters\ConverterForPistol.cs" />
