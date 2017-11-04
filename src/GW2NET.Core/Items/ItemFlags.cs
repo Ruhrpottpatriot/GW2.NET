@@ -51,6 +51,9 @@ namespace GW2NET.Items
         AccountBindOnUse = 1 << 10,
 
         /// <summary>The 'Monster Only' item flag.</summary>
-        MonsterOnly = 1 << 11
+        MonsterOnly = 1 << 11,
+
+        /// <summary>The 'Delete Warning' item flag.</summary>
+        DeleteWarning = 1 << 12
     }
 }
