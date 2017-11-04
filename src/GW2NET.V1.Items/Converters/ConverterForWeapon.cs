@@ -159,6 +159,8 @@ namespace GW2NET.V1.Items.Converters
         /// <returns>The type converters.</returns>
         private static IDictionary<string, IConverter<WeaponDataContract, Weapon>> GetKnownTypeConverters()
         {
+            // reuse this converter for "ToyTwoHanded" and "TwoHandedToy"
+            var converterForTwoHandedToy = new ConverterForTwoHandedToy();
             return new Dictionary<string, IConverter<WeaponDataContract, Weapon>>
             {
                 { "Axe", new ConverterForAxe() },
@@ -181,7 +183,8 @@ namespace GW2NET.V1.Items.Converters
                 { "Trident", new ConverterForTrident() },
                 { "Warhorn", new ConverterForWarHorn() },
                 { "Toy", new ConverterForToy() },
-                { "TwoHandedToy", new ConverterForTwoHandedToy() },
+                { "ToyTwoHanded", converterForTwoHandedToy },
+                { "TwoHandedToy", converterForTwoHandedToy },
                 { "SmallBundle", new ConverterForSmallBundle() },
                 { "LargeBundle", new ConverterForLargeBundle() },
             };
