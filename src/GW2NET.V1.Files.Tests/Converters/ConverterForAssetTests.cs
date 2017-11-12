@@ -1,4 +1,4 @@
-﻿namespace GW2NET.V1.Files.Converters
+namespace GW2NET.V1.Files.Converters
 {
     using GW2NET.V1.Files.Json;
 

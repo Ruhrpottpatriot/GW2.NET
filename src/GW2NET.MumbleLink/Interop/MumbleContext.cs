@@ -1,4 +1,4 @@
-﻿namespace GW2NET.MumbleLink.Interop
+namespace GW2NET.MumbleLink.Interop
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.InteropServices;

@@ -1,4 +1,4 @@
-﻿namespace GW2NET.ChatLinks.Interop
+namespace GW2NET.ChatLinks.Interop
 {
     using System;
 
