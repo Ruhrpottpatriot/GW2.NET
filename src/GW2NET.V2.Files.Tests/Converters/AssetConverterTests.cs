@@ -1,4 +1,4 @@
-﻿namespace GW2NET.V2.Files.Converters
+namespace GW2NET.V2.Files.Converters
 {
     using Xunit;
 

@@ -1,4 +1,4 @@
-﻿namespace GW2NET.MumbleLink
+namespace GW2NET.MumbleLink
 {
     using System.Net;
 

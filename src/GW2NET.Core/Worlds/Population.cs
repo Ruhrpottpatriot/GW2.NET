@@ -1,4 +1,4 @@
-﻿namespace GW2NET.Worlds
+namespace GW2NET.Worlds
 {
     public enum Population
     {
