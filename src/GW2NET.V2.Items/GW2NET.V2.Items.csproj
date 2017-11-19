@@ -46,6 +46,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Converters\ConverterForAccessory.cs" />
+    <Compile Include="Converters\ConverterForAgonyResistanceModifier.cs" />
     <Compile Include="Converters\ConverterForAlcohol.cs" />
     <Compile Include="Converters\ConverterForAmulet.cs" />
     <Compile Include="Converters\ConverterForAppearanceChanger.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Converters\ConverterForHelm.cs" />
     <Compile Include="Converters\ConverterForHelmAquatic.cs" />
     <Compile Include="Converters\ConverterForImmediateConsumable.cs" />
+    <Compile Include="Converters\ConverterForImmediateContainer.cs" />
     <Compile Include="Converters\ConverterForInfixUpgrade.cs" />
     <Compile Include="Converters\ConverterForInfusionSlot.cs" />
     <Compile Include="Converters\ConverterForInfusionSlotFlag.cs" />
@@ -115,17 +117,20 @@
     <Compile Include="Converters\ConverterForMace.cs" />
     <Compile Include="Converters\ConverterForMiniature.cs" />
     <Compile Include="Converters\ConverterForMiningTool.cs" />
+    <Compile Include="Converters\ConverterForMinipetUnlocker.cs" />
     <Compile Include="Converters\ConverterForOpenUiContainer.cs" />
     <Compile Include="Converters\ConverterForOutfitUnlocker.cs" />
     <Compile Include="Converters\ConverterForPistol.cs" />
     <Compile Include="Converters\ConverterForPowerModifier.cs" />
     <Compile Include="Converters\ConverterForPrecisionModifier.cs" />
+    <Compile Include="Converters\ConverterForRandomUnlock.cs" />
     <Compile Include="Converters\ConverterForRentableContractNpc.cs" />
     <Compile Include="Converters\ConverterForRifle.cs" />
     <Compile Include="Converters\ConverterForRing.cs" />
     <Compile Include="Converters\ConverterForRune.cs" />
     <Compile Include="Converters\ConverterForSalvageTool.cs" />
     <Compile Include="Converters\ConverterForScepter.cs" />
+    <Compile Include="Converters\ConverterForSharedSlotUnlocker.cs" />
     <Compile Include="Converters\ConverterForShield.cs" />
     <Compile Include="Converters\ConverterForShortBow.cs" />
     <Compile Include="Converters\ConverterForShoulders.cs" />

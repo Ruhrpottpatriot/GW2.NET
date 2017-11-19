@@ -176,6 +176,7 @@
     <Compile Include="Items\Armors\WeightClass.cs" />
     <Compile Include="Items\Backpacks\Backpack.cs" />
     <Compile Include="Items\Bags\Bag.cs" />
+    <Compile Include="Items\Common\AgonyResistanceModifier.cs" />
     <Compile Include="Items\Common\CombatAttribute.cs" />
     <Compile Include="Items\Common\CombatBuff.cs" />
     <Compile Include="Items\Common\ConcentrationModifier.cs" />
@@ -211,6 +212,9 @@
     <Compile Include="Items\Consumables\HalloweenConsumable.cs" />
     <Compile Include="Items\Consumables\ImmediateConsumable.cs" />
     <Compile Include="Items\Consumables\OutfitUnlocker.cs" />
+    <Compile Include="Items\Consumables\RandomUnlock.cs" />
+    <Compile Include="Items\Consumables\MinipetUnlocker.cs" />
+    <Compile Include="Items\Consumables\SharedSlotUnlocker.cs" />
     <Compile Include="Items\Consumables\TeleportToFriend.cs" />
     <Compile Include="Items\Consumables\Transmutation.cs" />
     <Compile Include="Items\Consumables\UnknownConsumable.cs" />
@@ -222,6 +226,7 @@
     <Compile Include="Items\Containers\Container.cs" />
     <Compile Include="Items\Containers\DefaultContainer.cs" />
     <Compile Include="Items\Containers\GiftBox.cs" />
+    <Compile Include="Items\Containers\ImmediateContainer.cs" />
     <Compile Include="Items\Containers\OpenUIContainer.cs" />
     <Compile Include="Items\Containers\UnknownContainer.cs" />
     <Compile Include="Items\CraftingMaterials\CraftingMaterial.cs" />

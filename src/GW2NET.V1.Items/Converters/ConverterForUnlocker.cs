@@ -74,7 +74,9 @@ namespace GW2NET.V1.Items.Converters
                 { "CraftingRecipe", new ConverterForCraftingRecipeUnlocker() },
                 { "Dye", new ConverterForDyeUnlocker() },
                 { "GliderSkin", new ConverterForGliderSkinUnlocker() },
-                { "Outfit", new ConverterForOutfitUnlocker() }
+                { "Outfit", new ConverterForOutfitUnlocker() },
+                { "SharedSlot", new ConverterForSharedSlotUnlocker() },
+                { "Minipet", new ConverterForMinipetUnlocker() }
             };
         }
     }

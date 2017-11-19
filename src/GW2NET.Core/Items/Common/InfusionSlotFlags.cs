@@ -24,6 +24,12 @@ namespace GW2NET.Items
         Offense = 1 << 1,
 
         /// <summary>The 'Utility' infusion slot type.</summary>
-        Utility = 1 << 2
+        Utility = 1 << 2,
+
+        /// <summary>The 'Infusion' infusion slot type.</summary>
+        Infusion = 1 << 3,
+
+        /// <summary>The 'Enrichment' infusion slot type.</summary>
+        Enrichment = 1 << 4
     }
 }
