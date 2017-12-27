@@ -290,51 +290,31 @@ namespace GW2NET.Common
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The <see cref="HttpWebResponse"/>.</returns>
         /// <exception cref="ServiceException">The request could not be fulfilled.</exception>
-        private Task<HttpWebResponse> GetHttpWebResponseAsync(HttpWebRequest webRequest, CancellationToken cancellationToken)
+        private async Task<HttpWebResponse> GetHttpWebResponseAsync(HttpWebRequest webRequest, CancellationToken cancellationToken)
         {
             Debug.Assert(webRequest != null, "webRequest != null");
             cancellationToken.Register(webRequest.Abort);
-            var tcs = new TaskCompletionSource<HttpWebResponse>();
+
             try
             {
-                webRequest.BeginGetResponse(
-                    ar =>
-                    {
-                        try
-                        {
-                            tcs.SetResult((HttpWebResponse)webRequest.EndGetResponse(ar));
-                        }
-                        catch (WebException webException)
-                        {
-                            if (webException.Response != null)
-                            {
-                                tcs.SetResult((HttpWebResponse)webException.Response);
-                            }
-                            else
-                            {
-                                tcs.SetException(new ServiceException("An error occurred while sending the request. See the inner exception for details.", webException));
-                            }
-                        }
-                        catch (Exception exception)
-                        {
-                            tcs.SetException(exception);
-                        }
-                    },
-                null);
+                return (HttpWebResponse)await webRequest.GetResponseAsync();
             }
             catch (WebException webException)
             {
                 if (webException.Status == WebExceptionStatus.RequestCanceled)
                 {
-                    tcs.SetCanceled();
+                    cancellationToken.ThrowIfCancellationRequested();
+                    return null;
+                }
+                else if (webException.Response != null)
+                {
+                    return (HttpWebResponse)webException.Response;
                 }
                 else
                 {
-                    tcs.SetException(webException);
+                    throw new ServiceException("An error occurred while sending the request. See the inner exception for details.", webException);
                 }
             }
-
-            return tcs.Task;
         }
 
         /// <summary>Throws an exception for error responses.</summary>
