@@ -167,7 +167,7 @@ AppPackages/
 # Others
 ClientBin/
 # Needs to be excluded for the new Stylecop.Analyzers NuGetPackage
-#[Ss]tyle[Cc]op.*
+[Ss]tyle[Cc]op.*
 ~$*
 *~
 *.dbmdl
