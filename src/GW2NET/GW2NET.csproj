@@ -15,7 +15,6 @@
   <ItemGroup>
     <ProjectReference Include="..\GW2NET.Compression\GW2NET.Compression.csproj" />
     <ProjectReference Include="..\GW2NET.Core\GW2NET.Core.csproj" />
-    <ProjectReference Include="..\GW2NET.Newtonsoft\GW2NET.Newtonsoft.csproj" />
     <ProjectReference Include="..\GW2NET.V2.Accounts.Characters\GW2NET.V2.Accounts.Characters.csproj" />
     <ProjectReference Include="..\GW2NET.V2.Account\GW2NET.V2.Accounts.csproj" />
     <ProjectReference Include="..\GW2NET.V2.Builds\GW2NET.V2.Builds.csproj" />
