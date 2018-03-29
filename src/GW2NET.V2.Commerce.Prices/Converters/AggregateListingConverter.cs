@@ -9,8 +9,6 @@
 namespace GW2NET.V2.Commerce.Prices.Converters
 {
     using System;
-    using System.Diagnostics;
-
     using GW2NET.Commerce;
     using GW2NET.Common;
     using GW2NET.V2.Commerce.Prices.Json;

@@ -7,23 +7,20 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics;
-
 namespace GW2NET.V2.Skins
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-
+    using System.Diagnostics;
     using GW2NET.Common;
-    using GW2NET.Common.Converters;
     using GW2NET.Skins;
+    using Json;
 
     /// <summary>Converts objects of type <see cref="DetailsDataContract"/> to objects of type <see cref="GatheringToolSkin"/>.</summary>
-    internal sealed class GatherinToolConverter : IConverter<DetailsDataContract, GatheringToolSkin>
+    internal sealed class GatherinToolConverter : IConverter<DetailsDTO, GatheringToolSkin>
     {
         /// <summary>Infrastructure. Holds a reference to a collection of type converters.</summary>
-        private readonly IDictionary<string, IConverter<DetailsDataContract, GatheringToolSkin>> typeConverters;
+        private readonly IDictionary<string, IConverter<DetailsDTO, GatheringToolSkin>> typeConverters;
 
         /// <summary>Initializes a new instance of the <see cref="GatherinToolConverter"/> class.</summary>
         public GatherinToolConverter()
@@ -34,30 +31,23 @@ namespace GW2NET.V2.Skins
         /// <summary>Initializes a new instance of the <see cref="GatherinToolConverter"/> class.</summary>
         /// <param name="typeConverters">The type converters.</param>
         /// <exception cref="ArgumentNullException">The value of <paramref name="typeConverters"/> is a null reference.</exception>
-        public GatherinToolConverter(IDictionary<string, IConverter<DetailsDataContract, GatheringToolSkin>> typeConverters)
+        public GatherinToolConverter(IDictionary<string, IConverter<DetailsDTO, GatheringToolSkin>> typeConverters)
         {
-            if (typeConverters == null)
-            {
-                throw new ArgumentNullException("typeConverters", "Precondition: typeConverters != null");
-            }
-
-            this.typeConverters = typeConverters;
+            this.typeConverters = typeConverters ?? throw new ArgumentNullException(nameof(typeConverters), "Precondition: typeConverters != null");
         }
 
         /// <inheritdoc />
-        public GatheringToolSkin Convert(DetailsDataContract value)
+        public GatheringToolSkin Convert(DetailsDTO value, object state = null)
         {
             if (value == null)
             {
                 throw new ArgumentNullException("value", "Precondition: value != null");
             }
 
-            IConverter<DetailsDataContract, GatheringToolSkin> converter;
-
             GatheringToolSkin skin;
-            if (this.typeConverters.TryGetValue(value.Type, out converter))
+            if (this.typeConverters.TryGetValue(value.Type, out var converter))
             {
-                skin = converter.Convert(value);
+                skin = converter.Convert(value, state);
             }
             else
             {
@@ -70,13 +60,13 @@ namespace GW2NET.V2.Skins
 
         /// <summary>Infrastructure. Gets default type converters for all known types.</summary>
         /// <returns>The type converters.</returns>
-        private static IDictionary<string, IConverter<DetailsDataContract, GatheringToolSkin>> GetKnownTypeConverters()
+        private static IDictionary<string, IConverter<DetailsDTO, GatheringToolSkin>> GetKnownTypeConverters()
         {
-            return new Dictionary<string, IConverter<DetailsDataContract, GatheringToolSkin>>
+            return new Dictionary<string, IConverter<DetailsDTO, GatheringToolSkin>>
                        {
-                           { "Foraging", new ConverterForObject<ForagingToolSkin>() }, 
-                           { "Mining", new ConverterForObject<MiningToolSkin>() }, 
-                           { "Logging", new ConverterForObject<LoggingToolSkin>() }, 
+                           //{ "Foraging", new ConverterForObject<ForagingToolSkin>() }, 
+                           //{ "Mining", new ConverterForObject<MiningToolSkin>() }, 
+                           //{ "Logging", new ConverterForObject<LoggingToolSkin>() }, 
                        };
         }
     }

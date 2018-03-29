@@ -6,7 +6,6 @@ namespace GW2NET
 {
     using System;
     using System.Net.Http;
-    using System.Net.Http.Headers;
     using Microsoft.Extensions.DependencyInjection;
 
     public static class ApiWrapperExtensions
@@ -33,9 +32,11 @@ namespace GW2NET
 
         public static IServiceCollection AddCore(this IServiceCollection serviceCollection)
         {
-            var con = new HttpClientOptions();
+            //var con = new HttpClientOptions();
 
-            return serviceCollection.AddCore(conf => con);
+            //return serviceCollection.AddCore(conf => con);
+
+            return serviceCollection;
         }
     }
 
@@ -65,9 +66,9 @@ namespace GW2NET
 
         public HttpClientOptions()
         {
-            this.MessageHandler = ;
-            this.BaseAddress = ;
-            this.Timeout = ;
+            //this.MessageHandler = ;
+            //this.BaseAddress = ;
+            //this.Timeout = ;
         }
 
         public HttpMessageHandler MessageHandler { get; set; }

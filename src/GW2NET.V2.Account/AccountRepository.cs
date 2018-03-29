@@ -9,7 +9,6 @@
 
 namespace GW2NET.V2.Accounts
 {
-    using System.Diagnostics;
     using System.Threading;
     using System.Threading.Tasks;
     using GW2NET.Accounts;

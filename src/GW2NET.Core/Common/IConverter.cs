@@ -21,6 +21,6 @@ namespace GW2NET.Common
         /// <exception cref="ArgumentNullException">The value to convert is a null reference, or the value of <paramref name="state"/> is a null reference and <paramref name="state"/> is required to convert the given value.</exception>
         /// <exception cref="ArgumentException">The value can't be converted by the current converter.</exception>
         /// <returns>The converted value.</returns>
-        TTarget Convert(TSource value, object state);
+        TTarget Convert(TSource value, object state = null);
     }
 }

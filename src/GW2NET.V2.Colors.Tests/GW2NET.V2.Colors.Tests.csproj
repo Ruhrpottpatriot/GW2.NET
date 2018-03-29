@@ -45,6 +45,7 @@
     <DocumentationFile>bin\Release\GW2NET.V2.Colors.Tests.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ColorTests.cs" />
     <Compile Include="Converters\ColorConverterMock.cs" />
     <Compile Include="Converters\ColorConverterTests.cs" />
     <Compile Include="Converters\ColorModelConverterMock.cs" />
@@ -110,4 +111,3 @@
   </Target>
   -->
 </Project>
-

@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Items
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
 

@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Converter\ExchangeConverterTests.cs" />
+    <Compile Include="ExchangeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,4 +106,3 @@
   </Target>
   -->
 </Project>
-

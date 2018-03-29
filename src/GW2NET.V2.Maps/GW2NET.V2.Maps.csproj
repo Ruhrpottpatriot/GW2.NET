@@ -4,9 +4,6 @@
     <RootNamespace>GW2NET.V2.Maps</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="stylecop.json" />
-  </ItemGroup>
-  <ItemGroup>
     <AdditionalFiles Include="$(SolutionDir)stylecop.json" />
   </ItemGroup>
   <ItemGroup>

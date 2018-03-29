@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
     <RootNamespace>GW2NET</RootNamespace>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="stylecop.json" />
@@ -16,20 +16,6 @@
     <ProjectReference Include="..\GW2NET.Compression\GW2NET.Compression.csproj" />
     <ProjectReference Include="..\GW2NET.Core\GW2NET.Core.csproj" />
     <ProjectReference Include="..\GW2NET.Newtonsoft\GW2NET.Newtonsoft.csproj" />
-    <ProjectReference Include="..\GW2NET.V1.Builds\GW2NET.V1.Builds.csproj" />
-    <ProjectReference Include="..\GW2NET.V1.Colors\GW2NET.V1.Colors.csproj" />
-    <ProjectReference Include="..\GW2NET.V1.Continents\GW2NET.V1.Continents.csproj" />
-    <ProjectReference Include="..\GW2NET.V1.Events\GW2NET.V1.Events.csproj" />
-    <ProjectReference Include="..\GW2NET.V1.Files\GW2NET.V1.Files.csproj" />
-    <ProjectReference Include="..\GW2NET.V1.Floors\GW2NET.V1.Floors.csproj" />
-    <ProjectReference Include="..\GW2NET.V1.Guilds\GW2NET.V1.Guilds.csproj" />
-    <ProjectReference Include="..\GW2NET.V1.Items\GW2NET.V1.Items.csproj" />
-    <ProjectReference Include="..\GW2NET.V1.Maps\GW2NET.V1.Maps.csproj" />
-    <ProjectReference Include="..\GW2NET.V1.Recipes\GW2NET.V1.Recipes.csproj" />
-    <ProjectReference Include="..\GW2NET.V1.Skins\GW2NET.V1.Skins.csproj" />
-    <ProjectReference Include="..\GW2NET.V1.Worlds\GW2NET.V1.Worlds.csproj" />
-    <ProjectReference Include="..\GW2NET.V1.WorldVersusWorld.Matches\GW2NET.V1.WorldVersusWorld.Matches.csproj" />
-    <ProjectReference Include="..\GW2NET.V1.WorldVersusWorld.Objectives\GW2NET.V1.WorldVersusWorld.Objectives.csproj" />
     <ProjectReference Include="..\GW2NET.V2.Accounts.Characters\GW2NET.V2.Accounts.Characters.csproj" />
     <ProjectReference Include="..\GW2NET.V2.Account\GW2NET.V2.Accounts.csproj" />
     <ProjectReference Include="..\GW2NET.V2.Builds\GW2NET.V2.Builds.csproj" />
@@ -39,10 +25,12 @@
     <ProjectReference Include="..\GW2NET.V2.Commerce.Prices\GW2NET.V2.Commerce.Prices.csproj" />
     <ProjectReference Include="..\GW2NET.V2.Continents\GW2NET.V2.Continents.csproj" />
     <ProjectReference Include="..\GW2NET.V2.Files\GW2NET.V2.Files.csproj" />
+    <ProjectReference Include="..\GW2NET.V2.Guilds\GW2NET.V2.Guilds.csproj" />
     <ProjectReference Include="..\GW2NET.V2.Items\GW2NET.V2.Items.csproj" />
     <ProjectReference Include="..\GW2NET.V2.Maps\GW2NET.V2.Maps.csproj" />
     <ProjectReference Include="..\GW2NET.V2.Quaggans\GW2NET.V2.Quaggans.csproj" />
     <ProjectReference Include="..\GW2NET.V2.Recipes\GW2NET.V2.Recipes.csproj" />
+    <ProjectReference Include="..\GW2NET.V2.Skins\GW2NET.V2.Skins.csproj" />
     <ProjectReference Include="..\GW2NET.V2.Worlds\GW2NET.V2.Worlds.csproj" />
     <ProjectReference Include="..\GW2NET.V2.WorldVersusWorld.Matches\GW2NET.V2.WorldVersusWorld.Matches.csproj" />
     <ProjectReference Include="..\GW2NET.V2.WorldVersusWorld.Objectives\GW2NET.V2.WorldVersusWorld.Objectives.csproj" />

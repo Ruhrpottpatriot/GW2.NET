@@ -6,11 +6,6 @@
 //   Converts objects of type <see cref="ObjectiveDTO" /> to objects of type <see cref="Objective" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GW2NET.V2.WorldVersusWorld.Objectives.Converters
 {

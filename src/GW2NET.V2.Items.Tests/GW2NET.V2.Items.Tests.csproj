@@ -45,6 +45,7 @@
     <DocumentationFile>bin\Release\GW2NET.V2.Items.Tests.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ItemTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -101,4 +102,3 @@
   </Target>
   -->
 </Project>
-

@@ -9,7 +9,6 @@
 
 namespace GW2NET.V2.WorldVersusWorld.Matches.Json
 {
-    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
     [DataContract]

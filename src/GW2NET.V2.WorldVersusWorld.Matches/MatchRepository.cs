@@ -11,7 +11,6 @@ namespace GW2NET.V2.WorldVersusWorld.Matches
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using GW2NET.Common;

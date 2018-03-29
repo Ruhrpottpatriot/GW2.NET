@@ -11,7 +11,6 @@ namespace GW2NET
     using GW2NET.Common.Serializers;
     using GW2NET.Compression;
     using GW2NET.Factories;
-    using GW2NET.Factories.V1;
     using GW2NET.Factories.V2;
 
     /// <summary>Provides access to Guild Wars 2 data sources and services.</summary>
@@ -33,8 +32,7 @@ namespace GW2NET
             IServiceClient renderingServiceClient = this.CreateRenderingServiceClient();
 
             // Pupulate the repository properties
-            this.V1 = new FactoryForV1(serviceClient);
-            this.V2 = new FactoryForV2(serviceClient);
+            this.Services = new Services(serviceClient);
             this.Rendering = new FactoryForRendering(renderingServiceClient);
             this.Local = new FactoryForLocal();
 
@@ -42,7 +40,7 @@ namespace GW2NET
             if (KeyUtilities.IsValid(apiKey))
             {
                 IServiceClient authServiceClient = this.CreateAuthorizedServiceClient(apiKey);
-                this.V2Authorized = new FactoryForV2Authorized(authServiceClient);
+                this.AuthorizedServices = new AuthorizedServices(authServiceClient);
             }
         }
 
@@ -52,14 +50,11 @@ namespace GW2NET
         /// <summary>Gets access to the rendering service.</summary>
         public FactoryForRendering Rendering { get; private set; }
 
-        /// <summary>Gets access to version 1 of the public API.</summary>
-        public FactoryForV1 V1 { get; private set; }
-
         /// <summary>Gets access to the public area of the version 2 of the Guild Wars 2 API.</summary>
-        public FactoryForV2 V2 { get; private set; }
+        public Services Services { get; private set; }
 
         /// <summary> Gets access to the authorized area of the Guild Wars 2 API.</summary>
-        public FactoryForV2Authorized V2Authorized { get; private set; }
+        public AuthorizedServices AuthorizedServices { get; private set; }
 
         /// <summary>Sets the api key for further use.</summary>
         /// <param name="apiKey">The api key.</param>
@@ -67,7 +62,7 @@ namespace GW2NET
         {
             if (KeyUtilities.IsValid(apiKey))
             {
-                this.V2Authorized = new FactoryForV2Authorized(this.CreateAuthorizedServiceClient(apiKey));
+                this.AuthorizedServices = new AuthorizedServices(this.CreateAuthorizedServiceClient(apiKey));
             }
             else
             {
