@@ -6,7 +6,7 @@
 //   A modifier for an unknown combat attribute.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Common
 {
     /// <summary>A modifier for an unknown combat attribute.</summary>
     public class UnknownModifier : CombatAttribute

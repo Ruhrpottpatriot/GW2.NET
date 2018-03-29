@@ -6,7 +6,7 @@
 //   Represents an unknown weapon.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Weapons
 {
     /// <summary>Represents an unknown weapon.</summary>
     public class UnknownWeapon : Weapon

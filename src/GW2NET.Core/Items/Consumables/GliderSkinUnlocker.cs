@@ -6,7 +6,7 @@
 //   Represents an glider skin unlock item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Consumables
 {
     /// <summary>Represents an glider skin unlock item.</summary>
     public class GliderSkinUnlocker : Unlocker

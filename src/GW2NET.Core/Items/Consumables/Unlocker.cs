@@ -6,7 +6,7 @@
 //   Provides the base class for unlock consumable types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Consumables
 {
     /// <summary>Provides the base class for unlock consumable types.</summary>
     public abstract class Unlocker : Consumable

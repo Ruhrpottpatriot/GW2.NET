@@ -6,7 +6,7 @@
 //   Provides the base class for combat attribute modifiers.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Common
 {
     /// <summary>Provides the base class for combat attribute modifiers.</summary>
     public abstract class CombatAttribute

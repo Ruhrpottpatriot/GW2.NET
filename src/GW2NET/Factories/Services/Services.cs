@@ -7,22 +7,22 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.Factories.V2
+namespace GW2NET.Factories.Services
 {
     using System;
-
-    using GW2NET.Builds;
-    using GW2NET.Common;
-    using GW2NET.Common.Converters;
-    using GW2NET.Guilds;
-    using GW2NET.Quaggans;
-    using GW2NET.V1.Guilds;
-    using GW2NET.V1.Guilds.Converters;
+    using Builds;
+    using Common;
+    using Common.Converters;
+    using Guilds;
     using GW2NET.V2.Builds;
     using GW2NET.V2.Builds.Converters;
+    using GW2NET.V2.Guilds;
+    using GW2NET.V2.Guilds.Converters;
     using GW2NET.V2.Quaggans;
     using GW2NET.V2.Quaggans.Converters;
     using GW2NET.V2.Quaggans.Json;
+    using Quaggans;
+    using V2;
 
     /// <summary>Provides access to version 2 of the public API.</summary>
     public class Services : ServiceFactoryBase

@@ -6,7 +6,7 @@
 //   The Ferocity modifier.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Common
 {
     /// <summary>The Ferocity modifier.</summary>
     public class FerocityModifier : CombatAttribute

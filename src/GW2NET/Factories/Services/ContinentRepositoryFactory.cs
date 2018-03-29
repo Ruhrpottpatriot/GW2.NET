@@ -7,18 +7,17 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.Factories.V2
+namespace GW2NET.Factories.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-
-    using GW2NET.Common;
-    using GW2NET.Common.Converters;
-    using GW2NET.Maps;
+    using Common;
+    using Common.Converters;
     using GW2NET.V2.Continents;
     using GW2NET.V2.Continents.Converter;
     using GW2NET.V2.Continents.Json;
+    using Maps;
 
     /// <summary>Provides methods for creating a continent repository.</summary>
     public class ContinentRepositoryFactory : RepositoryFactoryBase<IContinentRepository>

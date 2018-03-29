@@ -6,9 +6,9 @@
 //   Represents an item's combat buff.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Common
 {
-    using GW2NET.ChatLinks;
+    using ChatLinks;
 
     /// <summary>Represents an item's combat buff.</summary>
     public class CombatBuff

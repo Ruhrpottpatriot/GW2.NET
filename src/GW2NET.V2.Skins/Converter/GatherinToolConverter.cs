@@ -7,14 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Skins
+namespace GW2NET.Converter
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-    using GW2NET.Common;
-    using GW2NET.Skins;
+    using Common;
     using Json;
+    using Skins;
 
     /// <summary>Converts objects of type <see cref="DetailsDataContract"/> to objects of type <see cref="GatheringToolSkin"/>.</summary>
     internal sealed class GatherinToolConverter : IConverter<DetailsDTO, GatheringToolSkin>

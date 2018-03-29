@@ -6,7 +6,7 @@
 //   Represents an unknown upgrade component.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.UpgradeComponents
 {
     /// <summary>Represents an unknown upgrade component.</summary>
     public class UnknownUpgradeComponent : UpgradeComponent

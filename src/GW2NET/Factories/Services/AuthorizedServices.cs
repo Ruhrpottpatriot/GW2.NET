@@ -7,11 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.Factories.V2
+namespace GW2NET.Factories.Services
 {
     using System;
-
-    using GW2NET.Common;
+    using Common;
 
     /// <summary>Provides access to the authorized part of the version 2 API.</summary>
     public class AuthorizedServices : ServiceFactoryBase

@@ -6,7 +6,7 @@
 //   Provides the interface for items that provide combat bonuses while equipped.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Common
 {
     using System;
 

@@ -6,7 +6,7 @@
 //   Represents a hammer.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Weapons
 {
     /// <summary>Represents a hammer.</summary>
     public class Hammer : Weapon

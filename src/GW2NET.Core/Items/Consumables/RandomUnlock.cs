@@ -6,7 +6,7 @@
 //   Represents an object that will unlock one random wardrobe option.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Consumables
 {
     /// <summary>Represents an object that will unlock one random wardrobe option.</summary>
     public class RandomUnlock : Consumable

@@ -7,12 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Skins.Converters
+namespace GW2NET.Converter
 {
     using System;
     using System.Diagnostics;
-    using GW2NET.Common;
-    using GW2NET.Skins;
+    using Common;
+    using Skins;
 
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="SkinFlags"/>.</summary>
     public sealed class SkinFlagConverter : IConverter<string, SkinFlags>

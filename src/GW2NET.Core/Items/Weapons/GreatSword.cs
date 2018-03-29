@@ -6,7 +6,7 @@
 //   Represents a great sword.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Weapons
 {
     /// <summary>Represents a great sword.</summary>
     public class GreatSword : Weapon

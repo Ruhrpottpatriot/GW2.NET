@@ -6,14 +6,14 @@
 //   Provides the base class for weapon types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Weapons
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-
-    using GW2NET.ChatLinks;
-    using GW2NET.Skins;
+    using ChatLinks;
+    using Common;
+    using Skins;
 
     /// <summary>Provides the base class for weapon types.</summary>
     public abstract class Weapon : Item, IUpgradable, IUpgrade, ISkinnable

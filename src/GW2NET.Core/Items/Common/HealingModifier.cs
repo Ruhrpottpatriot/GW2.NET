@@ -6,7 +6,7 @@
 //   The Healing modifier.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Common
 {
     /// <summary>The Healing modifier.</summary>
     public class HealingModifier : CombatAttribute

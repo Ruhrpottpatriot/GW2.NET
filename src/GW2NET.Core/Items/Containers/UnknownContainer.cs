@@ -6,7 +6,7 @@
 //   Represents an unknown container.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Containers
 {
     /// <summary>Represents an unknown container.</summary>
     public class UnknownContainer : Container

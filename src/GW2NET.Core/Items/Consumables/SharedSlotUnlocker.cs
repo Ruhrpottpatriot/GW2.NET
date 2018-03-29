@@ -6,7 +6,7 @@
 //   Represents an shared inventory slot unlock item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Consumables
 {
     /// <summary>Represents an shared inventory slot unlock item.</summary>
     public class SharedSlotUnlocker : Unlocker

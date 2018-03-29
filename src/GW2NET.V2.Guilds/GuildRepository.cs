@@ -7,15 +7,15 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V1.Guilds
+namespace GW2NET.V2.Guilds
 {
     using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using GW2NET.Common;
+    using Common;
     using GW2NET.Guilds;
-    using GW2NET.V1.Guilds.Json;
+    using Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/guild_details.json interface.</summary>
     public class GuildRepository : IGuildRepository

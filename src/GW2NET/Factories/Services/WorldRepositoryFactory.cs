@@ -6,17 +6,16 @@
 //   Provides methods for creating repository objects.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Factories.V2
+namespace GW2NET.Factories.Services
 {
     using System;
     using System.Globalization;
-
-    using GW2NET.Common;
-    using GW2NET.Common.Converters;
+    using Common;
+    using Common.Converters;
     using GW2NET.V2.Worlds;
     using GW2NET.V2.Worlds.Converters;
     using GW2NET.V2.Worlds.Json;
-    using GW2NET.Worlds;
+    using Worlds;
 
     /// <summary>Provides methods for creating repository objects.</summary>
     public sealed class WorldRepositoryFactory : RepositoryFactoryBase<IWorldRepository>

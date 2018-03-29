@@ -6,7 +6,7 @@
 //   The Agony Resistance modifier.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Common
 {
     /// <summary>The Agony Resistance modifier.</summary>
     public class AgonyResistanceModifier : CombatAttribute

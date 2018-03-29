@@ -6,7 +6,7 @@
 //   Represents an accessory.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Trinkets
 {
     /// <summary>Represents an accessory.</summary>
     public class Accessory : Trinket

@@ -6,9 +6,9 @@
 //   Represents a crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Consumables
 {
-    using GW2NET.Recipes;
+    using Recipes;
 
     /// <summary>Represents a crafting recipe.</summary>
     public class CraftingRecipeUnlocker : Unlocker

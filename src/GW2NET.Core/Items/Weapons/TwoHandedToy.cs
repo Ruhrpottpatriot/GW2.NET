@@ -6,7 +6,7 @@
 //   Represents a two-handed toy.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Weapons
 {
     /// <summary>Represents a two-handed toy.</summary>
     public class TwoHandedToy : Weapon

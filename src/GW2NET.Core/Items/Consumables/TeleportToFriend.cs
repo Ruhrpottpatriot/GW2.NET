@@ -6,7 +6,7 @@
 //   Represents an object that teleports the player to a party member's location.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Consumables
 {
     /// <summary>Represents an object that teleports the player to a party member's location.</summary>
     public class TeleportToFriend : Consumable

@@ -4,13 +4,12 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.Factories.V2
+namespace GW2NET.Factories.Services
 {
     using System;
     using System.Globalization;
-
-    using GW2NET.Accounts;
-    using GW2NET.Common;
+    using Accounts;
+    using Common;
     using GW2NET.V2.Accounts;
     using GW2NET.V2.Accounts.Converter;
 

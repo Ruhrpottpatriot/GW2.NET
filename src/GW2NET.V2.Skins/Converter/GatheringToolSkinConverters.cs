@@ -8,15 +8,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Skins.Converters
+namespace GW2NET.Converter
 {
     using System;
+    using Common;
+    using Skins;
+    using SkinDTO = Json.SkinDTO;
 
-    using GW2NET.Common;
-    using GW2NET.Skins;
-	using SkinDTO = GW2NET.V2.Skins.Json.SkinDTO;
-
-    public sealed partial class GatheringToolSkinConverter : IConverter<SkinDTO, GatheringToolSkin>
+    public sealed partial class GatheringToolSkinConverter : IConverter<Json.SkinDTO, GatheringToolSkin>
 	{
 	    private readonly ITypeConverterFactory<SkinDTO, GatheringToolSkin> converterFactory;
 
@@ -62,7 +61,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region ForagingToolSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="ForagingToolSkin"/>.</summary>
-    public sealed partial class ForagingToolSkinConverter : IConverter<SkinDTO, GatheringToolSkin>
+    public sealed partial class ForagingToolSkinConverter : IConverter<Json.SkinDTO, GatheringToolSkin>
     {
 	    /// <inheritdoc />
         public GatheringToolSkin Convert(SkinDTO value, object state)
@@ -90,7 +89,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region LoggingToolSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="LoggingToolSkin"/>.</summary>
-    public sealed partial class LoggingToolSkinConverter : IConverter<SkinDTO, GatheringToolSkin>
+    public sealed partial class LoggingToolSkinConverter : IConverter<Json.SkinDTO, GatheringToolSkin>
     {
 	    /// <inheritdoc />
         public GatheringToolSkin Convert(SkinDTO value, object state)
@@ -118,7 +117,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region MiningToolSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="MiningToolSkin"/>.</summary>
-    public sealed partial class MiningToolSkinConverter : IConverter<SkinDTO, GatheringToolSkin>
+    public sealed partial class MiningToolSkinConverter : IConverter<Json.SkinDTO, GatheringToolSkin>
     {
 	    /// <inheritdoc />
         public GatheringToolSkin Convert(SkinDTO value, object state)
@@ -146,7 +145,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region UnknownGatheringToolSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="UnknownGatheringToolSkin"/>.</summary>
-    public sealed partial class UnknownGatheringToolSkinConverter : IConverter<SkinDTO, GatheringToolSkin>
+    public sealed partial class UnknownGatheringToolSkinConverter : IConverter<Json.SkinDTO, GatheringToolSkin>
     {
 	    /// <inheritdoc />
         public GatheringToolSkin Convert(SkinDTO value, object state)

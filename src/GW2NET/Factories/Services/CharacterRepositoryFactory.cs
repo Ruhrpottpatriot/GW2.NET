@@ -7,15 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.Factories.V2
+namespace GW2NET.Factories.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-
-    using GW2NET.Characters;
-    using GW2NET.Common;
-    using GW2NET.Common.Converters;
+    using Characters;
+    using Common;
+    using Common.Converters;
     using GW2NET.V2.Accounts.Characters;
     using GW2NET.V2.Accounts.Characters.Converter;
     using GW2NET.V2.Accounts.Characters.Json;

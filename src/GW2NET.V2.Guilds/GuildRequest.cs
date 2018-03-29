@@ -6,12 +6,11 @@
 //   Represents a request for information regarding a specific guild.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Guilds
+namespace GW2NET.V2.Guilds
 {
     using System;
     using System.Collections.Generic;
-
-    using GW2NET.Common;
+    using Common;
 
     /// <summary>Represents a request for information regarding a specific guild.</summary>
     public sealed class GuildRequest : IRequest

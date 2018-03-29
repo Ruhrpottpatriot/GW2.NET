@@ -7,6 +7,7 @@ using System.Collections.Generic;
 namespace GW2NET.V2.Items.Converters
 {
     using GW2NET.Items;
+    using GW2NET.Items.Consumables;
     using Json;
 
     public partial class TransmutationConverter

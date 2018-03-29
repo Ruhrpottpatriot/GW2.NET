@@ -6,7 +6,7 @@
 //   The Concentration (boon duration) modifier.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Common
 {
     /// <summary>The Concentration (boon duration) modifier.</summary>
     public class ConcentrationModifier : CombatAttribute

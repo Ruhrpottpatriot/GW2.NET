@@ -6,7 +6,7 @@
 //   Represents a container that is consumed immediately upon acquisition.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Containers
 {
     /// <summary>Represents a container that is consumed immediately upon acquisition.</summary>
     public class ImmediateContainer : Container

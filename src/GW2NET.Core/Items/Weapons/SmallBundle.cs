@@ -6,7 +6,7 @@
 //   Represents a small bundle.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Weapons
 {
     /// <summary>Represents a small bundle.</summary>
     public class SmallBundle : Weapon

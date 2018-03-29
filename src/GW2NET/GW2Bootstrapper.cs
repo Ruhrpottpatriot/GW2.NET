@@ -6,7 +6,7 @@ namespace GW2NET
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-
+    using Factories.Services;
     using GW2NET.Common;
     using GW2NET.Common.Serializers;
     using GW2NET.Compression;

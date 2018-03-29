@@ -7,14 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.Factories.V2
+namespace GW2NET.Factories.Services
 {
     using System;
     using System.Globalization;
-
-    using GW2NET.Common;
-    using GW2NET.Common.Converters;
-    using GW2NET.Files;
+    using Common;
+    using Common.Converters;
+    using Files;
     using GW2NET.V2.Files;
     using GW2NET.V2.Files.Converters;
     using GW2NET.V2.Files.Json;

@@ -14,7 +14,8 @@ namespace GW2NET.V2.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items;
-	using ItemDTO = GW2NET.V2.Items.Json.ItemDTO;
+    using GW2NET.Items.Consumables;
+    using ItemDTO = GW2NET.V2.Items.Json.ItemDTO;
 
     public sealed partial class ConsumableConverter : IConverter<ItemDTO, Consumable>
 	{

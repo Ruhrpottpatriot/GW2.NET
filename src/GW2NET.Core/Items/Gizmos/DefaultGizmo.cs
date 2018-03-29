@@ -6,7 +6,7 @@
 //   Represents a default gizmo.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Gizmos
 {
     /// <summary>Represents a default gizmo.</summary>
     public class DefaultGizmo : Gizmo

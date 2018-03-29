@@ -6,7 +6,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Skins.Json
+namespace GW2NET.Json
 {
     using System.Runtime.Serialization;
 

@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V1.Guilds.Json
+namespace GW2NET.V2.Guilds.Json
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

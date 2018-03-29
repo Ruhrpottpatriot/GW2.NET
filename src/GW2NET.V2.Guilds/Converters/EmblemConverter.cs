@@ -7,13 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V1.Guilds.Converters
+namespace GW2NET.V2.Guilds.Converters
 {
     using System;
     using System.Collections.Generic;
-    using GW2NET.Common;
+    using Common;
     using GW2NET.Guilds;
-    using GW2NET.V1.Guilds.Json;
+    using Json;
 
     /// <summary>Converts objects of type <see cref="EmblemDTO"/> to objects of type <see cref="Emblem"/>.</summary>
     public sealed class EmblemConverter : IConverter<EmblemDTO, Emblem>

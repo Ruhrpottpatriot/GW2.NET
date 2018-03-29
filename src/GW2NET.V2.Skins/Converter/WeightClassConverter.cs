@@ -7,14 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics;
-
-namespace GW2NET.V2.Skins.Converters
+namespace GW2NET.Converter
 {
     using System;
-
-    using GW2NET.Common;
-    using GW2NET.Items;
+    using System.Diagnostics;
+    using Common;
+    using Items.Armors;
 
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="WeightClass"/>.</summary>
     public sealed class WeightClassConverter : IConverter<string, WeightClass>

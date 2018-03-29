@@ -6,7 +6,7 @@
 //   The Precision modifier.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Common
 {
     /// <summary>The Precision modifier.</summary>
     public class PrecisionModifier : CombatAttribute

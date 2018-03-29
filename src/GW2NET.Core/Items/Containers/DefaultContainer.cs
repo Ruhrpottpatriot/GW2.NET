@@ -6,7 +6,7 @@
 //   Represents a default container.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Containers
 {
     /// <summary>Represents a default container.</summary>
     public class DefaultContainer : Container

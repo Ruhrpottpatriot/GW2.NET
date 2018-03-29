@@ -6,7 +6,7 @@
 //   Provides the base class for gizmo types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Gizmos
 {
     /// <summary>Provides the base class for gizmo types.</summary>
     public abstract class Gizmo : Item

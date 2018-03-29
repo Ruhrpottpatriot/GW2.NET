@@ -6,7 +6,7 @@
 //   Enumerates the possible upgrade component flags.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.UpgradeComponents
 {
     using System;
 

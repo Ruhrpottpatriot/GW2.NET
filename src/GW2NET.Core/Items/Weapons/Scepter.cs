@@ -6,7 +6,7 @@
 //   Represents a scepter.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Weapons
 {
     /// <summary>Represents a scepter.</summary>
     public class Scepter : Weapon

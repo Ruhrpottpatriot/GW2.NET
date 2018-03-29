@@ -6,7 +6,7 @@
 //   Represents an unknown tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Tools
 {
     /// <summary>Represents an unknown tool.</summary>
     public class UnknownTool : Tool

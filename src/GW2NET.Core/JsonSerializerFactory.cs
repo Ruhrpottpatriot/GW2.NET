@@ -6,8 +6,9 @@
 //   Provides factory methods for the Json.NET serialization engine.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Common.Serializers
+namespace GW2NET
 {
+    using Common.Serializers;
     using Newtonsoft.Json;
 
     /// <summary>Provides factory methods for the JSON.NET serialization engine.</summary>

@@ -17,6 +17,13 @@ namespace GW2NET.V2.Items
 
     using GW2NET.Common;
     using GW2NET.Items;
+    using GW2NET.Items.Armors;
+    using GW2NET.Items.Backpacks;
+    using GW2NET.Items.Common;
+    using GW2NET.Items.Consumables;
+    using GW2NET.Items.GatheringTools;
+    using GW2NET.Items.Trinkets;
+    using GW2NET.Items.Weapons;
     using GW2NET.V2.Items.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v2/items interface. See the remarks section for important limitations regarding this implementation.</summary>

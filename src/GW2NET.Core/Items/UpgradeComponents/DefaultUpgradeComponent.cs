@@ -6,7 +6,7 @@
 //   Represents a default upgrade component.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.UpgradeComponents
 {
     /// <summary>Represents a default upgrade component.</summary>
     public class DefaultUpgradeComponent : UpgradeComponent

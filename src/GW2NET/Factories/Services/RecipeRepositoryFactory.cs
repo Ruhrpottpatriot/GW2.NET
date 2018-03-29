@@ -6,19 +6,18 @@
 //   Provides methods for creating repository objects.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Factories.V2
+namespace GW2NET.Factories.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-
-    using GW2NET.Common;
-    using GW2NET.Common.Converters;
-    using GW2NET.Items;
-    using GW2NET.Recipes;
+    using Common;
+    using Common.Converters;
     using GW2NET.V2.Recipes;
     using GW2NET.V2.Recipes.Converters;
     using GW2NET.V2.Recipes.Json;
+    using Items;
+    using Recipes;
 
     /// <summary>Provides methods for creating repository objects.</summary>
     public sealed class RecipeRepositoryFactory : RepositoryFactoryBase<IRecipeRepository>

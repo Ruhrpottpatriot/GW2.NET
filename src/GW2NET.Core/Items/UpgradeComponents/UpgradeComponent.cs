@@ -6,10 +6,11 @@
 //   Provides the base class for upgrade component types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.UpgradeComponents
 {
     using System.Collections.Generic;
     using System.Diagnostics;
+    using Common;
 
     /// <summary>Provides the base class for upgrade component types.</summary>
     public abstract class UpgradeComponent : Item, IUpgrade

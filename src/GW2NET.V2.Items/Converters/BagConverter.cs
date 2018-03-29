@@ -10,6 +10,7 @@
 namespace GW2NET.V2.Items.Converters
 {
     using GW2NET.Items;
+    using GW2NET.Items.Bags;
     using GW2NET.V2.Items.Json;
 
     public partial class BagConverter

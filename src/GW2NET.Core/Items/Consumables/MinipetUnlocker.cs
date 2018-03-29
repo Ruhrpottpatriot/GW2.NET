@@ -6,7 +6,7 @@
 //   Represents a Minipet unlock item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Consumables
 {
     /// <summary>Represents a Minipet unlock item.</summary>
     public class MinipetUnlocker : Unlocker

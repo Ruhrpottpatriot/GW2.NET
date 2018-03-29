@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Skins
+namespace GW2NET
 {
     using System;
     using System.Collections.Generic;
@@ -15,10 +15,9 @@ namespace GW2NET.V2.Skins
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-
-    using GW2NET.Common;
-    using GW2NET.Skins;
-    using GW2NET.V2.Skins.Json;
+    using Common;
+    using Json;
+    using Skins;
 
     /// <summary>Represents a repository that retrieves data from the /v2/items interface. See the remarks section for important limitations regarding this implementation.</summary>
     /// <remarks>

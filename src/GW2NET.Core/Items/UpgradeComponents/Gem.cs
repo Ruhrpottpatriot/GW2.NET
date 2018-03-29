@@ -6,7 +6,7 @@
 //   Represents a gem upgrade component.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.UpgradeComponents
 {
     /// <summary>Represents a gem upgrade component.</summary>
     public class Gem : UpgradeComponent

@@ -6,7 +6,7 @@
 //   Represents feet protection.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Armors
 {
     /// <summary>Represents feet protection.</summary>
     public class Boots : Armor

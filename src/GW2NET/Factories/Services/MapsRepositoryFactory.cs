@@ -7,18 +7,17 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.Factories.V2
+namespace GW2NET.Factories.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-
-    using GW2NET.Common;
-    using GW2NET.Common.Converters;
-    using GW2NET.Maps;
+    using Common;
+    using Common.Converters;
     using GW2NET.V2.Maps;
     using GW2NET.V2.Maps.Converter;
     using GW2NET.V2.Maps.Json;
+    using Maps;
 
     /// <summary>Provides methods and properties for creating a map repository.</summary>
     public class MapsRepositoryFactory : RepositoryFactoryBase<IMapRepository>

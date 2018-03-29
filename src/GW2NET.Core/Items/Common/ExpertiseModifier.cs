@@ -6,7 +6,7 @@
 //   The Condition Duration modifier.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Common
 {
     /// <summary>The Condition Duration modifier.</summary>
     public class ExpertiseModifier : CombatAttribute

@@ -2,14 +2,13 @@
 // This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 
-namespace GW2NET.V2.Skins.Converters
+namespace GW2NET.Converter
 {
     using System;
-
-    using GW2NET.Common;
-    using GW2NET.Items;
-    using GW2NET.Skins;
-    using GW2NET.V2.Skins.Json;
+    using Common;
+    using Items.Armors;
+    using Json;
+    using Skins;
 
     public partial class ArmorSkinConverter
     {

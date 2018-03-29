@@ -13,6 +13,8 @@ namespace GW2NET.V2.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items;
+    using GW2NET.Items.Common;
+    using GW2NET.Items.Trinkets;
     using GW2NET.V2.Items.Json;
 
     public partial class TrinketConverter

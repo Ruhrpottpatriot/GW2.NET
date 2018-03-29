@@ -6,7 +6,7 @@
 //   Represents a crafting material.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.CraftingMaterials
 {
     /// <summary>Represents a crafting material.</summary>
     public class CraftingMaterial : Item

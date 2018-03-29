@@ -8,15 +8,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Skins.Converters
+namespace GW2NET.Converter
 {
     using System;
+    using Common;
+    using Skins;
+    using SkinDTO = Json.SkinDTO;
 
-    using GW2NET.Common;
-    using GW2NET.Skins;
-	using SkinDTO = GW2NET.V2.Skins.Json.SkinDTO;
-
-    public sealed partial class ArmorSkinConverter : IConverter<SkinDTO, ArmorSkin>
+    public sealed partial class ArmorSkinConverter : IConverter<Json.SkinDTO, ArmorSkin>
 	{
 	    private readonly ITypeConverterFactory<SkinDTO, ArmorSkin> converterFactory;
 
@@ -62,7 +61,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region BootsSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="BootsSkin"/>.</summary>
-    public sealed partial class BootsSkinConverter : IConverter<SkinDTO, ArmorSkin>
+    public sealed partial class BootsSkinConverter : IConverter<Json.SkinDTO, ArmorSkin>
     {
 	    /// <inheritdoc />
         public ArmorSkin Convert(SkinDTO value, object state)
@@ -90,7 +89,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region CoatSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="CoatSkin"/>.</summary>
-    public sealed partial class CoatSkinConverter : IConverter<SkinDTO, ArmorSkin>
+    public sealed partial class CoatSkinConverter : IConverter<Json.SkinDTO, ArmorSkin>
     {
 	    /// <inheritdoc />
         public ArmorSkin Convert(SkinDTO value, object state)
@@ -118,7 +117,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region GlovesSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="GlovesSkin"/>.</summary>
-    public sealed partial class GlovesSkinConverter : IConverter<SkinDTO, ArmorSkin>
+    public sealed partial class GlovesSkinConverter : IConverter<Json.SkinDTO, ArmorSkin>
     {
 	    /// <inheritdoc />
         public ArmorSkin Convert(SkinDTO value, object state)
@@ -146,7 +145,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region HelmAquaticSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="HelmAquaticSkin"/>.</summary>
-    public sealed partial class HelmAquaticSkinConverter : IConverter<SkinDTO, ArmorSkin>
+    public sealed partial class HelmAquaticSkinConverter : IConverter<Json.SkinDTO, ArmorSkin>
     {
 	    /// <inheritdoc />
         public ArmorSkin Convert(SkinDTO value, object state)
@@ -174,7 +173,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region HelmSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="HelmSkin"/>.</summary>
-    public sealed partial class HelmSkinConverter : IConverter<SkinDTO, ArmorSkin>
+    public sealed partial class HelmSkinConverter : IConverter<Json.SkinDTO, ArmorSkin>
     {
 	    /// <inheritdoc />
         public ArmorSkin Convert(SkinDTO value, object state)
@@ -202,7 +201,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region LeggingsSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="LeggingsSkin"/>.</summary>
-    public sealed partial class LeggingsSkinConverter : IConverter<SkinDTO, ArmorSkin>
+    public sealed partial class LeggingsSkinConverter : IConverter<Json.SkinDTO, ArmorSkin>
     {
 	    /// <inheritdoc />
         public ArmorSkin Convert(SkinDTO value, object state)
@@ -230,7 +229,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region ShouldersSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="ShouldersSkin"/>.</summary>
-    public sealed partial class ShouldersSkinConverter : IConverter<SkinDTO, ArmorSkin>
+    public sealed partial class ShouldersSkinConverter : IConverter<Json.SkinDTO, ArmorSkin>
     {
 	    /// <inheritdoc />
         public ArmorSkin Convert(SkinDTO value, object state)
@@ -258,7 +257,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region UnknownArmorSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="UnknownArmorSkin"/>.</summary>
-    public sealed partial class UnknownArmorSkinConverter : IConverter<SkinDTO, ArmorSkin>
+    public sealed partial class UnknownArmorSkinConverter : IConverter<Json.SkinDTO, ArmorSkin>
     {
 	    /// <inheritdoc />
         public ArmorSkin Convert(SkinDTO value, object state)

@@ -6,7 +6,7 @@
 //   Represents a contract NPC.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Consumables
 {
     /// <summary>Represents a contract NPC.</summary>
     public class ContractNpc : Consumable

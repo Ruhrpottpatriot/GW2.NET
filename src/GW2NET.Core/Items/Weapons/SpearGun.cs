@@ -6,7 +6,7 @@
 //   Represents a spear gun.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Weapons
 {
     /// <summary>Represents a spear gun.</summary>
     public class SpearGun : Weapon

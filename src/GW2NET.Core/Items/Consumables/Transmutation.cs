@@ -6,12 +6,11 @@
 //   Represents a transmutation item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Consumables
 {
     using System.Collections.Generic;
     using System.Diagnostics;
-
-    using GW2NET.Skins;
+    using Skins;
 
     /// <summary>Represents a transmutation item.</summary>
     public class Transmutation : Consumable

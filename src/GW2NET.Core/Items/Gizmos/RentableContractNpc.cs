@@ -6,7 +6,7 @@
 //   Represents a rentable contract NPC.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Gizmos
 {
     /// <summary>Represents a rentable contract NPC.</summary>
     public class RentableContractNpc : Gizmo

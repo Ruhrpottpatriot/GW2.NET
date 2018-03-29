@@ -7,12 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Skins
+namespace GW2NET
 {
     using System.Collections.Generic;
     using System.Globalization;
-
-    using GW2NET.Common;
+    using Common;
 
     /// <summary>Represents a details request that targets the /v2/skins interface.</summary>
     public sealed class SkinDetailsRequest : DetailsRequest, ILocalizable

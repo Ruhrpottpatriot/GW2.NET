@@ -7,9 +7,9 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Skins
+namespace GW2NET
 {
-    using GW2NET.Common;
+    using Common;
 
     /// <summary>Represents a discovery request that targets the /v2/skins interface.</summary>
     public sealed class SkinDiscoveryRequest : DiscoveryRequest

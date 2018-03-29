@@ -43,8 +43,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GW2NET.V2.Accounts.Characte
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GW2NET.V2.Accounts", "src\GW2NET.V2.Account\GW2NET.V2.Accounts.csproj", "{2C83D314-3C3F-470B-A4CC-B6E3E1F48EA2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{DC15FF50-B771-4A5D-8462-FD1F22AD8B9A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GW2NET.V2.WorldVersusWorld.Matches", "src\GW2NET.V2.WorldVersusWorld.Matches\GW2NET.V2.WorldVersusWorld.Matches.csproj", "{B42A3B69-96F0-4091-A9B2-58FE5319E51A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GW2NET.V2.WorldVersusWorld.Objectives", "src\GW2NET.V2.WorldVersusWorld.Objectives\GW2NET.V2.WorldVersusWorld.Objectives.csproj", "{8BD6A4E8-8E34-40E3-A828-7EF6C8A00FF2}"

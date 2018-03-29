@@ -6,7 +6,7 @@
 //   Represents an outfit unlock item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Consumables
 {
     /// <summary>Represents an outfit unlock item.</summary>
     public class OutfitUnlocker : Unlocker

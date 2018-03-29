@@ -6,18 +6,16 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.Factories.V2
+namespace GW2NET.Factories.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-
-    using GW2NET.Common;
-    using GW2NET.Common.Converters;
-    using GW2NET.Skins;
-    using GW2NET.V2.Skins;
-    using GW2NET.V2.Skins.Converters;
-    using GW2NET.V2.Skins.Json;
+    using Common;
+    using Common.Converters;
+    using Converter;
+    using Json;
+    using Skins;
 
     /// <summary>Provides methods and properties for creating a skin repository.</summary>
     public class SkinRepositoryFactory : RepositoryFactoryBase<ISkinRepository>

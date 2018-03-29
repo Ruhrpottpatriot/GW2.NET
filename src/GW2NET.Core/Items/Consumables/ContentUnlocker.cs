@@ -6,7 +6,7 @@
 //   Represents a content unlock item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Consumables
 {
     /// <summary>Represents a content unlock item.</summary>
     public class ContentUnlocker : Unlocker

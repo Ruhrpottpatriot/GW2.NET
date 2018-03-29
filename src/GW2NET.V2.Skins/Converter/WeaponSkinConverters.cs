@@ -8,15 +8,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Skins.Converters
+namespace GW2NET.Converter
 {
     using System;
+    using Common;
+    using Skins;
+    using SkinDTO = Json.SkinDTO;
 
-    using GW2NET.Common;
-    using GW2NET.Skins;
-	using SkinDTO = GW2NET.V2.Skins.Json.SkinDTO;
-
-    public sealed partial class WeaponSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class WeaponSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
 	{
 	    private readonly ITypeConverterFactory<SkinDTO, WeaponSkin> converterFactory;
 
@@ -62,7 +61,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region AxeSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="AxeSkin"/>.</summary>
-    public sealed partial class AxeSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class AxeSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -90,7 +89,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region DaggerSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="DaggerSkin"/>.</summary>
-    public sealed partial class DaggerSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class DaggerSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -118,7 +117,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region FocusSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="FocusSkin"/>.</summary>
-    public sealed partial class FocusSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class FocusSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -146,7 +145,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region GreatSwordSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="GreatSwordSkin"/>.</summary>
-    public sealed partial class GreatSwordSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class GreatSwordSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -174,7 +173,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region HammerSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="HammerSkin"/>.</summary>
-    public sealed partial class HammerSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class HammerSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -202,7 +201,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region HarpoonSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="HarpoonSkin"/>.</summary>
-    public sealed partial class HarpoonSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class HarpoonSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -230,7 +229,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region LargeBundleSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="LargeBundleSkin"/>.</summary>
-    public sealed partial class LargeBundleSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class LargeBundleSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -258,7 +257,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region LongBowSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="LongBowSkin"/>.</summary>
-    public sealed partial class LongBowSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class LongBowSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -286,7 +285,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region MaceSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="MaceSkin"/>.</summary>
-    public sealed partial class MaceSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class MaceSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -314,7 +313,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region PistolSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="PistolSkin"/>.</summary>
-    public sealed partial class PistolSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class PistolSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -342,7 +341,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region RifleSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="RifleSkin"/>.</summary>
-    public sealed partial class RifleSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class RifleSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -370,7 +369,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region ScepterSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="ScepterSkin"/>.</summary>
-    public sealed partial class ScepterSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class ScepterSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -398,7 +397,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region ShieldSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="ShieldSkin"/>.</summary>
-    public sealed partial class ShieldSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class ShieldSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -426,7 +425,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region ShortBowSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="ShortBowSkin"/>.</summary>
-    public sealed partial class ShortBowSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class ShortBowSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -454,7 +453,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region SmallBundleSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="SmallBundleSkin"/>.</summary>
-    public sealed partial class SmallBundleSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class SmallBundleSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -482,7 +481,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region SpearGunSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="SpearGunSkin"/>.</summary>
-    public sealed partial class SpearGunSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class SpearGunSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -510,7 +509,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region StaffSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="StaffSkin"/>.</summary>
-    public sealed partial class StaffSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class StaffSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -538,7 +537,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region SwordSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="SwordSkin"/>.</summary>
-    public sealed partial class SwordSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class SwordSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -566,7 +565,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region TorchSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="TorchSkin"/>.</summary>
-    public sealed partial class TorchSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class TorchSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -594,7 +593,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region ToySkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="ToySkin"/>.</summary>
-    public sealed partial class ToySkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class ToySkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -622,7 +621,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region TridentSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="TridentSkin"/>.</summary>
-    public sealed partial class TridentSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class TridentSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -650,7 +649,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region TwoHandedToySkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="TwoHandedToySkin"/>.</summary>
-    public sealed partial class TwoHandedToySkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class TwoHandedToySkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -678,7 +677,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region UnknownWeaponSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="UnknownWeaponSkin"/>.</summary>
-    public sealed partial class UnknownWeaponSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class UnknownWeaponSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)
@@ -706,7 +705,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region WarHornSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="WarHornSkin"/>.</summary>
-    public sealed partial class WarHornSkinConverter : IConverter<SkinDTO, WeaponSkin>
+    public sealed partial class WarHornSkinConverter : IConverter<Json.SkinDTO, WeaponSkin>
     {
 	    /// <inheritdoc />
         public WeaponSkin Convert(SkinDTO value, object state)

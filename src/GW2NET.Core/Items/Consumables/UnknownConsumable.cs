@@ -6,7 +6,7 @@
 //   Represents an unknown consumable item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Consumables
 {
     /// <summary>Represents an unknown consumable item.</summary>
     public class UnknownConsumable : Consumable

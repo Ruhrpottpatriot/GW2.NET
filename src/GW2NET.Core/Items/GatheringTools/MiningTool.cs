@@ -6,7 +6,7 @@
 //   Represents a mining tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.GatheringTools
 {
     /// <summary>Represents a mining tool.</summary>
     public class MiningTool : GatheringTool

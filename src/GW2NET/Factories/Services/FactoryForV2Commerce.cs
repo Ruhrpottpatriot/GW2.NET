@@ -6,13 +6,12 @@
 //   Provides access to commerce data sources.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Factories.V2
+namespace GW2NET.Factories.Services
 {
     using System;
-
-    using GW2NET.Commerce;
-    using GW2NET.Common;
-    using GW2NET.Common.Converters;
+    using Commerce;
+    using Common;
+    using Common.Converters;
     using GW2NET.V2.Commerce.Exchange;
     using GW2NET.V2.Commerce.Exchange.Converters;
     using GW2NET.V2.Commerce.Listings;

@@ -6,7 +6,7 @@
 //   Represents a utility consumable item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Consumables
 {
     using System;
 

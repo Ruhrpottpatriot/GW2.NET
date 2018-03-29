@@ -14,7 +14,8 @@ namespace GW2NET.V2.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items;
-	using AttributeDTO = GW2NET.V2.Items.Json.AttributeDTO;
+    using GW2NET.Items.Common;
+    using AttributeDTO = GW2NET.V2.Items.Json.AttributeDTO;
 
     public sealed partial class CombatAttributeConverter : IConverter<AttributeDTO, CombatAttribute>
 	{

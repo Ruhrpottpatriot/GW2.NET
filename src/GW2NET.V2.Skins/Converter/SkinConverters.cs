@@ -8,15 +8,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Skins.Converters
+namespace GW2NET.Converter
 {
     using System;
+    using Common;
+    using Skins;
+    using SkinDTO = Json.SkinDTO;
 
-    using GW2NET.Common;
-    using GW2NET.Skins;
-	using SkinDTO = GW2NET.V2.Skins.Json.SkinDTO;
-
-    public sealed partial class SkinConverter : IConverter<SkinDTO, Skin>
+    public sealed partial class SkinConverter : IConverter<Json.SkinDTO, Skin>
 	{
 	    private readonly ITypeConverterFactory<SkinDTO, Skin> converterFactory;
 
@@ -62,7 +61,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region BackpackSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="BackpackSkin"/>.</summary>
-    public sealed partial class BackpackSkinConverter : IConverter<SkinDTO, Skin>
+    public sealed partial class BackpackSkinConverter : IConverter<Json.SkinDTO, Skin>
     {
 	    /// <inheritdoc />
         public Skin Convert(SkinDTO value, object state)
@@ -90,7 +89,7 @@ namespace GW2NET.V2.Skins.Converters
 
 #region UnknownSkin
     /// <summary>Converts objects of type <see cref="SkinDTO"/> to objects of type <see cref="UnknownSkin"/>.</summary>
-    public sealed partial class UnknownSkinConverter : IConverter<SkinDTO, Skin>
+    public sealed partial class UnknownSkinConverter : IConverter<Json.SkinDTO, Skin>
     {
 	    /// <inheritdoc />
         public Skin Convert(SkinDTO value, object state)

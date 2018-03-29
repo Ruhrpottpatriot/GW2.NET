@@ -6,7 +6,7 @@
 //   Represents an unknown armor piece.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Armors
 {
     /// <summary>Represents an unknown armor piece.</summary>
     public class UnknownArmor : Armor

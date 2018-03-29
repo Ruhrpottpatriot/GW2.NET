@@ -6,7 +6,7 @@
 //   Represents an unknown trinket.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Trinkets
 {
     /// <summary>Represents an unknown trinket.</summary>
     public class UnknownTrinket : Trinket

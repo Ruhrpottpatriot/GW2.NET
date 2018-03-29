@@ -6,13 +6,13 @@
 //   Provides the base class for trinket types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Trinkets
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-
-    using GW2NET.ChatLinks;
+    using ChatLinks;
+    using Common;
 
     /// <summary>Provides the base class for trinket types.</summary>
     public abstract class Trinket : Item, IUpgrade, IUpgradable

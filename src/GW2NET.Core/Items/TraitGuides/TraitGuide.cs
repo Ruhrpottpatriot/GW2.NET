@@ -6,7 +6,7 @@
 //   Represents a trait guide.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.TraitGuides
 {
     /// <summary>Represents a trait guide.</summary>
     public class TraitGuide : Item

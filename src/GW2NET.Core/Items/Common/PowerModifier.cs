@@ -6,7 +6,7 @@
 //   The Power modifier.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items
+namespace GW2NET.Items.Common
 {
     /// <summary>The Power modifier.</summary>
     public class PowerModifier : CombatAttribute
