@@ -64,9 +64,9 @@ namespace GW2NET.Converter
         {
             return new Dictionary<string, IConverter<DetailsDTO, GatheringToolSkin>>
                        {
-                           //{ "Foraging", new ConverterForObject<ForagingToolSkin>() }, 
-                           //{ "Mining", new ConverterForObject<MiningToolSkin>() }, 
-                           //{ "Logging", new ConverterForObject<LoggingToolSkin>() }, 
+                           //{ "Foraging", new ConverterForObject<ForagingToolSkin>() },
+                           //{ "Mining", new ConverterForObject<MiningToolSkin>() },
+                           //{ "Logging", new ConverterForObject<LoggingToolSkin>() },
                        };
         }
     }

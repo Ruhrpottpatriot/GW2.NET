@@ -133,7 +133,6 @@ namespace GW2NET.Common
             return Interleaved(FindAllPagesAsyncImpl(instance, pageSize, pageCount, cancellationToken));
         }
 
-
         private static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsyncImpl<T>(
             IPaginator<T> instance,
             int pageCount,

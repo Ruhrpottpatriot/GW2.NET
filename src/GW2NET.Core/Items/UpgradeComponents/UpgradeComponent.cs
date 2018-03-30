@@ -17,7 +17,7 @@ namespace GW2NET.Items.UpgradeComponents
     {
         /// <summary>Backing field for <see cref="InfixUpgrade"/>.</summary>
         private InfixUpgrade infixUpgrade = new InfixUpgrade();
-       
+
         private static readonly string[] EmptyBonuses = new string[0];
 
         private ICollection<string> bonuses = EmptyBonuses;

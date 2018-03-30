@@ -8,10 +8,8 @@ namespace GW2NET
     using System.Diagnostics.CodeAnalysis;
     using Factories.Services;
     using GW2NET.Common;
-    using GW2NET.Common.Serializers;
     using GW2NET.Compression;
     using GW2NET.Factories;
-    using GW2NET.Factories.V2;
 
     /// <summary>Provides access to Guild Wars 2 data sources and services.</summary>
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Naming is intended.")]

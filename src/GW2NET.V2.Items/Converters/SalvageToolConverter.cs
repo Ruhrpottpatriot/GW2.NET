@@ -9,7 +9,6 @@
 
 namespace GW2NET.V2.Items.Converters
 {
-    using GW2NET.Items;
     using GW2NET.Items.Tools;
     using GW2NET.V2.Items.Json;
 

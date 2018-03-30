@@ -45,7 +45,7 @@ namespace GW2NET
         public SkinRepository(
             IServiceClient serviceClient,
             IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter,
-            IConverter<IResponse<SkinDTO>, Skin> responseConverter, 
+            IConverter<IResponse<SkinDTO>, Skin> responseConverter,
             IConverter<IResponse<ICollection<SkinDTO>>, IDictionaryRange<int, Skin>> bulkResponseConverter,
             IConverter<IResponse<ICollection<SkinDTO>>, ICollectionPage<Skin>> pageResponseConverter)
         {

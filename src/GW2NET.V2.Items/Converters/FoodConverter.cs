@@ -10,8 +10,6 @@
 namespace GW2NET.V2.Items.Converters
 {
     using System;
-
-    using GW2NET.Items;
     using GW2NET.Items.Consumables;
     using GW2NET.V2.Items.Json;
 

@@ -54,6 +54,5 @@ namespace GW2NET.V2.WorldVersusWorld.Objectives.Converters
 
             return new Vector2D(value[0], value[1]);
         }
-
     }
 }

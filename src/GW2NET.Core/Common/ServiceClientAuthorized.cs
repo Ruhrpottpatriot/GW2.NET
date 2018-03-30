@@ -10,7 +10,6 @@
 namespace GW2NET.Common
 {
     using System;
-    using System.Diagnostics;
     using System.IO;
     using System.Net;
     using GW2NET.Common.Serializers;
@@ -45,16 +44,7 @@ namespace GW2NET.Common
         /// <returns>The <see cref="HttpWebRequest"/>.</returns>
         protected override HttpWebRequest CreateHttpWebRequest(Uri uri)
         {
-            Debug.Assert(uri != null, "uri != null");
-
-            // Create a new request object for the specified resource
-            var request = (HttpWebRequest)WebRequest.Create(uri);
-
-            Debug.Assert(request != null, "request != null");
-            Debug.Assert(request.Headers != null, "request.Headers != null");
-
-            // Set 'Accept-Encoding' to 'gzip'
-            request.Headers[HttpRequestHeader.AcceptEncoding] = "gzip";
+            var request = base.CreateHttpWebRequest(uri);
             request.Headers[HttpRequestHeader.Authorization] = string.Format("Bearer {0}", this.apiKey);
 
             // Return the request object

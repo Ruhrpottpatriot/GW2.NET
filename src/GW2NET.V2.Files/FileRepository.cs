@@ -197,7 +197,6 @@ namespace GW2NET.V2.Files
             var request = new FileBulkRequest { Identifiers = identifiers };
             var response = await this.serviceClient.SendAsync<ICollection<FileDTO>>(request, cancellationToken).ConfigureAwait(false);
             return this.bulkResponseConverter.Convert(response, null);
-
         }
 
         /// <inheritdoc />

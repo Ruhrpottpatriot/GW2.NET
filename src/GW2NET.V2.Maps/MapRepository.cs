@@ -46,7 +46,7 @@ namespace GW2NET.V2.Maps
         public MapRepository(
             IServiceClient serviceClient,
             IConverter<IResponse<ICollection<int>>, ICollection<int>> identifiersResponseConverter,
-            IConverter<IResponse<MapDTO>, Map> responseConverter, 
+            IConverter<IResponse<MapDTO>, Map> responseConverter,
             IConverter<IResponse<ICollection<MapDTO>>, IDictionaryRange<int, Map>> bulkResponseConverter,
             IConverter<IResponse<ICollection<MapDTO>>, ICollectionPage<Map>> pageResponseConverter)
         {

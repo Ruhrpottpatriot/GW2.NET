@@ -6,6 +6,7 @@ namespace GW2NET
 {
     using System;
     using System.Net.Http;
+    using System.Net.Http.Headers;
     using Microsoft.Extensions.DependencyInjection;
 
     public static class ApiWrapperExtensions
@@ -32,11 +33,14 @@ namespace GW2NET
 
         public static IServiceCollection AddCore(this IServiceCollection serviceCollection)
         {
-            //var con = new HttpClientOptions();
+            var defaultOptions = new HttpClientOptions();
 
-            //return serviceCollection.AddCore(conf => con);
-
-            return serviceCollection;
+            return serviceCollection.AddCore(conf =>
+            {
+                conf.BaseAddress = defaultOptions.BaseAddress;
+                conf.MessageHandler = defaultOptions.MessageHandler;
+                conf.Timeout = defaultOptions.Timeout;
+            });
         }
     }
 
@@ -54,7 +58,14 @@ namespace GW2NET
             var client = new HttpClient(this.Options.MessageHandler, false)
             {
                 BaseAddress = this.Options.BaseAddress,
-                Timeout = this.Options.Timeout
+                Timeout = this.Options.Timeout,
+                DefaultRequestHeaders =
+                {
+                    AcceptEncoding =
+                    {
+                        new StringWithQualityHeaderValue("gzip")
+                    }
+                }
             };
 
             return client;
@@ -63,7 +74,6 @@ namespace GW2NET
 
     public sealed class HttpClientOptions
     {
-
         public HttpClientOptions()
         {
             //this.MessageHandler = ;
@@ -76,7 +86,5 @@ namespace GW2NET
         public Uri BaseAddress { get; set; }
 
         public TimeSpan Timeout { get; set; }
-
-
     }
 }
