@@ -41,7 +41,7 @@ namespace GW2NET.Converter
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value", "Precondition: value != null");
+                throw new ArgumentNullException(nameof(value), "Precondition: value != null");
             }
 
             GatheringToolSkin skin;

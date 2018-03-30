@@ -38,17 +38,17 @@ namespace GW2NET.V2.Items.Converters
         {
             if (weightClassConverter == null)
             {
-                throw new ArgumentNullException("weightClassConverter");
+                throw new ArgumentNullException(nameof(weightClassConverter));
             }
 
             if (infusionSlotCollectionConverter == null)
             {
-                throw new ArgumentNullException("infusionSlotCollectionConverter");
+                throw new ArgumentNullException(nameof(infusionSlotCollectionConverter));
             }
 
             if (infixUpgradeConverter == null)
             {
-                throw new ArgumentNullException("infixUpgradeConverter");
+                throw new ArgumentNullException(nameof(infixUpgradeConverter));
             }
 
             this.weightClassConverter = weightClassConverter;

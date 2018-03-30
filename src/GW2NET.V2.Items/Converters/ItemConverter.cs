@@ -42,22 +42,22 @@ namespace GW2NET.V2.Items.Converters
         {
             if (itemRarityConverter == null)
             {
-                throw new ArgumentNullException("itemRarityConverter");
+                throw new ArgumentNullException(nameof(itemRarityConverter));
             }
 
             if (gameTypesConverter == null)
             {
-                throw new ArgumentNullException("gameTypesConverter");
+                throw new ArgumentNullException(nameof(gameTypesConverter));
             }
 
             if (itemFlagsConverter == null)
             {
-                throw new ArgumentNullException("itemFlagsConverter");
+                throw new ArgumentNullException(nameof(itemFlagsConverter));
             }
 
             if (itemRestrictionsConverter == null)
             {
-                throw new ArgumentNullException("itemRestrictionsConverter");
+                throw new ArgumentNullException(nameof(itemRestrictionsConverter));
             }
 
             this.itemRarityConverter = itemRarityConverter;
@@ -70,13 +70,13 @@ namespace GW2NET.V2.Items.Converters
         {
             if (state == null)
             {
-                throw new ArgumentNullException("state", "Precondition: state is IResponse");
+                throw new ArgumentNullException(nameof(state), "Precondition: state is IResponse");
             }
 
             var response = state as IResponse;
             if (response == null)
             {
-                throw new ArgumentException("Precondition: state is IResponse", "state");
+                throw new ArgumentException("Precondition: state is IResponse", nameof(state));
             }
 
             entity.Culture = response.Culture;

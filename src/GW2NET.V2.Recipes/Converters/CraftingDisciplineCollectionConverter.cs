@@ -26,7 +26,7 @@ namespace GW2NET.V2.Recipes.Converters
         {
             if (craftingDisciplineConverter == null)
             {
-                throw new ArgumentNullException("craftingDisciplineConverter");
+                throw new ArgumentNullException(nameof(craftingDisciplineConverter));
             }
 
             this.craftingDisciplineConverter = craftingDisciplineConverter;
@@ -37,7 +37,7 @@ namespace GW2NET.V2.Recipes.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             CraftingDisciplines result = default(CraftingDisciplines);

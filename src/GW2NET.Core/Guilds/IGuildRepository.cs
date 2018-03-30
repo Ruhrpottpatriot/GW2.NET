@@ -1,11 +1,7 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IGuildRepository.cs" company="GW2.NET Coding Team">
-//   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
+﻿// <copyright file="IGuildRepository.cs" company="GW2.NET Coding Team">
+// This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
-// <summary>
-//   Provides the interface for repositories that provide guild details.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2NET.Guilds
 {
     using System;
@@ -17,13 +13,6 @@ namespace GW2NET.Guilds
     /// <summary>Provides the interface for repositories that provide guild details.</summary>
     public interface IGuildRepository : IRepository<Guid, Guild>
     {
-        /// <summary>Finds the <see cref="Guild"/> with the given name.</summary>
-        /// <param name="name">The name of the <see cref="Guild"/> to find.</param>
-        /// <exception cref="NotSupportedException">The data source does not support searching by name.</exception>
-        /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
-        /// <returns>The <see cref="Guid"/> with the given name, or a null reference.</returns>
-        Guild FindByName(string name);
-
         /// <summary>Finds the <see cref="Guild"/> with the given name.</summary>
         /// <param name="name">The name of the <see cref="Guild"/> to find.</param>
         /// <exception cref="NotSupportedException">The data source does not support searching by name.</exception>

@@ -27,12 +27,12 @@ namespace GW2NET.V2.Commerce.Exchange
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient");
+                throw new ArgumentNullException(nameof(serviceClient));
             }
 
             if (exchangeConverter == null)
             {
-                throw new ArgumentNullException("exchangeConverter");
+                throw new ArgumentNullException(nameof(exchangeConverter));
             }
 
             this.serviceClient = serviceClient;

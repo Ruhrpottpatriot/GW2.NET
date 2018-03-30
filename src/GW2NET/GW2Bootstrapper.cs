@@ -64,7 +64,7 @@ namespace GW2NET
             }
             else
             {
-                throw new ArgumentException("The api key didn't have the required format.", "apiKey");
+                throw new ArgumentException("The api key didn't have the required format.", nameof(apiKey));
             }
         }
 

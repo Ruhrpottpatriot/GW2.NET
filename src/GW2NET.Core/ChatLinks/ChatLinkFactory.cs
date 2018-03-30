@@ -27,7 +27,7 @@ namespace GW2NET.ChatLinks
         {
             if (input == null)
             {
-                throw new ArgumentNullException("input");
+                throw new ArgumentNullException(nameof(input));
             }
 
             input = input.Trim('[', ']', '&');
@@ -105,7 +105,7 @@ namespace GW2NET.ChatLinks
         {
             if (input == null)
             {
-                throw new ArgumentNullException("input");
+                throw new ArgumentNullException(nameof(input));
             }
 
             return this.Decode(input) as T;
@@ -138,12 +138,12 @@ namespace GW2NET.ChatLinks
         {
             if (quantity < 1)
             {
-                throw new ArgumentOutOfRangeException("quantity", quantity, "Precondition: quantity > 0");
+                throw new ArgumentOutOfRangeException(nameof(quantity), quantity, "Precondition: quantity > 0");
             }
 
             if (quantity > 255)
             {
-                throw new ArgumentOutOfRangeException("quantity", quantity, "Precondition: quantity < 256");
+                throw new ArgumentOutOfRangeException(nameof(quantity), quantity, "Precondition: quantity < 256");
             }
 
             return new ItemChatLink { ItemId = itemId, Quantity = quantity, SuffixItemId = suffixItemId, SecondarySuffixItemId = secondarySuffixItemId, SkinId = skinId };

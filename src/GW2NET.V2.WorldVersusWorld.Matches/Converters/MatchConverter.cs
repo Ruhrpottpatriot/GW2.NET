@@ -30,12 +30,12 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Converters
         {
             if (scoreboardConverter == null)
             {
-                throw new ArgumentNullException("scoreboardConverter");
+                throw new ArgumentNullException(nameof(scoreboardConverter));
             }
 
             if (competitiveMapConverter == null)
             {
-                throw new ArgumentNullException("competitiveMapConverter");
+                throw new ArgumentNullException(nameof(competitiveMapConverter));
             }
 
             this.scoreboardConverter = scoreboardConverter;
@@ -50,7 +50,7 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             var match = new Match

@@ -31,7 +31,7 @@ namespace GW2NET.Factories.Services
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient");
+                throw new ArgumentNullException(nameof(serviceClient));
             }
 
             this.serviceClient = serviceClient;
@@ -57,7 +57,7 @@ namespace GW2NET.Factories.Services
         {
             if (culture == null)
             {
-                throw new ArgumentNullException("culture");
+                throw new ArgumentNullException(nameof(culture));
             }
 
             var continentConverter = new ContinentConverter();

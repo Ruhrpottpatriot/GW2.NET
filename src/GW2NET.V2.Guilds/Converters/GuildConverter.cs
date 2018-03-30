@@ -26,7 +26,7 @@ namespace GW2NET.V2.Guilds.Converters
         {
             if (emblemConverter == null)
             {
-                throw new ArgumentNullException("emblemConverter");
+                throw new ArgumentNullException(nameof(emblemConverter));
             }
 
             this.emblemConverter = emblemConverter;
@@ -37,7 +37,7 @@ namespace GW2NET.V2.Guilds.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             var guild = new Guild

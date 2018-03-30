@@ -26,7 +26,7 @@ namespace GW2NET.Common.Converters
         {
             if (collectionItemConverter == null)
             {
-                throw new ArgumentNullException("collectionItemConverter");
+                throw new ArgumentNullException(nameof(collectionItemConverter));
             }
 
             this.collectionItemConverter = collectionItemConverter;
@@ -37,7 +37,7 @@ namespace GW2NET.Common.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             var values = new List<TOutput>(value.Count);

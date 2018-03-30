@@ -26,5 +26,14 @@ namespace GW2NET.Handlers
             this.currentRequest.ApiKey = apiKey;
             return this;
         }
+
+        /// <inheritdoc />
+        public IMessageBuilder Render(string signature, int fileId, string format)
+        {
+            this.currentRequest.Signature = signature;
+            this.currentRequest.FileId = fileId;
+            this.currentRequest.Format = format;
+            return this;
+        }
     }
 }

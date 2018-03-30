@@ -26,12 +26,12 @@ namespace GW2NET.V2.Colors.Converters
         {
             if (colorConverter == null)
             {
-                throw new ArgumentNullException("colorConverter");
+                throw new ArgumentNullException(nameof(colorConverter));
             }
 
             if (colorModelConverter == null)
             {
-                throw new ArgumentNullException("colorModelConverter");
+                throw new ArgumentNullException(nameof(colorModelConverter));
             }
 
             this.colorConverter = colorConverter;
@@ -43,18 +43,18 @@ namespace GW2NET.V2.Colors.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             if (state == null)
             {
-                throw new ArgumentNullException("state");
+                throw new ArgumentNullException(nameof(state));
             }
 
             var response = state as IResponse;
             if (response == null)
             {
-                throw new ArgumentException("Precondition: state is IResponse", "state");
+                throw new ArgumentException("Precondition: state is IResponse", nameof(state));
             }
 
             var entity = new ColorPalette

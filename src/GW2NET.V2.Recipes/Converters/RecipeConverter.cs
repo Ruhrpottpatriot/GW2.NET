@@ -38,17 +38,17 @@ namespace GW2NET.V2.Recipes.Converters
         {
             if (craftingDisciplineCollectionConverter == null)
             {
-                throw new ArgumentNullException("craftingDisciplineCollectionConverter");
+                throw new ArgumentNullException(nameof(craftingDisciplineCollectionConverter));
             }
 
             if (recipeFlagCollectionConverter == null)
             {
-                throw new ArgumentNullException("recipeFlagCollectionConverter");
+                throw new ArgumentNullException(nameof(recipeFlagCollectionConverter));
             }
 
             if (ingredientsCollectionConverter == null)
             {
-                throw new ArgumentNullException("ingredientsCollectionConverter");
+                throw new ArgumentNullException(nameof(ingredientsCollectionConverter));
             }
 
             this.craftingDisciplineCollectionConverter = craftingDisciplineCollectionConverter;
@@ -60,13 +60,13 @@ namespace GW2NET.V2.Recipes.Converters
         {
             if (state == null)
             {
-                throw new ArgumentNullException("state", "Precondition: state is IResponse");
+                throw new ArgumentNullException(nameof(state), "Precondition: state is IResponse");
             }
 
             var response = state as IResponse;
             if (response == null)
             {
-                throw new ArgumentException("Precondition: state is IResponse", "state");
+                throw new ArgumentException("Precondition: state is IResponse", nameof(state));
             }
 
             entity.Culture = response.Culture;

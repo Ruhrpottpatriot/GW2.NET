@@ -1,11 +1,7 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IRepository.cs" company="GW2.NET Coding Team">
-//   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
+﻿// <copyright file="IRepository.cs" company="GW2.NET Coding Team">
+// This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
-// <summary>
-//   Provides the interface for data sources.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2NET.Common
 {
     using System;
@@ -18,28 +14,6 @@ namespace GW2NET.Common
     /// <typeparam name="TValue">The type of the entities in the repository.</typeparam>
     public interface IRepository<TKey, TValue> : IDiscoverable<TKey>, IPaginator<TValue>
     {
-        /// <summary>Finds the object with the given identifier.</summary>
-        /// <param name="identifier">The identifier of the object to find.</param>
-        /// <exception cref="NotSupportedException">The data source does not support searching by identifier.</exception>
-        /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
-        /// <returns>The object with the given identifier, or a null reference.</returns>
-        TValue Find(TKey identifier);
-
-        /// <summary>Finds every object.</summary>
-        /// <exception cref="NotSupportedException">The data source does not support searching for all objects.</exception>
-        /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
-        /// <returns>A collection of objects.</returns>
-        IDictionaryRange<TKey, TValue> FindAll();
-
-        /// <summary>Finds every object with one of the given identifiers.</summary>
-        /// <param name="identifiers">The identifiers of the objects to find.</param>
-        /// <exception cref="NotSupportedException">The data source does not support searching for a range of objects.</exception>
-        /// <exception cref="ArgumentNullException">The value of <paramref name="identifiers"/> is a null reference.</exception>
-        /// <exception cref="ArgumentException">The value of <paramref name="identifiers"/> is an empty collection.</exception>
-        /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
-        /// <returns>A collection of objects with one of the given identifiers.</returns>
-        IDictionaryRange<TKey, TValue> FindAll(ICollection<TKey> identifiers);
-
         /// <summary>Finds every object.</summary>
         /// <exception cref="NotSupportedException">The data source does not support searching for all objects.</exception>
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>

@@ -25,7 +25,7 @@ namespace GW2NET.Converter
         {
             if (weightClassConverter == null)
             {
-                throw new ArgumentNullException("weightClassConverter");
+                throw new ArgumentNullException(nameof(weightClassConverter));
             }
 
             this.weightClassConverter = weightClassConverter;

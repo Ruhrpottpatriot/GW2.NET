@@ -34,12 +34,12 @@ namespace GW2NET.V2.Items.Converters
         {
             if (infusionSlotCollectionConverter == null)
             {
-                throw new ArgumentNullException("infusionSlotCollectionConverter");
+                throw new ArgumentNullException(nameof(infusionSlotCollectionConverter));
             }
 
             if (infixUpgradeConverter == null)
             {
-                throw new ArgumentNullException("infixUpgradeConverter");
+                throw new ArgumentNullException(nameof(infixUpgradeConverter));
             }
 
             this.infusionSlotCollectionConverter = infusionSlotCollectionConverter;

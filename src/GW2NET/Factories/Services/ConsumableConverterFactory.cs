@@ -19,7 +19,7 @@ namespace GW2NET.Factories.Services
         {
             if (unlockerConverterFactory == null)
             {
-                throw new ArgumentNullException("unlockerConverterFactory");
+                throw new ArgumentNullException(nameof(unlockerConverterFactory));
             }
 
             this.unlockerConverterFactory = unlockerConverterFactory;

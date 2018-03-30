@@ -29,7 +29,7 @@ namespace GW2NET.Converter
         {
             if (itemRestrictionConverter == null)
             {
-                throw new ArgumentNullException("itemRestrictionConverter");
+                throw new ArgumentNullException(nameof(itemRestrictionConverter));
             }
 
             this.itemRestrictionConverter = itemRestrictionConverter;
@@ -40,7 +40,7 @@ namespace GW2NET.Converter
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             var result = default(ItemRestrictions);

@@ -37,7 +37,7 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance");
+                throw new ArgumentNullException(nameof(instance));
             }
 
             for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
@@ -58,7 +58,7 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance");
+                throw new ArgumentNullException(nameof(instance));
             }
 
             for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
@@ -78,7 +78,7 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance");
+                throw new ArgumentNullException(nameof(instance));
             }
 
             return Interleaved(FindAllPagesAsyncImpl(instance, pageCount, CancellationToken.None));
@@ -94,7 +94,7 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance");
+                throw new ArgumentNullException(nameof(instance));
             }
 
             return Interleaved(FindAllPagesAsyncImpl(instance, pageCount, cancellationToken));
@@ -110,7 +110,7 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance");
+                throw new ArgumentNullException(nameof(instance));
             }
 
             return Interleaved(FindAllPagesAsyncImpl(instance, pageSize, pageCount, CancellationToken.None));
@@ -127,7 +127,7 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance");
+                throw new ArgumentNullException(nameof(instance));
             }
 
             return Interleaved(FindAllPagesAsyncImpl(instance, pageSize, pageCount, cancellationToken));
@@ -203,15 +203,22 @@ namespace GW2NET.Common
             int nextTaskIndex = -1;
             foreach (var inputTask in inputTasks)
             {
-                inputTask.ContinueWith(completed =>
+                inputTask.ContinueWith(
+                    completed =>
                 {
                     var source = sources[Interlocked.Increment(ref nextTaskIndex)];
                     if (completed.IsFaulted)
+                    {
                         source.TrySetException(completed.Exception.InnerExceptions);
+                    }
                     else if (completed.IsCanceled)
+                    {
                         source.TrySetCanceled();
+                    }
                     else
+                    {
                         source.TrySetResult(completed.Result);
+                    }
                 }, CancellationToken.None,
                    TaskContinuationOptions.ExecuteSynchronously,
                    TaskScheduler.Default);

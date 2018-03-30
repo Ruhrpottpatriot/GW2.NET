@@ -20,7 +20,7 @@ namespace GW2NET.Converter
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             DamageType result;

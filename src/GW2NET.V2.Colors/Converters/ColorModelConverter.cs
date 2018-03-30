@@ -26,7 +26,7 @@ namespace GW2NET.V2.Colors.Converters
         {
             if (colorConverter == null)
             {
-                throw new ArgumentNullException("colorConverter");
+                throw new ArgumentNullException(nameof(colorConverter));
             }
 
             this.colorConverter = colorConverter;
@@ -37,7 +37,7 @@ namespace GW2NET.V2.Colors.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             var colorModel = new ColorModel

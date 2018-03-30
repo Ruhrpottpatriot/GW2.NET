@@ -30,7 +30,7 @@ namespace GW2NET.Factories.Services
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient");
+                throw new ArgumentNullException(nameof(serviceClient));
             }
 
             this.serviceClient = serviceClient;

@@ -29,7 +29,7 @@ namespace GW2NET.V2.Items.Converters
         {
             if (infusionSlotFlagConverter == null)
             {
-                throw new ArgumentNullException("infusionSlotFlagConverter");
+                throw new ArgumentNullException(nameof(infusionSlotFlagConverter));
             }
 
             this.infusionSlotFlagConverter = infusionSlotFlagConverter;
@@ -46,7 +46,7 @@ namespace GW2NET.V2.Items.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             var result = default(InfusionSlotFlags);

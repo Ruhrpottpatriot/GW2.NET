@@ -36,12 +36,12 @@ namespace GW2NET.ChatLinks
             {
                 if (value < 1)
                 {
-                    throw new ArgumentOutOfRangeException("value", value, "Precondition: value > 0");
+                    throw new ArgumentOutOfRangeException(nameof(value), value, "Precondition: value > 0");
                 }
 
                 if (value > 255)
                 {
-                    throw new ArgumentOutOfRangeException("value", value, "Precondition: value < 256");
+                    throw new ArgumentOutOfRangeException(nameof(value), value, "Precondition: value < 256");
                 }
 
                 this.quantity = value;

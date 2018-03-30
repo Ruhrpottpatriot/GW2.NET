@@ -22,7 +22,7 @@ namespace GW2NET.V2.Quaggans.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             return new Quaggan

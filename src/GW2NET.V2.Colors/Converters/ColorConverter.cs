@@ -22,12 +22,12 @@ namespace GW2NET.V2.Colors.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             if (value.Length != 3)
             {
-                throw new ArgumentException("Precondition: value.Length == 3", "value");
+                throw new ArgumentException("Precondition: value.Length == 3", nameof(value));
             }
 
             return new Color(value[0], value[1], value[2]);

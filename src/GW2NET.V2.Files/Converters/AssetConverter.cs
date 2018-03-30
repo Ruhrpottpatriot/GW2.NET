@@ -23,7 +23,7 @@ namespace GW2NET.V2.Files.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             var asset = new Asset

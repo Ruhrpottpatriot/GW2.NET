@@ -26,7 +26,7 @@ namespace GW2NET.Converter
         {
             if (skinFlagsConverter == null)
             {
-                throw new ArgumentNullException("skinFlagsConverter");
+                throw new ArgumentNullException(nameof(skinFlagsConverter));
             }
 
             this.skinFlagsConverter = skinFlagsConverter;
@@ -37,7 +37,7 @@ namespace GW2NET.Converter
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             SkinFlags result = default(SkinFlags);

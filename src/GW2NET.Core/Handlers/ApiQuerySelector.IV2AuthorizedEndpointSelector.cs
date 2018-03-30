@@ -6,5 +6,11 @@ namespace GW2NET.Handlers
 {
     public partial class ApiQuerySelector : IV2AuthorizedEndpointSelector
     {
+        /// <inheritdoc />
+        IMessageBuilder IV2AuthorizedEndpointSelector.Account()
+        {
+            this.currentRequest.Endpoint = "account";
+            return this;
+        }
     }
 }

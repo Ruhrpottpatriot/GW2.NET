@@ -26,7 +26,7 @@ namespace GW2NET.V2.Guilds.Converters
         {
             if (emblemTransformationConverter == null)
             {
-                throw new ArgumentNullException("emblemTransformationConverter");
+                throw new ArgumentNullException(nameof(emblemTransformationConverter));
             }
 
             this.emblemTransformationConverter = emblemTransformationConverter;
@@ -37,7 +37,7 @@ namespace GW2NET.V2.Guilds.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             var result = default(EmblemTransformations);

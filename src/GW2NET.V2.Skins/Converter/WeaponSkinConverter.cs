@@ -26,7 +26,7 @@ namespace GW2NET.Converter
         {
             if (damageTypeConverter == null)
             {
-                throw new ArgumentNullException("damageTypeConverter");
+                throw new ArgumentNullException(nameof(damageTypeConverter));
             }
 
             this.damageClassConverter = damageTypeConverter;

@@ -38,17 +38,17 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Converters
         {
             if (scoreboardConverter == null)
             {
-                throw new ArgumentNullException("scoreboardConverter");
+                throw new ArgumentNullException(nameof(scoreboardConverter));
             }
 
             if (objectiveConverter == null)
             {
-                throw new ArgumentNullException("objectiveConverter");
+                throw new ArgumentNullException(nameof(objectiveConverter));
             }
 
             if (mapBonusConverter == null)
             {
-                throw new ArgumentNullException("mapBonusConverter");
+                throw new ArgumentNullException(nameof(mapBonusConverter));
             }
 
             this.scoreboardConverter = scoreboardConverter;

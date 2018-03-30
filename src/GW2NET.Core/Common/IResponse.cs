@@ -14,6 +14,6 @@ namespace GW2NET.Common
 
         /// <summary>Gets or sets a collection of custom response headers.</summary>
         /// <exception cref="ArgumentNullException">The value is a null reference.</exception>
-        IDictionary<string, string> ExtensionData { get; set; }
+        IDictionary<string, string> ExtensionData { get; }
     }
 }

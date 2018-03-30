@@ -35,12 +35,12 @@ namespace GW2NET.Converter
         {
             if (itemRestrictionsConverter == null)
             {
-                throw new ArgumentNullException("itemRestrictionsConverter");
+                throw new ArgumentNullException(nameof(itemRestrictionsConverter));
             }
 
             if (skinFlagsConverter == null)
             {
-                throw new ArgumentNullException("skinFlagsConverter");
+                throw new ArgumentNullException(nameof(skinFlagsConverter));
             }
 
             this.itemRestrictionsConverter = itemRestrictionsConverter;
@@ -51,13 +51,13 @@ namespace GW2NET.Converter
         {
             if (state == null)
             {
-                throw new ArgumentNullException("state", "Precondition: state is IResponse");
+                throw new ArgumentNullException(nameof(state), "Precondition: state is IResponse");
             }
 
             var response = state as IResponse;
             if (response == null)
             {
-                throw new ArgumentException("Precondition: state is IResponse", "state");
+                throw new ArgumentException("Precondition: state is IResponse", nameof(state));
             }
 
             entity.Culture = response.Culture;

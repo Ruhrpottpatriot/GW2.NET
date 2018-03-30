@@ -25,7 +25,7 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Converters
         {
             if (teamColorConverter == null)
             {
-                throw new ArgumentNullException("teamColorConverter");
+                throw new ArgumentNullException(nameof(teamColorConverter));
             }
 
             this.teamColorConverter = teamColorConverter;
@@ -39,7 +39,7 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             var objective = new MatchObjective

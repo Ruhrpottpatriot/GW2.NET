@@ -26,7 +26,7 @@ namespace GW2NET.V2.Recipes.Converters
         {
             if (recipeFlagConverter == null)
             {
-                throw new ArgumentNullException("recipeFlagConverter");
+                throw new ArgumentNullException(nameof(recipeFlagConverter));
             }
 
             this.recipeFlagConverter = recipeFlagConverter;
@@ -37,7 +37,7 @@ namespace GW2NET.V2.Recipes.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             RecipeFlags result = default(RecipeFlags);

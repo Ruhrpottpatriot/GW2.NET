@@ -30,12 +30,12 @@ namespace GW2NET.V2.Builds
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient");
+                throw new ArgumentNullException(nameof(serviceClient));
             }
 
             if (buildConverter == null)
             {
-                throw new ArgumentNullException("buildConverter");
+                throw new ArgumentNullException(nameof(buildConverter));
             }
 
             this.serviceClient = serviceClient;

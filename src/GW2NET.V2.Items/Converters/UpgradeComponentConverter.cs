@@ -38,17 +38,17 @@ namespace GW2NET.V2.Items.Converters
         {
             if (upgradeComponentFlagCollectionConverter == null)
             {
-                throw new ArgumentNullException("upgradeComponentFlagCollectionConverter");
+                throw new ArgumentNullException(nameof(upgradeComponentFlagCollectionConverter));
             }
 
             if (infusionSlotFlagCollectionConverter == null)
             {
-                throw new ArgumentNullException("infusionSlotFlagCollectionConverter");
+                throw new ArgumentNullException(nameof(infusionSlotFlagCollectionConverter));
             }
 
             if (infixUpgradeConverter == null)
             {
-                throw new ArgumentNullException("infixUpgradeConverter");
+                throw new ArgumentNullException(nameof(infixUpgradeConverter));
             }
 
             this.upgradeComponentFlagCollectionConverter = upgradeComponentFlagCollectionConverter;

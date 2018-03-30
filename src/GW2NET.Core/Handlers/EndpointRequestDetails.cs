@@ -32,5 +32,8 @@ namespace GW2NET.Handlers
         public string ApiKey { get; set; }
 
         public IList<string> ItemIds { get; set; }
+        public string Signature { get; set; }
+        public int FileId { get; set; }
+        public string Format { get; set; }
     }
 }

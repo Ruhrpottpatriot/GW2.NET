@@ -26,7 +26,7 @@ namespace GW2NET.V2.Items.Converters
         {
             if (itemFlagConverter == null)
             {
-                throw new ArgumentNullException("itemFlagConverter");
+                throw new ArgumentNullException(nameof(itemFlagConverter));
             }
 
             this.itemFlagConverter = itemFlagConverter;
@@ -43,7 +43,7 @@ namespace GW2NET.V2.Items.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             var result = default(ItemFlags);

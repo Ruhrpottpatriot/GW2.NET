@@ -24,13 +24,13 @@ namespace GW2NET.V2.Continents.Converter
         {
             if (state == null)
             {
-                throw new ArgumentNullException("state", "Precondition: state is IResponse");
+                throw new ArgumentNullException(nameof(state), "Precondition: state is IResponse");
             }
 
             var response = state as IResponse;
             if (response == null)
             {
-                throw new ArgumentException("Precondition: state is IResponse", "state");
+                throw new ArgumentException("Precondition: state is IResponse", nameof(state));
             }
 
             return new Continent

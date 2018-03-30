@@ -26,7 +26,7 @@ namespace GW2NET.V2.Items.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             return new CombatBuff { SkillId = value.SkillId, Description = value.Description };

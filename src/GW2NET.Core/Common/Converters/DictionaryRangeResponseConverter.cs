@@ -31,12 +31,12 @@ namespace GW2NET.Common.Converters
         {
             if (dataContractConverter == null)
             {
-                throw new ArgumentNullException("dataContractConverter");
+                throw new ArgumentNullException(nameof(dataContractConverter));
             }
 
             if (keySelector == null)
             {
-                throw new ArgumentNullException("keySelector");
+                throw new ArgumentNullException(nameof(keySelector));
             }
 
             this.dataContractConverter = dataContractConverter;

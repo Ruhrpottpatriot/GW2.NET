@@ -24,17 +24,15 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance");
+                throw new ArgumentNullException(nameof(instance));
             }
 
-            string header;
-            if (!instance.ExtensionData.TryGetValue("X-Page-Size", out header))
+            if (!instance.ExtensionData.TryGetValue("X-Page-Size", out var header))
             {
                 return 0;
             }
 
-            int value;
-            if (!int.TryParse(header, out value))
+            if (!int.TryParse(header, out var value))
             {
                 return 0;
             }
@@ -51,17 +49,15 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance");
+                throw new ArgumentNullException(nameof(instance));
             }
 
-            string header;
-            if (!instance.ExtensionData.TryGetValue("X-Page-Total", out header))
+            if (!instance.ExtensionData.TryGetValue("X-Page-Total", out var header))
             {
                 return 0;
             }
 
-            int value;
-            if (!int.TryParse(header, out value))
+            if (!int.TryParse(header, out var value))
             {
                 return 0;
             }
@@ -78,17 +74,15 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance");
+                throw new ArgumentNullException(nameof(instance));
             }
 
-            string header;
-            if (!instance.ExtensionData.TryGetValue("X-Result-Count", out header))
+            if (!instance.ExtensionData.TryGetValue("X-Result-Count", out var header))
             {
                 return 0;
             }
 
-            int value;
-            if (!int.TryParse(header, out value))
+            if (!int.TryParse(header, out var value))
             {
                 return 0;
             }
@@ -105,17 +99,15 @@ namespace GW2NET.Common
         {
             if (instance == null)
             {
-                throw new ArgumentNullException("instance");
+                throw new ArgumentNullException(nameof(instance));
             }
 
-            string header;
-            if (!instance.ExtensionData.TryGetValue("X-Result-Total", out header))
+            if (!instance.ExtensionData.TryGetValue("X-Result-Total", out var header))
             {
                 return 0;
             }
 
-            int value;
-            if (!int.TryParse(header, out value))
+            if (!int.TryParse(header, out var value))
             {
                 return 0;
             }

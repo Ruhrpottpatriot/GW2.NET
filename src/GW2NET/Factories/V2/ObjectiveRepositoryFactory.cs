@@ -27,7 +27,7 @@ namespace GW2NET.Factories.V2
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient");
+                throw new ArgumentNullException(nameof(serviceClient));
             }
 
             this.serviceClient = serviceClient;
@@ -42,7 +42,7 @@ namespace GW2NET.Factories.V2
             {
                 if (language == null)
                 {
-                    throw new ArgumentNullException("language");
+                    throw new ArgumentNullException(nameof(language));
                 }
 
                 return this.ForCulture(new CultureInfo(language));
@@ -58,7 +58,7 @@ namespace GW2NET.Factories.V2
             {
                 if (culture == null)
                 {
-                    throw new ArgumentNullException("culture");
+                    throw new ArgumentNullException(nameof(culture));
                 }
 
                 return this.ForCulture(culture);
@@ -79,7 +79,7 @@ namespace GW2NET.Factories.V2
         {
             if (culture == null)
             {
-                throw new ArgumentNullException("culture");
+                throw new ArgumentNullException(nameof(culture));
             }
 
             IObjectiveRepository repository = new ObjectiveRepository(this.serviceClient, new ObjectiveConverter());

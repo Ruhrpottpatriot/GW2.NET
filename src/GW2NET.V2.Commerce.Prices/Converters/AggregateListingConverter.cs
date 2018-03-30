@@ -24,7 +24,7 @@ namespace GW2NET.V2.Commerce.Prices.Converters
         {
             if (aggregateOfferConverter == null)
             {
-                throw new ArgumentNullException("aggregateOfferConverter");
+                throw new ArgumentNullException(nameof(aggregateOfferConverter));
             }
 
             this.aggregateOfferConverter = aggregateOfferConverter;
@@ -35,18 +35,18 @@ namespace GW2NET.V2.Commerce.Prices.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             if (state == null)
             {
-                throw new ArgumentNullException("state", "Precondition: state is IResponse");
+                throw new ArgumentNullException(nameof(state), "Precondition: state is IResponse");
             }
 
             var response = state as IResponse;
             if (response == null)
             {
-                throw new ArgumentException("Precondition: state is IResponse", "state");
+                throw new ArgumentException("Precondition: state is IResponse", nameof(state));
             }
 
             var aggregateListing = new AggregateListing

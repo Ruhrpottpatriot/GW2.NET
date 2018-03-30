@@ -24,7 +24,7 @@ namespace GW2NET.V2.Commerce.Listings.Converters
         {
             if (offerCollectionConverter == null)
             {
-                throw new ArgumentNullException("offerCollectionConverter");
+                throw new ArgumentNullException(nameof(offerCollectionConverter));
             }
 
             this.offerCollectionConverter = offerCollectionConverter;
@@ -38,18 +38,18 @@ namespace GW2NET.V2.Commerce.Listings.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             if (state == null)
             {
-                throw new ArgumentNullException("state", "Precondition: state is IResponse");
+                throw new ArgumentNullException(nameof(state), "Precondition: state is IResponse");
             }
 
             var response = state as IResponse;
             if (response == null)
             {
-                throw new ArgumentException("Precondition: state is IResponse", "state");
+                throw new ArgumentException("Precondition: state is IResponse", nameof(state));
             }
 
             return new Listing

@@ -26,7 +26,7 @@ namespace GW2NET.V2.Items.Converters
         {
             if (gameTypeConverter == null)
             {
-                throw new ArgumentNullException("gameTypeConverter");
+                throw new ArgumentNullException(nameof(gameTypeConverter));
             }
 
             this.gameTypeConverter = gameTypeConverter;
@@ -43,7 +43,7 @@ namespace GW2NET.V2.Items.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             var result = default(GameTypes);

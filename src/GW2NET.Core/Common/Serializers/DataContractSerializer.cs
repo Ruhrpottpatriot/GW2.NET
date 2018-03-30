@@ -25,7 +25,7 @@ namespace GW2NET.Common.Serializers
         {
             if (serializer == null)
             {
-                throw new ArgumentNullException("serializer");
+                throw new ArgumentNullException(nameof(serializer));
             }
 
             this.serializer = serializer;

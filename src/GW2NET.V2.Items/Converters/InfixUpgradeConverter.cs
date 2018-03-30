@@ -33,12 +33,12 @@ namespace GW2NET.V2.Items.Converters
         {
             if (combatAttributeCollectionConverter == null)
             {
-                throw new ArgumentNullException("combatAttributeCollectionConverter");
+                throw new ArgumentNullException(nameof(combatAttributeCollectionConverter));
             }
 
             if (combatBuffConverter == null)
             {
-                throw new ArgumentNullException("combatBuffConverter");
+                throw new ArgumentNullException(nameof(combatBuffConverter));
             }
 
             this.combatAttributeCollectionConverter = combatAttributeCollectionConverter;
@@ -56,7 +56,7 @@ namespace GW2NET.V2.Items.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             var infixUpgrade = new InfixUpgrade();

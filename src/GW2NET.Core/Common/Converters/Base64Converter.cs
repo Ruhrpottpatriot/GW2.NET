@@ -18,7 +18,7 @@ namespace GW2NET.Common.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             return System.Convert.FromBase64String(value);
@@ -29,7 +29,7 @@ namespace GW2NET.Common.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             return System.Convert.ToBase64String(value);

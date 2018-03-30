@@ -25,7 +25,7 @@ namespace GW2NET.V2.WorldVersusWorld.Matches.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             TeamColor teamColor;

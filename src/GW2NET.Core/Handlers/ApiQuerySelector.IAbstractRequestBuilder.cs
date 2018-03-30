@@ -5,6 +5,7 @@
 namespace GW2NET.Handlers
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Net.Http;
 
     public partial class ApiQuerySelector : IAbstractRequestBuilder
@@ -28,6 +29,13 @@ namespace GW2NET.Handlers
         {
             this.SaveCurrent();
             return this.BuildRequests();
+        }
+
+        /// <inheritdoc />
+        public HttpRequestMessage BuildSingle()
+        {
+            this.SaveCurrent();
+            return this.BuildRequests().Single();
         }
 
         /// <inheritdoc />

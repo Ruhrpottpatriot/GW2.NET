@@ -40,17 +40,17 @@ namespace GW2NET.V2.Items.Converters
         {
             if (damageTypeConverter == null)
             {
-                throw new ArgumentNullException("damageTypeConverter");
+                throw new ArgumentNullException(nameof(damageTypeConverter));
             }
 
             if (infixUpgradeConverter == null)
             {
-                throw new ArgumentNullException("infixUpgradeConverter");
+                throw new ArgumentNullException(nameof(infixUpgradeConverter));
             }
 
             if (infusionSlotCollectionConverter == null)
             {
-                throw new ArgumentNullException("infusionSlotCollectionConverter");
+                throw new ArgumentNullException(nameof(infusionSlotCollectionConverter));
             }
 
             this.damageTypeConverter = damageTypeConverter;

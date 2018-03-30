@@ -9,6 +9,7 @@
 namespace GW2NET.Common
 {
     using System;
+    using System.Net.Http;
 
     /// <summary>The exception that is thrown when a request could not be fulfilled.</summary>
     public sealed class ServiceException : Exception
@@ -36,6 +37,6 @@ namespace GW2NET.Common
         }
 
         /// <summary>Gets or sets the request that is the cause of this exception.</summary>
-        public IRequest Request { get; set; }
+        public HttpRequestMessage Request { get; set; }
     }
 }

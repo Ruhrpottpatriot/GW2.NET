@@ -32,12 +32,12 @@ namespace GW2NET.V2.Guilds
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient");
+                throw new ArgumentNullException(nameof(serviceClient));
             }
 
             if (guildConverter == null)
             {
-                throw new ArgumentNullException("guildConverter");
+                throw new ArgumentNullException(nameof(guildConverter));
             }
 
             this.serviceClient = serviceClient;

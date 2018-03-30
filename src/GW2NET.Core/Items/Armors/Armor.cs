@@ -47,7 +47,7 @@ namespace GW2NET.Items.Armors
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 this.infixUpgrade = value;

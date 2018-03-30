@@ -9,10 +9,12 @@
 namespace GW2NET.Rendering
 {
     using System;
+    using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
     using GW2NET.Common;
+    using Handlers;
 
     /// <summary>Provides the default implementation of the render service.</summary>
     public class RenderService : IRenderService
@@ -20,34 +22,11 @@ namespace GW2NET.Rendering
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="RenderService"/> class.</summary>
-        /// <param name="serviceClient"></param>
+        /// <param name="serviceClient">The service client</param>
         /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public RenderService(IServiceClient serviceClient)
         {
-            if (serviceClient == null)
-            {
-                throw new ArgumentNullException("serviceClient");
-            }
-
-            this.serviceClient = serviceClient;
-        }
-
-        /// <inheritdoc />
-        byte[] IRenderService.GetImage(IRenderable file, string imageFormat)
-        {
-            var request = new RenderRequest
-            {
-                FileId = file.FileId,
-                FileSignature = file.FileSignature,
-                ImageFormat = imageFormat
-            };
-            var response = this.serviceClient.Send<byte[]>(request);
-            if (response.Content == null)
-            {
-                return null;
-            }
-
-            return response.Content;
+            this.serviceClient = serviceClient ?? throw new ArgumentNullException(nameof(serviceClient));
         }
 
         /// <inheritdoc />
@@ -59,12 +38,10 @@ namespace GW2NET.Rendering
         /// <inheritdoc />
         public async Task<byte[]> GetImageAsync(IRenderable file, string imageFormat, CancellationToken cancellationToken)
         {
-            var request = new RenderRequest
-            {
-                FileId = file.FileId,
-                FileSignature = file.FileSignature,
-                ImageFormat = imageFormat
-            };
+            var request = ApiQuerySelector.Init(new CultureInfo("en"))
+                .Render(file.FileSignature, file.FileId, imageFormat)
+                .BuildSingle();
+
             var response = await this.serviceClient.SendAsync<byte[]>(request, cancellationToken).ConfigureAwait(false);
             return response.Content;
         }

@@ -16,7 +16,7 @@ namespace GW2NET.ChatLinks
         {
             if (raw == null)
             {
-                throw new ArgumentNullException("raw");
+                throw new ArgumentNullException(nameof(raw));
             }
 
             this.raw = raw;

@@ -43,7 +43,7 @@ namespace GW2NET.V2.Worlds
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition failed: serviceClient != null");
+                throw new ArgumentNullException(nameof(serviceClient), "Precondition failed: serviceClient != null");
             }
 
             this.serviceClient = serviceClient;

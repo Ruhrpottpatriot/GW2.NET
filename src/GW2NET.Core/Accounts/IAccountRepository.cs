@@ -10,10 +10,6 @@ namespace GW2NET.Accounts
     /// <summary>Provides the interface for repositories that provide player data.</summary>
     public interface IAccountRepository
     {
-        /// <summary>Gets the information about an account.</summary>
-        /// <returns>The <see cref="Account"/> for a given api key.</returns>
-        Account GetInformation();
-
         /// <summary>Asynchronously gets the information about an account.</summary>
         /// <returns>The <see cref="Account"/> for a given api key.</returns>
         Task<Account> GetInformationAsync();

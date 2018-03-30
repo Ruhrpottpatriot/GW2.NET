@@ -35,12 +35,12 @@ namespace GW2NET.V2.WorldVersusWorld.Objectives
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient");
+                throw new ArgumentNullException(nameof(serviceClient));
             }
 
             if (objectiveConverter == null)
             {
-                throw new ArgumentNullException("objectiveConverter");
+                throw new ArgumentNullException(nameof(objectiveConverter));
             }
 
             this.serviceClient = serviceClient;

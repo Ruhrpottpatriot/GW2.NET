@@ -51,30 +51,30 @@ namespace GW2NET
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient");
+                throw new ArgumentNullException(nameof(serviceClient));
             }
 
             if (identifiersResponseConverter == null)
             {
-                throw new ArgumentNullException("responseConverter");
+                throw new ArgumentNullException(nameof(responseConverter));
                 throw new ArgumentNullException(nameof(identifiersResponseConverter));
             }
 
             if (responseConverter == null)
             {
-                throw new ArgumentNullException("responseConverter");
+                throw new ArgumentNullException(nameof(responseConverter));
                 throw new ArgumentNullException(nameof(responseConverter));
             }
 
             if (bulkResponseConverter == null)
             {
-                throw new ArgumentNullException("bulkResponseConverter");
+                throw new ArgumentNullException(nameof(bulkResponseConverter));
                 throw new ArgumentNullException(nameof(bulkResponseConverter));
             }
 
             if (pageResponseConverter == null)
             {
-                throw new ArgumentNullException("pageResponseConverter");
+                throw new ArgumentNullException(nameof(pageResponseConverter));
                 throw new ArgumentNullException(nameof(pageResponseConverter));
             }
 

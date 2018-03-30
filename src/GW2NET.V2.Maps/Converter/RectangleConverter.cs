@@ -26,7 +26,7 @@ namespace GW2NET.V2.Maps.Converter
         {
             if (vectorConverter == null)
             {
-                throw new ArgumentNullException("vectorConverter");
+                throw new ArgumentNullException(nameof(vectorConverter));
             }
 
             this.vectorConverter = vectorConverter;
@@ -37,12 +37,12 @@ namespace GW2NET.V2.Maps.Converter
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             if (value.Length != 2)
             {
-                throw new ArgumentException("Precondition: value.Length == 2", "value");
+                throw new ArgumentException("Precondition: value.Length == 2", nameof(value));
             }
 
             var vectorNorthWest = default(Vector2D);

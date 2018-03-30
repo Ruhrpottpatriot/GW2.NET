@@ -21,7 +21,7 @@ namespace GW2NET.Factories
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient", "Precondition failed: serviceClient != null");
+                throw new ArgumentNullException(nameof(serviceClient), "Precondition failed: serviceClient != null");
             }
 
             this.serviceClient = serviceClient;

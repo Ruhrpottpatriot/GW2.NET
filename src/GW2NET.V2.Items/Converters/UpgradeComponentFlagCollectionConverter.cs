@@ -30,7 +30,7 @@ namespace GW2NET.V2.Items.Converters
         {
             if (upgradeComponentFlagConverter == null)
             {
-                throw new ArgumentNullException("upgradeComponentFlagConverter");
+                throw new ArgumentNullException(nameof(upgradeComponentFlagConverter));
             }
 
             this.upgradeComponentFlagConverter = upgradeComponentFlagConverter;
@@ -47,7 +47,7 @@ namespace GW2NET.V2.Items.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             var result = default(UpgradeComponentFlags);

@@ -34,12 +34,12 @@ namespace GW2NET.V2.WorldVersusWorld.Matches
         {
             if (serviceClient == null)
             {
-                throw new ArgumentNullException("serviceClient");
+                throw new ArgumentNullException(nameof(serviceClient));
             }
 
             if (matchConverter == null)
             {
-                throw new ArgumentNullException("matchConverter");
+                throw new ArgumentNullException(nameof(matchConverter));
             }
 
             this.serviceClient = serviceClient;

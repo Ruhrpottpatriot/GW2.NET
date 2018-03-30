@@ -28,7 +28,7 @@ namespace GW2NET.Common.Converters
         {
             if (keyValuePairConverter == null)
             {
-                throw new ArgumentNullException("keyValuePairConverter");
+                throw new ArgumentNullException(nameof(keyValuePairConverter));
             }
 
             this.keyValuePairConverter = keyValuePairConverter;
@@ -39,7 +39,7 @@ namespace GW2NET.Common.Converters
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             var values = new Dictionary<TKeyOutput, TValueOutput>(value.Count) as IDictionary<TKeyOutput, TValueOutput>;

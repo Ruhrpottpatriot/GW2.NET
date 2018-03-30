@@ -32,7 +32,7 @@ namespace GW2NET.Items
             {
                 if (value < 1)
                 {
-                    throw new ArgumentOutOfRangeException("value", value, "Precondition: value > 0");
+                    throw new ArgumentOutOfRangeException(nameof(value), value, "Precondition: value > 0");
                 }
 
                 this.count = value;

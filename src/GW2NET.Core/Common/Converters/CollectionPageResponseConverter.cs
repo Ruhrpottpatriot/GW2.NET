@@ -27,7 +27,7 @@ namespace GW2NET.Common.Converters
         {
             if (dataContractConverter == null)
             {
-                throw new ArgumentNullException("dataContractConverter");
+                throw new ArgumentNullException(nameof(dataContractConverter));
             }
 
             this.dataContractConverter = dataContractConverter;
@@ -45,7 +45,7 @@ namespace GW2NET.Common.Converters
             var pageIndex = state as int?;
             if (!pageIndex.HasValue)
             {
-                throw new ArgumentException("Precondition: state is int", "state");
+                throw new ArgumentException("Precondition: state is int", nameof(state));
             }
 
             var dataContracts = value.Content;

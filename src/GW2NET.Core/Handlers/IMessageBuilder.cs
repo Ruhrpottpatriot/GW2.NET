@@ -14,6 +14,9 @@ namespace GW2NET.Handlers
         /// <summary>Builds all internal messages into appropriate <see cref="HttpRequestMessage"/>s.</summary>
         IEnumerable<HttpRequestMessage> Build();
 
+        /// <summary>Only builds a single <see cref="HttpRequestMessage"/> and throws if there is more than one.</summary>
+        HttpRequestMessage BuildSingle();
+
         /// <summary>Prepares the <see cref="ApiQuerySelector"/> for an additional request message.</summary>
         IVersionSelector Also();
     }
@@ -26,10 +29,19 @@ namespace GW2NET.Handlers
         /// <summary>Selects the version 2 api that is authorized.</summary>
         /// <param name="apiKey">The authorization api key.</param>
         IV2AuthorizedEndpointSelector V2Authorized(string apiKey);
+
+        /// <summary>Selects the render service as a target.</summary>
+        /// <param name="signature">The file signature.</param>
+        /// <param name="fileId">The files id</param>
+        /// <param name="format">The file format. Either jpg or png</param>
+        IMessageBuilder Render(string signature, int fileId, string format);
     }
 
     public interface IV2AuthorizedEndpointSelector
     {
+        IMessageBuilder Account();
+
+        IRequestTypeSelector Characters();
     }
 
     public interface IV2EndpointSelector
@@ -73,7 +85,7 @@ namespace GW2NET.Handlers
     {
         /// <summary>Sets the page size, which in conjuncture with page count specifies the overall query size.</summary>
         /// <param name="size">The page size</param>
-        ILanguageSelector AtSize(int size);
+        ILanguageSelector AtSize(int size = 20);
     }
 
     public interface ILanguageSelector
@@ -106,6 +118,9 @@ namespace GW2NET.Handlers
 
         /// <summary>Builds all internal messages into appropriate <see cref="HttpRequestMessage"/>s.</summary>
         IEnumerable<HttpRequestMessage> Build();
+
+        /// <summary>Only builds a single <see cref="HttpRequestMessage"/> and throws if there is more than one.</summary>
+        HttpRequestMessage BuildSingle();
 
         /// <summary>Prepares the <see cref="ApiQuerySelector"/> for an additional request message.</summary>
         IVersionSelector Also();

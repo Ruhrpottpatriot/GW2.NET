@@ -23,7 +23,7 @@ namespace GW2NET
         {
             if (jsonSerializer == null)
             {
-                throw new ArgumentNullException("jsonSerializer");
+                throw new ArgumentNullException(nameof(jsonSerializer));
             }
 
             this.jsonSerializer = jsonSerializer;

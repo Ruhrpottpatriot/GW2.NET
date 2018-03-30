@@ -43,7 +43,7 @@ namespace GW2NET.Items.Backpacks
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 this.infixUpgrade = value;
