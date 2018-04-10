@@ -28,7 +28,7 @@ namespace GW2NET.Handlers
         }
 
         /// <inheritdoc />
-        public IMessageBuilder Render(string signature, int fileId, string format)
+        IMessageBuilder IVersionSelector.Render(string signature, int fileId, string format)
         {
             this.currentRequest.Signature = signature;
             this.currentRequest.FileId = fileId;

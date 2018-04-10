@@ -13,19 +13,16 @@ namespace GW2NET.Handlers
     {
         private readonly List<EndpointRequestDetails> requestParams;
 
-        private readonly CultureInfo defaultLanguage;
-
         private EndpointRequestDetails currentRequest;
 
-        private ApiQuerySelector(CultureInfo defaultLanguage)
+        private ApiQuerySelector()
         {
-            this.defaultLanguage = defaultLanguage;
             this.requestParams = new List<EndpointRequestDetails>();
         }
 
-        public static IVersionSelector Init(CultureInfo defaultLanguage)
+        public static IVersionSelector Init()
         {
-            return new ApiQuerySelector(defaultLanguage);
+            return new ApiQuerySelector();
         }
 
         private void SaveCurrent()

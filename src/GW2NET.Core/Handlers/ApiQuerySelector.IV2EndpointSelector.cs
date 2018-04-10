@@ -19,5 +19,12 @@ namespace GW2NET.Handlers
             this.currentRequest.Endpoint = endpoint;
             return this;
         }
+
+        /// <inheritdoc />
+        IRequestTypeSelector IV2EndpointSelector.Achievements()
+        {
+            this.currentRequest.Endpoint = "achievements";
+            return this;
+        }
     }
 }

@@ -1,11 +1,7 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IDiscoverable.cs" company="GW2.NET Coding Team">
-//   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
+﻿// <copyright file="IDiscoverable.cs" company="GW2.NET Coding Team">
+// This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
-// <summary>
-//   Provides the interface for data sources that support enumerating object identifiers.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2NET.Common
 {
     using System;
@@ -17,12 +13,6 @@ namespace GW2NET.Common
     /// <typeparam name="T">The type of the identifiers.</typeparam>
     public interface IDiscoverable<T>
     {
-        /// <summary>Discovers identifiers of objects in the data source.</summary>
-        /// <exception cref="NotSupportedException">The data source does not support the discovery of object identifiers.</exception>
-        /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
-        /// <returns>A collection of object identifiers.</returns>
-        ICollection<T> Discover();
-
         /// <summary>Discovers identifiers of objects in the data source.</summary>
         /// <exception cref="NotSupportedException">The data source does not support the discovery of object identifiers.</exception>
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>

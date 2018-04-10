@@ -14,6 +14,6 @@ namespace GW2NET.Common
     public interface ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
-        CultureInfo Culture { get; set; }
+        CultureInfo Culture { get; }
     }
 }

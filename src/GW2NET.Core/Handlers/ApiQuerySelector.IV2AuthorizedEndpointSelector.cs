@@ -12,5 +12,12 @@ namespace GW2NET.Handlers
             this.currentRequest.Endpoint = "account";
             return this;
         }
+
+        /// <inheritdoc />
+        IRequestTypeSelector IV2AuthorizedEndpointSelector.Characters()
+        {
+            this.currentRequest.Endpoint = "characters";
+            return this;
+        }
     }
 }

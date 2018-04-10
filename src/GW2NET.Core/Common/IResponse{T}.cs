@@ -4,11 +4,13 @@
 
 namespace GW2NET.Common
 {
+    using System.Collections.Generic;
+
     /// <summary>Provides the interface for service responses.</summary>
     /// <typeparam name="T">The type of the response content.</typeparam>
     public interface IResponse<T> : IResponse
     {
         /// <summary>Gets or sets the response content.</summary>
-        T Content { get; set; }
+        IEnumerable<T> Content { get; set; }
     }
 }

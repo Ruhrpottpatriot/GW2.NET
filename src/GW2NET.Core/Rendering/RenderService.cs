@@ -38,7 +38,7 @@ namespace GW2NET.Rendering
         /// <inheritdoc />
         public async Task<byte[]> GetImageAsync(IRenderable file, string imageFormat, CancellationToken cancellationToken)
         {
-            var request = ApiQuerySelector.Init(new CultureInfo("en"))
+            var request = ApiQuerySelector.Init()
                 .Render(file.FileSignature, file.FileId, imageFormat)
                 .BuildSingle();
 

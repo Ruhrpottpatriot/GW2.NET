@@ -15,12 +15,6 @@ namespace GW2NET.Handlers
         }
 
         /// <inheritdoc />
-        IMessageBuilder ILanguageSelector.InDefaltLanguage()
-        {
-            return ((ILanguageSelector)this).In(this.defaultLanguage);
-        }
-
-        /// <inheritdoc />
         IMessageBuilder ILanguageSelector.In(CultureInfo language)
         {
             this.currentRequest.Culture = language;

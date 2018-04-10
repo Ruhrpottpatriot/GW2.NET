@@ -12,8 +12,14 @@ namespace GW2NET.Common
     /// <typeparam name="T">The type of the response content.</typeparam>
     public class Response<T> : IResponse<T>
     {
+        public Response()
+        {
+            this.Content = new List<T>(0);
+            this.ExtensionData = new Dictionary<string, string>(0);
+        }
+
         /// <inheritdoc />
-        public T Content { get; set; }
+        public IEnumerable<T> Content { get; set; }
 
         /// <inheritdoc />
         public CultureInfo Culture { get; set; }
@@ -22,6 +28,11 @@ namespace GW2NET.Common
         public DateTimeOffset Date { get; set; }
 
         /// <inheritdoc />
-        public IDictionary<string, string> ExtensionData { get; } = new Dictionary<string, string>();
+        public IDictionary<string, string> ExtensionData { get; set; }
+
+        public IEnumerable<T> ToIEnumerable()
+        {
+            return this.Content;
+        }
     }
 }

@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>GW2.NET Coding Team</Authors>
+    <Company />
+    <Product>GW2.NET</Product>
+    <Description>Provides easy access to the Guild Wars 2 achivement api.</Description>
+    <PackageProjectUrl>https://github.com/Ruhrpottpatriot/GW2.NET</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/Ruhrpottpatriot/GW2.NET/blob/master/LICENSE</PackageLicenseUrl>
+    <Copyright>2013</Copyright>
+    <RepositoryUrl>https://github.com/Ruhrpottpatriot/GW2.NET</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>GW2NET, GW2.NET, Guild Wars 2, API</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Converter\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GW2NET.Core\GW2NET.Core.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -49,6 +49,9 @@ namespace GW2NET.Handlers
         /// <summary>Selects the /items endpoint.</summary>
         IRequestTypeSelector Items();
 
+        /// <summary>Selects the /achievements endpoint.</summary>
+        IRequestTypeSelector Achievements();
+
         /// <summary>Selects an arbitrary api endpoint.</summary>
         /// <param name="endpoint">The relative url to the enpoint.</param>
         IAbstractRequestBuilder OnEndpoint(string endpoint);
@@ -97,9 +100,6 @@ namespace GW2NET.Handlers
         /// <summary>Selects the request language.</summary>
         /// <param name="language">The two letter language code.</param>
         IMessageBuilder In(string language);
-
-        /// <summary>Requests content in the default language.</summary>
-        IMessageBuilder InDefaltLanguage();
     }
 
     public interface IAbstractRequestBuilder
