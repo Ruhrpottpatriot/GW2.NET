@@ -4,32 +4,7 @@
 
 namespace GW2NET.Achievements
 {
-    using System;
     using System.Collections.Generic;
-    using Items;
-
-    public enum AchivementType
-    {
-        Default,
-        ItemSet
-    }
-
-    [Flags]
-    public enum AchivementFlags
-    {
-        Pvp = 0,
-        CategoryDisplay = 1 << 0,
-        MoveToTop = 1 << 1,
-        IgnoreNearlyComplete = 1 << 2,
-        Repeatable = 1 << 3,
-        Hidden = 1 << 4,
-        RequiresUnlock = 1 << 5,
-        RepairOnLogin = 1 << 6,
-        Daily = 1 << 7,
-        Weekly = 1 << 8,
-        Monthly = 1 << 9,
-        Permanent = 1 << 10
-    }
 
     public class Achievement
     {
@@ -56,80 +31,5 @@ namespace GW2NET.Achievements
         public IEnumerable<Bit> Bits { get; set; }
 
         public int PointCap { get; set; }
-    }
-
-    public abstract class Bit
-    {
-    }
-
-    public class TextBit
-    {
-        public string Text { get; set; }
-    }
-
-    public class MinipetBit
-    {
-        public Minipet Minipet { get; set; }
-
-        public int Count { get; set; }
-    }
-
-    public class ItemBit
-    {
-        public Item Item { get; set; }
-
-        public int Count { get; set; }
-    }
-
-    public abstract class AchievementReward
-    {
-    }
-
-    public class AchievementCointReward
-    {
-        public int Count { get; set; }
-    }
-
-    public class AchievementItemReward
-    {
-        public Item Item { get; set; }
-
-        public int Count { get; set; }
-    }
-
-    public class AchievementMasteryReward
-    {
-        public Mastery Mastery { get; set; }
-
-        public MasteryRegion Region { get; set; }
-    }
-
-    public enum MasteryRegion
-    {
-        Tyria,
-        Maguuma,
-        Desert
-    }
-
-    public class Mastery
-    {
-        public int Id { get; set; }
-    }
-
-    public class AchievementTitleReward
-    {
-        public Title Title { get; set; }
-    }
-
-    public class Title
-    {
-        public int Id { get; set; }
-    }
-
-    public class AchivementTier
-    {
-        public int Count { get; set; }
-
-        public int Points { get; set; }
     }
 }

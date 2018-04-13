@@ -6,7 +6,6 @@ namespace GW2NET.V2.Achievements.Types
 {
     using System;
     using System.Collections.Generic;
-    using Repositories;
 
     public class Achievement
     {

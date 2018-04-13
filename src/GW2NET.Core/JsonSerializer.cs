@@ -21,12 +21,7 @@ namespace GW2NET
         /// <exception cref="ArgumentNullException">The value of <see cref="jsonSerializer"/> is a null reference.</exception>
         public JsonSerializer(JsonSerializer jsonSerializer)
         {
-            if (jsonSerializer == null)
-            {
-                throw new ArgumentNullException(nameof(jsonSerializer));
-            }
-
-            this.jsonSerializer = jsonSerializer;
+            this.jsonSerializer = jsonSerializer ?? throw new ArgumentNullException(nameof(jsonSerializer));
         }
 
         /// <summary>Converts the input stream to the specified type.</summary>
