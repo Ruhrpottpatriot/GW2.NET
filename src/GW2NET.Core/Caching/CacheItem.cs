@@ -6,8 +6,9 @@ namespace GW2NET.Common
 {
     using System;
     using System.Globalization;
+    using Caching;
 
-    /// <summary>Represents an items stored inside an <see cref="ICache{TData, TKey}"/>.</summary>
+    /// <summary>Represents an items stored inside an <see cref="ICache{TData,TKey}"/>.</summary>
     /// <typeparam name="T">The type of data that is stored.</typeparam>
     /// <typeparam name="TKey">The key type.</typeparam>
     public class CacheItem<T, TKey> : ILocalizable, IEquatable<CacheItem<T, TKey>>
@@ -34,7 +35,7 @@ namespace GW2NET.Common
         /// <inheritdoc />
         public CultureInfo Culture { get; }
 
-        public static implicit operator T(CacheItem<T, TKey> obj)
+        public static explicit operator T(CacheItem<T, TKey> obj)
         {
             return obj.Data;
         }
