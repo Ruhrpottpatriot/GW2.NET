@@ -14,12 +14,7 @@ namespace GW2NET.ChatLinks
 
         public UnknownChatLink(byte[] raw)
         {
-            if (raw == null)
-            {
-                throw new ArgumentNullException(nameof(raw));
-            }
-
-            this.raw = raw;
+            this.raw = raw ?? throw new ArgumentNullException(nameof(raw));
         }
 
         public byte[] Raw
@@ -38,6 +33,7 @@ namespace GW2NET.ChatLinks
         //     stream.Read(buffer, 0, buffer.Length);
         //     return string.Format("[&{0}]", Convert.ToBase64String(buffer));
         // }
+
         /// <inheritdoc />
         protected override int CopyTo(ChatLinkStruct value)
         {

@@ -1,11 +1,7 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ChatLink.cs" company="GW2.NET Coding Team">
-//   This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
+﻿// <copyright file="ChatLink.cs" company="GW2.NET Coding Team">
+// This product is licensed under the GNU General Public License version 2 (GPLv2). See the License in the project root folder or the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
-// <summary>
-//   Provides the base class for chat links.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2NET.ChatLinks
 {
     using System;
@@ -29,6 +25,7 @@ namespace GW2NET.ChatLinks
         /// </summary>
         public static ChatLinkFactory Factory { get; private set; }
 
+        /// <inheritdoc />
         public override string ToString()
         {
             var value = new ChatLinkStruct();
