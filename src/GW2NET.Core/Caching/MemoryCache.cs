@@ -67,7 +67,7 @@ namespace GW2NET.Caching
 
             return this.itemDict
                 .SelectMany(l => l.Value)
-                .Where(i => selector(i));
+                .Where(i => selector((T)i));
         }
 
         /// <inheritdoc />
