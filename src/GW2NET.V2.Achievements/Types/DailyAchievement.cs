@@ -9,7 +9,7 @@ namespace GW2NET.V2.Achievements.Types
 
     public class DailyAchievement
     {
-        public IEnumerable<Tuple<int, Tuple<int, int>,string[]>> Pve { get; set; }
+        public IEnumerable<Tuple<int, Tuple<int, int>, string[]>> Pve { get; set; }
 
         public IEnumerable<Tuple<int, Tuple<int, int>, string[]>> Pvp { get; set; }
 
