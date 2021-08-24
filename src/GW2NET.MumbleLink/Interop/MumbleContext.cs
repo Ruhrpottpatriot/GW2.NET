@@ -31,5 +31,39 @@ namespace GW2NET.MumbleLink.Interop
 
         [FieldOffset(44)]
         public uint buildId;
+
+        [FieldOffset(48)]
+        public uint uiState;
+
+        [FieldOffset(52)]
+        public ushort compassWidth;
+
+        [FieldOffset(54)]
+        public ushort compassHeight;
+
+        [FieldOffset(56)]
+        public float compassRotation;
+
+        [FieldOffset(60)]
+        public float playerX;
+
+        [FieldOffset(64)]
+        public float playerY;
+
+        [FieldOffset(68)]
+        public float mapCenterX;
+
+        [FieldOffset(72)]
+        public float mapCenterY;
+
+        [FieldOffset(76)]
+        public float mapScale;
+
+        [FieldOffset(80)]
+        public uint processId;
+
+        [FieldOffset(84)]
+        public byte mountIndex;
+
     }
 }

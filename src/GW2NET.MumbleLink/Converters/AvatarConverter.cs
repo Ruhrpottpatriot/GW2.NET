@@ -17,6 +17,7 @@ namespace GW2NET.MumbleLink.Converters
     [CLSCompliant(false)]
     public sealed class AvatarConverter : IConverter<AvatarDTO, Avatar>
     {
+        private const int OfficialUsedBytes = 88;
         private static readonly DataContractJsonSerializer JsonSerializer = new DataContractJsonSerializer(typeof(IdentityDTO));
 
         private readonly IConverter<MumbleContext, AvatarContext> avatarContextConverter;
@@ -52,7 +53,7 @@ namespace GW2NET.MumbleLink.Converters
 
         public Avatar Convert(AvatarDTO value, object state)
         {
-            var contextLength = (int)value.context_len;
+            var contextLength = OfficialUsedBytes;
             var ptr = Marshal.AllocHGlobal(contextLength);
             Marshal.Copy(value.context, 0, ptr, contextLength);
             var mumbleContext = (MumbleContext)Marshal.PtrToStructure(ptr, typeof(MumbleContext));
