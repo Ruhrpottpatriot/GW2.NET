@@ -34,7 +34,25 @@ namespace GW2NET.MumbleLink.Converters
                 MapType = (int)value.mapType,
                 ShardId = (int)value.shardId,
                 Instance = (int)value.instance,
-                BuildId = (int)value.buildId
+                BuildId = (int)value.buildId,
+                UiState = value.uiState,
+                IsMapOpen = (value.uiState & UiStates.IsMapOpen) != UiStates.None,
+                IsCompassTopRight = (value.uiState & UiStates.IsCompassTopRight) != UiStates.None,
+                DoesCompassHaveRotationEnabled = (value.uiState & UiStates.DoesCompassHaveRotationEnabled) != UiStates.None,
+                GameHasFocus = (value.uiState & UiStates.GameHasFocus) != UiStates.None,
+                IsInCompetitiveGameMode = (value.uiState & UiStates.IsInCompetitiveGameMode) != UiStates.None,
+                TextboxHasFocus = (value.uiState & UiStates.TextboxHasFocus) != UiStates.None,
+                IsInCombat = (value.uiState & UiStates.IsInCombat) != UiStates.None,
+                CompassWidth = (int)value.compassWidth,
+                CompassHeight = (int)value.compassHeight,
+                CompassRotation = value.compassRotation,
+                PlayerX = value.playerX,
+                PlayerY = value.playerY,
+                MapCenterX = value.mapCenterX,
+                MapCenterY = value.mapCenterY,
+                MapScale = value.mapScale,
+                ProcessId = (int)value.processId,
+                CurrentMount = (Mount)value.mountIndex
             };
         }
     }

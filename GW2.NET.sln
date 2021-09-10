@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Tests", "Testing\GW2.NET.Tests\GW2NET.Tests.csproj", "{D138871F-94ED-4BB0-999A-2ACD3732DF30}"
 EndProject
@@ -749,5 +749,8 @@ Global
 		{8BD6A4E8-8E34-40E3-A828-7EF6C8A00FF2} = {5F6DDEF7-43FC-4A0C-8471-C61F2FAF00CF}
 		{55E26A4E-AC3B-48A4-B8AE-B6F915E614BF} = {5F6DDEF7-43FC-4A0C-8471-C61F2FAF00CF}
 		{A61085DF-1C1D-4B31-85F5-17B91A5BF825} = {5F6DDEF7-43FC-4A0C-8471-C61F2FAF00CF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A5CF526A-F1B4-4540-BEFD-1809178E714F}
 	EndGlobalSection
 EndGlobal

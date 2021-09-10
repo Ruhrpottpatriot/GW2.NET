@@ -53,6 +53,7 @@
     <Compile Include="Interop\SUnB.cs" />
     <Compile Include="Interop\SUnW.cs" />
     <Compile Include="Converters\IPEndPointConverter.cs" />
+    <Compile Include="Mount.cs" />
     <Compile Include="MumbleLinkFile.cs" />
     <Compile Include="Converters\ProfessionConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,6 +61,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Converters\Vector3DConverter.cs" />
+    <Compile Include="UIStates.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GW2NET.Core\GW2NET.Core.csproj">

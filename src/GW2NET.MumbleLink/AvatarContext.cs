@@ -39,6 +39,42 @@ namespace GW2NET.MumbleLink
         /// <summary>Gets or sets the shard identifier of the current shard.</summary>
         public int ShardId { get; set; }
 
+        public uint UiState { get; set; }
+
+        public bool IsMapOpen { get; set; }
+
+        public bool IsCompassTopRight { get; set; }
+
+        public bool DoesCompassHaveRotationEnabled { get; set; }
+
+        public bool GameHasFocus { get; set; }
+
+        public bool IsInCompetitiveGameMode { get; set; }
+
+        public bool TextboxHasFocus { get; set; }
+
+        public bool IsInCombat { get; set; }
+
+        public int CompassWidth { get; set; }
+
+        public int CompassHeight { get; set; }
+
+        public float CompassRotation { get; set; }
+
+        public float PlayerX { get; set; }
+
+        public float PlayerY { get; set; }
+
+        public float MapCenterX { get; set; }
+
+        public float MapCenterY { get; set; }
+
+        public float MapScale { get; set; }
+
+        public int ProcessId { get; set; }
+
+        public Mount CurrentMount { get; set; }
+
         public static bool operator ==(AvatarContext left, AvatarContext right)
         {
             return Equals(left, right);
